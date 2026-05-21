@@ -13,7 +13,7 @@
     "narrate": "node bin/narrate-indicators.js",
     "emit": "node bin/emit-alerts.js",
     "build": "npm run fetch && npm run detect && npm run narrate && npm run emit",
-    "test": "node test/run-tests.js"
+    "test": "node --test test/*.test.js"
   },
   "repository": {
     "type": "git",
