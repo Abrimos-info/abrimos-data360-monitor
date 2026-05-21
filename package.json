@@ -1,7 +1,7 @@
 {
   "name": "abrimos-data360-monitor",
   "version": "0.1.0",
-  "description": "Monitor autónomo que detecta hechos noticiosos en los 12.000 indicadores de Data360 y los entrega verificados a newsrooms LAC.",
+  "description": "Autonomous monitor that detects newsworthy events across the 12,000 indicators of Data360 and delivers them verified to LAC newsrooms.",
   "license": "GPL-3.0-or-later",
   "type": "commonjs",
   "main": "bin/run-detection.js",

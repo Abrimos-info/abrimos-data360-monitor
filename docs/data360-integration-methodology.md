@@ -1,6 +1,6 @@
 # Data360 API Integration Methodology
 
-> **Status:** placeholder. Final draft due 2026-05-22.
+> **Status**. Placeholder. Final draft due 2026-05-22.
 > Released under CC BY 4.0.
 
 ## Endpoints used (Data360 API v3)
@@ -16,7 +16,7 @@
 
 ## Detection strategies (demo)
 
-1. **Abrupt changes** — z-score against historical trajectory per `(indicator, country, disaggregation)`.
-2. **Cross-indicator anomalies** — outliers from regional pattern within the LAC scope.
+1. **Abrupt changes**. Z-score against historical trajectory per `(indicator, country, disaggregation)`.
+2. **Cross-indicator anomalies**. Outliers from the regional pattern within the LAC scope.
 
 (To be expanded with example queries, OData syntax, and schema mapping.)

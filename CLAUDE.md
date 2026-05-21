@@ -1,7 +1,7 @@
-# CLAUDE.md — abrimos-data360-monitor
+# CLAUDE.md, abrimos-data360-monitor
 
 > Data360 Global Challenge, phase 2 (submission deadline 2026-05-31).
-> Working notes & decisions live in the Abrimos internal knowledge base.
+> Working notes and decisions live in the Abrimos internal knowledge base.
 
 ## Model delegation
 
@@ -13,7 +13,7 @@ Requires tool use (Read/Write/Bash/Grep)?
   └─ NO  → Context >32K tokens or images/PDFs?
              ├─ YES → Gemini Flash (script)
              └─ NO  → Atomic, self-contained task?
-                       ├─ YES → LAIA / vLLM (script) — default external model
+                       ├─ YES → LAIA / vLLM (script), default external model
                        └─ NO  → Architecture decision?
                                  ├─ YES → Opus (current session)
                                  └─ NO  → Sonnet sub-agent
@@ -22,10 +22,10 @@ Requires tool use (Read/Write/Bash/Grep)?
 ### External model commands (via `AI_PROVIDER` env)
 
 ```bash
-# Demo path: Claude via Agent SDK with Abrimos subscription
+# Demo path. Claude via Agent SDK with Abrimos subscription
 AI_PROVIDER=claude-code AI_MODEL=opus-4-7
 
-# LAIA — Qwen 2.5 14B (free fallback for atomic tasks)
+# LAIA, Qwen 2.5 14B (free fallback for atomic tasks)
 AI_PROVIDER=vllm AI_API_URL=https://llms.laia.ar/v1 AI_MODEL=Qwen/Qwen2.5-14B-Instruct-AWQ
 
 # OpenRouter (fallback if LAIA is down)
@@ -44,7 +44,7 @@ AI_PROVIDER=vllm AI_API_URL=https://llms.laia.ar/v1 AI_MODEL=Qwen/Qwen2.5-14B-In
 | Large file analysis, PDFs, images          | Gemini Flash ($0)       |
 | Fallback if LAIA unavailable               | OpenRouter gpt-oss ($0) |
 
-**Rule**: never deliver output from a lower tier without reviewing it first.
+**Rule**. Never deliver output from a lower tier without reviewing it first.
 
 ## Project structure
 
@@ -59,11 +59,11 @@ lib/
   data360-client.js     # Data360 API v3 client
   opensearch-client.js  # OpenSearch (when in scope)
   detect/
-    z-score.js          # Strategy 1: abrupt changes
-    cross-indicator.js  # Strategy 4: cross-indicator anomalies
+    z-score.js          # Strategy 1, abrupt changes
+    cross-indicator.js  # Strategy 4, cross-indicator anomalies
   pcn-claims.js         # PCN claim-bound token generation
 frontend/
-  (Node.js + React, static dashboard reading data/alerts.json)
+  (Node.js and React, static dashboard reading data/alerts.json)
 connector/
   watchlist.json        # Countries × indicators to monitor
 data/
@@ -85,18 +85,18 @@ test/
 
 | ID | Decision |
 |---|---|
-| D-002 | Data360 is the primary source; supplementary sources are secondary |
-| D-003 | Demo covers 5 LAC countries: GTM, HND, ARG, ECU, MEX |
-| D-006 | Product tagline: "Autonomous monitor that detects newsworthy events across the 12,000 indicators of Data360 and delivers them verified to LAC newsrooms." |
-| D-007 | Demo works backwards (replay over historical snapshots), not real-time |
-| D-008 | Deliverable = static dashboard reading `data/alerts.json` |
-| D-009 | Non-functional newsletter subscribe button (visual placeholder) |
-| D-010 | Covers strategies 1 (abrupt changes) and 4 (cross-indicator anomalies) |
-| D-011 | Node.js stack. NiFi roadmap. LLM: one call per indicator |
-| D-012 | Hosting on Hetzner |
-| D-017 | LLM = Claude Opus 4.7 via Agent SDK |
-| D-018 | Repo `abrimos-info/abrimos-data360-monitor` |
-| D-020 | License: GPLv3 |
+| D-002 | Data360 is the primary source. Supplementary sources are secondary. |
+| D-003 | Demo covers 5 LAC countries. GTM, HND, ARG, ECU, MEX. |
+| D-006 | Product tagline. "Autonomous monitor that detects newsworthy events across the 12,000 indicators of Data360 and delivers them verified to LAC newsrooms." |
+| D-007 | Demo works backwards (replay over historical snapshots), not real-time. |
+| D-008 | Deliverable is a static dashboard reading `data/alerts.json`. |
+| D-009 | Non-functional newsletter subscribe button (visual placeholder). |
+| D-010 | Covers strategies 1 (abrupt changes) and 4 (cross-indicator anomalies). |
+| D-011 | Node.js stack. NiFi roadmap. LLM does one call per indicator. |
+| D-012 | Hosting on Hetzner. |
+| D-017 | LLM is Claude Opus 4.7 via Agent SDK. |
+| D-018 | Repo `abrimos-info/abrimos-data360-monitor`. |
+| D-020 | License GPLv3. |
 
 ## Key commands
 
@@ -119,14 +119,15 @@ npm run frontend:dev
 
 ## Cost tracking
 
-`lib/ai-client.js` tracks tokens and cost. Log prefixes:
-- `[AI-COST]` — context size before each call
-- `[AI-COST-NARRATE]` — cost per indicator narrative
+`lib/ai-client.js` tracks tokens and cost. Log prefixes.
+
+- `[AI-COST]`. Context size before each call.
+- `[AI-COST-NARRATE]`. Cost per indicator narrative.
 
 ## Conventions
 
-- CommonJS (`type: "commonjs"`), not ESM
-- `OBS_VALUE` is always `Decimal`, never `Number`
-- Disaggregations `_Z` (n/a) and `_T` (total) are filtered explicitly
-- Only `OBS_STATUS = "A"` enters detection
-- Every alert must carry a `verification_trace` with links to `data360.worldbank.org` and the `csv_link`
+- CommonJS (`type: "commonjs"`), not ESM.
+- `OBS_VALUE` is always `Decimal`, never `Number`.
+- Disaggregations `_Z` (n/a) and `_T` (total) are filtered explicitly.
+- Only `OBS_STATUS = "A"` enters detection.
+- Every alert must carry a `verification_trace` with links to `data360.worldbank.org` and the `csv_link`.

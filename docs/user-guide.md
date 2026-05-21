@@ -1,7 +1,7 @@
-# User Guide — for journalists
+# User Guide, for journalists
 
-> **Status:** placeholder. Final draft due 2026-05-30.
-> Audience: LAC newsrooms. Not for developers.
+> **Status**. Placeholder. Final draft due 2026-05-30.
+> Audience. LAC newsrooms. Not for developers.
 
 ## What this tool does
 
@@ -9,7 +9,7 @@
 
 ## How to read an alert
 
-(Anatomy of an alert: indicator, country, change, verification trace.)
+(Anatomy of an alert. Indicator, country, change, verification trace.)
 
 ## How to verify a claim before publishing
 
