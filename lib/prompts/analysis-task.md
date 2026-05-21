@@ -1,0 +1,1 @@
+Analiza el indicador descrito en el contexto adjunto. Aplica las reglas de detección de las estrategias 1 (cambios abruptos) y 4 (anomalías cross-indicador). Sigue la plantilla del informe punto por punto, no la describas. Ejecuta el protocolo de auto-verificación al final y emite el bloque `quality`. Responde sólo con el análisis, sin preámbulos ni cierre.
