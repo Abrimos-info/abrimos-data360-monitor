@@ -41,7 +41,7 @@
                              │ emits
                              ▼
                 ┌──────────────────────────────────┐
-                │  Dashboard (Node.js and React)   │
+                │  Dashboard (Node.js/Pug/Vanilla JS)│
                 │  PCN verification marks          │
                 └──────────────────────────────────┘
 ```
@@ -58,7 +58,7 @@ This keeps the demo cheap, deterministic, and demonstrable. The pieces marked as
 
 ## Components
 
-- **Dashboard (Node.js and React)**. Reads `data/alerts.json`.
+- **Dashboard (Node.js/Pug/Vanilla JS)**. Reads `data/alerts.json`.
 - **Detection and narrative pipeline (Node.js)**. Fetch, detect, narrate, emit.
 - **TeseoETL fetcher**. Calls Data360 API v3 and writes JSONlines per indicator (production) or local CSV (demo).
 - **Apache NiFi (production only)**. Orchestrates the fetcher, ingests JSONlines, normalises, pushes to OpenSearch.
