@@ -1,0 +1,396 @@
+[
+  {
+    "id": "alert_2026-05-21_037",
+    "type": "anomaly",
+    "country": "MEX",
+    "category": "economy",
+    "indicator": {
+      "idno": "IMF_BOP_IPDG_BP6",
+      "database_id": "IMF_BOP",
+      "name": {
+        "es": "IIP, Portfolio investment, Debt securities, General government",
+        "en": "IIP, Portfolio investment, Debt securities, General government"
+      }
+    },
+    "observation": {
+      "value": 186184000000,
+      "time_period": "2024-Q3",
+      "unit": "USD"
+    },
+    "magnitude": {
+      "es": "+6.0σ",
+      "en": "+6.0σ"
+    },
+    "chart_series": [
+      {
+        "period": "2001",
+        "value": 44527300000
+      },
+      {
+        "period": "2002",
+        "value": 43548300000
+      },
+      {
+        "period": "2003",
+        "value": 44800900000
+      },
+      {
+        "period": "2004",
+        "value": 52229000000
+      },
+      {
+        "period": "2005",
+        "value": 54814700000
+      },
+      {
+        "period": "2006",
+        "value": 50240600000
+      },
+      {
+        "period": "2007",
+        "value": 57767500000
+      },
+      {
+        "period": "2008",
+        "value": 53454800000
+      },
+      {
+        "period": "2009",
+        "value": 59940200000
+      },
+      {
+        "period": "2009-Q1",
+        "value": 50951200000
+      },
+      {
+        "period": "2009-Q2",
+        "value": 51922800000
+      },
+      {
+        "period": "2009-Q3",
+        "value": 56192400000
+      },
+      {
+        "period": "2009-Q4",
+        "value": 59940200000
+      },
+      {
+        "period": "2010",
+        "value": 91528000000
+      },
+      {
+        "period": "2010-Q1",
+        "value": 67556700000
+      },
+      {
+        "period": "2010-Q2",
+        "value": 69855500000
+      },
+      {
+        "period": "2010-Q3",
+        "value": 79339400000
+      },
+      {
+        "period": "2010-Q4",
+        "value": 91528000000
+      },
+      {
+        "period": "2011",
+        "value": 115340000000
+      },
+      {
+        "period": "2011-Q1",
+        "value": 103035000000
+      },
+      {
+        "period": "2011-Q2",
+        "value": 111685000000
+      },
+      {
+        "period": "2011-Q3",
+        "value": 109988000000
+      },
+      {
+        "period": "2011-Q4",
+        "value": 115340000000
+      },
+      {
+        "period": "2012",
+        "value": 176543000000
+      },
+      {
+        "period": "2012-Q1",
+        "value": 140686000000
+      },
+      {
+        "period": "2012-Q2",
+        "value": 144651000000
+      },
+      {
+        "period": "2012-Q3",
+        "value": 164853000000
+      },
+      {
+        "period": "2012-Q4",
+        "value": 176543000000
+      },
+      {
+        "period": "2013",
+        "value": 194469000000
+      },
+      {
+        "period": "2013-Q1",
+        "value": 196529000000
+      },
+      {
+        "period": "2013-Q2",
+        "value": 183597000000
+      },
+      {
+        "period": "2013-Q3",
+        "value": 187849000000
+      },
+      {
+        "period": "2013-Q4",
+        "value": 194469000000
+      },
+      {
+        "period": "2014",
+        "value": 207681000000
+      },
+      {
+        "period": "2014-Q1",
+        "value": 204384000000
+      },
+      {
+        "period": "2014-Q2",
+        "value": 216103000000
+      },
+      {
+        "period": "2014-Q3",
+        "value": 211475000000
+      },
+      {
+        "period": "2014-Q4",
+        "value": 207681000000
+      },
+      {
+        "period": "2015",
+        "value": 194232000000
+      },
+      {
+        "period": "2015-Q1",
+        "value": 206283000000
+      },
+      {
+        "period": "2015-Q2",
+        "value": 202312000000
+      },
+      {
+        "period": "2015-Q3",
+        "value": 195443000000
+      },
+      {
+        "period": "2015-Q4",
+        "value": 194232000000
+      },
+      {
+        "period": "2016",
+        "value": 164769000000
+      },
+      {
+        "period": "2016-Q1",
+        "value": 192518000000
+      },
+      {
+        "period": "2016-Q2",
+        "value": 176523000000
+      },
+      {
+        "period": "2016-Q3",
+        "value": 175567000000
+      },
+      {
+        "period": "2016-Q4",
+        "value": 164769000000
+      },
+      {
+        "period": "2017",
+        "value": 171261000000
+      },
+      {
+        "period": "2017-Q1",
+        "value": 183564000000
+      },
+      {
+        "period": "2017-Q2",
+        "value": 186661000000
+      },
+      {
+        "period": "2017-Q3",
+        "value": 187584000000
+      },
+      {
+        "period": "2017-Q4",
+        "value": 171261000000
+      },
+      {
+        "period": "2018",
+        "value": 172509000000
+      },
+      {
+        "period": "2018-Q1",
+        "value": 187155000000
+      },
+      {
+        "period": "2018-Q2",
+        "value": 177071000000
+      },
+      {
+        "period": "2018-Q3",
+        "value": 184147000000
+      },
+      {
+        "period": "2018-Q4",
+        "value": 172509000000
+      },
+      {
+        "period": "2019",
+        "value": 190997000000
+      },
+      {
+        "period": "2019-Q1",
+        "value": 185414000000
+      },
+      {
+        "period": "2019-Q2",
+        "value": 186022000000
+      },
+      {
+        "period": "2019-Q3",
+        "value": 185858000000
+      },
+      {
+        "period": "2019-Q4",
+        "value": 190997000000
+      },
+      {
+        "period": "2020",
+        "value": 188633000000
+      },
+      {
+        "period": "2020-Q1",
+        "value": 163840000000
+      },
+      {
+        "period": "2020-Q2",
+        "value": 167337000000
+      },
+      {
+        "period": "2020-Q3",
+        "value": 172553000000
+      },
+      {
+        "period": "2020-Q4",
+        "value": 188633000000
+      },
+      {
+        "period": "2021",
+        "value": 165692000000
+      },
+      {
+        "period": "2021-Q1",
+        "value": 177312000000
+      },
+      {
+        "period": "2021-Q2",
+        "value": 176643000000
+      },
+      {
+        "period": "2021-Q3",
+        "value": 169594000000
+      },
+      {
+        "period": "2021-Q4",
+        "value": 165692000000
+      },
+      {
+        "period": "2022",
+        "value": 166730000000
+      },
+      {
+        "period": "2022-Q1",
+        "value": 169246000000
+      },
+      {
+        "period": "2022-Q2",
+        "value": 159924000000
+      },
+      {
+        "period": "2022-Q3",
+        "value": 156197000000
+      },
+      {
+        "period": "2022-Q4",
+        "value": 166730000000
+      },
+      {
+        "period": "2023",
+        "value": 188828000000
+      },
+      {
+        "period": "2023-Q1",
+        "value": 178499000000
+      },
+      {
+        "period": "2023-Q2",
+        "value": 181090000000
+      },
+      {
+        "period": "2023-Q3",
+        "value": 175864000000
+      },
+      {
+        "period": "2023-Q4",
+        "value": 188828000000
+      },
+      {
+        "period": "2024-Q1",
+        "value": 198523000000
+      },
+      {
+        "period": "2024-Q2",
+        "value": 186117000000
+      },
+      {
+        "period": "2024-Q3",
+        "value": 186184000000,
+        "is_change_point": true
+      }
+    ],
+    "verification_trace": {
+      "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/IMF_BOP",
+      "csv_link": "https://data360files.worldbank.org/data360-data/data/IMF_BOP/IMF_BOP_IPDG_BP6.csv",
+      "methodology_ref": "https://www.imf.org/external/pubs/ft/bopman/bopman.pdf"
+    },
+    "score": 1,
+    "detected_at": "2026-05-21T20:27:18.956Z",
+    "license": "License Specified Externally",
+    "narrative_citizen": {
+      "es": "MEX registró 186184000000 USD en IIP, Portfolio investment, Debt securities, General government para 2024-Q3, +6.0σ respecto a su trayectoria reciente.",
+      "en": "MEX recorded 186184000000 USD in IIP, Portfolio investment, Debt securities, General government for 2024-Q3, +6.0σ from its recent trajectory."
+    },
+    "narrative_journalist": {
+      "es": "Detección automática: MEX 186184000000 USD en IIP, Portfolio investment, Debt securities, General government (2024-Q3). z-score +6.0σ vs ventana de 5 puntos previos.",
+      "en": "Auto-detected: MEX 186184000000 USD in IIP, Portfolio investment, Debt securities, General government (2024-Q3). z-score +6.0σ against 5-point baseline."
+    },
+    "claim_tokens": [
+      {
+        "claim_id": "a22dcf986bb532f3",
+        "value": 186184000000,
+        "display_es": "186184000000 USD",
+        "display_en": "186184000000 USD"
+      }
+    ]
+  }
+]

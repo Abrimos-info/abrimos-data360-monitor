@@ -1,0 +1,362 @@
+[
+  {
+    "id": "alert_2026-05-21_004",
+    "type": "abrupt_change",
+    "country": "HND",
+    "category": "economy",
+    "indicator": {
+      "idno": "WB_WDI_GC_XPN_INTP_RV_ZS",
+      "database_id": "WB_WDI",
+      "name": {
+        "es": "Interest payments (% of revenue)",
+        "en": "Interest payments (% of revenue)"
+      }
+    },
+    "observation": {
+      "value": 10.629658,
+      "time_period": "2020",
+      "unit": "PT_REV"
+    },
+    "magnitude": {
+      "es": "+2.6σ",
+      "en": "+2.6σ"
+    },
+    "chart_series": [
+      {
+        "period": "1972",
+        "value": 6.225681
+      },
+      {
+        "period": "1973",
+        "value": 5.955335
+      },
+      {
+        "period": "1974",
+        "value": 5.323741
+      },
+      {
+        "period": "1975",
+        "value": 4.930263
+      },
+      {
+        "period": "1976",
+        "value": 4.303279
+      },
+      {
+        "period": "2003",
+        "value": 6.883061
+      },
+      {
+        "period": "2004",
+        "value": 6.267235
+      },
+      {
+        "period": "2005",
+        "value": 5.644546
+      },
+      {
+        "period": "2006",
+        "value": 3.870304
+      },
+      {
+        "period": "2007",
+        "value": 2.595133
+      },
+      {
+        "period": "2008",
+        "value": 2.4956
+      },
+      {
+        "period": "2009",
+        "value": 2.89511
+      },
+      {
+        "period": "2010",
+        "value": 3.894267
+      },
+      {
+        "period": "2011",
+        "value": 5.524876
+      },
+      {
+        "period": "2012",
+        "value": 6.921105
+      },
+      {
+        "period": "2013",
+        "value": 8.940982
+      },
+      {
+        "period": "2014",
+        "value": 7.632188
+      },
+      {
+        "period": "2015",
+        "value": 7.731239
+      },
+      {
+        "period": "2020",
+        "value": 10.629658,
+        "is_change_point": true
+      }
+    ],
+    "verification_trace": {
+      "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/WB_WDI",
+      "csv_link": "https://data360files.worldbank.org/data360-data/data/WB_WDI/WB_WDI_GC_XPN_INTP_RV_ZS.csv",
+      "methodology_ref": "https://dsbb.imf.org/"
+    },
+    "score": 0.6548050586553917,
+    "detected_at": "2026-05-21T20:27:18.951Z",
+    "license": "CC BY-4.0",
+    "narrative_citizen": {
+      "es": "HND registró 10.629658 PT_REV en Interest payments (% of revenue) para 2020, +2.6σ respecto a su trayectoria reciente.",
+      "en": "HND recorded 10.629658 PT_REV in Interest payments (% of revenue) for 2020, +2.6σ from its recent trajectory."
+    },
+    "narrative_journalist": {
+      "es": "Detección automática: HND 10.629658 PT_REV en Interest payments (% of revenue) (2020). z-score +2.6σ vs ventana de 5 puntos previos.",
+      "en": "Auto-detected: HND 10.629658 PT_REV in Interest payments (% of revenue) (2020). z-score +2.6σ against 5-point baseline."
+    },
+    "claim_tokens": [
+      {
+        "claim_id": "071f7ff074eefe59",
+        "value": 10.629658,
+        "display_es": "10.629658 PT_REV",
+        "display_en": "10.629658 PT_REV"
+      }
+    ]
+  },
+  {
+    "id": "alert_2026-05-21_005",
+    "type": "abrupt_change",
+    "country": "MEX",
+    "category": "economy",
+    "indicator": {
+      "idno": "WB_WDI_GC_XPN_INTP_RV_ZS",
+      "database_id": "WB_WDI",
+      "name": {
+        "es": "Interest payments (% of revenue)",
+        "en": "Interest payments (% of revenue)"
+      }
+    },
+    "observation": {
+      "value": 20.000111,
+      "time_period": "2024",
+      "unit": "PT_REV"
+    },
+    "magnitude": {
+      "es": "+2.2σ",
+      "en": "+2.2σ"
+    },
+    "chart_series": [
+      {
+        "period": "1972",
+        "value": 8.62069
+      },
+      {
+        "period": "1973",
+        "value": 10.294118
+      },
+      {
+        "period": "1974",
+        "value": 11.578947
+      },
+      {
+        "period": "1975",
+        "value": 10.447761
+      },
+      {
+        "period": "1976",
+        "value": 11.764706
+      },
+      {
+        "period": "1977",
+        "value": 13.278008
+      },
+      {
+        "period": "1978",
+        "value": 12.732919
+      },
+      {
+        "period": "1979",
+        "value": 12.072893
+      },
+      {
+        "period": "1980",
+        "value": 11.144131
+      },
+      {
+        "period": "1981",
+        "value": 19.336384
+      },
+      {
+        "period": "1982",
+        "value": 27.689243
+      },
+      {
+        "period": "1983",
+        "value": 54.192022
+      },
+      {
+        "period": "1984",
+        "value": 48.622471
+      },
+      {
+        "period": "1985",
+        "value": 59.879254
+      },
+      {
+        "period": "1986",
+        "value": 99.340075
+      },
+      {
+        "period": "1987",
+        "value": 114.436971
+      },
+      {
+        "period": "1988",
+        "value": 100.529649
+      },
+      {
+        "period": "1989",
+        "value": 66.083312
+      },
+      {
+        "period": "1990",
+        "value": 52.497021
+      },
+      {
+        "period": "1991",
+        "value": 30.602439
+      },
+      {
+        "period": "1992",
+        "value": 21.867526
+      },
+      {
+        "period": "1993",
+        "value": 16.249579
+      },
+      {
+        "period": "1994",
+        "value": 13.419373
+      },
+      {
+        "period": "1995",
+        "value": 18.860298
+      },
+      {
+        "period": "1996",
+        "value": 18.806716
+      },
+      {
+        "period": "1997",
+        "value": 15.118355
+      },
+      {
+        "period": "1998",
+        "value": 16.549672
+      },
+      {
+        "period": "1999",
+        "value": 18.278167
+      },
+      {
+        "period": "2000",
+        "value": 13.959809
+      },
+      {
+        "period": "2008",
+        "value": 11.879447
+      },
+      {
+        "period": "2009",
+        "value": 13.956711
+      },
+      {
+        "period": "2010",
+        "value": 12.997932
+      },
+      {
+        "period": "2011",
+        "value": 11.615215
+      },
+      {
+        "period": "2012",
+        "value": 11.99208
+      },
+      {
+        "period": "2013",
+        "value": 12.003038
+      },
+      {
+        "period": "2014",
+        "value": 12.549271
+      },
+      {
+        "period": "2015",
+        "value": 11.329458
+      },
+      {
+        "period": "2016",
+        "value": 11.684321
+      },
+      {
+        "period": "2017",
+        "value": 13.619226
+      },
+      {
+        "period": "2018",
+        "value": 14.499616
+      },
+      {
+        "period": "2019",
+        "value": 14.095193
+      },
+      {
+        "period": "2020",
+        "value": 15.447815
+      },
+      {
+        "period": "2021",
+        "value": 15.825938
+      },
+      {
+        "period": "2022",
+        "value": 17.196605
+      },
+      {
+        "period": "2023",
+        "value": 18.549315
+      },
+      {
+        "period": "2024",
+        "value": 20.000111,
+        "is_change_point": true
+      }
+    ],
+    "verification_trace": {
+      "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/WB_WDI",
+      "csv_link": "https://data360files.worldbank.org/data360-data/data/WB_WDI/WB_WDI_GC_XPN_INTP_RV_ZS.csv",
+      "methodology_ref": "https://dsbb.imf.org/"
+    },
+    "score": 0.5534119434554561,
+    "detected_at": "2026-05-21T20:27:18.952Z",
+    "license": "CC BY-4.0",
+    "narrative_citizen": {
+      "es": "MEX registró 20.000111 PT_REV en Interest payments (% of revenue) para 2024, +2.2σ respecto a su trayectoria reciente.",
+      "en": "MEX recorded 20.000111 PT_REV in Interest payments (% of revenue) for 2024, +2.2σ from its recent trajectory."
+    },
+    "narrative_journalist": {
+      "es": "Detección automática: MEX 20.000111 PT_REV en Interest payments (% of revenue) (2024). z-score +2.2σ vs ventana de 5 puntos previos.",
+      "en": "Auto-detected: MEX 20.000111 PT_REV in Interest payments (% of revenue) (2024). z-score +2.2σ against 5-point baseline."
+    },
+    "claim_tokens": [
+      {
+        "claim_id": "2e8991dcc784df63",
+        "value": 20.000111,
+        "display_es": "20.000111 PT_REV",
+        "display_en": "20.000111 PT_REV"
+      }
+    ]
+  }
+]

@@ -1,0 +1,544 @@
+[
+  {
+    "id": "alert_2026-05-21_008",
+    "type": "abrupt_change",
+    "country": "ARG",
+    "category": "education",
+    "indicator": {
+      "idno": "WB_WDI_SE_SEC_ENRR",
+      "database_id": "WB_WDI",
+      "name": {
+        "es": "School enrollment, secondary (% gross)",
+        "en": "School enrollment, secondary (% gross)"
+      }
+    },
+    "observation": {
+      "value": 105.574584,
+      "time_period": "2023",
+      "unit": "%"
+    },
+    "magnitude": {
+      "es": "−2.7σ",
+      "en": "−2.7σ"
+    },
+    "chart_series": [
+      {
+        "period": "1970",
+        "value": 44.431099
+      },
+      {
+        "period": "1971",
+        "value": 45.5424
+      },
+      {
+        "period": "1972",
+        "value": 47.463409
+      },
+      {
+        "period": "1973",
+        "value": 49.83593
+      },
+      {
+        "period": "1974",
+        "value": 52.5121
+      },
+      {
+        "period": "1975",
+        "value": 54.067371
+      },
+      {
+        "period": "1976",
+        "value": 55.414871
+      },
+      {
+        "period": "1977",
+        "value": 55.13451
+      },
+      {
+        "period": "1978",
+        "value": 55.04694
+      },
+      {
+        "period": "1979",
+        "value": 55.065651
+      },
+      {
+        "period": "1980",
+        "value": 56.184021
+      },
+      {
+        "period": "1981",
+        "value": 57.603149
+      },
+      {
+        "period": "1982",
+        "value": 59.57502
+      },
+      {
+        "period": "1983",
+        "value": 60.405998
+      },
+      {
+        "period": "1984",
+        "value": 65.958099
+      },
+      {
+        "period": "1985",
+        "value": 70.644707
+      },
+      {
+        "period": "1986",
+        "value": 70.531731
+      },
+      {
+        "period": "1987",
+        "value": 70.307098
+      },
+      {
+        "period": "1988",
+        "value": 70.91806
+      },
+      {
+        "period": "1990",
+        "value": 72.955566
+      },
+      {
+        "period": "1991",
+        "value": 74.131264
+      },
+      {
+        "period": "1994",
+        "value": 70.867752
+      },
+      {
+        "period": "1996",
+        "value": 78.492607
+      },
+      {
+        "period": "1997",
+        "value": 74.47728
+      },
+      {
+        "period": "1998",
+        "value": 80.652031
+      },
+      {
+        "period": "1999",
+        "value": 92.290466
+      },
+      {
+        "period": "2000",
+        "value": 96.214119
+      },
+      {
+        "period": "2001",
+        "value": 97.624046
+      },
+      {
+        "period": "2002",
+        "value": 96.996567
+      },
+      {
+        "period": "2003",
+        "value": 96.046448
+      },
+      {
+        "period": "2004",
+        "value": 95.457558
+      },
+      {
+        "period": "2005",
+        "value": 93.637672
+      },
+      {
+        "period": "2006",
+        "value": 92.407578
+      },
+      {
+        "period": "2007",
+        "value": 92.187408
+      },
+      {
+        "period": "2008",
+        "value": 93.18322
+      },
+      {
+        "period": "2009",
+        "value": 96.405678
+      },
+      {
+        "period": "2010",
+        "value": 99.070999
+      },
+      {
+        "period": "2011",
+        "value": 100.88456
+      },
+      {
+        "period": "2012",
+        "value": 102.709991
+      },
+      {
+        "period": "2013",
+        "value": 104.540863
+      },
+      {
+        "period": "2014",
+        "value": 106.038902
+      },
+      {
+        "period": "2015",
+        "value": 107.504868
+      },
+      {
+        "period": "2016",
+        "value": 109.598328
+      },
+      {
+        "period": "2017",
+        "value": 110.3778
+      },
+      {
+        "period": "2018",
+        "value": 109.671242
+      },
+      {
+        "period": "2019",
+        "value": 110.460152
+      },
+      {
+        "period": "2020",
+        "value": 112.376732
+      },
+      {
+        "period": "2021",
+        "value": 115.735779
+      },
+      {
+        "period": "2022",
+        "value": 114.148117
+      },
+      {
+        "period": "2023",
+        "value": 105.574584,
+        "is_change_point": true
+      }
+    ],
+    "verification_trace": {
+      "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/WB_WDI",
+      "csv_link": "https://data360files.worldbank.org/data360-data/data/WB_WDI/WB_WDI_SE_SEC_ENRR.csv",
+      "methodology_ref": "https://databrowser.uis.unesco.org/resources)"
+    },
+    "score": 0.6854336580193369,
+    "detected_at": "2026-05-21T20:27:18.952Z",
+    "license": "CC BY-4.0",
+    "narrative_citizen": {
+      "es": "ARG registró 105.574584 % en School enrollment, secondary (% gross) para 2023, −2.7σ respecto a su trayectoria reciente.",
+      "en": "ARG recorded 105.574584 % in School enrollment, secondary (% gross) for 2023, −2.7σ from its recent trajectory."
+    },
+    "narrative_journalist": {
+      "es": "Detección automática: ARG 105.574584 % en School enrollment, secondary (% gross) (2023). z-score −2.7σ vs ventana de 5 puntos previos.",
+      "en": "Auto-detected: ARG 105.574584 % in School enrollment, secondary (% gross) (2023). z-score −2.7σ against 5-point baseline."
+    },
+    "claim_tokens": [
+      {
+        "claim_id": "ae359bf56cb87bb6",
+        "value": 105.574584,
+        "display_es": "105.574584 %",
+        "display_en": "105.574584 %"
+      }
+    ]
+  },
+  {
+    "id": "alert_2026-05-21_009",
+    "type": "abrupt_change",
+    "country": "ECU",
+    "category": "education",
+    "indicator": {
+      "idno": "WB_WDI_SE_SEC_ENRR",
+      "database_id": "WB_WDI",
+      "name": {
+        "es": "School enrollment, secondary (% gross)",
+        "en": "School enrollment, secondary (% gross)"
+      }
+    },
+    "observation": {
+      "value": 92.811803,
+      "time_period": "2023",
+      "unit": "%"
+    },
+    "magnitude": {
+      "es": "−3.2σ",
+      "en": "−3.2σ"
+    },
+    "chart_series": [
+      {
+        "period": "2000",
+        "value": 55.961269
+      },
+      {
+        "period": "2001",
+        "value": 56.287022
+      },
+      {
+        "period": "2002",
+        "value": 57.24361
+      },
+      {
+        "period": "2003",
+        "value": 56.81657
+      },
+      {
+        "period": "2004",
+        "value": 57.409611
+      },
+      {
+        "period": "2005",
+        "value": 59.871601
+      },
+      {
+        "period": "2006",
+        "value": 61.953152
+      },
+      {
+        "period": "2007",
+        "value": 63.447189
+      },
+      {
+        "period": "2009",
+        "value": 85.971039
+      },
+      {
+        "period": "2010",
+        "value": 91.558388
+      },
+      {
+        "period": "2011",
+        "value": 95.69297
+      },
+      {
+        "period": "2012",
+        "value": 98.554802
+      },
+      {
+        "period": "2013",
+        "value": 100.65921
+      },
+      {
+        "period": "2014",
+        "value": 102.59034
+      },
+      {
+        "period": "2015",
+        "value": 100.791786
+      },
+      {
+        "period": "2016",
+        "value": 98.080376
+      },
+      {
+        "period": "2017",
+        "value": 96.163765
+      },
+      {
+        "period": "2018",
+        "value": 94.97481
+      },
+      {
+        "period": "2019",
+        "value": 93.837164
+      },
+      {
+        "period": "2020",
+        "value": 93.984949
+      },
+      {
+        "period": "2021",
+        "value": 94.589928
+      },
+      {
+        "period": "2022",
+        "value": 94.133531
+      },
+      {
+        "period": "2023",
+        "value": 92.811803,
+        "is_change_point": true
+      }
+    ],
+    "verification_trace": {
+      "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/WB_WDI",
+      "csv_link": "https://data360files.worldbank.org/data360-data/data/WB_WDI/WB_WDI_SE_SEC_ENRR.csv",
+      "methodology_ref": "https://databrowser.uis.unesco.org/resources)"
+    },
+    "score": 0.7951450199904987,
+    "detected_at": "2026-05-21T20:27:18.952Z",
+    "license": "CC BY-4.0",
+    "narrative_citizen": {
+      "es": "ECU registró 92.811803 % en School enrollment, secondary (% gross) para 2023, −3.2σ respecto a su trayectoria reciente.",
+      "en": "ECU recorded 92.811803 % in School enrollment, secondary (% gross) for 2023, −3.2σ from its recent trajectory."
+    },
+    "narrative_journalist": {
+      "es": "Detección automática: ECU 92.811803 % en School enrollment, secondary (% gross) (2023). z-score −3.2σ vs ventana de 5 puntos previos.",
+      "en": "Auto-detected: ECU 92.811803 % in School enrollment, secondary (% gross) (2023). z-score −3.2σ against 5-point baseline."
+    },
+    "claim_tokens": [
+      {
+        "claim_id": "b5323ecd4c415951",
+        "value": 92.811803,
+        "display_es": "92.811803 %",
+        "display_en": "92.811803 %"
+      }
+    ]
+  },
+  {
+    "id": "alert_2026-05-21_027",
+    "type": "anomaly",
+    "country": "MEX",
+    "category": "education",
+    "indicator": {
+      "idno": "WB_WDI_SE_SEC_ENRR",
+      "database_id": "WB_WDI",
+      "name": {
+        "es": "School enrollment, secondary (% gross)",
+        "en": "School enrollment, secondary (% gross)"
+      }
+    },
+    "observation": {
+      "value": 103.093323,
+      "time_period": "2024",
+      "unit": "%"
+    },
+    "magnitude": {
+      "es": "+15.8σ",
+      "en": "+15.8σ"
+    },
+    "chart_series": [
+      {
+        "period": "2000",
+        "value": 71.119583
+      },
+      {
+        "period": "2001",
+        "value": 72.883209
+      },
+      {
+        "period": "2002",
+        "value": 75.148293
+      },
+      {
+        "period": "2003",
+        "value": 78.554192
+      },
+      {
+        "period": "2004",
+        "value": 79.782707
+      },
+      {
+        "period": "2005",
+        "value": 80.630539
+      },
+      {
+        "period": "2006",
+        "value": 82.701393
+      },
+      {
+        "period": "2007",
+        "value": 84.088707
+      },
+      {
+        "period": "2008",
+        "value": 86.076309
+      },
+      {
+        "period": "2009",
+        "value": 85.942322
+      },
+      {
+        "period": "2010",
+        "value": 87.272926
+      },
+      {
+        "period": "2011",
+        "value": 88.380089
+      },
+      {
+        "period": "2012",
+        "value": 90.693619
+      },
+      {
+        "period": "2013",
+        "value": 93.262306
+      },
+      {
+        "period": "2014",
+        "value": 97.319687
+      },
+      {
+        "period": "2015",
+        "value": 100.982269
+      },
+      {
+        "period": "2016",
+        "value": 102.871368
+      },
+      {
+        "period": "2017",
+        "value": 105.110184
+      },
+      {
+        "period": "2018",
+        "value": 105.964653
+      },
+      {
+        "period": "2019",
+        "value": 105.51561
+      },
+      {
+        "period": "2020",
+        "value": 102.581543
+      },
+      {
+        "period": "2021",
+        "value": 98.320251
+      },
+      {
+        "period": "2022",
+        "value": 98.357658
+      },
+      {
+        "period": "2023",
+        "value": 102.055458
+      },
+      {
+        "period": "2024",
+        "value": 103.093323,
+        "is_change_point": true
+      }
+    ],
+    "verification_trace": {
+      "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/WB_WDI",
+      "csv_link": "https://data360files.worldbank.org/data360-data/data/WB_WDI/WB_WDI_SE_SEC_ENRR.csv",
+      "methodology_ref": "https://databrowser.uis.unesco.org/resources)"
+    },
+    "score": 1,
+    "detected_at": "2026-05-21T20:27:18.955Z",
+    "license": "CC BY-4.0",
+    "narrative_citizen": {
+      "es": "MEX registró 103.093323 % en School enrollment, secondary (% gross) para 2024, +15.8σ respecto a su trayectoria reciente.",
+      "en": "MEX recorded 103.093323 % in School enrollment, secondary (% gross) for 2024, +15.8σ from its recent trajectory."
+    },
+    "narrative_journalist": {
+      "es": "Detección automática: MEX 103.093323 % en School enrollment, secondary (% gross) (2024). z-score +15.8σ vs ventana de 5 puntos previos.",
+      "en": "Auto-detected: MEX 103.093323 % in School enrollment, secondary (% gross) (2024). z-score +15.8σ against 5-point baseline."
+    },
+    "claim_tokens": [
+      {
+        "claim_id": "6999eae242ea1027",
+        "value": 103.093323,
+        "display_es": "103.093323 %",
+        "display_en": "103.093323 %"
+      }
+    ]
+  }
+]

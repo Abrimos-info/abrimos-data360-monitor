@@ -1,0 +1,1104 @@
+[
+  {
+    "id": "alert_2026-05-21_014",
+    "type": "abrupt_change",
+    "country": "ECU",
+    "category": "economy",
+    "indicator": {
+      "idno": "IMF_BOP_IR_BP6",
+      "database_id": "IMF_BOP",
+      "name": {
+        "es": "IIP, Reserve assets",
+        "en": "IIP, Reserve assets"
+      }
+    },
+    "observation": {
+      "value": 8584590000,
+      "time_period": "2024-Q3",
+      "unit": "USD"
+    },
+    "magnitude": {
+      "es": "+2.3σ",
+      "en": "+2.3σ"
+    },
+    "chart_series": [
+      {
+        "period": "1993",
+        "value": 1325500000
+      },
+      {
+        "period": "1994",
+        "value": 1908300000
+      },
+      {
+        "period": "1995",
+        "value": 1730100000
+      },
+      {
+        "period": "1996",
+        "value": 1976300000
+      },
+      {
+        "period": "1997",
+        "value": 2227300000
+      },
+      {
+        "period": "1998",
+        "value": 1767900000
+      },
+      {
+        "period": "1999",
+        "value": 872700000
+      },
+      {
+        "period": "2000",
+        "value": 1179700000
+      },
+      {
+        "period": "2001",
+        "value": 1073980000
+      },
+      {
+        "period": "2002",
+        "value": 1007990000
+      },
+      {
+        "period": "2003",
+        "value": 1160400000
+      },
+      {
+        "period": "2004",
+        "value": 1437320000
+      },
+      {
+        "period": "2005",
+        "value": 2146900000
+      },
+      {
+        "period": "2006",
+        "value": 2023350000
+      },
+      {
+        "period": "2007",
+        "value": 3520840000
+      },
+      {
+        "period": "2008",
+        "value": 4473070000
+      },
+      {
+        "period": "2009",
+        "value": 3792050000
+      },
+      {
+        "period": "2010",
+        "value": 2622050000
+      },
+      {
+        "period": "2011",
+        "value": 2957620000
+      },
+      {
+        "period": "2012",
+        "value": 2482530000
+      },
+      {
+        "period": "2013",
+        "value": 4360500000
+      },
+      {
+        "period": "2014",
+        "value": 3949070000
+      },
+      {
+        "period": "2015",
+        "value": 2495960000
+      },
+      {
+        "period": "2016",
+        "value": 4218050000
+      },
+      {
+        "period": "2016-Q1",
+        "value": 2534520000
+      },
+      {
+        "period": "2016-Q2",
+        "value": 3385960000
+      },
+      {
+        "period": "2016-Q3",
+        "value": 4441930000
+      },
+      {
+        "period": "2016-Q4",
+        "value": 4218050000
+      },
+      {
+        "period": "2017",
+        "value": 2006810000
+      },
+      {
+        "period": "2017-Q1",
+        "value": 3777130000
+      },
+      {
+        "period": "2017-Q2",
+        "value": 4437460000
+      },
+      {
+        "period": "2017-Q3",
+        "value": 2309270000
+      },
+      {
+        "period": "2017-Q4",
+        "value": 2006810000
+      },
+      {
+        "period": "2018",
+        "value": 2159730000
+      },
+      {
+        "period": "2018-Q1",
+        "value": 4440440000
+      },
+      {
+        "period": "2018-Q2",
+        "value": 2726310000
+      },
+      {
+        "period": "2018-Q3",
+        "value": 2222310000
+      },
+      {
+        "period": "2018-Q4",
+        "value": 2159730000
+      },
+      {
+        "period": "2019",
+        "value": 2934460000
+      },
+      {
+        "period": "2019-Q1",
+        "value": 3420610000
+      },
+      {
+        "period": "2019-Q2",
+        "value": 3734910000
+      },
+      {
+        "period": "2019-Q3",
+        "value": 4484870000
+      },
+      {
+        "period": "2019-Q4",
+        "value": 2934460000
+      },
+      {
+        "period": "2020",
+        "value": 7133460000
+      },
+      {
+        "period": "2020-Q1",
+        "value": 1563800000
+      },
+      {
+        "period": "2020-Q2",
+        "value": 2641680000
+      },
+      {
+        "period": "2020-Q3",
+        "value": 3400510000
+      },
+      {
+        "period": "2020-Q4",
+        "value": 7133460000
+      },
+      {
+        "period": "2021",
+        "value": 7897950000
+      },
+      {
+        "period": "2021-Q1",
+        "value": 5779500000
+      },
+      {
+        "period": "2021-Q2",
+        "value": 6050060000
+      },
+      {
+        "period": "2021-Q3",
+        "value": 6292940000
+      },
+      {
+        "period": "2021-Q4",
+        "value": 7897950000
+      },
+      {
+        "period": "2022",
+        "value": 8459470000
+      },
+      {
+        "period": "2022-Q1",
+        "value": 9226400000
+      },
+      {
+        "period": "2022-Q2",
+        "value": 8584820000
+      },
+      {
+        "period": "2022-Q3",
+        "value": 8381090000
+      },
+      {
+        "period": "2022-Q4",
+        "value": 8459470000
+      },
+      {
+        "period": "2023",
+        "value": 4455110000
+      },
+      {
+        "period": "2023-Q1",
+        "value": 8189760000
+      },
+      {
+        "period": "2023-Q2",
+        "value": 6970360000
+      },
+      {
+        "period": "2023-Q3",
+        "value": 6316080000
+      },
+      {
+        "period": "2023-Q4",
+        "value": 4455110000
+      },
+      {
+        "period": "2024-Q1",
+        "value": 5300670000
+      },
+      {
+        "period": "2024-Q2",
+        "value": 7090610000
+      },
+      {
+        "period": "2024-Q3",
+        "value": 8584590000,
+        "is_change_point": true
+      }
+    ],
+    "verification_trace": {
+      "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/IMF_BOP",
+      "csv_link": "https://data360files.worldbank.org/data360-data/data/IMF_BOP/IMF_BOP_IR_BP6.csv",
+      "methodology_ref": "https://www.imf.org/external/pubs/ft/bopman/bopman.pdf"
+    },
+    "score": 0.5661809842741009,
+    "detected_at": "2026-05-21T20:27:18.953Z",
+    "license": "License Specified Externally",
+    "narrative_citizen": {
+      "es": "ECU registró 8584590000 USD en IIP, Reserve assets para 2024-Q3, +2.3σ respecto a su trayectoria reciente.",
+      "en": "ECU recorded 8584590000 USD in IIP, Reserve assets for 2024-Q3, +2.3σ from its recent trajectory."
+    },
+    "narrative_journalist": {
+      "es": "Detección automática: ECU 8584590000 USD en IIP, Reserve assets (2024-Q3). z-score +2.3σ vs ventana de 5 puntos previos.",
+      "en": "Auto-detected: ECU 8584590000 USD in IIP, Reserve assets (2024-Q3). z-score +2.3σ against 5-point baseline."
+    },
+    "claim_tokens": [
+      {
+        "claim_id": "312901f559d19de4",
+        "value": 8584590000,
+        "display_es": "8584590000 USD",
+        "display_en": "8584590000 USD"
+      }
+    ]
+  },
+  {
+    "id": "alert_2026-05-21_015",
+    "type": "abrupt_change",
+    "country": "MEX",
+    "category": "economy",
+    "indicator": {
+      "idno": "IMF_BOP_IR_BP6",
+      "database_id": "IMF_BOP",
+      "name": {
+        "es": "IIP, Reserve assets",
+        "en": "IIP, Reserve assets"
+      }
+    },
+    "observation": {
+      "value": 231867000000,
+      "time_period": "2024-Q3",
+      "unit": "USD"
+    },
+    "magnitude": {
+      "es": "+2.3σ",
+      "en": "+2.3σ"
+    },
+    "chart_series": [
+      {
+        "period": "2001",
+        "value": 44813600000
+      },
+      {
+        "period": "2002",
+        "value": 50673900000
+      },
+      {
+        "period": "2003",
+        "value": 59028200000
+      },
+      {
+        "period": "2004",
+        "value": 64197600000
+      },
+      {
+        "period": "2005",
+        "value": 74110100000
+      },
+      {
+        "period": "2006",
+        "value": 76330000000
+      },
+      {
+        "period": "2007",
+        "value": 87211000000
+      },
+      {
+        "period": "2008",
+        "value": 95301600000
+      },
+      {
+        "period": "2009",
+        "value": 99893000000
+      },
+      {
+        "period": "2009-Q1",
+        "value": 85636400000
+      },
+      {
+        "period": "2009-Q2",
+        "value": 81476200000
+      },
+      {
+        "period": "2009-Q3",
+        "value": 87806500000
+      },
+      {
+        "period": "2009-Q4",
+        "value": 99893000000
+      },
+      {
+        "period": "2010",
+        "value": 120587000000
+      },
+      {
+        "period": "2010-Q1",
+        "value": 101606000000
+      },
+      {
+        "period": "2010-Q2",
+        "value": 105560000000
+      },
+      {
+        "period": "2010-Q3",
+        "value": 113688000000
+      },
+      {
+        "period": "2010-Q4",
+        "value": 120587000000
+      },
+      {
+        "period": "2011",
+        "value": 149209000000
+      },
+      {
+        "period": "2011-Q1",
+        "value": 128261000000
+      },
+      {
+        "period": "2011-Q2",
+        "value": 133894000000
+      },
+      {
+        "period": "2011-Q3",
+        "value": 141088000000
+      },
+      {
+        "period": "2011-Q4",
+        "value": 149209000000
+      },
+      {
+        "period": "2012",
+        "value": 167050000000
+      },
+      {
+        "period": "2012-Q1",
+        "value": 155949000000
+      },
+      {
+        "period": "2012-Q2",
+        "value": 162721000000
+      },
+      {
+        "period": "2012-Q3",
+        "value": 165590000000
+      },
+      {
+        "period": "2012-Q4",
+        "value": 167050000000
+      },
+      {
+        "period": "2013",
+        "value": 180200000000
+      },
+      {
+        "period": "2013-Q1",
+        "value": 171298000000
+      },
+      {
+        "period": "2013-Q2",
+        "value": 168901000000
+      },
+      {
+        "period": "2013-Q3",
+        "value": 175003000000
+      },
+      {
+        "period": "2013-Q4",
+        "value": 180200000000
+      },
+      {
+        "period": "2014",
+        "value": 195682000000
+      },
+      {
+        "period": "2014-Q1",
+        "value": 185467000000
+      },
+      {
+        "period": "2014-Q2",
+        "value": 192539000000
+      },
+      {
+        "period": "2014-Q3",
+        "value": 193332000000
+      },
+      {
+        "period": "2014-Q4",
+        "value": 195682000000
+      },
+      {
+        "period": "2015",
+        "value": 177597000000
+      },
+      {
+        "period": "2015-Q1",
+        "value": 197765000000
+      },
+      {
+        "period": "2015-Q2",
+        "value": 194306000000
+      },
+      {
+        "period": "2015-Q3",
+        "value": 181929000000
+      },
+      {
+        "period": "2015-Q4",
+        "value": 177597000000
+      },
+      {
+        "period": "2016",
+        "value": 178025000000
+      },
+      {
+        "period": "2016-Q1",
+        "value": 179708000000
+      },
+      {
+        "period": "2016-Q2",
+        "value": 178830000000
+      },
+      {
+        "period": "2016-Q3",
+        "value": 180499000000
+      },
+      {
+        "period": "2016-Q4",
+        "value": 178025000000
+      },
+      {
+        "period": "2017",
+        "value": 175450000000
+      },
+      {
+        "period": "2017-Q1",
+        "value": 178704000000
+      },
+      {
+        "period": "2017-Q2",
+        "value": 175396000000
+      },
+      {
+        "period": "2017-Q3",
+        "value": 174889000000
+      },
+      {
+        "period": "2017-Q4",
+        "value": 175450000000
+      },
+      {
+        "period": "2018",
+        "value": 176384000000
+      },
+      {
+        "period": "2018-Q1",
+        "value": 177601000000
+      },
+      {
+        "period": "2018-Q2",
+        "value": 178009000000
+      },
+      {
+        "period": "2018-Q3",
+        "value": 177040000000
+      },
+      {
+        "period": "2018-Q4",
+        "value": 176384000000
+      },
+      {
+        "period": "2019",
+        "value": 183028000000
+      },
+      {
+        "period": "2019-Q1",
+        "value": 182071000000
+      },
+      {
+        "period": "2019-Q2",
+        "value": 186209000000
+      },
+      {
+        "period": "2019-Q3",
+        "value": 182915000000
+      },
+      {
+        "period": "2019-Q4",
+        "value": 183028000000
+      },
+      {
+        "period": "2020",
+        "value": 199056000000
+      },
+      {
+        "period": "2020-Q1",
+        "value": 189780000000
+      },
+      {
+        "period": "2020-Q2",
+        "value": 197055000000
+      },
+      {
+        "period": "2020-Q3",
+        "value": 199816000000
+      },
+      {
+        "period": "2020-Q4",
+        "value": 199056000000
+      },
+      {
+        "period": "2021",
+        "value": 207745000000
+      },
+      {
+        "period": "2021-Q1",
+        "value": 199302000000
+      },
+      {
+        "period": "2021-Q2",
+        "value": 199458000000
+      },
+      {
+        "period": "2021-Q3",
+        "value": 212003000000
+      },
+      {
+        "period": "2021-Q4",
+        "value": 207745000000
+      },
+      {
+        "period": "2022",
+        "value": 201143000000
+      },
+      {
+        "period": "2022-Q1",
+        "value": 209576000000
+      },
+      {
+        "period": "2022-Q2",
+        "value": 203590000000
+      },
+      {
+        "period": "2022-Q3",
+        "value": 202135000000
+      },
+      {
+        "period": "2022-Q4",
+        "value": 201143000000
+      },
+      {
+        "period": "2023",
+        "value": 214413000000
+      },
+      {
+        "period": "2023-Q1",
+        "value": 206313000000
+      },
+      {
+        "period": "2023-Q2",
+        "value": 210438000000
+      },
+      {
+        "period": "2023-Q3",
+        "value": 209626000000
+      },
+      {
+        "period": "2023-Q4",
+        "value": 214413000000
+      },
+      {
+        "period": "2024-Q1",
+        "value": 219516000000
+      },
+      {
+        "period": "2024-Q2",
+        "value": 225876000000
+      },
+      {
+        "period": "2024-Q3",
+        "value": 231867000000,
+        "is_change_point": true
+      }
+    ],
+    "verification_trace": {
+      "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/IMF_BOP",
+      "csv_link": "https://data360files.worldbank.org/data360-data/data/IMF_BOP/IMF_BOP_IR_BP6.csv",
+      "methodology_ref": "https://www.imf.org/external/pubs/ft/bopman/bopman.pdf"
+    },
+    "score": 0.5858685562186403,
+    "detected_at": "2026-05-21T20:27:18.953Z",
+    "license": "License Specified Externally",
+    "narrative_citizen": {
+      "es": "MEX registró 231867000000 USD en IIP, Reserve assets para 2024-Q3, +2.3σ respecto a su trayectoria reciente.",
+      "en": "MEX recorded 231867000000 USD in IIP, Reserve assets for 2024-Q3, +2.3σ from its recent trajectory."
+    },
+    "narrative_journalist": {
+      "es": "Detección automática: MEX 231867000000 USD en IIP, Reserve assets (2024-Q3). z-score +2.3σ vs ventana de 5 puntos previos.",
+      "en": "Auto-detected: MEX 231867000000 USD in IIP, Reserve assets (2024-Q3). z-score +2.3σ against 5-point baseline."
+    },
+    "claim_tokens": [
+      {
+        "claim_id": "6ddf602613b272ec",
+        "value": 231867000000,
+        "display_es": "231867000000 USD",
+        "display_en": "231867000000 USD"
+      }
+    ]
+  },
+  {
+    "id": "alert_2026-05-21_036",
+    "type": "anomaly",
+    "country": "MEX",
+    "category": "economy",
+    "indicator": {
+      "idno": "IMF_BOP_IR_BP6",
+      "database_id": "IMF_BOP",
+      "name": {
+        "es": "IIP, Reserve assets",
+        "en": "IIP, Reserve assets"
+      }
+    },
+    "observation": {
+      "value": 231867000000,
+      "time_period": "2024-Q3",
+      "unit": "USD"
+    },
+    "magnitude": {
+      "es": "+14.1σ",
+      "en": "+14.1σ"
+    },
+    "chart_series": [
+      {
+        "period": "2001",
+        "value": 44813600000
+      },
+      {
+        "period": "2002",
+        "value": 50673900000
+      },
+      {
+        "period": "2003",
+        "value": 59028200000
+      },
+      {
+        "period": "2004",
+        "value": 64197600000
+      },
+      {
+        "period": "2005",
+        "value": 74110100000
+      },
+      {
+        "period": "2006",
+        "value": 76330000000
+      },
+      {
+        "period": "2007",
+        "value": 87211000000
+      },
+      {
+        "period": "2008",
+        "value": 95301600000
+      },
+      {
+        "period": "2009",
+        "value": 99893000000
+      },
+      {
+        "period": "2009-Q1",
+        "value": 85636400000
+      },
+      {
+        "period": "2009-Q2",
+        "value": 81476200000
+      },
+      {
+        "period": "2009-Q3",
+        "value": 87806500000
+      },
+      {
+        "period": "2009-Q4",
+        "value": 99893000000
+      },
+      {
+        "period": "2010",
+        "value": 120587000000
+      },
+      {
+        "period": "2010-Q1",
+        "value": 101606000000
+      },
+      {
+        "period": "2010-Q2",
+        "value": 105560000000
+      },
+      {
+        "period": "2010-Q3",
+        "value": 113688000000
+      },
+      {
+        "period": "2010-Q4",
+        "value": 120587000000
+      },
+      {
+        "period": "2011",
+        "value": 149209000000
+      },
+      {
+        "period": "2011-Q1",
+        "value": 128261000000
+      },
+      {
+        "period": "2011-Q2",
+        "value": 133894000000
+      },
+      {
+        "period": "2011-Q3",
+        "value": 141088000000
+      },
+      {
+        "period": "2011-Q4",
+        "value": 149209000000
+      },
+      {
+        "period": "2012",
+        "value": 167050000000
+      },
+      {
+        "period": "2012-Q1",
+        "value": 155949000000
+      },
+      {
+        "period": "2012-Q2",
+        "value": 162721000000
+      },
+      {
+        "period": "2012-Q3",
+        "value": 165590000000
+      },
+      {
+        "period": "2012-Q4",
+        "value": 167050000000
+      },
+      {
+        "period": "2013",
+        "value": 180200000000
+      },
+      {
+        "period": "2013-Q1",
+        "value": 171298000000
+      },
+      {
+        "period": "2013-Q2",
+        "value": 168901000000
+      },
+      {
+        "period": "2013-Q3",
+        "value": 175003000000
+      },
+      {
+        "period": "2013-Q4",
+        "value": 180200000000
+      },
+      {
+        "period": "2014",
+        "value": 195682000000
+      },
+      {
+        "period": "2014-Q1",
+        "value": 185467000000
+      },
+      {
+        "period": "2014-Q2",
+        "value": 192539000000
+      },
+      {
+        "period": "2014-Q3",
+        "value": 193332000000
+      },
+      {
+        "period": "2014-Q4",
+        "value": 195682000000
+      },
+      {
+        "period": "2015",
+        "value": 177597000000
+      },
+      {
+        "period": "2015-Q1",
+        "value": 197765000000
+      },
+      {
+        "period": "2015-Q2",
+        "value": 194306000000
+      },
+      {
+        "period": "2015-Q3",
+        "value": 181929000000
+      },
+      {
+        "period": "2015-Q4",
+        "value": 177597000000
+      },
+      {
+        "period": "2016",
+        "value": 178025000000
+      },
+      {
+        "period": "2016-Q1",
+        "value": 179708000000
+      },
+      {
+        "period": "2016-Q2",
+        "value": 178830000000
+      },
+      {
+        "period": "2016-Q3",
+        "value": 180499000000
+      },
+      {
+        "period": "2016-Q4",
+        "value": 178025000000
+      },
+      {
+        "period": "2017",
+        "value": 175450000000
+      },
+      {
+        "period": "2017-Q1",
+        "value": 178704000000
+      },
+      {
+        "period": "2017-Q2",
+        "value": 175396000000
+      },
+      {
+        "period": "2017-Q3",
+        "value": 174889000000
+      },
+      {
+        "period": "2017-Q4",
+        "value": 175450000000
+      },
+      {
+        "period": "2018",
+        "value": 176384000000
+      },
+      {
+        "period": "2018-Q1",
+        "value": 177601000000
+      },
+      {
+        "period": "2018-Q2",
+        "value": 178009000000
+      },
+      {
+        "period": "2018-Q3",
+        "value": 177040000000
+      },
+      {
+        "period": "2018-Q4",
+        "value": 176384000000
+      },
+      {
+        "period": "2019",
+        "value": 183028000000
+      },
+      {
+        "period": "2019-Q1",
+        "value": 182071000000
+      },
+      {
+        "period": "2019-Q2",
+        "value": 186209000000
+      },
+      {
+        "period": "2019-Q3",
+        "value": 182915000000
+      },
+      {
+        "period": "2019-Q4",
+        "value": 183028000000
+      },
+      {
+        "period": "2020",
+        "value": 199056000000
+      },
+      {
+        "period": "2020-Q1",
+        "value": 189780000000
+      },
+      {
+        "period": "2020-Q2",
+        "value": 197055000000
+      },
+      {
+        "period": "2020-Q3",
+        "value": 199816000000
+      },
+      {
+        "period": "2020-Q4",
+        "value": 199056000000
+      },
+      {
+        "period": "2021",
+        "value": 207745000000
+      },
+      {
+        "period": "2021-Q1",
+        "value": 199302000000
+      },
+      {
+        "period": "2021-Q2",
+        "value": 199458000000
+      },
+      {
+        "period": "2021-Q3",
+        "value": 212003000000
+      },
+      {
+        "period": "2021-Q4",
+        "value": 207745000000
+      },
+      {
+        "period": "2022",
+        "value": 201143000000
+      },
+      {
+        "period": "2022-Q1",
+        "value": 209576000000
+      },
+      {
+        "period": "2022-Q2",
+        "value": 203590000000
+      },
+      {
+        "period": "2022-Q3",
+        "value": 202135000000
+      },
+      {
+        "period": "2022-Q4",
+        "value": 201143000000
+      },
+      {
+        "period": "2023",
+        "value": 214413000000
+      },
+      {
+        "period": "2023-Q1",
+        "value": 206313000000
+      },
+      {
+        "period": "2023-Q2",
+        "value": 210438000000
+      },
+      {
+        "period": "2023-Q3",
+        "value": 209626000000
+      },
+      {
+        "period": "2023-Q4",
+        "value": 214413000000
+      },
+      {
+        "period": "2024-Q1",
+        "value": 219516000000
+      },
+      {
+        "period": "2024-Q2",
+        "value": 225876000000
+      },
+      {
+        "period": "2024-Q3",
+        "value": 231867000000,
+        "is_change_point": true
+      }
+    ],
+    "verification_trace": {
+      "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/IMF_BOP",
+      "csv_link": "https://data360files.worldbank.org/data360-data/data/IMF_BOP/IMF_BOP_IR_BP6.csv",
+      "methodology_ref": "https://www.imf.org/external/pubs/ft/bopman/bopman.pdf"
+    },
+    "score": 1,
+    "detected_at": "2026-05-21T20:27:18.956Z",
+    "license": "License Specified Externally",
+    "narrative_citizen": {
+      "es": "MEX registró 231867000000 USD en IIP, Reserve assets para 2024-Q3, +14.1σ respecto a su trayectoria reciente.",
+      "en": "MEX recorded 231867000000 USD in IIP, Reserve assets for 2024-Q3, +14.1σ from its recent trajectory."
+    },
+    "narrative_journalist": {
+      "es": "Detección automática: MEX 231867000000 USD en IIP, Reserve assets (2024-Q3). z-score +14.1σ vs ventana de 5 puntos previos.",
+      "en": "Auto-detected: MEX 231867000000 USD in IIP, Reserve assets (2024-Q3). z-score +14.1σ against 5-point baseline."
+    },
+    "claim_tokens": [
+      {
+        "claim_id": "6ddf602613b272ec",
+        "value": 231867000000,
+        "display_es": "231867000000 USD",
+        "display_en": "231867000000 USD"
+      }
+    ]
+  }
+]

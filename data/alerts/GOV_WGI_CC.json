@@ -1,0 +1,310 @@
+[
+  {
+    "id": "alert_2026-05-21_011",
+    "type": "abrupt_change",
+    "country": "HND",
+    "category": "governance",
+    "indicator": {
+      "idno": "GOV_WGI_CC",
+      "database_id": "WB_WGI",
+      "name": {
+        "es": "Worldwide Governance Indicators: Control of Corruption",
+        "en": "Worldwide Governance Indicators: Control of Corruption"
+      }
+    },
+    "observation": {
+      "value": -1.24469,
+      "time_period": "2024",
+      "unit": "U"
+    },
+    "magnitude": {
+      "es": "−3.2σ",
+      "en": "−3.2σ"
+    },
+    "chart_series": [
+      {
+        "period": "1996",
+        "value": -1.102101
+      },
+      {
+        "period": "1998",
+        "value": -1.103213
+      },
+      {
+        "period": "2000",
+        "value": -1.041962
+      },
+      {
+        "period": "2002",
+        "value": -1.110083
+      },
+      {
+        "period": "2003",
+        "value": -1.0388
+      },
+      {
+        "period": "2004",
+        "value": -0.989914
+      },
+      {
+        "period": "2005",
+        "value": -0.947566
+      },
+      {
+        "period": "2006",
+        "value": -0.935612
+      },
+      {
+        "period": "2007",
+        "value": -0.927027
+      },
+      {
+        "period": "2008",
+        "value": -0.942413
+      },
+      {
+        "period": "2009",
+        "value": -1.000739
+      },
+      {
+        "period": "2010",
+        "value": -1.001939
+      },
+      {
+        "period": "2011",
+        "value": -0.969795
+      },
+      {
+        "period": "2012",
+        "value": -1.095529
+      },
+      {
+        "period": "2013",
+        "value": -1.106077
+      },
+      {
+        "period": "2014",
+        "value": -0.965643
+      },
+      {
+        "period": "2015",
+        "value": -0.811178
+      },
+      {
+        "period": "2016",
+        "value": -0.924299
+      },
+      {
+        "period": "2017",
+        "value": -0.946984
+      },
+      {
+        "period": "2018",
+        "value": -0.969579
+      },
+      {
+        "period": "2019",
+        "value": -1.058241
+      },
+      {
+        "period": "2020",
+        "value": -0.972604
+      },
+      {
+        "period": "2021",
+        "value": -1.12042
+      },
+      {
+        "period": "2022",
+        "value": -1.031405
+      },
+      {
+        "period": "2023",
+        "value": -1.099323
+      },
+      {
+        "period": "2024",
+        "value": -1.24469,
+        "is_change_point": true
+      }
+    ],
+    "verification_trace": {
+      "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/WB_WGI",
+      "csv_link": "https://data360files.worldbank.org/data360-data/data/WB_WGI/GOV_WGI_CC.csv",
+      "methodology_ref": "https://www.worldbank.org/en/publication/worldwide-governance-indicators/documentation#3"
+    },
+    "score": 0.8075643290730637,
+    "detected_at": "2026-05-21T20:27:18.953Z",
+    "license": "unspecified",
+    "narrative_citizen": {
+      "es": "HND registró -1.24469 U en Worldwide Governance Indicators: Control of Corruption para 2024, −3.2σ respecto a su trayectoria reciente.",
+      "en": "HND recorded -1.24469 U in Worldwide Governance Indicators: Control of Corruption for 2024, −3.2σ from its recent trajectory."
+    },
+    "narrative_journalist": {
+      "es": "Detección automática: HND -1.24469 U en Worldwide Governance Indicators: Control of Corruption (2024). z-score −3.2σ vs ventana de 5 puntos previos.",
+      "en": "Auto-detected: HND -1.24469 U in Worldwide Governance Indicators: Control of Corruption (2024). z-score −3.2σ against 5-point baseline."
+    },
+    "claim_tokens": [
+      {
+        "claim_id": "560cfbc8d8ddb767",
+        "value": -1.24469,
+        "display_es": "-1.24469 U",
+        "display_en": "-1.24469 U"
+      }
+    ]
+  },
+  {
+    "id": "alert_2026-05-21_031",
+    "type": "anomaly",
+    "country": "ARG",
+    "category": "governance",
+    "indicator": {
+      "idno": "GOV_WGI_CC",
+      "database_id": "WB_WGI",
+      "name": {
+        "es": "Worldwide Governance Indicators: Control of Corruption",
+        "en": "Worldwide Governance Indicators: Control of Corruption"
+      }
+    },
+    "observation": {
+      "value": -0.325708,
+      "time_period": "2024",
+      "unit": "U"
+    },
+    "magnitude": {
+      "es": "+2.5σ",
+      "en": "+2.5σ"
+    },
+    "chart_series": [
+      {
+        "period": "1996",
+        "value": -0.224841
+      },
+      {
+        "period": "1998",
+        "value": -0.417484
+      },
+      {
+        "period": "2000",
+        "value": -0.305116
+      },
+      {
+        "period": "2002",
+        "value": -0.56214
+      },
+      {
+        "period": "2003",
+        "value": -0.548224
+      },
+      {
+        "period": "2004",
+        "value": -0.405483
+      },
+      {
+        "period": "2005",
+        "value": -0.38908
+      },
+      {
+        "period": "2006",
+        "value": -0.320852
+      },
+      {
+        "period": "2007",
+        "value": -0.404287
+      },
+      {
+        "period": "2008",
+        "value": -0.413776
+      },
+      {
+        "period": "2009",
+        "value": -0.397007
+      },
+      {
+        "period": "2010",
+        "value": -0.367297
+      },
+      {
+        "period": "2011",
+        "value": -0.339635
+      },
+      {
+        "period": "2012",
+        "value": -0.516814
+      },
+      {
+        "period": "2013",
+        "value": -0.517294
+      },
+      {
+        "period": "2014",
+        "value": -0.666054
+      },
+      {
+        "period": "2015",
+        "value": -0.645136
+      },
+      {
+        "period": "2016",
+        "value": -0.219363
+      },
+      {
+        "period": "2017",
+        "value": -0.178142
+      },
+      {
+        "period": "2018",
+        "value": -0.005735
+      },
+      {
+        "period": "2019",
+        "value": -0.084705
+      },
+      {
+        "period": "2020",
+        "value": -0.13447
+      },
+      {
+        "period": "2021",
+        "value": -0.32733
+      },
+      {
+        "period": "2022",
+        "value": -0.340233
+      },
+      {
+        "period": "2023",
+        "value": -0.354078
+      },
+      {
+        "period": "2024",
+        "value": -0.325708,
+        "is_change_point": true
+      }
+    ],
+    "verification_trace": {
+      "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/WB_WGI",
+      "csv_link": "https://data360files.worldbank.org/data360-data/data/WB_WGI/GOV_WGI_CC.csv",
+      "methodology_ref": "https://www.worldbank.org/en/publication/worldwide-governance-indicators/documentation#3"
+    },
+    "score": 0.6279257583619221,
+    "detected_at": "2026-05-21T20:27:18.955Z",
+    "license": "unspecified",
+    "narrative_citizen": {
+      "es": "ARG registró -0.325708 U en Worldwide Governance Indicators: Control of Corruption para 2024, +2.5σ respecto a su trayectoria reciente.",
+      "en": "ARG recorded -0.325708 U in Worldwide Governance Indicators: Control of Corruption for 2024, +2.5σ from its recent trajectory."
+    },
+    "narrative_journalist": {
+      "es": "Detección automática: ARG -0.325708 U en Worldwide Governance Indicators: Control of Corruption (2024). z-score +2.5σ vs ventana de 5 puntos previos.",
+      "en": "Auto-detected: ARG -0.325708 U in Worldwide Governance Indicators: Control of Corruption (2024). z-score +2.5σ against 5-point baseline."
+    },
+    "claim_tokens": [
+      {
+        "claim_id": "1034608899751295",
+        "value": -0.325708,
+        "display_es": "-0.325708 U",
+        "display_en": "-0.325708 U"
+      }
+    ]
+  }
+]

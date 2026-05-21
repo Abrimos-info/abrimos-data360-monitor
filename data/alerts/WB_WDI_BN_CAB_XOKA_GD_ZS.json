@@ -1,0 +1,248 @@
+[
+  {
+    "id": "alert_2026-05-21_003",
+    "type": "abrupt_change",
+    "country": "ECU",
+    "category": "economy",
+    "indicator": {
+      "idno": "WB_WDI_BN_CAB_XOKA_GD_ZS",
+      "database_id": "WB_WDI",
+      "name": {
+        "es": "Current account balance (% of GDP)",
+        "en": "Current account balance (% of GDP)"
+      }
+    },
+    "observation": {
+      "value": 5.650429,
+      "time_period": "2024",
+      "unit": "PT_GDP"
+    },
+    "magnitude": {
+      "es": "+3.1σ",
+      "en": "+3.1σ"
+    },
+    "chart_series": [
+      {
+        "period": "1976",
+        "value": -0.105588
+      },
+      {
+        "period": "1977",
+        "value": -3.11436
+      },
+      {
+        "period": "1978",
+        "value": -5.898932
+      },
+      {
+        "period": "1979",
+        "value": -4.44651
+      },
+      {
+        "period": "1980",
+        "value": -3.588008
+      },
+      {
+        "period": "1981",
+        "value": -4.575723
+      },
+      {
+        "period": "1982",
+        "value": -5.930803
+      },
+      {
+        "period": "1983",
+        "value": -0.670457
+      },
+      {
+        "period": "1984",
+        "value": -1.61419
+      },
+      {
+        "period": "1985",
+        "value": 0.443172
+      },
+      {
+        "period": "1986",
+        "value": -3.80041
+      },
+      {
+        "period": "1987",
+        "value": -8.511751
+      },
+      {
+        "period": "1988",
+        "value": -5.209977
+      },
+      {
+        "period": "1989",
+        "value": -5.147283
+      },
+      {
+        "period": "1990",
+        "value": -2.362317
+      },
+      {
+        "period": "1991",
+        "value": -4.167516
+      },
+      {
+        "period": "1992",
+        "value": -0.674248
+      },
+      {
+        "period": "1993",
+        "value": -4.482299
+      },
+      {
+        "period": "1994",
+        "value": -3.955845
+      },
+      {
+        "period": "1995",
+        "value": -4.092886
+      },
+      {
+        "period": "1996",
+        "value": -0.217391
+      },
+      {
+        "period": "1997",
+        "value": -1.62197
+      },
+      {
+        "period": "1998",
+        "value": -7.499492
+      },
+      {
+        "period": "1999",
+        "value": 4.673491
+      },
+      {
+        "period": "2000",
+        "value": 6.343554
+      },
+      {
+        "period": "2001",
+        "value": -2.383251
+      },
+      {
+        "period": "2002",
+        "value": -4.505862
+      },
+      {
+        "period": "2003",
+        "value": -1.249204
+      },
+      {
+        "period": "2004",
+        "value": -1.362192
+      },
+      {
+        "period": "2005",
+        "value": 1.176611
+      },
+      {
+        "period": "2006",
+        "value": 3.80805
+      },
+      {
+        "period": "2007",
+        "value": 3.784427
+      },
+      {
+        "period": "2008",
+        "value": 2.894053
+      },
+      {
+        "period": "2009",
+        "value": 0.520924
+      },
+      {
+        "period": "2010",
+        "value": -2.321726
+      },
+      {
+        "period": "2011",
+        "value": -0.506587
+      },
+      {
+        "period": "2012",
+        "value": -0.16691
+      },
+      {
+        "period": "2013",
+        "value": -0.966038
+      },
+      {
+        "period": "2014",
+        "value": -0.651048
+      },
+      {
+        "period": "2015",
+        "value": -2.284844
+      },
+      {
+        "period": "2016",
+        "value": 0.912554
+      },
+      {
+        "period": "2017",
+        "value": -0.387243
+      },
+      {
+        "period": "2018",
+        "value": -1.533165
+      },
+      {
+        "period": "2019",
+        "value": -0.506461
+      },
+      {
+        "period": "2020",
+        "value": 2.09334
+      },
+      {
+        "period": "2021",
+        "value": 2.838943
+      },
+      {
+        "period": "2022",
+        "value": 1.953571
+      },
+      {
+        "period": "2023",
+        "value": 1.984823
+      },
+      {
+        "period": "2024",
+        "value": 5.650429,
+        "is_change_point": true
+      }
+    ],
+    "verification_trace": {
+      "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/WB_WDI",
+      "csv_link": "https://data360files.worldbank.org/data360-data/data/WB_WDI/WB_WDI_BN_CAB_XOKA_GD_ZS.csv",
+      "methodology_ref": "https://dsbb.imf.org/"
+    },
+    "score": 0.7823521863158628,
+    "detected_at": "2026-05-21T20:27:18.951Z",
+    "license": "CC BY-4.0",
+    "narrative_citizen": {
+      "es": "ECU registró 5.650429 PT_GDP en Current account balance (% of GDP) para 2024, +3.1σ respecto a su trayectoria reciente.",
+      "en": "ECU recorded 5.650429 PT_GDP in Current account balance (% of GDP) for 2024, +3.1σ from its recent trajectory."
+    },
+    "narrative_journalist": {
+      "es": "Detección automática: ECU 5.650429 PT_GDP en Current account balance (% of GDP) (2024). z-score +3.1σ vs ventana de 5 puntos previos.",
+      "en": "Auto-detected: ECU 5.650429 PT_GDP in Current account balance (% of GDP) (2024). z-score +3.1σ against 5-point baseline."
+    },
+    "claim_tokens": [
+      {
+        "claim_id": "f742660d8165afc8",
+        "value": 5.650429,
+        "display_es": "5.650429 PT_GDP",
+        "display_en": "5.650429 PT_GDP"
+      }
+    ]
+  }
+]

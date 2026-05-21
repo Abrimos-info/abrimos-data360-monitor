@@ -1,0 +1,311 @@
+[
+  {
+    "id": "alert_2026-05-21_029",
+    "type": "anomaly",
+    "country": "GTM",
+    "category": "health",
+    "indicator": {
+      "idno": "WB_WDI_SH_DYN_MORT",
+      "database_id": "WB_WDI",
+      "name": {
+        "es": "Mortality rate, under-5 (per 1,000 live births)",
+        "en": "Mortality rate, under-5 (per 1,000 live births)"
+      }
+    },
+    "observation": {
+      "value": 20.5,
+      "time_period": "2024",
+      "unit": "DT_10P3BR_L"
+    },
+    "magnitude": {
+      "es": "+2.6σ",
+      "en": "+2.6σ"
+    },
+    "chart_series": [
+      {
+        "period": "1960",
+        "value": 220.5
+      },
+      {
+        "period": "1961",
+        "value": 215.3
+      },
+      {
+        "period": "1962",
+        "value": 210.4
+      },
+      {
+        "period": "1963",
+        "value": 205.4
+      },
+      {
+        "period": "1964",
+        "value": 200.3
+      },
+      {
+        "period": "1965",
+        "value": 195.4
+      },
+      {
+        "period": "1966",
+        "value": 190.5
+      },
+      {
+        "period": "1967",
+        "value": 185.5
+      },
+      {
+        "period": "1968",
+        "value": 180.5
+      },
+      {
+        "period": "1969",
+        "value": 175.5
+      },
+      {
+        "period": "1970",
+        "value": 170.5
+      },
+      {
+        "period": "1971",
+        "value": 165.4
+      },
+      {
+        "period": "1972",
+        "value": 160.3
+      },
+      {
+        "period": "1973",
+        "value": 155.2
+      },
+      {
+        "period": "1974",
+        "value": 150.3
+      },
+      {
+        "period": "1975",
+        "value": 145.3
+      },
+      {
+        "period": "1976",
+        "value": 165.4
+      },
+      {
+        "period": "1977",
+        "value": 135.7
+      },
+      {
+        "period": "1978",
+        "value": 131
+      },
+      {
+        "period": "1979",
+        "value": 126.3
+      },
+      {
+        "period": "1980",
+        "value": 121.7
+      },
+      {
+        "period": "1981",
+        "value": 117.2
+      },
+      {
+        "period": "1982",
+        "value": 136.1
+      },
+      {
+        "period": "1983",
+        "value": 108.3
+      },
+      {
+        "period": "1984",
+        "value": 103.9
+      },
+      {
+        "period": "1985",
+        "value": 99.7
+      },
+      {
+        "period": "1986",
+        "value": 95.5
+      },
+      {
+        "period": "1987",
+        "value": 91.4
+      },
+      {
+        "period": "1988",
+        "value": 87.5
+      },
+      {
+        "period": "1989",
+        "value": 83.7
+      },
+      {
+        "period": "1990",
+        "value": 80
+      },
+      {
+        "period": "1991",
+        "value": 76.4
+      },
+      {
+        "period": "1992",
+        "value": 73.1
+      },
+      {
+        "period": "1993",
+        "value": 69.9
+      },
+      {
+        "period": "1994",
+        "value": 66.8
+      },
+      {
+        "period": "1995",
+        "value": 63.9
+      },
+      {
+        "period": "1996",
+        "value": 61.2
+      },
+      {
+        "period": "1997",
+        "value": 58.7
+      },
+      {
+        "period": "1998",
+        "value": 56.3
+      },
+      {
+        "period": "1999",
+        "value": 54
+      },
+      {
+        "period": "2000",
+        "value": 51.8
+      },
+      {
+        "period": "2001",
+        "value": 49.7
+      },
+      {
+        "period": "2002",
+        "value": 47.7
+      },
+      {
+        "period": "2003",
+        "value": 45.9
+      },
+      {
+        "period": "2004",
+        "value": 44.1
+      },
+      {
+        "period": "2005",
+        "value": 42.4
+      },
+      {
+        "period": "2006",
+        "value": 40.7
+      },
+      {
+        "period": "2007",
+        "value": 39.1
+      },
+      {
+        "period": "2008",
+        "value": 37.5
+      },
+      {
+        "period": "2009",
+        "value": 36
+      },
+      {
+        "period": "2010",
+        "value": 34.5
+      },
+      {
+        "period": "2011",
+        "value": 33.1
+      },
+      {
+        "period": "2012",
+        "value": 31.8
+      },
+      {
+        "period": "2013",
+        "value": 30.4
+      },
+      {
+        "period": "2014",
+        "value": 29.2
+      },
+      {
+        "period": "2015",
+        "value": 28.1
+      },
+      {
+        "period": "2016",
+        "value": 27
+      },
+      {
+        "period": "2017",
+        "value": 26.1
+      },
+      {
+        "period": "2018",
+        "value": 25.1
+      },
+      {
+        "period": "2019",
+        "value": 24.3
+      },
+      {
+        "period": "2020",
+        "value": 23.5
+      },
+      {
+        "period": "2021",
+        "value": 22.7
+      },
+      {
+        "period": "2022",
+        "value": 21.9
+      },
+      {
+        "period": "2023",
+        "value": 21.2
+      },
+      {
+        "period": "2024",
+        "value": 20.5,
+        "is_change_point": true
+      }
+    ],
+    "verification_trace": {
+      "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/WB_WDI",
+      "csv_link": "https://data360files.worldbank.org/data360-data/data/WB_WDI/WB_WDI_SH_DYN_MORT.csv"
+    },
+    "score": 0.6567410026482637,
+    "detected_at": "2026-05-21T20:27:18.955Z",
+    "license": "CC BY-4.0",
+    "narrative_citizen": {
+      "es": "GTM registró 20.5 DT_10P3BR_L en Mortality rate, under-5 (per 1,000 live births) para 2024, +2.6σ respecto a su trayectoria reciente.",
+      "en": "GTM recorded 20.5 DT_10P3BR_L in Mortality rate, under-5 (per 1,000 live births) for 2024, +2.6σ from its recent trajectory."
+    },
+    "narrative_journalist": {
+      "es": "Detección automática: GTM 20.5 DT_10P3BR_L en Mortality rate, under-5 (per 1,000 live births) (2024). z-score +2.6σ vs ventana de 5 puntos previos.",
+      "en": "Auto-detected: GTM 20.5 DT_10P3BR_L in Mortality rate, under-5 (per 1,000 live births) (2024). z-score +2.6σ against 5-point baseline."
+    },
+    "claim_tokens": [
+      {
+        "claim_id": "6613138f8f5f9479",
+        "value": 20.5,
+        "display_es": "20.5 DT_10P3BR_L",
+        "display_en": "20.5 DT_10P3BR_L"
+      }
+    ]
+  }
+]

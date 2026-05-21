@@ -1,0 +1,436 @@
+[
+  {
+    "id": "alert_2026-05-21_020",
+    "type": "abrupt_change",
+    "country": "HND",
+    "category": "economy",
+    "indicator": {
+      "idno": "IMF_WEO_NGDPDPC",
+      "database_id": "IMF_WEO",
+      "name": {
+        "es": "Gross domestic product per capita, current prices, U.S. dollars, Units",
+        "en": "Gross domestic product per capita, current prices, U.S. dollars, Units"
+      }
+    },
+    "observation": {
+      "value": 3080.95,
+      "time_period": "2022",
+      "unit": "USD"
+    },
+    "magnitude": {
+      "es": "+3.3σ",
+      "en": "+3.3σ"
+    },
+    "chart_series": [
+      {
+        "period": "1980",
+        "value": 1080.43
+      },
+      {
+        "period": "1981",
+        "value": 1066.9
+      },
+      {
+        "period": "1982",
+        "value": 1091.79
+      },
+      {
+        "period": "1983",
+        "value": 1111.12
+      },
+      {
+        "period": "1984",
+        "value": 1183.3
+      },
+      {
+        "period": "1985",
+        "value": 1232.43
+      },
+      {
+        "period": "1986",
+        "value": 1287.14
+      },
+      {
+        "period": "1987",
+        "value": 1362.48
+      },
+      {
+        "period": "1988",
+        "value": 1469.41
+      },
+      {
+        "period": "1989",
+        "value": 1635.7
+      },
+      {
+        "period": "1990",
+        "value": 993.487
+      },
+      {
+        "period": "1991",
+        "value": 911.761
+      },
+      {
+        "period": "1992",
+        "value": 942.61
+      },
+      {
+        "period": "1993",
+        "value": 919.585
+      },
+      {
+        "period": "1994",
+        "value": 836.608
+      },
+      {
+        "period": "1995",
+        "value": 948.437
+      },
+      {
+        "period": "1996",
+        "value": 888.005
+      },
+      {
+        "period": "1997",
+        "value": 948.716
+      },
+      {
+        "period": "1998",
+        "value": 1023.4
+      },
+      {
+        "period": "1999",
+        "value": 1003.07
+      },
+      {
+        "period": "2000",
+        "value": 1080.51
+      },
+      {
+        "period": "2001",
+        "value": 1133.52
+      },
+      {
+        "period": "2002",
+        "value": 1134.1
+      },
+      {
+        "period": "2003",
+        "value": 1158.12
+      },
+      {
+        "period": "2004",
+        "value": 1217.58
+      },
+      {
+        "period": "2005",
+        "value": 1307.94
+      },
+      {
+        "period": "2006",
+        "value": 1430.06
+      },
+      {
+        "period": "2007",
+        "value": 1583.05
+      },
+      {
+        "period": "2008",
+        "value": 1740.01
+      },
+      {
+        "period": "2009",
+        "value": 1789.71
+      },
+      {
+        "period": "2010",
+        "value": 1904.35
+      },
+      {
+        "period": "2011",
+        "value": 2088.43
+      },
+      {
+        "period": "2012",
+        "value": 2143.72
+      },
+      {
+        "period": "2013",
+        "value": 2101.96
+      },
+      {
+        "period": "2014",
+        "value": 2205.68
+      },
+      {
+        "period": "2015",
+        "value": 2301.96
+      },
+      {
+        "period": "2016",
+        "value": 2341.45
+      },
+      {
+        "period": "2017",
+        "value": 2452.08
+      },
+      {
+        "period": "2018",
+        "value": 2506.54
+      },
+      {
+        "period": "2019",
+        "value": 2568.03
+      },
+      {
+        "period": "2020",
+        "value": 2396.5
+      },
+      {
+        "period": "2021",
+        "value": 2816.19
+      },
+      {
+        "period": "2022",
+        "value": 3080.95,
+        "is_change_point": true
+      }
+    ],
+    "verification_trace": {
+      "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/IMF_WEO",
+      "csv_link": "https://data360files.worldbank.org/data360-data/data/IMF_WEO/IMF_WEO_NGDPDPC.csv"
+    },
+    "score": 0.8179074828709225,
+    "detected_at": "2026-05-21T20:27:18.954Z",
+    "license": "License Specified Externally",
+    "narrative_citizen": {
+      "es": "HND registró 3080.95 USD en Gross domestic product per capita, current prices, U.S. dollars, Units para 2022, +3.3σ respecto a su trayectoria reciente.",
+      "en": "HND recorded 3080.95 USD in Gross domestic product per capita, current prices, U.S. dollars, Units for 2022, +3.3σ from its recent trajectory."
+    },
+    "narrative_journalist": {
+      "es": "Detección automática: HND 3080.95 USD en Gross domestic product per capita, current prices, U.S. dollars, Units (2022). z-score +3.3σ vs ventana de 5 puntos previos.",
+      "en": "Auto-detected: HND 3080.95 USD in Gross domestic product per capita, current prices, U.S. dollars, Units (2022). z-score +3.3σ against 5-point baseline."
+    },
+    "claim_tokens": [
+      {
+        "claim_id": "97885550b1fa2a7c",
+        "value": 3080.95,
+        "display_es": "3080.95 USD",
+        "display_en": "3080.95 USD"
+      }
+    ]
+  },
+  {
+    "id": "alert_2026-05-21_021",
+    "type": "abrupt_change",
+    "country": "MEX",
+    "category": "economy",
+    "indicator": {
+      "idno": "IMF_WEO_NGDPDPC",
+      "database_id": "IMF_WEO",
+      "name": {
+        "es": "Gross domestic product per capita, current prices, U.S. dollars, Units",
+        "en": "Gross domestic product per capita, current prices, U.S. dollars, Units"
+      }
+    },
+    "observation": {
+      "value": 8742.22,
+      "time_period": "2020",
+      "unit": "USD"
+    },
+    "magnitude": {
+      "es": "−2.1σ",
+      "en": "−2.1σ"
+    },
+    "chart_series": [
+      {
+        "period": "1980",
+        "value": 3557.31
+      },
+      {
+        "period": "1981",
+        "value": 4461.16
+      },
+      {
+        "period": "1982",
+        "value": 3162.5
+      },
+      {
+        "period": "1983",
+        "value": 2519.49
+      },
+      {
+        "period": "1984",
+        "value": 2904.69
+      },
+      {
+        "period": "1985",
+        "value": 3015.01
+      },
+      {
+        "period": "1986",
+        "value": 2043.27
+      },
+      {
+        "period": "1987",
+        "value": 2194.69
+      },
+      {
+        "period": "1988",
+        "value": 2631.48
+      },
+      {
+        "period": "1989",
+        "value": 3144.69
+      },
+      {
+        "period": "1990",
+        "value": 3640.26
+      },
+      {
+        "period": "1991",
+        "value": 4281.7
+      },
+      {
+        "period": "1992",
+        "value": 4873.45
+      },
+      {
+        "period": "1993",
+        "value": 5933.29
+      },
+      {
+        "period": "1994",
+        "value": 6086.83
+      },
+      {
+        "period": "1995",
+        "value": 4109.78
+      },
+      {
+        "period": "1996",
+        "value": 4597.15
+      },
+      {
+        "period": "1997",
+        "value": 5484.71
+      },
+      {
+        "period": "1998",
+        "value": 5759.19
+      },
+      {
+        "period": "1999",
+        "value": 6435.62
+      },
+      {
+        "period": "2000",
+        "value": 7467.74
+      },
+      {
+        "period": "2001",
+        "value": 7902.13
+      },
+      {
+        "period": "2002",
+        "value": 7934.69
+      },
+      {
+        "period": "2003",
+        "value": 7390.34
+      },
+      {
+        "period": "2004",
+        "value": 7806.56
+      },
+      {
+        "period": "2005",
+        "value": 8626.15
+      },
+      {
+        "period": "2006",
+        "value": 9456.91
+      },
+      {
+        "period": "2007",
+        "value": 10063.6
+      },
+      {
+        "period": "2008",
+        "value": 10438.5
+      },
+      {
+        "period": "2009",
+        "value": 8346.77
+      },
+      {
+        "period": "2010",
+        "value": 9632.82
+      },
+      {
+        "period": "2011",
+        "value": 10554.4
+      },
+      {
+        "period": "2012",
+        "value": 10631.1
+      },
+      {
+        "period": "2013",
+        "value": 11099.2
+      },
+      {
+        "period": "2014",
+        "value": 11272.4
+      },
+      {
+        "period": "2015",
+        "value": 9915.09
+      },
+      {
+        "period": "2016",
+        "value": 8999.57
+      },
+      {
+        "period": "2017",
+        "value": 9542.78
+      },
+      {
+        "period": "2018",
+        "value": 9970.97
+      },
+      {
+        "period": "2019",
+        "value": 10259.8
+      },
+      {
+        "period": "2020",
+        "value": 8742.22,
+        "is_change_point": true
+      }
+    ],
+    "verification_trace": {
+      "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/IMF_WEO",
+      "csv_link": "https://data360files.worldbank.org/data360-data/data/IMF_WEO/IMF_WEO_NGDPDPC.csv"
+    },
+    "score": 0.5129950369077634,
+    "detected_at": "2026-05-21T20:27:18.954Z",
+    "license": "License Specified Externally",
+    "narrative_citizen": {
+      "es": "MEX registró 8742.22 USD en Gross domestic product per capita, current prices, U.S. dollars, Units para 2020, −2.1σ respecto a su trayectoria reciente.",
+      "en": "MEX recorded 8742.22 USD in Gross domestic product per capita, current prices, U.S. dollars, Units for 2020, −2.1σ from its recent trajectory."
+    },
+    "narrative_journalist": {
+      "es": "Detección automática: MEX 8742.22 USD en Gross domestic product per capita, current prices, U.S. dollars, Units (2020). z-score −2.1σ vs ventana de 5 puntos previos.",
+      "en": "Auto-detected: MEX 8742.22 USD in Gross domestic product per capita, current prices, U.S. dollars, Units (2020). z-score −2.1σ against 5-point baseline."
+    },
+    "claim_tokens": [
+      {
+        "claim_id": "e0068e09f148d136",
+        "value": 8742.22,
+        "display_es": "8742.22 USD",
+        "display_en": "8742.22 USD"
+      }
+    ]
+  }
+]

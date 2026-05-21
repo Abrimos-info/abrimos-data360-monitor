@@ -1,0 +1,446 @@
+[
+  {
+    "id": "alert_2026-05-21_039",
+    "type": "anomaly",
+    "country": "ARG",
+    "category": "economy",
+    "indicator": {
+      "idno": "IMF_WEO_NGDP_RPCH",
+      "database_id": "IMF_WEO",
+      "name": {
+        "es": "Gross domestic product, constant prices, Percent change",
+        "en": "Gross domestic product, constant prices, Percent change"
+      }
+    },
+    "observation": {
+      "value": 4.956,
+      "time_period": "2022",
+      "unit": "PC"
+    },
+    "magnitude": {
+      "es": "+3.3σ",
+      "en": "+3.3σ"
+    },
+    "chart_series": [
+      {
+        "period": "1980",
+        "value": 0.7
+      },
+      {
+        "period": "1981",
+        "value": -5.744
+      },
+      {
+        "period": "1982",
+        "value": -3.149
+      },
+      {
+        "period": "1983",
+        "value": 3.733
+      },
+      {
+        "period": "1984",
+        "value": 2
+      },
+      {
+        "period": "1985",
+        "value": -6.951
+      },
+      {
+        "period": "1986",
+        "value": 7.146
+      },
+      {
+        "period": "1987",
+        "value": 2.529
+      },
+      {
+        "period": "1988",
+        "value": -1.957
+      },
+      {
+        "period": "1989",
+        "value": -7.007
+      },
+      {
+        "period": "1990",
+        "value": -1.338
+      },
+      {
+        "period": "1991",
+        "value": 10.498
+      },
+      {
+        "period": "1992",
+        "value": 10.299
+      },
+      {
+        "period": "1993",
+        "value": 6.251
+      },
+      {
+        "period": "1994",
+        "value": 5.83
+      },
+      {
+        "period": "1995",
+        "value": -2.845
+      },
+      {
+        "period": "1996",
+        "value": 5.527
+      },
+      {
+        "period": "1997",
+        "value": 8.111
+      },
+      {
+        "period": "1998",
+        "value": 3.85
+      },
+      {
+        "period": "1999",
+        "value": -3.385
+      },
+      {
+        "period": "2000",
+        "value": -0.789
+      },
+      {
+        "period": "2001",
+        "value": -4.409
+      },
+      {
+        "period": "2002",
+        "value": -10.894
+      },
+      {
+        "period": "2003",
+        "value": 8.955
+      },
+      {
+        "period": "2004",
+        "value": 8.911
+      },
+      {
+        "period": "2005",
+        "value": 8.852
+      },
+      {
+        "period": "2006",
+        "value": 8.047
+      },
+      {
+        "period": "2007",
+        "value": 9.008
+      },
+      {
+        "period": "2008",
+        "value": 4.057
+      },
+      {
+        "period": "2009",
+        "value": -5.919
+      },
+      {
+        "period": "2010",
+        "value": 10.125
+      },
+      {
+        "period": "2011",
+        "value": 6.004
+      },
+      {
+        "period": "2012",
+        "value": -1.026
+      },
+      {
+        "period": "2013",
+        "value": 2.405
+      },
+      {
+        "period": "2014",
+        "value": -2.513
+      },
+      {
+        "period": "2015",
+        "value": 2.731
+      },
+      {
+        "period": "2016",
+        "value": -2.08
+      },
+      {
+        "period": "2017",
+        "value": 2.818
+      },
+      {
+        "period": "2018",
+        "value": -2.617
+      },
+      {
+        "period": "2019",
+        "value": -2.001
+      },
+      {
+        "period": "2020",
+        "value": -9.9
+      },
+      {
+        "period": "2021",
+        "value": 10.718
+      },
+      {
+        "period": "2022",
+        "value": 4.956,
+        "is_change_point": true
+      }
+    ],
+    "verification_trace": {
+      "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/IMF_WEO",
+      "csv_link": "https://data360files.worldbank.org/data360-data/data/IMF_WEO/IMF_WEO_NGDP_RPCH.csv",
+      "methodology_ref": "https://www.imf.org/en/Publications/WEO/frequently-asked-questions#:~:text=%2Ddatabase%2FDisclaimer.-,Q.,generate%20projections%20for%20individual%20countries.)"
+    },
+    "score": 0.8361290775760136,
+    "detected_at": "2026-05-21T20:27:18.956Z",
+    "license": "License Specified Externally",
+    "narrative_citizen": {
+      "es": "ARG registró 4.956 PC en Gross domestic product, constant prices, Percent change para 2022, +3.3σ respecto a su trayectoria reciente.",
+      "en": "ARG recorded 4.956 PC in Gross domestic product, constant prices, Percent change for 2022, +3.3σ from its recent trajectory."
+    },
+    "narrative_journalist": {
+      "es": "Detección automática: ARG 4.956 PC en Gross domestic product, constant prices, Percent change (2022). z-score +3.3σ vs ventana de 5 puntos previos.",
+      "en": "Auto-detected: ARG 4.956 PC in Gross domestic product, constant prices, Percent change (2022). z-score +3.3σ against 5-point baseline."
+    },
+    "claim_tokens": [
+      {
+        "claim_id": "a1325638e6a5a717",
+        "value": 4.956,
+        "display_es": "4.956 PC",
+        "display_en": "4.956 PC"
+      }
+    ]
+  },
+  {
+    "id": "alert_2026-05-21_040",
+    "type": "anomaly",
+    "country": "ECU",
+    "category": "economy",
+    "indicator": {
+      "idno": "IMF_WEO_NGDP_RPCH",
+      "database_id": "IMF_WEO",
+      "name": {
+        "es": "Gross domestic product, constant prices, Percent change",
+        "en": "Gross domestic product, constant prices, Percent change"
+      }
+    },
+    "observation": {
+      "value": 6.186,
+      "time_period": "2022",
+      "unit": "PC"
+    },
+    "magnitude": {
+      "es": "+8.3σ",
+      "en": "+8.3σ"
+    },
+    "chart_series": [
+      {
+        "period": "1980",
+        "value": 4.9
+      },
+      {
+        "period": "1981",
+        "value": 3.9
+      },
+      {
+        "period": "1982",
+        "value": 1.2
+      },
+      {
+        "period": "1983",
+        "value": -2.8
+      },
+      {
+        "period": "1984",
+        "value": 4.2
+      },
+      {
+        "period": "1985",
+        "value": 4.4
+      },
+      {
+        "period": "1986",
+        "value": 3.094
+      },
+      {
+        "period": "1987",
+        "value": -5.972
+      },
+      {
+        "period": "1988",
+        "value": 10.486
+      },
+      {
+        "period": "1989",
+        "value": 0.285
+      },
+      {
+        "period": "1990",
+        "value": 3.008
+      },
+      {
+        "period": "1991",
+        "value": 5.113
+      },
+      {
+        "period": "1992",
+        "value": 3.614
+      },
+      {
+        "period": "1993",
+        "value": 2
+      },
+      {
+        "period": "1994",
+        "value": 4.258
+      },
+      {
+        "period": "1995",
+        "value": 2.253
+      },
+      {
+        "period": "1996",
+        "value": 1.732
+      },
+      {
+        "period": "1997",
+        "value": 4.328
+      },
+      {
+        "period": "1998",
+        "value": 3.267
+      },
+      {
+        "period": "1999",
+        "value": -4.739
+      },
+      {
+        "period": "2000",
+        "value": 1.092
+      },
+      {
+        "period": "2001",
+        "value": 4.206
+      },
+      {
+        "period": "2002",
+        "value": 4.928
+      },
+      {
+        "period": "2003",
+        "value": 2.885
+      },
+      {
+        "period": "2004",
+        "value": 6.832
+      },
+      {
+        "period": "2005",
+        "value": 5.399
+      },
+      {
+        "period": "2006",
+        "value": 4.341
+      },
+      {
+        "period": "2007",
+        "value": 1.902
+      },
+      {
+        "period": "2008",
+        "value": 6.565
+      },
+      {
+        "period": "2009",
+        "value": 1.091
+      },
+      {
+        "period": "2010",
+        "value": 4.029
+      },
+      {
+        "period": "2011",
+        "value": 8.481
+      },
+      {
+        "period": "2012",
+        "value": 5.783
+      },
+      {
+        "period": "2013",
+        "value": 7.211
+      },
+      {
+        "period": "2014",
+        "value": 4.226
+      },
+      {
+        "period": "2015",
+        "value": 0.12
+      },
+      {
+        "period": "2016",
+        "value": -0.688
+      },
+      {
+        "period": "2017",
+        "value": 5.97
+      },
+      {
+        "period": "2018",
+        "value": 1.044
+      },
+      {
+        "period": "2019",
+        "value": 0.165
+      },
+      {
+        "period": "2020",
+        "value": -9.245
+      },
+      {
+        "period": "2021",
+        "value": 9.818
+      },
+      {
+        "period": "2022",
+        "value": 6.186,
+        "is_change_point": true
+      }
+    ],
+    "verification_trace": {
+      "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/IMF_WEO",
+      "csv_link": "https://data360files.worldbank.org/data360-data/data/IMF_WEO/IMF_WEO_NGDP_RPCH.csv",
+      "methodology_ref": "https://www.imf.org/en/Publications/WEO/frequently-asked-questions#:~:text=%2Ddatabase%2FDisclaimer.-,Q.,generate%20projections%20for%20individual%20countries.)"
+    },
+    "score": 1,
+    "detected_at": "2026-05-21T20:27:18.956Z",
+    "license": "License Specified Externally",
+    "narrative_citizen": {
+      "es": "ECU registró 6.186 PC en Gross domestic product, constant prices, Percent change para 2022, +8.3σ respecto a su trayectoria reciente.",
+      "en": "ECU recorded 6.186 PC in Gross domestic product, constant prices, Percent change for 2022, +8.3σ from its recent trajectory."
+    },
+    "narrative_journalist": {
+      "es": "Detección automática: ECU 6.186 PC en Gross domestic product, constant prices, Percent change (2022). z-score +8.3σ vs ventana de 5 puntos previos.",
+      "en": "Auto-detected: ECU 6.186 PC in Gross domestic product, constant prices, Percent change (2022). z-score +8.3σ against 5-point baseline."
+    },
+    "claim_tokens": [
+      {
+        "claim_id": "38102b8c93c3d347",
+        "value": 6.186,
+        "display_es": "6.186 PC",
+        "display_en": "6.186 PC"
+      }
+    ]
+  }
+]

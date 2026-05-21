@@ -1,0 +1,358 @@
+[
+  {
+    "id": "alert_2026-05-21_007",
+    "type": "abrupt_change",
+    "country": "HND",
+    "category": "poverty",
+    "indicator": {
+      "idno": "WB_WDI_SI_POV_DDAY",
+      "database_id": "WB_WDI",
+      "name": {
+        "es": "Poverty headcount ratio at $3.00 a day (2021 PPP) (% of population)",
+        "en": "Poverty headcount ratio at $3.00 a day (2021 PPP) (% of population)"
+      }
+    },
+    "observation": {
+      "value": 15.7,
+      "time_period": "2024",
+      "unit": "PT_POP"
+    },
+    "magnitude": {
+      "es": "−2.8σ",
+      "en": "−2.8σ"
+    },
+    "chart_series": [
+      {
+        "period": "1989",
+        "value": 49.5
+      },
+      {
+        "period": "1990",
+        "value": 51.7
+      },
+      {
+        "period": "1991",
+        "value": 41.3
+      },
+      {
+        "period": "1992",
+        "value": 36.5
+      },
+      {
+        "period": "1993",
+        "value": 31.3
+      },
+      {
+        "period": "1994",
+        "value": 32.9
+      },
+      {
+        "period": "1995",
+        "value": 34.4
+      },
+      {
+        "period": "1996",
+        "value": 38.2
+      },
+      {
+        "period": "1997",
+        "value": 27.5
+      },
+      {
+        "period": "1998",
+        "value": 32.3
+      },
+      {
+        "period": "1999",
+        "value": 32.1
+      },
+      {
+        "period": "2001",
+        "value": 26.5
+      },
+      {
+        "period": "2002",
+        "value": 29
+      },
+      {
+        "period": "2003",
+        "value": 34
+      },
+      {
+        "period": "2004",
+        "value": 33.3
+      },
+      {
+        "period": "2005",
+        "value": 31.3
+      },
+      {
+        "period": "2006",
+        "value": 27.3
+      },
+      {
+        "period": "2007",
+        "value": 22
+      },
+      {
+        "period": "2008",
+        "value": 20.9
+      },
+      {
+        "period": "2009",
+        "value": 18.1
+      },
+      {
+        "period": "2010",
+        "value": 19.6
+      },
+      {
+        "period": "2011",
+        "value": 20.1
+      },
+      {
+        "period": "2012",
+        "value": 24
+      },
+      {
+        "period": "2013",
+        "value": 20.8
+      },
+      {
+        "period": "2014",
+        "value": 20.6
+      },
+      {
+        "period": "2015",
+        "value": 19.9
+      },
+      {
+        "period": "2016",
+        "value": 19.8
+      },
+      {
+        "period": "2017",
+        "value": 19.3
+      },
+      {
+        "period": "2018",
+        "value": 19.8
+      },
+      {
+        "period": "2019",
+        "value": 18.8
+      },
+      {
+        "period": "2023",
+        "value": 17
+      },
+      {
+        "period": "2024",
+        "value": 15.7,
+        "is_change_point": true
+      }
+    ],
+    "verification_trace": {
+      "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/WB_WDI",
+      "csv_link": "https://data360files.worldbank.org/data360-data/data/WB_WDI/WB_WDI_SI_POV_DDAY.csv",
+      "methodology_ref": "http://pip.worldbank.org."
+    },
+    "score": 0.6976539745814242,
+    "detected_at": "2026-05-21T20:27:18.952Z",
+    "license": "CC BY-4.0",
+    "narrative_citizen": {
+      "es": "HND registró 15.7 PT_POP en Poverty headcount ratio at $3.00 a day (2021 PPP) (% of population) para 2024, −2.8σ respecto a su trayectoria reciente.",
+      "en": "HND recorded 15.7 PT_POP in Poverty headcount ratio at $3.00 a day (2021 PPP) (% of population) for 2024, −2.8σ from its recent trajectory."
+    },
+    "narrative_journalist": {
+      "es": "Detección automática: HND 15.7 PT_POP en Poverty headcount ratio at $3.00 a day (2021 PPP) (% of population) (2024). z-score −2.8σ vs ventana de 5 puntos previos.",
+      "en": "Auto-detected: HND 15.7 PT_POP in Poverty headcount ratio at $3.00 a day (2021 PPP) (% of population) (2024). z-score −2.8σ against 5-point baseline."
+    },
+    "claim_tokens": [
+      {
+        "claim_id": "8c6bba0568efc716",
+        "value": 15.7,
+        "display_es": "15.7 PT_POP",
+        "display_en": "15.7 PT_POP"
+      }
+    ]
+  },
+  {
+    "id": "alert_2026-05-21_026",
+    "type": "anomaly",
+    "country": "HND",
+    "category": "poverty",
+    "indicator": {
+      "idno": "WB_WDI_SI_POV_DDAY",
+      "database_id": "WB_WDI",
+      "name": {
+        "es": "Poverty headcount ratio at $3.00 a day (2021 PPP) (% of population)",
+        "en": "Poverty headcount ratio at $3.00 a day (2021 PPP) (% of population)"
+      }
+    },
+    "observation": {
+      "value": 15.7,
+      "time_period": "2024",
+      "unit": "PT_POP"
+    },
+    "magnitude": {
+      "es": "+2.4σ",
+      "en": "+2.4σ"
+    },
+    "chart_series": [
+      {
+        "period": "1989",
+        "value": 49.5
+      },
+      {
+        "period": "1990",
+        "value": 51.7
+      },
+      {
+        "period": "1991",
+        "value": 41.3
+      },
+      {
+        "period": "1992",
+        "value": 36.5
+      },
+      {
+        "period": "1993",
+        "value": 31.3
+      },
+      {
+        "period": "1994",
+        "value": 32.9
+      },
+      {
+        "period": "1995",
+        "value": 34.4
+      },
+      {
+        "period": "1996",
+        "value": 38.2
+      },
+      {
+        "period": "1997",
+        "value": 27.5
+      },
+      {
+        "period": "1998",
+        "value": 32.3
+      },
+      {
+        "period": "1999",
+        "value": 32.1
+      },
+      {
+        "period": "2001",
+        "value": 26.5
+      },
+      {
+        "period": "2002",
+        "value": 29
+      },
+      {
+        "period": "2003",
+        "value": 34
+      },
+      {
+        "period": "2004",
+        "value": 33.3
+      },
+      {
+        "period": "2005",
+        "value": 31.3
+      },
+      {
+        "period": "2006",
+        "value": 27.3
+      },
+      {
+        "period": "2007",
+        "value": 22
+      },
+      {
+        "period": "2008",
+        "value": 20.9
+      },
+      {
+        "period": "2009",
+        "value": 18.1
+      },
+      {
+        "period": "2010",
+        "value": 19.6
+      },
+      {
+        "period": "2011",
+        "value": 20.1
+      },
+      {
+        "period": "2012",
+        "value": 24
+      },
+      {
+        "period": "2013",
+        "value": 20.8
+      },
+      {
+        "period": "2014",
+        "value": 20.6
+      },
+      {
+        "period": "2015",
+        "value": 19.9
+      },
+      {
+        "period": "2016",
+        "value": 19.8
+      },
+      {
+        "period": "2017",
+        "value": 19.3
+      },
+      {
+        "period": "2018",
+        "value": 19.8
+      },
+      {
+        "period": "2019",
+        "value": 18.8
+      },
+      {
+        "period": "2023",
+        "value": 17
+      },
+      {
+        "period": "2024",
+        "value": 15.7,
+        "is_change_point": true
+      }
+    ],
+    "verification_trace": {
+      "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/WB_WDI",
+      "csv_link": "https://data360files.worldbank.org/data360-data/data/WB_WDI/WB_WDI_SI_POV_DDAY.csv",
+      "methodology_ref": "http://pip.worldbank.org."
+    },
+    "score": 0.6022238923898171,
+    "detected_at": "2026-05-21T20:27:18.955Z",
+    "license": "CC BY-4.0",
+    "narrative_citizen": {
+      "es": "HND registró 15.7 PT_POP en Poverty headcount ratio at $3.00 a day (2021 PPP) (% of population) para 2024, +2.4σ respecto a su trayectoria reciente.",
+      "en": "HND recorded 15.7 PT_POP in Poverty headcount ratio at $3.00 a day (2021 PPP) (% of population) for 2024, +2.4σ from its recent trajectory."
+    },
+    "narrative_journalist": {
+      "es": "Detección automática: HND 15.7 PT_POP en Poverty headcount ratio at $3.00 a day (2021 PPP) (% of population) (2024). z-score +2.4σ vs ventana de 5 puntos previos.",
+      "en": "Auto-detected: HND 15.7 PT_POP in Poverty headcount ratio at $3.00 a day (2021 PPP) (% of population) (2024). z-score +2.4σ against 5-point baseline."
+    },
+    "claim_tokens": [
+      {
+        "claim_id": "8c6bba0568efc716",
+        "value": 15.7,
+        "display_es": "15.7 PT_POP",
+        "display_en": "15.7 PT_POP"
+      }
+    ]
+  }
+]

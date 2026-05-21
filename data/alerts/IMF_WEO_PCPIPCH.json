@@ -1,0 +1,364 @@
+[
+  {
+    "id": "alert_2026-05-21_019",
+    "type": "abrupt_change",
+    "country": "ARG",
+    "category": "economy",
+    "indicator": {
+      "idno": "IMF_WEO_PCPIPCH",
+      "database_id": "IMF_WEO",
+      "name": {
+        "es": "Inflation, average consumer prices, Percent change",
+        "en": "Inflation, average consumer prices, Percent change"
+      }
+    },
+    "observation": {
+      "value": 72.431,
+      "time_period": "2022",
+      "unit": "PC"
+    },
+    "magnitude": {
+      "es": "+2.8σ",
+      "en": "+2.8σ"
+    },
+    "chart_series": [
+      {
+        "period": "1998",
+        "value": 0.925
+      },
+      {
+        "period": "1999",
+        "value": -1.167
+      },
+      {
+        "period": "2000",
+        "value": -0.939
+      },
+      {
+        "period": "2001",
+        "value": -1.065
+      },
+      {
+        "period": "2002",
+        "value": 25.869
+      },
+      {
+        "period": "2003",
+        "value": 13.443
+      },
+      {
+        "period": "2004",
+        "value": 4.416
+      },
+      {
+        "period": "2005",
+        "value": 9.642
+      },
+      {
+        "period": "2006",
+        "value": 10.898
+      },
+      {
+        "period": "2007",
+        "value": 8.83
+      },
+      {
+        "period": "2008",
+        "value": 8.585
+      },
+      {
+        "period": "2009",
+        "value": 6.27
+      },
+      {
+        "period": "2010",
+        "value": 10.461
+      },
+      {
+        "period": "2011",
+        "value": 9.775
+      },
+      {
+        "period": "2012",
+        "value": 10.043
+      },
+      {
+        "period": "2013",
+        "value": 10.619
+      },
+      {
+        "period": "2017",
+        "value": 25.675
+      },
+      {
+        "period": "2018",
+        "value": 34.277
+      },
+      {
+        "period": "2019",
+        "value": 53.548
+      },
+      {
+        "period": "2020",
+        "value": 42.015
+      },
+      {
+        "period": "2021",
+        "value": 48.409
+      },
+      {
+        "period": "2022",
+        "value": 72.431,
+        "is_change_point": true
+      }
+    ],
+    "verification_trace": {
+      "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/IMF_WEO",
+      "csv_link": "https://data360files.worldbank.org/data360-data/data/IMF_WEO/IMF_WEO_PCPIPCH.csv"
+    },
+    "score": 0.7124930810945327,
+    "detected_at": "2026-05-21T20:27:18.954Z",
+    "license": "License Specified Externally",
+    "narrative_citizen": {
+      "es": "ARG registró 72.431 PC en Inflation, average consumer prices, Percent change para 2022, +2.8σ respecto a su trayectoria reciente.",
+      "en": "ARG recorded 72.431 PC in Inflation, average consumer prices, Percent change for 2022, +2.8σ from its recent trajectory."
+    },
+    "narrative_journalist": {
+      "es": "Detección automática: ARG 72.431 PC en Inflation, average consumer prices, Percent change (2022). z-score +2.8σ vs ventana de 5 puntos previos.",
+      "en": "Auto-detected: ARG 72.431 PC in Inflation, average consumer prices, Percent change (2022). z-score +2.8σ against 5-point baseline."
+    },
+    "claim_tokens": [
+      {
+        "claim_id": "d53704c66d869c55",
+        "value": 72.431,
+        "display_es": "72.431 PC",
+        "display_en": "72.431 PC"
+      }
+    ]
+  },
+  {
+    "id": "alert_2026-05-21_041",
+    "type": "anomaly",
+    "country": "ECU",
+    "category": "economy",
+    "indicator": {
+      "idno": "IMF_WEO_PCPIPCH",
+      "database_id": "IMF_WEO",
+      "name": {
+        "es": "Inflation, average consumer prices, Percent change",
+        "en": "Inflation, average consumer prices, Percent change"
+      }
+    },
+    "observation": {
+      "value": 2.216,
+      "time_period": "2023",
+      "unit": "PC"
+    },
+    "magnitude": {
+      "es": "−4.3σ",
+      "en": "−4.3σ"
+    },
+    "chart_series": [
+      {
+        "period": "1980",
+        "value": 13.049
+      },
+      {
+        "period": "1981",
+        "value": 16.387
+      },
+      {
+        "period": "1982",
+        "value": 16.258
+      },
+      {
+        "period": "1983",
+        "value": 48.434
+      },
+      {
+        "period": "1984",
+        "value": 31.23
+      },
+      {
+        "period": "1985",
+        "value": 27.983
+      },
+      {
+        "period": "1986",
+        "value": 23.03
+      },
+      {
+        "period": "1987",
+        "value": 29.504
+      },
+      {
+        "period": "1988",
+        "value": 58.216
+      },
+      {
+        "period": "1989",
+        "value": 75.648
+      },
+      {
+        "period": "1990",
+        "value": 48.519
+      },
+      {
+        "period": "1991",
+        "value": 48.804
+      },
+      {
+        "period": "1992",
+        "value": 54.341
+      },
+      {
+        "period": "1993",
+        "value": 45
+      },
+      {
+        "period": "1994",
+        "value": 27.443
+      },
+      {
+        "period": "1995",
+        "value": 22.886
+      },
+      {
+        "period": "1996",
+        "value": 24.4
+      },
+      {
+        "period": "1997",
+        "value": 30.6
+      },
+      {
+        "period": "1998",
+        "value": 36.1
+      },
+      {
+        "period": "1999",
+        "value": 52.2
+      },
+      {
+        "period": "2000",
+        "value": 96.1
+      },
+      {
+        "period": "2001",
+        "value": 37.674
+      },
+      {
+        "period": "2002",
+        "value": 12.485
+      },
+      {
+        "period": "2003",
+        "value": 7.929
+      },
+      {
+        "period": "2004",
+        "value": 2.741
+      },
+      {
+        "period": "2005",
+        "value": 2.17
+      },
+      {
+        "period": "2006",
+        "value": 3.299
+      },
+      {
+        "period": "2007",
+        "value": 2.276
+      },
+      {
+        "period": "2008",
+        "value": 8.4
+      },
+      {
+        "period": "2009",
+        "value": 5.16
+      },
+      {
+        "period": "2010",
+        "value": 3.554
+      },
+      {
+        "period": "2011",
+        "value": 4.475
+      },
+      {
+        "period": "2012",
+        "value": 5.102
+      },
+      {
+        "period": "2013",
+        "value": 2.722
+      },
+      {
+        "period": "2014",
+        "value": 3.589
+      },
+      {
+        "period": "2015",
+        "value": 3.966
+      },
+      {
+        "period": "2016",
+        "value": 1.728
+      },
+      {
+        "period": "2017",
+        "value": 0.417
+      },
+      {
+        "period": "2018",
+        "value": -0.224
+      },
+      {
+        "period": "2019",
+        "value": 0.266
+      },
+      {
+        "period": "2020",
+        "value": -0.339
+      },
+      {
+        "period": "2021",
+        "value": 0.133
+      },
+      {
+        "period": "2022",
+        "value": 3.466
+      },
+      {
+        "period": "2023",
+        "value": 2.216,
+        "is_change_point": true
+      }
+    ],
+    "verification_trace": {
+      "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/IMF_WEO",
+      "csv_link": "https://data360files.worldbank.org/data360-data/data/IMF_WEO/IMF_WEO_PCPIPCH.csv"
+    },
+    "score": 1,
+    "detected_at": "2026-05-21T20:27:18.956Z",
+    "license": "License Specified Externally",
+    "narrative_citizen": {
+      "es": "ECU registró 2.216 PC en Inflation, average consumer prices, Percent change para 2023, −4.3σ respecto a su trayectoria reciente.",
+      "en": "ECU recorded 2.216 PC in Inflation, average consumer prices, Percent change for 2023, −4.3σ from its recent trajectory."
+    },
+    "narrative_journalist": {
+      "es": "Detección automática: ECU 2.216 PC en Inflation, average consumer prices, Percent change (2023). z-score −4.3σ vs ventana de 5 puntos previos.",
+      "en": "Auto-detected: ECU 2.216 PC in Inflation, average consumer prices, Percent change (2023). z-score −4.3σ against 5-point baseline."
+    },
+    "claim_tokens": [
+      {
+        "claim_id": "314f0022ae1ce045",
+        "value": 2.216,
+        "display_es": "2.216 PC",
+        "display_en": "2.216 PC"
+      }
+    ]
+  }
+]

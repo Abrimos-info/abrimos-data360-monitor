@@ -1,0 +1,158 @@
+[
+  {
+    "id": "alert_2026-05-21_002",
+    "type": "abrupt_change",
+    "country": "ARG",
+    "category": "economy",
+    "indicator": {
+      "idno": "WB_WDI_FP_CPI_TOTL_ZG",
+      "database_id": "WB_WDI",
+      "name": {
+        "es": "Inflation, consumer prices (annual % growth)",
+        "en": "Inflation, consumer prices (annual % growth)"
+      }
+    },
+    "observation": {
+      "value": 219.883929,
+      "time_period": "2024",
+      "unit": "%"
+    },
+    "magnitude": {
+      "es": "+4.0σ",
+      "en": "+4.0σ"
+    },
+    "chart_series": [
+      {
+        "period": "2018",
+        "value": 34.277224
+      },
+      {
+        "period": "2019",
+        "value": 53.548304
+      },
+      {
+        "period": "2020",
+        "value": 42.015095
+      },
+      {
+        "period": "2021",
+        "value": 48.409379
+      },
+      {
+        "period": "2022",
+        "value": 72.430758
+      },
+      {
+        "period": "2023",
+        "value": 133.488936
+      },
+      {
+        "period": "2024",
+        "value": 219.883929,
+        "is_change_point": true
+      }
+    ],
+    "verification_trace": {
+      "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/WB_WDI",
+      "csv_link": "https://data360files.worldbank.org/data360-data/data/WB_WDI/WB_WDI_FP_CPI_TOTL_ZG.csv",
+      "methodology_ref": "https://dsbb.imf.org/"
+    },
+    "score": 1,
+    "detected_at": "2026-05-21T20:27:18.951Z",
+    "license": "CC BY-4.0",
+    "narrative_citizen": {
+      "es": "ARG registró 219.883929 % en Inflation, consumer prices (annual % growth) para 2024, +4.0σ respecto a su trayectoria reciente.",
+      "en": "ARG recorded 219.883929 % in Inflation, consumer prices (annual % growth) for 2024, +4.0σ from its recent trajectory."
+    },
+    "narrative_journalist": {
+      "es": "Detección automática: ARG 219.883929 % en Inflation, consumer prices (annual % growth) (2024). z-score +4.0σ vs ventana de 5 puntos previos.",
+      "en": "Auto-detected: ARG 219.883929 % in Inflation, consumer prices (annual % growth) (2024). z-score +4.0σ against 5-point baseline."
+    },
+    "claim_tokens": [
+      {
+        "claim_id": "9b6df5dd7c4d83a3",
+        "value": 219.883929,
+        "display_es": "219.883929 %",
+        "display_en": "219.883929 %"
+      }
+    ]
+  },
+  {
+    "id": "alert_2026-05-21_023",
+    "type": "anomaly",
+    "country": "ARG",
+    "category": "economy",
+    "indicator": {
+      "idno": "WB_WDI_FP_CPI_TOTL_ZG",
+      "database_id": "WB_WDI",
+      "name": {
+        "es": "Inflation, consumer prices (annual % growth)",
+        "en": "Inflation, consumer prices (annual % growth)"
+      }
+    },
+    "observation": {
+      "value": 219.883929,
+      "time_period": "2024",
+      "unit": "%"
+    },
+    "magnitude": {
+      "es": "+83.6σ",
+      "en": "+83.6σ"
+    },
+    "chart_series": [
+      {
+        "period": "2018",
+        "value": 34.277224
+      },
+      {
+        "period": "2019",
+        "value": 53.548304
+      },
+      {
+        "period": "2020",
+        "value": 42.015095
+      },
+      {
+        "period": "2021",
+        "value": 48.409379
+      },
+      {
+        "period": "2022",
+        "value": 72.430758
+      },
+      {
+        "period": "2023",
+        "value": 133.488936
+      },
+      {
+        "period": "2024",
+        "value": 219.883929,
+        "is_change_point": true
+      }
+    ],
+    "verification_trace": {
+      "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/WB_WDI",
+      "csv_link": "https://data360files.worldbank.org/data360-data/data/WB_WDI/WB_WDI_FP_CPI_TOTL_ZG.csv",
+      "methodology_ref": "https://dsbb.imf.org/"
+    },
+    "score": 1,
+    "detected_at": "2026-05-21T20:27:18.954Z",
+    "license": "CC BY-4.0",
+    "narrative_citizen": {
+      "es": "ARG registró 219.883929 % en Inflation, consumer prices (annual % growth) para 2024, +83.6σ respecto a su trayectoria reciente.",
+      "en": "ARG recorded 219.883929 % in Inflation, consumer prices (annual % growth) for 2024, +83.6σ from its recent trajectory."
+    },
+    "narrative_journalist": {
+      "es": "Detección automática: ARG 219.883929 % en Inflation, consumer prices (annual % growth) (2024). z-score +83.6σ vs ventana de 5 puntos previos.",
+      "en": "Auto-detected: ARG 219.883929 % in Inflation, consumer prices (annual % growth) (2024). z-score +83.6σ against 5-point baseline."
+    },
+    "claim_tokens": [
+      {
+        "claim_id": "9b6df5dd7c4d83a3",
+        "value": 219.883929,
+        "display_es": "219.883929 %",
+        "display_en": "219.883929 %"
+      }
+    ]
+  }
+]

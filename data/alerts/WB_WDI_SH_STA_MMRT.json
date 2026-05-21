@@ -1,0 +1,208 @@
+[
+  {
+    "id": "alert_2026-05-21_028",
+    "type": "anomaly",
+    "country": "GTM",
+    "category": "health",
+    "indicator": {
+      "idno": "WB_WDI_SH_STA_MMRT",
+      "database_id": "WB_WDI",
+      "name": {
+        "es": "Maternal mortality ratio (modeled estimate, per 100,000 live births)",
+        "en": "Maternal mortality ratio (modeled estimate, per 100,000 live births)"
+      }
+    },
+    "observation": {
+      "value": 94,
+      "time_period": "2023",
+      "unit": "DT_10P5BR_L"
+    },
+    "magnitude": {
+      "es": "+4.0σ",
+      "en": "+4.0σ"
+    },
+    "chart_series": [
+      {
+        "period": "1985",
+        "value": 301
+      },
+      {
+        "period": "1986",
+        "value": 286
+      },
+      {
+        "period": "1987",
+        "value": 277
+      },
+      {
+        "period": "1988",
+        "value": 273
+      },
+      {
+        "period": "1989",
+        "value": 271
+      },
+      {
+        "period": "1990",
+        "value": 270
+      },
+      {
+        "period": "1991",
+        "value": 268
+      },
+      {
+        "period": "1992",
+        "value": 269
+      },
+      {
+        "period": "1993",
+        "value": 262
+      },
+      {
+        "period": "1994",
+        "value": 244
+      },
+      {
+        "period": "1995",
+        "value": 229
+      },
+      {
+        "period": "1996",
+        "value": 213
+      },
+      {
+        "period": "1997",
+        "value": 198
+      },
+      {
+        "period": "1998",
+        "value": 185
+      },
+      {
+        "period": "1999",
+        "value": 174
+      },
+      {
+        "period": "2000",
+        "value": 166
+      },
+      {
+        "period": "2001",
+        "value": 162
+      },
+      {
+        "period": "2002",
+        "value": 153
+      },
+      {
+        "period": "2003",
+        "value": 150
+      },
+      {
+        "period": "2004",
+        "value": 148
+      },
+      {
+        "period": "2005",
+        "value": 153
+      },
+      {
+        "period": "2006",
+        "value": 142
+      },
+      {
+        "period": "2007",
+        "value": 135
+      },
+      {
+        "period": "2008",
+        "value": 133
+      },
+      {
+        "period": "2009",
+        "value": 130
+      },
+      {
+        "period": "2010",
+        "value": 127
+      },
+      {
+        "period": "2011",
+        "value": 120
+      },
+      {
+        "period": "2012",
+        "value": 115
+      },
+      {
+        "period": "2013",
+        "value": 111
+      },
+      {
+        "period": "2014",
+        "value": 111
+      },
+      {
+        "period": "2015",
+        "value": 112
+      },
+      {
+        "period": "2016",
+        "value": 110
+      },
+      {
+        "period": "2017",
+        "value": 107
+      },
+      {
+        "period": "2018",
+        "value": 107
+      },
+      {
+        "period": "2019",
+        "value": 106
+      },
+      {
+        "period": "2020",
+        "value": 102
+      },
+      {
+        "period": "2021",
+        "value": 125
+      },
+      {
+        "period": "2022",
+        "value": 97
+      },
+      {
+        "period": "2023",
+        "value": 94,
+        "is_change_point": true
+      }
+    ],
+    "verification_trace": {
+      "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/WB_WDI",
+      "csv_link": "https://data360files.worldbank.org/data360-data/data/WB_WDI/WB_WDI_SH_STA_MMRT.csv",
+      "methodology_ref": "https://www.who.int/news/item/23-02-2023-a-woman-dies-every-two-minutes-due-to-pregnancy-or-childbirth--un-agencies)"
+    },
+    "score": 0.9906583029812492,
+    "detected_at": "2026-05-21T20:27:18.955Z",
+    "license": "CC BY-4.0",
+    "narrative_citizen": {
+      "es": "GTM registró 94 DT_10P5BR_L en Maternal mortality ratio (modeled estimate, per 100,000 live births) para 2023, +4.0σ respecto a su trayectoria reciente.",
+      "en": "GTM recorded 94 DT_10P5BR_L in Maternal mortality ratio (modeled estimate, per 100,000 live births) for 2023, +4.0σ from its recent trajectory."
+    },
+    "narrative_journalist": {
+      "es": "Detección automática: GTM 94 DT_10P5BR_L en Maternal mortality ratio (modeled estimate, per 100,000 live births) (2023). z-score +4.0σ vs ventana de 5 puntos previos.",
+      "en": "Auto-detected: GTM 94 DT_10P5BR_L in Maternal mortality ratio (modeled estimate, per 100,000 live births) (2023). z-score +4.0σ against 5-point baseline."
+    },
+    "claim_tokens": [
+      {
+        "claim_id": "ae6ec5f7de9f676d",
+        "value": 94,
+        "display_es": "94 DT_10P5BR_L",
+        "display_en": "94 DT_10P5BR_L"
+      }
+    ]
+  }
+]

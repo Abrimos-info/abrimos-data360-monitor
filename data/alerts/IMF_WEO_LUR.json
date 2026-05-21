@@ -1,0 +1,224 @@
+[
+  {
+    "id": "alert_2026-05-21_022",
+    "type": "abrupt_change",
+    "country": "ARG",
+    "category": "economy",
+    "indicator": {
+      "idno": "IMF_WEO_LUR",
+      "database_id": "IMF_WEO",
+      "name": {
+        "es": "Unemployment rate, Percent of total labor force",
+        "en": "Unemployment rate, Percent of total labor force"
+      }
+    },
+    "observation": {
+      "value": 6.825,
+      "time_period": "2022",
+      "unit": "PT_LF"
+    },
+    "magnitude": {
+      "es": "−2.2σ",
+      "en": "−2.2σ"
+    },
+    "chart_series": [
+      {
+        "period": "1980",
+        "value": 3
+      },
+      {
+        "period": "1981",
+        "value": 5
+      },
+      {
+        "period": "1982",
+        "value": 4.5
+      },
+      {
+        "period": "1983",
+        "value": 5
+      },
+      {
+        "period": "1984",
+        "value": 5
+      },
+      {
+        "period": "1985",
+        "value": 6.25
+      },
+      {
+        "period": "1986",
+        "value": 6.3
+      },
+      {
+        "period": "1987",
+        "value": 6
+      },
+      {
+        "period": "1988",
+        "value": 6.5
+      },
+      {
+        "period": "1989",
+        "value": 8
+      },
+      {
+        "period": "1990",
+        "value": 7.6
+      },
+      {
+        "period": "1991",
+        "value": 6.48
+      },
+      {
+        "period": "1992",
+        "value": 7.112
+      },
+      {
+        "period": "1993",
+        "value": 11.606
+      },
+      {
+        "period": "1994",
+        "value": 13.348
+      },
+      {
+        "period": "1995",
+        "value": 18.904
+      },
+      {
+        "period": "1996",
+        "value": 18.76
+      },
+      {
+        "period": "1997",
+        "value": 16.808
+      },
+      {
+        "period": "1998",
+        "value": 14.789
+      },
+      {
+        "period": "1999",
+        "value": 16.061
+      },
+      {
+        "period": "2000",
+        "value": 17.134
+      },
+      {
+        "period": "2001",
+        "value": 19.209
+      },
+      {
+        "period": "2002",
+        "value": 22.45
+      },
+      {
+        "period": "2003",
+        "value": 17.25
+      },
+      {
+        "period": "2004",
+        "value": 13.625
+      },
+      {
+        "period": "2005",
+        "value": 11.575
+      },
+      {
+        "period": "2006",
+        "value": 10.175
+      },
+      {
+        "period": "2007",
+        "value": 8.475
+      },
+      {
+        "period": "2008",
+        "value": 7.875
+      },
+      {
+        "period": "2009",
+        "value": 8.675
+      },
+      {
+        "period": "2010",
+        "value": 7.75
+      },
+      {
+        "period": "2011",
+        "value": 7.15
+      },
+      {
+        "period": "2012",
+        "value": 7.2
+      },
+      {
+        "period": "2013",
+        "value": 7.075
+      },
+      {
+        "period": "2014",
+        "value": 7.25
+      },
+      {
+        "period": "2015",
+        "value": 6.533
+      },
+      {
+        "period": "2016",
+        "value": 8.467
+      },
+      {
+        "period": "2017",
+        "value": 8.35
+      },
+      {
+        "period": "2018",
+        "value": 9.2
+      },
+      {
+        "period": "2019",
+        "value": 9.825
+      },
+      {
+        "period": "2020",
+        "value": 11.55
+      },
+      {
+        "period": "2021",
+        "value": 8.75
+      },
+      {
+        "period": "2022",
+        "value": 6.825,
+        "is_change_point": true
+      }
+    ],
+    "verification_trace": {
+      "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/IMF_WEO",
+      "csv_link": "https://data360files.worldbank.org/data360-data/data/IMF_WEO/IMF_WEO_LUR.csv",
+      "methodology_ref": "https://www.imf.org/en/Publications/WEO/frequently-asked-questions#:~:text=%2Ddatabase%2FDisclaimer.-,Q.,generate%20projections%20for%20individual%20countries.)"
+    },
+    "score": 0.5408330595289388,
+    "detected_at": "2026-05-21T20:27:18.954Z",
+    "license": "License Specified Externally",
+    "narrative_citizen": {
+      "es": "ARG registró 6.825 PT_LF en Unemployment rate, Percent of total labor force para 2022, −2.2σ respecto a su trayectoria reciente.",
+      "en": "ARG recorded 6.825 PT_LF in Unemployment rate, Percent of total labor force for 2022, −2.2σ from its recent trajectory."
+    },
+    "narrative_journalist": {
+      "es": "Detección automática: ARG 6.825 PT_LF en Unemployment rate, Percent of total labor force (2022). z-score −2.2σ vs ventana de 5 puntos previos.",
+      "en": "Auto-detected: ARG 6.825 PT_LF in Unemployment rate, Percent of total labor force (2022). z-score −2.2σ against 5-point baseline."
+    },
+    "claim_tokens": [
+      {
+        "claim_id": "2a2e030904a94b63",
+        "value": 6.825,
+        "display_es": "6.825 PT_LF",
+        "display_en": "6.825 PT_LF"
+      }
+    ]
+  }
+]
