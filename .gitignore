@@ -1,0 +1,16 @@
+node_modules/
+.env
+.env.*
+!.env.example
+output/
+logs/
+cache/
+data/snapshots/
+data/alerts.json
+*.log
+.DS_Store
+.idea/
+.vscode/
+dist/
+build/
+coverage/

@@ -1,0 +1,26 @@
+{
+  "name": "abrimos-data360-monitor",
+  "version": "0.1.0",
+  "description": "Monitor autónomo que detecta hechos noticiosos en los 12.000 indicadores de Data360 y los entrega verificados a newsrooms LAC.",
+  "license": "GPL-3.0-or-later",
+  "type": "commonjs",
+  "main": "bin/run-detection.js",
+  "scripts": {
+    "fetch": "node bin/fetch-data.js",
+    "detect": "node bin/detect-changes.js",
+    "narrate": "node bin/narrate-indicators.js",
+    "emit": "node bin/emit-alerts.js",
+    "build": "npm run fetch && npm run detect && npm run narrate && npm run emit",
+    "frontend:dev": "node frontend/dev.js",
+    "test": "node test/run-tests.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Abrimos-info/abrimos-data360-monitor.git"
+  },
+  "author": "Abrimos.info <contacto@abrimos.info>",
+  "bugs": {
+    "url": "https://github.com/Abrimos-info/abrimos-data360-monitor/issues"
+  },
+  "homepage": "https://github.com/Abrimos-info/abrimos-data360-monitor#readme"
+}
