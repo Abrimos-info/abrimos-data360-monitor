@@ -1,5 +1,31 @@
 {
-  "_comment": "Preliminary watchlist. To be narrowed down to 10 final indicators.",
+  "_comment": "Preliminary watchlist of 20 candidate indicators. Probe results recorded as of 2026-05-21. To be narrowed down to 10 finals.",
   "countries": ["GTM", "HND", "ARG", "ECU", "MEX"],
-  "indicators": []
+  "indicators": [
+    { "idno": "WB_WDI_NY_GDP_PCAP_CD", "database_id": "WB_WDI", "periodicity": "Annual", "time_end": "2024", "lac_coverage": 5, "license": "CC BY-4.0" },
+    { "idno": "WB_WDI_NY_GDP_MKTP_KD_ZG", "database_id": "WB_WDI", "periodicity": "Annual", "time_end": "2024", "lac_coverage": 5, "license": "CC BY-4.0" },
+    { "idno": "WB_WDI_FP_CPI_TOTL_ZG", "database_id": "WB_WDI", "periodicity": "Annual", "time_end": "2024", "lac_coverage": 5, "license": "CC BY-4.0" },
+    { "idno": "WB_WDI_GC_DOD_TOTL_GD_ZS", "database_id": "WB_WDI", "periodicity": "Annual", "time_end": "2024", "lac_coverage": 2, "license": "CC BY-4.0", "warning": "Only GTM and MEX covered. Consider replacement from WB_CCDFS." },
+    { "idno": "WB_WDI_BX_KLT_DINV_WD_GD_ZS", "database_id": "WB_WDI", "periodicity": "Annual", "time_end": "2024", "lac_coverage": 5, "license": "CC BY-4.0" },
+    { "idno": "WB_WDI_BN_CAB_XOKA_GD_ZS", "database_id": "WB_WDI", "periodicity": "Annual", "time_end": "2024", "lac_coverage": 5, "license": "CC BY-4.0" },
+    { "idno": "WB_WDI_SI_POV_GINI", "database_id": "WB_WDI", "periodicity": "Annual", "time_end": "2024", "lac_coverage": 5, "license": "CC BY-4.0" },
+    { "idno": "WB_WDI_SI_POV_DDAY", "database_id": "WB_WDI", "periodicity": "Annual", "time_end": "2024", "lac_coverage": 5, "license": "CC BY-4.0" },
+    { "idno": "WB_WDI_SI_POV_LMIC", "database_id": "WB_WDI", "periodicity": "Annual", "time_end": "2024", "lac_coverage": 5, "license": "CC BY-4.0" },
+    { "idno": "IPC_IPC_PHASE", "database_id": "IPC_IPC", "periodicity": "Monthly", "time_end": "2025-11", "lac_coverage": 3, "license": "CC BY-NC-SA 3.0 IGO", "warning": "Non-commercial license. Only ECU, GTM, HND covered." },
+    { "idno": "WB_WDI_SE_PRM_ENRR", "database_id": "WB_WDI", "periodicity": "Annual", "time_end": "2024", "lac_coverage": 5, "license": "CC BY-4.0" },
+    { "idno": "WB_WDI_SE_SEC_ENRR", "database_id": "WB_WDI", "periodicity": "Annual", "time_end": "2024", "lac_coverage": 5, "license": "CC BY-4.0" },
+    { "idno": "WB_WDI_SE_XPD_TOTL_GD_ZS", "database_id": "WB_WDI", "periodicity": "Annual", "time_end": "2024", "lac_coverage": 5, "license": "CC BY-4.0" },
+    { "idno": "WB_WDI_SH_STA_MMRT", "database_id": "WB_WDI", "periodicity": "Annual", "time_end": "2023", "lac_coverage": 5, "license": "CC BY-4.0" },
+    { "idno": "WB_WDI_SH_DYN_MORT", "database_id": "WB_WDI", "periodicity": "Annual", "time_end": "2023", "lac_coverage": 5, "license": "CC BY-4.0" },
+    { "idno": "WB_WDI_SH_XPD_CHEX_GD_ZS", "database_id": "WB_WDI", "periodicity": "Annual", "time_end": "2024", "lac_coverage": 5, "license": "CC BY-4.0" },
+    { "idno": "WB_WDI_SL_TLF_CACT_FE_ZS", "database_id": "WB_WDI", "periodicity": "Annual", "time_end": "2024", "lac_coverage": 5, "license": "CC BY-4.0" },
+    { "idno": "WB_WDI_SL_UEM_TOTL_ZS", "database_id": "WB_WDI", "periodicity": "Annual", "time_end": "2024", "lac_coverage": 5, "license": "CC BY-4.0" },
+    { "idno": "WB_WDI_GE_EST", "database_id": "WB_WDI", "periodicity": "Annual", "time_end": "2023", "lac_coverage": 5, "license": "CC BY-4.0" },
+    { "idno": "WB_WDI_CC_EST", "database_id": "WB_WDI", "periodicity": "Annual", "time_end": "2023", "lac_coverage": 5, "license": "CC BY-4.0" }
+  ],
+  "_notes": {
+    "date_last_update": "Null for all 20 indicators. Change detection must use HTTP Last-Modified on the CSV link.",
+    "frequencies": "19 of 20 are Annual. Only IPC_IPC_PHASE is Monthly.",
+    "freshness": "Latest data point ranges from 2023 to 2025-11. Most WDI indicators cover up to 2024."
+  }
 }

@@ -229,7 +229,29 @@ To be narrowed down to 10 finals after verifying real coverage in the five LAC c
 | Government effectiveness | `WB_WDI_GE_EST` | WGI government effectiveness estimate | Typically low media coverage. good "orphan" candidate |
 | Control of corruption | `WB_WDI_CC_EST` | WGI control of corruption estimate | Annual, reflects institutional perception |
 
-> **Note for the implementer.** The two WGI indicators may live under a database other than `WB_WDI`. Resolve their real `database_id` via `/data360/searchv2` before adding them to the production watchlist.
+> **Probe verified 2026-05-21.** All 20 indicators exist. The two governance indicators (`GE_EST`, `CC_EST`) are exposed under `WB_WDI`, not under a separate WGI database. See `bin/probe-indicators.py` and `connector/watchlist.json` for the live findings.
+
+## Probe results (2026-05-21)
+
+Run `python3 bin/probe-indicators.py` to refresh. Snapshot of the 20 candidates against the five LAC countries:
+
+| Property | Finding |
+|---|---|
+| Indicators that exist | 20 of 20 |
+| Annual periodicity | 19 of 20 |
+| Monthly periodicity | 1 of 20 (`IPC_IPC_PHASE`) |
+| Last data point range | 2023 to 2025-11 |
+| Full LAC coverage (5 of 5 countries) | 18 of 20 |
+| Limited coverage | `WB_WDI_GC_DOD_TOTL_GD_ZS` (only GTM and MEX), `IPC_IPC_PHASE` (only ECU, GTM, HND) |
+| License `CC BY-4.0` | 19 of 20 |
+| License `CC BY-NC-SA 3.0 IGO` | 1 of 20 (`IPC_IPC_PHASE`, non-commercial) |
+| `date_last_update` populated | 0 of 20 |
+
+Implications.
+
+- **Change detection cannot rely on `date_last_update`.** Use the HTTP `Last-Modified` header of the bulk CSV instead.
+- **Government debt indicator needs a replacement** with better LAC coverage. `WB_CCDFS` (Cross-Country Database of Fiscal Space) is the natural place to look.
+- **IPC's non-commercial license** needs handling in the sustainability plan if the project pursues commercial distribution.
 
 ## Selection criteria for the final 10
 
