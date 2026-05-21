@@ -4,14 +4,15 @@
   "description": "Autonomous monitor that detects newsworthy events across the 12,000 indicators of Data360 and delivers them verified to LAC newsrooms.",
   "license": "GPL-3.0-or-later",
   "type": "commonjs",
-  "main": "bin/run-detection.js",
+  "main": "data360-monitor.js",
   "scripts": {
+    "start": "NODE_ENV=production node data360-monitor.js",
+    "dev": "NODE_ENV=development node data360-monitor.js",
     "fetch": "node bin/fetch-data.js",
     "detect": "node bin/detect-changes.js",
     "narrate": "node bin/narrate-indicators.js",
     "emit": "node bin/emit-alerts.js",
     "build": "npm run fetch && npm run detect && npm run narrate && npm run emit",
-    "frontend:dev": "node frontend/dev.js",
     "test": "node test/run-tests.js"
   },
   "repository": {
@@ -22,5 +23,11 @@
   "bugs": {
     "url": "https://github.com/Abrimos-info/abrimos-data360-monitor/issues"
   },
-  "homepage": "https://github.com/Abrimos-info/abrimos-data360-monitor#readme"
+  "homepage": "https://github.com/Abrimos-info/abrimos-data360-monitor#readme",
+  "dependencies": {
+    "axios": "^1.16.1",
+    "chokidar": "^4.0.3",
+    "dotenv": "^16.6.1",
+    "pug": "^3.0.3"
+  }
 }

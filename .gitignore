@@ -14,3 +14,5 @@ data/alerts.json
 dist/
 build/
 coverage/
+archive/
+design/

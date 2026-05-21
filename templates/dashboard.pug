@@ -1,0 +1,117 @@
+extends layout
+
+include cards
+
+block content
+  - var variant = filters.variant || "narr"
+  - var langKey = "en"
+  div(class="d360-app")
+    header.d360-header
+      div.d360-header__top
+        div.d360-brand
+          div.d360-brand__mark D360
+          div.d360-brand__text
+            div.d360-brand__name Data360 Monitor
+            div.d360-brand__tagline Verified events across Data360 indicators
+        div.d360-header__right
+          div.d360-lastupdate
+            span.d360-lastupdate__dot(aria-hidden="true")
+            span.d360-lastupdate__label Last update
+            span.d360-lastupdate__time Today · 14:32 GMT-6
+          div.d360-lang(role="group" aria-label="Language")
+            button.d360-lang__btn(class=(langMode === "es" ? "is-active" : ""), data-lang="es" type="button") ES
+            button.d360-lang__btn(class=(langMode === "en" ? "is-active" : ""), data-lang="en" type="button") EN
+            button.d360-lang__btn(class=(langMode === "both" ? "is-active" : ""), data-lang="both" type="button") BOTH
+          button.d360-subscribe(type="button" id="d360-subscribe-btn")
+            span Subscribe
+      div.d360-header__bar
+        form.d360-filters(method="get" id="d360-filters-form")
+          label.d360-filter
+            span.d360-filter__label Country
+            select(name="country" id="d360-filter-country")
+              option(value="ALL" selected=(filters.country === "ALL")) All
+              each iso in countries
+                option(value=iso selected=(filters.country === iso))= iso
+          label.d360-filter
+            span.d360-filter__label Category
+            select(name="category" id="d360-filter-category")
+              option(value="ALL" selected=(filters.category === "ALL")) All
+              each cat in categories
+                option(value=cat selected=(filters.category === cat))= cat
+          label.d360-filter
+            span.d360-filter__label Card
+            select(name="variant" id="d360-filter-variant")
+              option(value="narr" selected=(variant === "narr")) Narrative
+              option(value="num"  selected=(variant === "num"))  Number
+              option(value="news" selected=(variant === "news")) Newspaper
+        div.d360-eventcount
+          strong#d360-event-count= visibleAlerts.length
+          |  events this week
+
+    main.d360-main
+      div.d360-main__feed
+        if allAlerts.length === 0
+          div.d360-empty
+            h2.d360-empty__title No events detected
+            p.d360-empty__help The monitor will display newsworthy changes here as they are detected.
+        else
+          //- Render every alert; hide non-matching with .d360-card--hidden
+          div.d360-feed
+            each ev in allAlerts
+              - var hidden = (filters.country !== "ALL" && filters.country !== ev.country) || (filters.category !== "ALL" && filters.category !== ev.category)
+              if variant === "num"
+                article.d360-card.d360-card--num(class=(hidden ? "d360-card--hidden" : "") tabindex="0" role="button" data-alert-id=ev.id data-country=ev.country data-category=ev.category)
+                  div.d360-card__head
+                    div.d360-card__metaL
+                      +countryTag(ev.country)
+                      span.d360-card__divider ·
+                      span.d360-card__dataset= ev.indicator.idno
+                    div.d360-card__metaR
+                      +typeChip(ev.type, (ev.type === "abrupt_change" ? "Abrupt change" : "Anomaly"))
+                  div.d360-card__body
+                    span.d360-card__bignum= ev.observation.display ? ev.observation.display[langKey] : ev.observation.value
+                    span.d360-card__bigtext
+                      = ev.indicator.name[langKey]
+                      |  ·
+                      +magnitude(ev.magnitude[langKey])
+                      |  · #{ev.observation.time_period}
+              else if variant === "news"
+                article.d360-card.d360-card--news(class=(hidden ? "d360-card--hidden" : "") tabindex="0" role="button" data-alert-id=ev.id data-country=ev.country data-category=ev.category)
+                  div.d360-card__eyebrow
+                    = ev.country
+                    |  ·
+                    = (ev.type === "abrupt_change" ? "Abrupt change" : "Anomaly")
+                    |  ·
+                    = ev.indicator.idno
+                  h3.d360-card__headline= ev.narrative_citizen[langKey]
+                  hr.d360-card__rule
+                  p.d360-card__lede
+                    | #{ev.indicator.name[langKey]} · #{ev.observation.display ? ev.observation.display[langKey] : ev.observation.value} ·
+                    +magnitude(ev.magnitude[langKey])
+                    |  · #{ev.observation.time_period}
+              else
+                article.d360-card.d360-card--narr(class=(hidden ? "d360-card--hidden" : "") tabindex="0" role="button" data-alert-id=ev.id data-country=ev.country data-category=ev.category)
+                  div.d360-card__head
+                    div.d360-card__metaL
+                      +countryTag(ev.country)
+                      span.d360-card__divider ·
+                      span.d360-card__dataset= ev.indicator.idno
+                    div.d360-card__metaR
+                      +typeChip(ev.type, (ev.type === "abrupt_change" ? "Abrupt change" : "Anomaly"))
+                  div.d360-card__body= ev.narrative_citizen[langKey]
+                  div.d360-card__sub
+                    | #{ev.indicator.name[langKey]} · #{ev.observation.display ? ev.observation.display[langKey] : ev.observation.value}
+                    |  ·
+                    +magnitude(ev.magnitude[langKey])
+
+          div.d360-empty#d360-empty-filtered(style=(visibleAlerts.length === 0 ? "" : "display:none"))
+            h2.d360-empty__title No events for these filters
+            p.d360-empty__help Try broadening country or category.
+
+  block scripts
+    script.
+      window.D360_ALERTS = !{JSON.stringify(allAlerts)};
+      window.D360_LANG = !{JSON.stringify(lang)};
+      window.D360_LANG_MODE = !{JSON.stringify(langMode)};
+      window.D360_FILTERS = !{JSON.stringify(filters)};
+    script(src="/static/js/behavior.js" defer)

@@ -1,0 +1,11 @@
+{
+  "meta": {
+    "site": "data360-monitor"
+  },
+  "": {
+    "viewName": "dashboardPage"
+  },
+  "about": {
+    "viewName": "aboutPage"
+  }
+}

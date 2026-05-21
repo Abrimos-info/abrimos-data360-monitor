@@ -1,0 +1,72 @@
+/* Design tokens — Data360 Monitor
+   Brand palette inherits from Abrimos.info (logo red #b31918). */
+
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Roboto+Slab:wght@400;700&display=swap");
+
+:root {
+  /* Brand */
+  --brand-red:        #b31918;
+  --brand-red-deep:   #8a1311;
+  --brand-red-soft:   #c93938;
+  --brand-red-wash:   #f7e3e3;
+
+  /* Neutrals */
+  --bg:               #ffffff;
+  --bg-alt:           #f5f6f7;
+  --bg-alt-2:         #eef0f1;
+  --fg:               #7f888f;
+  --fg-bold:          #3d4449;
+  --fg-light:         #9fa3a6;
+  --border:           rgba(210, 215, 217, 0.75);
+  --border-strong:    #d2d7d9;
+
+  /* Semantic */
+  --ok:               #2a8e5f;
+  --ok-soft:          rgba(42, 142, 95, 0.18);
+  --warn:             #b07a00;
+  --warn-soft:        rgba(176, 122, 0, 0.15);
+  --err:              #b31918;
+  --err-soft:         rgba(179, 25, 24, 0.15);
+
+  /* Typography */
+  --font-body:        "Open Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display:     "Roboto Slab", Georgia, serif;
+  --font-mono:        "Courier New", ui-monospace, Menlo, monospace;
+
+  /* Type scale */
+  --fs-base:          14px;
+  --fs-small:         12px;
+  --fs-xsmall:        11px;
+  --fs-meta:          10.5px;
+  --fs-h1:            28px;
+  --fs-h2:            20px;
+  --fs-h3:            16px;
+  --lh-body:          1.55;
+  --lh-tight:         1.35;
+
+  /* Spacing */
+  --space-1:          4px;
+  --space-2:          8px;
+  --space-3:          12px;
+  --space-4:          16px;
+  --space-5:          24px;
+  --space-6:          32px;
+  --space-8:          48px;
+
+  --radius:           6px;
+  --radius-sm:        3px;
+
+  /* Motion */
+  --dur-fast:         0.15s;
+  --dur:              0.22s;
+  --ease:             cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Elevation */
+  --shadow-card:      0 1px 2px rgba(40, 44, 47, 0.06);
+  --shadow-popover:   0 8px 24px rgba(40, 44, 47, 0.12);
+  --shadow-detail:    -8px 0 24px rgba(40, 44, 47, 0.10);
+
+  /* Layout */
+  --feed-max:         820px;
+  --detail-w:         560px;
+}

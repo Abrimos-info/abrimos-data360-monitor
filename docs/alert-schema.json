@@ -1,0 +1,185 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/Abrimos-info/abrimos-data360-monitor/blob/main/docs/alert-schema.json",
+  "title": "Data360 Monitor alert",
+  "description": "Single alert emitted by the detection pipeline and consumed by the dashboard. Canonical fields come from the Obsidian product definition. Derived fields are added by bin/emit-alerts.js so the frontend does not need any presentation logic at runtime.",
+  "type": "object",
+  "required": [
+    "id",
+    "type",
+    "country",
+    "indicator",
+    "observation",
+    "narrative_citizen",
+    "narrative_journalist",
+    "verification_trace",
+    "score",
+    "detected_at",
+    "license",
+    "category",
+    "magnitude",
+    "chart_series"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Stable alert id. Format: alert_{YYYY-MM-DD}_{NNN}.",
+      "pattern": "^alert_\\d{4}-\\d{2}-\\d{2}_\\d{3,}$"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["abrupt_change", "anomaly"],
+      "description": "Detection strategy. D-010: only strategies 1 (abrupt_change) and 4 (anomaly) are in scope."
+    },
+    "country": {
+      "type": "string",
+      "description": "ISO 3166-1 alpha-3. D-003: demo limited to GTM, HND, ARG, ECU, MEX.",
+      "enum": ["GTM", "HND", "ARG", "ECU", "MEX"]
+    },
+    "category": {
+      "type": "string",
+      "description": "UI category enum, used for filtering.",
+      "enum": ["economy", "health", "education", "environment", "labor", "poverty", "governance", "demography", "food_security"]
+    },
+    "indicator": {
+      "type": "object",
+      "required": ["idno", "database_id", "name"],
+      "properties": {
+        "idno": {
+          "type": "string",
+          "description": "Data360 indicator id, e.g. WB_WDI_FP_CPI_TOTL_ZG."
+        },
+        "database_id": {
+          "type": "string",
+          "description": "Data360 database id, e.g. WB_WDI."
+        },
+        "name": {
+          "$ref": "#/$defs/bilingual_string",
+          "description": "Human-readable indicator name. Bilingual."
+        }
+      }
+    },
+    "observation": {
+      "type": "object",
+      "required": ["value", "time_period", "unit"],
+      "properties": {
+        "value": {
+          "type": "number",
+          "description": "OBS_VALUE as Decimal serialized to JSON number. Frontend formats for display."
+        },
+        "display": {
+          "$ref": "#/$defs/bilingual_string",
+          "description": "Pre-formatted display string for the value, e.g. {es: \"USD 14.820 millones\", en: \"USD 14,820 million\"}. Optional; if absent, frontend formats from value + unit."
+        },
+        "time_period": {
+          "type": "string",
+          "description": "ISO period, e.g. \"2024\", \"2026-Q1\", \"2026-03\"."
+        },
+        "unit": {
+          "type": "string",
+          "description": "Unit code from Data360 (e.g. \"%\", \"USD\", \"millions\", \"per_thousand\")."
+        },
+        "disaggregation": {
+          "type": "object",
+          "description": "Disaggregation tags. _T means total, _Z means n/a. Demo filters non-_T/_Z explicitly.",
+          "additionalProperties": { "type": "string" }
+        }
+      }
+    },
+    "magnitude": {
+      "$ref": "#/$defs/bilingual_string",
+      "description": "Pre-formatted bilingual magnitude string for the card and detail header. Includes sign and unit, e.g. {es: \"+38%\", en: \"+38%\"} or {es: \"−6,1%\", en: \"−6.1%\"} or {es: \"2,1σ\", en: \"2.1σ\"}."
+    },
+    "chart_series": {
+      "type": "array",
+      "description": "Sparkline points for the detail panel chart. One point per historical period; the last one corresponds to observation.time_period.",
+      "items": {
+        "type": "object",
+        "required": ["period", "value"],
+        "properties": {
+          "period": { "type": "string" },
+          "value": { "type": "number" },
+          "is_change_point": {
+            "type": "boolean",
+            "description": "When true, mark this point as the detected change. Optional."
+          },
+          "regional_avg": {
+            "type": "number",
+            "description": "Regional comparison value for this period. Optional, only for anomaly cards."
+          }
+        }
+      }
+    },
+    "narrative_citizen": {
+      "$ref": "#/$defs/bilingual_string",
+      "description": "Plain-language narrative for readers."
+    },
+    "narrative_journalist": {
+      "$ref": "#/$defs/bilingual_string",
+      "description": "Technical narrative for journalists, includes context and caveats."
+    },
+    "claim_tokens": {
+      "type": "array",
+      "description": "Numeric claims appearing in the narratives that should be wrapped with PCN verification marks.",
+      "items": {
+        "type": "object",
+        "required": ["claim_id", "value"],
+        "properties": {
+          "claim_id": {
+            "type": "string",
+            "description": "PCN claim id, e.g. WB_WDI_FP_CPI_TOTL_ZG@ARG@2026-03."
+          },
+          "value": { "type": "number" },
+          "display_es": { "type": "string" },
+          "display_en": { "type": "string" }
+        }
+      }
+    },
+    "verification_trace": {
+      "type": "object",
+      "required": ["data360_dataset_url", "csv_link"],
+      "properties": {
+        "data360_dataset_url": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL to the dataset page on data360.worldbank.org."
+        },
+        "csv_link": {
+          "type": "string",
+          "format": "uri",
+          "description": "Direct link to the raw CSV at data360files.worldbank.org."
+        },
+        "methodology_ref": {
+          "type": "string",
+          "format": "uri",
+          "description": "Optional link to the indicator methodology."
+        }
+      }
+    },
+    "score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Detection confidence, [0, 1]."
+    },
+    "detected_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 UTC timestamp when detection emitted this alert."
+    },
+    "license": {
+      "type": "string",
+      "description": "License of the source data, e.g. \"CC BY-4.0\"."
+    }
+  },
+  "$defs": {
+    "bilingual_string": {
+      "type": "object",
+      "required": ["es", "en"],
+      "properties": {
+        "es": { "type": "string" },
+        "en": { "type": "string" }
+      }
+    }
+  }
+}

@@ -1,0 +1,70 @@
+//- ====================================================================
+//- Data360 Monitor — Card variants and feed
+//- ====================================================================
+
+include mixins
+
+//- Narrative-forward card: serif headline-style narrative leads.
+mixin cardNarrative(ev, lang)
+  - var lng = (lang === "en") ? "en" : "en"
+  article.d360-card.d360-card--narr(tabindex="0" role="button" data-alert-id=ev.id data-country=ev.country data-category=ev.category)
+    div.d360-card__head
+      div.d360-card__metaL
+        +countryTag(ev.country)
+        span.d360-card__divider ·
+        span.d360-card__dataset= ev.indicator.idno
+      div.d360-card__metaR
+        +typeChip(ev.type, (ev.type === "abrupt_change" ? "Abrupt change" : "Anomaly"))
+    div.d360-card__body= ev.narrative_citizen[lng]
+    div.d360-card__sub
+      | #{ev.indicator.name[lng]} · #{ev.observation.display ? ev.observation.display[lng] : ev.observation.value}
+      |  ·
+      +magnitude(ev.magnitude[lng])
+
+//- Number-forward card: big value dominates, narrative supports.
+mixin cardNumber(ev, lang)
+  - var lng = (lang === "en") ? "en" : "en"
+  article.d360-card.d360-card--num(tabindex="0" role="button" data-alert-id=ev.id data-country=ev.country data-category=ev.category)
+    div.d360-card__head
+      div.d360-card__metaL
+        +countryTag(ev.country)
+        span.d360-card__divider ·
+        span.d360-card__dataset= ev.indicator.idno
+      div.d360-card__metaR
+        +typeChip(ev.type, (ev.type === "abrupt_change" ? "Abrupt change" : "Anomaly"))
+    div.d360-card__body
+      span.d360-card__bignum= ev.observation.display ? ev.observation.display[lng] : ev.observation.value
+      span.d360-card__bigtext
+        = ev.indicator.name[lng]
+        |  ·
+        +magnitude(ev.magnitude[lng])
+        |  · #{ev.observation.time_period}
+
+//- Newspaper card: eyebrow + serif headline + lede.
+mixin cardNewspaper(ev, lang)
+  - var lng = (lang === "en") ? "en" : "en"
+  article.d360-card.d360-card--news(tabindex="0" role="button" data-alert-id=ev.id data-country=ev.country data-category=ev.category)
+    div.d360-card__eyebrow
+      = ev.country
+      |  ·
+      = (ev.type === "abrupt_change" ? "Abrupt change" : "Anomaly")
+      |  ·
+      = ev.indicator.idno
+    h3.d360-card__headline= ev.narrative_citizen[lng]
+    hr.d360-card__rule
+    p.d360-card__lede
+      | #{ev.indicator.name[lng]} · #{ev.observation.display ? ev.observation.display[lng] : ev.observation.value} ·
+      +magnitude(ev.magnitude[lng])
+      |  · #{ev.observation.time_period}
+
+//- Feed: list of cards, variant chosen by caller.
+mixin feed(events, variant, lang)
+  - variant = variant || "narr"
+  div.d360-feed
+    each ev in events
+      if variant === "num"
+        +cardNumber(ev, lang)
+      else if variant === "news"
+        +cardNewspaper(ev, lang)
+      else
+        +cardNarrative(ev, lang)
