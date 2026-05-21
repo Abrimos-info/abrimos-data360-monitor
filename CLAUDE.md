@@ -97,6 +97,14 @@ test/
 | D-017 | LLM is Claude Opus 4.7 via Agent SDK. |
 | D-018 | Repo `abrimos-info/abrimos-data360-monitor`. |
 | D-020 | License GPLv3. |
+| D-021 | Watchlist split in three indicator tiers. Tier 1 pulse (sub-annual fresh indicators, ≤10), Tier 2 context (annual snapshot, 10-16), Tier 3 forecasts (IMF_WEO + WB_MPO outlook, ~9). Each tier has its own fetcher and CSV file (`pulse.csv`, `annual.csv`, `forecast.csv`). Forecasts are first-class data with verification trace, not roadmap. The word "news" is reserved for actual press headlines (see D-029). |
+| D-024 | Tabular data as CSV, descriptive metadata as Markdown. Data at `data/context/{COUNTRY}/{tier}.csv`. Indicator metadata at `data/indicators/{IDNO}.md`. |
+| D-025 | All demo code in Node.js (CommonJS). Initial Python probes archived under `archive/python/`. |
+| D-026 | `archive/` and `design/` are gitignored. Curate to `docs/` if a piece needs to go public. |
+| D-027 | REST direct is the default path (bulk fetch, detection). MCP server (`worldbank/data360-mcp`) is optional for runtime narrative when its native SHA-256 `claim_id` and precomputed comparisons add value. Trial decision for this demo iteration, to be validated against a full pipeline run. |
+| D-028 | Analysis stage: 4 prompt files (`analysis-{system,task,template,quality}.md`), omnibus numbered context per indicator, output with fenced blocks (`alert`, `quality`, `source`). One LLM call per indicator. Automatic claim-traceability validation against the numbered context. Alert schema aligned with PCN. |
+| D-029 | "News" refers to real press headlines per country, not to sub-annual indicator data. A separate `news` subsystem (architecture pending) ingests recent headlines from the 5 LAC countries and feeds them into the analysis context so narratives can reference current public discourse. The sub-annual indicator tier is `pulse` (D-021). |
+| D-030 | News subsystem uses GDELT DOC API v2 as primary source (free, no auth, history since 2015, filter `SOURCELANG:Spanish` + country), Google News RSS as fallback. Headlines stored at `data/news/{COUNTRY}/{YYYY-MM}.jsonl` (gitignored), dedup by SHA-1 of URL. Schema includes `gdelt_tone` (for future Strategy 2) and `indicators_hint` (empty in demo). Injected into the omnibus context as §6 "Discurso público reciente", max 8 headlines per country, ~1.2k tokens. Demo use is passive narrative context only — Strategy 2 (narrative-data divergence) stays in roadmap. Full design at `docs/news-architecture.md`. |
 
 ## Key commands
 

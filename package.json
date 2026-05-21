@@ -25,9 +25,12 @@
   },
   "homepage": "https://github.com/Abrimos-info/abrimos-data360-monitor#readme",
   "dependencies": {
+    "ajv": "^8.20.0",
     "axios": "^1.16.1",
     "chokidar": "^4.0.3",
+    "decimal.js": "^10.6.0",
     "dotenv": "^16.6.1",
-    "pug": "^3.0.3"
+    "pug": "^3.0.3",
+    "rss-parser": "^3.13.0"
   }
 }

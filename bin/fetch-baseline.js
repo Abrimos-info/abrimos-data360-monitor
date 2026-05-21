@@ -12,7 +12,7 @@
  *
  * The country folder pattern leaves room for future tiers:
  *
- *   data/context/{COUNTRY}/news.csv     Tier 1 sub-annual (later)
+ *   data/context/{COUNTRY}/pulse.csv    Tier 1 sub-annual indicators (later)
  *   data/context/{COUNTRY}/forecast.csv Tier 3 IMF/WB outlook (later)
  *
  * Run:
