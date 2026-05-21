@@ -1,24 +1,74 @@
 # Data Fetcher Architecture
 
 > Architecture of the data ingestion layer for `abrimos-data360-monitor`.
-> Audience: contributors building or maintaining the fetcher.
+> Audience. Contributors building or maintaining the fetcher.
 
 ## Goal
 
-Pull historical observations and metadata from Data360 for a curated watchlist of indicators × countries, store them locally as canonical snapshots, and produce the inputs required by the detection pipeline. The fetcher is designed to be re-run idempotently and to skip downloads when the upstream file has not changed.
+Pull historical observations and metadata from Data360 for a curated watchlist of indicators × countries, and feed them into the detection and narrative pipeline. The fetcher is the TeseoETL script that runs the API calls. Its output shape changes depending on the deployment mode.
 
 ## Scope
 
-- **Five LAC countries:** Guatemala (GTM), Honduras (HND), Argentina (ARG), Ecuador (ECU), Mexico (MEX).
+- **Five LAC countries**. Guatemala (GTM), Honduras (HND), Argentina (ARG), Ecuador (ECU), Mexico (MEX).
 - **20 pre-selected indicators** (see table below) to be narrowed down to 10 in the next iteration.
-- **Historical replay only** for the demo. No real-time polling. The "continuous monitoring" promise lives in the production roadmap.
+- **Historical replay only** for the demo. No real-time polling. The continuous monitoring promise lives in the production roadmap.
 
-## Components
+## Two deployment modes
+
+The same TeseoETL fetcher script is used in both modes. Only the output destination and downstream wiring change.
+
+### Production mode (roadmap)
+
+```
+Apache NiFi (scheduler)
+   │
+   │  invokes
+   ▼
+TeseoETL fetcher script
+   │
+   │  exports JSONlines per indicator
+   ▼
+NiFi pipeline
+   │
+   │  reads, normalises, indexes
+   ▼
+OpenSearch
+   │
+   │  queries
+   ▼
+Detection and narrative pipeline
+```
+
+NiFi schedules and triggers the TeseoETL fetcher. The fetcher writes one JSONlines file per indicator. NiFi picks those files up, normalises the records against the canonical schema, and indexes them into OpenSearch. Downstream steps (detection, narrative, dashboard) read from OpenSearch.
+
+### Demo mode (what runs on 31 May 2026)
+
+```
+TeseoETL fetcher script (manual run)
+   │
+   │  writes local CSV per indicator
+   ▼
+data/snapshots/{INDICATOR}.csv
+   │
+   │  fed directly to LLM step
+   ▼
+LLM narrative (one call per indicator)
+   │
+   ▼
+data/alerts.json
+   │
+   ▼
+Static dashboard
+```
+
+No NiFi. No OpenSearch. No queue. The fetcher writes a local CSV per indicator. The LLM step ingests that CSV directly together with the metadata document. The output of the pipeline is a static `data/alerts.json` that the dashboard reads on load. This keeps the demo deterministic, cheap, and reproducible without infrastructure.
+
+## Components (demo mode)
 
 ```
 ┌──────────────────────────────────────────────────────────────────┐
 │                                                                  │
-│   bin/fetch-data.js  (entrypoint)                                │
+│   bin/fetch-data.js  (TeseoETL entrypoint, demo mode)            │
 │         │                                                        │
 │         ▼                                                        │
 │   ┌──────────────────────────────────────────────────────────┐   │
@@ -29,8 +79,8 @@ Pull historical observations and metadata from Data360 for a curated watchlist o
 │         ▼                                                        │
 │   ┌──────────────────────────────────────────────────────────┐   │
 │   │  metadataFetcher                                         │   │
-│   │  POST /data360/metadata (no $select → full document)     │   │
-│   │  → data/snapshots/{INDICATOR}.meta.json                  │   │
+│   │  POST /data360/metadata (no $select, full document)      │   │
+│   │  writes data/snapshots/{INDICATOR}.meta.json             │   │
 │   └──────────────────────────────────────────────────────────┘   │
 │         │                                                        │
 │         ▼                                                        │
@@ -39,45 +89,39 @@ Pull historical observations and metadata from Data360 for a curated watchlist o
 │   │  HEAD {csv_link} with If-Modified-Since                  │   │
 │   │     ├─ 304 Not Modified → skip                           │   │
 │   │     └─ 200 OK → GET full CSV                             │   │
-│   │  → data/snapshots/{INDICATOR}.csv                        │   │
-│   │  → data/snapshots/{INDICATOR}.etag                       │   │
-│   └──────────────────────────────────────────────────────────┘   │
-│         │                                                        │
-│         ▼                                                        │
-│   ┌──────────────────────────────────────────────────────────┐   │
-│   │  normaliser                                              │   │
-│   │  - cast OBS_VALUE → Decimal                              │   │
-│   │  - filter OBS_STATUS != "A"                              │   │
-│   │  - drop rows where any required disagg = "_Z"            │   │
-│   │  - tag rows where any disagg = "_T" (totals)             │   │
-│   │  - filter REF_AREA to watchlist countries                │   │
-│   │  → data/normalised/{INDICATOR}.json                      │   │
+│   │  writes data/snapshots/{INDICATOR}.csv                   │   │
+│   │  writes data/snapshots/{INDICATOR}.etag                  │   │
 │   └──────────────────────────────────────────────────────────┘   │
 │         │                                                        │
 │         ▼                                                        │
 │   ┌──────────────────────────────────────────────────────────┐   │
 │   │  index.json                                              │   │
-│   │  Per-indicator summary: time range, country coverage,    │   │
-│   │  observation count, last fetch timestamp, content hash   │   │
+│   │  Per-indicator summary. Time range, country coverage,    │   │
+│   │  observation count, last fetch timestamp, content hash.  │   │
 │   └──────────────────────────────────────────────────────────┘   │
 │                                                                  │
 └──────────────────────────────────────────────────────────────────┘
 ```
 
-## On-disk layout
+The LLM step (`bin/narrate-indicators.js`) consumes the raw CSV and the metadata JSON directly. No intermediate normalised JSON file is produced in demo mode. Normalisation rules below apply at LLM-prompt-construction time.
+
+## Components (production mode)
+
+The same fetcher is invoked by NiFi instead of by a human. It runs once per indicator and writes a JSONlines file (one observation per line) instead of a CSV. NiFi reads each `.jsonl`, applies the same normalisation rules, and pushes the records to OpenSearch with the observation key as `_id` (see "Observation key" below). Detection runs against OpenSearch.
+
+## On-disk layout (demo mode)
 
 ```
 data/
   snapshots/
     {INDICATOR}.csv                # raw CSV from data360files.worldbank.org
-    {INDICATOR}.etag               # cached ETag + Last-Modified for conditional GETs
+    {INDICATOR}.etag               # cached ETag and Last-Modified for conditional GETs
     {INDICATOR}.meta.json          # full metadata document
-  normalised/
-    {INDICATOR}.json               # cleaned, decimal-cast rows for the demo countries
+  alerts.json                      # final output consumed by the dashboard
   index.json                       # per-indicator summary
 ```
 
-All paths under `data/` are gitignored except `index.json`, which is small and useful for reproducibility.
+All paths under `data/` are gitignored except `index.json` and `alerts.json`, which are small and useful for reproducibility.
 
 ## Endpoints used
 
@@ -208,17 +252,24 @@ To be narrowed down to 10 finals after verifying real coverage in the five LAC c
 
 ## Outputs consumed downstream
 
-- `data/normalised/{INDICATOR}.json`. input for the detection step (`bin/detect-changes.js`)
-- `data/snapshots/{INDICATOR}.meta.json`. input for the narrative step (`bin/narrate-indicators.js`)
-- `data/index.json`. summary used by the dashboard's "Last updated" panel
+In demo mode.
+
+- `data/snapshots/{INDICATOR}.csv`. Raw observations consumed directly by the LLM step (`bin/narrate-indicators.js`).
+- `data/snapshots/{INDICATOR}.meta.json`. Metadata document consumed alongside the CSV.
+- `data/index.json`. Per-indicator summary used by the dashboard's last-updated panel.
+
+In production mode.
+
+- `data/jsonl/{INDICATOR}.jsonl`. One observation per line, ingested by NiFi, normalised, and pushed to OpenSearch.
+- OpenSearch index `data360_observations` and `data360_metadata` become the canonical store. Detection and narrative read from there, not from local files.
 
 ## Rate limits
 
-Confirmed during the 2026-05-21 office hour with the World Bank team: **5,000 concurrent requests per minute per IP**. The fetcher does not need throttling for the demo scope (20 indicators × 5 countries).
+Confirmed during the 2026-05-21 office hour with the World Bank team. **5,000 concurrent requests per minute per IP**. The fetcher does not need throttling for the demo scope (20 indicators × 5 countries).
 
 ## Production roadmap (out of scope for the demo)
 
-- Replace the local cron-style runner with an Apache NiFi flow.
-- Push normalised observations into OpenSearch instead of flat JSON.
+- Wire the TeseoETL fetcher into Apache NiFi as a scheduled processor.
+- Define the NiFi flow that ingests JSONlines, normalises records, and pushes them to OpenSearch.
 - Subscribe to a future webhook channel if the World Bank publishes one.
-- Maintain a versioned audit log for every observation update.
+- Maintain a versioned audit log of observation revisions inside OpenSearch.
