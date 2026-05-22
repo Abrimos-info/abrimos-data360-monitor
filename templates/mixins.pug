@@ -63,7 +63,7 @@ mixin periodDisplay(ev, lang)
 
 mixin citizenNarrative(ev, lang)
   - var lng = (lang === "en") ? "en" : "es"
-  = ev._lead || (ev.lead && ev.lead[lng]) || ''
+  = (ev.lead && ev.lead[lng]) || ''
 
 //- Verification mark. state: 'verified' | 'pending' | 'failed'.
 //- Tip text is provided by caller for now (i18n later).
