@@ -41,7 +41,7 @@ test('expandDatasetToIndicators constructs full IDNOs', async (t) => {
   assert.equal(entries[1].idno, 'FAO_CP_23013');
 });
 
-test('buildDynamicWatchlist filters to indicators with LAC country data', async (t) => {
+test('buildDynamicWatchlist keeps indicators whose CSV HEAD returns 200', async (t) => {
   const { buildDynamicWatchlist } = require('../lib/dynamic-watchlist');
   const fakeSearch = async () => ({
     value: [{
