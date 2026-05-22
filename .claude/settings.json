@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx tsc --noEmit)",
+      "Bash(npx tsc --noEmit 2>&1)",
+      "mcp__plugin_context-mode_context-mode__ctx_search"
+    ]
+  }
+}
