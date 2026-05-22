@@ -22,7 +22,7 @@ const fs = require('fs');
 const path = require('path');
 const { getWatchlist } = require('../lib/watchlist');
 const { probeWatchlist, buildChangedSinceReport, buildIndex } = require('../lib/freshness-probe');
-const { downloadCsvSnapshot, refreshContextForIndicators } = require('../lib/context-fetch');
+const { downloadCsvSnapshot, downloadDataDict, downloadMetadataJson, refreshContextForIndicators } = require('../lib/context-fetch');
 
 const REPO_ROOT = path.resolve(__dirname, '..');
 
@@ -142,6 +142,12 @@ async function runFetchData(argv, hooks = {}) {
   await refreshContextForIndicators(CONTEXT_DIR, INDICATORS_DIR, SNAPSHOTS_DIR, toFetch, {
     forceMetadata: opts.force,
   });
+
+  console.log('[fetch-data] downloading data dictionaries and metadata JSON for changed indicators ...');
+  for (const entry of toFetch) {
+    await downloadDataDict(SNAPSHOTS_DIR, entry).catch((e) => console.warn(`  dict ${entry.idno}: ${e.message}`));
+    await downloadMetadataJson(SNAPSHOTS_DIR, entry).catch((e) => console.warn(`  meta ${entry.idno}: ${e.message}`));
+  }
 
   console.log('[fetch-data] done');
 }
