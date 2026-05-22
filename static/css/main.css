@@ -1827,3 +1827,70 @@ a:hover { color: var(--brand-red-deep); border-bottom-color: var(--brand-red-dee
   padding: var(--space-2);
   border-radius: var(--radius);
 }
+
+/* ====================================================================
+   Content-type badges and Reportaje card variant (E2)
+   ==================================================================== */
+.d360-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #fff;
+  line-height: 1.4;
+}
+
+.d360-badge--noticia {
+  background-color: var(--brand-red, #b31918);
+}
+
+.d360-badge--reportaje {
+  background-color: var(--warn, #b07a00);
+}
+
+.d360-card--reportaje {
+  border-left: 4px solid var(--warn, #b07a00);
+  grid-column: span 2;
+  background: var(--bg-alt, #f5f6f7);
+  padding: var(--space-3, 12px);
+  border-radius: var(--radius, 6px);
+}
+
+.d360-card--reportaje .d360-card__headline {
+  font-family: var(--font-display, serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: var(--space-2, 8px) 0;
+  color: var(--fg-bold, #3d4449);
+}
+
+.d360-card--reportaje .d360-card__lede {
+  color: var(--fg, #7f888f);
+  font-size: 0.95rem;
+  line-height: 1.45;
+  margin: 0 0 var(--space-2, 8px);
+}
+
+.d360-card--reportaje .d360-card__footer {
+  display: flex;
+  gap: var(--space-2, 8px);
+  align-items: center;
+  font-size: 0.8rem;
+  color: var(--fg-light, #9fa3a6);
+  flex-wrap: wrap;
+}
+
+.d360-card--reportaje .d360-card__indicators {
+  font-weight: 600;
+  color: var(--fg-bold, #3d4449);
+}
+
+@media (max-width: 720px) {
+  .d360-card--reportaje {
+    grid-column: span 1;
+  }
+}

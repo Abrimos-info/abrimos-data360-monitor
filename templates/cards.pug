@@ -4,63 +4,113 @@
 
 include mixins
 
-mixin cardNarrative(ev, lang, langMode, typeText, dataPeriodLabel, dataPeriodStaleLabel)
+mixin cardNarrative(ev, lang, langMode, typeText, dataPeriodLabel, dataPeriodStaleLabel, _)
   - var langKey = (lang === "en") ? "en" : "es"
-  article.d360-card.d360-card--narr(tabindex="0" role="button" data-alert-id=ev.id data-country=ev.country data-category=ev.category)
+  - var indName = (ev.indicator && ev.indicator.name && ev.indicator.name[langKey]) || (ev.indicator && ev.indicator.idno) || ev.dataset_id || ''
+  - var leadText = (ev.lead && ev.lead[langKey]) || ev._lead || ''
+  article.d360-card.d360-card--narr(tabindex="0" role="button" data-alert-id=ev.id data-country=ev.country data-category=ev.category data-content-type=ev.content_type)
     div.d360-card__head
       div.d360-card__metaL
         +countryTag(ev.country)
         span.d360-card__divider ·
-        span.d360-card__dataset= ev.indicator.idno
+        span.d360-card__dataset= (ev.indicator && ev.indicator.idno) || ev.dataset_id || ''
       div.d360-card__metaR
-        +dataDateBadge(ev, lang, langMode, dataPeriodLabel, dataPeriodStaleLabel)
-        +typeChip(ev.type, typeText)
+        if ev.observation
+          +dataDateBadge(ev, lang, langMode, dataPeriodLabel, dataPeriodStaleLabel)
+        +contentTypeBadge(ev.content_type, lang, _)
+        if ev.type
+          +typeChip(ev.type, typeText)
     div.d360-card__body
-      +citizenNarrative(ev, lang, langMode)
+      = leadText
     div.d360-card__sub
-      | #{ev.indicator.name[langKey]} ·
-      +observationDisplay(ev, lang, langMode)
-      |  ·
-      +magnitude(ev.magnitude[langKey])
-
-mixin cardNumber(ev, lang, langMode, typeText, dataPeriodLabel, dataPeriodStaleLabel)
-  - var langKey = (lang === "en") ? "en" : "es"
-  article.d360-card.d360-card--num(tabindex="0" role="button" data-alert-id=ev.id data-country=ev.country data-category=ev.category)
-    div.d360-card__head
-      div.d360-card__metaL
-        +countryTag(ev.country)
-        span.d360-card__divider ·
-        span.d360-card__dataset= ev.indicator.idno
-      div.d360-card__metaR
-        +dataDateBadge(ev, lang, langMode, dataPeriodLabel, dataPeriodStaleLabel)
-        +typeChip(ev.type, typeText)
-    div.d360-card__body
-      span.d360-card__bignum
+      | #{indName}
+      if ev.observation
+        |  ·
         +observationDisplay(ev, lang, langMode)
-      span.d360-card__bigtext
-        = ev.indicator.name[langKey]
+      if ev.magnitude && ev.magnitude[langKey]
         |  ·
         +magnitude(ev.magnitude[langKey])
 
-mixin cardNewspaper(ev, lang, langMode, typeText, dataPeriodLabel, dataPeriodStaleLabel)
+mixin cardNumber(ev, lang, langMode, typeText, dataPeriodLabel, dataPeriodStaleLabel, _)
   - var langKey = (lang === "en") ? "en" : "es"
-  article.d360-card.d360-card--news(tabindex="0" role="button" data-alert-id=ev.id data-country=ev.country data-category=ev.category)
+  - var indName = (ev.indicator && ev.indicator.name && ev.indicator.name[langKey]) || (ev.indicator && ev.indicator.idno) || ev.dataset_id || ''
+  article.d360-card.d360-card--num(tabindex="0" role="button" data-alert-id=ev.id data-country=ev.country data-category=ev.category data-content-type=ev.content_type)
+    div.d360-card__head
+      div.d360-card__metaL
+        +countryTag(ev.country)
+        span.d360-card__divider ·
+        span.d360-card__dataset= (ev.indicator && ev.indicator.idno) || ev.dataset_id || ''
+      div.d360-card__metaR
+        if ev.observation
+          +dataDateBadge(ev, lang, langMode, dataPeriodLabel, dataPeriodStaleLabel)
+        +contentTypeBadge(ev.content_type, lang, _)
+        if ev.type
+          +typeChip(ev.type, typeText)
+    div.d360-card__body
+      if ev.observation
+        span.d360-card__bignum
+          +observationDisplay(ev, lang, langMode)
+      span.d360-card__bigtext
+        = indName
+        if ev.magnitude && ev.magnitude[langKey]
+          |  ·
+          +magnitude(ev.magnitude[langKey])
+
+mixin cardNewspaper(ev, lang, langMode, typeText, dataPeriodLabel, dataPeriodStaleLabel, _)
+  - var langKey = (lang === "en") ? "en" : "es"
+  - var indName = (ev.indicator && ev.indicator.name && ev.indicator.name[langKey]) || (ev.indicator && ev.indicator.idno) || ev.dataset_id || ''
+  - var titleText = (ev.title && ev.title[langKey]) || ev._title || ev.id
+  - var leadText = (ev.lead && ev.lead[langKey]) || ev._lead || ''
+  - var countryStr = (Array.isArray(ev._countries) && ev._countries.length) ? ev._countries.join(', ') : (ev.country || '')
+  article.d360-card.d360-card--news(tabindex="0" role="button" data-alert-id=ev.id data-country=ev.country data-category=ev.category data-content-type=ev.content_type)
     div.d360-card__eyebrow
-      +dataDateBadge(ev, lang, langMode, dataPeriodLabel, dataPeriodStaleLabel)
-      span.d360-card__divider ·
-      = ev.country
+      if ev.observation
+        +dataDateBadge(ev, lang, langMode, dataPeriodLabel, dataPeriodStaleLabel)
+        span.d360-card__divider ·
+      = countryStr
       |  ·
-      = typeText
+      +contentTypeBadge(ev.content_type, lang, _)
+      if typeText
+        |  ·
+        = typeText
       |  ·
-      = ev.indicator.idno
-    h3.d360-card__headline
-      +citizenNarrative(ev, lang, langMode)
+      = (ev.indicator && ev.indicator.idno) || ev.dataset_id || ''
+    h3.d360-card__headline= titleText
     hr.d360-card__rule
-    p.d360-card__lede
-      | #{ev.indicator.name[langKey]} ·
-      +observationDisplay(ev, lang, langMode)
-      |  ·
-      +magnitude(ev.magnitude[langKey])
+    p.d360-card__lede= leadText
+    if ev.observation || (ev.magnitude && ev.magnitude[langKey])
+      p.d360-card__sub
+        | #{indName}
+        if ev.observation
+          |  ·
+          +observationDisplay(ev, lang, langMode)
+        if ev.magnitude && ev.magnitude[langKey]
+          |  ·
+          +magnitude(ev.magnitude[langKey])
+
+mixin cardReportaje(ev, lang, langMode, dataPeriodLabel, dataPeriodStaleLabel, _)
+  - var langKey = (lang === "en") ? "en" : "es"
+  - var titleText = (ev.title && ev.title[langKey]) || ev._title || ev.id
+  - var leadText = (ev.lead && ev.lead[langKey]) || ev._lead || ''
+  - var countryStr = (Array.isArray(ev._countries) && ev._countries.length) ? ev._countries.join(', ') : (ev.country || '')
+  - var indCount = Array.isArray(ev.indicators) ? ev.indicators.length : 0
+  - var indLabel = _ ? _("ui.indicators_covered", lang) : "indicators"
+  article.d360-card.d360-card--reportaje(tabindex="0" role="button" data-alert-id=ev.id data-country=ev.country data-category=ev.category data-content-type="reportaje")
+    div.d360-card__head
+      div.d360-card__metaL
+        each iso in (Array.isArray(ev._countries) && ev._countries.length ? ev._countries : [ev.country].filter(Boolean))
+          +countryTag(iso)
+        span.d360-card__divider ·
+        span.d360-card__dataset= ev.dataset_id || ''
+      div.d360-card__metaR
+        +contentTypeBadge(ev.content_type, lang, _)
+    h3.d360-card__headline= titleText
+    p.d360-card__lede= leadText
+    div.d360-card__footer
+      span.d360-card__countries= countryStr
+      if indCount
+        span.d360-card__divider ·
+        span.d360-card__indicators #{indCount} #{indLabel}
 
 mixin feed(events, variant, lang, langMode, _, typeTextFor)
   - variant = variant || "narr"
@@ -69,10 +119,12 @@ mixin feed(events, variant, lang, langMode, _, typeTextFor)
   - var dataPeriodStaleLabel = _("detail.data_period_stale", lang)
   div.d360-feed
     each ev in events
-      - var typeText = typeTextFor(ev.type)
-      if variant === "num"
-        +cardNumber(ev, lang, langMode, typeText, dataPeriodLabel, dataPeriodStaleLabel)
+      - var typeText = ev.type ? typeTextFor(ev.type) : null
+      if ev.content_type === "reportaje"
+        +cardReportaje(ev, lang, langMode, dataPeriodLabel, dataPeriodStaleLabel, _)
+      else if variant === "num"
+        +cardNumber(ev, lang, langMode, typeText, dataPeriodLabel, dataPeriodStaleLabel, _)
       else if variant === "news"
-        +cardNewspaper(ev, lang, langMode, typeText, dataPeriodLabel, dataPeriodStaleLabel)
+        +cardNewspaper(ev, lang, langMode, typeText, dataPeriodLabel, dataPeriodStaleLabel, _)
       else
-        +cardNarrative(ev, lang, langMode, typeText, dataPeriodLabel, dataPeriodStaleLabel)
+        +cardNarrative(ev, lang, langMode, typeText, dataPeriodLabel, dataPeriodStaleLabel, _)

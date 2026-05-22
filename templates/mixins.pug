@@ -10,6 +10,14 @@ mixin countryTag(iso)
   span.d360-country
     span.d360-country__iso= iso
 
+//- Content-type badge: Noticia or Reportaje. Uses i18n locals helper `_`.
+mixin contentTypeBadge(contentType, lang, _)
+  - var lng = (lang === "en") ? "en" : "es"
+  if contentType === 'reportaje'
+    span.d360-badge.d360-badge--reportaje= (_ ? _("badge.reportaje", lng) : "Reportaje")
+  else
+    span.d360-badge.d360-badge--noticia= (_ ? _("badge.noticia", lng) : "Noticia")
+
 //- Type chip: abrupt_change or anomaly. label is the visible text.
 mixin typeChip(type, label)
   - var cls = (type === "abrupt_change") ? "abrupt" : "anomaly"
@@ -55,7 +63,7 @@ mixin periodDisplay(ev, lang)
 
 mixin citizenNarrative(ev, lang)
   - var lng = (lang === "en") ? "en" : "es"
-  = ev.narrative_citizen[lng]
+  = ev._lead || (ev.lead && ev.lead[lng]) || (ev.narrative_citizen && ev.narrative_citizen[lng]) || ''
 
 //- Verification mark. state: 'verified' | 'pending' | 'failed'.
 //- Tip text is provided by caller for now (i18n later).

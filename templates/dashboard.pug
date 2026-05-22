@@ -29,6 +29,12 @@ block headerExtras
             each cat in categories
               option(value=cat selected=(filters.category === cat))= cat
         label.d360-filter
+          span.d360-filter__label= _("ui.content_type", lang)
+          select(name="content_type" id="d360-filter-content-type" data-filter="content_type")
+            option(value="ALL" selected=((filters.content_type || "ALL") === "ALL"))= _("ui.filter_all_types", lang)
+            option(value="noticia" selected=(filters.content_type === "noticia"))= _("badge.noticia", lang)
+            option(value="reportaje" selected=(filters.content_type === "reportaje"))= _("badge.reportaje", lang)
+        label.d360-filter
           span.d360-filter__label= _("ui.card", lang)
           select(name="variant" id="d360-filter-variant")
             option(value="narr" selected=(variant === "narr")) Narrative
@@ -51,61 +57,113 @@ block content
           p.d360-empty__help= _("ui.empty_help", lang)
       else
         div.d360-feed
+          - var dataPeriodLabel = _("detail.data_period", lang)
+          - var dataPeriodStaleLabel = _("detail.data_period_stale", lang)
+          - var indicatorsLabel = _("ui.indicators_covered", lang)
           each ev in allAlerts
-            - var hidden = (filters.country !== "ALL" && filters.country !== ev.country) || (filters.category !== "ALL" && filters.category !== ev.category)
-            - var typeText = (ev.type === "abrupt_change") ? _("type.abrupt_change", lang) : _("type.anomaly", lang)
-            if variant === "num"
-              article.d360-card.d360-card--num(class=(hidden ? "d360-card--hidden" : "") tabindex="0" role="button" data-alert-id=ev.id data-country=ev.country data-category=ev.category)
+            - var cardCountries = (Array.isArray(ev._countries) && ev._countries.length) ? ev._countries : (ev.country ? [ev.country] : [])
+            - var cardCountryAttr = ev.country || (cardCountries[0] || '')
+            - var countryHit = (filters.country === "ALL") || cardCountries.indexOf(filters.country) >= 0
+            - var categoryHit = (filters.country !== "ALL" && false) || (filters.category === "ALL") || (filters.category === ev.category)
+            - var typeHit = (!filters.content_type || filters.content_type === "ALL") || (ev.content_type === filters.content_type) || (ev.type === filters.content_type)
+            - var hidden = !countryHit || !categoryHit || !typeHit
+            - var typeText = ev.type ? ((ev.type === "abrupt_change") ? _("type.abrupt_change", lang) : _("type.anomaly", lang)) : null
+            - var indName = (ev.indicator && ev.indicator.name && ev.indicator.name[langKey]) || (ev.indicator && ev.indicator.idno) || ev.dataset_id || ''
+            - var indIdno = (ev.indicator && ev.indicator.idno) || ev.dataset_id || ''
+            - var titleText = (ev.title && ev.title[langKey]) || ev._title || ev.id
+            - var leadText = (ev.lead && ev.lead[langKey]) || ev._lead || ''
+            - var magnitudeText = (ev.magnitude && ev.magnitude[langKey]) || ''
+            - var countryStr = cardCountries.join(', ')
+            - var indCount = Array.isArray(ev.indicators) ? ev.indicators.length : 0
+            if ev.content_type === "reportaje"
+              article.d360-card.d360-card--reportaje(class=(hidden ? "d360-card--hidden" : "") tabindex="0" role="button" data-alert-id=ev.id data-country=cardCountryAttr data-category=ev.category data-content-type="reportaje")
+                div.d360-card__head
+                  div.d360-card__metaL
+                    each iso in cardCountries
+                      +countryTag(iso)
+                    if cardCountries.length
+                      span.d360-card__divider ·
+                    span.d360-card__dataset= ev.dataset_id || ''
+                  div.d360-card__metaR
+                    +contentTypeBadge(ev.content_type, lang, _)
+                h3.d360-card__headline= titleText
+                p.d360-card__lede= leadText
+                div.d360-card__footer
+                  span.d360-card__countries= countryStr
+                  if indCount
+                    span.d360-card__divider ·
+                    span.d360-card__indicators #{indCount} #{indicatorsLabel}
+            else if variant === "num"
+              article.d360-card.d360-card--num(class=(hidden ? "d360-card--hidden" : "") tabindex="0" role="button" data-alert-id=ev.id data-country=cardCountryAttr data-category=ev.category data-content-type=ev.content_type)
                 div.d360-card__head
                   div.d360-card__metaL
                     +countryTag(ev.country)
                     span.d360-card__divider ·
-                    span.d360-card__dataset= ev.indicator.idno
+                    span.d360-card__dataset= indIdno
                   div.d360-card__metaR
-                    +dataDateBadge(ev, lang, _("detail.data_period", lang), _("detail.data_period_stale", lang))
-                    +typeChip(ev.type, typeText)
+                    if ev.observation
+                      +dataDateBadge(ev, lang, dataPeriodLabel, dataPeriodStaleLabel)
+                    +contentTypeBadge(ev.content_type, lang, _)
+                    if ev.type
+                      +typeChip(ev.type, typeText)
                 div.d360-card__body
-                  span.d360-card__bignum
-                    +observationDisplay(ev, lang)
+                  if ev.observation
+                    span.d360-card__bignum
+                      +observationDisplay(ev, lang)
                   span.d360-card__bigtext
-                    = ev.indicator.name[langKey]
-                    |  ·
-                    +magnitude(ev.magnitude[langKey])
+                    = indName
+                    if magnitudeText
+                      |  ·
+                      +magnitude(magnitudeText)
             else if variant === "news"
-              article.d360-card.d360-card--news(class=(hidden ? "d360-card--hidden" : "") tabindex="0" role="button" data-alert-id=ev.id data-country=ev.country data-category=ev.category)
+              article.d360-card.d360-card--news(class=(hidden ? "d360-card--hidden" : "") tabindex="0" role="button" data-alert-id=ev.id data-country=cardCountryAttr data-category=ev.category data-content-type=ev.content_type)
                 div.d360-card__eyebrow
-                  +dataDateBadge(ev, lang, _("detail.data_period", lang), _("detail.data_period_stale", lang))
-                  span.d360-card__divider ·
-                  = ev.country
+                  if ev.observation
+                    +dataDateBadge(ev, lang, dataPeriodLabel, dataPeriodStaleLabel)
+                    span.d360-card__divider ·
+                  = ev.country || countryStr
                   |  ·
-                  = typeText
+                  +contentTypeBadge(ev.content_type, lang, _)
+                  if typeText
+                    |  ·
+                    = typeText
                   |  ·
-                  = ev.indicator.idno
-                h3.d360-card__headline
-                  +citizenNarrative(ev, lang)
+                  = indIdno
+                h3.d360-card__headline= titleText
                 hr.d360-card__rule
-                p.d360-card__lede
-                  | #{ev.indicator.name[langKey]} · 
-                  +observationDisplay(ev, lang)
-                  |  · 
-                  +magnitude(ev.magnitude[langKey])
+                p.d360-card__lede= leadText
+                if ev.observation || magnitudeText
+                  p.d360-card__sub
+                    | #{indName}
+                    if ev.observation
+                      |  ·
+                      +observationDisplay(ev, lang)
+                    if magnitudeText
+                      |  ·
+                      +magnitude(magnitudeText)
             else
-              article.d360-card.d360-card--narr(class=(hidden ? "d360-card--hidden" : "") tabindex="0" role="button" data-alert-id=ev.id data-country=ev.country data-category=ev.category)
+              article.d360-card.d360-card--narr(class=(hidden ? "d360-card--hidden" : "") tabindex="0" role="button" data-alert-id=ev.id data-country=cardCountryAttr data-category=ev.category data-content-type=ev.content_type)
                 div.d360-card__head
                   div.d360-card__metaL
                     +countryTag(ev.country)
                     span.d360-card__divider ·
-                    span.d360-card__dataset= ev.indicator.idno
+                    span.d360-card__dataset= indIdno
                   div.d360-card__metaR
-                    +dataDateBadge(ev, lang, _("detail.data_period", lang), _("detail.data_period_stale", lang))
-                    +typeChip(ev.type, typeText)
+                    if ev.observation
+                      +dataDateBadge(ev, lang, dataPeriodLabel, dataPeriodStaleLabel)
+                    +contentTypeBadge(ev.content_type, lang, _)
+                    if ev.type
+                      +typeChip(ev.type, typeText)
                 div.d360-card__body
-                  +citizenNarrative(ev, lang)
+                  = leadText
                 div.d360-card__sub
-                  | #{ev.indicator.name[langKey]} · 
-                  +observationDisplay(ev, lang)
-                  |  · 
-                  +magnitude(ev.magnitude[langKey])
+                  | #{indName}
+                  if ev.observation
+                    |  ·
+                    +observationDisplay(ev, lang)
+                  if magnitudeText
+                    |  ·
+                    +magnitude(magnitudeText)
 
         div.d360-empty#d360-empty-filtered(style=(visibleAlerts.length === 0 ? "" : "display:none"))
           h2.d360-empty__title= _("ui.empty_filtered_title", lang)

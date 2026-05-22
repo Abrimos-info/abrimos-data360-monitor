@@ -5,6 +5,7 @@
   function initFilters() {
     var country = document.getElementById('d360-filter-country');
     var category = document.getElementById('d360-filter-category');
+    var contentType = document.getElementById('d360-filter-content-type');
     var variant = document.getElementById('d360-filter-variant');
     if (!country || !category) return;
 
@@ -32,23 +33,29 @@
     function apply() {
       var c = country.value;
       var k = category.value;
+      var t = contentType ? contentType.value : 'ALL';
       var cards = document.querySelectorAll('[data-alert-id]');
       var visible = 0;
       cards.forEach(function (card) {
         var cc = card.getAttribute('data-country');
         var ck = card.getAttribute('data-category');
-        var hide = (c !== 'ALL' && c !== cc) || (k !== 'ALL' && k !== ck);
+        var ct = card.getAttribute('data-content-type');
+        var hide =
+          (c !== 'ALL' && c !== cc) ||
+          (k !== 'ALL' && k !== ck) ||
+          (t && t !== 'ALL' && t !== ct);
         card.classList.toggle('d360-card--hidden', hide);
         if (!hide) visible++;
       });
       var count = document.getElementById('d360-event-count');
       if (count) count.textContent = String(visible);
-      syncUrl({ country: c, category: k });
+      syncUrl({ country: c, category: k, content_type: t });
       toggleEmptyFiltered(visible === 0 && cards.length > 0);
     }
 
     country.addEventListener('change', apply);
     category.addEventListener('change', apply);
+    if (contentType) contentType.addEventListener('change', apply);
   }
 
   function toggleEmptyFiltered(show) {
