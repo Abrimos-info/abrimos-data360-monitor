@@ -93,25 +93,19 @@
     });
   }
 
-  function renderAnalysisBlock(container, alert, lang) {
-    var lng = pickLang(lang);
-    var roles = [
-      { key: 'detail.summary', field: 'narrative_citizen', className: 'd360-narr--citizen' },
-      { key: 'detail.journalist', field: 'narrative_journalist', className: 'd360-narr--journalist' },
-    ];
-    var html = '';
-    roles.forEach(function (role) {
-      var block = alert[role.field];
-      if (!block) return;
-      html += '<div class="d360-analysis-block">';
-      html += '<div class="d360-analysis-block__role">' + escHtml(uiString(role.key, lang)) + '</div>';
-      var text = renderNarrativeText(block[lng], alert, lng);
-      if (text) {
-        html += '<p class="d360-narr ' + role.className + '">' + escHtml(text) + '</p>';
-      }
-      html += '</div>';
-    });
-    container.innerHTML = html;
+  function pickBilingual(field, lng) {
+    if (!field) return '';
+    if (typeof field === 'string') return field;
+    return field[lng] || field.es || field.en || '';
+  }
+
+  function renderStoryHtml(text) {
+    if (!text) return '';
+    var paragraphs = String(text).split(/\n{2,}/).map(function (p) { return p.trim(); }).filter(Boolean);
+    if (!paragraphs.length) return '';
+    return paragraphs.map(function (p) {
+      return '<p>' + escHtml(p).replace(/\n/g, '<br>') + '</p>';
+    }).join('');
   }
 
   function renderValueBlock(container, alert, lang) {
@@ -150,61 +144,111 @@
 
   function renderBindings(node, alert, lang) {
     var lng = pickLang(lang);
+    var isReportaje = alert.content_type === 'reportaje';
 
     function bind(name, html) {
       var el = node.querySelector('[data-bind="' + name + '"]');
       if (el) el.innerHTML = html;
     }
 
-    bind('countryTag',
-      '<span class="d360-country"><span class="d360-country__iso">' + escHtml(alert.country) + '</span></span>');
+    function hideWrap(name) {
+      var el = node.querySelector('[data-bind="' + name + '"]');
+      if (el) el.style.display = 'none';
+    }
 
-    bind('category', escHtml(alert.category));
+    var countriesArr = Array.isArray(alert._countries) && alert._countries.length
+      ? alert._countries
+      : (alert.countries && alert.countries.length ? alert.countries : (alert.country ? [alert.country] : []));
+    var countriesHtml = countriesArr.map(function (iso) {
+      return '<span class="d360-country"><span class="d360-country__iso">' + escHtml(iso) + '</span></span>';
+    }).join(' ');
+    bind('countryTag', countriesHtml || '');
 
-    var chipCls = alert.type === 'abrupt_change' ? 'abrupt' : 'anomaly';
-    var chipLabel = alert.type === 'abrupt_change'
-      ? uiString('type.abrupt_change', lng)
-      : uiString('type.anomaly', lng);
-    var chipSvg = alert.type === 'abrupt_change'
-      ? '<svg viewBox="0 0 10 10" width="10" height="10"><path d="M1 8 L4 4 L6 6 L9 2" stroke="currentColor" fill="none" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>'
-      : '<svg viewBox="0 0 10 10" width="10" height="10"><path d="M2 5 L4 5 M6 5 L8 5 M5 2 L5 8" stroke="currentColor" fill="none" stroke-width="1.3" stroke-linecap="round"/></svg>';
+    bind('category', escHtml(alert.category || ''));
+
+    var typeLabel = alert._type_label
+      || (isReportaje ? uiString('badge.reportaje', lang) : uiString('badge.noticia', lang));
+    var chipCls = isReportaje ? 'reportaje' : 'noticia';
     bind('typeChip',
-      '<span class="d360-typechip d360-typechip--' + chipCls + '">' +
-      '<span class="d360-typechip__shape" aria-hidden="true">' + chipSvg + '</span>' +
-      '<span>' + escHtml(chipLabel) + '</span></span>');
+      '<span class="d360-badge d360-badge--' + chipCls + '">' + escHtml(typeLabel) + '</span>');
 
-    bind('title', escHtml(alert.indicator.name[lng]));
-    bind('idno', escHtml(alert.indicator.idno));
+    var titleText = alert._title
+      || pickBilingual(alert.title, lng)
+      || (alert.indicator && alert.indicator.name ? pickBilingual(alert.indicator.name, lng) : '')
+      || alert.id || '';
+    bind('title', escHtml(titleText));
+
+    var idnoText = '';
+    if (alert.indicator && alert.indicator.idno) idnoText = alert.indicator.idno;
+    else if (Array.isArray(alert.indicators) && alert.indicators.length) idnoText = alert.indicators.join(' · ');
+    bind('idno', escHtml(idnoText));
 
     var dataPeriodEl = node.querySelector('[data-bind="dataPeriod"]');
-    if (dataPeriodEl) renderDataPeriodBlock(dataPeriodEl, alert, lang);
+    if (alert.observation && dataPeriodEl) {
+      renderDataPeriodBlock(dataPeriodEl, alert, lang);
+    } else if (dataPeriodEl) {
+      dataPeriodEl.innerHTML = '';
+      dataPeriodEl.style.display = 'none';
+    }
 
-    var valueEl = node.querySelector('[data-bind="value"]');
-    if (valueEl) renderValueBlock(valueEl, alert, lang);
+    var numblock = node.querySelector('[data-bind="numblockWrap"]');
+    if (alert.observation) {
+      var valueEl = node.querySelector('[data-bind="value"]');
+      if (valueEl) renderValueBlock(valueEl, alert, lang);
 
-    var periodEl = node.querySelector('[data-bind="period"]');
-    if (periodEl) renderPeriodBlock(periodEl, alert, lang);
+      var magText = String(alert.magnitude ? (alert.magnitude[lng] || '') : '');
+      var magSign = magText.charAt(0) === '+'
+        ? 'up'
+        : (magText.charAt(0) === '−' || magText.charAt(0) === '-') ? 'down' : 'neutral';
+      bind('magnitude', '<span class="d360-mag d360-mag--' + magSign + '">' + escHtml(magText) + '</span>');
 
-    var magText = String(alert.magnitude ? alert.magnitude[lng] : '');
-    var magSign = magText.charAt(0) === '+'
-      ? 'up'
-      : (magText.charAt(0) === '−' || magText.charAt(0) === '-') ? 'down' : 'neutral';
-    bind('magnitude', '<span class="d360-mag d360-mag--' + magSign + '">' + escHtml(magText) + '</span>');
+      if (numblock) numblock.setAttribute('aria-label',
+        observationValue(alert, lng) + ', ' + periodNarrativeValue(alert, lng) + ', ' + magText);
+    } else if (numblock) {
+      numblock.style.display = 'none';
+    }
 
-    var numblock = node.querySelector('.d360-detail__numblock');
-    if (numblock) numblock.setAttribute('aria-label',
-      observationValue(alert, lng) + ', ' + periodNarrativeValue(alert, lng) + ', ' + magText);
+    var leadText = alert._lead || pickBilingual(alert.lead, lng);
+    var leadEl = node.querySelector('[data-bind="lead"]');
+    var leadWrap = node.querySelector('[data-bind="leadWrap"]');
+    if (leadText && leadEl) {
+      leadEl.textContent = renderNarrativeText(leadText, alert, lng);
+    } else if (leadWrap) {
+      leadWrap.style.display = 'none';
+    }
 
-    var citizen = alert.narrative_citizen ? renderNarrativeText(alert.narrative_citizen[lng], alert, lng) : '';
-    var journalist = alert.narrative_journalist ? renderNarrativeText(alert.narrative_journalist[lng], alert, lng) : '';
-    var analysisEl = node.querySelector('[data-bind="analysis"]');
-    if (analysisEl) renderAnalysisBlock(analysisEl, alert, lang);
+    var storyText = pickBilingual(alert.story, lng);
+    var storyEl = node.querySelector('[data-bind="story"]');
+    var storyWrap = node.querySelector('[data-bind="storyWrap"]');
+    if (storyText && storyEl) {
+      var resolved = renderNarrativeText(storyText, alert, lng);
+      if (window.marked && window.marked.parse) {
+        storyEl.innerHTML = window.marked.parse(resolved, { gfm: true, breaks: false });
+      } else {
+        storyEl.innerHTML = renderStoryHtml(resolved);
+      }
+    } else if (storyWrap) {
+      storyWrap.style.display = 'none';
+    }
 
     var chartEl = node.querySelector('[data-bind="chart"]');
+    var chartWrap = node.querySelector('[data-bind="chartWrap"]');
     if (chartEl && alert.chart_series && alert.chart_series.length) {
       chartEl.innerHTML = renderChartSvg(alert.chart_series);
-    } else if (chartEl) {
-      chartEl.innerHTML = '';
+    } else {
+      if (chartEl) chartEl.innerHTML = '';
+      if (chartWrap) chartWrap.style.display = 'none';
+    }
+
+    var indicatorsWrap = node.querySelector('[data-bind="indicatorsWrap"]');
+    var indicatorsEl = node.querySelector('[data-bind="indicators"]');
+    if (isReportaje && Array.isArray(alert.indicators) && alert.indicators.length && indicatorsEl) {
+      indicatorsEl.innerHTML = alert.indicators.map(function (idno) {
+        var url = 'https://data360.worldbank.org/en/int/indicators/' + encodeURIComponent(idno);
+        return '<li><a href="' + escAttr(url) + '" target="_blank" rel="noopener">' + escHtml(idno) + '</a></li>';
+      }).join('');
+    } else if (indicatorsWrap) {
+      indicatorsWrap.style.display = 'none';
     }
 
     var traceEl = node.querySelector('[data-bind="trace"]');
@@ -248,15 +292,18 @@
 
     var metaEl = node.querySelector('[data-bind="meta"]');
     if (metaEl) {
+      var countryStr = countriesArr.join(', ') || (alert.country || '');
       metaEl.innerHTML = [
-        '<div><dt>' + escHtml(uiString('detail.country', lng)) + '</dt><dd>' + escHtml(alert.country) + '</dd></div>',
-        '<div><dt>' + escHtml(uiString('detail.category', lng)) + '</dt><dd>' + escHtml(alert.category) + '</dd></div>',
+        '<div><dt>' + escHtml(uiString('detail.country', lng)) + '</dt><dd>' + escHtml(countryStr) + '</dd></div>',
+        '<div><dt>' + escHtml(uiString('detail.category', lng)) + '</dt><dd>' + escHtml(alert.category || '') + '</dd></div>',
         '<div><dt>' + escHtml(uiString('detail.score', lng)) + '</dt><dd>' + escHtml(formatScore(alert.score)) + '</dd></div>',
         '<div><dt>' + escHtml(uiString('detail.detected_pipeline', lng)) + '</dt><dd>' + escHtml(alert.detected_at ? alert.detected_at.slice(0, 10) : '') + '</dd></div>',
       ].join('');
     }
 
-    var previewText = (journalist || citizen || '').slice(0, 80);
+    var copyTitle = titleText;
+    var copyBody = renderNarrativeText(leadText || storyText || '', alert, lng);
+    var previewText = (copyBody || copyTitle || '').slice(0, 80);
     bind('copyPreview', escHtml(previewText + (previewText.length >= 80 ? '...' : '')));
 
     var copyBtn = node.querySelector('.d360-detail__copy-btn');
@@ -265,7 +312,10 @@
         var traceUrl = alert.verification_trace && alert.verification_trace.data360_dataset_url
           ? alert.verification_trace.data360_dataset_url
           : 'https://data360.worldbank.org';
-        var text = (journalist || citizen) + '\n\nSource: ' + traceUrl;
+        var parts = [];
+        if (copyTitle) parts.push(copyTitle);
+        if (copyBody) parts.push(copyBody);
+        var text = parts.join('\n\n') + '\n\nSource: ' + traceUrl;
         if (navigator.clipboard) {
           navigator.clipboard.writeText(text);
         } else if (window.clipboardData) {

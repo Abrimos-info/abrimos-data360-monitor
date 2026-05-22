@@ -13,15 +13,20 @@ template#d360-detail-tpl
       h2.d360-detail__title(data-bind="title")
       div.d360-detail__sub(data-bind="idno")
       div.d360-detail__dateline(data-bind="dataPeriod")
-      div.d360-detail__numblock
+      div.d360-detail__numblock(data-bind="numblockWrap")
         span.d360-detail__num(data-bind="value")
         span(data-bind="magnitude")
-    div.d360-detail__section
+    div.d360-detail__section(data-bind="leadWrap")
+      p.d360-detail__lead(data-bind="lead")
+    div.d360-detail__section(data-bind="storyWrap")
+      div.d360-detail__seclabel= _("detail.story", lang)
+      div.d360-detail__story(data-bind="story")
+    div.d360-detail__section(data-bind="chartWrap")
       div.d360-detail__seclabel(data-bind="labelTrend")= _("detail.historical_trend", lang)
       div(data-bind="chart")
-    div.d360-detail__section
-      div.d360-detail__seclabel(data-bind="labelAnalysis")= _("detail.analysis", lang)
-      div(data-bind="analysis")
+    div.d360-detail__section(data-bind="indicatorsWrap")
+      div.d360-detail__seclabel= _("detail.indicators_covered", lang)
+      ul.d360-detail__indicators(data-bind="indicators")
     div.d360-detail__section
       div.d360-detail__seclabel(data-bind="labelSources")= _("detail.sources", lang)
       ul.d360-trace(data-bind="trace")

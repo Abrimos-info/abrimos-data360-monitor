@@ -25,6 +25,8 @@
   "type.anomaly": "Anomalía",
   "detail.historical_trend": "Tendencia histórica",
   "detail.analysis": "Análisis",
+  "detail.story": "Historia",
+  "detail.indicators_covered": "Indicadores cubiertos",
   "detail.summary": "Resumen",
   "detail.journalist": "Para redacciones",
   "detail.sources": "Fuentes",
