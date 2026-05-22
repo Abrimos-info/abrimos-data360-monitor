@@ -51,3 +51,33 @@ test('reload() leaves getString functional', () => {
   i18n.reload();
   assert.equal(i18n.getString('site_name', 'en'), 'Data360 Monitor');
 });
+
+test('newsletter keys exist in ES and EN', () => {
+  const keys = [
+    'newsletter.title',
+    'newsletter.intro',
+    'newsletter.feature_1',
+    'newsletter.feature_2',
+    'newsletter.feature_3',
+    'newsletter.audience',
+    'newsletter.demo_note',
+    'newsletter.close',
+  ];
+  for (const key of keys) {
+    const es = i18n.getString(key, 'es');
+    const en = i18n.getString(key, 'en');
+    assert.ok(!es.startsWith('['), `${key} missing in es`);
+    assert.ok(!en.startsWith('['), `${key} missing in en`);
+  }
+});
+
+test('getString interpolates params', () => {
+  const all = i18n.getAll('en');
+  const sampleKey = Object.keys(all).find((k) => typeof all[k] === 'string' && all[k].includes('{'));
+  if (!sampleKey) return;
+  const template = all[sampleKey];
+  const param = template.match(/\{(\w+)\}/)?.[1];
+  if (!param) return;
+  const out = i18n.getString(sampleKey, 'en', { [param]: 'TEST' });
+  assert.ok(!out.includes(`{${param}}`));
+});

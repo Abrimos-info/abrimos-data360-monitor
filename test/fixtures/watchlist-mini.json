@@ -1,0 +1,4 @@
+[
+  { "database_id": "FAO_CP", "idno": "FAO_CP_23012", "label": "CPI General", "tier": "pulse", "expectedSex": "_T", "expectedCb1": null },
+  { "database_id": "WB_WDI", "idno": "WB_WDI_FP_CPI_TOTL_ZG", "label": "Inflation", "tier": "annual", "expectedSex": "_T", "expectedCb1": null }
+]

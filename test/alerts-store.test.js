@@ -17,12 +17,13 @@ test('each alert has required schema fields', () => {
     assert.ok(a.indicator && typeof a.indicator.idno === 'string',   `${a.id}: indicator.idno must be string`);
     assert.ok(a.observation && a.observation.value !== undefined,    `${a.id}: observation.value required`);
     assert.ok(a.narrative_citizen && typeof a.narrative_citizen === 'object', `${a.id}: narrative_citizen required`);
+    assert.ok(a.narrative_journalist && typeof a.narrative_journalist === 'object', `${a.id}: narrative_journalist required`);
     assert.ok(a.verification_trace,                                  `${a.id}: verification_trace required`);
   }
 });
 
 test('alert type is one of the known values', () => {
-  const known = new Set(['abrupt_change', 'cross_indicator_anomaly', 'anomaly']);
+  const known = new Set(['abrupt_change', 'anomaly']);
   for (const a of store.getAlerts()) {
     assert.ok(known.has(a.type), `unknown type: ${a.type}`);
   }

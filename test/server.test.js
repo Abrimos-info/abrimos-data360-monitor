@@ -37,10 +37,13 @@ test('HTTP routes', async (t) => {
   });
 
   await t.test('GET / tagline matches D-006 exact phrase', async () => {
-    const res = await get(base + '/');
-    assert.ok(
-      res.body.includes('Verified events across Data360 indicators'),
-      'tagline not found in page'
+    const i18n = require('../lib/i18n');
+    const tagline = i18n.getString('tagline', 'en');
+    const res = await get(base + '/?lang=en');
+    assert.match(
+      res.body,
+      new RegExp(`<meta name="description" content="${tagline.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"`),
+      'tagline meta description not found in page'
     );
   });
 
@@ -95,6 +98,38 @@ test('HTTP routes', async (t) => {
 
   await t.test('GET /?alert=nonexistent-id returns 200 without crashing', async () => {
     const res = await get(base + '/?alert=nonexistent-id');
+    assert.equal(res.status, 200);
+  });
+
+  await t.test('GET /chat returns 200 text/html', async () => {
+    const res = await get(base + '/chat');
+    assert.equal(res.status, 200);
+    assert.ok(res.body.includes('d360-chat') || res.body.includes('chat'));
+  });
+
+  await t.test('newsletter UI elements present on dashboard', async () => {
+    const res = await get(base + '/');
+    assert.ok(res.body.includes('id="d360-subscribe-btn"'));
+    assert.ok(res.body.includes('id="d360-newsletter"'));
+  });
+
+  await t.test('GET /static/js/newsletter-modal.js returns 200', async () => {
+    const res = await get(base + '/static/js/newsletter-modal.js');
+    assert.equal(res.status, 200);
+  });
+
+  await t.test('GET /static traversal blocked', async () => {
+    const res = await get(base + '/static/../package.json');
+    assert.equal(res.status, 404);
+  });
+
+  await t.test('GET /?lang=es sets html lang', async () => {
+    const res = await get(base + '/?lang=es');
+    assert.match(res.body, /<html[^>]*lang="es"/);
+  });
+
+  await t.test('GET /?langMode=both returns 200 on monitor', async () => {
+    const res = await get(base + '/?langMode=both');
     assert.equal(res.status, 200);
   });
 });

@@ -16,4 +16,8 @@ build/
 coverage/
 archive/
 design/
-data/context/
+data/context/**/*.csv
+data/news/
+data/analyses/*.llm-call.md
+test/tmp/*
+!test/tmp/.gitkeep

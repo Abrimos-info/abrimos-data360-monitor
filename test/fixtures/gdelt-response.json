@@ -1,0 +1,12 @@
+{
+  "articles": [
+    {
+      "url": "https://example.com/noticia-1",
+      "title": "Titular de prueba",
+      "seendate": "20260521T201500Z",
+      "domain": "example.com",
+      "language": "Spanish",
+      "sourcecountry": "Argentina"
+    }
+  ]
+}
