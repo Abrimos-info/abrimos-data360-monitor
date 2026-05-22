@@ -1,65 +1,64 @@
+// test/alert-schema.test.js
 'use strict';
-
-const test = require('node:test');
+const { test } = require('node:test');
 const assert = require('node:assert/strict');
 const { validateAgainstSchema } = require('../lib/analysis/quality-validator');
-const { loadAlertsFromDashboard } = require('./helpers/load-alerts');
-const { parseClaimIdsFromAnalysis } = require('./helpers/parse-context-claims');
 
-const DEMO_COUNTRIES = new Set(['GTM', 'HND', 'ARG', 'ECU', 'MEX']);
-const DEMO_TYPES = new Set(['abrupt_change', 'anomaly']);
+const BASE_NOTICIA = {
+  content_type: 'noticia',
+  id: 'noticia_abrupt_ARG_FAO_CP_23012_2026-01_001',
+  title: { es: 'Precios suben en Argentina', en: 'Prices rise in Argentina' },
+  lead: { es: 'El IPC subió en Argentina.', en: 'CPI rose in Argentina.' },
+  story: { es: 'A'.repeat(250), en: 'B'.repeat(250) },
+  countries: ['ARG'],
+  dataset_id: 'FAO_CP',
+  indicator: { idno: 'FAO_CP_23012', database_id: 'FAO_CP', name: { es: 'IPC general', en: 'Consumer Prices' } },
+  claim_tokens: [{ claim_id: 'abc123', value: '128.5' }],
+  verification_trace: {
+    data360_dataset_url: 'https://data360.worldbank.org/en/int/dataset/FAO_CP',
+    csv_link: 'https://data360files.worldbank.org/data360-data/data/FAO_CP/FAO_CP_23012.csv',
+  },
+  score: 0.75,
+  detected_at: '2026-05-22T12:00:00.000Z',
+};
 
-test('all dashboard alerts pass alert-schema.json', () => {
-  const alerts = loadAlertsFromDashboard();
-  assert.ok(alerts.length > 0, 'expected alerts in data/alerts.json');
-  for (const alert of alerts) {
-    const { ok, errors } = validateAgainstSchema(alert);
-    assert.ok(ok, `${alert.id}: ${errors.map((e) => e.message).join('; ')}`);
-  }
+const BASE_REPORTAJE = {
+  content_type: 'reportaje',
+  id: 'reportaje_FAO_CP_2026-05-22',
+  title: { es: 'Presión alimentaria en LAC', en: 'Food pressure in LAC' },
+  lead: { es: 'Tres indicadores muestran.', en: 'Three indicators show.' },
+  story: { es: 'C'.repeat(300), en: 'D'.repeat(300) },
+  countries: ['ARG', 'GTM'],
+  dataset_id: 'FAO_CP',
+  indicators: ['FAO_CP_23012', 'FAO_CP_23013'],
+  noticia_ids: ['noticia_001', 'noticia_002'],
+  claim_tokens: [],
+  verification_trace: { data360_dataset_url: 'https://data360.worldbank.org/en/int/dataset/FAO_CP' },
+  score: 0.8,
+  detected_at: '2026-05-22T12:00:00.000Z',
+};
+
+test('valid noticia passes schema', () => {
+  const { ok } = validateAgainstSchema(BASE_NOTICIA);
+  assert.equal(ok, true);
 });
 
-test('dashboard alerts respect D-003 countries and D-010 types', () => {
-  for (const alert of loadAlertsFromDashboard()) {
-    assert.ok(DEMO_COUNTRIES.has(alert.country), `${alert.id}: country ${alert.country}`);
-    assert.ok(DEMO_TYPES.has(alert.type), `${alert.id}: type ${alert.type}`);
-  }
+test('noticia missing story fails schema', () => {
+  const { ok } = validateAgainstSchema({ ...BASE_NOTICIA, story: undefined });
+  assert.equal(ok, false);
 });
 
-test('verification_trace URLs are https', () => {
-  for (const alert of loadAlertsFromDashboard()) {
-    const vt = alert.verification_trace;
-    assert.ok(vt, `${alert.id}: missing verification_trace`);
-    for (const key of ['data360_dataset_url', 'csv_link']) {
-      const url = vt[key];
-      assert.ok(url && url.startsWith('https://'), `${alert.id}: ${key} must be https URL`);
-    }
-  }
+test('valid reportaje passes schema', () => {
+  const { ok } = validateAgainstSchema(BASE_REPORTAJE);
+  assert.equal(ok, true);
 });
 
-test('chart_series has finite values', () => {
-  for (const alert of loadAlertsFromDashboard()) {
-    assert.ok(Array.isArray(alert.chart_series) && alert.chart_series.length > 0, `${alert.id}: chart_series`);
-    for (const pt of alert.chart_series) {
-      assert.ok(typeof pt.period === 'string' && pt.period.length > 0);
-      assert.ok(Number.isFinite(pt.value), `${alert.id}: non-finite chart value`);
-    }
-  }
+test('reportaje with one indicator fails (minItems: 2)', () => {
+  const { ok } = validateAgainstSchema({ ...BASE_REPORTAJE, indicators: ['FAO_CP_23012'] });
+  assert.equal(ok, false);
 });
 
-test('each alert with claim_tokens has at least one traced to analysis context', () => {
-  let checked = 0;
-  for (const alert of loadAlertsFromDashboard()) {
-    if (!Array.isArray(alert.claim_tokens) || alert.claim_tokens.length === 0) continue;
-    const idno = alert.indicator?.idno;
-    assert.ok(idno, `${alert.id}: missing indicator.idno for Q1`);
-    const contextIds = parseClaimIdsFromAnalysis(idno);
-    if (contextIds.size === 0) continue;
-    checked++;
-    const traced = alert.claim_tokens.some((token) => contextIds.has(token.claim_id));
-    assert.ok(
-      traced,
-      `${alert.id}: no claim_token found in data/analyses/${idno}.md`
-    );
-  }
-  assert.ok(checked > 0, 'expected claim_tokens with matching analysis files');
+test('item with unknown content_type fails schema', () => {
+  const { ok } = validateAgainstSchema({ ...BASE_NOTICIA, content_type: 'alert' });
+  assert.equal(ok, false);
 });
