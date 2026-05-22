@@ -11,10 +11,12 @@
     "fetch:news": "node bin/fetch-news.js --no-preview",
     "fetch": "node bin/fetch-data.js",
     "fetch:probe": "node bin/fetch-data.js --probe-only",
+    "discover": "node bin/discover-indicators.js",
     "analyze": "node bin/generate-analysis.js",
     "analyze:no-llm": "node bin/generate-analysis.js --no-llm",
     "fetch:baseline": "node bin/fetch-baseline.js",
     "build": "npm run fetch && npm run fetch:news && npm run analyze",
+    "pipeline:dynamic": "npm run discover && node bin/fetch-data.js --watchlist-file data/dynamic-watchlist.json && npm run fetch:news && npm run analyze",
     "pretest": "node -e \"require('fs').mkdirSync('test/tmp',{recursive:true})\"",
     "test": "node --test test/*.test.js",
     "test:watch": "node --test --watch test/*.test.js"
