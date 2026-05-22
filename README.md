@@ -15,7 +15,7 @@ Ten-day sprint (21 to 31 May 2026). Submission deadline is 31 May 2026, via Medi
 - **Data layer**. Data360 API v3 (REST + MCP opcional en chat)
 - **LLM**. Claude Opus 4.7 via Agent SDK (pipeline); chat multi-proveedor (`lib/ai-client.js`)
 - **Verification**. [Proof-Carrying Numbers (PCN)](https://github.com/worldbank/pcn) from the World Bank
-- **Hosting**. Abrimos-owned infrastructure (Hetzner)
+- **Hosting**. Abrimos-owned infrastructure
 - **Production roadmap**. Apache NiFi orchestrates continuous updates
 
 ## Documentation

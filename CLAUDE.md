@@ -96,7 +96,7 @@ docs/
 | D-009 | Non-functional newsletter subscribe button (visual placeholder). |
 | D-010 | Covers strategies 1 (abrupt changes) and 4 (cross-indicator anomalies). |
 | D-011 | Node.js stack. NiFi roadmap. LLM does one call per indicator. |
-| D-012 | Hosting on Hetzner. |
+| D-012 | Hosting on Abrimos-owned infrastructure. |
 | D-017 | LLM is Claude Opus 4.7 via Agent SDK. |
 | D-018 | Repo `abrimos-info/abrimos-data360-monitor`. |
 | D-020 | License GPLv3. |

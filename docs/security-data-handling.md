@@ -8,7 +8,7 @@ Topics to cover.
 - No authentication required for the Data360 API. OpenAPI publicly documented.
 - License compliance per indicator (filter on the `license` field).
 - Verification trace. Every numeric claim links back to its source observation via PCN (see below).
-- Hosting. Own infrastructure (Hetzner), TLS, no third-party trackers in the dashboard.
+- Hosting. Own infrastructure, TLS, no third-party trackers in the dashboard.
 - LLM provider. Claude via Agent SDK. No data sent to commercial AI routers.
 
 ## Claim verification
