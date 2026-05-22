@@ -1,6 +1,6 @@
 [
   {
-    "id": "alert_2026-05-21_039",
+    "id": "alert_2026-05-22_039",
     "type": "anomaly",
     "country": "ARG",
     "category": "economy",
@@ -15,7 +15,19 @@
     "observation": {
       "value": 4.956,
       "time_period": "2022",
-      "unit": "PC"
+      "unit": "PC",
+      "display": {
+        "es": "4.956 %",
+        "en": "4.956%"
+      },
+      "period_display": {
+        "es": "2022",
+        "en": "2022"
+      },
+      "period_narrative": {
+        "es": "2022",
+        "en": "2022"
+      }
     },
     "magnitude": {
       "es": "+3.3σ",
@@ -199,30 +211,31 @@
     "verification_trace": {
       "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/IMF_WEO",
       "csv_link": "https://data360files.worldbank.org/data360-data/data/IMF_WEO/IMF_WEO_NGDP_RPCH.csv",
-      "methodology_ref": "https://www.imf.org/en/Publications/WEO/frequently-asked-questions#:~:text=%2Ddatabase%2FDisclaimer.-,Q.,generate%20projections%20for%20individual%20countries.)"
+      "methodology_ref": "https://www.imf.org/en/Publications/WEO/frequently-asked-questions#:~:text=%2Ddatabase%2FDisclaimer.-,Q.,generate%20projections%20for%20individual%20countries"
     },
     "score": 0.8361290775760136,
-    "detected_at": "2026-05-21T20:27:18.956Z",
+    "detected_at": "2026-05-22T00:21:20.836Z",
     "license": "License Specified Externally",
     "narrative_citizen": {
-      "es": "ARG registró 4.956 PC en Gross domestic product, constant prices, Percent change para 2022, +3.3σ respecto a su trayectoria reciente.",
-      "en": "ARG recorded 4.956 PC in Gross domestic product, constant prices, Percent change for 2022, +3.3σ from its recent trajectory."
+      "es": "Aumentó significativamente el índice de precios generales en Argentina en 2022.",
+      "en": "There was a significant increase in the general price index in Argentina in 2022."
     },
     "narrative_journalist": {
-      "es": "Detección automática: ARG 4.956 PC en Gross domestic product, constant prices, Percent change (2022). z-score +3.3σ vs ventana de 5 puntos previos.",
-      "en": "Auto-detected: ARG 4.956 PC in Gross domestic product, constant prices, Percent change (2022). z-score +3.3σ against 5-point baseline."
+      "es": "El índice de precios generales en Argentina en 2022 fue de 4.956 %, superando la mediana regional de 4.118 %.",
+      "en": "The general price index in Argentina in 2022 was 4.956%, surpassing the regional median of 4.118%."
     },
     "claim_tokens": [
       {
         "claim_id": "a1325638e6a5a717",
         "value": 4.956,
-        "display_es": "4.956 PC",
-        "display_en": "4.956 PC"
+        "display_es": "4.956 %",
+        "display_en": "4.956%"
       }
-    ]
+    ],
+    "data_period_stale": true
   },
   {
-    "id": "alert_2026-05-21_040",
+    "id": "alert_2026-05-22_040",
     "type": "anomaly",
     "country": "ECU",
     "category": "economy",
@@ -237,7 +250,19 @@
     "observation": {
       "value": 6.186,
       "time_period": "2022",
-      "unit": "PC"
+      "unit": "PC",
+      "display": {
+        "es": "6.186 %",
+        "en": "6.186%"
+      },
+      "period_display": {
+        "es": "2022",
+        "en": "2022"
+      },
+      "period_narrative": {
+        "es": "2022",
+        "en": "2022"
+      }
     },
     "magnitude": {
       "es": "+8.3σ",
@@ -421,26 +446,27 @@
     "verification_trace": {
       "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/IMF_WEO",
       "csv_link": "https://data360files.worldbank.org/data360-data/data/IMF_WEO/IMF_WEO_NGDP_RPCH.csv",
-      "methodology_ref": "https://www.imf.org/en/Publications/WEO/frequently-asked-questions#:~:text=%2Ddatabase%2FDisclaimer.-,Q.,generate%20projections%20for%20individual%20countries.)"
+      "methodology_ref": "https://www.imf.org/en/Publications/WEO/frequently-asked-questions#:~:text=%2Ddatabase%2FDisclaimer.-,Q.,generate%20projections%20for%20individual%20countries"
     },
     "score": 1,
-    "detected_at": "2026-05-21T20:27:18.956Z",
+    "detected_at": "2026-05-22T00:21:20.837Z",
     "license": "License Specified Externally",
     "narrative_citizen": {
-      "es": "ECU registró 6.186 PC en Gross domestic product, constant prices, Percent change para 2022, +8.3σ respecto a su trayectoria reciente.",
-      "en": "ECU recorded 6.186 PC in Gross domestic product, constant prices, Percent change for 2022, +8.3σ from its recent trajectory."
+      "es": "Subió drásticamente el índice de precios generales en Ecuador en 2022.",
+      "en": "There was a dramatic increase in the general price index in Ecuador in 2022."
     },
     "narrative_journalist": {
-      "es": "Detección automática: ECU 6.186 PC en Gross domestic product, constant prices, Percent change (2022). z-score +8.3σ vs ventana de 5 puntos previos.",
-      "en": "Auto-detected: ECU 6.186 PC in Gross domestic product, constant prices, Percent change (2022). z-score +8.3σ against 5-point baseline."
+      "es": "El índice de precios generales en Ecuador en 2022 fue de 6.186 %, superando la mediana regional de 4.118 %.",
+      "en": "The general price index in Ecuador in 2022 was 6.186%, surpassing the regional median of 4.118%."
     },
     "claim_tokens": [
       {
         "claim_id": "38102b8c93c3d347",
         "value": 6.186,
-        "display_es": "6.186 PC",
-        "display_en": "6.186 PC"
+        "display_es": "6.186 %",
+        "display_en": "6.186%"
       }
-    ]
+    ],
+    "data_period_stale": true
   }
 ]

@@ -1,0 +1,27 @@
+{
+  "WB_WDI_NY_GDP_PCAP_CD": {
+    "etag": "0x8DE994677D56A42",
+    "lastModified": "Mon, 13 Apr 2026 10:21:47 GMT",
+    "probedAt": "2026-05-22T00:42:25.177Z"
+  },
+  "WB_WDI_FP_CPI_TOTL_ZG": {
+    "etag": "0x8DE9919BF4025A5",
+    "lastModified": "Mon, 13 Apr 2026 05:01:39 GMT",
+    "probedAt": "2026-05-22T00:42:25.240Z"
+  },
+  "IPC_IPC_PHASE": {
+    "etag": "0x8DE54C038661AD8",
+    "lastModified": "Fri, 16 Jan 2026 05:29:28 GMT",
+    "probedAt": "2026-05-22T00:42:25.301Z"
+  },
+  "IMF_WEO_NGDP_RPCH": {
+    "etag": "0x8DE0BA698B071C1",
+    "lastModified": "Wed, 15 Oct 2025 04:52:08 GMT",
+    "probedAt": "2026-05-22T00:42:25.363Z"
+  },
+  "FAO_CP_23012": {
+    "etag": "0x8DE52738959819F",
+    "lastModified": "Tue, 13 Jan 2026 07:15:31 GMT",
+    "probedAt": "2026-05-22T00:42:25.429Z"
+  }
+}

@@ -1,6 +1,6 @@
 [
   {
-    "id": "alert_2026-05-21_007",
+    "id": "alert_2026-05-22_007",
     "type": "abrupt_change",
     "country": "HND",
     "category": "poverty",
@@ -15,7 +15,19 @@
     "observation": {
       "value": 15.7,
       "time_period": "2024",
-      "unit": "PT_POP"
+      "unit": "PT_POP",
+      "display": {
+        "es": "15.7 %",
+        "en": "15.7 %"
+      },
+      "period_display": {
+        "es": "2024",
+        "en": "2024"
+      },
+      "period_narrative": {
+        "es": "2024",
+        "en": "2024"
+      }
     },
     "magnitude": {
       "es": "−2.8σ",
@@ -155,30 +167,37 @@
     "verification_trace": {
       "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/WB_WDI",
       "csv_link": "https://data360files.worldbank.org/data360-data/data/WB_WDI/WB_WDI_SI_POV_DDAY.csv",
-      "methodology_ref": "http://pip.worldbank.org."
+      "methodology_ref": "http://pip.worldbank.org"
     },
     "score": 0.6976539745814242,
-    "detected_at": "2026-05-21T20:27:18.952Z",
+    "detected_at": "2026-05-22T00:21:20.831Z",
     "license": "CC BY-4.0",
     "narrative_citizen": {
-      "es": "HND registró 15.7 PT_POP en Poverty headcount ratio at $3.00 a day (2021 PPP) (% of population) para 2024, −2.8σ respecto a su trayectoria reciente.",
-      "en": "HND recorded 15.7 PT_POP in Poverty headcount ratio at $3.00 a day (2021 PPP) (% of population) for 2024, −2.8σ from its recent trajectory."
+      "es": "Disminuyó bruscamente la proporción de personas viviendo con menos de $3.00 al día en Honduras en 2024.",
+      "en": "There was a sharp decrease in the proportion of people living on less than $3.00 a day in Honduras in 2024."
     },
     "narrative_journalist": {
-      "es": "Detección automática: HND 15.7 PT_POP en Poverty headcount ratio at $3.00 a day (2021 PPP) (% of population) (2024). z-score −2.8σ vs ventana de 5 puntos previos.",
-      "en": "Auto-detected: HND 15.7 PT_POP in Poverty headcount ratio at $3.00 a day (2021 PPP) (% of population) (2024). z-score −2.8σ against 5-point baseline."
+      "es": "La proporción de personas viviendo con menos de $3.00 al día en Honduras cayó drásticamente en 2024, según datos del Banco Mundial.",
+      "en": "The proportion of people living on less than $3.00 a day in Honduras dropped sharply in 2024, according to World Bank data."
     },
     "claim_tokens": [
       {
         "claim_id": "8c6bba0568efc716",
         "value": 15.7,
-        "display_es": "15.7 PT_POP",
-        "display_en": "15.7 PT_POP"
+        "display_es": "15.7 %",
+        "display_en": "15.7 %"
+      },
+      {
+        "claim_id": "5e5a42faa03c2956",
+        "value": 17,
+        "display_es": "17,00 PT_POP",
+        "display_en": "17.00 PT_POP"
       }
-    ]
+    ],
+    "data_period_stale": true
   },
   {
-    "id": "alert_2026-05-21_026",
+    "id": "alert_2026-05-22_026",
     "type": "anomaly",
     "country": "HND",
     "category": "poverty",
@@ -193,7 +212,19 @@
     "observation": {
       "value": 15.7,
       "time_period": "2024",
-      "unit": "PT_POP"
+      "unit": "PT_POP",
+      "display": {
+        "es": "4.45 %",
+        "en": "4.45 %"
+      },
+      "period_display": {
+        "es": "2024",
+        "en": "2024"
+      },
+      "period_narrative": {
+        "es": "2024",
+        "en": "2024"
+      }
     },
     "magnitude": {
       "es": "+2.4σ",
@@ -333,26 +364,27 @@
     "verification_trace": {
       "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/WB_WDI",
       "csv_link": "https://data360files.worldbank.org/data360-data/data/WB_WDI/WB_WDI_SI_POV_DDAY.csv",
-      "methodology_ref": "http://pip.worldbank.org."
+      "methodology_ref": "http://pip.worldbank.org"
     },
     "score": 0.6022238923898171,
-    "detected_at": "2026-05-21T20:27:18.955Z",
+    "detected_at": "2026-05-22T00:21:20.834Z",
     "license": "CC BY-4.0",
     "narrative_citizen": {
-      "es": "HND registró 15.7 PT_POP en Poverty headcount ratio at $3.00 a day (2021 PPP) (% of population) para 2024, +2.4σ respecto a su trayectoria reciente.",
-      "en": "HND recorded 15.7 PT_POP in Poverty headcount ratio at $3.00 a day (2021 PPP) (% of population) for 2024, +2.4σ from its recent trajectory."
+      "es": "Superó la mediana regional la proporción de personas viviendo con menos de $3.00 al día en Honduras en 2024.",
+      "en": "Honduras exceeded the regional median for the proportion of people living on less than $3.00 a day in 2024."
     },
     "narrative_journalist": {
-      "es": "Detección automática: HND 15.7 PT_POP en Poverty headcount ratio at $3.00 a day (2021 PPP) (% of population) (2024). z-score +2.4σ vs ventana de 5 puntos previos.",
-      "en": "Auto-detected: HND 15.7 PT_POP in Poverty headcount ratio at $3.00 a day (2021 PPP) (% of population) (2024). z-score +2.4σ against 5-point baseline."
+      "es": "La proporción de personas viviendo con menos de $3.00 al día en Honduras en 2024 superó la mediana regional, según datos del Banco Mundial.",
+      "en": "The proportion of people living on less than $3.00 a day in Honduras in  Yö2024 exceeded the regional median, according to World Bank data."
     },
     "claim_tokens": [
       {
         "claim_id": "8c6bba0568efc716",
-        "value": 15.7,
-        "display_es": "15.7 PT_POP",
-        "display_en": "15.7 PT_POP"
+        "value": 4.45,
+        "display_es": "4.45 %",
+        "display_en": "4.45 %"
       }
-    ]
+    ],
+    "data_period_stale": true
   }
 ]

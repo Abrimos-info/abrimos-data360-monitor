@@ -1,0 +1,13 @@
+div#d360-newsletter.d360-onboard(style="display:none" role="dialog" aria-modal="true" aria-labelledby="d360-newsletter-title")
+  div.d360-onboard__scrim(data-newsletter-dismiss="true")
+  div.d360-onboard__card
+    button.d360-onboard__close(type="button" aria-label="Close" data-newsletter-dismiss="true") ×
+    h2#d360-newsletter-title.d360-onboard__title= _("newsletter.title", lang)
+    p.d360-onboard__intro= _("newsletter.intro", lang)
+    ul.d360-onboard__list
+      li= _("newsletter.feature_1", lang)
+      li= _("newsletter.feature_2", lang)
+      li= _("newsletter.feature_3", lang)
+    p.d360-onboard__intro= _("newsletter.audience", lang)
+    p.d360-onboard__note= _("newsletter.demo_note", lang)
+    button.d360-onboard__skip(type="button" data-newsletter-dismiss="true")= _("newsletter.close", lang)

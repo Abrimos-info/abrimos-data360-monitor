@@ -40,7 +40,7 @@ Cada sección termina con un bloque fenced ` ```source ` con referencias al cont
 ```source
 - section: "## Países y trayectorias"
   line: 84
-- section: "## Comparación regional"
+- section: "## Países y trayectorias"
   line: 225
 ```
 ````
@@ -64,6 +64,17 @@ Escribe como un periodista de datos profesional, no como un asistente de IA. Evi
 
 Prefiere oraciones con sujeto, verbo y números. Si una oración no contiene una cifra ni nombra un país específico, está de más.
 
+### narrative_citizen (es)
+
+La narrativa ciudadana en español debe **empezar con el verbo** en estilo titular periodístico. Ejemplos:
+
+- "Aumentó drásticamente el índice de precios generales en Argentina en septiembre de 2025."
+- "Quedó por debajo de la mediana regional el índice de precios generales en Ecuador en septiembre de 2025."
+
+Prohibido en `narrative_citizen.es` empezar con: "El ", "La ", "Los ", "Las ", "En ". Reescribí hasta cumplir la regla del verbo inicial.
+
+`narrative_journalist` no requiere esta inversión; ahí van las cifras, el z-score o la mediana regional.
+
 ### Límite
 
 Máximo 800 palabras en el análisis total. Las narrativas individuales por alerta no superan 300 caracteres cada una.
@@ -78,11 +89,11 @@ Secciones esperadas en este orden:
 
 | # | Heading exacto | Contenido |
 |---|----------------|-----------|
-| 1 | `## Indicador` | Identificación. idno, database_id, nombre, periodicidad, unidad, licencia |
-| 2 | `## Definición y metodología` | Texto del Banco Mundial sobre cómo se calcula |
-| 3 | `## Países y trayectorias` | Una subsección por país. Background narrativo + serie de este indicador + snapshot de otros indicadores anuales |
-| 4 | `## Comparación regional` | Tabla con el último año común entre los 5 países |
-| 5 | `## Reglas de detección activas` | Umbrales numéricos de las dos estrategias en uso |
+| 1 | `## Definición y metodología` | Identificación (idno, database_id, links) y texto del Banco Mundial sobre cómo se calcula |
+| 2 | `## Países y trayectorias` | Una subsección por país. Background narrativo + serie de este indicador + snapshot de otros indicadores anuales |
+| 3 | `## Discurso público reciente` | Titulares GDELT por país (máx. 8), período del snapshot. Solo contexto narrativo; no sustituye observaciones numéricas |
+| 4 | `## Reglas de detección activas` | Umbrales numéricos de las dos estrategias en uso |
+| 5 | `## Candidatos detectados` | Lista determinística de alertas candidatas con candidate_id, observation, z_score, claim_id |
 
 Si una sección falta, escribe "No disponible en el contexto proporcionado" donde corresponda. No la inventes.
 

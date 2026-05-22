@@ -24,23 +24,39 @@ data360/
 ├── config/
 │   ├── routes.json        # Unified routes configuration mapping paths to views
 │   ├── strings.es.json    # Spanish translation key-value mappings
-│   └── strings.en.json    # English translation key-value mappings
+│   ├── strings.en.json    # English translation key-value mappings
+│   └── chat-presets.json  # Chat preset prompts
 ├── lib/
-│   ├── router.js          # Fast, custom HTTP router and static asset minifier
-│   ├── views.js           # Server-side route compilers for dashboard/about views
-│   ├── i18n.js            # Standalone bilingual string resolver
-│   └── alerts-store.js    # In-memory alerts parser and hot-reloader
+│   ├── router.js          # HTTP router and static asset handler
+│   ├── views.js           # Server-side compilers (dashboard, chat, about)
+│   ├── i18n.js            # Bilingual string resolver
+│   ├── alerts-store.js    # In-memory alerts parser and hot-reloader
+│   ├── alerts-api.js      # GET /api/alerts JSON handler
+│   └── chat/              # SSE agent, tools, focus countries
 ├── templates/
-│   ├── layout.pug         # Base HTML5 shell with global head assets
-│   ├── dashboard.pug      # Main view containing feed listings and detail drawer templates
-│   ├── mixins.pug         # Dynamic reusable Pug components (Tags, Chips, Charts)
-│   └── cards.pug          # Sub-templates compiling the card formats (narr, num, news)
+│   ├── layout.pug         # Base HTML5 shell (nav, onboarding, newsletter modal)
+│   ├── dashboard.pug      # Monitor feed + filters
+│   ├── chat.pug           # Chat UI
+│   ├── about.pug          # About page
+│   ├── mixins.pug         # Reusable Pug components (tags, chips, charts)
+│   ├── cards.pug          # Card format helpers
+│   └── partials/          # site-nav, detail-panel, onboarding, chat-freshness
 ├── static/
 │   ├── css/
-│   │   ├── tokens.css      # Core style guides (harmonized HSL colors, typography, spacing)
-│   │   └── main.css        # Clean grid layout, card designs, drawer positioning, and controls
-│   └── js/
-│       └── behavior.js     # Vanilla JS controlling interactive states and drawers
+│   │   ├── tokens.css
+│   │   └── main.css
+│   ├── js/
+│   │   ├── behavior.js        # Monitor filters, URL sync
+│   │   ├── detail-panel.js    # Side drawer + PCN claim resolution
+│   │   ├── charts.js          # Sparkline SVG renderer
+│   │   ├── alerts-feed.js     # Merge chat alerts into monitor feed
+│   │   ├── chat.js            # SSE chat client
+│   │   ├── chat-cards.js      # Inline alert cards in chat
+│   │   ├── markdown.js        # Markdown + sparkline blocks
+│   │   ├── onboarding.js      # First-visit welcome modal
+│   │   └── lang-toggle.js     # ES / EN switcher
+│   └── vendor/
+│       └── marked.min.js
 ```
 
 ---
@@ -55,26 +71,36 @@ data360/
 5. In production mode, the server initializes on a configured port (default `8090`) driving `http.createServer`. In development mode, integrated watchers track files for instant dev feedback.
 
 ### Routing
-Driven by a structured route manifest (`config/routes.json`):
-* `/`: Resolves to the compiled HTML of `dashboard.pug`, loading the SSR-rendered alert grid populated with filters and cards.
-* `/static/*`: Resolves static assets (minified vanilla CSS, JS behavior files, image resources) using standard cache-control headers.
-* `/about`: Serves a clean, descriptive stand-alone information page.
+Driven by a structured route manifest (`config/routes.json`) plus explicit API routes in `lib/router.js`:
+
+* `/`: Monitor — compiled `dashboard.pug`, SSR alert grid with filters and cards.
+* `/chat`: Chat — compiled `chat.pug`, SSE client to `/api/chat`.
+* `/about`: About — methodology, limits, team, license.
+* `GET /api/alerts`: JSON `{ alerts: [...] }` for monitor/chat sync.
+* `POST /api/chat`: SSE agent stream (`messages`, `focus_countries`, `focus_changed`).
+* `/static/*`: CSS, JS, vendor assets with cache-control headers.
 
 ---
 
 ## 4. Templating & Component Design
 
 ### Layout Context
-The `templates/layout.pug` provides the base HTML shell. It takes dynamic arguments populated by the view controller and registers them directly into the document window context:
+The `templates/layout.pug` provides the base HTML shell on every page. Monitor-specific globals are injected from `dashboard.pug` / `chat.pug` in their `block scripts`:
 
 ```pug
+// layout.pug (all pages)
+script.
+  window.D360_LANG = !{JSON.stringify(lang)};
+  window.D360_LANG_MODE = !{JSON.stringify(langMode || lang)};
+  window.D360_STRINGS = { es: !{JSON.stringify(stringsEs)}, en: !{JSON.stringify(stringsEn)} };
+
+// dashboard.pug (monitor only)
 script.
   window.D360_ALERTS = !{JSON.stringify(allAlerts)};
-  window.D360_T = { es: !{JSON.stringify(stringsEs)}, en: !{JSON.stringify(stringsEn)} };
-  window.D360_LANG = !{JSON.stringify(lang)};
-  window.D360_LANG_MODE = !{JSON.stringify(langMode)};
   window.D360_FILTERS = !{JSON.stringify(filters)};
 ```
+
+The language toggle switches **ES or EN** (`?lang=es|en`). Narratives in `data/alerts.json` store both languages; the UI renders **one language at a time** (no simultaneous bilingual card layout).
 
 > [!IMPORTANT]
 > Always use Pug's unescaped string injection `!{JSON.stringify(...)}` instead of standard text interpolation to ensure strings containing apostrophes or quotes parse successfully without syntax errors.
@@ -118,7 +144,7 @@ This achieves `0ms` response times for a smooth user experience.
 
 ## 5. Sidebar Detail Drawer & Template Binding
 
-To maintain dry, centralized code, the side analytics drawer is defined exactly once in `dashboard.pug` inside an HTML5 `<template>` element with `data-bind` target attributes:
+The detail drawer template lives in `templates/partials/detail-panel.pug` and is included from `dashboard.pug` (and reused by chat alert cards via `detail-panel.js`):
 
 ```pug
 template#d360-detail-tpl
@@ -187,7 +213,11 @@ Dynamic page narratives (citizen and journalist copies) are pre-translated and s
 * `alert.narrative_citizen.es` and `alert.narrative_citizen.en`
 * `alert.narrative_journalist.es` and `alert.narrative_journalist.en`
 
-The active display language is managed via standard styling tags on the global app element (e.g. `d360-app--lang-es` vs `d360-app--lang-en`).
+The active display language is managed via standard styling tags on the global app element (e.g. `d360-app--lang-es` vs `d360-app--lang-en`). Alert JSON always carries `es` and `en` text; filters and chrome follow the selected UI language.
+
+### Onboarding
+
+`templates/partials/onboarding.pug` + `static/js/onboarding.js`: modal on first visit (`localStorage` key `d360_onboarding_seen`), dismissible, CTAs to Monitor / Chat / About. Force with `?onboarding=1`.
 
 ---
 

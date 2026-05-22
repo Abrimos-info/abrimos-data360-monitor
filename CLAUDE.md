@@ -50,35 +50,38 @@ AI_PROVIDER=vllm AI_API_URL=https://llms.laia.ar/v1 AI_MODEL=Qwen/Qwen2.5-14B-In
 
 ```
 bin/
-  fetch-data.js         # Download historical CSVs from Data360
-  detect-changes.js     # Strategies 1 and 4
-  narrate-indicators.js # LLM, one call per indicator
-  emit-alerts.js        # Generate data/alerts.json
+  fetch-data.js         # Freshness probe + selective download (watchlist)
+  fetch-news.js         # GDELT headlines → data/news/{COUNTRY}/{YYYY-MM}.jsonl
+  generate-analysis.js  # CLI: detect (1+4) + LLM + emit data/alerts.json
+  fetch-baseline.js     # Legacy tier fetcher (annual)
+  fetch-pulse.js        # Legacy tier fetcher (pulse)
+  fetch-forecast.js     # Legacy tier fetcher (forecast)
 lib/
+  analysis/runner.js    # Unified detect + narrate + merge alerts.json
+  watchlist.js          # 35-indicator demo watchlist (3 tiers)
+  freshness-probe.js    # Conditional HEAD probe
+  freshness-cache.js    # ETag cache on disk
+  context-fetch.js      # CSV snapshot + LAC context refresh
   ai-client.js          # Claude / LAIA / OpenRouter abstraction
-  data360-client.js     # Data360 API v3 client
+  data360-client.js     # Data360 API v3 client (headCsv, getCsv, getData, …)
   opensearch-client.js  # OpenSearch (when in scope)
   detect/
     z-score.js          # Strategy 1, abrupt changes
     cross-indicator.js  # Strategy 4, cross-indicator anomalies
   pcn-claims.js         # PCN claim-bound token generation
-frontend/
-  (Node.js and React, static dashboard reading data/alerts.json)
+examples/
+  freshness-probe-demo.js  # Standalone HEAD/ETag spike
 connector/
-  watchlist.json        # Countries × indicators to monitor
+  watchlist.json        # Original 20-candidate probe notes
 data/
-  snapshots/            # Downloaded CSVs (gitignored)
+  changed-since.json    # Indicators updated since last probe
+  index.json            # Per-indicator freshness summary
+  snapshots/            # CSV + ETag cache (gitignored)
   alerts.json           # Final output consumed by the frontend
 docs/
+  data-fetcher-architecture.md
   architecture-overview.md
   data360-integration-methodology.md
-  security-data-handling.md
-  user-guide.md
-  sustainability-plan.md
-templates/
-  narrative-citizen.md
-  narrative-journalist.md
-test/
 ```
 
 ## Standing decisions
@@ -104,25 +107,25 @@ test/
 | D-027 | REST direct is the default path (bulk fetch, detection). MCP server (`worldbank/data360-mcp`) is optional for runtime narrative when its native SHA-256 `claim_id` and precomputed comparisons add value. Trial decision for this demo iteration, to be validated against a full pipeline run. |
 | D-028 | Analysis stage: 4 prompt files (`analysis-{system,task,template,quality}.md`), omnibus numbered context per indicator, output with fenced blocks (`alert`, `quality`, `source`). One LLM call per indicator. Automatic claim-traceability validation against the numbered context. Alert schema aligned with PCN. |
 | D-029 | "News" refers to real press headlines per country, not to sub-annual indicator data. A separate `news` subsystem (architecture pending) ingests recent headlines from the 5 LAC countries and feeds them into the analysis context so narratives can reference current public discourse. The sub-annual indicator tier is `pulse` (D-021). |
-| D-030 | News subsystem uses GDELT DOC API v2 as primary source (free, no auth, history since 2015, filter `SOURCELANG:Spanish` + country), Google News RSS as fallback. Headlines stored at `data/news/{COUNTRY}/{YYYY-MM}.jsonl` (gitignored), dedup by SHA-1 of URL. Schema includes `gdelt_tone` (for future Strategy 2) and `indicators_hint` (empty in demo). Injected into the omnibus context as §6 "Discurso público reciente", max 8 headlines per country, ~1.2k tokens. Demo use is passive narrative context only — Strategy 2 (narrative-data divergence) stays in roadmap. Full design at `docs/news-architecture.md`. |
+| D-030 | News subsystem uses GDELT DOC API v2 as primary source (free, no auth, history since 2015, filter `SOURCELANG:Spanish` + country); Google News RSS as planned fallback (not implemented in demo). Headlines stored at `data/news/{COUNTRY}/{YYYY-MM}.jsonl` (gitignored), dedup by SHA-1 of URL. Schema includes `gdelt_tone` (for future Strategy 2) and `indicators_hint` (empty in demo). Injected into the omnibus context as §6 "Discurso público reciente", max 8 headlines per country, ~1.2k tokens. Demo use is passive narrative context only — Strategy 2 (narrative-data divergence) stays in roadmap. Full design at `docs/news-architecture.md`. |
 
 ## Key commands
 
 ```bash
-# Full pipeline (historical replay)
-npm run build
+# Typical replay: fetch data → optional news → analyze (detect + narrate + emit)
+npm run fetch && npm run fetch:news && npm run analyze
 
-# Fetch only
+# Fetch with freshness probe (downloads only changed indicators)
 npm run fetch
 
-# Detection only over existing snapshots
-npm run detect
+# Probe only: write data/changed-since.json without downloading
+npm run fetch:probe
 
-# Narrative only (LLM)
-npm run narrate
+# Bootstrap: treat all watchlist indicators as changed
+node bin/fetch-data.js --force
 
-# Frontend dev
-npm run frontend:dev
+# Single indicator analysis
+node bin/generate-analysis.js --only FAO_CP_23012
 ```
 
 ## Cost tracking

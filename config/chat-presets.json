@@ -1,0 +1,44 @@
+[
+  {
+    "id": "analyze_indicator",
+    "label_es": "Analizar indicador",
+    "label_en": "Analyze indicator",
+    "prompt_es": "Analizá el indicador FAO_CP_23012 y resumí las alertas detectadas para redacciones.",
+    "prompt_en": "Analyze indicator FAO_CP_23012 and summarize detected alerts for newsrooms."
+  },
+  {
+    "id": "headlines_today",
+    "label_es": "Titulares recientes",
+    "label_en": "Recent headlines",
+    "prompt_es": "Mostrá los titulares recientes de Argentina y México sobre economía.",
+    "prompt_en": "Show recent headlines from Argentina and Mexico about the economy."
+  },
+  {
+    "id": "latest_alerts",
+    "label_es": "Alertas del monitor",
+    "label_en": "Monitor alerts",
+    "prompt_es": "¿Qué eventos detectó el monitor? Listá las alertas más recientes por fecha del dato.",
+    "prompt_en": "What events did the monitor detect? List the most recent alerts by data period."
+  },
+  {
+    "id": "compare_lac",
+    "label_es": "Comparar países (MCP)",
+    "label_en": "Compare countries (MCP)",
+    "prompt_es": "Usá MCP Data360 para comparar deuda pública (% del PIB) entre GTM, HND, ARG, ECU y MEX. Indicador: WB_CCDFS_GGDY.",
+    "prompt_en": "Use Data360 MCP to compare general government gross debt (% of GDP) across GTM, HND, ARG, ECU and MEX. Indicator: WB_CCDFS_GGDY."
+  },
+  {
+    "id": "search_indicator",
+    "label_es": "Buscar indicador",
+    "label_en": "Search indicator",
+    "prompt_es": "Buscá en Data360 indicadores relacionados con inflación en América Latina.",
+    "prompt_en": "Search Data360 for inflation-related indicators in Latin America."
+  },
+  {
+    "id": "refresh_news",
+    "label_es": "Actualizar noticias",
+    "label_en": "Refresh news",
+    "prompt_es": "Actualizá titulares GDELT para Argentina y resumí lo más relevante para el contexto económico.",
+    "prompt_en": "Refresh GDELT headlines for Argentina and summarize the most relevant economic context."
+  }
+]

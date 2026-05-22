@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://github.com/Abrimos-info/abrimos-data360-monitor/blob/main/docs/alert-schema.json",
   "title": "Data360 Monitor alert",
-  "description": "Single alert emitted by the detection pipeline and consumed by the dashboard. Canonical fields come from the Obsidian product definition. Derived fields are added by bin/emit-alerts.js so the frontend does not need any presentation logic at runtime.",
+  "description": "Single alert emitted by the detection pipeline and consumed by the dashboard. Canonical fields come from the Obsidian product definition. Derived fields are added by lib/alert-display.js (enrichAlert) during lib/analysis/runner.js emission so the frontend does not need presentation logic at runtime.",
   "type": "object",
   "required": [
     "id",

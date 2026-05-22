@@ -9,6 +9,7 @@
 - **database**: World Economic Outlook (WEO)
 - **periodicity**: Annual
 - **unit**: Percentage of labor force
+- **confidentiality**: PU
 
 ## License
 
@@ -19,6 +20,7 @@
 
 - **csv**: https://data360files.worldbank.org/data360-data/data/IMF_WEO/IMF_WEO_LUR.csv
 - **json metadata**: https://data360files.worldbank.org/data360-data/metadata/IMF_WEO/IMF_WEO_LUR.json
+- **api template**: https://data360api.worldbank.org/data360/data?top=1000&skip=0&DATABASE_ID=IMF_WEO&INDICATOR=IMF_WEO_LUR
 - **dataset on Data360**: https://data360.worldbank.org/en/int/dataset/IMF_WEO
 
 ## Definition
@@ -30,3 +32,13 @@ Unemployment rate can be defined by either the national definition, the ILO harm
 The IMF's World Economic Outlook uses a "bottom-up" approach in producing its forecasts; that is, country teams within the IMF generate projections for individual countries. These are then aggregated, and through a series of iterations where the aggregates feed back into individual countries' forecasts, forecasts converge to the projections reported in the WEO.
 
 Because forecasts are made by the individual country teams, the methodology can vary from country to country and series to series depending on many factors. To get more information on a specific country and series forecast, you may contact the country teams directly; from the Countries tab on the IMF website. (From: https://www.imf.org/en/Publications/WEO/frequently-asked-questions#:~:text=%2Ddatabase%2FDisclaimer.-,Q.,generate%20projections%20for%20individual%20countries.)
+
+## Sources
+
+- World Economic Outlook (https://www.imf.org/en/publications/weo)
+
+## Topics
+
+- Prosperity _(WB Practice Groups)_
+- Economic Policy _(Data360 Topic L1)_
+- Growth and Jobs _(Data360 Topic L2)_

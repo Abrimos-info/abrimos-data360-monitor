@@ -1,6 +1,6 @@
 [
   {
-    "id": "alert_2026-05-21_013",
+    "id": "alert_2026-05-22_013",
     "type": "abrupt_change",
     "country": "ARG",
     "category": "economy",
@@ -15,7 +15,19 @@
     "observation": {
       "value": 11813.435011,
       "time_period": "2025-09-01",
-      "unit": "IX"
+      "unit": "IX",
+      "display": {
+        "es": "11.813,44 (índice)",
+        "en": "11,813.44 (index)"
+      },
+      "period_display": {
+        "es": "sep 2025",
+        "en": "Sep 2025"
+      },
+      "period_narrative": {
+        "es": "septiembre de 2025",
+        "en": "September 2025"
+      }
     },
     "magnitude": {
       "es": "+2.5σ",
@@ -1263,30 +1275,37 @@
     "verification_trace": {
       "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/FAO_CP",
       "csv_link": "https://data360files.worldbank.org/data360-data/data/FAO_CP/FAO_CP_23013.csv",
-      "methodology_ref": "https://www.fao.org)"
+      "methodology_ref": "https://www.fao.org"
     },
     "score": 0.6164238227524292,
-    "detected_at": "2026-05-21T20:27:18.953Z",
+    "detected_at": "2026-05-22T00:21:20.833Z",
     "license": "CC BY 4.0",
     "narrative_citizen": {
-      "es": "ARG registró 11813.435011 IX en Consumer Prices, Food Indices (2015 = 100) para 2025-09-01, +2.5σ respecto a su trayectoria reciente.",
-      "en": "ARG recorded 11813.435011 IX in Consumer Prices, Food Indices (2015 = 100) for 2025-09-01, +2.5σ from its recent trajectory."
+      "es": "Aumentó drásticamente el IPC de alimentos (índice, base 2015=100) en Argentina en septiembre de 2025.",
+      "en": "Rose sharply for Consumer Prices, Food Indices (2015 = 100) in Argentina in September 2025."
     },
     "narrative_journalist": {
-      "es": "Detección automática: ARG 11813.435011 IX en Consumer Prices, Food Indices (2015 = 100) (2025-09-01). z-score +2.5σ vs ventana de 5 puntos previos.",
-      "en": "Auto-detected: ARG 11813.435011 IX in Consumer Prices, Food Indices (2015 = 100) (2025-09-01). z-score +2.5σ against 5-point baseline."
+      "es": "Argentina el IPC de alimentos (índice, base 2015=100) 11.813,44 (índice) en 2025-09-01, frente a 11.597,55 (índice) en 2025-08-01. Cambio +1,9 % con z-score +2,5σ sobre la ventana móvil de 5 puntos.",
+      "en": "Argentina Consumer Prices, Food Indices (2015 = 100) reached 11,813.44 (index) in 2025-09-01 versus 11,597.55 (index) in 2025-08-01. Change of +1.9 %, z-score +2.5σ over the 5-point rolling baseline."
     },
     "claim_tokens": [
       {
         "claim_id": "739f8e008acee39d",
         "value": 11813.435011,
-        "display_es": "11813.435011 IX",
-        "display_en": "11813.435011 IX"
+        "display_es": "11.813,44 (índice)",
+        "display_en": "11,813.44 (index)"
+      },
+      {
+        "claim_id": "0549d2989e20d61f",
+        "value": 11597.552923,
+        "display_es": "11.597,55 (índice)",
+        "display_en": "11,597.55 (index)"
       }
-    ]
+    ],
+    "data_period_stale": false
   },
   {
-    "id": "alert_2026-05-21_034",
+    "id": "alert_2026-05-22_034",
     "type": "anomaly",
     "country": "ARG",
     "category": "economy",
@@ -1301,7 +1320,19 @@
     "observation": {
       "value": 11813.435011,
       "time_period": "2025-09-01",
-      "unit": "IX"
+      "unit": "IX",
+      "display": {
+        "es": "11.813,44 (índice)",
+        "en": "11,813.44 (index)"
+      },
+      "period_display": {
+        "es": "sep 2025",
+        "en": "Sep 2025"
+      },
+      "period_narrative": {
+        "es": "septiembre de 2025",
+        "en": "September 2025"
+      }
     },
     "magnitude": {
       "es": "+264.2σ",
@@ -2549,26 +2580,27 @@
     "verification_trace": {
       "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/FAO_CP",
       "csv_link": "https://data360files.worldbank.org/data360-data/data/FAO_CP/FAO_CP_23013.csv",
-      "methodology_ref": "https://www.fao.org)"
+      "methodology_ref": "https://www.fao.org"
     },
     "score": 1,
-    "detected_at": "2026-05-21T20:27:18.955Z",
+    "detected_at": "2026-05-22T00:21:20.836Z",
     "license": "CC BY 4.0",
     "narrative_citizen": {
-      "es": "ARG registró 11813.435011 IX en Consumer Prices, Food Indices (2015 = 100) para 2025-09-01, +264.2σ respecto a su trayectoria reciente.",
-      "en": "ARG recorded 11813.435011 IX in Consumer Prices, Food Indices (2015 = 100) for 2025-09-01, +264.2σ from its recent trajectory."
+      "es": "Superó ampliamente la mediana regional el IPC de alimentos (índice, base 2015=100) en Argentina en septiembre de 2025.",
+      "en": "Consumer Prices, Food Indices (2015 = 100) rose far above the regional median in Argentina in September 2025."
     },
     "narrative_journalist": {
-      "es": "Detección automática: ARG 11813.435011 IX en Consumer Prices, Food Indices (2015 = 100) (2025-09-01). z-score +264.2σ vs ventana de 5 puntos previos.",
-      "en": "Auto-detected: ARG 11813.435011 IX in Consumer Prices, Food Indices (2015 = 100) (2025-09-01). z-score +264.2σ against 5-point baseline."
+      "es": "Argentina el IPC de alimentos (índice, base 2015=100) 11.813,44 (índice) en 2025-09-01; mediana regional de 190,60 (índice). Brecha +264,2σ (escala MAD) entre los 5 países del scope LAC.",
+      "en": "Argentina Consumer Prices, Food Indices (2015 = 100) at 11,813.44 (index) in 2025-09-01, regional median 190.60 (index). Gap of +264.2σ (MAD scale) within the 5 LAC countries in scope."
     },
     "claim_tokens": [
       {
         "claim_id": "739f8e008acee39d",
         "value": 11813.435011,
-        "display_es": "11813.435011 IX",
-        "display_en": "11813.435011 IX"
+        "display_es": "11.813,44 (índice)",
+        "display_en": "11,813.44 (index)"
       }
-    ]
+    ],
+    "data_period_stale": false
   }
 ]

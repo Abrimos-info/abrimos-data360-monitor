@@ -1,0 +1,15 @@
+header.d360-site-nav
+  div.d360-site-nav__inner
+    a.d360-site-nav__brand(href="/")
+      span.d360-site-nav__name= _("site_name", lang)
+    nav.d360-site-nav__links(role="navigation" aria-label="Main")
+      a.d360-site-nav__link(class=(activeRoute === "monitor" ? "is-active" : "") href="/")= _("nav.monitor", lang)
+      a.d360-site-nav__link(class=(activeRoute === "chat" ? "is-active" : "") href="/chat")= _("nav.chat", lang)
+      a.d360-site-nav__link(class=(activeRoute === "about" ? "is-active" : "") href="/about")= _("nav.about", lang)
+    div.d360-site-nav__right
+      div.d360-site-nav__actions
+        button.d360-subscribe(type="button" id="d360-subscribe-btn")
+          span= _("ui.subscribe", lang)
+        div.d360-lang(role="group" aria-label="Language")
+          button.d360-lang__btn(class=(langMode === "es" ? "is-active" : "") data-lang="es" type="button") ES
+          button.d360-lang__btn(class=(langMode === "en" ? "is-active" : "") data-lang="en" type="button") EN

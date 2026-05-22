@@ -1,6 +1,6 @@
 [
   {
-    "id": "alert_2026-05-21_001",
+    "id": "alert_2026-05-22_001",
     "type": "abrupt_change",
     "country": "GTM",
     "category": "economy",
@@ -15,7 +15,19 @@
     "observation": {
       "value": 6150.025714,
       "time_period": "2024",
-      "unit": "USD"
+      "unit": "USD",
+      "display": {
+        "es": "6,150.03 USD",
+        "en": "6,150.03 USD"
+      },
+      "period_display": {
+        "es": "2024",
+        "en": "2024"
+      },
+      "period_narrative": {
+        "es": "2024",
+        "en": "2024"
+      }
     },
     "magnitude": {
       "es": "+2.1σ",
@@ -290,23 +302,30 @@
       "methodology_ref": "https://dsbb.imf.org/"
     },
     "score": 0.5183557929329669,
-    "detected_at": "2026-05-21T20:27:18.951Z",
+    "detected_at": "2026-05-22T00:21:20.829Z",
     "license": "CC BY-4.0",
     "narrative_citizen": {
-      "es": "GTM registró 6150.025714 USD en GDP per capita (current US$) para 2024, +2.1σ respecto a su trayectoria reciente.",
-      "en": "GTM recorded 6150.025714 USD in GDP per capita (current US$) for 2024, +2.1σ from its recent trajectory."
+      "es": "Subió significativamente el ingreso per cápita en Guatemala en 2024.",
+      "en": "Significantly increased per capita income in Guatemala in 2024."
     },
     "narrative_journalist": {
-      "es": "Detección automática: GTM 6150.025714 USD en GDP per capita (current US$) (2024). z-score +2.1σ vs ventana de 5 puntos previos.",
-      "en": "Auto-detected: GTM 6150.025714 USD in GDP per capita (current US$) (2024). z-score +2.1σ against 5-point baseline."
+      "es": "El ingreso per cápita en Guatemala aumentó drásticamente en 2024, superando la media regional.",
+      "en": "Guatemala's per capita income saw a significant increase in 2024, surpassing the regional average."
     },
     "claim_tokens": [
       {
         "claim_id": "3ba3c83d8d2449eb",
         "value": 6150.025714,
-        "display_es": "6150.025714 USD",
-        "display_en": "6150.025714 USD"
+        "display_es": "6,150.03 USD",
+        "display_en": "6,150.03 USD"
+      },
+      {
+        "claim_id": "76d46da1e6c0925e",
+        "value": 5758.327608,
+        "display_es": "5.758,33 USD",
+        "display_en": "5,758.33 USD"
       }
-    ]
+    ],
+    "data_period_stale": true
   }
 ]

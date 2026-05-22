@@ -59,7 +59,7 @@ This keeps the demo cheap, deterministic, and demonstrable. The pieces marked as
 ## Components
 
 - **Dashboard (Node.js/Pug/Vanilla JS)**. Reads `data/alerts.json`.
-- **Detection and narrative pipeline (Node.js)**. Fetch, detect, narrate, emit.
+- **Detection and narrative pipeline (Node.js)**. `fetch` → `fetch:news` (optional) → `analyze` (`lib/analysis/runner.js`: detect strategies 1+4, LLM per indicator, emit `data/alerts.json`).
 - **TeseoETL fetcher**. Calls Data360 API v3 and writes JSONlines per indicator (production) or local CSV (demo).
 - **Apache NiFi (production only)**. Orchestrates the fetcher, ingests JSONlines, normalises, pushes to OpenSearch.
 - **OpenSearch (production only)**. Canonical store of observations and metadata.

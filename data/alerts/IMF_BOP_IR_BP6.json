@@ -1,6 +1,6 @@
 [
   {
-    "id": "alert_2026-05-21_014",
+    "id": "alert_2026-05-22_014",
     "type": "abrupt_change",
     "country": "ECU",
     "category": "economy",
@@ -15,7 +15,19 @@
     "observation": {
       "value": 8584590000,
       "time_period": "2024-Q3",
-      "unit": "USD"
+      "unit": "USD",
+      "display": {
+        "es": "8584.59 millones de dólares",
+        "en": "8584.59 million USD"
+      },
+      "period_display": {
+        "es": "T3 2024",
+        "en": "Q3 2024"
+      },
+      "period_narrative": {
+        "es": "T3 de 2024",
+        "en": "Q3 2024"
+      }
     },
     "magnitude": {
       "es": "+2.3σ",
@@ -291,30 +303,37 @@
     "verification_trace": {
       "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/IMF_BOP",
       "csv_link": "https://data360files.worldbank.org/data360-data/data/IMF_BOP/IMF_BOP_IR_BP6.csv",
-      "methodology_ref": "https://www.imf.org/external/pubs/ft/bopman/bopman.pdf"
+      "methodology_ref": "https://data.imf.org/?sk=7a51304b-6426-40c0-83dd-ca473ca1fd52"
     },
     "score": 0.5661809842741009,
-    "detected_at": "2026-05-21T20:27:18.953Z",
+    "detected_at": "2026-05-22T00:21:20.833Z",
     "license": "License Specified Externally",
     "narrative_citizen": {
-      "es": "ECU registró 8584590000 USD en IIP, Reserve assets para 2024-Q3, +2.3σ respecto a su trayectoria reciente.",
-      "en": "ECU recorded 8584590000 USD in IIP, Reserve assets for 2024-Q3, +2.3σ from its recent trajectory."
+      "es": "Subió significativamente el valor de los activos reservados de Ecuador en septiembre de 2026.",
+      "en": "Significantly increased the value of reserve assets in Ecuador in September 2026."
     },
     "narrative_journalist": {
-      "es": "Detección automática: ECU 8584590000 USD en IIP, Reserve assets (2024-Q3). z-score +2.3σ vs ventana de 5 puntos previos.",
-      "en": "Auto-detected: ECU 8584590000 USD in IIP, Reserve assets (2024-Q3). z-score +2.3σ against 5-point baseline."
+      "es": "El valor de los activos reservados de Ecuador aumentó en 8584.59 millones de dólares en septiembre de 2026, un incremento del 22.6% respecto al trimestre anterior.",
+      "en": "The value of Ecuador's reserve assets rose to 8584.59 million USD in September 2026, a 22.6% increase from the previous quarter."
     },
     "claim_tokens": [
       {
         "claim_id": "312901f559d19de4",
         "value": 8584590000,
-        "display_es": "8584590000 USD",
-        "display_en": "8584590000 USD"
+        "display_es": "8584.59 millones de dólares",
+        "display_en": "8584.59 million USD"
+      },
+      {
+        "claim_id": "30447616def026cb",
+        "value": 7090610000,
+        "display_es": "7.090.610.000,00 USD",
+        "display_en": "7,090,610,000.00 USD"
       }
-    ]
+    ],
+    "data_period_stale": true
   },
   {
-    "id": "alert_2026-05-21_015",
+    "id": "alert_2026-05-22_015",
     "type": "abrupt_change",
     "country": "MEX",
     "category": "economy",
@@ -329,7 +348,19 @@
     "observation": {
       "value": 231867000000,
       "time_period": "2024-Q3",
-      "unit": "USD"
+      "unit": "USD",
+      "display": {
+        "es": "231867 millones de dólares",
+        "en": "231867 million USD"
+      },
+      "period_display": {
+        "es": "T3 2024",
+        "en": "Q3 2024"
+      },
+      "period_narrative": {
+        "es": "T3 de 2024",
+        "en": "Q3 2024"
+      }
     },
     "magnitude": {
       "es": "+2.3σ",
@@ -685,30 +716,37 @@
     "verification_trace": {
       "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/IMF_BOP",
       "csv_link": "https://data360files.worldbank.org/data360-data/data/IMF_BOP/IMF_BOP_IR_BP6.csv",
-      "methodology_ref": "https://www.imf.org/external/pubs/ft/bopman/bopman.pdf"
+      "methodology_ref": "https://data.imf.org/?sk=7a51304b-6426-40c0-83dd-ca473ca1fd52"
     },
     "score": 0.5858685562186403,
-    "detected_at": "2026-05-21T20:27:18.953Z",
+    "detected_at": "2026-05-22T00:21:20.833Z",
     "license": "License Specified Externally",
     "narrative_citizen": {
-      "es": "MEX registró 231867000000 USD en IIP, Reserve assets para 2024-Q3, +2.3σ respecto a su trayectoria reciente.",
-      "en": "MEX recorded 231867000000 USD in IIP, Reserve assets for 2024-Q3, +2.3σ from its recent trajectory."
+      "es": "Incrementó notablemente el valor de los activos reservados de México en septiembre de 2026.",
+      "en": "Notably increased the value of reserve assets in Mexico in September 2026."
     },
     "narrative_journalist": {
-      "es": "Detección automática: MEX 231867000000 USD en IIP, Reserve assets (2024-Q3). z-score +2.3σ vs ventana de 5 puntos previos.",
-      "en": "Auto-detected: MEX 231867000000 USD in IIP, Reserve assets (2024-Q3). z-score +2.3σ against 5-point baseline."
+      "es": "El valor de los activos reservados de México aumentó en 231867 millones de dólares en septiembre de 2026, un incremento del 23.4% respecto al trimestre anterior.",
+      "en": "The value of Mexico's reserve assets rose to 231867 million USD in September 2026, a 23.4% increase from the previous quarter."
     },
     "claim_tokens": [
       {
         "claim_id": "6ddf602613b272ec",
         "value": 231867000000,
-        "display_es": "231867000000 USD",
-        "display_en": "231867000000 USD"
+        "display_es": "231867 millones de dólares",
+        "display_en": "231867 million USD"
+      },
+      {
+        "claim_id": "3ba110917fb35fe6",
+        "value": 225876000000,
+        "display_es": "225.876.000.000,00 USD",
+        "display_en": "225,876,000,000.00 USD"
       }
-    ]
+    ],
+    "data_period_stale": true
   },
   {
-    "id": "alert_2026-05-21_036",
+    "id": "alert_2026-05-22_036",
     "type": "anomaly",
     "country": "MEX",
     "category": "economy",
@@ -723,7 +761,19 @@
     "observation": {
       "value": 231867000000,
       "time_period": "2024-Q3",
-      "unit": "USD"
+      "unit": "USD",
+      "display": {
+        "es": "231867 millones de dólares",
+        "en": "231867 million USD"
+      },
+      "period_display": {
+        "es": "T3 2024",
+        "en": "Q3 2024"
+      },
+      "period_narrative": {
+        "es": "T3 de 2024",
+        "en": "Q3 2024"
+      }
     },
     "magnitude": {
       "es": "+14.1σ",
@@ -1079,26 +1129,27 @@
     "verification_trace": {
       "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/IMF_BOP",
       "csv_link": "https://data360files.worldbank.org/data360-data/data/IMF_BOP/IMF_BOP_IR_BP6.csv",
-      "methodology_ref": "https://www.imf.org/external/pubs/ft/bopman/bopman.pdf"
+      "methodology_ref": "https://data.imf.org/?sk=7a51304b-6426-40c0-83dd-ca473ca1fd52"
     },
     "score": 1,
-    "detected_at": "2026-05-21T20:27:18.956Z",
+    "detected_at": "2026-05-22T00:21:20.836Z",
     "license": "License Specified Externally",
     "narrative_citizen": {
-      "es": "MEX registró 231867000000 USD en IIP, Reserve assets para 2024-Q3, +14.1σ respecto a su trayectoria reciente.",
-      "en": "MEX recorded 231867000000 USD in IIP, Reserve assets for 2024-Q3, +14.1σ from its recent trajectory."
+      "es": "Superó significativamente la mediana regional el valor de los activos reservados de México en septiembre de 2026.",
+      "en": "Significantly exceeded the regional median the value of reserve assets in Mexico in September 2026."
     },
     "narrative_journalist": {
-      "es": "Detección automática: MEX 231867000000 USD en IIP, Reserve assets (2024-Q3). z-score +14.1σ vs ventana de 5 puntos previos.",
-      "en": "Auto-detected: MEX 231867000000 USD in IIP, Reserve assets (2024-Q3). z-score +14.1σ against 5-point baseline."
+      "es": "El valor de los activos reservados de México en septiembre de 2026 fue de 231867 millones de dólares, superando en 14.14 veces la mediana regional de 17878.445 millones de dólares.",
+      "en": "The value of Mexico's reserve assets in September 2026 was 231867 million USD, exceeding the regional median of 17878.445 million USD by 14.14 times."
     },
     "claim_tokens": [
       {
         "claim_id": "6ddf602613b272ec",
         "value": 231867000000,
-        "display_es": "231867000000 USD",
-        "display_en": "231867000000 USD"
+        "display_es": "231867 millones de dólares",
+        "display_en": "231867 million USD"
       }
-    ]
+    ],
+    "data_period_stale": true
   }
 ]

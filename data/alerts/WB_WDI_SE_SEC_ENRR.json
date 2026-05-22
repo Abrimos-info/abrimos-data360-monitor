@@ -1,6 +1,6 @@
 [
   {
-    "id": "alert_2026-05-21_008",
+    "id": "alert_2026-05-22_008",
     "type": "abrupt_change",
     "country": "ARG",
     "category": "education",
@@ -15,7 +15,19 @@
     "observation": {
       "value": 105.574584,
       "time_period": "2023",
-      "unit": "%"
+      "unit": "%",
+      "display": {
+        "es": "105,57 %",
+        "en": "105.57 %"
+      },
+      "period_display": {
+        "es": "2023",
+        "en": "2023"
+      },
+      "period_narrative": {
+        "es": "2023",
+        "en": "2023"
+      }
     },
     "magnitude": {
       "es": "−2.7σ",
@@ -227,30 +239,37 @@
     "verification_trace": {
       "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/WB_WDI",
       "csv_link": "https://data360files.worldbank.org/data360-data/data/WB_WDI/WB_WDI_SE_SEC_ENRR.csv",
-      "methodology_ref": "https://databrowser.uis.unesco.org/resources)"
+      "methodology_ref": "https://databrowser.uis.unesco.org/resources"
     },
     "score": 0.6854336580193369,
-    "detected_at": "2026-05-21T20:27:18.952Z",
+    "detected_at": "2026-05-22T00:21:20.831Z",
     "license": "CC BY-4.0",
     "narrative_citizen": {
-      "es": "ARG registró 105.574584 % en School enrollment, secondary (% gross) para 2023, −2.7σ respecto a su trayectoria reciente.",
-      "en": "ARG recorded 105.574584 % in School enrollment, secondary (% gross) for 2023, −2.7σ from its recent trajectory."
+      "es": "Cayó drásticamente el matrícula secundaria bruta (%) en Argentina en 2023.",
+      "en": "Fell sharply for School enrollment, secondary (% gross) in Argentina in 2023."
     },
     "narrative_journalist": {
-      "es": "Detección automática: ARG 105.574584 % en School enrollment, secondary (% gross) (2023). z-score −2.7σ vs ventana de 5 puntos previos.",
-      "en": "Auto-detected: ARG 105.574584 % in School enrollment, secondary (% gross) (2023). z-score −2.7σ against 5-point baseline."
+      "es": "Argentina el matrícula secundaria bruta (%) 105,57 % en 2023, frente a 114,15 % en 2022. Cambio −7,5 % con z-score −2,7σ sobre la ventana móvil de 5 puntos.",
+      "en": "Argentina School enrollment, secondary (% gross) reached 105.57 % in 2023 versus 114.15 % in 2022. Change of −7.5 %, z-score −2.7σ over the 5-point rolling baseline."
     },
     "claim_tokens": [
       {
         "claim_id": "ae359bf56cb87bb6",
         "value": 105.574584,
-        "display_es": "105.574584 %",
-        "display_en": "105.574584 %"
+        "display_es": "105,57 %",
+        "display_en": "105.57 %"
+      },
+      {
+        "claim_id": "4442c589960ecfeb",
+        "value": 114.148117,
+        "display_es": "114,15 %",
+        "display_en": "114.15 %"
       }
-    ]
+    ],
+    "data_period_stale": true
   },
   {
-    "id": "alert_2026-05-21_009",
+    "id": "alert_2026-05-22_009",
     "type": "abrupt_change",
     "country": "ECU",
     "category": "education",
@@ -265,7 +284,19 @@
     "observation": {
       "value": 92.811803,
       "time_period": "2023",
-      "unit": "%"
+      "unit": "%",
+      "display": {
+        "es": "92,81 %",
+        "en": "92.81 %"
+      },
+      "period_display": {
+        "es": "2023",
+        "en": "2023"
+      },
+      "period_narrative": {
+        "es": "2023",
+        "en": "2023"
+      }
     },
     "magnitude": {
       "es": "−3.2σ",
@@ -369,30 +400,37 @@
     "verification_trace": {
       "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/WB_WDI",
       "csv_link": "https://data360files.worldbank.org/data360-data/data/WB_WDI/WB_WDI_SE_SEC_ENRR.csv",
-      "methodology_ref": "https://databrowser.uis.unesco.org/resources)"
+      "methodology_ref": "https://databrowser.uis.unesco.org/resources"
     },
     "score": 0.7951450199904987,
-    "detected_at": "2026-05-21T20:27:18.952Z",
+    "detected_at": "2026-05-22T00:21:20.831Z",
     "license": "CC BY-4.0",
     "narrative_citizen": {
-      "es": "ECU registró 92.811803 % en School enrollment, secondary (% gross) para 2023, −3.2σ respecto a su trayectoria reciente.",
-      "en": "ECU recorded 92.811803 % in School enrollment, secondary (% gross) for 2023, −3.2σ from its recent trajectory."
+      "es": "Cayó drásticamente el matrícula secundaria bruta (%) en Ecuador en 2023.",
+      "en": "Fell sharply for School enrollment, secondary (% gross) in Ecuador in 2023."
     },
     "narrative_journalist": {
-      "es": "Detección automática: ECU 92.811803 % en School enrollment, secondary (% gross) (2023). z-score −3.2σ vs ventana de 5 puntos previos.",
-      "en": "Auto-detected: ECU 92.811803 % in School enrollment, secondary (% gross) (2023). z-score −3.2σ against 5-point baseline."
+      "es": "Ecuador el matrícula secundaria bruta (%) 92,81 % en 2023, frente a 94,13 % en 2022. Cambio −1,4 % con z-score −3,2σ sobre la ventana móvil de 5 puntos.",
+      "en": "Ecuador School enrollment, secondary (% gross) reached 92.81 % in 2023 versus 94.13 % in 2022. Change of −1.4 %, z-score −3.2σ over the 5-point rolling baseline."
     },
     "claim_tokens": [
       {
         "claim_id": "b5323ecd4c415951",
         "value": 92.811803,
-        "display_es": "92.811803 %",
-        "display_en": "92.811803 %"
+        "display_es": "92,81 %",
+        "display_en": "92.81 %"
+      },
+      {
+        "claim_id": "95a57ea9e94ac80f",
+        "value": 94.133531,
+        "display_es": "94,13 %",
+        "display_en": "94.13 %"
       }
-    ]
+    ],
+    "data_period_stale": true
   },
   {
-    "id": "alert_2026-05-21_027",
+    "id": "alert_2026-05-22_027",
     "type": "anomaly",
     "country": "MEX",
     "category": "education",
@@ -407,7 +445,19 @@
     "observation": {
       "value": 103.093323,
       "time_period": "2024",
-      "unit": "%"
+      "unit": "%",
+      "display": {
+        "es": "103,09 %",
+        "en": "103.09 %"
+      },
+      "period_display": {
+        "es": "2024",
+        "en": "2024"
+      },
+      "period_narrative": {
+        "es": "2024",
+        "en": "2024"
+      }
     },
     "magnitude": {
       "es": "+15.8σ",
@@ -519,26 +569,27 @@
     "verification_trace": {
       "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/WB_WDI",
       "csv_link": "https://data360files.worldbank.org/data360-data/data/WB_WDI/WB_WDI_SE_SEC_ENRR.csv",
-      "methodology_ref": "https://databrowser.uis.unesco.org/resources)"
+      "methodology_ref": "https://databrowser.uis.unesco.org/resources"
     },
     "score": 1,
-    "detected_at": "2026-05-21T20:27:18.955Z",
+    "detected_at": "2026-05-22T00:21:20.835Z",
     "license": "CC BY-4.0",
     "narrative_citizen": {
-      "es": "MEX registró 103.093323 % en School enrollment, secondary (% gross) para 2024, +15.8σ respecto a su trayectoria reciente.",
-      "en": "MEX recorded 103.093323 % in School enrollment, secondary (% gross) for 2024, +15.8σ from its recent trajectory."
+      "es": "Superó ampliamente la mediana regional el matrícula secundaria bruta (%) en México en 2024.",
+      "en": "School enrollment, secondary (% gross) rose far above the regional median in Mexico in 2024."
     },
     "narrative_journalist": {
-      "es": "Detección automática: MEX 103.093323 % en School enrollment, secondary (% gross) (2024). z-score +15.8σ vs ventana de 5 puntos previos.",
-      "en": "Auto-detected: MEX 103.093323 % in School enrollment, secondary (% gross) (2024). z-score +15.8σ against 5-point baseline."
+      "es": "México el matrícula secundaria bruta (%) 103,09 % en 2024; mediana regional de 51,76 %. Brecha +15,8σ (escala MAD) entre los 5 países del scope LAC.",
+      "en": "Mexico School enrollment, secondary (% gross) at 103.09 % in 2024, regional median 51.76 %. Gap of +15.8σ (MAD scale) within the 5 LAC countries in scope."
     },
     "claim_tokens": [
       {
         "claim_id": "6999eae242ea1027",
         "value": 103.093323,
-        "display_es": "103.093323 %",
-        "display_en": "103.093323 %"
+        "display_es": "103,09 %",
+        "display_en": "103.09 %"
       }
-    ]
+    ],
+    "data_period_stale": true
   }
 ]

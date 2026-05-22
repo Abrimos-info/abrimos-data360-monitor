@@ -1,6 +1,6 @@
 [
   {
-    "id": "alert_2026-05-21_019",
+    "id": "alert_2026-05-22_019",
     "type": "abrupt_change",
     "country": "ARG",
     "category": "economy",
@@ -15,7 +15,19 @@
     "observation": {
       "value": 72.431,
       "time_period": "2022",
-      "unit": "PC"
+      "unit": "PC",
+      "display": {
+        "es": "72.431 %",
+        "en": "72.431 %"
+      },
+      "period_display": {
+        "es": "2022",
+        "en": "2022"
+      },
+      "period_narrative": {
+        "es": "2022",
+        "en": "2022"
+      }
     },
     "magnitude": {
       "es": "+2.8σ",
@@ -117,27 +129,34 @@
       "csv_link": "https://data360files.worldbank.org/data360-data/data/IMF_WEO/IMF_WEO_PCPIPCH.csv"
     },
     "score": 0.7124930810945327,
-    "detected_at": "2026-05-21T20:27:18.954Z",
+    "detected_at": "2026-05-22T00:21:20.834Z",
     "license": "License Specified Externally",
     "narrative_citizen": {
-      "es": "ARG registró 72.431 PC en Inflation, average consumer prices, Percent change para 2022, +2.8σ respecto a su trayectoria reciente.",
-      "en": "ARG recorded 72.431 PC in Inflation, average consumer prices, Percent change for 2022, +2.8σ from its recent trajectory."
+      "es": "Aumentó drásticamente la inflación en Argentina en 2022.",
+      "en": "Inflation in Argentina surged dramatically in 2022."
     },
     "narrative_journalist": {
-      "es": "Detección automática: ARG 72.431 PC en Inflation, average consumer prices, Percent change (2022). z-score +2.8σ vs ventana de 5 puntos previos.",
-      "en": "Auto-detected: ARG 72.431 PC in Inflation, average consumer prices, Percent change (2022). z-score +2.8σ against 5-point baseline."
+      "es": "La inflación en Argentina alcanzó niveles alarmantes en 2022, con un z-score de 2.85.",
+      "en": "Inflation in Argentina reached alarming levels in 2022, with a z-score of 2.85."
     },
     "claim_tokens": [
       {
         "claim_id": "d53704c66d869c55",
         "value": 72.431,
-        "display_es": "72.431 PC",
-        "display_en": "72.431 PC"
+        "display_es": "72.431 %",
+        "display_en": "72.431 %"
+      },
+      {
+        "claim_id": "e8e6fc9559676745",
+        "value": 48.409,
+        "display_es": "48,41 PC",
+        "display_en": "48.41 PC"
       }
-    ]
+    ],
+    "data_period_stale": true
   },
   {
-    "id": "alert_2026-05-21_041",
+    "id": "alert_2026-05-22_041",
     "type": "anomaly",
     "country": "ECU",
     "category": "economy",
@@ -152,7 +171,19 @@
     "observation": {
       "value": 2.216,
       "time_period": "2023",
-      "unit": "PC"
+      "unit": "PC",
+      "display": {
+        "es": "2.216 %",
+        "en": "2.216 %"
+      },
+      "period_display": {
+        "es": "2023",
+        "en": "2023"
+      },
+      "period_narrative": {
+        "es": "2023",
+        "en": "2023"
+      }
     },
     "magnitude": {
       "es": "−4.3σ",
@@ -342,23 +373,24 @@
       "csv_link": "https://data360files.worldbank.org/data360-data/data/IMF_WEO/IMF_WEO_PCPIPCH.csv"
     },
     "score": 1,
-    "detected_at": "2026-05-21T20:27:18.956Z",
+    "detected_at": "2026-05-22T00:21:20.837Z",
     "license": "License Specified Externally",
     "narrative_citizen": {
-      "es": "ECU registró 2.216 PC en Inflation, average consumer prices, Percent change para 2023, −4.3σ respecto a su trayectoria reciente.",
-      "en": "ECU recorded 2.216 PC in Inflation, average consumer prices, Percent change for 2023, −4.3σ from its recent trajectory."
+      "es": "La inflación en Ecuador quedó muy por debajo de la media regional en 2023.",
+      "en": "Inflation in Ecuador was significantly below the regional median in 2023."
     },
     "narrative_journalist": {
-      "es": "Detección automática: ECU 2.216 PC en Inflation, average consumer prices, Percent change (2023). z-score −4.3σ vs ventana de 5 puntos previos.",
-      "en": "Auto-detected: ECU 2.216 PC in Inflation, average consumer prices, Percent change (2023). z-score −4.3σ against 5-point baseline."
+      "es": "La inflación en Ecuador registró un valor de 2.216 % en 2023, muy por debajo de la mediana regional de 5.867 %.",
+      "en": "Inflation in Ecuador recorded a value of 2.216% in 2023, well below the regional median of 5.867%."
     },
     "claim_tokens": [
       {
         "claim_id": "314f0022ae1ce045",
         "value": 2.216,
-        "display_es": "2.216 PC",
-        "display_en": "2.216 PC"
+        "display_es": "2.216 %",
+        "display_en": "2.216 %"
       }
-    ]
+    ],
+    "data_period_stale": true
   }
 ]

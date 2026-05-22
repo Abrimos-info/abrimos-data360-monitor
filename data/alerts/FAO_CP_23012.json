@@ -1,6 +1,6 @@
 [
   {
-    "id": "alert_2026-05-21_012",
+    "id": "alert_2026-05-22_012",
     "type": "abrupt_change",
     "country": "ARG",
     "category": "economy",
@@ -15,7 +15,19 @@
     "observation": {
       "value": 11322.289801,
       "time_period": "2025-09-01",
-      "unit": "IX"
+      "unit": "IX",
+      "display": {
+        "es": "11.322,29 (índice)",
+        "en": "11,322.29 (index)"
+      },
+      "period_display": {
+        "es": "sep 2025",
+        "en": "Sep 2025"
+      },
+      "period_narrative": {
+        "es": "septiembre de 2025",
+        "en": "September 2025"
+      }
     },
     "magnitude": {
       "es": "+2.1σ",
@@ -1263,30 +1275,31 @@
     "verification_trace": {
       "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/FAO_CP",
       "csv_link": "https://data360files.worldbank.org/data360-data/data/FAO_CP/FAO_CP_23012.csv",
-      "methodology_ref": "https://www.fao.org)"
+      "methodology_ref": "https://www.fao.org"
     },
     "score": 0.5273954008131964,
-    "detected_at": "2026-05-21T20:27:18.953Z",
+    "detected_at": "2026-05-22T01:17:29.489Z",
     "license": "CC BY 4.0",
     "narrative_citizen": {
-      "es": "ARG registró 11322.289801 IX en Consumer Prices, General Indices (2015 = 100) para 2025-09-01, +2.1σ respecto a su trayectoria reciente.",
-      "en": "ARG recorded 11322.289801 IX in Consumer Prices, General Indices (2015 = 100) for 2025-09-01, +2.1σ from its recent trajectory."
+      "es": "Subió drásticamente el índice de precios generales en Argentina en septiembre de 2025.",
+      "en": "The general consumer price index in Argentina surged sharply in September 2025."
     },
     "narrative_journalist": {
-      "es": "Detección automática: ARG 11322.289801 IX en Consumer Prices, General Indices (2015 = 100) (2025-09-01). z-score +2.1σ vs ventana de 5 puntos previos.",
-      "en": "Auto-detected: ARG 11322.289801 IX in Consumer Prices, General Indices (2015 = 100) (2025-09-01). z-score +2.1σ against 5-point baseline."
+      "es": "El índice de precios generales en Argentina registró un aumento del 2.11σ en septiembre de 2025.",
+      "en": "Argentina's general consumer price index saw a significant increase of 2.11σ in September 2025."
     },
     "claim_tokens": [
       {
         "claim_id": "d4aab454133fb62a",
         "value": 11322.289801,
-        "display_es": "11322.289801 IX",
-        "display_en": "11322.289801 IX"
+        "display_es": "11.322,29 (índice)",
+        "display_en": "11,322.29 (index)"
       }
-    ]
+    ],
+    "data_period_stale": false
   },
   {
-    "id": "alert_2026-05-21_032",
+    "id": "alert_2026-05-22_032",
     "type": "anomaly",
     "country": "ARG",
     "category": "economy",
@@ -1301,7 +1314,19 @@
     "observation": {
       "value": 11322.289801,
       "time_period": "2025-09-01",
-      "unit": "IX"
+      "unit": "IX",
+      "display": {
+        "es": "11.322,29 (índice)",
+        "en": "11,322.29 (index)"
+      },
+      "period_display": {
+        "es": "sep 2025",
+        "en": "Sep 2025"
+      },
+      "period_narrative": {
+        "es": "septiembre de 2025",
+        "en": "September 2025"
+      }
     },
     "magnitude": {
       "es": "+678.3σ",
@@ -2549,30 +2574,31 @@
     "verification_trace": {
       "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/FAO_CP",
       "csv_link": "https://data360files.worldbank.org/data360-data/data/FAO_CP/FAO_CP_23012.csv",
-      "methodology_ref": "https://www.fao.org)"
+      "methodology_ref": "https://www.fao.org"
     },
     "score": 1,
-    "detected_at": "2026-05-21T20:27:18.955Z",
+    "detected_at": "2026-05-22T01:17:29.490Z",
     "license": "CC BY 4.0",
     "narrative_citizen": {
-      "es": "ARG registró 11322.289801 IX en Consumer Prices, General Indices (2015 = 100) para 2025-09-01, +678.3σ respecto a su trayectoria reciente.",
-      "en": "ARG recorded 11322.289801 IX in Consumer Prices, General Indices (2015 = 100) for 2025-09-01, +678.3σ from its recent trajectory."
+      "es": "Superó con creces la mediana regional el índice de precios generales en Argentina en septiembre de 2025.",
+      "en": "Argentina's general consumer price index significantly exceeded the regional median in September 2025."
     },
     "narrative_journalist": {
-      "es": "Detección automática: ARG 11322.289801 IX en Consumer Prices, General Indices (2015 = 100) (2025-09-01). z-score +678.3σ vs ventana de 5 puntos previos.",
-      "en": "Auto-detected: ARG 11322.289801 IX in Consumer Prices, General Indices (2015 = 100) (2025-09-01). z-score +678.3σ against 5-point baseline."
+      "es": "El índice de precios generales en Argentina superó la mediana regional en 678.28σ en septiembre de 2025.",
+      "en": "Argentina's general consumer price index surpassed the regional median by 678.28σ in September 2025."
     },
     "claim_tokens": [
       {
         "claim_id": "d4aab454133fb62a",
         "value": 11322.289801,
-        "display_es": "11322.289801 IX",
-        "display_en": "11322.289801 IX"
+        "display_es": "11.322,29 (índice)",
+        "display_en": "11,322.29 (index)"
       }
-    ]
+    ],
+    "data_period_stale": false
   },
   {
-    "id": "alert_2026-05-21_033",
+    "id": "alert_2026-05-22_033",
     "type": "anomaly",
     "country": "ECU",
     "category": "economy",
@@ -2587,7 +2613,19 @@
     "observation": {
       "value": 111.218491,
       "time_period": "2025-09-01",
-      "unit": "IX"
+      "unit": "IX",
+      "display": {
+        "es": "111,22 (índice)",
+        "en": "111.22 (index)"
+      },
+      "period_display": {
+        "es": "sep 2025",
+        "en": "Sep 2025"
+      },
+      "period_narrative": {
+        "es": "septiembre de 2025",
+        "en": "September 2025"
+      }
     },
     "magnitude": {
       "es": "−3.0σ",
@@ -3835,26 +3873,27 @@
     "verification_trace": {
       "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/FAO_CP",
       "csv_link": "https://data360files.worldbank.org/data360-data/data/FAO_CP/FAO_CP_23012.csv",
-      "methodology_ref": "https://www.fao.org)"
+      "methodology_ref": "https://www.fao.org"
     },
     "score": 0.7568291577498223,
-    "detected_at": "2026-05-21T20:27:18.955Z",
+    "detected_at": "2026-05-22T01:17:29.490Z",
     "license": "CC BY 4.0",
     "narrative_citizen": {
-      "es": "ECU registró 111.218491 IX en Consumer Prices, General Indices (2015 = 100) para 2025-09-01, −3.0σ respecto a su trayectoria reciente.",
-      "en": "ECU recorded 111.218491 IX in Consumer Prices, General Indices (2015 = 100) for 2025-09-01, −3.0σ from its recent trajectory."
+      "es": "Estuvo muy por debajo de la mediana regional el índice de precios generales en Ecuador en septiembre de 2025.",
+      "en": "Ecuador's general consumer price index was significantly below the regional median in September 2025."
     },
     "narrative_journalist": {
-      "es": "Detección automática: ECU 111.218491 IX en Consumer Prices, General Indices (2015 = 100) (2025-09-01). z-score −3.0σ vs ventana de 5 puntos previos.",
-      "en": "Auto-detected: ECU 111.218491 IX in Consumer Prices, General Indices (2015 = 100) (2025-09-01). z-score −3.0σ against 5-point baseline."
+      "es": "El índice de precios generales en Ecuador estuvo 3.03σ por debajo de la mediana regional en septiembre de 2025.",
+      "en": "Ecuador's general consumer price index was 3.03σ below the regional median in September 2025."
     },
     "claim_tokens": [
       {
         "claim_id": "f8b1748b041661b9",
         "value": 111.218491,
-        "display_es": "111.218491 IX",
-        "display_en": "111.218491 IX"
+        "display_es": "111,22 (índice)",
+        "display_en": "111.22 (index)"
       }
-    ]
+    ],
+    "data_period_stale": false
   }
 ]

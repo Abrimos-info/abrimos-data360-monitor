@@ -1,0 +1,29 @@
+mixin chatFreshnessPanel(catalog, demoCountries, lang, _, freshnessProbedAt, freshPrompt, freshnessMoreLabel)
+  section.d360-fresh
+    div.d360-fresh__head
+      div.d360-fresh__headtext
+        h2.d360-fresh__title= _("chat.freshness_title", lang)
+        if freshnessProbedAt
+          p.d360-fresh__meta= _("chat.freshness_probed", lang) + " " + freshnessProbedAt.slice(0, 16).replace("T", " ") + " UTC"
+      span.d360-fresh__badge= catalog.length
+    p.d360-fresh__lead= _("chat.freshness_help", lang)
+    div.d360-fresh__toolbar
+      label.d360-fresh__country-label(for="d360-freshness-country")= _("chat.freshness_country", lang)
+      select.d360-freshness-country.d360-fresh__country(name="freshness-country" aria-label=_("chat.freshness_country", lang))
+        each iso in demoCountries
+          option(value=iso selected=(iso === "ARG"))= iso
+    div.d360-fresh__list
+      each ind in catalog.slice(0, 6)
+        article.d360-fresh__item(data-idno=ind.idno)
+          div.d360-fresh__item-top
+            span(class="d360-fresh__tier d360-fresh__tier--" + ind.tier)= ind.tier
+            code.d360-fresh__idno= ind.idno
+            span.d360-fresh__date= ind.blob_date
+          h3.d360-fresh__name= ind.label
+          div.d360-fresh__actions
+            button.d360-fresh__btn(type="button" data-action="chart")= _("chat.freshness_chart", lang)
+            button.d360-fresh__btn.d360-fresh__btn--analysis(type="button" data-action="analyze")= _("chat.freshness_analyze", lang)
+    if catalog.length > 6
+      p.d360-fresh__more= freshnessMoreLabel
+    if freshPrompt
+      button.d360-fresh__catalog(type="button" data-prompt=freshPrompt)= _("chat.freshness_catalog_btn", lang)

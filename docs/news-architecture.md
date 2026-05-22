@@ -39,7 +39,9 @@ Advantages:
 
 Limitation: coverage is weakest for HND and GTM (fewer indexed outlets); English-language international press (Reuters, AP) tends to dominate for those two. Mitigated by adding `lang:es` filter and country-specific query terms (see §11 Risks).
 
-### Fallback: Google News RSS
+### Fallback: Google News RSS (roadmap — not implemented)
+
+> **Demo code** uses GDELT only (`lib/news-fetch.js`). The RSS path below is design intent (D-030); `rss-parser` is listed in `package.json` but unused.
 
 URL pattern: `https://news.google.com/rss/search?q={country_name}&hl=es-{cc}&gl={CC}&ceid={CC}:es`
 
@@ -173,7 +175,7 @@ A lightweight pass using LAIA (Qwen 2.5 14B, zero cost) can label each headline 
 | Concern | Library | Notes |
 |---------|---------|-------|
 | HTTP | `axios` | Already in use; add timeout + retry (3×, exponential backoff) |
-| RSS parsing | `rss-parser` (npm) | Fallback only; lightweight, no native deps |
+| RSS parsing | `rss-parser` (npm) | Planned fallback only; not wired in demo |
 | GDELT response | `JSON.parse` | GDELT artlist mode returns JSON directly |
 | Deduplication | SHA-1 via `crypto` (Node built-in) | Hash of normalized URL |
 | JSONL write | `fs.appendFileSync` | One line per headline; atomic per record |
@@ -205,7 +207,7 @@ New file: `bin/fetch-news.js`. Entry point: `node bin/fetch-news.js --countries 
 | Risk | Severity | Mitigation |
 |------|----------|------------|
 | GDELT coverage weak for HND, GTM | Medium | Augment query with country-specific terms (`"Honduras" OR "Guatemala"`) and add English-language results as secondary query |
-| GDELT API down at demo run | Low | Run 1 week before submission; cache result; fallback to Google News RSS |
+| GDELT API down at demo run | Low | Run 1 week before submission; cache result; Google News RSS fallback remains roadmap (not in demo code) |
 | Capital-city media bias | Medium | Accept for demo; note in `docs/sustainability-plan.md` as known limitation |
 | Spanish-only coverage misses English reports on LAC | Low | Add `SOURCELANG:English` secondary query for international outlets (Reuters, AP Latin America) |
 | Censored or non-indexed outlets (HND, GTM in particular) | High | Acknowledge in limitations; propose direct RSS of El Faro, Plaza Pública as supplement in production |
@@ -216,4 +218,4 @@ New file: `bin/fetch-news.js`. Entry point: `node bin/fetch-news.js --countries 
 
 ## Proposed D-030
 
-> **D-030** | News subsystem: GDELT DOC API v2 as primary source (free, historical, Spanish-filtered by country); Google News RSS as fallback; headlines stored as `data/news/{COUNTRY}/{YYYY-MM}.jsonl`; injected in omnibus context as §6 (max 8 per country); no enrichment in demo; Strategy 2 activation deferred to production.
+> **D-030** | News subsystem: GDELT DOC API v2 as primary source (free, historical, Spanish-filtered by country); Google News RSS as **planned** fallback (not implemented in demo); headlines stored as `data/news/{COUNTRY}/{YYYY-MM}.jsonl`; injected in omnibus context as §6 (max 8 per country); no enrichment in demo; Strategy 2 activation deferred to production.

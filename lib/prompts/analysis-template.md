@@ -62,7 +62,7 @@ Reglas:
 - Máximo 2 alertas por país.
 - Máximo 7 alertas totales.
 - Cada `alert.claim_tokens` referencia los `claim_id` usados en las dos narrativas de esa alerta.
-- `narrative_citizen` es para audiencia general no técnica. `narrative_journalist` es para periodistas y puede incluir terminología más específica (z-score, mediana regional, percentil).
+- `narrative_citizen` es para audiencia general no técnica. En **es**, la oración debe empezar con el verbo (estilo titular: "Aumentó...", "Cayó...", "Superó la mediana regional..."). `narrative_journalist` es para periodistas y puede incluir terminología más específica (z-score, mediana regional, percentil).
 - Las dos narrativas no superan 300 caracteres cada una.
 
 No incluyas bloque `source` aquí. Las alertas son auto-suficientes con su `verification_trace`.

@@ -1,6 +1,6 @@
 [
   {
-    "id": "alert_2026-05-21_037",
+    "id": "alert_2026-05-22_037",
     "type": "anomaly",
     "country": "MEX",
     "category": "economy",
@@ -15,7 +15,19 @@
     "observation": {
       "value": 186184000000,
       "time_period": "2024-Q3",
-      "unit": "USD"
+      "unit": "USD",
+      "display": {
+        "es": "186,184 millones USD",
+        "en": "186,184 million USD"
+      },
+      "period_display": {
+        "es": "T3 2024",
+        "en": "Q3 2024"
+      },
+      "period_narrative": {
+        "es": "T3 de 2024",
+        "en": "Q3 2024"
+      }
     },
     "magnitude": {
       "es": "+6.0σ",
@@ -371,26 +383,27 @@
     "verification_trace": {
       "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/IMF_BOP",
       "csv_link": "https://data360files.worldbank.org/data360-data/data/IMF_BOP/IMF_BOP_IPDG_BP6.csv",
-      "methodology_ref": "https://www.imf.org/external/pubs/ft/bopman/bopman.pdf"
+      "methodology_ref": "https://data.imf.org/?sk=7a51304b-6426-40c0-83dd-ca473ca1fd52"
     },
     "score": 1,
-    "detected_at": "2026-05-21T20:27:18.956Z",
+    "detected_at": "2026-05-22T00:21:20.836Z",
     "license": "License Specified Externally",
     "narrative_citizen": {
-      "es": "MEX registró 186184000000 USD en IIP, Portfolio investment, Debt securities, General government para 2024-Q3, +6.0σ respecto a su trayectoria reciente.",
-      "en": "MEX recorded 186184000000 USD in IIP, Portfolio investment, Debt securities, General government for 2024-Q3, +6.0σ from its recent trajectory."
+      "es": "La deuda pública de México alcanzó 186,184 millones USD en el tercer trimestre de 2024, superando la mediana regional.",
+      "en": "Mexico's public debt reached 186,184 million USD in the third quarter of 2024, surpassing the regional median."
     },
     "narrative_journalist": {
-      "es": "Detección automática: MEX 186184000000 USD en IIP, Portfolio investment, Debt securities, General government (2024-Q3). z-score +6.0σ vs ventana de 5 puntos previos.",
-      "en": "Auto-detected: MEX 186184000000 USD in IIP, Portfolio investment, Debt securities, General government (2024-Q3). z-score +6.0σ against 5-point baseline."
+      "es": "La deuda pública de México alcanzó 186,184 millones USD en el tercer trimestre de 2024, con un z-score de 6.04, superando la mediana regional de 26,529 millones USD.",
+      "en": "Mexico's public debt reached 186,184 million USD in the third quarter of 2024, with a z-score of 6.04, surpassing the regional median of 26,529 million USD."
     },
     "claim_tokens": [
       {
         "claim_id": "a22dcf986bb532f3",
         "value": 186184000000,
-        "display_es": "186184000000 USD",
-        "display_en": "186184000000 USD"
+        "display_es": "186,184 millones USD",
+        "display_en": "186,184 million USD"
       }
-    ]
+    ],
+    "data_period_stale": true
   }
 ]

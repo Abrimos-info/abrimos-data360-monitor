@@ -1,390 +1,611 @@
    1: # CONTEXTO INTEGRADO PARA ANÁLISIS DE INDICADOR
    2: 
    3: 
-   4: ## Indicador
+   4: ## Definición y metodología
    5: 
-   6: - idno: IMF_BOP_BFP_BP6
-   7: - database_id: IMF_BOP
-   8: - nombre: BOP, Financial Account, Portfolio investment
-   9: - periodicidad: Annual, Quarterly
-  10: - dataset URL: https://data360.worldbank.org/en/int/dataset/IMF_BOP
-  11: - CSV bulk: https://data360files.worldbank.org/data360-data/data/IMF_BOP/IMF_BOP_BFP_BP6.csv
-  12: 
-  13: ## Definición y metodología
-  14: 
-  15: # BOP, Financial Account, Portfolio investment
-  16: 
-  17: > Portfolio investment, net (BOP financial account)
+   6: # BOP, Financial Account, Portfolio investment
+   7: 
+   8: > Portfolio investment, net (BOP financial account)
+   9: 
+  10: ## Identification
+  11: 
+  12: - **idno**: `IMF_BOP_BFP_BP6`
+  13: - **database_id**: `IMF_BOP`
+  14: - **database**: Balance of Payments (BOP) and International Investment Position (IIP)
+  15: - **periodicity**: Annual, Quarterly
+  16: - **unit**: USD, Euros, LCU
+  17: - **confidentiality**: PU
   18: 
-  19: ## Identification
+  19: ## License
   20: 
-  21: - **idno**: `IMF_BOP_BFP_BP6`
-  22: - **database_id**: `IMF_BOP`
-  23: - **database**: Balance of Payments (BOP) and International Investment Position (IIP)
-  24: - **periodicity**: Annual, Quarterly
-  25: - **unit**: USD, Euros, LCU
-  26: - **confidentiality**: PU
-  27: 
-  28: ## License
-  29: 
-  30: - **name**: License Specified Externally
-  31: - **uri**: https://www.imf.org/external/terms.htm
+  21: - **name**: License Specified Externally
+  22: - **uri**: https://www.imf.org/external/terms.htm
+  23: 
+  24: ## Links
+  25: 
+  26: - **csv**: https://data360files.worldbank.org/data360-data/data/IMF_BOP/IMF_BOP_BFP_BP6.csv
+  27: - **json metadata**: https://data360files.worldbank.org/data360-data/metadata/IMF_BOP/IMF_BOP_BFP_BP6.json
+  28: - **api template**: https://data360api.worldbank.org/data360/data?top=1000&skip=0&DATABASE_ID=IMF_BOP&INDICATOR=IMF_BOP_BFP_BP6
+  29: - **dataset on Data360**: https://data360.worldbank.org/en/int/dataset/IMF_BOP
+  30: 
+  31: ## Definition
   32: 
-  33: ## Links
+  33: Please refer to: https://data.imf.org/en/datasets/IMF.STA:BOP_AGG
   34: 
-  35: - **csv**: https://data360files.worldbank.org/data360-data/data/IMF_BOP/IMF_BOP_BFP_BP6.csv
-  36: - **json metadata**: https://data360files.worldbank.org/data360-data/metadata/IMF_BOP/IMF_BOP_BFP_BP6.json
-  37: - **api template**: https://data360api.worldbank.org/data360/data?top=1000&skip=0&DATABASE_ID=IMF_BOP&INDICATOR=IMF_BOP_BFP_BP6
-  38: - **dataset on Data360**: https://data360.worldbank.org/en/int/dataset/IMF_BOP
-  39: 
-  40: ## Definition
-  41: 
-  42: Please refer to: https://data.imf.org/en/datasets/IMF.STA:BOP_AGG
-  43: 
-  44: ## Methodology
-  45: 
-  46: Please refer to: https://www.imf.org/external/pubs/ft/bopman/bopman.pdf
-  47: 
-  48: ## Sources
-  49: 
-  50: - Balance of Payments (BOP) (https://data.imf.org/?sk=7a51304b-6426-40c0-83dd-ca473ca1fd52)
-  51: 
-  52: ## Topics
-  53: 
-  54: - Prosperity _(WB Practice Groups)_
-  55: - Economic Policy _(Data360 Topic L1)_
-  56: - Macro-financial Policies _(Data360 Topic L2)_
-  57: 
-  58: ## Países y trayectorias
-  59: 
-  60: ### GTM
-  61: 
-  62: #### Background del país
-  63: 
-  64: No disponible en el contexto proporcionado.
-  65: 
-  66: #### Serie de este indicador
+  35: ## Methodology
+  36: 
+  37: Please refer to: https://www.imf.org/external/pubs/ft/bopman/bopman.pdf
+  38: 
+  39: ## Sources
+  40: 
+  41: - Balance of Payments (BOP) (https://data.imf.org/?sk=7a51304b-6426-40c0-83dd-ca473ca1fd52)
+  42: 
+  43: ## Topics
+  44: 
+  45: - Prosperity _(WB Practice Groups)_
+  46: - Economic Policy _(Data360 Topic L1)_
+  47: - Macro-financial Policies _(Data360 Topic L2)_
+  48: 
+  49: ## Países y trayectorias
+  50: 
+  51: ### GTM
+  52: 
+  53: #### Background del país
+  54: 
+  55: # Guatemala (GTM)
+  56: 
+  57: > Perfil país para contexto narrativo del pipeline Data360 Monitor.
+  58: 
+  59: ## Identification
+  60: 
+  61: - **iso3**: `GTM`
+  62: - **name_es**: Guatemala
+  63: - **name_en**: Guatemala
+  64: - **capital**: Ciudad de Guatemala
+  65: - **population**: ~18 millones (2024, estimación)
+  66: - **wikipedia**: https://es.wikipedia.org/wiki/Guatemala
   67: 
-  68: | period | value | unit |
-  69: |--------|-------|------|
-  70: | 2018-Q3 | -1.85939e+007 | USD |
-  71: | 2018-Q4 | -1.17043e+007 | USD |
-  72: | 2019 | 6.86027e+008 | USD |
-  73: | 2019-Q1 | 1.68023e+008 | USD |
-  74: | 2019-Q2 | -1.18204e+009 | USD |
-  75: | 2019-Q3 | 1.70915e+006 | USD |
-  76: | 2019-Q4 | -3.49959e+008 | USD |
-  77: | 2020 | 3.23226e+008 | USD |
-  78: | 2020-Q1 | -8.27762e+007 | USD |
-  79: | 2020-Q2 | -1.0657e+009 | USD |
-  80: | 2020-Q3 | 2.287e+007 | USD |
-  81: | 2020-Q4 | 8.03252e+008 | USD |
-  82: | 2021 | 1.72525e+009 | USD |
-  83: | 2021-Q1 | 7.01753e+007 | USD |
-  84: | 2021-Q2 | 6.99464e+008 | USD |
-  85: | 2021-Q3 | 2.3951e+007 | USD |
-  86: | 2021-Q4 | 9.55922e+008 | USD |
-  87: | 2022 | 4.7334e+008 | USD |
-  88: | 2022-Q1 | 8.41696e+008 | USD |
-  89: | 2022-Q2 | 8.60618e+008 | USD |
-  90: | 2022-Q3 | 3.29885e+008 | USD |
-  91: | 2022-Q4 | 1.48879e+008 | USD |
-  92: | 2023 | -1.69642e+009 | USD |
-  93: | 2023-Q1 | -1.79472e+008 | USD |
-  94: | 2023-Q2 | -1.03335e+009 | USD |
-  95: | 2023-Q3 | -2.12612e+008 | USD |
-  96: | 2023-Q4 | 5.08432e+008 | USD |
-  97: | 2024-Q1 | -1.90646e+008 | USD |
-  98: | 2024-Q2 | -8.91372e+007 | USD |
-  99: | 2024-Q3 | 1.40576e+009 | USD |
- 100: 
- 101: #### Otros indicadores del país, valor más reciente disponible
- 102: 
- 103: | indicator | period | value | unit |
- 104: |-----------|--------|-------|------|
- 105: | WB_WDI_NY_GDP_PCAP_CD | 2024 | 6150.025714 | USD |
- 106: | WB_WDI_NY_GDP_MKTP_KD_ZG | 2024 | 3.651864 | PC_A |
- 107: | WB_WDI_FP_CPI_TOTL_ZG | 2024 | 2.869928 | PC_A |
- 108: | WB_WDI_BX_KLT_DINV_WD_GD_ZS | 2024 | 1.632519 | PT_GDP |
- 109: | WB_WDI_BN_CAB_XOKA_GD_ZS | 2024 | 2.887155 | PT_GDP |
- 110: | WB_CCDFS_GGDY | 2022 | 29.222 | PT |
- 111: | WB_WDI_GC_XPN_INTP_RV_ZS | 2024 | 12.478014 | PT_REV |
- 112: | WB_WDI_SI_POV_GINI | 2023 | 45.2 | 0_TO_100 |
- 113: | WB_WDI_SI_POV_DDAY | 2023 | 9.7 | PT_POP |
- 114: | WB_WDI_SE_SEC_ENRR | 2024 | 49.57658 | PT |
- 115: | WB_WDI_SH_STA_MMRT | 2023 | 94 | DT_10P5BR_L |
- 116: | WB_WDI_SH_DYN_MORT | 2024 | 20.5 | DT_10P3BR_L |
- 117: 
- 118: ### HND
+  68: ## Perfil general
+  69: 
+  70: Guatemala es una república democrática en el extremo noroccidental de América Central. Se divide en 22 departamentos y 340 municipios. Es el país más poblado de Centroamérica y una de las economías medianas de la región, con una población joven y una diversidad étnica y lingüística marcada (población indígena mayoritaria en varios departamentos).
+  71: 
+  72: ## Economía y desarrollo
+  73: 
+  74: La economía se apoya en agricultura (café, azúcar, banano), manufactura ligera, remesas y servicios. La desigualdad, la pobreza rural y la inversión social limitada condicionan indicadores de salud, educación y empleo. El quetzal es la moneda nacional. Data360 publica series sobre crecimiento, pobreza, mortalidad materna, participación laboral femenina y gobernanza institucional.
+  75: 
+  76: ## Temas en agenda pública
+  77: 
+  78: En 2024–2026 los medios guatemaltecos (Prensa Libre, El Periódico, entre otros) cubren corrupción, migración hacia Estados Unidos, seguridad, precios de alimentos y acceso a servicios de salud. La cobertura indexada por GDELT es más limitada que en países más grandes; los titulares del período se cargan desde `data/news/GTM/`.
+  79: 
+  80: ## Fuentes
+  81: 
+  82: - Wikipedia (es), artículo «Guatemala», consultado 2026-05-21. Licencia CC BY-SA 4.0.
+  83: - Titulares del período: `data/news/GTM/` (subsistema GDELT, ver `docs/news-architecture.md`).
+  84: 
+  85: #### Serie de este indicador
+  86: 
+  87: | period | value | unit |
+  88: |--------|-------|------|
+  89: | 2018-Q3 | -1.85939e+007 | USD |
+  90: | 2018-Q4 | -1.17043e+007 | USD |
+  91: | 2019 | 6.86027e+008 | USD |
+  92: | 2019-Q1 | 1.68023e+008 | USD |
+  93: | 2019-Q2 | -1.18204e+009 | USD |
+  94: | 2019-Q3 | 1.70915e+006 | USD |
+  95: | 2019-Q4 | -3.49959e+008 | USD |
+  96: | 2020 | 3.23226e+008 | USD |
+  97: | 2020-Q1 | -8.27762e+007 | USD |
+  98: | 2020-Q2 | -1.0657e+009 | USD |
+  99: | 2020-Q3 | 2.287e+007 | USD |
+ 100: | 2020-Q4 | 8.03252e+008 | USD |
+ 101: | 2021 | 1.72525e+009 | USD |
+ 102: | 2021-Q1 | 7.01753e+007 | USD |
+ 103: | 2021-Q2 | 6.99464e+008 | USD |
+ 104: | 2021-Q3 | 2.3951e+007 | USD |
+ 105: | 2021-Q4 | 9.55922e+008 | USD |
+ 106: | 2022 | 4.7334e+008 | USD |
+ 107: | 2022-Q1 | 8.41696e+008 | USD |
+ 108: | 2022-Q2 | 8.60618e+008 | USD |
+ 109: | 2022-Q3 | 3.29885e+008 | USD |
+ 110: | 2022-Q4 | 1.48879e+008 | USD |
+ 111: | 2023 | -1.69642e+009 | USD |
+ 112: | 2023-Q1 | -1.79472e+008 | USD |
+ 113: | 2023-Q2 | -1.03335e+009 | USD |
+ 114: | 2023-Q3 | -2.12612e+008 | USD |
+ 115: | 2023-Q4 | 5.08432e+008 | USD |
+ 116: | 2024-Q1 | -1.90646e+008 | USD |
+ 117: | 2024-Q2 | -8.91372e+007 | USD |
+ 118: | 2024-Q3 | 1.40576e+009 | USD |
  119: 
- 120: #### Background del país
+ 120: #### Otros indicadores del país, valor más reciente disponible
  121: 
- 122: No disponible en el contexto proporcionado.
- 123: 
- 124: #### Serie de este indicador
- 125: 
- 126: | period | value | unit |
- 127: |--------|-------|------|
- 128: | 2018-Q3 | 2.12363e+007 | USD |
- 129: | 2018-Q4 | 3.62327e+007 | USD |
- 130: | 2019 | 3e+007 | USD |
- 131: | 2019-Q1 | 9.2981e+006 | USD |
- 132: | 2019-Q2 | 1.9e+007 | USD |
- 133: | 2019-Q3 | 5.34206e+006 | USD |
- 134: | 2019-Q4 | 7.4e+006 | USD |
- 135: | 2020 | 1.12178e+008 | USD |
- 136: | 2020-Q1 | 3.56635e+007 | USD |
- 137: | 2020-Q2 | -6.50323e+008 | USD |
- 138: | 2020-Q3 | -3.18104e+007 | USD |
- 139: | 2020-Q4 | 5.5435e+008 | USD |
- 140: | 2021 | 2.29924e+008 | USD |
- 141: | 2021-Q1 | 1.20705e+008 | USD |
- 142: | 2021-Q2 | 2.66024e+008 | USD |
- 143: | 2021-Q3 | 1.51222e+008 | USD |
- 144: | 2021-Q4 | 1.2417e+008 | USD |
- 145: | 2022 | 3.84987e+008 | USD |
- 146: | 2022-Q1 | 2.33332e+008 | USD |
- 147: | 2022-Q2 | 4.71087e+007 | USD |
- 148: | 2022-Q3 | 1.8773e+008 | USD |
- 149: | 2022-Q4 | -8.31827e+007 | USD |
- 150: | 2023 | 3.45386e+008 | USD |
- 151: | 2023-Q1 | 2.15419e+008 | USD |
- 152: | 2023-Q2 | 6.52519e+007 | USD |
- 153: | 2023-Q3 | 1.80992e+007 | USD |
- 154: | 2023-Q4 | 7.68684e+007 | USD |
- 155: | 2024-Q1 | -1.80443e+008 | USD |
- 156: | 2024-Q2 | 6.40954e+007 | USD |
- 157: | 2024-Q3 | 5.28381e+007 | USD |
- 158: 
- 159: #### Otros indicadores del país, valor más reciente disponible
- 160: 
- 161: | indicator | period | value | unit |
- 162: |-----------|--------|-------|------|
- 163: | WB_WDI_NY_GDP_PCAP_CD | 2024 | 3426.434833 | USD |
- 164: | WB_WDI_NY_GDP_MKTP_KD_ZG | 2024 | 3.55397 | PC_A |
- 165: | WB_WDI_FP_CPI_TOTL_ZG | 2024 | 4.606211 | PC_A |
- 166: | WB_WDI_BX_KLT_DINV_WD_GD_ZS | 2024 | 3.529037 | PT_GDP |
- 167: | WB_WDI_BN_CAB_XOKA_GD_ZS | 2024 | -4.45338 | PT_GDP |
- 168: | WB_CCDFS_GGDY | 2022 | 49.091 | PT |
- 169: | WB_WDI_GC_XPN_INTP_RV_ZS | 2020 | 10.629658 | PT_REV |
- 170: | WB_WDI_SI_POV_GINI | 2024 | 45.7 | 0_TO_100 |
- 171: | WB_WDI_SI_POV_DDAY | 2024 | 15.7 | PT_POP |
- 172: | WB_WDI_SE_SEC_ENRR | 2024 | 51.763981 | PT |
- 173: | WB_WDI_SH_STA_MMRT | 2023 | 47 | DT_10P5BR_L |
- 174: | WB_WDI_SH_DYN_MORT | 2024 | 15 | DT_10P3BR_L |
- 175: 
- 176: ### ARG
- 177: 
- 178: #### Background del país
- 179: 
- 180: No disponible en el contexto proporcionado.
- 181: 
- 182: #### Serie de este indicador
- 183: 
- 184: | period | value | unit |
- 185: |--------|-------|------|
- 186: | 2018-Q3 | 1.90242e+009 | USD |
- 187: | 2018-Q4 | 2.25296e+009 | USD |
- 188: | 2019 | 7.10858e+009 | USD |
- 189: | 2019-Q1 | 1.22629e+009 | USD |
- 190: | 2019-Q2 | 6.02648e+009 | USD |
- 191: | 2019-Q3 | -7.83749e+008 | USD |
- 192: | 2019-Q4 | 8.30509e+008 | USD |
- 193: | 2020 | -4.5506e+009 | USD |
- 194: | 2020-Q1 | -1.79609e+009 | USD |
- 195: | 2020-Q2 | -1.96249e+009 | USD |
- 196: | 2020-Q3 | 2.26845e+009 | USD |
- 197: | 2020-Q4 | -1.28139e+009 | USD |
- 198: | 2021 | 4.94044e+009 | USD |
- 199: | 2021-Q1 | 1.89156e+009 | USD |
- 200: | 2021-Q2 | 1.24565e+009 | USD |
- 201: | 2021-Q3 | 9.85551e+008 | USD |
- 202: | 2021-Q4 | 8.1768e+008 | USD |
- 203: | 2022 | 6.89896e+009 | USD |
- 204: | 2022-Q1 | 1.93359e+009 | USD |
- 205: | 2022-Q2 | 1.84035e+009 | USD |
- 206: | 2022-Q3 | 1.98972e+009 | USD |
- 207: | 2022-Q4 | -1.45495e+009 | USD |
- 208: | 2023 | 5.42048e+009 | USD |
- 209: | 2023-Q1 | 3.09698e+009 | USD |
- 210: | 2023-Q2 | 3.33552e+008 | USD |
- 211: | 2023-Q3 | 2.36881e+009 | USD |
- 212: | 2023-Q4 | -8.03471e+008 | USD |
- 213: | 2024-Q1 | 1.75703e+009 | USD |
- 214: | 2024-Q2 | 8.59922e+008 | USD |
- 215: | 2024-Q3 | 3.81515e+009 | USD |
- 216: 
- 217: #### Otros indicadores del país, valor más reciente disponible
- 218: 
- 219: | indicator | period | value | unit |
- 220: |-----------|--------|-------|------|
- 221: | WB_WDI_NY_GDP_PCAP_CD | 2024 | 13969.78366 | USD |
- 222: | WB_WDI_NY_GDP_MKTP_KD_ZG | 2024 | -1.342931 | PC_A |
- 223: | WB_WDI_FP_CPI_TOTL_ZG | 2024 | 219.883929 | PC_A |
- 224: | WB_WDI_BX_KLT_DINV_WD_GD_ZS | 2024 | 1.824095 | PT_GDP |
- 225: | WB_WDI_BN_CAB_XOKA_GD_ZS | 2024 | 0.893118 | PT_GDP |
- 226: | WB_CCDFS_GGDY | 2022 | 84.685 | PT |
- 227: | WB_WDI_GC_XPN_INTP_RV_ZS | 2024 | 8.462084 | PT_REV |
- 228: | WB_WDI_SI_POV_GINI | 2024 | 42.4 | 0_TO_100 |
- 229: | WB_WDI_SI_POV_DDAY | 2024 | 1 | PT_POP |
- 230: | WB_WDI_SE_SEC_ENRR | 2023 | 105.574584 | PT |
- 231: | WB_WDI_SH_STA_MMRT | 2023 | 33 | DT_10P5BR_L |
- 232: | WB_WDI_SH_DYN_MORT | 2024 | 9.5 | DT_10P3BR_L |
- 233: 
- 234: ### ECU
- 235: 
- 236: #### Background del país
- 237: 
- 238: No disponible en el contexto proporcionado.
+ 122: | indicator | period | value | unit |
+ 123: |-----------|--------|-------|------|
+ 124: | WB_WDI_NY_GDP_PCAP_CD | 2024 | 6150.025714 | USD |
+ 125: | WB_WDI_NY_GDP_MKTP_KD_ZG | 2024 | 3.651864 | PC_A |
+ 126: | WB_WDI_FP_CPI_TOTL_ZG | 2024 | 2.869928 | PC_A |
+ 127: | WB_WDI_BX_KLT_DINV_WD_GD_ZS | 2024 | 1.632519 | PT_GDP |
+ 128: | WB_WDI_BN_CAB_XOKA_GD_ZS | 2024 | 2.887155 | PT_GDP |
+ 129: | WB_CCDFS_GGDY | 2022 | 29.222 | PT |
+ 130: | WB_WDI_GC_XPN_INTP_RV_ZS | 2024 | 12.478014 | PT_REV |
+ 131: | WB_WDI_SI_POV_GINI | 2023 | 45.2 | 0_TO_100 |
+ 132: | WB_WDI_SI_POV_DDAY | 2023 | 9.7 | PT_POP |
+ 133: | WB_WDI_SE_SEC_ENRR | 2024 | 49.57658 | PT |
+ 134: | WB_WDI_SH_STA_MMRT | 2023 | 94 | DT_10P5BR_L |
+ 135: | WB_WDI_SH_DYN_MORT | 2024 | 20.5 | DT_10P3BR_L |
+ 136: 
+ 137: ### HND
+ 138: 
+ 139: #### Background del país
+ 140: 
+ 141: # Honduras (HND)
+ 142: 
+ 143: > Perfil país para contexto narrativo del pipeline Data360 Monitor.
+ 144: 
+ 145: ## Identification
+ 146: 
+ 147: - **iso3**: `HND`
+ 148: - **name_es**: Honduras
+ 149: - **name_en**: Honduras
+ 150: - **capital**: Tegucigalpa (Distrito Central con Comayagüela)
+ 151: - **population**: ~10 millones (2024, estimación)
+ 152: - **wikipedia**: https://es.wikipedia.org/wiki/Honduras
+ 153: 
+ 154: ## Perfil general
+ 155: 
+ 156: Honduras es un estado unitario en América Central con costas en el Atlántico y el Pacífico. Tegucigalpa y Comayagüela forman el Distrito Central, principal núcleo urbano. San Pedro Sula es el segundo centro económico. El país enfrenta desafíos persistentes de desigualdad, violencia y exposición a huracanes.
+ 157: 
+ 158: ## Economía y desarrollo
+ 159: 
+ 160: La economía combina agricultura (café, palma, banano), maquila textil, remesas y servicios. El lempira es la moneda nacional. Los indicadores de pobreza, desempleo, salud materno-infantil y gobernanza reflejan presión fiscal limitada y necesidades de inversión social. Data360 aporta series comparables con el resto de la región LAC del demo.
+ 161: 
+ 162: ## Temas en agenda pública
+ 163: 
+ 164: Entre 2024 y 2026 la prensa hondureña (El Heraldo, La Tribuna, Proceso Digital, entre otros) prioriza seguridad, empleo, corrupción, migración y servicios públicos. GDELT indexa menos medios locales que en Argentina o México; los titulares del período se cargan desde `data/news/HND/`.
+ 165: 
+ 166: ## Fuentes
+ 167: 
+ 168: - Wikipedia (es), artículo «Honduras», consultado 2026-05-21. Licencia CC BY-SA 4.0.
+ 169: - Titulares del período: `data/news/HND/` (subsistema GDELT, ver `docs/news-architecture.md`).
+ 170: 
+ 171: #### Serie de este indicador
+ 172: 
+ 173: | period | value | unit |
+ 174: |--------|-------|------|
+ 175: | 2018-Q3 | 2.12363e+007 | USD |
+ 176: | 2018-Q4 | 3.62327e+007 | USD |
+ 177: | 2019 | 3e+007 | USD |
+ 178: | 2019-Q1 | 9.2981e+006 | USD |
+ 179: | 2019-Q2 | 1.9e+007 | USD |
+ 180: | 2019-Q3 | 5.34206e+006 | USD |
+ 181: | 2019-Q4 | 7.4e+006 | USD |
+ 182: | 2020 | 1.12178e+008 | USD |
+ 183: | 2020-Q1 | 3.56635e+007 | USD |
+ 184: | 2020-Q2 | -6.50323e+008 | USD |
+ 185: | 2020-Q3 | -3.18104e+007 | USD |
+ 186: | 2020-Q4 | 5.5435e+008 | USD |
+ 187: | 2021 | 2.29924e+008 | USD |
+ 188: | 2021-Q1 | 1.20705e+008 | USD |
+ 189: | 2021-Q2 | 2.66024e+008 | USD |
+ 190: | 2021-Q3 | 1.51222e+008 | USD |
+ 191: | 2021-Q4 | 1.2417e+008 | USD |
+ 192: | 2022 | 3.84987e+008 | USD |
+ 193: | 2022-Q1 | 2.33332e+008 | USD |
+ 194: | 2022-Q2 | 4.71087e+007 | USD |
+ 195: | 2022-Q3 | 1.8773e+008 | USD |
+ 196: | 2022-Q4 | -8.31827e+007 | USD |
+ 197: | 2023 | 3.45386e+008 | USD |
+ 198: | 2023-Q1 | 2.15419e+008 | USD |
+ 199: | 2023-Q2 | 6.52519e+007 | USD |
+ 200: | 2023-Q3 | 1.80992e+007 | USD |
+ 201: | 2023-Q4 | 7.68684e+007 | USD |
+ 202: | 2024-Q1 | -1.80443e+008 | USD |
+ 203: | 2024-Q2 | 6.40954e+007 | USD |
+ 204: | 2024-Q3 | 5.28381e+007 | USD |
+ 205: 
+ 206: #### Otros indicadores del país, valor más reciente disponible
+ 207: 
+ 208: | indicator | period | value | unit |
+ 209: |-----------|--------|-------|------|
+ 210: | WB_WDI_NY_GDP_PCAP_CD | 2024 | 3426.434833 | USD |
+ 211: | WB_WDI_NY_GDP_MKTP_KD_ZG | 2024 | 3.55397 | PC_A |
+ 212: | WB_WDI_FP_CPI_TOTL_ZG | 2024 | 4.606211 | PC_A |
+ 213: | WB_WDI_BX_KLT_DINV_WD_GD_ZS | 2024 | 3.529037 | PT_GDP |
+ 214: | WB_WDI_BN_CAB_XOKA_GD_ZS | 2024 | -4.45338 | PT_GDP |
+ 215: | WB_CCDFS_GGDY | 2022 | 49.091 | PT |
+ 216: | WB_WDI_GC_XPN_INTP_RV_ZS | 2020 | 10.629658 | PT_REV |
+ 217: | WB_WDI_SI_POV_GINI | 2024 | 45.7 | 0_TO_100 |
+ 218: | WB_WDI_SI_POV_DDAY | 2024 | 15.7 | PT_POP |
+ 219: | WB_WDI_SE_SEC_ENRR | 2024 | 51.763981 | PT |
+ 220: | WB_WDI_SH_STA_MMRT | 2023 | 47 | DT_10P5BR_L |
+ 221: | WB_WDI_SH_DYN_MORT | 2024 | 15 | DT_10P3BR_L |
+ 222: 
+ 223: ### ARG
+ 224: 
+ 225: #### Background del país
+ 226: 
+ 227: # Argentina (ARG)
+ 228: 
+ 229: > Perfil país para contexto narrativo del pipeline Data360 Monitor.
+ 230: 
+ 231: ## Identification
+ 232: 
+ 233: - **iso3**: `ARG`
+ 234: - **name_es**: Argentina
+ 235: - **name_en**: Argentina
+ 236: - **capital**: Ciudad Autónoma de Buenos Aires
+ 237: - **population**: ~47 millones (2024, estimación)
+ 238: - **wikipedia**: https://es.wikipedia.org/wiki/Argentina
  239: 
- 240: #### Serie de este indicador
+ 240: ## Perfil general
  241: 
- 242: | period | value | unit |
- 243: |--------|-------|------|
- 244: | 2018-Q3 | -7.37101e+007 | USD |
- 245: | 2018-Q4 | -9.78453e+007 | USD |
- 246: | 2019 | 2.62943e+009 | USD |
- 247: | 2019-Q1 | 9.43451e+008 | USD |
- 248: | 2019-Q2 | 3.21143e+008 | USD |
- 249: | 2019-Q3 | -1.98615e+009 | USD |
- 250: | 2019-Q4 | 3.6715e+008 | USD |
- 251: | 2020 | 1.0843e+009 | USD |
- 252: | 2020-Q1 | 3.05309e+008 | USD |
- 253: | 2020-Q2 | -5.58287e+008 | USD |
- 254: | 2020-Q3 | 6.09024e+008 | USD |
- 255: | 2020-Q4 | 2.92955e+008 | USD |
- 256: | 2021 | -3.06765e+008 | USD |
- 257: | 2021-Q1 | 5.56708e+008 | USD |
- 258: | 2021-Q2 | -5.80058e+008 | USD |
- 259: | 2021-Q3 | 1.85085e+008 | USD |
- 260: | 2021-Q4 | -3.65124e+008 | USD |
- 261: | 2022 | 1.1814e+009 | USD |
- 262: | 2022-Q1 | 5.94468e+008 | USD |
- 263: | 2022-Q2 | -7.85067e+008 | USD |
- 264: | 2022-Q3 | 4.0886e+008 | USD |
- 265: | 2022-Q4 | -3.61261e+008 | USD |
- 266: | 2023 | 2.15555e+009 | USD |
- 267: | 2023-Q1 | 8.41193e+008 | USD |
- 268: | 2023-Q2 | -6.63337e+008 | USD |
- 269: | 2023-Q3 | 5.00897e+008 | USD |
- 270: | 2023-Q4 | 3.10913e+008 | USD |
- 271: | 2024-Q1 | 7.1667e+008 | USD |
- 272: | 2024-Q2 | 3.36797e+008 | USD |
- 273: | 2024-Q3 | 7.1476e+008 | USD |
- 274: 
- 275: #### Otros indicadores del país, valor más reciente disponible
- 276: 
- 277: | indicator | period | value | unit |
- 278: |-----------|--------|-------|------|
- 279: | WB_WDI_NY_GDP_PCAP_CD | 2024 | 6874.70574 | USD |
- 280: | WB_WDI_NY_GDP_MKTP_KD_ZG | 2024 | -2.001255 | PC_A |
- 281: | WB_WDI_FP_CPI_TOTL_ZG | 2024 | 1.547325 | PC_A |
- 282: | WB_WDI_BX_KLT_DINV_WD_GD_ZS | 2024 | 0.355365 | PT_GDP |
- 283: | WB_WDI_BN_CAB_XOKA_GD_ZS | 2024 | 5.650429 | PT_GDP |
- 284: | WB_CCDFS_GGDY | 2022 | 57.686 | PT |
- 285: | WB_WDI_GC_XPN_INTP_RV_ZS | 2022 | 4.662799 | PT_REV |
- 286: | WB_WDI_SI_POV_GINI | 2025 | 45.9 | 0_TO_100 |
- 287: | WB_WDI_SI_POV_DDAY | 2025 | 3.4 | PT_POP |
- 288: | WB_WDI_SE_SEC_ENRR | 2023 | 92.811803 | PT |
- 289: | WB_WDI_SH_STA_MMRT | 2023 | 55 | DT_10P5BR_L |
- 290: | WB_WDI_SH_DYN_MORT | 2024 | 12.9 | DT_10P3BR_L |
+ 242: Argentina es una república federal democrática en el extremo sur de América del Sur. Integra 23 provincias y la Ciudad Autónoma de Buenos Aires como capital federal. Es la tercera economía de la región y uno de los países con mayor nivel educativo relativo en LAC, con una clase media urbana amplia y un sistema de prensa plural.
+ 243: 
+ 244: ## Economía y desarrollo
+ 245: 
+ 246: La economía combina agricultura exportadora (soja, maíz, carne), manufactura y servicios. El peso argentino convive con restricciones cambiarias recurrentes, inflación elevada y deuda pública en moneda externa. Los indicadores de pobreza, empleo e inversión extranjera son sensibles a ciclos macro y a la política fiscal y monetaria. El Banco Mundial y el FMI publican series clave sobre PIB, inflación, cuenta corriente y deuda soberana.
+ 247: 
+ 248: ## Temas en agenda pública
+ 249: 
+ 250: En 2024–2026 el debate público concentra estabilización macro, acuerdo con el FMI, desinflación, empleo formal y acceso al dólar. La prensa nacional (La Nación, Clarín, Infobae, entre otros) cubre de cerca datos del INDEC, riesgo país y reformas estructurales. Los titulares del período de análisis se cargan por separado desde `data/news/ARG/`.
+ 251: 
+ 252: ## Fuentes
+ 253: 
+ 254: - Wikipedia (es), artículo «Argentina», consultado 2026-05-21. Licencia CC BY-SA 4.0.
+ 255: - Titulares del período: `data/news/ARG/` (subsistema GDELT, ver `docs/news-architecture.md`).
+ 256: 
+ 257: #### Serie de este indicador
+ 258: 
+ 259: | period | value | unit |
+ 260: |--------|-------|------|
+ 261: | 2018-Q3 | 1.90242e+009 | USD |
+ 262: | 2018-Q4 | 2.25296e+009 | USD |
+ 263: | 2019 | 7.10858e+009 | USD |
+ 264: | 2019-Q1 | 1.22629e+009 | USD |
+ 265: | 2019-Q2 | 6.02648e+009 | USD |
+ 266: | 2019-Q3 | -7.83749e+008 | USD |
+ 267: | 2019-Q4 | 8.30509e+008 | USD |
+ 268: | 2020 | -4.5506e+009 | USD |
+ 269: | 2020-Q1 | -1.79609e+009 | USD |
+ 270: | 2020-Q2 | -1.96249e+009 | USD |
+ 271: | 2020-Q3 | 2.26845e+009 | USD |
+ 272: | 2020-Q4 | -1.28139e+009 | USD |
+ 273: | 2021 | 4.94044e+009 | USD |
+ 274: | 2021-Q1 | 1.89156e+009 | USD |
+ 275: | 2021-Q2 | 1.24565e+009 | USD |
+ 276: | 2021-Q3 | 9.85551e+008 | USD |
+ 277: | 2021-Q4 | 8.1768e+008 | USD |
+ 278: | 2022 | 6.89896e+009 | USD |
+ 279: | 2022-Q1 | 1.93359e+009 | USD |
+ 280: | 2022-Q2 | 1.84035e+009 | USD |
+ 281: | 2022-Q3 | 1.98972e+009 | USD |
+ 282: | 2022-Q4 | -1.45495e+009 | USD |
+ 283: | 2023 | 5.42048e+009 | USD |
+ 284: | 2023-Q1 | 3.09698e+009 | USD |
+ 285: | 2023-Q2 | 3.33552e+008 | USD |
+ 286: | 2023-Q3 | 2.36881e+009 | USD |
+ 287: | 2023-Q4 | -8.03471e+008 | USD |
+ 288: | 2024-Q1 | 1.75703e+009 | USD |
+ 289: | 2024-Q2 | 8.59922e+008 | USD |
+ 290: | 2024-Q3 | 3.81515e+009 | USD |
  291: 
- 292: ### MEX
+ 292: #### Otros indicadores del país, valor más reciente disponible
  293: 
- 294: #### Background del país
- 295: 
- 296: No disponible en el contexto proporcionado.
- 297: 
- 298: #### Serie de este indicador
- 299: 
- 300: | period | value | unit |
- 301: |--------|-------|------|
- 302: | 2018-Q3 | -3.68974e+009 | USD |
- 303: | 2018-Q4 | -2.01216e+009 | USD |
- 304: | 2019 | 1.04871e+010 | USD |
- 305: | 2019-Q1 | -8.54587e+009 | USD |
- 306: | 2019-Q2 | 2.92131e+009 | USD |
- 307: | 2019-Q3 | -2.45154e+009 | USD |
- 308: | 2019-Q4 | 2.48374e+009 | USD |
- 309: | 2020 | 1.64578e+010 | USD |
- 310: | 2020-Q1 | 2.81221e+009 | USD |
- 311: | 2020-Q2 | 7.09229e+009 | USD |
- 312: | 2020-Q3 | 4.43662e+009 | USD |
- 313: | 2020-Q4 | 5.68482e+009 | USD |
- 314: | 2021 | 4.15786e+010 | USD |
- 315: | 2021-Q1 | 5.6371e+009 | USD |
- 316: | 2021-Q2 | 6.89575e+009 | USD |
- 317: | 2021-Q3 | 1.45701e+010 | USD |
- 318: | 2021-Q4 | 1.44756e+010 | USD |
- 319: | 2022 | -5.38667e+009 | USD |
- 320: | 2022-Q1 | 6.71252e+009 | USD |
- 321: | 2022-Q2 | 5.19986e+009 | USD |
- 322: | 2022-Q3 | -4.35222e+009 | USD |
- 323: | 2022-Q4 | -3.6487e+009 | USD |
- 324: | 2023 | 1.12682e+010 | USD |
- 325: | 2023-Q1 | -1.68845e+009 | USD |
- 326: | 2023-Q2 | -5.03325e+009 | USD |
- 327: | 2023-Q3 | 7.72534e+009 | USD |
- 328: | 2023-Q4 | 3.44252e+009 | USD |
- 329: | 2024-Q1 | 9.84304e+009 | USD |
- 330: | 2024-Q2 | 8.92253e+009 | USD |
- 331: | 2024-Q3 | 3.12142e+009 | USD |
- 332: 
- 333: #### Otros indicadores del país, valor más reciente disponible
- 334: 
- 335: | indicator | period | value | unit |
- 336: |-----------|--------|-------|------|
- 337: | WB_WDI_NY_GDP_PCAP_CD | 2024 | 14185.781225 | USD |
- 338: | WB_WDI_NY_GDP_MKTP_KD_ZG | 2024 | 1.427428 | PC_A |
- 339: | WB_WDI_FP_CPI_TOTL_ZG | 2024 | 4.722256 | PC_A |
- 340: | WB_WDI_BX_KLT_DINV_WD_GD_ZS | 2024 | 2.449665 | PT_GDP |
- 341: | WB_WDI_BN_CAB_XOKA_GD_ZS | 2024 | -0.899378 | PT_GDP |
- 342: | WB_CCDFS_GGDY | 2022 | 54.073 | PT |
- 343: | WB_WDI_GC_XPN_INTP_RV_ZS | 2024 | 20.000111 | PT_REV |
- 344: | WB_WDI_SI_POV_GINI | 2024 | 42.6 | 0_TO_100 |
- 345: | WB_WDI_SI_POV_DDAY | 2024 | 1.6 | PT_POP |
- 346: | WB_WDI_SE_SEC_ENRR | 2024 | 103.093323 | PT |
- 347: | WB_WDI_SH_STA_MMRT | 2023 | 42 | DT_10P5BR_L |
- 348: | WB_WDI_SH_DYN_MORT | 2024 | 13.1 | DT_10P3BR_L |
- 349: 
- 350: 
- 351: ## Comparación regional, último período común
- 352: 
- 353: Período: 2024-Q3
- 354: 
- 355: | country | value |
- 356: |---------|-------|
- 357: | ARG | 3.81515e+009 |
- 358: | ECU | 7.1476e+008 |
- 359: | GTM | 1.40576e+009 |
- 360: | HND | 5.28381e+007 |
- 361: | MEX | 3.12142e+009 |
- 362: 
- 363: ## Reglas de detección activas
- 364: 
- 365: - Estrategia 1, cambio abrupto: |z| >= 2 respecto a los 5 puntos previos.
- 366: - Estrategia 4, anomalía cross-país: |z| >= 2 respecto a la mediana regional (MAD-based).
- 367: 
- 368: ## Candidatos detectados
- 369: 
- 370: Cada candidato fue detectado por el pipeline determinístico. Para cada uno, escribí narrativas bilingües y emitilas en el bloque JSON final.
- 371: 
- 372: - candidate_id: cand_abrupt_change_GTM_IMF_BOP_BFP_BP6_2024_Q3
- 373:   type: abrupt_change
- 374:   country: GTM
- 375:   observation: { period: 2024-Q3, value: 1405760000, unit: USD }
- 376:   previous: { period: 2024-Q2, value: -8.91372e+007 }
- 377:   z_score: 2.93
- 378:   baseline_mean: -203462640
- 379:   claim_id: 777aca311d9c5fb8
- 380: 
- 381: - candidate_id: cand_abrupt_change_ARG_IMF_BOP_BFP_BP6_2024_Q3
- 382:   type: abrupt_change
- 383:   country: ARG
- 384:   observation: { period: 2024-Q3, value: 3815150000, unit: USD }
- 385:   previous: { period: 2024-Q2, value: 8.59922e+008 }
- 386:   z_score: 2.35
- 387:   baseline_mean: 903168600
- 388:   claim_id: 4efa1e2fb0bc250b
- 389: 
- 390: 
+ 294: | indicator | period | value | unit |
+ 295: |-----------|--------|-------|------|
+ 296: | WB_WDI_NY_GDP_PCAP_CD | 2024 | 13969.78366 | USD |
+ 297: | WB_WDI_NY_GDP_MKTP_KD_ZG | 2024 | -1.342931 | PC_A |
+ 298: | WB_WDI_FP_CPI_TOTL_ZG | 2024 | 219.883929 | PC_A |
+ 299: | WB_WDI_BX_KLT_DINV_WD_GD_ZS | 2024 | 1.824095 | PT_GDP |
+ 300: | WB_WDI_BN_CAB_XOKA_GD_ZS | 2024 | 0.893118 | PT_GDP |
+ 301: | WB_CCDFS_GGDY | 2022 | 84.685 | PT |
+ 302: | WB_WDI_GC_XPN_INTP_RV_ZS | 2024 | 8.462084 | PT_REV |
+ 303: | WB_WDI_SI_POV_GINI | 2024 | 42.4 | 0_TO_100 |
+ 304: | WB_WDI_SI_POV_DDAY | 2024 | 1 | PT_POP |
+ 305: | WB_WDI_SE_SEC_ENRR | 2023 | 105.574584 | PT |
+ 306: | WB_WDI_SH_STA_MMRT | 2023 | 33 | DT_10P5BR_L |
+ 307: | WB_WDI_SH_DYN_MORT | 2024 | 9.5 | DT_10P3BR_L |
+ 308: 
+ 309: ### ECU
+ 310: 
+ 311: #### Background del país
+ 312: 
+ 313: # Ecuador (ECU)
+ 314: 
+ 315: > Perfil país para contexto narrativo del pipeline Data360 Monitor.
+ 316: 
+ 317: ## Identification
+ 318: 
+ 319: - **iso3**: `ECU`
+ 320: - **name_es**: Ecuador
+ 321: - **name_en**: Ecuador
+ 322: - **capital**: Quito
+ 323: - **population**: ~18 millones (2024, estimación)
+ 324: - **wikipedia**: https://es.wikipedia.org/wiki/Ecuador
+ 325: 
+ 326: ## Perfil general
+ 327: 
+ 328: Ecuador es una república presidencialista unitaria en la región noroccidental de América del Sur. Limita con Colombia y Perú y tiene costa pacífica; el archipiélago de Galápagos forma parte del territorio nacional. Guayaquil es la ciudad más poblada. El país es miembro de la Comunidad Andina y se organiza en 24 provincias.
+ 329: 
+ 330: ## Economía y desarrollo
+ 331: 
+ 332: La economía depende del petróleo, la agricultura (banano, cacao, flores), la pesca y las remesas. El dólar estadounidense es moneda de curso legal desde 2000, lo que ancla la inflación pero limita la política monetaria. Los indicadores de pobreza, desempleo, inversión y balanza comercial reflejan choques externos en el precio del crudo y presiones fiscales. Data360 concentra series sobre PIB, pobreza, salud y gobernanza.
+ 333: 
+ 334: ## Temas en agenda pública
+ 335: 
+ 336: Entre 2024 y 2026 la cobertura mediática (El Comercio, La Hora, Plan V, entre otros) sigue seguridad, empleo, servicios básicos, energía y deuda externa. Los titulares del período de análisis se cargan por separado desde `data/news/ECU/`.
+ 337: 
+ 338: ## Fuentes
+ 339: 
+ 340: - Wikipedia (es), artículo «Ecuador», consultado 2026-05-21. Licencia CC BY-SA 4.0.
+ 341: - Titulares del período: `data/news/ECU/` (subsistema GDELT, ver `docs/news-architecture.md`).
+ 342: 
+ 343: #### Serie de este indicador
+ 344: 
+ 345: | period | value | unit |
+ 346: |--------|-------|------|
+ 347: | 2018-Q3 | -7.37101e+007 | USD |
+ 348: | 2018-Q4 | -9.78453e+007 | USD |
+ 349: | 2019 | 2.62943e+009 | USD |
+ 350: | 2019-Q1 | 9.43451e+008 | USD |
+ 351: | 2019-Q2 | 3.21143e+008 | USD |
+ 352: | 2019-Q3 | -1.98615e+009 | USD |
+ 353: | 2019-Q4 | 3.6715e+008 | USD |
+ 354: | 2020 | 1.0843e+009 | USD |
+ 355: | 2020-Q1 | 3.05309e+008 | USD |
+ 356: | 2020-Q2 | -5.58287e+008 | USD |
+ 357: | 2020-Q3 | 6.09024e+008 | USD |
+ 358: | 2020-Q4 | 2.92955e+008 | USD |
+ 359: | 2021 | -3.06765e+008 | USD |
+ 360: | 2021-Q1 | 5.56708e+008 | USD |
+ 361: | 2021-Q2 | -5.80058e+008 | USD |
+ 362: | 2021-Q3 | 1.85085e+008 | USD |
+ 363: | 2021-Q4 | -3.65124e+008 | USD |
+ 364: | 2022 | 1.1814e+009 | USD |
+ 365: | 2022-Q1 | 5.94468e+008 | USD |
+ 366: | 2022-Q2 | -7.85067e+008 | USD |
+ 367: | 2022-Q3 | 4.0886e+008 | USD |
+ 368: | 2022-Q4 | -3.61261e+008 | USD |
+ 369: | 2023 | 2.15555e+009 | USD |
+ 370: | 2023-Q1 | 8.41193e+008 | USD |
+ 371: | 2023-Q2 | -6.63337e+008 | USD |
+ 372: | 2023-Q3 | 5.00897e+008 | USD |
+ 373: | 2023-Q4 | 3.10913e+008 | USD |
+ 374: | 2024-Q1 | 7.1667e+008 | USD |
+ 375: | 2024-Q2 | 3.36797e+008 | USD |
+ 376: | 2024-Q3 | 7.1476e+008 | USD |
+ 377: 
+ 378: #### Otros indicadores del país, valor más reciente disponible
+ 379: 
+ 380: | indicator | period | value | unit |
+ 381: |-----------|--------|-------|------|
+ 382: | WB_WDI_NY_GDP_PCAP_CD | 2024 | 6874.70574 | USD |
+ 383: | WB_WDI_NY_GDP_MKTP_KD_ZG | 2024 | -2.001255 | PC_A |
+ 384: | WB_WDI_FP_CPI_TOTL_ZG | 2024 | 1.547325 | PC_A |
+ 385: | WB_WDI_BX_KLT_DINV_WD_GD_ZS | 2024 | 0.355365 | PT_GDP |
+ 386: | WB_WDI_BN_CAB_XOKA_GD_ZS | 2024 | 5.650429 | PT_GDP |
+ 387: | WB_CCDFS_GGDY | 2022 | 57.686 | PT |
+ 388: | WB_WDI_GC_XPN_INTP_RV_ZS | 2022 | 4.662799 | PT_REV |
+ 389: | WB_WDI_SI_POV_GINI | 2025 | 45.9 | 0_TO_100 |
+ 390: | WB_WDI_SI_POV_DDAY | 2025 | 3.4 | PT_POP |
+ 391: | WB_WDI_SE_SEC_ENRR | 2023 | 92.811803 | PT |
+ 392: | WB_WDI_SH_STA_MMRT | 2023 | 55 | DT_10P5BR_L |
+ 393: | WB_WDI_SH_DYN_MORT | 2024 | 12.9 | DT_10P3BR_L |
+ 394: 
+ 395: ### MEX
+ 396: 
+ 397: #### Background del país
+ 398: 
+ 399: # México (MEX)
+ 400: 
+ 401: > Perfil país para contexto narrativo del pipeline Data360 Monitor.
+ 402: 
+ 403: ## Identification
+ 404: 
+ 405: - **iso3**: `MEX`
+ 406: - **name_es**: México
+ 407: - **name_en**: Mexico
+ 408: - **capital**: Ciudad de México
+ 409: - **population**: ~130 millones (2024, estimación)
+ 410: - **wikipedia**: https://es.wikipedia.org/wiki/M%C3%A9xico
+ 411: 
+ 412: ## Perfil general
+ 413: 
+ 414: México es una república federal en la parte meridional de América del Norte. Integra 32 entidades federativas; la Ciudad de México es la capital y el principal centro político. Es la segunda economía de América Latina y uno de los mayores exportadores manufactureros del mundo, con integración profunda con Estados Unidos vía T-MEC.
+ 415: 
+ 416: ## Economía y desarrollo
+ 417: 
+ 418: La economía mezcla manufactura (automotriz, electrónica), petróleo, turismo, remesas y servicios. El peso mexicano es una moneda líquida en mercados emergentes. Los indicadores de pobreza, desigualdad, empleo formal, inversión extranjera y finanzas públicas son centrales en el debate de desarrollo. Data360 concentra series amplias de WB, FMI y otros proveedores para el país.
+ 419: 
+ 420: ## Temas en agenda pública
+ 421: 
+ 422: En 2024–2026 la prensa nacional (El Universal, Reforma, Animal Político, Excélsior, entre otros) cubre inflación, nearshoring, seguridad, reforma judicial y salud pública. Los titulares del período de análisis se cargan por separado desde `data/news/MEX/`.
+ 423: 
+ 424: ## Fuentes
+ 425: 
+ 426: - Wikipedia (es), artículo «México», consultado 2026-05-21. Licencia CC BY-SA 4.0.
+ 427: - Titulares del período: `data/news/MEX/` (subsistema GDELT, ver `docs/news-architecture.md`).
+ 428: 
+ 429: #### Serie de este indicador
+ 430: 
+ 431: | period | value | unit |
+ 432: |--------|-------|------|
+ 433: | 2018-Q3 | -3.68974e+009 | USD |
+ 434: | 2018-Q4 | -2.01216e+009 | USD |
+ 435: | 2019 | 1.04871e+010 | USD |
+ 436: | 2019-Q1 | -8.54587e+009 | USD |
+ 437: | 2019-Q2 | 2.92131e+009 | USD |
+ 438: | 2019-Q3 | -2.45154e+009 | USD |
+ 439: | 2019-Q4 | 2.48374e+009 | USD |
+ 440: | 2020 | 1.64578e+010 | USD |
+ 441: | 2020-Q1 | 2.81221e+009 | USD |
+ 442: | 2020-Q2 | 7.09229e+009 | USD |
+ 443: | 2020-Q3 | 4.43662e+009 | USD |
+ 444: | 2020-Q4 | 5.68482e+009 | USD |
+ 445: | 2021 | 4.15786e+010 | USD |
+ 446: | 2021-Q1 | 5.6371e+009 | USD |
+ 447: | 2021-Q2 | 6.89575e+009 | USD |
+ 448: | 2021-Q3 | 1.45701e+010 | USD |
+ 449: | 2021-Q4 | 1.44756e+010 | USD |
+ 450: | 2022 | -5.38667e+009 | USD |
+ 451: | 2022-Q1 | 6.71252e+009 | USD |
+ 452: | 2022-Q2 | 5.19986e+009 | USD |
+ 453: | 2022-Q3 | -4.35222e+009 | USD |
+ 454: | 2022-Q4 | -3.6487e+009 | USD |
+ 455: | 2023 | 1.12682e+010 | USD |
+ 456: | 2023-Q1 | -1.68845e+009 | USD |
+ 457: | 2023-Q2 | -5.03325e+009 | USD |
+ 458: | 2023-Q3 | 7.72534e+009 | USD |
+ 459: | 2023-Q4 | 3.44252e+009 | USD |
+ 460: | 2024-Q1 | 9.84304e+009 | USD |
+ 461: | 2024-Q2 | 8.92253e+009 | USD |
+ 462: | 2024-Q3 | 3.12142e+009 | USD |
+ 463: 
+ 464: #### Otros indicadores del país, valor más reciente disponible
+ 465: 
+ 466: | indicator | period | value | unit |
+ 467: |-----------|--------|-------|------|
+ 468: | WB_WDI_NY_GDP_PCAP_CD | 2024 | 14185.781225 | USD |
+ 469: | WB_WDI_NY_GDP_MKTP_KD_ZG | 2024 | 1.427428 | PC_A |
+ 470: | WB_WDI_FP_CPI_TOTL_ZG | 2024 | 4.722256 | PC_A |
+ 471: | WB_WDI_BX_KLT_DINV_WD_GD_ZS | 2024 | 2.449665 | PT_GDP |
+ 472: | WB_WDI_BN_CAB_XOKA_GD_ZS | 2024 | -0.899378 | PT_GDP |
+ 473: | WB_CCDFS_GGDY | 2022 | 54.073 | PT |
+ 474: | WB_WDI_GC_XPN_INTP_RV_ZS | 2024 | 20.000111 | PT_REV |
+ 475: | WB_WDI_SI_POV_GINI | 2024 | 42.6 | 0_TO_100 |
+ 476: | WB_WDI_SI_POV_DDAY | 2024 | 1.6 | PT_POP |
+ 477: | WB_WDI_SE_SEC_ENRR | 2024 | 103.093323 | PT |
+ 478: | WB_WDI_SH_STA_MMRT | 2023 | 42 | DT_10P5BR_L |
+ 479: | WB_WDI_SH_DYN_MORT | 2024 | 13.1 | DT_10P3BR_L |
+ 480: 
+ 481: 
+ 482: ## Discurso público reciente
+ 483: 
+ 484: Titulares de prensa para los países del scope.
+ 485: Período: 2026-04 a 2026-05. Máximo 8 titulares por país, más reciente primero.
+ 486: Filtro GDELT: 10 temas validados alineados con indicadores anuales (WB_471_ECONOMIC_GROWTH, TAX_ECON_PRICE, WB_698_TRADE, ECON_DEBT, POVERTY, WB_695_POVERTY, WB_642_CHILD_HEALTH, WB_639_REPRODUCTIVE_MATERNAL_AND_CHILD_HEALTH, WB_2748_EMPLOYMENT, CORRUPTION).
+ 487: 
+ 488: ### GTM
+ 489: 
+ 490: - [2026-05-21] Lahora (lahora.gt): "China y su afán con Taiwán"
+ 491:   URL: https://lahora.gt/opinion/por-la-transparencia/2026/05/21/china-y-su-afan-con-taiwan/
+ 492: - [2026-05-21] Lahora (lahora.gt): "Crece presión por ley antilavado : EE . UU . llama a aprobación que cierre la puerta a narcotraficantes y criminales"
+ 493:   URL: https://lahora.gt/nacionales/ralvarado/2026/05/21/estados-unidos-insta-a-guatemala-a-aprobar-ley-antilavado-con-estandares-del-gafi/
+ 494: - [2026-05-21] Lahora (lahora.gt): "Inmigrante con 2 deportaciones expeditas podría solicitar perdón migratorio a EE . UU ."
+ 495:   URL: https://lahora.gt/opinion/fcastro/2026/05/21/inmigrante-con-2-deportaciones-expeditas-podria-solicitar-perdon-migratorio-a-ee-uu-2/
+ 496: - [2026-05-21] Prensalibre (prensalibre.com): "EE . UU . pide al Congreso de Guatemala aprobar una ley contra el lavado de dinero con estándares internacionales"
+ 497:   URL: https://www.prensalibre.com/guatemala/politica/ee-uu-pide-al-congreso-de-guatemala-aprobar-una-ley-contra-el-lavado-de-dinero-con-estandares-internacionales-breaking/
+ 498: - [2026-05-21] Prensalibre (prensalibre.com): "Sheinbaum descarta  gran riesgo  para remesas pese a orden ejecutiva de Trump"
+ 499:   URL: https://www.prensalibre.com/ahora/internacional/sheinbaum-descarta-gran-riesgo-para-remesas-pese-a-orden-ejecutiva-de-trump/
+ 500: - [2026-05-21] Emisorasunidas (emisorasunidas.com): "Organizaciones piden al nuevo Fiscal General poner fin a criminalización de periodistas"
+ 501:   URL: https://emisorasunidas.com/nacional/2026/05/21/organizaciones-fiscal-general-criminalizacion-periodistas-libertad-prensa/
+ 502: - [2026-05-21] Emisorasunidas (emisorasunidas.com): "Atrapan narcotraficante con droga oculta en mercancía de Kim Kardashian"
+ 503:   URL: https://emisorasunidas.com/farandula/2026/05/21/atrapan-a-narcotraficante-que-ocultaba-droga-en-mercaderia-de-kim-kardashian/
+ 504: - [2026-05-21] Publinews (publinews.gt): "Ubican más de Q350 mil en una casa que era usada por pandilleros del Barrio 18"
+ 505:   URL: https://www.publinews.gt/noticias/2026/05/21/ubican-mas-de-q350-mil-en-una-casa-que-era-usada-por-pandilleros-del-barrio-18/
+ 506: 
+ 507: ### HND
+ 508: 
+ 509: - [2026-05-21] Proceso (proceso.hn): "Johana Bermúdez llama a vacunarse ante alerta por sarampión en Honduras"
+ 510:   URL: https://proceso.hn/johana-bermudez-llama-a-vacunarse-ante-alerta-por-sarampion-en-honduras/
+ 511: - [2026-05-21] Proceso (proceso.hn): "Panamá suspende la venta de energía eléctrica a Costa Rica en medio de pugna comercial"
+ 512:   URL: https://proceso.hn/panama-suspende-la-venta-de-energia-electrica-a-costa-rica-en-medio-de-pugna-comercial/
+ 513: - [2026-05-21] Laprensa (laprensa.hn): "Crisis política en Bolivia"
+ 514:   URL: https://www.laprensa.hn/opinion/columnas/crisis-politica-en-bolivia-DA30743624
+ 515: - [2026-05-21] Proceso (proceso.hn): "Aranceles de EEUU habrían provocado caída del 5 % en la maquila hondureña"
+ 516:   URL: https://proceso.hn/aranceles-de-eeuu-habrian-provocado-caida-del-5-en-la-maquila-hondurena/
+ 517: - [2026-05-21] Proceso (proceso.hn): "Cámaras de Comercio exigen al Congreso enfocarse en generación de empleo"
+ 518:   URL: https://proceso.hn/camaras-de-comercio-exige-al-congreso-enfocarse-en-generacion-de-empleo/
+ 519: - [2026-05-21] Abriendobrecha (abriendobrecha.tv): "Fenagh niega carestía de carne y alerta de salida ilegal de ganado hacia México"
+ 520:   URL: https://abriendobrecha.tv/nacionales/fenagh-niega-carestia-de-carne-y-alerta-de-salida-ilegal-de-ganado-hacia-mexico/
+ 521: - [2026-05-21] Abriendobrecha (abriendobrecha.tv): "La deuda externa del sector público alcanzó los $10 , 761 . 8 millones"
+ 522:   URL: https://abriendobrecha.tv/economia/la-deuda-externa-del-sector-publico-alcanzo-los-10761-8-millones/
+ 523: - [2026-05-21] Laprensa (laprensa.hn): "Piden ayuda para repatriar desde Estados Unidos a Olancho a la hondureña Dariela Galeano"
+ 524:   URL: https://www.laprensa.hn/mundo/piden-ayuda-repatriar-hondurena-dariela-galeano-estados-unidos-olancho-JA30743648
+ 525: 
+ 526: ### ARG
+ 527: 
+ 528: - [2026-05-21] Diariosanrafael (diariosanrafael.com.ar): "La actividad económica mostró signos de recuperación : tuvo una suba del 5 , 5 % en marzo"
+ 529:   URL: https://diariosanrafael.com.ar/la-actividad-economica-mostro-signos-de-recuperacion-tuvo-una-suba-del-55-en-marzo/
+ 530: - [2026-05-21] Cronica (cronica.com.ar): "Alianza estratégica con Estados Unidos : cómo son los nuevos aviones de vigilancia que recibirá la Armada para custodiar el Mar Argentino"
+ 531:   URL: https://www.cronica.com.ar/politica/alianza-estrategica-con-estados-unidos-como-son-los-nuevos-aviones-de-vigilancia-que-recibira-la-armada-para-custodiar-el-mar-argentino-5487/
+ 532: - [2026-05-21] Eldiariodelapampa (eldiariodelapampa.com.ar): "La actividad económica en marzo subió 5 , 5 % y fue la mejor desde junio de 2025 :: El Diario de La Pampa"
+ 533:   URL: https://www.eldiariodelapampa.com.ar/pais/74461/la-actividad-economica-en-marzo-subio-55-en-porciento--y-fue-la-mejor-desde-junio-de-2025
+ 534: - [2026-05-21] Cronica (cronica.com.ar): "La Asociación Conciencia y el cóctel que reunió a todos por la educación :  El futuro no se espera : se enseña , se aprende y se construye"
+ 535:   URL: https://www.cronica.com.ar/politica/la-asociacion-conciencia-y-el-coctel-que-reunio-a-todos-por-la-educacion-el-futuro-no-se-espera-se-ensena-se-aprende-y-se-construye-1857/
+ 536: - [2026-05-21] Agencianova (agencianova.com): "VIDEO | La casta eran los laburantes : al 70 por ciento de los trabajadores el sueldo les dura menos de medio mes"
+ 537:   URL: https://www.agencianova.com/nota.asp?n=2026_5_21&id=167675&id_tiponota=6
+ 538: - [2026-05-21] Agencianova (agencianova.com): "La diputada Karina Banfi cruzó al Gobierno por el recorte de Zona Fría y advirtió fuertes subas en las tarifas"
+ 539:   URL: https://www.agencianova.com/nota.asp?n=2026_5_21&id=167676&id_tiponota=4
+ 540: - [2026-05-21] Agencianova (agencianova.com): "VIDEO | Silvina Soria acusó a una libertaria de comandar ataques en redes y habló de una  fuerte interna  en el partido"
+ 541:   URL: https://www.agencianova.com/nota.asp?n=2026_5_21&id=167684&id_tiponota=4
+ 542: - [2026-05-21] Diariosanrafael (diariosanrafael.com.ar): "Milei recibió en la Quinta de Olivos a Adorni para repasar la agenda de gestión"
+ 543:   URL: https://diariosanrafael.com.ar/milei-recibio-en-la-quinta-de-olivos-a-adorni-para-repasar-la-agenda-de-gestion/
+ 544: 
+ 545: ### ECU
+ 546: 
+ 547: - [2026-05-21] Eldiario (eldiario.ec): "Lavinia y el precio de la fama"
+ 548:   URL: https://www.eldiario.ec/opinion/lavinia-y-el-precio-de-la-fama/
+ 549: - [2026-05-21] Eldiario (eldiario.ec): "Familia de Matthew Perry acusa a su exasistente de traición"
+ 550:   URL: https://www.eldiario.ec/espectaculos/familia-de-matthew-perry-rompe-el-silencio-y-acusa-a-su-exasistente-confiamos-en-un-hombre-sin-conciencia-21052026/
+ 551: - [2026-05-21] Expreso (expreso.ec): "Ecuador presentará recurso de reconsideración ante la CAN por la tasa de seguridad"
+ 552:   URL: https://www.expreso.ec/economia-y-negocios/ecuador-presentara-recurso-reconsideracion-can-tasa-seguridad-282903.html
+ 553: - [2026-05-21] Expreso (expreso.ec): "Comic Con Ecuador confirma la participación de Christopher Masterson en su edición 2026"
+ 554:   URL: https://www.expreso.ec/entretenimiento/comic-ecuador-confirma-participacion-chris-masterson-edicion-2026-282877.html
+ 555: - [2026-05-21] Expreso (expreso.ec): "Municipio de Guayaquil crea comité de calidad que reconoce no haber tenido antes"
+ 556:   URL: https://www.expreso.ec/guayaquil/municipio-guayaquil-crea-comite-calidad-reconoce-no-haber-tenido-282912.html
+ 557: - [2026-05-21] Expreso (expreso.ec): "Narcopolítica en México : Cártel de Sinaloa se infiltró en ocho municipios en Morelo"
+ 558:   URL: https://www.expreso.ec/internacional/narcopolitica-mexico-cartel-sinaloa-infiltro-ocho-municipios-morelo-282914.html
+ 559: - [2026-05-21] Eldiario (eldiario.ec): "Madre muere en ataque armado al comprar pañales en Quevedo"
+ 560:   URL: https://www.eldiario.ec/seguridad/salio-a-comprar-panales-para-su-hijo-y-murio-en-ataque-armado-en-quevedo-21052026/
+ 561: - [2026-05-21] Expreso (expreso.ec): "Centenares protestan en La Paz : Las marchas exigen liberar los bloqueos de vías contra el Gobierno"
+ 562:   URL: https://www.expreso.ec/internacional/centenares-protestan-paz-marchas-exigen-liberar-bloqueos-vias-gobierno-282885.html
+ 563: 
+ 564: ### MEX
+ 565: 
+ 566: - [2026-05-21] Tiempo (tiempo.com.mx): "Invitan a hamburguesa en favor de Nidia , padece cáncer de rin"
+ 567:   URL: https://www.tiempo.com.mx/local/hamburguesa-beneficio-nidia-sandoval-cancer-de-rinon/
+ 568: - [2026-05-21] Eldictamen (eldictamen.mx): "Impulsan reforma constitucional en materia de no reelección y nepotismo electoral"
+ 569:   URL: https://www.eldictamen.mx/impulsan-reforma-constitucional-en-materia-de-no-reeleccion-y-nepotismo-electoral/
+ 570: - [2026-05-21] Aciprensa (aciprensa.com): "El don sagrado de la familia debe ser protegido de 4 amenazas actuales , señala obispo"
+ 571:   URL: https://www.aciprensa.com/noticias/125297/el-don-sagrado-de-la-familia-debe-ser-protegido-de-4-amenazas-actuales-senala-obispo
+ 572: - [2026-05-21] Tiempo (tiempo.com.mx): "Ex pareja llega armado y dispara contra establecimiento de la Vallarta🎦"
+ 573:   URL: https://www.tiempo.com.mx/local/agencia-working-las-granjas-avenida-vallarta-ataque-arma-de-postas-movilizacion-policiaca-expareja-disparos-chihuahua-autoridades/
+ 574: - [2026-05-21] Oem (oem.com.mx): "Inauguran Policía Cibernética Municipal en La Paz"
+ 575:   URL: https://oem.com.mx:443/elsudcaliforniano/local/inauguran-policia-cibernetica-municipal-en-la-paz-30117921
+ 576: - [2026-05-21] Criteriohidalgo (criteriohidalgo.com): "Franquicias requieren visión operativa y disciplina"
+ 577:   URL: https://www.criteriohidalgo.com/first-class/franquicias-requieren-vision-operativa-y-disciplina
+ 578: - [2026-05-21] Nortedigital (nortedigital.mx): "Retrocede empleo maquilador juarense a como estaba hace 10 años"
+ 579:   URL: https://nortedigital.mx/retrocede-empleo-maquilador-juarense-a-como-estaba-hace-10-anos/
+ 580: - [2026-05-21] Elimparcial (elimparcial.com): "Extorsión y sobreregulación golpean al comercio en Tijuana , advierte Concanaco"
+ 581:   URL: https://www.elimparcial.com/tij/tijuana/2026/05/21/extorsion-y-sobreregulacion-golpean-al-comercio-en-tijuana-advierte-concanaco/
+ 582: 
+ 583: 
+ 584: ## Reglas de detección activas
+ 585: 
+ 586: - Estrategia 1, cambio abrupto: |z| >= 2 respecto a los 5 puntos previos.
+ 587: - Estrategia 4, anomalía cross-país: |z| >= 2 respecto a la mediana regional (MAD-based).
+ 588: 
+ 589: ## Candidatos detectados
+ 590: 
+ 591: Cada candidato fue detectado por el pipeline determinístico. Para cada uno, escribí narrativas bilingües y emitilas en el bloque JSON final.
+ 592: 
+ 593: - candidate_id: cand_abrupt_change_GTM_IMF_BOP_BFP_BP6_2024_Q3
+ 594:   type: abrupt_change
+ 595:   country: GTM
+ 596:   observation: { period: 2024-Q3, value: 1405760000, unit: USD }
+ 597:   previous: { period: 2024-Q2, value: -8.91372e+007 }
+ 598:   z_score: 2.93
+ 599:   baseline_mean: -203462640
+ 600:   claim_id: 777aca311d9c5fb8
+ 601: 
+ 602: - candidate_id: cand_abrupt_change_ARG_IMF_BOP_BFP_BP6_2024_Q3
+ 603:   type: abrupt_change
+ 604:   country: ARG
+ 605:   observation: { period: 2024-Q3, value: 3815150000, unit: USD }
+ 606:   previous: { period: 2024-Q2, value: 8.59922e+008 }
+ 607:   z_score: 2.35
+ 608:   baseline_mean: 903168600
+ 609:   claim_id: 4efa1e2fb0bc250b
+ 610: 
+ 611: 

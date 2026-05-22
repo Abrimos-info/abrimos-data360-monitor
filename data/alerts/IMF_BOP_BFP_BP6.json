@@ -1,6 +1,6 @@
 [
   {
-    "id": "alert_2026-05-21_016",
+    "id": "alert_2026-05-22_016",
     "type": "abrupt_change",
     "country": "GTM",
     "category": "economy",
@@ -15,7 +15,19 @@
     "observation": {
       "value": 1405760000,
       "time_period": "2024-Q3",
-      "unit": "USD"
+      "unit": "USD",
+      "display": {
+        "es": "1,405,760,000 USD",
+        "en": "1,405,760,000 USD"
+      },
+      "period_display": {
+        "es": "T3 2024",
+        "en": "Q3 2024"
+      },
+      "period_narrative": {
+        "es": "T3 de 2024",
+        "en": "Q3 2024"
+      }
     },
     "magnitude": {
       "es": "+2.9σ",
@@ -979,30 +991,37 @@
     "verification_trace": {
       "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/IMF_BOP",
       "csv_link": "https://data360files.worldbank.org/data360-data/data/IMF_BOP/IMF_BOP_BFP_BP6.csv",
-      "methodology_ref": "https://www.imf.org/external/pubs/ft/bopman/bopman.pdf"
+      "methodology_ref": "https://data.imf.org/?sk=7a51304b-6426-40c0-83dd-ca473ca1fd52"
     },
     "score": 0.7318201602178149,
-    "detected_at": "2026-05-21T20:27:18.954Z",
+    "detected_at": "2026-05-22T00:21:20.833Z",
     "license": "License Specified Externally",
     "narrative_citizen": {
-      "es": "GTM registró 1405760000 USD en BOP, Financial Account, Portfolio investment para 2024-Q3, +2.9σ respecto a su trayectoria reciente.",
-      "en": "GTM recorded 1405760000 USD in BOP, Financial Account, Portfolio investment for 2024-Q3, +2.9σ from its recent trajectory."
+      "es": "Subió drásticamente el valor de inversiones portafolio en Guatemala en septiembre de 2024.",
+      "en": "There was a significant increase in portfolio investment value in Guatemala in September 2024."
     },
     "narrative_journalist": {
-      "es": "Detección automática: GTM 1405760000 USD en BOP, Financial Account, Portfolio investment (2024-Q3). z-score +2.9σ vs ventana de 5 puntos previos.",
-      "en": "Auto-detected: GTM 1405760000 USD in BOP, Financial Account, Portfolio investment (2024-Q3). z-score +2.9σ against 5-point baseline."
+      "es": "El valor de inversiones portafolio en Guatemala aumentó drásticamente en septiembre de 2024, con un z-score de 2.93.",
+      "en": "The value of portfolio investments in Guatemala saw a significant increase in September 2024, with a z-score of 2.93."
     },
     "claim_tokens": [
       {
         "claim_id": "777aca311d9c5fb8",
         "value": 1405760000,
-        "display_es": "1405760000 USD",
-        "display_en": "1405760000 USD"
+        "display_es": "1,405,760,000 USD",
+        "display_en": "1,405,760,000 USD"
+      },
+      {
+        "claim_id": "6b1d164d5d66e362",
+        "value": -89137200,
+        "display_es": "-89.137.200,00 USD",
+        "display_en": "-89,137,200.00 USD"
       }
-    ]
+    ],
+    "data_period_stale": true
   },
   {
-    "id": "alert_2026-05-21_017",
+    "id": "alert_2026-05-22_017",
     "type": "abrupt_change",
     "country": "ARG",
     "category": "economy",
@@ -1017,7 +1036,19 @@
     "observation": {
       "value": 3815150000,
       "time_period": "2024-Q3",
-      "unit": "USD"
+      "unit": "USD",
+      "display": {
+        "es": "3,815,150,000 USD",
+        "en": "3,815,150,000 USD"
+      },
+      "period_display": {
+        "es": "T3 2024",
+        "en": "Q3 2024"
+      },
+      "period_narrative": {
+        "es": "T3 de 2024",
+        "en": "Q3 2024"
+      }
     },
     "magnitude": {
       "es": "+2.4σ",
@@ -2001,26 +2032,33 @@
     "verification_trace": {
       "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/IMF_BOP",
       "csv_link": "https://data360files.worldbank.org/data360-data/data/IMF_BOP/IMF_BOP_BFP_BP6.csv",
-      "methodology_ref": "https://www.imf.org/external/pubs/ft/bopman/bopman.pdf"
+      "methodology_ref": "https://data.imf.org/?sk=7a51304b-6426-40c0-83dd-ca473ca1fd52"
     },
     "score": 0.58873523918459,
-    "detected_at": "2026-05-21T20:27:18.954Z",
+    "detected_at": "2026-05-22T00:21:20.834Z",
     "license": "License Specified Externally",
     "narrative_citizen": {
-      "es": "ARG registró 3815150000 USD en BOP, Financial Account, Portfolio investment para 2024-Q3, +2.4σ respecto a su trayectoria reciente.",
-      "en": "ARG recorded 3815150000 USD in BOP, Financial Account, Portfolio investment for 2024-Q3, +2.4σ from its recent trajectory."
+      "es": "Aumentó significativamente el valor de inversiones portafolio en Argentina en septiembre de 2024.",
+      "en": "There was a significant increase in portfolio investment value in Argentina in September 2024."
     },
     "narrative_journalist": {
-      "es": "Detección automática: ARG 3815150000 USD en BOP, Financial Account, Portfolio investment (2024-Q3). z-score +2.4σ vs ventana de 5 puntos previos.",
-      "en": "Auto-detected: ARG 3815150000 USD in BOP, Financial Account, Portfolio investment (2024-Q3). z-score +2.4σ against 5-point baseline."
+      "es": "El valor de inversiones portafolio en Argentina aumentó significativamente en septiembre de 2024, con un z-score de 2.35.",
+      "en": "The value of portfolio investments in Argentina saw a significant increase in September 2024, with a z-score of 2.35."
     },
     "claim_tokens": [
       {
         "claim_id": "4efa1e2fb0bc250b",
         "value": 3815150000,
-        "display_es": "3815150000 USD",
-        "display_en": "3815150000 USD"
+        "display_es": "3,815,150,000 USD",
+        "display_en": "3,815,150,000 USD"
+      },
+      {
+        "claim_id": "5c50dccdc909729e",
+        "value": 859922000,
+        "display_es": "859.922.000,00 USD",
+        "display_en": "859,922,000.00 USD"
       }
-    ]
+    ],
+    "data_period_stale": true
   }
 ]

@@ -1,0 +1,33 @@
+template#d360-detail-tpl
+  aside.d360-detail(role="dialog" aria-modal="true")
+    button.d360-detail__close(type="button" aria-label="Close")
+      svg(width="16" height="16" viewBox="0 0 16 16")
+        path(d="M3 3 L13 13 M13 3 L3 13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round")
+    div.d360-detail__head
+      div.d360-detail__metaL
+        span(data-bind="countryTag")
+        span.d360-card__divider ·
+        span.d360-detail__cat(data-bind="category")
+        span.d360-card__divider ·
+        span(data-bind="typeChip")
+      h2.d360-detail__title(data-bind="title")
+      div.d360-detail__sub(data-bind="idno")
+      div.d360-detail__dateline(data-bind="dataPeriod")
+      div.d360-detail__numblock
+        span.d360-detail__num(data-bind="value")
+        span(data-bind="magnitude")
+    div.d360-detail__section
+      div.d360-detail__seclabel(data-bind="labelTrend")= _("detail.historical_trend", lang)
+      div(data-bind="chart")
+    div.d360-detail__section
+      div.d360-detail__seclabel(data-bind="labelAnalysis")= _("detail.analysis", lang)
+      div(data-bind="analysis")
+    div.d360-detail__section
+      div.d360-detail__seclabel(data-bind="labelSources")= _("detail.sources", lang)
+      ul.d360-trace(data-bind="trace")
+    div.d360-detail__section
+      div.d360-detail__seclabel(data-bind="labelDetails")= _("detail.details", lang)
+      dl.d360-meta(data-bind="meta")
+    div.d360-detail__footer
+      button.d360-copy.d360-detail__copy-btn(type="button")= _("ui.copy_quote", lang)
+      span.d360-copy__preview(data-bind="copyPreview")

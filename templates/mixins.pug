@@ -28,6 +28,35 @@ mixin magnitude(text)
   - var sign = (typeof text === "string" && (text.charAt(0) === "+")) ? "up" : ((typeof text === "string" && (text.charAt(0) === "−" || text.charAt(0) === "-")) ? "down" : "neutral")
   span.d360-mag(class=("d360-mag--" + sign))= text
 
+mixin langTag(code)
+  span.d360-langtag= code
+
+mixin observationDisplay(ev, lang)
+  - var lng = (lang === "en") ? "en" : "es"
+  if ev.observation && ev.observation.display
+    = ev.observation.display[lng]
+  else if ev.observation
+    = ev.observation.value
+
+mixin dataDateBadge(ev, lang, label, staleLabel)
+  - var lng = (lang === "en") ? "en" : "es"
+  - var text = ev.observation && ev.observation.period_narrative ? ev.observation.period_narrative[lng] : (ev.observation && ev.observation.period_display ? ev.observation.period_display[lng] : (ev.observation ? ev.observation.time_period : ""))
+  - var staleTitle = ev.data_period_stale ? (staleLabel || label) : null
+  span.d360-data-date(class=(ev.data_period_stale ? "d360-data-date--stale" : "") title=staleTitle)
+    span.d360-data-date__label= label
+    span.d360-data-date__value= text
+
+mixin periodDisplay(ev, lang)
+  - var lng = (lang === "en") ? "en" : "es"
+  if ev.observation && ev.observation.period_display
+    = ev.observation.period_display[lng]
+  else if ev.observation
+    = ev.observation.time_period
+
+mixin citizenNarrative(ev, lang)
+  - var lng = (lang === "en") ? "en" : "es"
+  = ev.narrative_citizen[lng]
+
 //- Verification mark. state: 'verified' | 'pending' | 'failed'.
 //- Tip text is provided by caller for now (i18n later).
 mixin verificationMark(state, tipTitle, tipDesc, size)

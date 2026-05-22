@@ -4,7 +4,6 @@ require('dotenv').config({ override: true });
 
 const http = require('http');
 const path = require('path');
-const fs = require('fs');
 
 const router = require('./lib/router');
 const views = require('./lib/views');
@@ -18,16 +17,37 @@ const host = 'localhost';
 const port = parseInt(process.env.D360_PORT, 10) || 8090;
 const isDev = process.env.NODE_ENV !== 'production';
 
-if (isDev) {
-  setupDevWatchers();
-}
-
 const server = http.createServer(router.requestListener);
 server.listen(port, host, () => {
   console.log(new Date(), `data360-monitor listening on http://${host}:${port} (${isDev ? 'dev' : 'prod'})`);
+  if (isDev) setupDevWatchers(server);
 });
 
-function setupDevWatchers() {
+function restartServer() {
+  if (process.env.pm_id) {
+    console.log(new Date(), 'watcher: running under PM2, exiting for restart');
+    process.exit(0);
+  }
+
+  if (typeof server.closeAllConnections === 'function') {
+    server.closeAllConnections();
+  }
+
+  server.close(() => {
+    console.log(new Date(), 'watcher: server closed, spawning new process...');
+    const { spawn } = require('child_process');
+    const entry = path.join(__dirname, 'data360-monitor.js');
+    const child = spawn(process.execPath, [entry], {
+      detached: true,
+      stdio: 'inherit',
+      env: process.env,
+    });
+    child.unref();
+    process.exit(0);
+  });
+}
+
+function setupDevWatchers(activeServer) {
   let chokidar;
   try {
     chokidar = require('chokidar');
@@ -37,34 +57,66 @@ function setupDevWatchers() {
   }
 
   const root = __dirname;
-  const watchPaths = [
-    path.join(root, 'templates'),
+  const watcher = chokidar.watch([
+    path.join(root, 'data360-monitor.js'),
+    path.join(root, '.env'),
+    path.join(root, 'lib'),
     path.join(root, 'config'),
-    path.join(root, 'static'),
+    path.join(root, 'templates'),
     path.join(root, 'data/alerts.json'),
     path.join(root, 'data/alerts.fixture.json'),
-  ];
-
-  const watcher = chokidar.watch(watchPaths, {
+  ], {
+    ignored: (filePath) => {
+      if (filePath.includes('node_modules')) return true;
+      if (filePath.includes('.git')) return true;
+      if (filePath.includes(`${path.sep}lib${path.sep}`) && !filePath.endsWith('.js')) return true;
+      if (filePath.includes(`${path.sep}templates${path.sep}`) && !filePath.endsWith('.pug')) return true;
+      if (filePath.includes(`${path.sep}config${path.sep}`) && !filePath.endsWith('.json')) return true;
+      return false;
+    },
     ignoreInitial: true,
-    ignored: /node_modules|\.git/,
+    usePolling: true,
+    interval: 500,
+    awaitWriteFinish: {
+      stabilityThreshold: 300,
+      pollInterval: 100,
+    },
+    persistent: true,
   });
 
-  watcher.on('all', (event, filepath) => {
-    const ext = path.extname(filepath);
-    if (ext === '.pug') {
-      console.log(new Date(), 'template changed, clearing cache:', filepath);
+  watcher.on('error', (err) => {
+    console.error(new Date(), 'watcher error:', err.message);
+  });
+
+  watcher.on('ready', () => {
+    const watched = watcher.getWatched();
+    const fileCount = Object.values(watched).reduce((n, files) => n + files.length, 0);
+    console.log(new Date(), `watcher ready, watching ${fileCount} files`);
+  });
+
+  watcher.on('change', (filepath) => {
+    console.log(new Date(), 'watcher: changed', filepath);
+
+    if (filepath.endsWith('.pug')) {
+      console.log(new Date(), 'watcher: clearing template cache');
       views.clearTemplateCache();
-    } else if (filepath.endsWith('strings.es.json') || filepath.endsWith('strings.en.json')) {
-      console.log(new Date(), 'strings changed, reloading i18n:', filepath);
-      i18n.reload();
-    } else if (filepath.endsWith('alerts.json') || filepath.endsWith('alerts.fixture.json')) {
-      console.log(new Date(), 'alerts changed, reloading store:', filepath);
-      alertsStore.reload();
-    } else if (ext === '.css') {
-      console.log(new Date(), 'css changed, will be re-minified on next request:', filepath);
-    } else if (ext === '.js' || ext === '.json') {
-      console.log(new Date(), 'js/json changed, restart needed (run nodemon or restart manually):', filepath);
+      return;
     }
+
+    if (filepath.endsWith('strings.es.json') || filepath.endsWith('strings.en.json')) {
+      console.log(new Date(), 'watcher: reloading i18n');
+      i18n.reload();
+      views.clearTemplateCache();
+      return;
+    }
+
+    if (filepath.endsWith('alerts.json') || filepath.endsWith('alerts.fixture.json')) {
+      console.log(new Date(), 'watcher: reloading alerts store');
+      alertsStore.reload();
+      return;
+    }
+
+    console.log(new Date(), 'watcher: server code changed, restarting...');
+    restartServer();
   });
 }

@@ -1,0 +1,17 @@
+div#d360-onboard.d360-onboard(style="display:none" role="dialog" aria-modal="true" aria-labelledby="d360-onboard-title")
+  div.d360-onboard__scrim(data-onboard-dismiss="true")
+  div.d360-onboard__card
+    button.d360-onboard__close(type="button" aria-label="Close" data-onboard-dismiss="true") ×
+    h2#d360-onboard-title.d360-onboard__title= _("onboard.title", lang)
+    p.d360-onboard__intro= _("onboard.intro", lang)
+    ul.d360-onboard__list
+      li= _("onboard.feature_1", lang)
+      li= _("onboard.feature_2", lang)
+      li= _("onboard.feature_3", lang)
+      li= _("onboard.feature_4", lang)
+      li= _("onboard.feature_5", lang)
+    div.d360-onboard__actions
+      a.d360-onboard__cta.d360-onboard__cta--primary(href="/" data-onboard-go="monitor")= _("onboard.cta_monitor", lang)
+      a.d360-onboard__cta.d360-onboard__cta--primary(href="/chat" data-onboard-go="chat")= _("onboard.cta_chat", lang)
+      a.d360-onboard__cta.d360-onboard__cta--primary(href="/about" data-onboard-go="about")= _("onboard.cta_about", lang)
+    button.d360-onboard__skip(type="button" data-onboard-dismiss="true")= _("onboard.skip", lang)

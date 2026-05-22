@@ -1,6 +1,6 @@
 [
   {
-    "id": "alert_2026-05-21_004",
+    "id": "alert_2026-05-22_004",
     "type": "abrupt_change",
     "country": "HND",
     "category": "economy",
@@ -15,7 +15,19 @@
     "observation": {
       "value": 10.629658,
       "time_period": "2020",
-      "unit": "PT_REV"
+      "unit": "PT_REV",
+      "display": {
+        "es": "7.73 %",
+        "en": "7.73%"
+      },
+      "period_display": {
+        "es": "2020",
+        "en": "2020"
+      },
+      "period_narrative": {
+        "es": "2020",
+        "en": "2020"
+      }
     },
     "magnitude": {
       "es": "+2.6σ",
@@ -106,27 +118,34 @@
       "methodology_ref": "https://dsbb.imf.org/"
     },
     "score": 0.6548050586553917,
-    "detected_at": "2026-05-21T20:27:18.951Z",
+    "detected_at": "2026-05-22T00:21:20.830Z",
     "license": "CC BY-4.0",
     "narrative_citizen": {
-      "es": "HND registró 10.629658 PT_REV en Interest payments (% of revenue) para 2020, +2.6σ respecto a su trayectoria reciente.",
-      "en": "HND recorded 10.629658 PT_REV in Interest payments (% of revenue) for 2020, +2.6σ from its recent trajectory."
+      "es": "Subió significativamente el porcentaje de pagos de intereses sobre la recaudación en Honduras en 2020.",
+      "en": "Significantly increased the percentage of interest payments over revenue in Honduras in 2020."
     },
     "narrative_journalist": {
-      "es": "Detección automática: HND 10.629658 PT_REV en Interest payments (% of revenue) (2020). z-score +2.6σ vs ventana de 5 puntos previos.",
-      "en": "Auto-detected: HND 10.629658 PT_REV in Interest payments (% of revenue) (2020). z-score +2.6σ against 5-point baseline."
+      "es": "El porcentaje de pagos de intereses sobre la recaudación en Honduras aumentó a 10.63 % en 2020, un incremento del 37.2 % respecto a 2015.",
+      "en": "The percentage of interest payments over revenue in Honduras rose to 10.63% in 2020, a 37.2% increase from 2015."
     },
     "claim_tokens": [
       {
         "claim_id": "071f7ff074eefe59",
-        "value": 10.629658,
-        "display_es": "10.629658 PT_REV",
-        "display_en": "10.629658 PT_REV"
+        "value": 7.731239,
+        "display_es": "7.73 %",
+        "display_en": "7.73%"
+      },
+      {
+        "claim_id": "be899fe5f5b37912",
+        "value": 7.731239,
+        "display_es": "7,73 PT_REV",
+        "display_en": "7.73 PT_REV"
       }
-    ]
+    ],
+    "data_period_stale": true
   },
   {
-    "id": "alert_2026-05-21_005",
+    "id": "alert_2026-05-22_005",
     "type": "abrupt_change",
     "country": "MEX",
     "category": "economy",
@@ -141,7 +160,19 @@
     "observation": {
       "value": 20.000111,
       "time_period": "2024",
-      "unit": "PT_REV"
+      "unit": "PT_REV",
+      "display": {
+        "es": "18.55 %",
+        "en": "18.55%"
+      },
+      "period_display": {
+        "es": "2024",
+        "en": "2024"
+      },
+      "period_narrative": {
+        "es": "2024",
+        "en": "2024"
+      }
     },
     "magnitude": {
       "es": "+2.2σ",
@@ -340,23 +371,30 @@
       "methodology_ref": "https://dsbb.imf.org/"
     },
     "score": 0.5534119434554561,
-    "detected_at": "2026-05-21T20:27:18.952Z",
+    "detected_at": "2026-05-22T00:21:20.830Z",
     "license": "CC BY-4.0",
     "narrative_citizen": {
-      "es": "MEX registró 20.000111 PT_REV en Interest payments (% of revenue) para 2024, +2.2σ respecto a su trayectoria reciente.",
-      "en": "MEX recorded 20.000111 PT_REV in Interest payments (% of revenue) for 2024, +2.2σ from its recent trajectory."
+      "es": "Subió considerablemente el porcentaje de pagos de intereses sobre la recaudación en México en 2024.",
+      "en": "Considerably increased the percentage of interest payments over revenue in Mexico in 2024."
     },
     "narrative_journalist": {
-      "es": "Detección automática: MEX 20.000111 PT_REV en Interest payments (% of revenue) (2024). z-score +2.2σ vs ventana de 5 puntos previos.",
-      "en": "Auto-detected: MEX 20.000111 PT_REV in Interest payments (% of revenue) (2024). z-score +2.2σ against 5-point baseline."
+      "es": "El porcentaje de pagos de intereses sobre la recaudación en México aumentó a 20.00 % en 2024, un incremento del 9.4 % respecto a 2023.",
+      "en": "The percentage of interest payments over revenue in Mexico rose to 20.00% in 2024, a 9.4% increase from 2023."
     },
     "claim_tokens": [
       {
         "claim_id": "2e8991dcc784df63",
-        "value": 20.000111,
-        "display_es": "20.000111 PT_REV",
-        "display_en": "20.000111 PT_REV"
+        "value": 18.549315,
+        "display_es": "18.55 %",
+        "display_en": "18.55%"
+      },
+      {
+        "claim_id": "49afd15342bb7f06",
+        "value": 18.549315,
+        "display_es": "18,55 PT_REV",
+        "display_en": "18.55 PT_REV"
       }
-    ]
+    ],
+    "data_period_stale": true
   }
 ]

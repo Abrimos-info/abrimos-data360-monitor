@@ -1,6 +1,6 @@
 [
   {
-    "id": "alert_2026-05-21_018",
+    "id": "alert_2026-05-22_018",
     "type": "abrupt_change",
     "country": "HND",
     "category": "economy",
@@ -15,7 +15,19 @@
     "observation": {
       "value": 72455000,
       "time_period": "2024-Q3",
-      "unit": "USD"
+      "unit": "USD",
+      "display": {
+        "es": "72.455.000,00 USD",
+        "en": "72,455,000.00 USD"
+      },
+      "period_display": {
+        "es": "T3 2024",
+        "en": "Q3 2024"
+      },
+      "period_narrative": {
+        "es": "T3 de 2024",
+        "en": "Q3 2024"
+      }
     },
     "magnitude": {
       "es": "+2.0σ",
@@ -375,30 +387,37 @@
     "verification_trace": {
       "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/IMF_BOP",
       "csv_link": "https://data360files.worldbank.org/data360-data/data/IMF_BOP/IMF_BOP_IPE_BP6.csv",
-      "methodology_ref": "https://www.imf.org/external/pubs/ft/bopman/bopman.pdf"
+      "methodology_ref": "https://data.imf.org/?sk=7a51304b-6426-40c0-83dd-ca473ca1fd52"
     },
     "score": 0.510696959446355,
-    "detected_at": "2026-05-21T20:27:18.954Z",
+    "detected_at": "2026-05-22T00:21:20.834Z",
     "license": "License Specified Externally",
     "narrative_citizen": {
-      "es": "HND registró 72455000 USD en IIP, Portfolio investment, Equity and investment fund shares para 2024-Q3, +2.0σ respecto a su trayectoria reciente.",
-      "en": "HND recorded 72455000 USD in IIP, Portfolio investment, Equity and investment fund shares for 2024-Q3, +2.0σ from its recent trajectory."
+      "es": "Aumentó drásticamente el participaciones de capital en manos de no residentes en Honduras en T3 de 2024.",
+      "en": "Rose sharply for IIP, Portfolio investment, Equity and investment fund shares in Honduras in Q3 2024."
     },
     "narrative_journalist": {
-      "es": "Detección automática: HND 72455000 USD en IIP, Portfolio investment, Equity and investment fund shares (2024-Q3). z-score +2.0σ vs ventana de 5 puntos previos.",
-      "en": "Auto-detected: HND 72455000 USD in IIP, Portfolio investment, Equity and investment fund shares (2024-Q3). z-score +2.0σ against 5-point baseline."
+      "es": "Honduras el participaciones de capital en manos de no residentes 72.455.000,00 USD en 2024-Q3, frente a 66.720.600,00 USD en 2024-Q2. Cambio +8,6 % con z-score +2,0σ sobre la ventana móvil de 5 puntos.",
+      "en": "Honduras IIP, Portfolio investment, Equity and investment fund shares reached 72,455,000.00 USD in 2024-Q3 versus 66,720,600.00 USD in 2024-Q2. Change of +8.6 %, z-score +2.0σ over the 5-point rolling baseline."
     },
     "claim_tokens": [
       {
         "claim_id": "90ad40e9265c3e82",
         "value": 72455000,
-        "display_es": "72455000 USD",
-        "display_en": "72455000 USD"
+        "display_es": "72.455.000,00 USD",
+        "display_en": "72,455,000.00 USD"
+      },
+      {
+        "claim_id": "5d8a65024393f395",
+        "value": 66720600,
+        "display_es": "66.720.600,00 USD",
+        "display_en": "66,720,600.00 USD"
       }
-    ]
+    ],
+    "data_period_stale": true
   },
   {
-    "id": "alert_2026-05-21_038",
+    "id": "alert_2026-05-22_038",
     "type": "anomaly",
     "country": "MEX",
     "category": "economy",
@@ -413,7 +432,19 @@
     "observation": {
       "value": 148730000000,
       "time_period": "2024-Q3",
-      "unit": "USD"
+      "unit": "USD",
+      "display": {
+        "es": "148.730.000.000,00 USD",
+        "en": "148,730,000,000.00 USD"
+      },
+      "period_display": {
+        "es": "T3 2024",
+        "en": "Q3 2024"
+      },
+      "period_narrative": {
+        "es": "T3 de 2024",
+        "en": "Q3 2024"
+      }
     },
     "magnitude": {
       "es": "+2.5σ",
@@ -769,26 +800,27 @@
     "verification_trace": {
       "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/IMF_BOP",
       "csv_link": "https://data360files.worldbank.org/data360-data/data/IMF_BOP/IMF_BOP_IPE_BP6.csv",
-      "methodology_ref": "https://www.imf.org/external/pubs/ft/bopman/bopman.pdf"
+      "methodology_ref": "https://data.imf.org/?sk=7a51304b-6426-40c0-83dd-ca473ca1fd52"
     },
     "score": 0.6343737233080062,
-    "detected_at": "2026-05-21T20:27:18.956Z",
+    "detected_at": "2026-05-22T00:21:20.836Z",
     "license": "License Specified Externally",
     "narrative_citizen": {
-      "es": "MEX registró 148730000000 USD en IIP, Portfolio investment, Equity and investment fund shares para 2024-Q3, +2.5σ respecto a su trayectoria reciente.",
-      "en": "MEX recorded 148730000000 USD in IIP, Portfolio investment, Equity and investment fund shares for 2024-Q3, +2.5σ from its recent trajectory."
+      "es": "Superó ampliamente la mediana regional el participaciones de capital en manos de no residentes en México en T3 de 2024.",
+      "en": "IIP, Portfolio investment, Equity and investment fund shares rose far above the regional median in Mexico in Q3 2024."
     },
     "narrative_journalist": {
-      "es": "Detección automática: MEX 148730000000 USD en IIP, Portfolio investment, Equity and investment fund shares (2024-Q3). z-score +2.5σ vs ventana de 5 puntos previos.",
-      "en": "Auto-detected: MEX 148730000000 USD in IIP, Portfolio investment, Equity and investment fund shares (2024-Q3). z-score +2.5σ against 5-point baseline."
+      "es": "México el participaciones de capital en manos de no residentes 148.730.000.000,00 USD en 2024-Q3; mediana regional de 32.294.925.000,00 USD. Brecha +2,5σ (escala MAD) entre los 5 países del scope LAC.",
+      "en": "Mexico IIP, Portfolio investment, Equity and investment fund shares at 148,730,000,000.00 USD in 2024-Q3, regional median 32,294,925,000.00 USD. Gap of +2.5σ (MAD scale) within the 5 LAC countries in scope."
     },
     "claim_tokens": [
       {
         "claim_id": "a05ff8947a7dbcc6",
         "value": 148730000000,
-        "display_es": "148730000000 USD",
-        "display_en": "148730000000 USD"
+        "display_es": "148.730.000.000,00 USD",
+        "display_en": "148,730,000,000.00 USD"
       }
-    ]
+    ],
+    "data_period_stale": true
   }
 ]

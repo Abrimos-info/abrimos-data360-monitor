@@ -1,6 +1,6 @@
 [
   {
-    "id": "alert_2026-05-21_035",
+    "id": "alert_2026-05-22_035",
     "type": "anomaly",
     "country": "ARG",
     "category": "economy",
@@ -15,7 +15,19 @@
     "observation": {
       "value": 27.263038,
       "time_period": "2025-09-01",
-      "unit": "%"
+      "unit": "%",
+      "display": {
+        "es": "3.88 %",
+        "en": "3.88 %"
+      },
+      "period_display": {
+        "es": "sep 2025",
+        "en": "Sep 2025"
+      },
+      "period_narrative": {
+        "es": "septiembre de 2025",
+        "en": "September 2025"
+      }
     },
     "magnitude": {
       "es": "+4.9σ",
@@ -1215,26 +1227,27 @@
     "verification_trace": {
       "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/FAO_CP",
       "csv_link": "https://data360files.worldbank.org/data360-data/data/FAO_CP/FAO_CP_23014.csv",
-      "methodology_ref": "https://www.elibrary.imf.org/view/IMF069/01345-9789221136996/01345-9789221136996/01345-9789221136996.xml?language=en&redirect=true"
+      "methodology_ref": "http://www.fao.org"
     },
     "score": 1,
-    "detected_at": "2026-05-21T20:27:18.956Z",
+    "detected_at": "2026-05-22T00:21:20.836Z",
     "license": "CC BY 4.0",
     "narrative_citizen": {
-      "es": "ARG registró 27.263038 % en Food price inflation para 2025-09-01, +4.9σ respecto a su trayectoria reciente.",
-      "en": "ARG recorded 27.263038 % in Food price inflation for 2025-09-01, +4.9σ from its recent trajectory."
+      "es": "Disminuyó significativamente la inflación de precios de alimentos en Argentina en septiembre de 2025.",
+      "en": "Significantly decreased food price inflation in Argentina in September 2025."
     },
     "narrative_journalist": {
-      "es": "Detección automática: ARG 27.263038 % en Food price inflation (2025-09-01). z-score +4.9σ vs ventana de 5 puntos previos.",
-      "en": "Auto-detected: ARG 27.263038 % in Food price inflation (2025-09-01). z-score +4.9σ against 5-point baseline."
+      "es": "La inflación de precios de alimentos en Argentina cayó a 27.26 % en septiembre de 2025, muy por debajo de la mediana regional de 3.88 %.",
+      "en": "Food price inflation in Argentina fell to 27.26 % in September  Yö2025, well below the regional median of 3.88 %."
     },
     "claim_tokens": [
       {
         "claim_id": "787cff6379a8aad9",
-        "value": 27.263038,
-        "display_es": "27.263038 %",
-        "display_en": "27.263038 %"
+        "value": 3.881793,
+        "display_es": "3.88 %",
+        "display_en": "3.88 %"
       }
-    ]
+    ],
+    "data_period_stale": false
   }
 ]

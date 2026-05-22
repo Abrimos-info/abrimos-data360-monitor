@@ -1,6 +1,6 @@
 [
   {
-    "id": "alert_2026-05-21_028",
+    "id": "alert_2026-05-22_028",
     "type": "anomaly",
     "country": "GTM",
     "category": "health",
@@ -15,7 +15,19 @@
     "observation": {
       "value": 94,
       "time_period": "2023",
-      "unit": "DT_10P5BR_L"
+      "unit": "DT_10P5BR_L",
+      "display": {
+        "es": "94 (casos por 100,000 nacimientos)",
+        "en": "94 (cases per 100,000 live births)"
+      },
+      "period_display": {
+        "es": "2023",
+        "en": "2023"
+      },
+      "period_narrative": {
+        "es": "2023",
+        "en": "2023"
+      }
     },
     "magnitude": {
       "es": "+4.0σ",
@@ -183,26 +195,27 @@
     "verification_trace": {
       "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/WB_WDI",
       "csv_link": "https://data360files.worldbank.org/data360-data/data/WB_WDI/WB_WDI_SH_STA_MMRT.csv",
-      "methodology_ref": "https://www.who.int/news/item/23-02-2023-a-woman-dies-every-two-minutes-due-to-pregnancy-or-childbirth--un-agencies)"
+      "methodology_ref": "https://www.who.int/news/item/23-02-2023-a-woman-dies-every-two-minutes-due-to-pregnancy-or-childbirth--un-agencies"
     },
     "score": 0.9906583029812492,
-    "detected_at": "2026-05-21T20:27:18.955Z",
+    "detected_at": "2026-05-22T00:21:20.835Z",
     "license": "CC BY-4.0",
     "narrative_citizen": {
-      "es": "GTM registró 94 DT_10P5BR_L en Maternal mortality ratio (modeled estimate, per 100,000 live births) para 2023, +4.0σ respecto a su trayectoria reciente.",
-      "en": "GTM recorded 94 DT_10P5BR_L in Maternal mortality ratio (modeled estimate, per 100,000 live births) for 2023, +4.0σ from its recent trajectory."
+      "es": "Disminuyó significativamente la tasa de mortalidad materna en Guatemala en 2023.",
+      "en": "Significantly decreased maternal mortality rate in Guatemala in 2023."
     },
     "narrative_journalist": {
-      "es": "Detección automática: GTM 94 DT_10P5BR_L en Maternal mortality ratio (modeled estimate, per 100,000 live births) (2023). z-score +4.0σ vs ventana de 5 puntos previos.",
-      "en": "Auto-detected: GTM 94 DT_10P5BR_L in Maternal mortality ratio (modeled estimate, per 100,000 live births) (2023). z-score +4.0σ against 5-point baseline."
+      "es": "La tasa de mortalidad materna en Guatemala cayó a 94 casos por 100,000 nacimientos en 2023, muy por debajo de la mediana regional de 47 casos.",
+      "en": "Guatemala's maternal mortality rate dropped to 94 cases per 100,000 live births in 2023, well below the regional median of 47 cases."
     },
     "claim_tokens": [
       {
         "claim_id": "ae6ec5f7de9f676d",
         "value": 94,
-        "display_es": "94 DT_10P5BR_L",
-        "display_en": "94 DT_10P5BR_L"
+        "display_es": "94 (casos por 100,000 nacimientos)",
+        "display_en": "94 (cases per 100,000 live births)"
       }
-    ]
+    ],
+    "data_period_stale": true
   }
 ]

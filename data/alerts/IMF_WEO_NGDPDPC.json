@@ -1,6 +1,6 @@
 [
   {
-    "id": "alert_2026-05-21_020",
+    "id": "alert_2026-05-22_020",
     "type": "abrupt_change",
     "country": "HND",
     "category": "economy",
@@ -15,7 +15,19 @@
     "observation": {
       "value": 3080.95,
       "time_period": "2022",
-      "unit": "USD"
+      "unit": "USD",
+      "display": {
+        "es": "3080.95 USD",
+        "en": "3080.95 USD"
+      },
+      "period_display": {
+        "es": "2022",
+        "en": "2022"
+      },
+      "period_narrative": {
+        "es": "2022",
+        "en": "2022"
+      }
     },
     "magnitude": {
       "es": "+3.3σ",
@@ -201,15 +213,15 @@
       "csv_link": "https://data360files.worldbank.org/data360-data/data/IMF_WEO/IMF_WEO_NGDPDPC.csv"
     },
     "score": 0.8179074828709225,
-    "detected_at": "2026-05-21T20:27:18.954Z",
+    "detected_at": "2026-05-22T00:21:20.834Z",
     "license": "License Specified Externally",
     "narrative_citizen": {
-      "es": "HND registró 3080.95 USD en Gross domestic product per capita, current prices, U.S. dollars, Units para 2022, +3.3σ respecto a su trayectoria reciente.",
-      "en": "HND recorded 3080.95 USD in Gross domestic product per capita, current prices, U.S. dollars, Units for 2022, +3.3σ from its recent trajectory."
+      "es": "Subió drásticamente el ingreso per cápita en Honduras en 2022.",
+      "en": "The per capita income in Honduras surged dramatically in 2022."
     },
     "narrative_journalist": {
-      "es": "Detección automática: HND 3080.95 USD en Gross domestic product per capita, current prices, U.S. dollars, Units (2022). z-score +3.3σ vs ventana de 5 puntos previos.",
-      "en": "Auto-detected: HND 3080.95 USD in Gross domestic product per capita, current prices, U.S. dollars, Units (2022). z-score +3.3σ against 5-point baseline."
+      "es": "El ingreso per cápita en Honduras aumentó 3.27 veces la desviación estándar respecto a los 5 puntos previos.",
+      "en": "Honduras' per capita income increased by 3.27 standard deviations compared to the previous five points."
     },
     "claim_tokens": [
       {
@@ -217,11 +229,18 @@
         "value": 3080.95,
         "display_es": "3080.95 USD",
         "display_en": "3080.95 USD"
+      },
+      {
+        "claim_id": "01d4f87c1f6b1f16",
+        "value": 2816.19,
+        "display_es": "2.816,19 USD",
+        "display_en": "2,816.19 USD"
       }
-    ]
+    ],
+    "data_period_stale": true
   },
   {
-    "id": "alert_2026-05-21_021",
+    "id": "alert_2026-05-22_021",
     "type": "abrupt_change",
     "country": "MEX",
     "category": "economy",
@@ -236,7 +255,19 @@
     "observation": {
       "value": 8742.22,
       "time_period": "2020",
-      "unit": "USD"
+      "unit": "USD",
+      "display": {
+        "es": "8742.22 USD",
+        "en": "8742.22 USD"
+      },
+      "period_display": {
+        "es": "2020",
+        "en": "2020"
+      },
+      "period_narrative": {
+        "es": "2020",
+        "en": "2020"
+      }
     },
     "magnitude": {
       "es": "−2.1σ",
@@ -414,15 +445,15 @@
       "csv_link": "https://data360files.worldbank.org/data360-data/data/IMF_WEO/IMF_WEO_NGDPDPC.csv"
     },
     "score": 0.5129950369077634,
-    "detected_at": "2026-05-21T20:27:18.954Z",
+    "detected_at": "2026-05-22T00:21:20.834Z",
     "license": "License Specified Externally",
     "narrative_citizen": {
-      "es": "MEX registró 8742.22 USD en Gross domestic product per capita, current prices, U.S. dollars, Units para 2020, −2.1σ respecto a su trayectoria reciente.",
-      "en": "MEX recorded 8742.22 USD in Gross domestic product per capita, current prices, U.S. dollars, Units for 2020, −2.1σ from its recent trajectory."
+      "es": "Disminuyó bruscamente el ingreso per cápita en México en 2020.",
+      "en": "Mexico's per capita income dropped sharply in 2020."
     },
     "narrative_journalist": {
-      "es": "Detección automática: MEX 8742.22 USD en Gross domestic product per capita, current prices, U.S. dollars, Units (2020). z-score −2.1σ vs ventana de 5 puntos previos.",
-      "en": "Auto-detected: MEX 8742.22 USD in Gross domestic product per capita, current prices, U.S. dollars, Units (2020). z-score −2.1σ against 5-point baseline."
+      "es": "El ingreso per cápita en México disminuyó 2.05 veces la desviación estándar respecto a los 5 puntos previos.",
+      "en": "Mexico's per capita income decreased by 2.05 standard deviations compared to the previous five points."
     },
     "claim_tokens": [
       {
@@ -430,7 +461,14 @@
         "value": 8742.22,
         "display_es": "8742.22 USD",
         "display_en": "8742.22 USD"
+      },
+      {
+        "claim_id": "6103aadda352b767",
+        "value": 10259.8,
+        "display_es": "10.259,80 USD",
+        "display_en": "10,259.80 USD"
       }
-    ]
+    ],
+    "data_period_stale": true
   }
 ]

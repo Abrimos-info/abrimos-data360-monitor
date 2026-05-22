@@ -1,6 +1,6 @@
 [
   {
-    "id": "alert_2026-05-21_030",
+    "id": "alert_2026-05-22_030",
     "type": "anomaly",
     "country": "ARG",
     "category": "labor",
@@ -15,7 +15,19 @@
     "observation": {
       "value": 7.145,
       "time_period": "2025",
-      "unit": "PT_LF"
+      "unit": "PT_LF",
+      "display": {
+        "es": "7.145 %",
+        "en": "7.145%"
+      },
+      "period_display": {
+        "es": "2025",
+        "en": "2025"
+      },
+      "period_narrative": {
+        "es": "2025",
+        "en": "2025"
+      }
     },
     "magnitude": {
       "es": "+3.7σ",
@@ -167,26 +179,27 @@
     "verification_trace": {
       "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/WB_WDI",
       "csv_link": "https://data360files.worldbank.org/data360-data/data/WB_WDI/WB_WDI_SL_UEM_TOTL_ZS.csv",
-      "methodology_ref": "https://ilostat.ilo.org/resources/concepts-and-definitions/ilo-modelled-estimates/"
+      "methodology_ref": "https://ilostat.ilo.org/data/bulk/"
     },
     "score": 0.9190415639601196,
-    "detected_at": "2026-05-21T20:27:18.955Z",
+    "detected_at": "2026-05-22T00:21:20.835Z",
     "license": "CC BY-4.0",
     "narrative_citizen": {
-      "es": "ARG registró 7.145 PT_LF en Unemployment, total (% of total labor force) (modeled ILO estimate) para 2025, +3.7σ respecto a su trayectoria reciente.",
-      "en": "ARG recorded 7.145 PT_LF in Unemployment, total (% of total labor force) (modeled ILO estimate) for 2025, +3.7σ from its recent trajectory."
+      "es": "Subió significativamente el desempleo en Argentina en 2025.",
+      "en": "Unemployment rose significantly in Argentina in 2025."
     },
     "narrative_journalist": {
-      "es": "Detección automática: ARG 7.145 PT_LF en Unemployment, total (% of total labor force) (modeled ILO estimate) (2025). z-score +3.7σ vs ventana de 5 puntos previos.",
-      "en": "Auto-detected: ARG 7.145 PT_LF in Unemployment, total (% of total labor force) (modeled ILO estimate) (2025). z-score +3.7σ against 5-point baseline."
+      "es": "El desempleo en Argentina alcanzó el 7.145 % en 2025, superando la mediana regional de 3.308 %.",
+      "en": "Unemployment in Argentina reached 7.145% in 2025, surpassing the regional median of 3.308%."
     },
     "claim_tokens": [
       {
         "claim_id": "dad1d6be0755c4f1",
         "value": 7.145,
-        "display_es": "7.145 PT_LF",
-        "display_en": "7.145 PT_LF"
+        "display_es": "7.145 %",
+        "display_en": "7.145%"
       }
-    ]
+    ],
+    "data_period_stale": false
   }
 ]

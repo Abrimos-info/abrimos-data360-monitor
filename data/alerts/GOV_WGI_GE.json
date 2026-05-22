@@ -1,6 +1,6 @@
 [
   {
-    "id": "alert_2026-05-21_010",
+    "id": "alert_2026-05-22_010",
     "type": "abrupt_change",
     "country": "MEX",
     "category": "governance",
@@ -15,7 +15,19 @@
     "observation": {
       "value": -0.219933,
       "time_period": "2024",
-      "unit": "U"
+      "unit": "U",
+      "display": {
+        "es": "-0.220 (índice)",
+        "en": "-0.220 (index)"
+      },
+      "period_display": {
+        "es": "2024",
+        "en": "2024"
+      },
+      "period_narrative": {
+        "es": "2024",
+        "en": "2024"
+      }
     },
     "magnitude": {
       "es": "−5.5σ",
@@ -131,26 +143,33 @@
     "verification_trace": {
       "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/WB_WGI",
       "csv_link": "https://data360files.worldbank.org/data360-data/data/WB_WGI/GOV_WGI_GE.csv",
-      "methodology_ref": "https://www.worldbank.org/en/publication/worldwide-governance-indicators/documentation#3"
+      "methodology_ref": "https://datacatalog.worldbank.org/search/dataset/0038026/Worldwide-Governance-Indicators"
     },
     "score": 1,
-    "detected_at": "2026-05-21T20:27:18.953Z",
+    "detected_at": "2026-05-22T00:21:20.832Z",
     "license": "unspecified",
     "narrative_citizen": {
-      "es": "MEX registró -0.219933 U en Worldwide Governance Indicators: Government Effectiveness para 2024, −5.5σ respecto a su trayectoria reciente.",
-      "en": "MEX recorded -0.219933 U in Worldwide Governance Indicators: Government Effectiveness for 2024, −5.5σ from its recent trajectory."
+      "es": "Disminuyó bruscamente la efectividad gubernamental en México en 2024.",
+      "en": "Government effectiveness in Mexico plummeted sharply in 2024."
     },
     "narrative_journalist": {
-      "es": "Detección automática: MEX -0.219933 U en Worldwide Governance Indicators: Government Effectiveness (2024). z-score −5.5σ vs ventana de 5 puntos previos.",
-      "en": "Auto-detected: MEX -0.219933 U in Worldwide Governance Indicators: Government Effectiveness (2024). z-score −5.5σ against 5-point baseline."
+      "es": "El índice de efectividad gubernamental en México registró un z-score de -5.48 en 2024, muy por debajo de su promedio histórico.",
+      "en": "Mexico's government effectiveness index recorded a z-score of -5.48 in 2024, significantly below its historical average."
     },
     "claim_tokens": [
       {
         "claim_id": "e5a617f33fd81552",
         "value": -0.219933,
-        "display_es": "-0.219933 U",
-        "display_en": "-0.219933 U"
+        "display_es": "-0.220 (índice)",
+        "display_en": "-0.220 (index)"
+      },
+      {
+        "claim_id": "6978c01b37adbe9e",
+        "value": -0.074865,
+        "display_es": "-0,07 U",
+        "display_en": "-0.07 U"
       }
-    ]
+    ],
+    "data_period_stale": true
   }
 ]

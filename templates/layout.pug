@@ -3,10 +3,22 @@ html(lang=lang)
   head
     meta(charset="utf-8")
     meta(name="viewport" content="width=device-width, initial-scale=1")
-    title= title || "Data360 Monitor"
-    meta(name="description" content="Autonomous monitor that detects newsworthy events across the 12,000 indicators of Data360 and delivers them verified to LAC newsrooms.")
+    title= title || _("site_name", lang)
+    meta(name="description" content= _("tagline", lang))
     link(rel="stylesheet" href="/static/css/tokens.css")
     link(rel="stylesheet" href="/static/css/main.css")
   body
-    block content
+    div.d360-app
+      include partials/site-nav
+      block headerExtras
+      block content
+    include partials/onboarding
+    include partials/newsletter-modal
+    script.
+      window.D360_LANG = !{JSON.stringify(lang)};
+      window.D360_LANG_MODE = !{JSON.stringify(langMode || lang)};
+      window.D360_STRINGS = { es: !{JSON.stringify(stringsEs)}, en: !{JSON.stringify(stringsEn)} };
+    script(src="/static/js/onboarding.js" defer)
+    script(src="/static/js/lang-toggle.js" defer)
+    script(src="/static/js/newsletter-modal.js" defer)
     block scripts

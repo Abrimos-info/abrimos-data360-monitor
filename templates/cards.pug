@@ -4,9 +4,8 @@
 
 include mixins
 
-//- Narrative-forward card: serif headline-style narrative leads.
-mixin cardNarrative(ev, lang)
-  - var lng = (lang === "en") ? "en" : "en"
+mixin cardNarrative(ev, lang, langMode, typeText, dataPeriodLabel, dataPeriodStaleLabel)
+  - var langKey = (lang === "en") ? "en" : "es"
   article.d360-card.d360-card--narr(tabindex="0" role="button" data-alert-id=ev.id data-country=ev.country data-category=ev.category)
     div.d360-card__head
       div.d360-card__metaL
@@ -14,16 +13,18 @@ mixin cardNarrative(ev, lang)
         span.d360-card__divider ·
         span.d360-card__dataset= ev.indicator.idno
       div.d360-card__metaR
-        +typeChip(ev.type, (ev.type === "abrupt_change" ? "Abrupt change" : "Anomaly"))
-    div.d360-card__body= ev.narrative_citizen[lng]
+        +dataDateBadge(ev, lang, langMode, dataPeriodLabel, dataPeriodStaleLabel)
+        +typeChip(ev.type, typeText)
+    div.d360-card__body
+      +citizenNarrative(ev, lang, langMode)
     div.d360-card__sub
-      | #{ev.indicator.name[lng]} · #{ev.observation.display ? ev.observation.display[lng] : ev.observation.value}
+      | #{ev.indicator.name[langKey]} ·
+      +observationDisplay(ev, lang, langMode)
       |  ·
-      +magnitude(ev.magnitude[lng])
+      +magnitude(ev.magnitude[langKey])
 
-//- Number-forward card: big value dominates, narrative supports.
-mixin cardNumber(ev, lang)
-  - var lng = (lang === "en") ? "en" : "en"
+mixin cardNumber(ev, lang, langMode, typeText, dataPeriodLabel, dataPeriodStaleLabel)
+  - var langKey = (lang === "en") ? "en" : "es"
   article.d360-card.d360-card--num(tabindex="0" role="button" data-alert-id=ev.id data-country=ev.country data-category=ev.category)
     div.d360-card__head
       div.d360-card__metaL
@@ -31,40 +32,47 @@ mixin cardNumber(ev, lang)
         span.d360-card__divider ·
         span.d360-card__dataset= ev.indicator.idno
       div.d360-card__metaR
-        +typeChip(ev.type, (ev.type === "abrupt_change" ? "Abrupt change" : "Anomaly"))
+        +dataDateBadge(ev, lang, langMode, dataPeriodLabel, dataPeriodStaleLabel)
+        +typeChip(ev.type, typeText)
     div.d360-card__body
-      span.d360-card__bignum= ev.observation.display ? ev.observation.display[lng] : ev.observation.value
+      span.d360-card__bignum
+        +observationDisplay(ev, lang, langMode)
       span.d360-card__bigtext
-        = ev.indicator.name[lng]
+        = ev.indicator.name[langKey]
         |  ·
-        +magnitude(ev.magnitude[lng])
-        |  · #{ev.observation.time_period}
+        +magnitude(ev.magnitude[langKey])
 
-//- Newspaper card: eyebrow + serif headline + lede.
-mixin cardNewspaper(ev, lang)
-  - var lng = (lang === "en") ? "en" : "en"
+mixin cardNewspaper(ev, lang, langMode, typeText, dataPeriodLabel, dataPeriodStaleLabel)
+  - var langKey = (lang === "en") ? "en" : "es"
   article.d360-card.d360-card--news(tabindex="0" role="button" data-alert-id=ev.id data-country=ev.country data-category=ev.category)
     div.d360-card__eyebrow
+      +dataDateBadge(ev, lang, langMode, dataPeriodLabel, dataPeriodStaleLabel)
+      span.d360-card__divider ·
       = ev.country
       |  ·
-      = (ev.type === "abrupt_change" ? "Abrupt change" : "Anomaly")
+      = typeText
       |  ·
       = ev.indicator.idno
-    h3.d360-card__headline= ev.narrative_citizen[lng]
+    h3.d360-card__headline
+      +citizenNarrative(ev, lang, langMode)
     hr.d360-card__rule
     p.d360-card__lede
-      | #{ev.indicator.name[lng]} · #{ev.observation.display ? ev.observation.display[lng] : ev.observation.value} ·
-      +magnitude(ev.magnitude[lng])
-      |  · #{ev.observation.time_period}
+      | #{ev.indicator.name[langKey]} ·
+      +observationDisplay(ev, lang, langMode)
+      |  ·
+      +magnitude(ev.magnitude[langKey])
 
-//- Feed: list of cards, variant chosen by caller.
-mixin feed(events, variant, lang)
+mixin feed(events, variant, lang, langMode, _, typeTextFor)
   - variant = variant || "narr"
+  - typeTextFor = typeTextFor || function(type) { return type === "abrupt_change" ? "Abrupt change" : "Anomaly"; }
+  - var dataPeriodLabel = _("detail.data_period", lang)
+  - var dataPeriodStaleLabel = _("detail.data_period_stale", lang)
   div.d360-feed
     each ev in events
+      - var typeText = typeTextFor(ev.type)
       if variant === "num"
-        +cardNumber(ev, lang)
+        +cardNumber(ev, lang, langMode, typeText, dataPeriodLabel, dataPeriodStaleLabel)
       else if variant === "news"
-        +cardNewspaper(ev, lang)
+        +cardNewspaper(ev, lang, langMode, typeText, dataPeriodLabel, dataPeriodStaleLabel)
       else
-        +cardNarrative(ev, lang)
+        +cardNarrative(ev, lang, langMode, typeText, dataPeriodLabel, dataPeriodStaleLabel)

@@ -1,6 +1,6 @@
 [
   {
-    "id": "alert_2026-05-21_006",
+    "id": "alert_2026-05-22_006",
     "type": "abrupt_change",
     "country": "HND",
     "category": "poverty",
@@ -15,7 +15,19 @@
     "observation": {
       "value": 45.7,
       "time_period": "2024",
-      "unit": "0_TO_100"
+      "unit": "0_TO_100",
+      "display": {
+        "es": "45,70",
+        "en": "45.70"
+      },
+      "period_display": {
+        "es": "2024",
+        "en": "2024"
+      },
+      "period_narrative": {
+        "es": "2024",
+        "en": "2024"
+      }
     },
     "magnitude": {
       "es": "−2.5σ",
@@ -155,26 +167,33 @@
     "verification_trace": {
       "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/WB_WDI",
       "csv_link": "https://data360files.worldbank.org/data360-data/data/WB_WDI/WB_WDI_SI_POV_GINI.csv",
-      "methodology_ref": "http://pip.worldbank.org."
+      "methodology_ref": "http://pip.worldbank.org"
     },
     "score": 0.61873294705399,
-    "detected_at": "2026-05-21T20:27:18.952Z",
+    "detected_at": "2026-05-22T00:21:20.830Z",
     "license": "CC BY-4.0",
     "narrative_citizen": {
-      "es": "HND registró 45.7 0_TO_100 en Gini index para 2024, −2.5σ respecto a su trayectoria reciente.",
-      "en": "HND recorded 45.7 0_TO_100 in Gini index for 2024, −2.5σ from its recent trajectory."
+      "es": "Disminuyó el índice de Gini en Honduras en 2024, pasando de 46.8 a 45.7.",
+      "en": "The Gini index decreased in Honduras in 2024, dropping from 46.8 to 45.7."
     },
     "narrative_journalist": {
-      "es": "Detección automática: HND 45.7 0_TO_100 en Gini index (2024). z-score −2.5σ vs ventana de 5 puntos previos.",
-      "en": "Auto-detected: HND 45.7 0_TO_100 in Gini index (2024). z-score −2.5σ against 5-point baseline."
+      "es": "El índice de Gini en Honduras registró una disminución de 2.47 puntos estándar en 2024, situándose por debajo de la media regional de 48.62.",
+      "en": "The Gini index in Honduras saw a decrease of 2.47 standard deviations in 2024, falling below the regional average of 48.62."
     },
     "claim_tokens": [
       {
         "claim_id": "69279ed10867aa4f",
         "value": 45.7,
-        "display_es": "45.7 0_TO_100",
-        "display_en": "45.7 0_TO_100"
+        "display_es": "45,70",
+        "display_en": "45.70"
+      },
+      {
+        "claim_id": "15781744eb487b64",
+        "value": 46.8,
+        "display_es": "46,80 0_TO_100",
+        "display_en": "46.80 0_TO_100"
       }
-    ]
+    ],
+    "data_period_stale": true
   }
 ]

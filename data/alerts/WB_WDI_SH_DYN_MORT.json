@@ -1,6 +1,6 @@
 [
   {
-    "id": "alert_2026-05-21_029",
+    "id": "alert_2026-05-22_029",
     "type": "anomaly",
     "country": "GTM",
     "category": "health",
@@ -15,7 +15,19 @@
     "observation": {
       "value": 20.5,
       "time_period": "2024",
-      "unit": "DT_10P3BR_L"
+      "unit": "DT_10P3BR_L",
+      "display": {
+        "es": "20.5 (tasa)",
+        "en": "20.5 (rate)"
+      },
+      "period_display": {
+        "es": "2024",
+        "en": "2024"
+      },
+      "period_narrative": {
+        "es": "2024",
+        "en": "2024"
+      }
     },
     "magnitude": {
       "es": "+2.6σ",
@@ -289,23 +301,24 @@
       "csv_link": "https://data360files.worldbank.org/data360-data/data/WB_WDI/WB_WDI_SH_DYN_MORT.csv"
     },
     "score": 0.6567410026482637,
-    "detected_at": "2026-05-21T20:27:18.955Z",
+    "detected_at": "2026-05-22T00:21:20.835Z",
     "license": "CC BY-4.0",
     "narrative_citizen": {
-      "es": "GTM registró 20.5 DT_10P3BR_L en Mortality rate, under-5 (per 1,000 live births) para 2024, +2.6σ respecto a su trayectoria reciente.",
-      "en": "GTM recorded 20.5 DT_10P3BR_L in Mortality rate, under-5 (per 1,000 live births) for 2024, +2.6σ from its recent trajectory."
+      "es": "Disminuyó significativamente la tasa de mortalidad infantil en Guatemala en 2024.",
+      "en": "Significantly decreased under-5 mortality rate in Guatemala in 2024."
     },
     "narrative_journalist": {
-      "es": "Detección automática: GTM 20.5 DT_10P3BR_L en Mortality rate, under-5 (per 1,000 live births) (2024). z-score +2.6σ vs ventana de 5 puntos previos.",
-      "en": "Auto-detected: GTM 20.5 DT_10P3BR_L in Mortality rate, under-5 (per 1,000 live births) (2024). z-score +2.6σ against 5-point baseline."
+      "es": "La tasa de mortalidad infantil en Guatemala cayó a 20.5 por cada 1,000 nacimientos vivos en 2024, lo que representa una diferencia estadísticamente significativa respecto a la mediana regional de 13.1.",
+      "en": "Guatemala's under-5 mortality rate dropped to 20.5 per 1,000 live births in 2024, marking a statistically significant difference from the regional median of 13.1."
     },
     "claim_tokens": [
       {
         "claim_id": "6613138f8f5f9479",
         "value": 20.5,
-        "display_es": "20.5 DT_10P3BR_L",
-        "display_en": "20.5 DT_10P3BR_L"
+        "display_es": "20.5 (tasa)",
+        "display_en": "20.5 (rate)"
       }
-    ]
+    ],
+    "data_period_stale": true
   }
 ]

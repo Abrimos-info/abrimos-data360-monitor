@@ -1,6 +1,6 @@
 [
   {
-    "id": "alert_2026-05-21_044",
+    "id": "alert_2026-05-22_044",
     "type": "anomaly",
     "country": "HND",
     "category": "economy",
@@ -15,7 +15,19 @@
     "observation": {
       "value": 2.646,
       "time_period": "2022",
-      "unit": "PT_GDP"
+      "unit": "PT_GDP",
+      "display": {
+        "es": "2.646 % del PIB",
+        "en": "2.646% of GDP"
+      },
+      "period_display": {
+        "es": "2022",
+        "en": "2022"
+      },
+      "period_narrative": {
+        "es": "2022",
+        "en": "2022"
+      }
     },
     "magnitude": {
       "es": "+2.9σ",
@@ -163,30 +175,31 @@
     "verification_trace": {
       "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/IMF_WEO",
       "csv_link": "https://data360files.worldbank.org/data360-data/data/IMF_WEO/IMF_WEO_GGXONLB_NGDP.csv",
-      "methodology_ref": "https://www.imf.org/en/Publications/WEO/frequently-asked-questions#:~:text=%2Ddatabase%2FDisclaimer.-,Q.,generate%20projections%20for%20individual%20countries.)"
+      "methodology_ref": "https://www.imf.org/en/Publications/WEO/frequently-asked-questions#:~:text=%2Ddatabase%2FDisclaimer.-,Q.,generate%20projections%20for%20individual%20countries"
     },
     "score": 0.7156584083704304,
-    "detected_at": "2026-05-21T20:27:18.957Z",
+    "detected_at": "2026-05-22T00:21:20.837Z",
     "license": "License Specified Externally",
     "narrative_citizen": {
-      "es": "HND registró 2.646 PT_GDP en General government primary net lending/borrowing, Percent of GDP para 2022, +2.9σ respecto a su trayectoria reciente.",
-      "en": "HND recorded 2.646 PT_GDP in General government primary net lending/borrowing, Percent of GDP for 2022, +2.9σ from its recent trajectory."
+      "es": "La deuda externa del sector público en Honduras aumentó significativamente en 2022.",
+      "en": "External debt of the public sector in Honduras significantly increased in 2022."
     },
     "narrative_journalist": {
-      "es": "Detección automática: HND 2.646 PT_GDP en General government primary net lending/borrowing, Percent of GDP (2022). z-score +2.9σ vs ventana de 5 puntos previos.",
-      "en": "Auto-detected: HND 2.646 PT_GDP in General government primary net lending/borrowing, Percent of GDP (2022). z-score +2.9σ against 5-point baseline."
+      "es": "La deuda externa del sector público en Honduras superó la mediana regional en 2022, con un valor del 2.646 % del PIB.",
+      "en": "External debt of the public sector in Honduras exceeded the regional median in 2022, with a value of 2.646% of GDP."
     },
     "claim_tokens": [
       {
         "claim_id": "ca2de23b1ac713d2",
         "value": 2.646,
-        "display_es": "2.646 PT_GDP",
-        "display_en": "2.646 PT_GDP"
+        "display_es": "2.646 % del PIB",
+        "display_en": "2.646% of GDP"
       }
-    ]
+    ],
+    "data_period_stale": true
   },
   {
-    "id": "alert_2026-05-21_045",
+    "id": "alert_2026-05-22_045",
     "type": "anomaly",
     "country": "ARG",
     "category": "economy",
@@ -201,7 +214,19 @@
     "observation": {
       "value": -1.736,
       "time_period": "2022",
-      "unit": "PT_GDP"
+      "unit": "PT_GDP",
+      "display": {
+        "es": "-1.736 % del PIB",
+        "en": "-1.736% of GDP"
+      },
+      "period_display": {
+        "es": "2022",
+        "en": "2022"
+      },
+      "period_narrative": {
+        "es": "2022",
+        "en": "2022"
+      }
     },
     "magnitude": {
       "es": "−2.9σ",
@@ -333,26 +358,27 @@
     "verification_trace": {
       "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/IMF_WEO",
       "csv_link": "https://data360files.worldbank.org/data360-data/data/IMF_WEO/IMF_WEO_GGXONLB_NGDP.csv",
-      "methodology_ref": "https://www.imf.org/en/Publications/WEO/frequently-asked-questions#:~:text=%2Ddatabase%2FDisclaimer.-,Q.,generate%20projections%20for%20individual%20countries.)"
+      "methodology_ref": "https://www.imf.org/en/Publications/WEO/frequently-asked-questions#:~:text=%2Ddatabase%2FDisclaimer.-,Q.,generate%20projections%20for%20individual%20countries"
     },
     "score": 0.7275146912518549,
-    "detected_at": "2026-05-21T20:27:18.958Z",
+    "detected_at": "2026-05-22T00:21:20.837Z",
     "license": "License Specified Externally",
     "narrative_citizen": {
-      "es": "ARG registró -1.736 PT_GDP en General government primary net lending/borrowing, Percent of GDP para 2022, −2.9σ respecto a su trayectoria reciente.",
-      "en": "ARG recorded -1.736 PT_GDP in General government primary net lending/borrowing, Percent of GDP for 2022, −2.9σ from its recent trajectory."
+      "es": "El déficit primario del gobierno argentino empeoró drásticamente en 2022.",
+      "en": "The primary fiscal deficit in Argentina drastically worsened in 2022."
     },
     "narrative_journalist": {
-      "es": "Detección automática: ARG -1.736 PT_GDP en General government primary net lending/borrowing, Percent of GDP (2022). z-score −2.9σ vs ventana de 5 puntos previos.",
-      "en": "Auto-detected: ARG -1.736 PT_GDP in General government primary net lending/borrowing, Percent of GDP (2022). z-score −2.9σ against 5-point baseline."
+      "es": "El déficit primario del gobierno argentino en 2022 fue inferior a la mediana regional, con un valor del -1.736 % del PIB.",
+      "en": "The primary fiscal deficit in Argentina in 2022 was below the regional median, with a value of -1.736% of GDP."
     },
     "claim_tokens": [
       {
         "claim_id": "8099633b3dcaf256",
         "value": -1.736,
-        "display_es": "-1.736 PT_GDP",
-        "display_en": "-1.736 PT_GDP"
+        "display_es": "-1.736 % del PIB",
+        "display_en": "-1.736% of GDP"
       }
-    ]
+    ],
+    "data_period_stale": true
   }
 ]

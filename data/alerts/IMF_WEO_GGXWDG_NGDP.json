@@ -1,6 +1,6 @@
 [
   {
-    "id": "alert_2026-05-21_042",
+    "id": "alert_2026-05-22_042",
     "type": "anomaly",
     "country": "GTM",
     "category": "economy",
@@ -15,7 +15,19 @@
     "observation": {
       "value": 29.201,
       "time_period": "2022",
-      "unit": "PT_GDP"
+      "unit": "PT_GDP",
+      "display": {
+        "es": "29.201 % (deuda pública)",
+        "en": "29.201 % (public debt)"
+      },
+      "period_display": {
+        "es": "2022",
+        "en": "2022"
+      },
+      "period_narrative": {
+        "es": "2022",
+        "en": "2022"
+      }
     },
     "magnitude": {
       "es": "−3.4σ",
@@ -121,27 +133,28 @@
       "csv_link": "https://data360files.worldbank.org/data360-data/data/IMF_WEO/IMF_WEO_GGXWDG_NGDP.csv"
     },
     "score": 0.8395157169796436,
-    "detected_at": "2026-05-21T20:27:18.956Z",
+    "detected_at": "2026-05-22T00:21:20.837Z",
     "license": "License Specified Externally",
     "narrative_citizen": {
-      "es": "GTM registró 29.201 PT_GDP en General government gross debt, Percent of GDP para 2022, −3.4σ respecto a su trayectoria reciente.",
-      "en": "GTM recorded 29.201 PT_GDP in General government gross debt, Percent of GDP for 2022, −3.4σ from its recent trajectory."
+      "es": "Disminuyó significativamente la deuda pública de Guatemala en 2022, alcanzando el 29.201 % del PIB.",
+      "en": "Significantly decreased Guatemala's public debt to 29.201% of GDP in 2022."
     },
     "narrative_journalist": {
-      "es": "Detección automática: GTM 29.201 PT_GDP en General government gross debt, Percent of GDP (2022). z-score −3.4σ vs ventana de 5 puntos previos.",
-      "en": "Auto-detected: GTM 29.201 PT_GDP in General government gross debt, Percent of GDP (2022). z-score −3.4σ against 5-point baseline."
+      "es": "La deuda pública de Guatemala cayó drásticamente a 29.201% del PIB en 2022, muy por debajo de la mediana regional de 54.169%.",
+      "en": "Guatemala's public debt plummeted to 29.201% of GDP in 2022, well below the regional median of 54.169%."
     },
     "claim_tokens": [
       {
         "claim_id": "55b3a68ae7773136",
         "value": 29.201,
-        "display_es": "29.201 PT_GDP",
-        "display_en": "29.201 PT_GDP"
+        "display_es": "29.201 % (deuda pública)",
+        "display_en": "29.201 % (public debt)"
       }
-    ]
+    ],
+    "data_period_stale": true
   },
   {
-    "id": "alert_2026-05-21_043",
+    "id": "alert_2026-05-22_043",
     "type": "anomaly",
     "country": "ARG",
     "category": "economy",
@@ -156,7 +169,19 @@
     "observation": {
       "value": 84.685,
       "time_period": "2022",
-      "unit": "PT_GDP"
+      "unit": "PT_GDP",
+      "display": {
+        "es": "84.685 % (deuda pública)",
+        "en": "84.685 % (public debt)"
+      },
+      "period_display": {
+        "es": "2022",
+        "en": "2022"
+      },
+      "period_narrative": {
+        "es": "2022",
+        "en": "2022"
+      }
     },
     "magnitude": {
       "es": "+4.1σ",
@@ -294,23 +319,24 @@
       "csv_link": "https://data360files.worldbank.org/data360-data/data/IMF_WEO/IMF_WEO_GGXWDG_NGDP.csv"
     },
     "score": 1,
-    "detected_at": "2026-05-21T20:27:18.956Z",
+    "detected_at": "2026-05-22T00:21:20.837Z",
     "license": "License Specified Externally",
     "narrative_citizen": {
-      "es": "ARG registró 84.685 PT_GDP en General government gross debt, Percent of GDP para 2022, +4.1σ respecto a su trayectoria reciente.",
-      "en": "ARG recorded 84.685 PT_GDP in General government gross debt, Percent of GDP for 2022, +4.1σ from its recent trajectory."
+      "es": "Aumentó considerablemente la deuda pública de Argentina en 2022, alcanzando el 84.685 % del PIB.",
+      "en": "Argentina's public debt surged to 84.685% of GDP in 2022."
     },
     "narrative_journalist": {
-      "es": "Detección automática: ARG 84.685 PT_GDP en General government gross debt, Percent of GDP (2022). z-score +4.1σ vs ventana de 5 puntos previos.",
-      "en": "Auto-detected: ARG 84.685 PT_GDP in General government gross debt, Percent of GDP (2022). z-score +4.1σ against 5-point baseline."
+      "es": "La deuda pública de Argentina aumentó significativamente a 84.685% del PIB en 2022, muy por encima de la mediana regional de 54.169%.",
+      "en": "Argentina's public debt rose significantly to 84.685% of GDP in 2022, well above the regional median of 54.169%."
     },
     "claim_tokens": [
       {
         "claim_id": "d38347567dd383f6",
         "value": 84.685,
-        "display_es": "84.685 PT_GDP",
-        "display_en": "84.685 PT_GDP"
+        "display_es": "84.685 % (deuda pública)",
+        "display_en": "84.685 % (public debt)"
       }
-    ]
+    ],
+    "data_period_stale": true
   }
 ]

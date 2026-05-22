@@ -1,6 +1,6 @@
 [
   {
-    "id": "alert_2026-05-21_011",
+    "id": "alert_2026-05-22_011",
     "type": "abrupt_change",
     "country": "HND",
     "category": "governance",
@@ -15,7 +15,19 @@
     "observation": {
       "value": -1.24469,
       "time_period": "2024",
-      "unit": "U"
+      "unit": "U",
+      "display": {
+        "es": "-1.24469 (índice)",
+        "en": "-1.24469 (index)"
+      },
+      "period_display": {
+        "es": "2024",
+        "en": "2024"
+      },
+      "period_narrative": {
+        "es": "2024",
+        "en": "2024"
+      }
     },
     "magnitude": {
       "es": "−3.2σ",
@@ -131,30 +143,37 @@
     "verification_trace": {
       "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/WB_WGI",
       "csv_link": "https://data360files.worldbank.org/data360-data/data/WB_WGI/GOV_WGI_CC.csv",
-      "methodology_ref": "https://www.worldbank.org/en/publication/worldwide-governance-indicators/documentation#3"
+      "methodology_ref": "https://datacatalog.worldbank.org/search/dataset/0038026/Worldwide-Governance-Indicators"
     },
     "score": 0.8075643290730637,
-    "detected_at": "2026-05-21T20:27:18.953Z",
+    "detected_at": "2026-05-22T00:21:20.832Z",
     "license": "unspecified",
     "narrative_citizen": {
-      "es": "HND registró -1.24469 U en Worldwide Governance Indicators: Control of Corruption para 2024, −3.2σ respecto a su trayectoria reciente.",
-      "en": "HND recorded -1.24469 U in Worldwide Governance Indicators: Control of Corruption for 2024, −3.2σ from its recent trajectory."
+      "es": "Disminuyó bruscamente el control de corrupción en Honduras en 2024.",
+      "en": "There was a sharp decline in the control of corruption in Honduras in 2024."
     },
     "narrative_journalist": {
-      "es": "Detección automática: HND -1.24469 U en Worldwide Governance Indicators: Control of Corruption (2024). z-score −3.2σ vs ventana de 5 puntos previos.",
-      "en": "Auto-detected: HND -1.24469 U in Worldwide Governance Indicators: Control of Corruption (2024). z-score −3.2σ against 5-point baseline."
+      "es": "El índice de control de corrupción en Honduras registró una caída abrupta en 2024, con un valor de -1.24469, lo que representa un z-score de -3.23.",
+      "en": "The control of corruption index in Honduras saw a sudden drop in 2024, with a value of -1.24469, resulting in a z-score of -3.23."
     },
     "claim_tokens": [
       {
         "claim_id": "560cfbc8d8ddb767",
         "value": -1.24469,
-        "display_es": "-1.24469 U",
-        "display_en": "-1.24469 U"
+        "display_es": "-1.24469 (índice)",
+        "display_en": "-1.24469 (index)"
+      },
+      {
+        "claim_id": "e93430fa20365d75",
+        "value": -1.099323,
+        "display_es": "-1,10 U",
+        "display_en": "-1.10 U"
       }
-    ]
+    ],
+    "data_period_stale": true
   },
   {
-    "id": "alert_2026-05-21_031",
+    "id": "alert_2026-05-22_031",
     "type": "anomaly",
     "country": "ARG",
     "category": "governance",
@@ -169,7 +188,19 @@
     "observation": {
       "value": -0.325708,
       "time_period": "2024",
-      "unit": "U"
+      "unit": "U",
+      "display": {
+        "es": "-0.325708 (índice)",
+        "en": "-0.325708 (index)"
+      },
+      "period_display": {
+        "es": "2024",
+        "en": "2024"
+      },
+      "period_narrative": {
+        "es": "2024",
+        "en": "2024"
+      }
     },
     "magnitude": {
       "es": "+2.5σ",
@@ -285,26 +316,27 @@
     "verification_trace": {
       "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/WB_WGI",
       "csv_link": "https://data360files.worldbank.org/data360-data/data/WB_WGI/GOV_WGI_CC.csv",
-      "methodology_ref": "https://www.worldbank.org/en/publication/worldwide-governance-indicators/documentation#3"
+      "methodology_ref": "https://datacatalog.worldbank.org/search/dataset/0038026/Worldwide-Governance-Indicators"
     },
     "score": 0.6279257583619221,
-    "detected_at": "2026-05-21T20:27:18.955Z",
+    "detected_at": "2026-05-22T00:21:20.835Z",
     "license": "unspecified",
     "narrative_citizen": {
-      "es": "ARG registró -0.325708 U en Worldwide Governance Indicators: Control of Corruption para 2024, +2.5σ respecto a su trayectoria reciente.",
-      "en": "ARG recorded -0.325708 U in Worldwide Governance Indicators: Control of Corruption for 2024, +2.5σ from its recent trajectory."
+      "es": "Argentina se mantuvo por encima de la mediana regional en el control de corrupción en 2024.",
+      "en": "Argentina remained above the regional median in the control of corruption in 2024."
     },
     "narrative_journalist": {
-      "es": "Detección automática: ARG -0.325708 U en Worldwide Governance Indicators: Control of Corruption (2024). z-score +2.5σ vs ventana de 5 puntos previos.",
-      "en": "Auto-detected: ARG -0.325708 U in Worldwide Governance Indicators: Control of Corruption (2024). z-score +2.5σ against 5-point baseline."
+      "es": "El índice de control de corrupción en Argentina en 2024 se ubicó por encima de la mediana regional, con un valor de -0.325708, lo que representa un z-score de 2.51.",
+      "en": "The control of corruption index in Argentina in 2024 exceeded the regional median, with a value of -0.325708, resulting in a z-score of 2.51."
     },
     "claim_tokens": [
       {
         "claim_id": "1034608899751295",
         "value": -0.325708,
-        "display_es": "-0.325708 U",
-        "display_en": "-0.325708 U"
+        "display_es": "-0.325708 (índice)",
+        "display_en": "-0.325708 (index)"
       }
-    ]
+    ],
+    "data_period_stale": true
   }
 ]

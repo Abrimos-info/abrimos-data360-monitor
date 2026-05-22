@@ -1,6 +1,6 @@
 [
   {
-    "id": "alert_2026-05-21_003",
+    "id": "alert_2026-05-22_003",
     "type": "abrupt_change",
     "country": "ECU",
     "category": "economy",
@@ -15,7 +15,19 @@
     "observation": {
       "value": 5.650429,
       "time_period": "2024",
-      "unit": "PT_GDP"
+      "unit": "PT_GDP",
+      "display": {
+        "es": "5.650429 PT_GDP",
+        "en": "5.650429 PT_GDP"
+      },
+      "period_display": {
+        "es": "2024",
+        "en": "2024"
+      },
+      "period_narrative": {
+        "es": "2024",
+        "en": "2024"
+      }
     },
     "magnitude": {
       "es": "+3.1σ",
@@ -226,15 +238,15 @@
       "methodology_ref": "https://dsbb.imf.org/"
     },
     "score": 0.7823521863158628,
-    "detected_at": "2026-05-21T20:27:18.951Z",
+    "detected_at": "2026-05-22T00:21:20.830Z",
     "license": "CC BY-4.0",
     "narrative_citizen": {
-      "es": "ECU registró 5.650429 PT_GDP en Current account balance (% of GDP) para 2024, +3.1σ respecto a su trayectoria reciente.",
-      "en": "ECU recorded 5.650429 PT_GDP in Current account balance (% of GDP) for 2024, +3.1σ from its recent trajectory."
+      "es": "Subió drásticamente el saldo de cuenta corriente en Ecuador en 2024.",
+      "en": "The current account balance in Ecuador surged dramatically in 2024."
     },
     "narrative_journalist": {
-      "es": "Detección automática: ECU 5.650429 PT_GDP en Current account balance (% of GDP) (2024). z-score +3.1σ vs ventana de 5 puntos previos.",
-      "en": "Auto-detected: ECU 5.650429 PT_GDP in Current account balance (% of GDP) (2024). z-score +3.1σ against 5-point baseline."
+      "es": "El saldo de cuenta corriente en Ecuador aumentó a 5.650429 PT_GDP en 2024, un incremento del 184% respecto al año anterior.",
+      "en": "Ecuador's current account balance rose to 5.650429 PT_GDP in 2024, a 184% increase from the previous year."
     },
     "claim_tokens": [
       {
@@ -242,7 +254,14 @@
         "value": 5.650429,
         "display_es": "5.650429 PT_GDP",
         "display_en": "5.650429 PT_GDP"
+      },
+      {
+        "claim_id": "0e2a6b41a86cc930",
+        "value": 1.984823,
+        "display_es": "1,98 PT_GDP",
+        "display_en": "1.98 PT_GDP"
       }
-    ]
+    ],
+    "data_period_stale": true
   }
 ]

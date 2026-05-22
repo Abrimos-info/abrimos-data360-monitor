@@ -10,8 +10,22 @@ Pull historical observations and metadata from Data360 for a curated watchlist o
 ## Scope
 
 - **Five LAC countries**. Guatemala (GTM), Honduras (HND), Argentina (ARG), Ecuador (ECU), Mexico (MEX).
-- **20 pre-selected indicators** (see table below) to be narrowed down to 10 in the next iteration.
+- **35 demo indicators** across three tiers (pulse, annual, forecast). Canonical list in [`lib/watchlist.js`](../lib/watchlist.js). [`connector/watchlist.json`](../connector/watchlist.json) holds the original 20-candidate probe; the live pipeline uses the expanded tiered watchlist.
 - **Historical replay only** for the demo. No real-time polling. The continuous monitoring promise lives in the production roadmap.
+
+## Implementation status (Phase 1, 2026-05-22)
+
+| Component | Status |
+|---|---|
+| `bin/fetch-data.js` | Implemented. Unified entrypoint with freshness probe. |
+| `lib/freshness-probe.js` | Implemented. Conditional HEAD over bulk CSVs. |
+| `lib/freshness-cache.js` | Implemented. Per-indicator ETag cache on disk. |
+| `lib/context-fetch.js` | Implemented. Snapshot download + LAC context refresh via `/data360/data`. |
+| `data/changed-since.json` | Implemented. List of indicators updated since last probe. |
+| `data/index.json` | Implemented. Per-indicator freshness summary. |
+| `bin/build-catalog.js` / `bin/probe-freshness.js` | Roadmap (Phase 2, full ~13k catalog). |
+| `bin/fetch-baseline.js`, `fetch-pulse.js`, `fetch-forecast.js` | Legacy tier fetchers. Superseded by `fetch-data.js` for new runs; kept for reference. |
+| `examples/freshness-probe-demo.js` | Standalone spike used to validate HEAD/ETag behaviour before integration. |
 
 ## Two deployment modes
 
@@ -72,38 +86,33 @@ No NiFi. No OpenSearch. No queue. The fetcher writes a local CSV per indicator. 
 │         │                                                        │
 │         ▼                                                        │
 │   ┌──────────────────────────────────────────────────────────┐   │
-│   │  watchlist                                               │   │
-│   │  connector/watchlist.json  →  (countries[], indicators[])│   │
+│   │  watchlist (lib/watchlist.js)                            │   │
+│   │  35 indicators × 3 tiers × 5 LAC countries             │   │
 │   └──────────────────────────────────────────────────────────┘   │
 │         │                                                        │
 │         ▼                                                        │
 │   ┌──────────────────────────────────────────────────────────┐   │
-│   │  metadataFetcher                                         │   │
-│   │  POST /data360/metadata (no $select, full document)      │   │
-│   │  writes data/snapshots/{INDICATOR}.meta.json             │   │
-│   └──────────────────────────────────────────────────────────┘   │
-│         │                                                        │
-│         ▼                                                        │
-│   ┌──────────────────────────────────────────────────────────┐   │
-│   │  csvFetcher                                              │   │
-│   │  HEAD {csv_link} with If-Modified-Since                  │   │
-│   │     ├─ 304 Not Modified → skip                           │   │
-│   │     └─ 200 OK → GET full CSV                             │   │
-│   │  writes data/snapshots/{INDICATOR}.csv                   │   │
+│   │  freshnessProbe (lib/freshness-probe.js)                 │   │
+│   │  HEAD bulk CSV with If-None-Match / If-Modified-Since    │   │
+│   │     ├─ 304 Not Modified → unchanged since last probe     │   │
+│   │     └─ 200 OK → changed (or first probe, no cache yet)   │   │
 │   │  writes data/snapshots/{INDICATOR}.etag                  │   │
+│   │  writes data/changed-since.json                          │   │
+│   │  writes data/index.json                                  │   │
 │   └──────────────────────────────────────────────────────────┘   │
 │         │                                                        │
-│         ▼                                                        │
+│         ▼  (only changed indicators, unless --force)             │
 │   ┌──────────────────────────────────────────────────────────┐   │
-│   │  index.json                                              │   │
-│   │  Per-indicator summary. Time range, country coverage,    │   │
-│   │  observation count, last fetch timestamp, content hash.  │   │
+│   │  csvFetcher (lib/context-fetch.js)                       │   │
+│   │  GET bulk CSV → data/snapshots/{INDICATOR}.csv           │   │
+│   │  POST /data360/metadata → .meta.json + indicators/*.md   │   │
+│   │  GET /data360/data per country → context/{CC}/{tier}.csv │   │
 │   └──────────────────────────────────────────────────────────┘   │
 │                                                                  │
 └──────────────────────────────────────────────────────────────────┘
 ```
 
-The LLM step (`bin/narrate-indicators.js`) consumes the raw CSV and the metadata JSON directly. No intermediate normalised JSON file is produced in demo mode. Normalisation rules below apply at LLM-prompt-construction time.
+The LLM step (`bin/generate-analysis.js` → `lib/analysis/runner.js`) consumes raw CSVs and indicator metadata directly. No intermediate normalised JSON file is produced in demo mode. Normalisation rules below apply at LLM-prompt-construction time.
 
 ## Components (production mode)
 
@@ -113,15 +122,132 @@ The same fetcher is invoked by NiFi instead of by a human. It runs once per indi
 
 ```
 data/
+  changed-since.json               # latest: indicators updated since last probe
+  changed-since-YYYY-MM-DD.json    # dated copy of the same report
+  index.json                       # all watchlist indicators + changed_this_run flag
   snapshots/
-    {INDICATOR}.csv                # raw CSV from data360files.worldbank.org
-    {INDICATOR}.etag               # cached ETag and Last-Modified for conditional GETs
-    {INDICATOR}.meta.json          # full metadata document
+    _probe-state.json              # last_probe_at timestamp for the watchlist
+    {INDICATOR}.csv                # raw bulk CSV from data360files.worldbank.org
+    {INDICATOR}.etag               # cached ETag and Last-Modified for conditional HEAD
+    {INDICATOR}.meta.json          # full metadata document from /data360/metadata
+  context/{COUNTRY}/
+    pulse.csv                      # Tier 1 sub-annual (LAC-filtered via API)
+    annual.csv                     # Tier 2 annual
+    forecast.csv                   # Tier 3 IMF WEO + WB MPO
+  indicators/{INDICATOR}.md        # human-readable metadata for LLM context
   alerts.json                      # final output consumed by the dashboard
-  index.json                       # per-indicator summary
 ```
 
-All paths under `data/` are gitignored except `index.json` and `alerts.json`, which are small and useful for reproducibility.
+All paths under `data/` are gitignored except `index.json`, `changed-since.json`, and `alerts.json`, which are small and useful for reproducibility.
+
+## Commands
+
+```bash
+npm run fetch              # probe + download changed + refresh LAC context
+npm run fetch:probe        # probe only (fast, ~2 s for 35 indicators)
+node bin/fetch-data.js --force   # treat all indicators as changed (bootstrap)
+```
+
+Typical workflow.
+
+1. **First run** (no ETag cache). All indicators appear in `changed-since.json`. Snapshots and context files are populated.
+2. **Daily probe**. `npm run fetch:probe` returns `changed: 0` when Data360 has not republished any CSV.
+3. **Incremental fetch**. `npm run fetch` downloads and refreshes context only for indicators listed in `changed_indicators`.
+
+## How to know which indicators changed
+
+There is no Data360 API endpoint that returns “updated since X” for the full catalog. The fetcher compares each indicator’s bulk CSV blob against a local cache.
+
+| HTTP response | Meaning |
+|---|---|
+| **304 Not Modified** | CSV unchanged since last probe. Skip download. |
+| **200 OK** | CSV changed (or first probe with no cache). Include in `changed-since.json`. |
+
+Read `data/changed-since.json`. The field `changed_indicators` is the work list for downstream fetch and detection. The field `since` holds the timestamp of the previous successful probe (`null` on first run).
+
+On first run, every indicator is marked changed (`first_probe: true`). From the second run onward, only indicators whose blob timestamp or ETag differs from the cache appear.
+
+## Output schemas
+
+### `data/changed-since.json`
+
+Report of indicators that changed in this probe. When nothing changed, `changed_indicators` and `indicators` are empty arrays.
+
+```json
+{
+  "probed_at": "2026-05-22T01:04:00.323Z",
+  "since": "2026-05-21T12:00:00.000Z",
+  "elapsed_ms": 1368,
+  "total_probed": 35,
+  "changed": 2,
+  "unchanged": 33,
+  "errors": 0,
+  "force": false,
+  "changed_indicators": ["WB_WDI_FP_CPI_TOTL_ZG", "IPC_IPC_PHASE"],
+  "indicators": [
+    {
+      "idno": "WB_WDI_FP_CPI_TOTL_ZG",
+      "database_id": "WB_WDI",
+      "tier": "annual",
+      "label": "Inflation, CPI annual %",
+      "status": 200,
+      "first_probe": false,
+      "last_modified": "Mon, 13 Apr 2026 05:01:39 GMT",
+      "previous_last_modified": "Mon, 01 Apr 2026 05:01:39 GMT",
+      "previous_probed_at": "2026-05-21T12:00:00.000Z",
+      "csv_url": "https://data360files.worldbank.org/data360-data/data/WB_WDI/WB_WDI_FP_CPI_TOTL_ZG.csv"
+    }
+  ]
+}
+```
+
+### `data/index.json`
+
+Full watchlist with a freshness flag per indicator. Used by the dashboard “last updated” panel.
+
+```json
+{
+  "generated_at": "2026-05-22T01:04:00.323Z",
+  "since": "2026-05-21T12:00:00.000Z",
+  "total": 35,
+  "changed_count": 2,
+  "indicators": [
+    {
+      "idno": "WB_WDI_FP_CPI_TOTL_ZG",
+      "database_id": "WB_WDI",
+      "tier": "annual",
+      "label": "Inflation, CPI annual %",
+      "changed_this_run": true,
+      "first_probe": false,
+      "last_modified": "Mon, 13 Apr 2026 05:01:39 GMT",
+      "etag": "0x8DE994677D56A42",
+      "csv_url": "https://data360files.worldbank.org/..."
+    }
+  ]
+}
+```
+
+### `data/snapshots/{INDICATOR}.etag`
+
+```json
+{
+  "etag": "0x8DE994677D56A42",
+  "lastModified": "Mon, 13 Apr 2026 10:21:47 GMT",
+  "probedAt": "2026-05-22T01:04:00.323Z",
+  "csv_url": "https://data360files.worldbank.org/data360-data/data/WB_WDI/WB_WDI_NY_GDP_PCAP_CD.csv"
+}
+```
+
+## Module map
+
+| Module | Role |
+|---|---|
+| [`bin/fetch-data.js`](../bin/fetch-data.js) | CLI entrypoint. Orchestrates probe, download, context refresh. |
+| [`lib/watchlist.js`](../lib/watchlist.js) | Canonical 35-indicator watchlist and tier file names. |
+| [`lib/freshness-probe.js`](../lib/freshness-probe.js) | HEAD loop, builds `changed-since` and `index` reports. |
+| [`lib/freshness-cache.js`](../lib/freshness-cache.js) | Read/write `.etag` files and `_probe-state.json`. |
+| [`lib/context-fetch.js`](../lib/context-fetch.js) | Bulk CSV download, metadata cache, LAC context via API. |
+| [`lib/data360-client.js`](../lib/data360-client.js) | `headCsv`, `getCsv`, `csvUrl`, `getMetadata`, `getData`, `listIndicators`. |
 
 ## Endpoints used
 
@@ -130,8 +256,9 @@ All paths under `data/` are gitignored except `index.json` and `alerts.json`, wh
 | `/data360/metadata` | POST | Full indicator metadata (OData `$filter` by `idno`) |
 | `/data360/indicators?datasetId=…` | GET | Verify indicators exist within a dataset |
 | `data360files.worldbank.org/data360-data/data/{DB_ID}/{INDICATOR}.csv` | GET / HEAD | Bulk CSV with `ETag` and `Last-Modified` |
+| `/data360/data` | GET | LAC-filtered observations written to `data/context/{COUNTRY}/{tier}.csv` |
 
-The fetcher does **not** call `/data360/data` for the demo. bulk CSVs are far cheaper and contain the same observations.
+Freshness detection uses the **blob host** (`data360files.worldbank.org`). LAC context files use the **REST API** (`data360api.worldbank.org`). The documented rate limit of 5,000 req/min per IP applies to the API, not to blob HEAD requests.
 
 ## Conditional GETs
 
@@ -142,9 +269,11 @@ HEAD csv_link
   If-Modified-Since: {cached Last-Modified}
   If-None-Match: {cached ETag}
 
-→ 304 Not Modified  ⇒  skip download
+→ 304 Not Modified  ⇒  skip download (unless local `.csv` is missing)
 → 200 OK            ⇒  download full CSV, refresh ETag cache
 ```
+
+If the probe returns 200 and caches the ETag, but the local snapshot file does not exist yet, the downloader issues an unconditional GET to retrieve the body. This handles the first-run case where HEAD establishes the cache before the CSV is on disk.
 
 This makes the fetcher safe to rerun on every iteration without wasting bandwidth.
 
@@ -276,9 +405,11 @@ Implications.
 
 In demo mode.
 
-- `data/snapshots/{INDICATOR}.csv`. Raw observations consumed directly by the LLM step (`bin/narrate-indicators.js`).
+- `data/changed-since.json`. Indicators updated since the last probe. Input for selective re-fetch and re-detection.
+- `data/index.json`. Per-indicator freshness summary for the dashboard.
+- `data/snapshots/{INDICATOR}.csv`. Raw bulk observations (global, all countries).
 - `data/snapshots/{INDICATOR}.meta.json`. Metadata document consumed alongside the CSV.
-- `data/index.json`. Per-indicator summary used by the dashboard's last-updated panel.
+- `data/context/{COUNTRY}/{tier}.csv`. LAC-filtered observations used by detection and LLM context.
 
 In production mode.
 
@@ -287,10 +418,15 @@ In production mode.
 
 ## Rate limits
 
-Confirmed during the 2026-05-21 office hour with the World Bank team. **5,000 concurrent requests per minute per IP**. The fetcher does not need throttling for the demo scope (20 indicators × 5 countries).
+Confirmed during the 2026-05-21 office hour with the World Bank team. **5,000 requests per minute per IP** on `data360api.worldbank.org`. The demo watchlist (35 indicators × 5 countries) stays well below this.
 
-## Production roadmap (out of scope for the demo)
+Blob HEAD probes (`data360files.worldbank.org`) use a separate CDN infrastructure. Measured throughput for WDI-scale batches is ~30–50k HEADs/min with concurrency 50–100. Phase 2 will add throttling when probing the full ~13k catalog.
 
+## Production roadmap (Phase 2 and beyond)
+
+- `bin/build-catalog.js`. Enumerate all indicators via `GET /data360/indicators` per dataset → `data/catalog.json`.
+- `bin/probe-freshness.js`. Parallel HEAD over the full catalog → `data/changed-since.json`.
+- Wire probe output into detection so only changed indicators are re-analysed.
 - Wire the TeseoETL fetcher into Apache NiFi as a scheduled processor.
 - Define the NiFi flow that ingests JSONlines, normalises records, and pushes them to OpenSearch.
 - Subscribe to a future webhook channel if the World Bank publishes one.
