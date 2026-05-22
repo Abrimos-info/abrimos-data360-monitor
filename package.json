@@ -14,10 +14,7 @@
     "analyze": "node bin/generate-analysis.js",
     "analyze:no-llm": "node bin/generate-analysis.js --no-llm",
     "fetch:baseline": "node bin/fetch-baseline.js",
-    "detect": "node bin/detect-changes.js",
-    "narrate": "node bin/narrate-indicators.js",
-    "emit": "node bin/emit-alerts.js",
-    "build": "npm run fetch && npm run detect && npm run narrate && npm run emit",
+    "build": "npm run fetch && npm run fetch:news && npm run analyze",
     "pretest": "node -e \"require('fs').mkdirSync('test/tmp',{recursive:true})\"",
     "test": "node --test test/*.test.js",
     "test:watch": "node --test --watch test/*.test.js"
@@ -33,6 +30,7 @@
   "homepage": "https://github.com/Abrimos-info/abrimos-data360-monitor#readme",
   "dependencies": {
     "ajv": "^8.20.0",
+    "ajv-formats": "^3.0.1",
     "axios": "^1.16.1",
     "chokidar": "^4.0.3",
     "decimal.js": "^10.6.0",
