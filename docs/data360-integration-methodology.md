@@ -7,12 +7,16 @@
 
 | Endpoint | Method | Purpose |
 |---|---|---|
-| `/data360/searchv2` | POST | Indicator discovery |
+| `/data360/searchv2` | POST | Indicator discovery (also used by dynamic-watchlist mode, ordered by `series_description/date_last_update desc`) |
 | `/data360/metadata` | POST | Full indicator metadata (OData syntax) |
-| `/data360/indicators` | GET | List indicators per dataset |
+| `/data360/indicators` | GET | List indicators per dataset. Returns the canonical `idno` used verbatim in URLs (never re-prefixed with the database id) |
 | `/data360/disaggregation` | GET | Available disaggregations |
 | `/data360/data` | GET | Observation values (LAC context files) |
-| `data360files.worldbank.org/.../data/{DB}/{IND}.csv` | GET / HEAD | Bulk CSV download and freshness probe |
+| `data360files.worldbank.org/.../data/{DB}/{IND}.csv` | GET / HEAD | Bulk CSV download and freshness probe. The same prefix also serves `{IND}_DATADICT.csv` |
+
+### URL convention
+
+The bulk CSV URL is `{BLOB_BASE}/{databaseId}/{idno}.csv`, with `idno` used exactly as returned by `listIndicators`. The static watchlist happens to use idnos that start with the database id (e.g. `WB_WDI_*` under `WB_WDI`), but this is a property of the values the API returns, not a separate convention. Dynamic discovery follows the same rule. See `csvUrl` in [`lib/data360-client.js`](../lib/data360-client.js).
 
 ## Freshness detection (Phase 1)
 
