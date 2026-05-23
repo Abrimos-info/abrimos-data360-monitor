@@ -49,3 +49,39 @@ test('parseNoticias auto-derives claim_tokens from story text when missing', () 
   assert.equal(items.length, 1);
   assert.deepEqual(items[0].claim_tokens, [{ claim_id: 'foo', value: '42.0' }]);
 });
+
+test('parseNoticias tolerates triple-backticks inside string fields', () => {
+  const { parseNoticias } = require('../lib/analysis/alert-extractor');
+  // Story contains ``` inside the value — the old regex-based parser would
+  // close on the first inner fence and silently drop the noticia. The
+  // brace-balanced parser walks the JSON correctly and ignores fences inside
+  // string values.
+  const body = {
+    content_type: 'noticia',
+    id: 'noticia_fence_test',
+    title: { es: 'Titulo', en: 'Title' },
+    story: { es: 'Considera el bloque \`\`\`tabla\\n... ejemplo ...\\n\`\`\`', en: 'See table' },
+    claim_tokens: [],
+  };
+  const llmOutput = '\`\`\`noticia\n' + JSON.stringify(body) + '\n\`\`\`\nTrailing prose.';
+  const items = parseNoticias(llmOutput);
+  assert.equal(items.length, 1);
+  assert.equal(items[0].id, 'noticia_fence_test');
+});
+
+test('parseNoticias recovers when closing fence is missing', () => {
+  const { parseNoticias } = require('../lib/analysis/alert-extractor');
+  // Truncated model output: no closing ```. As long as the JSON object is
+  // balanced, we still extract it.
+  const body = { content_type: 'noticia', id: 'noticia_truncated', title: { es: 'A', en: 'A' }, claim_tokens: [] };
+  const llmOutput = '\`\`\`noticia\n' + JSON.stringify(body) + '\n';
+  const items = parseNoticias(llmOutput);
+  assert.equal(items.length, 1);
+  assert.equal(items[0].id, 'noticia_truncated');
+});
+
+test('extractJsonObject is brace-balanced and string-aware', () => {
+  const { extractJsonObject } = require('../lib/analysis/alert-extractor');
+  const text = 'prefix { "outer": { "inner": "}}" } } suffix';
+  assert.equal(extractJsonObject(text), '{ "outer": { "inner": "}}" } }');
+});
