@@ -6,7 +6,7 @@ This document defines the structural, functional, and layout architecture of the
 
 ## 1. Core Architecture Goals
 
-1. **Aesthetic Excellence & Premium Visuals**: Render a highly polished, responsive dashboard with three card layouts (Narrative-forward, Number-highlight, and Newspaper format), an interactive analytics sidebar drawer, live sparkline trend charts, and clear verification marks.
+1. **Aesthetic Excellence & Premium Visuals**: Render a highly polished, responsive dashboard with two content types (Noticia and Reportaje) rendered through distinct card variants — `+cardNewspaper` for Noticia, `+cardReportaje` (wider, `grid-column: span 2`) for Reportaje — plus the historical Narrative/Number/Newspaper layout variants, an interactive analytics sidebar drawer, live sparkline trend charts, and clear verification marks.
 2. **Deterministic Data Consumption**: Load all detected events from a precomputed `data/alerts.json` produced by the data processing pipeline into the client window space on page paint.
 3. **High-Performance Architecture**: Built as a standalone Node.js and CommonJS web app utilizing server-side Pug templates, direct vanilla JavaScript UI routines, and unified vanilla CSS variables for immediate responsiveness. No complex frameworks, Express wrappers, or heavy client build steps are utilized.
 4. **Immediate Client-Side Responsiveness**: Perform visual card filtering in the browser using hybrid DOM toggles to achieve zero-latency updates without roundtrip server calls.
@@ -109,32 +109,37 @@ The language toggle switches **ES or EN** (`?lang=es|en`). Narratives in `data/a
 Dynamic UI components are compiled server-side into lightweight HTML:
 * `+countryTag(iso3)`: Renders a standardized, localized geographical label.
 * `+typeChip(type)`: Draws a visual status chip for abrupt changes vs. cross-country anomalies.
+* `+contentTypeBadge(contentType)`: Renders a Noticia or Reportaje badge on the card head.
+* `+cardNewspaper(alert)`: Card variant for **Noticia** content. Standard grid cell.
+* `+cardReportaje(alert)`: Card variant for **Reportaje** content. Spans two grid columns (`grid-column: span 2`) to make the dataset-level synthesis visually distinct.
 * `+magnitude(val)`: Renders color-coded arrows or delta percentages.
 * `+chart(chartData)`: Emits a pure, standalone vector **SVG Sparkline** with change-point indicators, completely eliminating heavy external charting libraries.
 
 ### In-Memory Feed Filtering (Hybrid Toggling)
 Rather than executing expensive server queries or running redundant JavaScript rendering steps, the layout compiles **every alert card** inside the SSR feed.
 
-When a user switches filters (e.g., changing country or category), the client JavaScript loops through the cards and toggles a `.d360-card--hidden` class based on matches:
+When a user switches filters (e.g., changing country, category, or content type), the client JavaScript loops through the cards and toggles a `.d360-card--hidden` class based on matches:
 
 ```js
 function applyFilters() {
   const country = document.getElementById('d360-filter-country').value;
   const category = document.getElementById('d360-filter-category').value;
-  
+  const contentType = document.getElementById('d360-filter-content-type').value;
+
   let visibleCount = 0;
   document.querySelectorAll('.d360-card').forEach(card => {
     const cMatch = country === 'ALL' || card.dataset.country === country;
     const catMatch = category === 'ALL' || card.dataset.category === category;
-    
-    if (cMatch && catMatch) {
+    const ctMatch = contentType === 'ALL' || card.dataset.contentType === contentType;
+
+    if (cMatch && catMatch && ctMatch) {
       card.classList.remove('d360-card--hidden');
       visibleCount++;
     } else {
       card.classList.add('d360-card--hidden');
     }
   });
-  
+
   document.getElementById('d360-event-count').textContent = visibleCount;
 }
 ```
@@ -213,7 +218,7 @@ Dynamic page narratives (citizen and journalist copies) are pre-translated and s
 * `alert.narrative_citizen.es` and `alert.narrative_citizen.en`
 * `alert.narrative_journalist.es` and `alert.narrative_journalist.en`
 
-The active display language is managed via standard styling tags on the global app element (e.g. `d360-app--lang-es` vs `d360-app--lang-en`). Alert JSON always carries `es` and `en` text; filters and chrome follow the selected UI language.
+The active display language is managed via standard styling tags on the global app element (e.g. `d360-app--lang-es` vs `d360-app--lang-en`). Alert JSON always carries `es` and `en` text; filters and chrome follow the selected UI language. `lib/alerts-store.js` `normalizeItem` reads `ev.lead?.[langKey]` and `ev.title?.[langKey]` directly so the active language drives the rendered lead/title — there is no Spanish-by-default hardcoding.
 
 ### Onboarding
 
@@ -223,7 +228,9 @@ The active display language is managed via standard styling tags on the global a
 
 ## 7. Canonical Alert JSON Schema
 
-The frontend components parse a robust, schema-compliant JSON format from `data/alerts.json`. Each entry implements the following strict layout:
+The frontend components parse a robust, schema-compliant JSON format from `data/alerts.json`. The feed mixes two content types — **Noticia** (per indicator) and **Reportaje** (per dataset, synthesised from multiple Noticias). Both share the core shape below; Reportajes additionally carry `content_type: "reportaje"`, a `dataset_id`, a longer bilingual `story`, and reuse the `claim_id`s of the Noticias they synthesise. The full per-content-type contract lives in [`docs/alert-schema.json`](alert-schema.json).
+
+Example (Noticia):
 
 ```json
 {
