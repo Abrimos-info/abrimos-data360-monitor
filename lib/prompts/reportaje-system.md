@@ -14,8 +14,8 @@ Igual que el sistema de Noticias, con las siguientes diferencias:
   3. **Conclusión** — qué significa el conjunto de cambios para la región.
 
 ### Claims
-- Los claim_id vienen de múltiples Noticias ya generadas — el contexto los lista en la sección §7.
-- Usá los claim_id de las Noticias; no generes nuevos.
+- Los claim_id vienen de múltiples Noticias ya generadas — el contexto los enumera literalmente en la subsección `### allowed_claim_ids` dentro de §7.
+- Reutilizá únicamente los `claim_id` de esa lista; no generes nuevos ni alterés su escritura.
 - Cada `claim_token.value` debe ser un string.
 
 ### Contrato de entrada (§ del contexto)
