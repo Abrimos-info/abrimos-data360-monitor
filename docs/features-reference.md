@@ -41,12 +41,24 @@ Implementación: `static/js/behavior.js`
 
 - País (`#d360-filter-country`)
 - Categoría (`#d360-filter-category`)
+- Tipo de contenido (`#d360-filter-content-type`) → Noticia / Reportaje / Todos
 - Variante (`#d360-filter-variant`) → recarga con query `?variant=narr|num|news`
 - Contador visible (`#d360-event-count`)
 - Estado vacío filtrado (`#d360-empty-filtered`)
 - Sync URL con `history.replaceState`
 
 ### 2.3 Variantes de tarjeta
+
+Dos **tipos de contenido** (filtrables vía `content_type`):
+
+| Tipo | Origen | Mixin | Layout |
+|------|--------|-------|--------|
+| **Noticia** | Fase 1 — una por indicador/país a partir de un candidato de detección | `+cardNewspaper` | tarjeta estándar |
+| **Reportaje** | Fase 2 — uno por `dataset_id` cuando ≥2 Noticias lo comparten | `+cardReportaje` | `grid-column: span 2` |
+
+Badge de tipo: mixin `+contentTypeBadge` (`templates/mixins.pug`).
+
+Variantes visuales históricas (compatibilidad):
 
 | Variante | Clase CSS | Contenido principal |
 |----------|-----------|---------------------|
@@ -196,18 +208,21 @@ Cliente MCP: `lib/mcp-client.js`. Normalización args: `normalizeMcpArgs` (count
 ### 5.1 Etapas npm
 
 ```
-fetch → fetch:news (opcional) → analyze
+(discover) → fetch → fetch:news (opcional) → analyze
 ```
 
 Scripts CLI:
 
 | Script npm | Binario | Rol |
 |------------|---------|-----|
-| `fetch` / `fetch:probe` | `bin/fetch-data.js` | Freshness probe + descarga CSVs |
+| `discover` | `bin/discover-indicators.js` | Modo dinámico: `/searchv2` → `data/dynamic-watchlist.json` |
+| `fetch` / `fetch:probe` | `bin/fetch-data.js` | Freshness probe + descarga CSV + DATADICT + meta.json |
 | `fetch:news` | `bin/fetch-news.js` | Titulares GDELT → JSONL |
-| `analyze` | `bin/generate-analysis.js` | Orquesta `lib/analysis/runner.js` (detect + narrativa + emisión) |
+| `analyze` | `bin/generate-analysis.js` | Orquesta `lib/analysis/runner.js` (detect + Noticias + Reportajes) |
+| `pipeline:dynamic` | (script) | `discover` → `fetch` → `analyze` con watchlist dinámico |
+| `pipeline:dynamic:force` | (script) | Igual, pero pasa `--force` al `fetch` (bypass ETag) |
 
-Detección y narrativa viven en `lib/analysis/runner.js`; no hay bins separados `detect-changes`, `narrate-indicators` ni `emit-alerts`.
+Detección y narrativa viven en `lib/analysis/runner.js` (Fase 1, Noticias) y `lib/analysis/reportaje-runner.js` (Fase 2, Reportajes). No hay bins separados `detect-changes`, `narrate-indicators` ni `emit-alerts`.
 
 ### 5.2 Detección
 
@@ -218,24 +233,46 @@ Detección y narrativa viven en `lib/analysis/runner.js`; no hay bins separados 
 
 Filtros: `OBS_STATUS = A`, disagg `_Z`/`_T` excluidas, valores `Decimal`.
 
-### 5.3 Narrativa LLM
+### 5.3 Narrativa LLM (dos fases)
 
-- Un call por indicador con candidatos agrupados
-- Prompts: `lib/prompts/analysis-{system,task,template,quality}.md`
-- Parser: `lib/analysis/alert-extractor.js`
-- Validación: `lib/analysis/quality-validator.js`
-- PCN: `lib/pcn-claims.js`
+**Fase 1 — Noticia** (`lib/analysis/runner.js`)
+- Un call por indicador/país a partir de candidatos de detección.
+- Prompts: `lib/prompts/noticia-{system,task,template}.md`.
+- Salida: historia bilingüe completa (250–600 palabras `story.es` + `story.en`).
+- Bloque fenced ` ```noticia ` con JSON.
+
+**Fase 2 — Reportaje** (`lib/analysis/reportaje-runner.js`)
+- Disparada al final del análisis, solo cuando ≥2 Noticias comparten `dataset_id`.
+- Un call por dataset; sintetiza una visión regional + secciones por país.
+- Reutiliza los `claim_id` de las Noticias que sintetiza.
+- Salida: historia bilingüe larga (500–1200 palabras), bloque ` ```reportaje `.
+- Prompts: `lib/prompts/reportaje-{system,task}.md`.
+
+**Común a ambas fases**
+- Parser: `lib/analysis/alert-extractor.js` → `extractJsonObject`, escáner brace-balanceado con conciencia de strings. Tolera triple-backticks dentro de valores string y respuestas truncadas sin fence de cierre.
+- Validación: `lib/analysis/quality-validator.js`. Códigos:
+  - **Q1** — traceability: `claim_id` presente en contexto numerado del indicador.
+  - **Q2** — JSON schema (Ajv).
+  - **Q4** — campos bilingües presentes + longitud `story` 250–4000 chars.
+  - (no hay Q3 en esta versión.)
+- En fallo Q1 los logs incluyen el `notes` (ej. `Q1 (claim_id xyz not in context)`).
+- Si el LLM emite el fence-opener pero `extractJsonObject` devuelve 0 ítems, la respuesta cruda se persiste en `data/alerts/{idno}.raw.txt` (o `reportaje_{dataset}.raw.txt`).
+- PCN: `lib/pcn-claims.js`.
 
 ### 5.4 Contexto omnibus
 
-- `lib/analysis/context-builder.js` — CSVs, metadata `.md`, titulares §6 GDELT (max ~8 headlines)
-- Salida análisis: `data/analyses/{IDNO}.md`, `data/analyses/{IDNO}.llm-call.md`
+- `lib/analysis/context-builder.js` — CSVs, metadata `.md`, **data dictionary** `{IDNO}_DATADICT.csv` (capado a 80 líneas, 20 para modelos pequeños), titulares §6 GDELT (max ~8 headlines).
+- Última sección de candidatos cierra con `### allowed_claim_ids`, lista literal de los únicos `claim_id` aceptables (defensa contra alucinación en modelos pequeños). Para Reportaje: misma lógica en §7 (`lib/analysis/reportaje-runner.js`).
+- Prompts del sistema (`noticia-system.md`, `reportaje-system.md`) prohíben triple-backticks dentro de valores string (defense in depth con el extractor).
+- Salida análisis: `data/analyses/{IDNO}.md`, `data/analyses/{IDNO}.llm-call.md`.
 
 ### 5.5 Emisión
 
-- Por indicador: `data/alerts/{IDNO}.json`
-- Agregado: `data/alerts.json` (consumido por UI)
-- Enriquecimiento: `lib/alert-display.js` → `enrichAlert`, period narratives, stale flag
+- Noticia por indicador: `data/alerts/{IDNO}.json`.
+- Reportaje por dataset: `data/alerts/reportaje_{dataset}.json`.
+- Agregado: `data/alerts.json` (Noticias + Reportajes, consumido por UI).
+- Enriquecimiento: `lib/alert-display.js` → `enrichAlert`, period narratives, stale flag.
+- `lib/alerts-store.js` `normalizeItem` usa `ev.lead?.[langKey]` directamente (no hardcodea `_lead`/`_title` a español).
 
 ---
 
@@ -243,15 +280,22 @@ Filtros: `OBS_STATUS = A`, disagg `_Z`/`_T` excluidas, valores `Decimal`.
 
 | Path | Contenido |
 |------|-----------|
-| `data/alerts.json` | Feed unificado |
-| `data/alerts/{IDNO}.json` | Alertas por indicador |
+| `data/alerts.json` | Feed unificado (Noticias + Reportajes) |
+| `data/alerts/{IDNO}.json` | Noticia por indicador |
+| `data/alerts/reportaje_{dataset}.json` | Reportaje por dataset (≥2 Noticias) |
+| `data/alerts/{IDNO}.raw.txt` | Respuesta cruda del LLM cuando el extractor devolvió 0 ítems (diagnóstico) |
 | `data/analyses/{IDNO}.md` | Contexto + narrativa |
-| `data/context/{COUNTRY}/{tier}.csv` | Series watchlist |
+| `data/context/{COUNTRY}/{tier}.csv` | Series por tier (`pulse`, `annual`, `forecast`, `dynamic`) |
 | `data/indicators/{IDNO}.md` | Metadata indicador |
+| `data/snapshots/{IDNO}.csv` | CSV crudo del blob host |
+| `data/snapshots/{IDNO}_DATADICT.csv` | Data dictionary del indicador |
+| `data/snapshots/{IDNO}.meta.json` | Metadata JSON (fallback si no hay entrada en `lib/watchlist.js`) |
 | `data/news/{COUNTRY}/{YYYY-MM}.jsonl` | Titulares GDELT |
 | `data/changed-since.json` | Resultado freshness probe |
 | `data/index.json` | Índice indicadores watchlist |
-| `lib/watchlist.js` | Watchlist canónico (~35 indicadores × tiers) |
+| `data/dynamic-watchlist.json` | Lista descubierta dinámicamente (modo dinámico) |
+| `lib/watchlist.js` | Watchlist canónico estático (~35 indicadores × tiers) |
+| `lib/dynamic-watchlist.js` | Discovery + expansión dataset→indicadores |
 | `connector/watchlist.json` | Probe preliminar (20 candidatos; referencia histórica) |
 
 ---
@@ -290,10 +334,11 @@ Cobertura relevante:
 | D-007 | Replay histórico, no real-time |
 | D-008 | Dashboard estático lee `alerts.json` |
 | D-010 | Estrategias 1 y 4 |
-| D-021 | Tiers pulse / annual / forecast |
-| D-028 | Análisis: 4 prompts, validación claim traceability |
+| D-021 | Tiers pulse / annual / forecast (+ `dynamic` cuando se usa discovery) |
+| D-028 | Análisis: prompts + validación claim traceability (Q1/Q2/Q4) |
 | D-029–D-030 | News = titulares reales GDELT; pulse ≠ news |
 | D-017 | LLM narrativa vía Claude Opus / Agent SDK |
+| D-031–D-034 | Modo dinámico (discovery por searchv2), Noticia/Reportaje, DATADICT en contexto, extractor robusto. Ver `CLAUDE.md`. |
 
 Lista completa: `CLAUDE.md`.
 
