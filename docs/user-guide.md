@@ -5,7 +5,12 @@
 
 ## Qué hace esta herramienta
 
-Data360 Monitor vigila un conjunto curado de indicadores económicos, sociales y de gobernanza en **Guatemala, Honduras, Argentina, Ecuador y México**. Cuando detecta un cambio estadísticamente notable, genera **alertas verificadas** con narrativas para ciudadanía y periodistas, cada una enlazada a su fuente en [data360.worldbank.org](https://data360.worldbank.org).
+Data360 Monitor vigila un conjunto curado de indicadores económicos, sociales y de gobernanza en **Guatemala, Honduras, Argentina, Ecuador y México**. Cuando detecta un cambio estadísticamente notable, genera dos tipos de contenido verificado:
+
+- **Noticia**. Pieza bilingüe (250–600 palabras) por indicador y país, disparada por un candidato de detección.
+- **Reportaje**. Pieza bilingüe larga (500–1200 palabras) por *dataset*, generada solo cuando dos o más Noticias comparten el mismo `dataset_id`. Sintetiza una mirada regional con secciones por país y reutiliza los `claim_id` de las Noticias que sintetiza.
+
+Cada pieza queda enlazada a su fuente en [data360.worldbank.org](https://data360.worldbank.org).
 
 El producto tiene dos caras:
 
@@ -21,7 +26,9 @@ Ambas leen el mismo archivo de alertas (`data/alerts.json`) y comparten el panel
 ## Alcance del demo
 
 - **Países**: GTM, HND, ARG, ECU, MEX (no sustituir por BRA, CHL, COL, etc.).
-- **Indicadores**: ~35 del watchlist en tres tiers (pulse, annual, forecast). Lista canónica en `lib/watchlist.js` (`connector/watchlist.json` es un probe preliminar de 20 candidatos).
+- **Indicadores**: dos modos de selección.
+  - **Watchlist estático**: ~35 indicadores en tres tiers (pulse, annual, forecast). Lista canónica en `lib/watchlist.js`.
+  - **Modo dinámico**: indicadores descubiertos en vivo desde `/data360/searchv2` ordenados por fecha de actualización, expandidos vía `/data360/indicators?datasetId=…`, persistidos en `data/dynamic-watchlist.json` y tratados como un cuarto tier `dynamic`. Útil cuando se quiere cubrir más indicadores sin tocar la lista a mano.
 - **Detección**: estrategias **1** (cambios abruptos, z-score) y **4** (anomalías cross-indicador).
 - **Modo**: replay histórico sobre snapshots CSV, no tiempo real continuo (D-007).
 - **Titulares**: GDELT en español, almacenados en `data/news/{PAÍS}/{YYYY-MM}.jsonl` (contexto pasivo para narrativas; divergencia narrativa-dato queda en roadmap).
@@ -73,15 +80,17 @@ Cada tarjeta muestra:
 |--------|----------|
 | **País** | ALL o un ISO3 del feed |
 | **Categoría** | ALL o categoría temática (economy, social, etc.) |
+| **Tipo de contenido** | ALL · Noticia · Reportaje |
 | **Variante de tarjeta** | Narrative · Number · Newspaper |
 
 Los filtros ocultan tarjetas con CSS (`.d360-card--hidden`); el contador de eventos se actualiza al instante. El estado se refleja en la URL (`?country=ARG&category=economy&variant=narr`).
 
-### Variantes de tarjeta
+### Tipos de tarjeta
 
-1. **Narrative** — narrativa ciudadana en el cuerpo; metadatos abajo.
-2. **Number** — valor grande destacado + contexto breve.
-3. **Newspaper** — titular periodístico + bajada con indicador y magnitud.
+- **Noticia** (per indicador). Tarjeta estándar tipo newspaper con titular, bajada, valor observado y trazabilidad.
+- **Reportaje** (per dataset). Tarjeta más ancha (`grid-column: span 2`) que destaca visualmente la síntesis regional sobre el mismo dataset.
+
+Ambos comparten el panel de detalle, los enlaces de fuente y la verificación PCN. Las variantes históricas Narrative · Number · Newspaper siguen disponibles vía el filtro `?variant=…`.
 
 ### Panel de detalle
 
@@ -232,17 +241,23 @@ Más contexto: metodología PCN del Banco Mundial y `docs/data360-integration-me
 Replay histórico en Node.js (CommonJS):
 
 ```bash
-npm run fetch          # descarga CSVs (con probe previo)
-npm run fetch:probe    # solo sonda de cambios (~2 s)
-npm run fetch:news     # titulares GDELT → data/news/{PAÍS}/{YYYY-MM}.jsonl
-npm run analyze        # detección (estrategias 1 y 4) + narrativa LLM + data/alerts.json
-npm run analyze:no-llm # mismo pipeline sin llamadas LLM (solo detección)
-npm run dev            # servidor web :8090 (desarrollo)
-npm run start          # producción
-npm test               # tests Node
+npm run fetch                    # descarga CSV + data dictionary + meta.json (con probe previo)
+npm run fetch:probe              # solo sonda de cambios (~2 s)
+npm run fetch:news               # titulares GDELT → data/news/{PAÍS}/{YYYY-MM}.jsonl
+npm run analyze                  # detección + Fase 1 Noticias + Fase 2 Reportajes → data/alerts.json
+npm run analyze:no-llm           # mismo pipeline sin llamadas LLM (solo detección)
+npm run discover                 # modo dinámico: /searchv2 → data/dynamic-watchlist.json
+npm run pipeline:dynamic         # discover → fetch → analyze (modo dinámico)
+npm run pipeline:dynamic:force   # igual, pero pasa --force al fetch (bypass ETag)
+npm run dev                      # servidor web :8090 (desarrollo)
+npm run start                    # producción
+npm test                         # tests Node
 ```
 
-Flujo típico: `fetch` → `fetch:news` (opcional) → `analyze`. El paso `analyze` delega en `lib/analysis/runner.js` (detecta, narra por indicador y consolida `data/alerts/{IDNO}.json` + `data/alerts.json`).
+Flujo típico estático: `fetch` → `fetch:news` (opcional) → `analyze`.
+Flujo típico dinámico: `pipeline:dynamic` (o `pipeline:dynamic:force` cuando hace falta un refresh limpio).
+
+El paso `analyze` delega en `lib/analysis/runner.js` para Noticias (una por indicador) y luego en `lib/analysis/reportaje-runner.js` para Reportajes (uno por dataset cuando ≥2 Noticias comparten `dataset_id`). Consolida `data/alerts/{IDNO}.json`, `data/alerts/reportaje_{dataset}.json` y `data/alerts.json`.
 
 Salida principal: **`data/alerts.json`** consumido por Monitor y Chat.
 
