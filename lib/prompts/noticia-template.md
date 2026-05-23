@@ -29,7 +29,7 @@ Emitís exactamente este bloque fenced (sin texto adicional antes o después, ex
     }
   },
   "observation": {
-    "value": "valor_más_reciente",
+    "value": "123.45",
     "time_period": "YYYY o YYYY-MM",
     "unit": "unidad"
   },
@@ -38,7 +38,7 @@ Emitís exactamente este bloque fenced (sin texto adicional antes o después, ex
     { "period": "YYYY", "value": 0.0 }
   ],
   "claim_tokens": [
-    { "claim_id": "CLAIM_ID", "value": "valor" }
+    { "claim_id": "CLAIM_ID", "value": "123.45" }
   ],
   "verification_trace": {
     "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/DATABASE_ID",
@@ -58,3 +58,10 @@ Q5: [OK|FAIL] — observaciones citadas con su time_period correcto
 Q6: [OK|FAIL] — locale numérico consistente (es: coma decimal; en: punto decimal)
 Q7: [OK|FAIL] — hipótesis marcadas con [HIPÓTESIS] donde corresponde
 ```
+
+## Tipos críticos (errores Q2 frecuentes)
+
+- `observation.value` — **STRING** entre comillas dobles, ej. `"123.45"`. Nunca un número crudo. Convención Data360: `OBS_VALUE` es decimal-precision string.
+- `claim_tokens[].value` — **STRING**, mismo formato que `observation.value`.
+- `chart_series[].value` — **NUMBER** sin comillas, ej. `1234.56`. Este es el único campo `value` numérico del esquema; el resto son strings.
+- No agregues campos fuera del template; el validador rechaza `additionalProperties`.

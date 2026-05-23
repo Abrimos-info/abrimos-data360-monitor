@@ -85,3 +85,23 @@ test('extractJsonObject is brace-balanced and string-aware', () => {
   const text = 'prefix { "outer": { "inner": "}}" } } suffix';
   assert.equal(extractJsonObject(text), '{ "outer": { "inner": "}}" } }');
 });
+
+test('parseNoticias coerces observation.value and claim_tokens[].value to string', () => {
+  const { parseNoticias } = require('../lib/analysis/alert-extractor');
+  // Weak models often emit observation.value as a JSON number; the schema
+  // requires a string (Data360 OBS_VALUE convention). Quietly coerce so the
+  // Q2 schema check passes and we don't drop the whole noticia.
+  const body = {
+    content_type: 'noticia',
+    id: 'noticia_coerce_test',
+    title: { es: 'A', en: 'A' },
+    observation: { value: 123.45, time_period: '2024', unit: 'IX' },
+    claim_tokens: [{ claim_id: 'abc', value: 7 }],
+    chart_series: [{ period: '2024', value: '42.5' }],
+  };
+  const llmOutput = '\`\`\`noticia\n' + JSON.stringify(body) + '\n\`\`\`';
+  const [item] = parseNoticias(llmOutput);
+  assert.equal(item.observation.value, '123.45');
+  assert.equal(item.claim_tokens[0].value, '7');
+  assert.equal(item.chart_series[0].value, 42.5);
+});
