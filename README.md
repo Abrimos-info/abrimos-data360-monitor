@@ -58,14 +58,26 @@ Full design. [`docs/data-fetcher-architecture.md`](docs/data-fetcher-architectur
 
 ## Analysis pipeline
 
-Detection and narrative generation run in one step:
+Detection and narrative generation run in two phases inside one step:
 
 ```bash
 npm run fetch:news   # optional: GDELT headlines for narrative context
-npm run analyze      # strategies 1 + 4, LLM per indicator → data/alerts.json
+npm run analyze      # strategies 1 + 4 → Phase 1 Noticias → Phase 2 Reportajes → data/alerts.json
 ```
 
+The pipeline emits two content types:
+
+- **Noticia** — bilingual news story (one per indicator/country, 250–600 words) triggered by a detection candidate.
+- **Reportaje** — bilingual long-form (one per dataset, 500–1200 words) generated only when two or more Noticias share the same `dataset_id`. Synthesises a regional view and reuses the Noticias' `claim_id`s.
+
 Per-indicator only: `node bin/generate-analysis.js --only FAO_CP_23012`
+
+Indicators can be picked from the static 35-item watchlist (`lib/watchlist.js`) or discovered dynamically from `/data360/searchv2`:
+
+```bash
+npm run pipeline:dynamic         # discover → fetch → analyze
+npm run pipeline:dynamic:force   # same, but bypass the ETag cache
+```
 
 See [`docs/user-guide.md`](docs/user-guide.md) for the full operator reference.
 
