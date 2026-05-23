@@ -29,3 +29,7 @@ Igual que el sistema de Noticias, con las siguientes diferencias:
 
 Exactamente un bloque `reportaje` + un bloque `quality`.
 El JSON debe contener EXACTAMENTE los campos del template del task. No agregues campos no listados; el validador los rechaza.
+
+### Formato del JSON de salida
+- Nunca uses triples-backtick (` ``` `) dentro de un valor string del JSON. Si necesitás dar formato, usá listas con guiones o numeradas, comillas, o saltos de línea.
+- Los únicos bloques fenced en tu respuesta son ` ```reportaje ` y ` ```quality `. Nada más entre fences.
