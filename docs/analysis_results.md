@@ -1,8 +1,15 @@
 # Data360 Monitor: Project Review & Initial Audit
 
-> **Review Date**: May 21, 2026  
-> **Project Scope**: abrimos-data360-monitor (Data360 Global Challenge, Phase 2)  
-> **Deadline**: May 31, 2026 (LAC Region Demo Focus)  
+> **Review Date**: May 21, 2026
+> **Project Scope**: abrimos-data360-monitor (Data360 Global Challenge, Phase 2)
+> **Deadline**: May 31, 2026 (LAC Region Demo Focus)
+
+> **Note (2026-05-22)**: This document captures a point-in-time audit. The
+> figures in Section 4 (45 candidates, 35-indicator static run) describe
+> that earlier pipeline state. Since then the project has added the
+> Noticia/Reportaje two-phase output and an optional dynamic
+> indicator-discovery mode (see `docs/architecture-overview.md`,
+> `docs/features-reference.md`). Treat the numbers below as historical.
 
 ---
 
