@@ -78,7 +78,7 @@ Highest leverage before submission: every shipped alert must match the public sc
 | Types | Only `abrupt_change` and `anomaly` (D-010); align `alerts-store.test.js` (today allows `cross_indicator_anomaly`) |
 | Bilingual narratives | `narrative_citizen` / `narrative_journalist` have `es` and `en` |
 | Q1 claim traceability | Each `claim_tokens[].claim_id` appears in numbered analysis context for that indicator |
-| Q4 length | Narratives ≤ 320 chars where enforced |
+| Q4 length | `story` length within 250–4000 chars; bilingual `es`/`en` fields present |
 | `chart_series` | Non-empty array; points have `period` and numeric `value` |
 
 Suggested file: `test/alert-schema.test.js`.
@@ -225,9 +225,11 @@ No dedicated coverage today. Highest priority for newly implemented code; alread
 
 | Test | Expected behaviour |
 |------|-------------------|
-| Fenced ` ```json ` block | Parsed into `narratives` + `quality` |
-| Fallback `{…}` | Extracts first/last brace-bound object |
+| Fenced ` ```noticia ` / ` ```reportaje ` block | Parsed via `extractJsonObject` (brace-balanced, string-aware) |
+| Triple-backticks inside string values | Tolerated; the scanner only counts braces, ignoring the closing fence |
+| Truncated response (missing closing fence) | Returns the partial object up to the last balanced brace, or null |
 | Invalid JSON | Returns null / error without throwing upstream |
+| 0-item parse despite fence-opener present | Raw response persisted to `data/alerts/{idno}.raw.txt` (or `reportaje_{dataset}.raw.txt`) for diagnosis |
 
 ### `lib/analysis/narrative-normalizer.js`
 
@@ -240,9 +242,12 @@ No dedicated coverage today. Highest priority for newly implemented code; alread
 
 | Test | Expected behaviour |
 |------|-------------------|
+| Q1 orphan claim | Fails when `claim_id` ∉ context set; failure `notes` field surfaces in console log |
 | Q2 schema failure | Reports Ajv errors |
-| Q1 orphan claim | Fails when `claim_id` ∉ context set |
-| Q4 | Fails on missing bilingual or overlong text |
+| Q4 | Bilingual fields present + `story` length 250–4000 chars |
+| `allowed_claim_ids` literal section | Present in §5 of Noticia context and §7 of Reportaje context |
+
+There is no Q3 in this version.
 
 ### `lib/analysis/runner.js` + `bin/generate-analysis.js`
 
