@@ -10,7 +10,9 @@ Pull historical observations and metadata from Data360 for a curated watchlist o
 ## Scope
 
 - **Five LAC countries**. Guatemala (GTM), Honduras (HND), Argentina (ARG), Ecuador (ECU), Mexico (MEX).
-- **35 demo indicators** across three tiers (pulse, annual, forecast). Canonical list in [`lib/watchlist.js`](../lib/watchlist.js). [`connector/watchlist.json`](../connector/watchlist.json) holds the original 20-candidate probe; the live pipeline uses the expanded tiered watchlist.
+- **Two indicator-selection modes**.
+  - **Static watchlist** (default). 35 demo indicators across three tiers (pulse, annual, forecast). Canonical list in [`lib/watchlist.js`](../lib/watchlist.js). [`connector/watchlist.json`](../connector/watchlist.json) holds the original 20-candidate probe.
+  - **Dynamic discovery**. Indicators are not fixed: they are discovered from the Data360 `searchv2` endpoint ranked by `series_description/date_last_update desc`, expanded to indicator codes via `/data360/indicators?datasetId=…`, and treated as a fourth tier (`dynamic`). Implemented in [`lib/dynamic-watchlist.js`](../lib/dynamic-watchlist.js) and driven by [`bin/discover-indicators.js`](../bin/discover-indicators.js).
 - **Historical replay only** for the demo. No real-time polling. The continuous monitoring promise lives in the production roadmap.
 
 ## Implementation status (Phase 1, 2026-05-22)
@@ -24,6 +26,7 @@ Pull historical observations and metadata from Data360 for a curated watchlist o
 | `data/changed-since.json` | Implemented. List of indicators updated since last probe. |
 | `data/index.json` | Implemented. Per-indicator freshness summary. |
 | `bin/build-catalog.js` / `bin/probe-freshness.js` | Roadmap (Phase 2, full ~13k catalog). |
+| `bin/discover-indicators.js` / `lib/dynamic-watchlist.js` | Implemented. Dynamic discovery mode — see "Dynamic discovery" below. |
 | `bin/fetch-baseline.js`, `fetch-pulse.js`, `fetch-forecast.js` | Legacy tier fetchers. Superseded by `fetch-data.js` for new runs; kept for reference. |
 | `examples/freshness-probe-demo.js` | Standalone spike used to validate HEAD/ETag behaviour before integration. |
 
@@ -104,15 +107,57 @@ No NiFi. No OpenSearch. No queue. The fetcher writes a local CSV per indicator. 
 │         ▼  (only changed indicators, unless --force)             │
 │   ┌──────────────────────────────────────────────────────────┐   │
 │   │  csvFetcher (lib/context-fetch.js)                       │   │
-│   │  GET bulk CSV → data/snapshots/{INDICATOR}.csv           │   │
-│   │  POST /data360/metadata → .meta.json + indicators/*.md   │   │
+│   │  GET bulk CSV         → data/snapshots/{INDICATOR}.csv   │   │
+│   │  GET data dict CSV    → data/snapshots/{IDNO}_DATADICT.csv│   │
+│   │  GET metadata JSON    → data/snapshots/{IDNO}.meta.json  │   │
+│   │  POST /data360/metadata → indicators/*.md (when in WL)   │   │
 │   │  GET /data360/data per country → context/{CC}/{tier}.csv │   │
 │   └──────────────────────────────────────────────────────────┘   │
 │                                                                  │
 └──────────────────────────────────────────────────────────────────┘
 ```
 
-The LLM step (`bin/generate-analysis.js` → `lib/analysis/runner.js`) consumes raw CSVs and indicator metadata directly. No intermediate normalised JSON file is produced in demo mode. Normalisation rules below apply at LLM-prompt-construction time.
+The LLM step (`bin/generate-analysis.js` → `lib/analysis/runner.js`) consumes raw CSVs and indicator metadata directly. No intermediate normalised JSON file is produced in demo mode. Normalisation rules below apply at LLM-prompt-construction time. The runner reads the four tier context files (`pulse.csv`, `annual.csv`, `forecast.csv`, `dynamic.csv`) so a single analysis run covers static and dynamically-discovered indicators uniformly.
+
+## Dynamic discovery
+
+The static watchlist guarantees demo reproducibility but is, by design, narrow. Dynamic discovery widens coverage without hand-maintaining a list:
+
+1. **Search** `/data360/searchv2` ordered by `series_description/date_last_update desc` to surface datasets that the World Bank has recently republished.
+2. **Expand** each surviving `dataset_id` to indicator codes via `GET /data360/indicators?datasetId={dataset_id}`. The codes returned are the canonical `idno` values used for everything downstream — they are **not** re-prefixed with the database id (see "URL convention" below).
+3. **Persist** the resulting list to `data/dynamic-watchlist.json` so the fetcher and the analysis runner share one source of truth for the run.
+4. **Fetch** via the same `csvFetcher` plus the data-dictionary and metadata downloads (see below). Dynamic indicators land in `data/context/{COUNTRY}/dynamic.csv`.
+
+Entry points:
+
+```bash
+npm run discover                 # populate data/dynamic-watchlist.json
+npm run pipeline:dynamic         # discover → fetch (probe-respecting) → analyze
+npm run pipeline:dynamic:force   # same, but pass --force to bypass the ETag cache
+```
+
+The `:force` variant is the right tool when you have just changed disaggregation or filter rules and want a clean re-download regardless of `Last-Modified`.
+
+### Per-indicator data dictionaries and metadata
+
+For every indicator that actually gets used (static or dynamic), `bin/fetch-data.js` downloads two side files alongside the bulk CSV:
+
+| Path | Source | Purpose |
+|---|---|---|
+| `data/snapshots/{IDNO}_DATADICT.csv` | blob host (`data360files.worldbank.org`, same path as the CSV) | Data dictionary, injected into the LLM omnibus context (capped at 80 lines, or 20 lines for small models) |
+| `data/snapshots/{IDNO}.meta.json` | metadata blob host | Full indicator metadata document. Used as the fallback when a dynamic indicator has no static-watchlist entry to build human-readable metadata from |
+
+Both are cached with the same ETag mechanism as the CSV.
+
+### URL convention
+
+The bulk CSV URL is constructed as:
+
+```
+{BLOB_BASE}/{databaseId}/{idno}.csv
+```
+
+The `idno` is used **verbatim** as returned by `listIndicators` — there is no secondary "prefix with `databaseId`" step. The static watchlist appears to follow such a convention only because its `idno` values already match what `listIndicators` returns (e.g. `WB_WDI_FP_CPI_TOTL_ZG` is the indicator's actual id under the `WB_WDI` database). Dynamic discovery uses the same rule. Re-prefixing breaks URLs.
 
 ## Components (production mode)
 
@@ -125,15 +170,18 @@ data/
   changed-since.json               # latest: indicators updated since last probe
   changed-since-YYYY-MM-DD.json    # dated copy of the same report
   index.json                       # all watchlist indicators + changed_this_run flag
+  dynamic-watchlist.json           # discovery output (when dynamic mode is used)
   snapshots/
     _probe-state.json              # last_probe_at timestamp for the watchlist
     {INDICATOR}.csv                # raw bulk CSV from data360files.worldbank.org
     {INDICATOR}.etag               # cached ETag and Last-Modified for conditional HEAD
-    {INDICATOR}.meta.json          # full metadata document from /data360/metadata
+    {INDICATOR}.meta.json          # full metadata document from the metadata blob host
+    {INDICATOR}_DATADICT.csv       # per-indicator data dictionary (blob host)
   context/{COUNTRY}/
     pulse.csv                      # Tier 1 sub-annual (LAC-filtered via API)
     annual.csv                     # Tier 2 annual
     forecast.csv                   # Tier 3 IMF WEO + WB MPO
+    dynamic.csv                    # Tier 4 discovered-by-search (dynamic mode)
   indicators/{INDICATOR}.md        # human-readable metadata for LLM context
   alerts.json                      # final output consumed by the dashboard
 ```
@@ -145,8 +193,13 @@ All paths under `data/` are gitignored except `index.json`, `changed-since.json`
 ```bash
 npm run fetch              # probe + download changed + refresh LAC context
 npm run fetch:probe        # probe only (fast, ~2 s for 35 indicators)
-node bin/fetch-data.js --force   # treat all indicators as changed (bootstrap)
+node bin/fetch-data.js --force   # bypass the ETag cache (bootstrap / forced refresh)
+npm run discover           # populate data/dynamic-watchlist.json from /searchv2
+npm run pipeline:dynamic   # discover → fetch → analyze (dynamic mode)
+npm run pipeline:dynamic:force  # same but with --force on the fetch step
 ```
+
+`--force` skips the conditional HEAD entirely and re-downloads the CSV, data dictionary, and metadata for every indicator in the active watchlist, regardless of `If-None-Match` / `If-Modified-Since`.
 
 Typical workflow.
 
@@ -242,20 +295,24 @@ Full watchlist with a freshness flag per indicator. Used by the dashboard “las
 
 | Module | Role |
 |---|---|
-| [`bin/fetch-data.js`](../bin/fetch-data.js) | CLI entrypoint. Orchestrates probe, download, context refresh. |
-| [`lib/watchlist.js`](../lib/watchlist.js) | Canonical 35-indicator watchlist and tier file names. |
+| [`bin/fetch-data.js`](../bin/fetch-data.js) | CLI entrypoint. Orchestrates probe, download (CSV + data dictionary + metadata JSON), context refresh. |
+| [`bin/discover-indicators.js`](../bin/discover-indicators.js) | Dynamic discovery CLI. Writes `data/dynamic-watchlist.json`. |
+| [`lib/watchlist.js`](../lib/watchlist.js) | Canonical 35-indicator static watchlist and tier file names. |
+| [`lib/dynamic-watchlist.js`](../lib/dynamic-watchlist.js) | Discover-by-search and dataset-to-indicator expansion. Treats results as the `dynamic` tier. |
 | [`lib/freshness-probe.js`](../lib/freshness-probe.js) | HEAD loop, builds `changed-since` and `index` reports. |
 | [`lib/freshness-cache.js`](../lib/freshness-cache.js) | Read/write `.etag` files and `_probe-state.json`. |
-| [`lib/context-fetch.js`](../lib/context-fetch.js) | Bulk CSV download, metadata cache, LAC context via API. |
-| [`lib/data360-client.js`](../lib/data360-client.js) | `headCsv`, `getCsv`, `csvUrl`, `getMetadata`, `getData`, `listIndicators`. |
+| [`lib/context-fetch.js`](../lib/context-fetch.js) | Bulk CSV download, metadata + data-dictionary cache, LAC context via API. |
+| [`lib/data360-client.js`](../lib/data360-client.js) | `headCsv`, `getCsv`, `csvUrl`, `getMetadata`, `getData`, `listIndicators`, `searchv2`. |
 
 ## Endpoints used
 
 | Endpoint | Method | Purpose |
 |---|---|---|
+| `/data360/searchv2` | POST | Indicator/dataset search (used by dynamic discovery, ordered by `series_description/date_last_update desc`) |
 | `/data360/metadata` | POST | Full indicator metadata (OData `$filter` by `idno`) |
-| `/data360/indicators?datasetId=…` | GET | Verify indicators exist within a dataset |
-| `data360files.worldbank.org/data360-data/data/{DB_ID}/{INDICATOR}.csv` | GET / HEAD | Bulk CSV with `ETag` and `Last-Modified` |
+| `/data360/indicators?datasetId=…` | GET | Expand a dataset to indicator codes (used by dynamic discovery; returns the canonical `idno`) |
+| `data360files.worldbank.org/data360-data/data/{DB_ID}/{INDICATOR}.csv` | GET / HEAD | Bulk CSV with `ETag` and `Last-Modified`. Same prefix serves `{INDICATOR}_DATADICT.csv` |
+| metadata blob host | GET | Per-indicator `.meta.json` document |
 | `/data360/data` | GET | LAC-filtered observations written to `data/context/{COUNTRY}/{tier}.csv` |
 
 Freshness detection uses the **blob host** (`data360files.worldbank.org`). LAC context files use the **REST API** (`data360api.worldbank.org`). The documented rate limit of 5,000 req/min per IP applies to the API, not to blob HEAD requests.
@@ -288,7 +345,7 @@ The raw CSV uses the SDMX-flavoured Data360 schema. The normaliser applies these
 | `OBS_CONF` | Keep only `"PU"` (Public). |
 | `REF_AREA` | Keep only rows where the country is in the watchlist. |
 | `SEX`, `AGE`, `URBANISATION` | If we are computing totals, keep `"_T"`. If we are looking at a specific cut, drop `"_Z"` (not applicable) and `"_T"`. |
-| `COMP_BREAKDOWN_1..3` | Keep all values. Their semantics are indicator-specific, treat them as part of the observation key. |
+| `COMP_BREAKDOWN_1..3` | Keep all values. Their semantics are indicator-specific, treat them as part of the observation key. The `isAcceptable` check in `lib/context-fetch.js` uses loose equality (`!= null`) for `expectedCb1`, so dynamic entries that declare no expectation are not filtered out. |
 | `TIME_PERIOD` | Normalise to ISO 8601 prefix (YYYY, YYYY-MM, YYYY-MM-DD) depending on `FREQ`. |
 
 ## Observation key
