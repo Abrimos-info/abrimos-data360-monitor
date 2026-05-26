@@ -90,11 +90,63 @@
       + escAttr(tipTitle) + '">' + svg + tipHtml + '</span>';
   }
 
+  function coerceClaimValue(raw) {
+    if (raw == null) return null;
+    if (typeof raw === 'number' && Number.isFinite(raw)) return raw;
+    var trimmed = String(raw).trim().replace(/%/g, '').trim();
+    if (!trimmed) return null;
+    if (/^-?\d{1,3}(\.\d{3})*,\d+$/.test(trimmed) || /^-?\d+,\d+$/.test(trimmed)) {
+      var esFirst = Number(trimmed.replace(/\./g, '').replace(',', '.'));
+      if (Number.isFinite(esFirst)) return esFirst;
+    }
+    var en = Number(trimmed.replace(/,/g, ''));
+    if (Number.isFinite(en)) return en;
+    var es = Number(trimmed.replace(/\./g, '').replace(',', '.'));
+    if (Number.isFinite(es)) return es;
+    return null;
+  }
+
+  function claimValuesMatch(a, b) {
+    var na = coerceClaimValue(a);
+    var nb = coerceClaimValue(b);
+    if (na != null && nb != null) {
+      return Math.abs(na - nb) <= Math.max(0.001, Math.abs(na) * 1e-6);
+    }
+    return String(a == null ? '' : a).trim() === String(b == null ? '' : b).trim();
+  }
+
+  function findClaimToken(tokens, claimId, fallback) {
+    var id = String(claimId || '');
+    var list = (tokens || []).filter(function (t) { return t && String(t.claim_id) === id; });
+    if (!list.length) return null;
+    if (list.length === 1) return list[0];
+    for (var i = 0; i < list.length; i++) {
+      var t = list[i];
+      if (claimValuesMatch(t.value, fallback)) return t;
+      if (claimValuesMatch(t.display_es, fallback)) return t;
+      if (claimValuesMatch(t.display_en, fallback)) return t;
+    }
+    return list[0];
+  }
+
+  function normalizeClaimMarkerText(text) {
+    if (!text || text.indexOf('{{claim:') === -1) return text;
+    return String(text).replace(/\{\{claim:([\s\S]*?)\}\}/g, function (full, inner) {
+      var pipe = inner.indexOf('|');
+      if (pipe === -1) return full;
+      var cid = inner.slice(0, pipe).replace(/\s+/g, '');
+      var val = inner.slice(pipe + 1).replace(/\s+/g, '');
+      return '{{claim:' + cid + '|' + val + '}}';
+    });
+  }
+
   function resolveClaimDisplay(token, lang, fallback) {
-    if (!token) return fallback || '';
+    var fb = fallback != null ? String(fallback).trim() : '';
+    if (fb && fb.indexOf('{{claim:') === -1) return fb;
+    if (!token) return fb;
     var field = lang === 'en' ? 'display_en' : 'display_es';
     if (token[field] && token[field].indexOf('{{claim:') === -1) return token[field];
-    return fallback || String(token.value || '');
+    return fb || String(token.value || '');
   }
 
   function renderClaimHtml(token, display, lang) {
@@ -197,8 +249,9 @@
 
   function injectClaimMarkersIntoHtml(html, alert, lang) {
     if (!html || !alert) return html || '';
-    var tokens = (alert.claim_tokens || []).filter(function (t) { return t && t.pcn_status; });
-    if (!tokens.length) return html;
+    var hasMarkers = html.indexOf('{{claim:') !== -1;
+    var tokens = alert.claim_tokens || [];
+    if (!hasMarkers && !tokens.some(function (t) { return t && t.pcn_status; })) return html;
     var wrap = document.createElement('div');
     wrap.innerHTML = html;
     var walker = document.createTreeWalker(wrap, NodeFilter.SHOW_TEXT, null);
@@ -209,8 +262,9 @@
       if (!parent || parent.closest('.d360-claim, .d360-vmark, .d360-hypothesis')) return;
       var raw = node.textContent;
       if (!raw || !raw.trim()) return;
-      var replaced = renderPlainClaimMarkersHtml(raw, alert, lang);
-      if (replaced.indexOf('d360-claim') === -1) return;
+      var replaced = renderClaimMarkersHtml(raw, alert, lang);
+      if (replaced.indexOf('d360-claim') === -1 && replaced.indexOf('{{claim:') !== -1) return;
+      if (replaced === escHtml(raw)) return;
       var holder = document.createElement('span');
       holder.innerHTML = replaced;
       while (holder.firstChild) parent.insertBefore(holder.firstChild, node);
@@ -221,10 +275,11 @@
 
   function renderClaimMarkersHtml(text, alert, lang) {
     if (!text) return '';
-    if (/\{\{claim:/.test(text)) {
-      var map = new Map((alert.claim_tokens || []).map(function (t) { return [String(t.claim_id), t]; }));
-      return String(text).replace(/\{\{claim:([^}|]+)\|([^}]*)\}\}/g, function (_, id, fallback) {
-        var token = map.get(String(id));
+    var normalized = normalizeClaimMarkerText(text);
+    if (/\{\{claim:/.test(normalized)) {
+      var tokens = alert.claim_tokens || [];
+      return String(normalized).replace(/\{\{claim:([^}|]+)\|([^}]*)\}\}/g, function (_, id, fallback) {
+        var token = findClaimToken(tokens, id, fallback);
         var display = resolveClaimDisplay(token, lang, fallback || id);
         if (token && token.pcn_status) {
           return renderClaimHtml(token, display, lang);
@@ -232,7 +287,7 @@
         return escHtml(display);
       });
     }
-    return renderPlainClaimMarkersHtml(text, alert, lang);
+    return renderPlainClaimMarkersHtml(normalized, alert, lang);
   }
 
   window.D360PcnClaims = {
@@ -241,6 +296,8 @@
     renderClaimHtml: renderClaimHtml,
     renderClaimMarkersHtml: renderClaimMarkersHtml,
     injectClaimMarkersIntoHtml: injectClaimMarkersIntoHtml,
+    normalizeClaimMarkerText: normalizeClaimMarkerText,
     resolveClaimDisplay: resolveClaimDisplay,
+    findClaimToken: findClaimToken,
   };
 }());

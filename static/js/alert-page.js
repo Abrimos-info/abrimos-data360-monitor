@@ -21,16 +21,21 @@
         ? function (text) { return window.D360DetailPanel.renderClaimMarkersHtml(text, alert, lng); }
         : null);
 
+    var normalizeClaims = window.D360PcnClaims && window.D360PcnClaims.normalizeClaimMarkerText
+      ? window.D360PcnClaims.normalizeClaimMarkerText.bind(window.D360PcnClaims)
+      : function (t) { return t; };
+
     var leadEl = document.getElementById('d360-article-lead');
     var leadText = alert.lead && alert.lead[lng];
     if (leadEl && leadText && renderClaims) {
-      leadEl.innerHTML = renderClaims(leadText);
+      leadEl.innerHTML = renderClaims(normalizeClaims(leadText));
     }
 
     var storyEl = document.getElementById('d360-article-story');
     var storyText = alert.story && alert.story[lng];
     if (!storyText && alert.body) storyText = alert.body[lng];
     if (storyEl && storyText) {
+      storyText = normalizeClaims(storyText);
       var storyHtml = storyText;
       if (window.D360Markdown && window.D360Markdown.renderMarkdown) {
         storyHtml = window.D360Markdown.renderMarkdown(storyText);

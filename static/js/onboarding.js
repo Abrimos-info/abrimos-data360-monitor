@@ -46,7 +46,27 @@
     }
   }
 
+  function bindLangTabs(el) {
+    var tabs = el.querySelectorAll('[data-onboard-lang]');
+    var cols = el.querySelectorAll('[data-onboard-lang-col]');
+    if (!tabs.length) return;
+    tabs.forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        var lng = tab.getAttribute('data-onboard-lang');
+        tabs.forEach(function (t) {
+          var active = t === tab;
+          t.classList.toggle('is-active', active);
+          t.setAttribute('aria-selected', active ? 'true' : 'false');
+        });
+        cols.forEach(function (col) {
+          col.classList.toggle('is-active', col.getAttribute('data-onboard-lang-col') === lng);
+        });
+      });
+    });
+  }
+
   function bindOnboarding(el) {
+    bindLangTabs(el);
     el.querySelectorAll('[data-onboard-dismiss]').forEach(function (node) {
       node.addEventListener('click', function () { dismiss(true); });
     });
