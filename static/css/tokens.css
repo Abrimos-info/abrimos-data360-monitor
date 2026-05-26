@@ -10,20 +10,20 @@
   --brand-red-soft:   #c93938;
   --brand-red-wash:   #f7e3e3;
 
-  /* Neutrals */
+  /* Neutrals (text ≥4.5:1 on --bg / --bg-alt; borders ≥3:1 vs --bg, WCAG 2.1 AA) */
   --bg:               #ffffff;
   --bg-alt:           #f5f6f7;
   --bg-alt-2:         #eef0f1;
-  --fg:               #7f888f;
+  --fg:               #525d65;
   --fg-bold:          #3d4449;
-  --fg-light:         #9fa3a6;
-  --border:           rgba(210, 215, 217, 0.75);
-  --border-strong:    #d2d7d9;
+  --fg-light:         #5c6570;
+  --border:           #8a9399;
+  --border-strong:    #757f86;
 
   /* Semantic */
-  --ok:               #2a8e5f;
-  --ok-soft:          rgba(42, 142, 95, 0.18);
-  --warn:             #b07a00;
+  --ok:               #256f4a;
+  --ok-soft:          rgba(37, 111, 74, 0.18);
+  --warn:             #8a6500;
   --warn-soft:        rgba(176, 122, 0, 0.15);
   --err:              #b31918;
   --err-soft:         rgba(179, 25, 24, 0.15);
