@@ -2270,6 +2270,15 @@ body.d360-onboard-open {
 .d360-header--frontpage .d360-lastupdate {
   font-size: var(--fs-xsmall);
 }
+.d360-header--indicators {
+  display: flex;
+  justify-content: center;
+  padding: 10px var(--space-6);
+  border-bottom: 1px solid var(--border, #e2e5e8);
+}
+.d360-header--indicators .d360-lastupdate {
+  font-size: var(--fs-xsmall);
+}
 .d360-frontpage__hero-generated {
   margin: 0.35rem 0 0;
   font-size: 0.85rem;

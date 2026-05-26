@@ -23,7 +23,12 @@ const path = require('path');
 const { createTimer } = require('../lib/timing');
 const { getWatchlist } = require('../lib/watchlist');
 const { probeWatchlist, buildChangedSinceReport, buildIndex } = require('../lib/freshness-probe');
-const { downloadCsvSnapshot, downloadDataDict, downloadMetadataJson, refreshContextForIndicators } = require('../lib/context-fetch');
+const {
+  downloadCsvSnapshot,
+  ensureIndicatorMetadata,
+  entriesNeedingMetadata,
+  refreshContextForIndicators,
+} = require('../lib/context-fetch');
 
 const REPO_ROOT = path.resolve(__dirname, '..');
 
@@ -115,51 +120,61 @@ async function runFetchData(argv, hooks = {}) {
     return;
   }
 
-  const toFetch = watchlist.filter((e) => probeResult.changed_indicators.includes(e.idno));
-  if (toFetch.length === 0) {
+  const changedIds = new Set(probeResult.changed_indicators);
+  const toFetch = watchlist.filter((e) => changedIds.has(e.idno));
+  const metadataEntries = entriesNeedingMetadata(watchlist, INDICATORS_DIR, changedIds, opts.force);
+
+  if (toFetch.length === 0 && metadataEntries.length === 0) {
     console.log('[fetch-data] nothing to download');
     timer.end('total', 'no changes');
     return;
   }
 
-  console.log(`[fetch-data] downloading ${toFetch.length} CSV snapshot(s) ...`);
-  for (const entry of toFetch) {
-    process.stdout.write(`  csv ${entry.idno} ... `);
-    try {
-      const res = await downloadCsvSnapshot(SNAPSHOTS_DIR, entry, {
-        force: opts.force,
-        getCsv: hooks.getCsv,
-        csvUrl: hooks.csvUrl,
-      });
-      if (res.downloaded) {
-        process.stdout.write(`${res.bytes} bytes\n`);
-      } else if (res.status === 304) {
-        process.stdout.write('304 (already current)\n');
-      } else {
-        process.stdout.write(`HTTP ${res.status}\n`);
+  if (toFetch.length > 0) {
+    console.log(`[fetch-data] downloading ${toFetch.length} CSV snapshot(s) ...`);
+    for (const entry of toFetch) {
+      process.stdout.write(`  csv ${entry.idno} ... `);
+      try {
+        const res = await downloadCsvSnapshot(SNAPSHOTS_DIR, entry, {
+          force: opts.force,
+          getCsv: hooks.getCsv,
+          csvUrl: hooks.csvUrl,
+        });
+        if (res.downloaded) {
+          process.stdout.write(`${res.bytes} bytes\n`);
+        } else if (res.status === 304) {
+          process.stdout.write('304 (already current)\n');
+        } else {
+          process.stdout.write(`HTTP ${res.status}\n`);
+        }
+      } catch (e) {
+        process.stdout.write(`fail: ${e.message.slice(0, 80)}\n`);
       }
-    } catch (e) {
-      process.stdout.write(`fail: ${e.message.slice(0, 80)}\n`);
     }
+    timer.lap('csv-download', `${toFetch.length} indicators`);
+  } else {
+    console.log('[fetch-data] CSV snapshots unchanged; skipping download');
   }
 
-  timer.lap('csv-download', `${toFetch.length} indicators`);
-
-  console.log('[fetch-data] refreshing LAC context for changed indicators ...');
-  await refreshContextForIndicators(CONTEXT_DIR, INDICATORS_DIR, SNAPSHOTS_DIR, toFetch, {
-    forceMetadata: opts.force,
-  });
-  timer.lap('context-refresh');
-
-  console.log('[fetch-data] downloading data dictionaries and metadata JSON for changed indicators ...');
-  for (const entry of toFetch) {
-    await downloadDataDict(SNAPSHOTS_DIR, entry).catch((e) => console.warn(`  dict ${entry.idno}: ${e.message}`));
-    await downloadMetadataJson(SNAPSHOTS_DIR, entry).catch((e) => console.warn(`  meta ${entry.idno}: ${e.message}`));
+  if (metadataEntries.length > 0) {
+    console.log(`[fetch-data] ensuring metadata for ${metadataEntries.length} indicator(s) ...`);
+    await ensureIndicatorMetadata(INDICATORS_DIR, SNAPSHOTS_DIR, metadataEntries, {
+      forceMetadata: opts.force,
+    });
+    timer.lap('metadata', `${metadataEntries.length} indicators`);
   }
 
-  timer.lap('metadata');
+  if (toFetch.length > 0) {
+    console.log('[fetch-data] refreshing LAC context for changed indicators ...');
+    await refreshContextForIndicators(CONTEXT_DIR, INDICATORS_DIR, SNAPSHOTS_DIR, toFetch, {
+      forceMetadata: opts.force,
+      skipMetadata: metadataEntries.length > 0,
+    });
+    timer.lap('context-refresh');
+  }
+
   console.log('[fetch-data] done');
-  timer.end('total', `${toFetch.length} indicators fetched`);
+  timer.end('total', `${toFetch.length} csv, ${metadataEntries.length} metadata`);
 }
 
 async function main() {

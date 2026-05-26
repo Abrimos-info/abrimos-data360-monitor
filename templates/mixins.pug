@@ -74,8 +74,8 @@ mixin indicatorRef(ind, lang, opts)
       span.d360-indicator-meta
         span.d360-indicator-meta__item
           span.d360-indicator-meta__label= _("indicators.updated_at", lang)
-          if ind.last_modified
-            time(datetime=ind.last_modified)= updatedText
+          if ind.last_modified_iso || ind.last_modified
+            time.d360-local-datetime(datetime=(ind.last_modified_iso || ind.last_modified))
           else
             span= updatedText
         span.d360-indicator-meta__item

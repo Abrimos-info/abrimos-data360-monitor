@@ -1,6 +1,15 @@
 extends layout
 include mixins
 
+block headerExtras
+  if lastUpdateIso
+    header.d360-header.d360-header--indicators
+      div.d360-lastupdate
+        span.d360-lastupdate__dot(aria-hidden="true")
+        span.d360-lastupdate__label= _("ui.last_update", lang)
+        span.d360-lastupdate__sep(aria-hidden="true") ·
+        time.d360-local-datetime.d360-lastupdate__time(datetime=lastUpdateIso)
+
 block content
   main.d360-page.d360-page--indicators
     header.d360-indicators__head
