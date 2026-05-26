@@ -74,6 +74,21 @@
     return (Math.round(Number(score) * 100) / 100).toFixed(2);
   }
 
+  function formatDetectedAt(iso, lang) {
+    if (window.D360LocalDatetime && window.D360LocalDatetime.formatLocalDisplay) {
+      return window.D360LocalDatetime.formatLocalDisplay(iso, lang);
+    }
+    if (!iso) return '';
+    return iso.slice(0, 16).replace('T', ' \u00b7 ');
+  }
+
+  function formatDetectedTitle(iso, lang) {
+    if (window.D360LocalDatetime && window.D360LocalDatetime.formatLocalTitle) {
+      return window.D360LocalDatetime.formatLocalTitle(iso, lang);
+    }
+    return iso || '';
+  }
+
   function sanitizeUrl(url) {
     if (!url) return url;
     return String(url).replace(/[)\],.;]+$/, '');
@@ -316,12 +331,21 @@
     var metaEl = node.querySelector('[data-bind="meta"]');
     if (metaEl) {
       var countryStr = countriesArr.join(', ') || (alert.country || '');
+      var detectedHtml = '';
+      if (alert.detected_at) {
+        var detectedLabel = formatDetectedAt(alert.detected_at, lng);
+        detectedHtml = '<time class="d360-local-datetime" datetime="' + escAttr(alert.detected_at) + '" title="' +
+          escAttr(formatDetectedTitle(alert.detected_at, lng)) + '">' + escHtml(detectedLabel) + '</time>';
+      }
       metaEl.innerHTML = [
         '<div><dt>' + escHtml(uiString('detail.country', lng)) + '</dt><dd>' + escHtml(countryStr) + '</dd></div>',
         '<div><dt>' + escHtml(uiString('detail.category', lng)) + '</dt><dd>' + escHtml(alert.category || '') + '</dd></div>',
         '<div><dt>' + escHtml(uiString('detail.score', lng)) + '</dt><dd>' + escHtml(formatScore(alert.score)) + '</dd></div>',
-        '<div><dt>' + escHtml(uiString('detail.detected_pipeline', lng)) + '</dt><dd>' + escHtml(alert.detected_at ? alert.detected_at.slice(0, 10) : '') + '</dd></div>',
+        '<div><dt>' + escHtml(uiString('detail.detected_pipeline', lng)) + '</dt><dd>' + detectedHtml + '</dd></div>',
       ].join('');
+      if (window.D360LocalDatetime) {
+        window.D360LocalDatetime.apply(metaEl.querySelector('time.d360-local-datetime'), lng);
+      }
     }
 
     var copyTitle = titleText;

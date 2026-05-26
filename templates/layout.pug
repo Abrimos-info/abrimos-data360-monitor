@@ -23,6 +23,7 @@ html(lang=lang)
       window.D360_LANG_MODE = !{JSON.stringify(langMode || lang)};
       window.D360_STRINGS = { es: !{JSON.stringify(stringsEs)}, en: !{JSON.stringify(stringsEn)} };
       window.staticVersion = !{JSON.stringify(String(staticVersion))};
+    script(src=staticAsset('js/local-datetime.js'))
     script(src=staticAsset('js/country-flag.js') defer)
     script(src=staticAsset('js/data360-urls.js') defer)
     script(src=staticAsset('js/onboarding.js') defer)

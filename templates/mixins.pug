@@ -88,13 +88,17 @@ mixin indicatorRefFromAlert(alert, lang, opts)
     if indRow
       +indicatorRef(indRow, lang, opts)
 
-//- Labeled data bar for article pages (value, magnitude, period).
+//- Labeled data bar for article pages (value, magnitude, period, generation time).
 mixin articleMetaBar(alert, lang, _)
   - var lng = (lang === "en") ? "en" : "es"
   - var magText = (alert.magnitude && alert.magnitude[lng]) || ''
   - var hasObs = alert.observation && (alert.observation.display || alert.observation.value != null)
-  if hasObs || magText
+  if hasObs || magText || alert.detected_at
     div.d360-article__meta(role="group" aria-label=_ ? _("article.meta.group", lang) : "Detection data")
+      if alert.detected_at
+        div.d360-article__meta-item
+          span.d360-article__meta-label= _ ? _("article.meta.generated_at", lang) : "Generated"
+          time.d360-article__meta-value.d360-local-datetime(datetime=alert.detected_at)
       if hasObs
         div.d360-article__meta-item
           span.d360-article__meta-label= _ ? _("article.meta.value", lang) : "Value"

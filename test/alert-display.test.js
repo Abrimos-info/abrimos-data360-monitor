@@ -4,10 +4,10 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 const { formatLastUpdate, isStaleDataPeriod } = require('../lib/alert-display');
 
-test('formatLastUpdate formats ISO timestamp', () => {
+test('formatLastUpdate formats ISO timestamp without timezone label', () => {
   const out = formatLastUpdate('2026-05-21T15:30:00.000Z');
   assert.match(out, /2026-05-21/);
-  assert.match(out, /UTC/);
+  assert.doesNotMatch(out, /UTC/);
 });
 
 test('formatLastUpdate returns em dash for empty', () => {

@@ -109,6 +109,27 @@ test('HTTP routes', async (t) => {
     assert.match(res.body, /d360-frontpage__headline-meta[\s\S]{0,400}d360-ind-pill__id/);
   });
 
+  await t.test('GET /argentina headlines show generation datetime', async () => {
+    const res = await get(base + '/argentina');
+    assert.ok(res.body.includes('d360-frontpage__headline-generated'));
+    assert.ok(res.body.includes('d360-local-datetime'));
+    assert.match(res.body, /datetime="[^"]+"/);
+  });
+
+  await t.test('GET /argentina hero shows generation datetime', async () => {
+    const res = await get(base + '/argentina');
+    assert.ok(res.body.includes('d360-frontpage__hero-generated'));
+    assert.ok(res.body.includes('local-datetime.js'));
+  });
+
+  await t.test('GET article page shows generation datetime in meta bar', async () => {
+    const res = await get(base + '/argentina/noticia/2023/10/inflacion-alimentaria-cae-en-argentina');
+    assert.equal(res.status, 200);
+    assert.ok(res.body.includes('d360-article__meta'));
+    assert.match(res.body, /Generado|Generated/);
+    assert.match(res.body, /time[^>]+d360-local-datetime[^>]+datetime="/);
+  });
+
   await t.test('GET /argentina hero reportaje shows lead text', async () => {
     const res = await get(base + '/argentina');
     assert.ok(res.body.includes('d360-frontpage__hero-lede'));

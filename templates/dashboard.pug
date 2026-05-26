@@ -7,13 +7,13 @@ block headerExtras
   - var variant = filters.variant || "narr"
   header.d360-header
     div.d360-header__top
-      if lastUpdate
+      if lastUpdateIso
         div.d360-header__right
           div.d360-lastupdate
             span.d360-lastupdate__dot(aria-hidden="true")
             span.d360-lastupdate__label= _("ui.last_update", lang)
             span.d360-lastupdate__sep(aria-hidden="true") ·
-            span.d360-lastupdate__time= lastUpdate
+            time.d360-local-datetime.d360-lastupdate__time(datetime=lastUpdateIso)
     div.d360-header__bar
       form.d360-filters(method="get" id="d360-filters-form")
         label.d360-filter

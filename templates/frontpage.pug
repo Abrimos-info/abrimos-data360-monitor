@@ -5,13 +5,13 @@ block headerExtras
   header.d360-header.d360-header--frontpage
     div.d360-header__edition-line
       span.d360-header__edition= editionLabel
-      if lastUpdate
+      if lastUpdateIso
         span.d360-header__meta-sep(aria-hidden="true") ·
         div.d360-lastupdate
           span.d360-lastupdate__dot(aria-hidden="true")
           span.d360-lastupdate__label= _("ui.last_update", lang)
           span.d360-lastupdate__sep(aria-hidden="true") ·
-          span.d360-lastupdate__time= lastUpdate
+          time.d360-local-datetime.d360-lastupdate__time(datetime=lastUpdateIso)
 
 block content
   - var langKey = (lang === "en") ? "en" : "es"
@@ -24,6 +24,11 @@ block content
           h2.d360-frontpage__hero-title= pickHeadline(heroReportaje, lang)
         if heroLead
           p.d360-frontpage__hero-lede= heroLead
+        if heroReportaje.detected_at
+          p.d360-frontpage__hero-generated
+            span.d360-frontpage__generated-label= _("article.meta.generated_at", lang)
+            span.d360-frontpage__generated-sep(aria-hidden="true") ·
+            time.d360-local-datetime(datetime=heroReportaje.detected_at)
     else
       section.d360-frontpage__hero.d360-frontpage__hero--empty
         p= _("frontpage.no_reportaje", lang)
@@ -47,14 +52,18 @@ block content
                     span.d360-frontpage__headline-lede= headlineLead
                   span.d360-frontpage__headline-meta
                     - var indRow = (ev.indicator && ev.indicator.idno && typeof indicatorFromAlert === "function") ? indicatorFromAlert(ev, lang) : null
+                    if ev.detected_at
+                      time.d360-local-datetime.d360-frontpage__headline-generated(datetime=ev.detected_at)
                     if dateText
+                      if ev.detected_at
+                        span.d360-frontpage__headline-meta-sep(aria-hidden="true") ·
                       span.d360-frontpage__headline-date= dateText
                     if indRow && indRow.name && indRow.name !== indRow.idno
-                      if dateText
+                      if ev.detected_at || dateText
                         span.d360-frontpage__headline-meta-sep(aria-hidden="true") ·
                       span.d360-frontpage__headline-ind-name= indRow.name
                     if indRow && indRow.idno
-                      if dateText || (indRow.name && indRow.name !== indRow.idno)
+                      if ev.detected_at || dateText || (indRow.name && indRow.name !== indRow.idno)
                         span.d360-frontpage__headline-meta-sep(aria-hidden="true") ·
                       span.d360-ind-pill
                         code.d360-ind-pill__id= indRow.idno
