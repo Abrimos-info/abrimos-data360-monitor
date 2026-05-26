@@ -56,6 +56,8 @@ test('HTTP routes', async (t) => {
     const res = await get(base + '/indicadores');
     assert.equal(res.status, 200);
     assert.ok(res.body.includes('d360-page--indicators'));
+    assert.ok(res.body.includes('d360-ind-pill__id'));
+    assert.ok(res.body.includes('d360-indicator-meta'));
   });
 
   await t.test('GET /indicador/FAO_CP_23012 returns indicator page', async () => {
@@ -69,9 +71,51 @@ test('HTTP routes', async (t) => {
     assert.ok(res.body.includes('d360-picker'));
   });
 
+  await t.test('GET /argentina nav links Portada to country edition', async () => {
+    const res = await get(base + '/argentina');
+    assert.ok(res.body.includes('href="/argentina"'));
+    assert.match(res.body, /nav\.monitor|Portada|Home/);
+  });
+
+  await t.test('GET /argentina front page has edition and update on one line', async () => {
+    const res = await get(base + '/argentina');
+    assert.ok(res.body.includes('d360-header__edition-line'));
+    assert.ok(res.body.includes('d360-country-select'));
+  });
+
+  await t.test('GET /argentina front page has vertical indicator list', async () => {
+    const res = await get(base + '/argentina');
+    assert.ok(res.body.includes('d360-frontpage__indicator-list'));
+    assert.ok(res.body.includes('d360-frontpage__indicator-cols'));
+    assert.ok(res.body.includes('d360-frontpage__indicator-value-col'));
+  });
+
+  await t.test('GET /about has country selector with language', async () => {
+    const res = await get(base + '/about');
+    assert.ok(res.body.includes('d360-site-nav__locale'));
+    assert.ok(res.body.includes('d360-country-select'));
+  });
+
   await t.test('GET /argentina front page has edition masthead', async () => {
     const res = await get(base + '/argentina');
     assert.ok(res.body.includes('d360-header__edition'));
+  });
+
+  await t.test('GET /argentina headlines show month and year', async () => {
+    const res = await get(base + '/argentina');
+    assert.ok(res.body.includes('d360-frontpage__headline-date'));
+    assert.ok(res.body.includes('sep 2025') || res.body.includes('may 2026'));
+    assert.ok(res.body.includes('d360-frontpage__headline-meta-sep'));
+    assert.match(res.body, /d360-frontpage__headline-meta[\s\S]{0,400}d360-ind-pill__id/);
+  });
+
+  await t.test('GET /argentina hero reportaje shows lead text', async () => {
+    const res = await get(base + '/argentina');
+    assert.ok(res.body.includes('d360-frontpage__hero-lede'));
+    assert.ok(
+      res.body.includes('World Justice Project') || res.body.includes('Justicia del World Justice'),
+      'expected hero lead copy from featured reportaje',
+    );
   });
 
   await t.test('GET /about returns 200 text/html', async () => {
@@ -127,6 +171,15 @@ test('HTTP routes', async (t) => {
   await t.test('GET /?alert=nonexistent-id returns 200 without crashing', async () => {
     const res = await get(base + '/?alert=nonexistent-id');
     assert.equal(res.status, 200);
+  });
+
+  await t.test('GET /api/chat/config returns chat LLM info', async () => {
+    const res = await get(base + '/api/chat/config');
+    assert.equal(res.status, 200);
+    assert.ok(res.headers['content-type'].includes('application/json'));
+    const data = JSON.parse(res.body);
+    assert.ok(data.providerLabel || data.provider);
+    assert.ok(data.model);
   });
 
   await t.test('GET /chat redirects to home', async () => {

@@ -3,30 +3,27 @@ include mixins
 
 block headerExtras
   header.d360-header.d360-header--frontpage
-    div.d360-header__masthead
-      p.d360-header__edition= editionLabel
-    div.d360-header__top
-      div.d360-header__left
-        button.d360-header__country-btn#d360-country-menu-btn(type="button" aria-haspopup="dialog" aria-expanded="false")
-          +countryTag(countryIso, lang, _)
-          span.d360-header__country-caret(aria-hidden="true") ▾
+    div.d360-header__edition-line
+      span.d360-header__edition= editionLabel
       if lastUpdate
-        div.d360-header__right
-          div.d360-lastupdate
-            span.d360-lastupdate__dot(aria-hidden="true")
-            span.d360-lastupdate__label= _("ui.last_update", lang)
-            span.d360-lastupdate__sep(aria-hidden="true") ·
-            span.d360-lastupdate__time= lastUpdate
+        span.d360-header__meta-sep(aria-hidden="true") ·
+        div.d360-lastupdate
+          span.d360-lastupdate__dot(aria-hidden="true")
+          span.d360-lastupdate__label= _("ui.last_update", lang)
+          span.d360-lastupdate__sep(aria-hidden="true") ·
+          span.d360-lastupdate__time= lastUpdate
 
 block content
   - var langKey = (lang === "en") ? "en" : "es"
   main.d360-page.d360-page--frontpage
     if heroReportaje
+      - var heroLead = pickLead(heroReportaje, lang)
       section.d360-frontpage__hero
         a.d360-frontpage__hero-link(href=pathForCountry(heroReportaje, countryIso))
           +contentTypeBadge("reportaje", lang, _)
           h2.d360-frontpage__hero-title= pickHeadline(heroReportaje, lang)
-          p.d360-frontpage__hero-lede= pickLead(heroReportaje, lang)
+        if heroLead
+          p.d360-frontpage__hero-lede= heroLead
     else
       section.d360-frontpage__hero.d360-frontpage__hero--empty
         p= _("frontpage.no_reportaje", lang)
@@ -39,54 +36,55 @@ block content
             each item in headlineItems
               - var ev = item.alert
               - var titleText = pickHeadline(ev, lang)
-              - var indName = (ev.indicator && ev.indicator.name && ev.indicator.name[langKey]) || (ev.indicator && ev.indicator.idno) || ''
-              - var periodText = ev.observation && ev.observation.period_narrative ? ev.observation.period_narrative[langKey] : ''
+              - var headlineLead = item.kind === "reportaje" ? pickLead(ev, lang) : ""
+              - var dateText = headlineDateLabel(ev, lang)
               li(class=item.kind === "reportaje" ? "d360-frontpage__headline-item--reportaje" : "")
                 a.d360-frontpage__headline(href=pathForCountry(ev, countryIso))
                   if item.kind === "reportaje"
                     +contentTypeBadge("reportaje", lang, _)
                   span.d360-frontpage__headline-title= titleText
+                  if headlineLead
+                    span.d360-frontpage__headline-lede= headlineLead
                   span.d360-frontpage__headline-meta
-                    if indName
-                      span= indName
-                    if periodText
-                      span · #{periodText}
+                    - var indRow = (ev.indicator && ev.indicator.idno && typeof indicatorFromAlert === "function") ? indicatorFromAlert(ev, lang) : null
+                    if dateText
+                      span.d360-frontpage__headline-date= dateText
+                    if indRow && indRow.name && indRow.name !== indRow.idno
+                      if dateText
+                        span.d360-frontpage__headline-meta-sep(aria-hidden="true") ·
+                      span.d360-frontpage__headline-ind-name= indRow.name
+                    if indRow && indRow.idno
+                      if dateText || (indRow.name && indRow.name !== indRow.idno)
+                        span.d360-frontpage__headline-meta-sep(aria-hidden="true") ·
+                      span.d360-ind-pill
+                        code.d360-ind-pill__id= indRow.idno
         else
           p.d360-empty__help= _("ui.empty_title", lang)
 
       aside.d360-frontpage__aside
         h2.d360-frontpage__section-title= _("frontpage.ticker", lang)
         if tickerIndicators && tickerIndicators.length
-          div.d360-frontpage__ticker(role="list")
+          ul.d360-frontpage__indicator-list(role="list")
             each ev in tickerIndicators
-              - var chipLabel = (ev.indicator && ev.indicator.name && ev.indicator.name[langKey]) || (ev.indicator && ev.indicator.idno) || ev.id
               - var magText = (ev.magnitude && ev.magnitude[langKey]) || ''
-              a.d360-frontpage__ticker-chip(href=pathForCountry(ev, countryIso) role="listitem")
-                if ev.chart_series && ev.chart_series.length && renderSparklineSvg
-                  span.d360-frontpage__ticker-sparkline!= renderSparklineSvg(ev.chart_series)
-                span.d360-frontpage__ticker-name= chipLabel
-                if ev.observation
-                  span.d360-frontpage__ticker-val
-                    +observationDisplay(ev, lang)
-                if magText
-                  span.d360-frontpage__ticker-mag
-                    +magnitude(magText)
+              li(role="listitem")
+                a.d360-frontpage__indicator-row(href=pathForCountry(ev, countryIso))
+                  if ev.indicator && ev.indicator.idno
+                    +indicatorRefFromAlert(ev, lang, { dates: false, block: false })
+                  div.d360-frontpage__indicator-cols
+                    if ev.chart_series && ev.chart_series.length && renderSparklineSvg
+                      div.d360-frontpage__indicator-sparkline-col
+                        span.d360-frontpage__indicator-sparkline!= renderSparklineSvg(ev.chart_series, { width: 96, height: 32 })
+                    if ev.observation
+                      div.d360-frontpage__indicator-value-col
+                        span.d360-frontpage__indicator-val
+                          +observationDisplay(ev, lang)
+                  if magText
+                    span.d360-frontpage__indicator-mag
+                      +magnitude(magText)
         else
           p.d360-empty__help= _("ui.empty_title", lang)
-
-    div#d360-country-menu.d360-country-menu(style="display:none" role="dialog" aria-modal="true" aria-labelledby="d360-country-menu-title")
-      div.d360-country-menu__scrim(data-country-menu-dismiss="true")
-      div.d360-country-menu__panel
-        h2#d360-country-menu-title.d360-country-menu__title= _("nav.editions", lang)
-        ul.d360-country-menu__list
-          each link in (typeof countryLinks !== "undefined" ? countryLinks : [])
-            li
-              a.d360-country-menu__link(href="/" + link.slug class=(link.iso === countryIso ? "is-active" : ""))
-                span.d360-country-menu__flag(aria-hidden="true")= countryFlag(link.iso)
-                span= _("chat.country." + link.iso, lang)
 
 block scripts
   script.
     window.D360_COUNTRY_ISO = !{JSON.stringify(countryIso)};
-    window.D360_COUNTRY_LINKS = !{JSON.stringify((typeof countryLinks !== "undefined" ? countryLinks : [{ iso: countryIso, slug: countrySlug }]))};
-  script(src="/static/js/country-menu.js" defer)

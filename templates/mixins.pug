@@ -57,6 +57,37 @@ mixin observationDisplay(ev, lang)
   else if ev.observation
     = ev.observation.value
 
+//- Indicator code pill + full name (matches chat `.d360-ind-ref` pattern).
+mixin indicatorRef(ind, lang, opts)
+  if ind && ind.idno
+    - opts = opts || {}
+    - var unknown = _("indicators.date_unknown", lang)
+    - var showDates = opts.dates !== false
+    - var updatedText = ind.last_modified_display || unknown
+    - var dataText = ind.last_data_display || unknown
+    span.d360-ind-ref(class=(opts.block ? "d360-ind-ref--block" : ""))
+      if ind.name && ind.name !== ind.idno
+        span.d360-ind-name= ind.name
+      span.d360-ind-pill
+        code.d360-ind-pill__id= ind.idno
+    if showDates
+      span.d360-indicator-meta
+        span.d360-indicator-meta__item
+          span.d360-indicator-meta__label= _("indicators.updated_at", lang)
+          if ind.last_modified
+            time(datetime=ind.last_modified)= updatedText
+          else
+            span= updatedText
+        span.d360-indicator-meta__item
+          span.d360-indicator-meta__label= _("indicators.last_data", lang)
+          span= dataText
+
+mixin indicatorRefFromAlert(alert, lang, opts)
+  if alert && typeof indicatorFromAlert === "function"
+    - var indRow = indicatorFromAlert(alert, lang)
+    if indRow
+      +indicatorRef(indRow, lang, opts)
+
 //- Labeled data bar for article pages (value, magnitude, period).
 mixin articleMetaBar(alert, lang, _)
   - var lng = (lang === "en") ? "en" : "es"

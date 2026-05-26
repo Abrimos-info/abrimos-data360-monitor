@@ -21,8 +21,21 @@ div#d360-onboard.d360-onboard(style="display:none" role="dialog" aria-modal="tru
           li= _("onboard.feature_3", "en")
           li= _("onboard.feature_4", "en")
           li= _("onboard.feature_5", "en")
+    section.d360-onboard__countries#d360-onboard-countries
+      h3.d360-onboard__section-title= _("onboard.choose_country", lang)
+      ul.d360-onboard__country-grid
+        each link in countryLinks
+          - var cname = _("chat.country." + link.iso, lang)
+          li
+            a.d360-onboard__country-card(
+              href="/" + link.slug
+              data-country-iso=link.iso
+              class=(link.iso === selectedCountryIso ? "is-active" : "")
+            )
+              span.d360-onboard__country-flag(aria-hidden="true")= countryFlag(link.iso)
+              span.d360-onboard__country-name= cname
     div.d360-onboard__actions
-      a.d360-onboard__cta.d360-onboard__cta--primary(href="/" data-onboard-go="monitor")= _("onboard.cta_monitor", lang)
+      a.d360-onboard__cta.d360-onboard__cta--primary(href=monitorHomeUrl data-onboard-go="monitor")= _("onboard.cta_monitor", lang)
       a.d360-onboard__cta.d360-onboard__cta--primary(href="/indicadores" data-onboard-go="indicators")= _("onboard.cta_indicators", lang)
       a.d360-onboard__cta.d360-onboard__cta--primary(href="/about" data-onboard-go="about")= _("onboard.cta_about", lang)
     button.d360-onboard__skip(type="button" data-onboard-dismiss="true")= _("onboard.skip", lang)

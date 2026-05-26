@@ -274,7 +274,8 @@
       llmStart: function (payload) {
         this.finishBoot();
         var id = 'llm-' + payload.turn;
-        ensureStep(id, 'llm', ui(strings, lang, 'chat.activity_thinking') + '… (turn ' + (payload.turn + 1) + ')', payload.model || '', 'active');
+        var providerMeta = [payload.provider, payload.model].filter(Boolean).join(' · ');
+        ensureStep(id, 'llm', ui(strings, lang, 'chat.activity_thinking') + '… (turn ' + (payload.turn + 1) + ')', providerMeta, 'active');
         var grid = debugGrid([
           { label: ui(strings, lang, 'chat.debug.model'), value: payload.model },
           { label: ui(strings, lang, 'chat.debug.provider'), value: payload.provider },
@@ -349,6 +350,36 @@
     };
   }
 
+  function formatChatLlmMeta(info) {
+    if (!info || typeof info !== 'object') return '';
+    var provider = info.providerLabel || info.provider || '';
+    var model = info.model || '';
+    if (provider && model) return provider + ' · ' + model;
+    return provider || model || '';
+  }
+
+  function mountChatLlmMeta(el, info, strings, lang) {
+    if (!el || !info) return;
+    var text = formatChatLlmMeta(info);
+    if (!text) return;
+    var label = ui(strings, lang, 'chat.llm_label');
+    el.textContent = label ? (label + ': ' + text) : text;
+    el.hidden = false;
+  }
+
+  async function loadChatLlmMeta(el, strings, lang) {
+    if (!el) return null;
+    try {
+      var res = await fetch('/api/chat/config');
+      if (!res.ok) return null;
+      var info = await res.json();
+      mountChatLlmMeta(el, info, strings, lang);
+      return info;
+    } catch (_) {
+      return null;
+    }
+  }
+
   global.D360ChatTurnUi = {
     escapeHtml: escapeHtml,
     ui: ui,
@@ -359,5 +390,8 @@
     renderTrace: renderTrace,
     parseSseChunk: parseSseChunk,
     createStepController: createStepController,
+    formatChatLlmMeta: formatChatLlmMeta,
+    mountChatLlmMeta: mountChatLlmMeta,
+    loadChatLlmMeta: loadChatLlmMeta,
   };
 }(typeof window !== 'undefined' ? window : globalThis));

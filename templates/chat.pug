@@ -10,6 +10,7 @@ block content
           div.d360-chat__headtext
             h1.d360-chat__title= _("chat.title", lang)
             p.d360-chat__sub= _("chat.subtitle", lang)
+            p.d360-chat-llm-meta#d360-chat-llm(role="status" aria-live="polite" hidden)
           div.d360-chat__export(role="toolbar" aria-label=_("chat.export_toolbar", lang))
             button.d360-chat__export-btn(type="button" id="d360-export-copy" disabled)= _("chat.export_copy", lang)
             button.d360-chat__export-btn(type="button" id="d360-export-md" disabled)= _("chat.export_md", lang)

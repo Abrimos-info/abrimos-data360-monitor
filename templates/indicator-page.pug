@@ -2,16 +2,15 @@ extends layout
 include mixins
 
 block content
-  - var langKey = (lang === "en") ? "en" : "es"
-  - var indName = (catalog && catalog.label) || idno
   - var data360Link = (typeof indicatorUrl === "function") ? indicatorUrl(idno) : ("https://data360.worldbank.org/en/indicator/" + encodeURIComponent(idno))
   main.d360-page.d360-page--indicator-detail
     header.d360-indicator-detail__head
-      h1= indName
-      p.d360-indicator-detail__id
-        code= idno
-        if catalog && catalog.database_id
-          span · #{catalog.database_id}
+      if catalog
+        +indicatorRef(catalog, lang)
+      else
+        +indicatorRef({ idno: idno, name: idno }, lang)
+      if catalog && catalog.database_id
+        p.d360-indicator-detail__database= catalog.database_id
       p
         a.d360-indicator-detail__data360(href=data360Link target="_blank" rel="noopener")= _("indicator.view_data360", lang)
 

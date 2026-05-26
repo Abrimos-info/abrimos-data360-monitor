@@ -350,7 +350,8 @@
       llmStart: function (payload) {
         this.finishBoot();
         var id = 'llm-' + payload.turn;
-        ensureStep(id, 'llm', ui('chat.activity_thinking') + '… (turn ' + (payload.turn + 1) + ')', payload.model || '', 'active');
+        var providerMeta = [payload.provider, payload.model].filter(Boolean).join(' · ');
+        ensureStep(id, 'llm', ui('chat.activity_thinking') + '… (turn ' + (payload.turn + 1) + ')', providerMeta, 'active');
         var grid = debugGrid([
           { label: ui('chat.debug.model'), value: payload.model },
           { label: ui('chat.debug.provider'), value: payload.provider },
@@ -552,6 +553,9 @@
       var state = {
         buffer: '',
         handler: function (event, payload) {
+          if (event === 'chat_start' && window.D360ChatTurnUi && window.D360ChatTurnUi.mountChatLlmMeta) {
+            window.D360ChatTurnUi.mountChatLlmMeta(document.getElementById('d360-chat-llm'), payload, strings, lang);
+          }
           if (event === 'llm_start') steps.llmStart(payload);
           if (event === 'llm_end') steps.llmEnd(payload);
           if (event === 'tool_start') steps.toolStart(payload);
@@ -730,4 +734,9 @@
 
   bindFocusCountry();
   bindExportToolbar();
+
+  var llmMetaEl = document.getElementById('d360-chat-llm');
+  if (llmMetaEl && window.D360ChatTurnUi && window.D360ChatTurnUi.loadChatLlmMeta) {
+    window.D360ChatTurnUi.loadChatLlmMeta(llmMetaEl, strings, lang);
+  }
 }());

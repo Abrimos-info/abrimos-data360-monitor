@@ -22,8 +22,8 @@
     "analyze:no-llm": "node bin/generate-analysis.js --no-llm",
     "fetch:baseline": "node bin/fetch-baseline.js",
     "build": "npm run fetch && npm run fetch:news && npm run analyze",
-    "pipeline:dynamic": "npm run discover && node bin/fetch-data.js --watchlist-file data/dynamic-watchlist.json && npm run fetch:news:dynamic && npm run analyze:dynamic",
-    "pipeline:dynamic:force": "npm run discover && node bin/fetch-data.js --force --watchlist-file data/dynamic-watchlist.json && npm run fetch:news:dynamic && npm run analyze:dynamic",
+    "pipeline:dynamic": "node bin/pipeline-dynamic.js",
+    "pipeline:dynamic:force": "node bin/pipeline-dynamic.js --force",
     "pretest": "node -e \"require('fs').mkdirSync('test/tmp',{recursive:true})\"",
     "test": "node --test test/*.test.js",
     "test:watch": "node --test --watch test/*.test.js"

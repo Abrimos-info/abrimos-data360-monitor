@@ -50,7 +50,8 @@ block content
             each idno in alert.indicators
               li
                 - var indSearchUrl = (typeof indicatorSearchUrl === "function") ? indicatorSearchUrl(idno) : ("https://data360.worldbank.org/en/indicator/" + encodeURIComponent(idno))
-                a(href=indSearchUrl target="_blank" rel="noopener")= idno
+                a.d360-article__indicators-link(href=indSearchUrl target="_blank" rel="noopener")
+                  +indicatorRef(enrichIndicator({ idno: idno }, lang), lang, { dates: false })
 
     section.d360-article__chat
       h2= _("chat.article_title", lang)

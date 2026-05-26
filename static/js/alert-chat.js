@@ -202,6 +202,9 @@
         var state = {
           buffer: '',
           handler: function (event, payload) {
+            if (event === 'chat_start' && TurnUi.mountChatLlmMeta) {
+              TurnUi.mountChatLlmMeta(document.getElementById('d360-alert-chat-llm'), payload, strings, lang);
+            }
             if (event === 'llm_start') steps.llmStart(payload);
             if (event === 'llm_end') steps.llmEnd(payload);
             if (event === 'tool_start') steps.toolStart(payload);
@@ -301,6 +304,11 @@
         }
       });
       opts.messagesEl.scrollTop = opts.messagesEl.scrollHeight;
+    }
+
+    var llmMetaEl = document.getElementById('d360-alert-chat-llm');
+    if (llmMetaEl && TurnUi.loadChatLlmMeta) {
+      TurnUi.loadChatLlmMeta(llmMetaEl, strings, lang);
     }
   }
 

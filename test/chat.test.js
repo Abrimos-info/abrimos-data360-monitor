@@ -255,6 +255,26 @@ describe('indicator pills', () => {
 });
 
 describe('chat api', () => {
+  it('handleChatConfig returns provider and model', async () => {
+    const { handleChatConfig } = require('../lib/chat/api');
+    const res = {
+      status: null,
+      body: '',
+      writeHead(code, headers) {
+        this.status = code;
+        this.headers = headers;
+      },
+      end(payload) {
+        this.body = payload;
+      },
+    };
+    await handleChatConfig({ method: 'GET', headers: {} }, res);
+    assert.equal(res.status, 200);
+    const data = JSON.parse(res.body);
+    assert.ok(data.providerLabel || data.provider);
+    assert.ok(data.model);
+  });
+
   it('handleChat rejects GET with 405', async () => {
     const { handleChat } = require('../lib/chat/api');
     const res = {

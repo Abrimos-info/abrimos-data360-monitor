@@ -1,4 +1,5 @@
 extends layout
+include mixins
 
 block content
   main.d360-page.d360-page--picker
@@ -20,8 +21,4 @@ block content
           each ind in recentIndicators
             li
               a.d360-picker__indicator(href="/indicador/" + encodeURIComponent(ind.idno))
-                span.d360-picker__indicator-id= ind.idno
-                if ind.label && ind.label !== ind.idno
-                  span.d360-picker__indicator-label= ind.label
-                if ind.last_modified
-                  time.d360-picker__indicator-date(datetime=ind.last_modified)= ind.last_modified
+                +indicatorRef(ind, lang, { dates: false })

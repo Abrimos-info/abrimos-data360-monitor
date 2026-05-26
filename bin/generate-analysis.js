@@ -33,6 +33,7 @@ function parseArgs(argv) {
 async function main() {
   const opts = parseArgs(process.argv.slice(2));
   ai.resetTokenStats();
+  const llmInfo = ai.logAnalysisLlm('AI-ANALYSIS');
   console.log('[analysis] starting pipeline ...', [
     opts.phase !== 'all' ? `(phase: ${opts.phase})` : '',
     opts.changedOnly ? '(changed-only)' : '',
@@ -49,7 +50,7 @@ async function main() {
   console.log(`[analysis] finished ${result.alertCount} noticias, ${result.reportajeCount} reportajes (${result.indicatorsSkipped || 0} skipped unchanged, ${result.abruptCount} abrupt, ${result.anomalyCount} anomaly candidates)`);
   const stats = ai.getTokenStats();
   const llmTime = formatDuration(stats.durationMs || 0);
-  console.log(`[AI-COST-ANALYSIS] calls: ${stats.calls} | in: ${stats.inputTokens} | out: ${stats.outputTokens} | llm total: ${llmTime} | est: $${stats.cost.toFixed(4)}`);
+  console.log(`[AI-COST-ANALYSIS] ${llmInfo.providerLabel} | ${llmInfo.model} | calls: ${stats.calls} | in: ${stats.inputTokens} | out: ${stats.outputTokens} | llm total: ${llmTime} | est: $${stats.cost.toFixed(4)}`);
 }
 
 main().catch((e) => {
