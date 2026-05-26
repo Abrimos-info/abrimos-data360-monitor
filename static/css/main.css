@@ -171,6 +171,11 @@ a:hover { color: var(--brand-red-deep); border-bottom-color: var(--brand-red-dee
   font-variant-numeric: tabular-nums;
 }
 
+time.d360-local-datetime {
+  cursor: help;
+  font-variant-numeric: tabular-nums;
+}
+
 .d360-lang {
   display: flex;
   border: 1px solid var(--border);

@@ -32,11 +32,19 @@
     var d = parseIso(iso);
     if (!d) return '';
     var lng = resolveLang(lang || window.D360_LANG || document.documentElement.lang);
-    return new Intl.DateTimeFormat(lng, {
-      dateStyle: 'full',
-      timeStyle: 'long',
-      timeZoneName: 'long',
-    }).format(d);
+    try {
+      return new Intl.DateTimeFormat(lng, {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        timeZoneName: 'long',
+      }).format(d);
+    } catch (_) {
+      return String(d);
+    }
   }
 
   function apply(el, lang) {
@@ -45,7 +53,10 @@
     var lng = lang || window.D360_LANG || document.documentElement.lang || 'es';
     el.textContent = formatLocalDisplay(iso, lng);
     var title = formatLocalTitle(iso, lng);
-    if (title) el.title = title;
+    if (title) {
+      el.setAttribute('title', title);
+      el.setAttribute('aria-label', title);
+    }
     el.setAttribute('data-d360-localized', '1');
   }
 

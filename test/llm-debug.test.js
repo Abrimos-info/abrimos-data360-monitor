@@ -40,6 +40,23 @@ test('buildLlmDebug returns undefined when no steps', () => {
   assert.equal(buildLlmDebug([null, undefined]), undefined);
 });
 
+test('formatLlmDebugSummary and title', () => {
+  const { formatLlmDebugSummary, formatLlmDebugTitle, buildLlmDebug, llmStep } = require('../lib/analysis/llm-debug');
+  const debug = buildLlmDebug([
+    llmStep('narrate', {
+      provider: 'nvidia',
+      provider_label: 'NVIDIA',
+      model: 'moonshotai/kimi-k2.6',
+      duration_ms: 12000,
+      input_tokens: 8000,
+      output_tokens: 1500,
+    }),
+  ]);
+  assert.equal(formatLlmDebugSummary(debug), 'NVIDIA · moonshotai/kimi-k2.6');
+  assert.match(formatLlmDebugTitle(debug), /narrate/);
+  assert.match(formatLlmDebugTitle(debug), /8000/);
+});
+
 test('validateAlert accepts optional llm_debug on noticia', () => {
   const { validateAlert } = require('../lib/analysis/quality-validator');
   const item = {

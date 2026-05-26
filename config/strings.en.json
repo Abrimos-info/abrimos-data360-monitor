@@ -51,6 +51,7 @@
   "article.meta.magnitude": "Magnitude",
   "article.meta.period": "Data period",
   "article.meta.generated_at": "Generated",
+  "article.meta.llm": "Model",
   "pcn.verified.title": "Verified",
   "pcn.verified.desc": "Mechanically checked against the source.",
   "pcn.failed.title": "Verification failed",

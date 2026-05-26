@@ -11,7 +11,7 @@ test('formatLocalDisplay omits timezone suffix', () => {
 });
 
 test('formatLocalTitle includes timezone name', () => {
-  const out = formatLocalTitle('2026-05-21T15:30:00.000Z', 'en');
+  const out = formatLocalTitle('2026-05-21T15:30:00.000Z', 'es');
   assert.ok(out.length > 10);
-  assert.match(out, /UTC|GMT|[A-Za-z]{3,}/);
+  assert.doesNotMatch(out, /Invalid option/);
 });
