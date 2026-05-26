@@ -11,21 +11,46 @@ test('getAlerts() returns an array', () => {
 test('each alert has required schema fields', () => {
   for (const a of store.getAlerts()) {
     assert.ok(typeof a.id === 'string',                              `${a.id}: id must be string`);
-    assert.ok(typeof a.country === 'string',                         `${a.id}: country must be string`);
-    assert.ok(typeof a.category === 'string',                        `${a.id}: category must be string`);
-    assert.ok(typeof a.type === 'string',                            `${a.id}: type must be string`);
-    assert.ok(a.indicator && typeof a.indicator.idno === 'string',   `${a.id}: indicator.idno must be string`);
-    assert.ok(a.observation && a.observation.value !== undefined,    `${a.id}: observation.value required`);
-    assert.ok(a.narrative_citizen && typeof a.narrative_citizen === 'object', `${a.id}: narrative_citizen required`);
-    assert.ok(a.narrative_journalist && typeof a.narrative_journalist === 'object', `${a.id}: narrative_journalist required`);
+    if (a.category != null) {
+      assert.ok(typeof a.category === 'string',                      `${a.id}: category must be string`);
+    }
+    if ((a.content_type || 'noticia') === 'noticia') {
+      assert.ok(a.indicator && typeof a.indicator.idno === 'string', `${a.id}: indicator.idno must be string`);
+    } else if (a.content_type === 'reportaje') {
+      assert.ok(Array.isArray(a.indicators) && a.indicators.length >= 1, `${a.id}: indicators[] required for reportaje`);
+      assert.ok(a.indicators.every((x) => typeof x === 'string'),     `${a.id}: indicators[] must be strings`);
+    }
+    if ((a.content_type || 'noticia') === 'noticia') {
+      assert.ok(a.observation && a.observation.value !== undefined,  `${a.id}: observation.value required`);
+    }
+    assert.ok(typeof (a.content_type || 'noticia') === 'string',     `${a.id}: content_type must be string`);
+    // Noticias/reportajes can attach one or more countries (reportajes are regional).
+    const countries = Array.isArray(a._countries) ? a._countries : (Array.isArray(a.countries) ? a.countries : (a.country ? [a.country] : []));
+    assert.ok(countries.length >= 1,                                `${a.id}: at least one country required`);
+    assert.ok(countries.every((c) => typeof c === 'string'),         `${a.id}: countries must be strings`);
+    // Narratives differ by content type: the new schema uses title/lead/story per language.
+    if ((a.content_type || 'noticia') === 'noticia') {
+      assert.ok(a.title && typeof a.title === 'object',              `${a.id}: title required`);
+      assert.ok(a.lead && typeof a.lead === 'object',                `${a.id}: lead required`);
+      assert.ok(a.story && typeof a.story === 'object',              `${a.id}: story required`);
+    } else if (a.content_type === 'reportaje') {
+      assert.ok(a.title && typeof a.title === 'object',              `${a.id}: title required`);
+      assert.ok(a.story && typeof a.story === 'object',              `${a.id}: story required`);
+    }
     assert.ok(a.verification_trace,                                  `${a.id}: verification_trace required`);
   }
 });
 
 test('alert type is one of the known values', () => {
-  const known = new Set(['abrupt_change', 'anomaly']);
+  // Legacy fixture alerts use `type` (abrupt_change|anomaly). The monitor output uses `content_type`.
+  const knownLegacy = new Set(['abrupt_change', 'anomaly']);
+  const knownContent = new Set(['noticia', 'reportaje']);
   for (const a of store.getAlerts()) {
-    assert.ok(known.has(a.type), `unknown type: ${a.type}`);
+    if (a.type != null) {
+      assert.ok(knownLegacy.has(a.type), `unknown legacy type: ${a.type}`);
+    } else {
+      assert.ok(knownContent.has(a.content_type || 'noticia'), `unknown content_type: ${a.content_type}`);
+    }
   }
 });
 
@@ -44,7 +69,9 @@ test('getCategories() returns a sorted array with no duplicates', () => {
 });
 
 test('getCountries() values are a subset of alert country fields', () => {
-  const alertCountries = new Set(store.getAlerts().map((a) => a.country));
+  const alertCountries = new Set(
+    store.getAlerts().flatMap((a) => (Array.isArray(a._countries) && a._countries.length ? a._countries : (a.country ? [a.country] : [])))
+  );
   for (const c of store.getCountries()) {
     assert.ok(alertCountries.has(c), `derived country "${c}" not found in any alert`);
   }

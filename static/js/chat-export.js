@@ -77,10 +77,13 @@
 
   function formatIndicators(indicators) {
     if (!indicators || !indicators.length) return '';
+    var g = (typeof window !== 'undefined')
+      ? window
+      : ((typeof globalThis !== 'undefined') ? globalThis : {});
     return indicators.map(function (ind) {
       var name = ind.name && ind.name !== ind.idno ? ind.name + ' (' + ind.idno + ')' : ind.idno;
-      var url = ind.url || ((window.D360Urls && window.D360Urls.indicatorSearchUrl)
-        ? window.D360Urls.indicatorSearchUrl(ind.idno)
+      var url = ind.url || ((g.D360Urls && g.D360Urls.indicatorSearchUrl)
+        ? g.D360Urls.indicatorSearchUrl(ind.idno)
         : ('https://data360.worldbank.org/en/indicator/' + encodeURIComponent(ind.idno)));
       return '- [' + name + '](' + url + ')';
     }).join('\n');
