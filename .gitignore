@@ -7,6 +7,13 @@ logs/
 cache/
 data/snapshots/
 data/alerts.json
+data/alerts/
+data/indicators/
+data/analyses/
+data/changed-since*.json
+data/index.json
+data/pipeline-status.json
+data/dynamic-watchlist.json
 *.log
 .DS_Store
 .idea/
@@ -19,6 +26,5 @@ design/
 2026-05-26 Notas.txt
 data/context/**/*.csv
 data/news/
-data/analyses/*.llm-call.md
 test/tmp/*
 !test/tmp/.gitkeep
