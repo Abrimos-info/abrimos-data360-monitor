@@ -108,6 +108,20 @@ async function main() {
       failed: result.failed || 0,
       aborted: result.aborted ? 'yes' : 'no',
     });
+
+    const fallbackEnabled = process.env.GEMINI_FALLBACK_TO_GDELT !== 'false';
+    if (fallbackEnabled && result.aborted && result.abortedReason === 'quota_exhausted') {
+      pipeLog('fetch-news', 'fallback', { provider: 'gdelt', reason: result.abortedReason }, 'warn');
+      pipeLog('fetch-news', 'gdelt', { pace: `${GDELT_PACE_MS}ms` });
+      await fetchNews({
+        countries: args.countries,
+        from: args.from,
+        to: args.to,
+        maxRecords: args.maxRecords,
+        maxPerTheme: args.maxPerTheme,
+        useThemes: args.useThemes,
+      });
+    }
   } else {
     pipeLog('fetch-news', 'gdelt', { pace: `${GDELT_PACE_MS}ms` });
     const summary = await fetchNews({

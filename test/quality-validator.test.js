@@ -34,13 +34,23 @@ test('validateAlert passes minimal valid noticia', () => {
   assert.equal(failures.length, 0);
 });
 
-test('validateAlert Q8 fails when title contains digits', () => {
+test('validateAlert allows digits in title (Q8 removed)', () => {
   const { ok, failures } = validateAlert(
     minimalNoticia({ title: { es: 'Inflación al 12%', en: 'Inflation at 12%' } }),
-    new Set(['abc123'])
+    new Set(['abc123']),
   );
-  assert.equal(ok, false);
-  assert.ok(failures.some((f) => f.check === 'Q8'));
+  assert.equal(ok, true);
+  assert.equal(failures.length, 0);
+});
+
+test('validateAlert allows long story (no max char cap)', () => {
+  const long = 'x'.repeat(5000);
+  const { ok, failures } = validateAlert(
+    minimalNoticia({ story: { es: long, en: long } }),
+    new Set(['abc123']),
+  );
+  assert.equal(ok, true);
+  assert.equal(failures.length, 0);
 });
 
 test('validateAlert Q1 does not block by default (PCN tags claims instead)', () => {
