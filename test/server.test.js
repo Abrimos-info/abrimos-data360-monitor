@@ -58,6 +58,8 @@ test('HTTP routes', async (t) => {
     assert.ok(res.body.includes('d360-page--indicators'));
     assert.ok(res.body.includes('d360-ind-pill__id'));
     assert.ok(res.body.includes('d360-indicator-meta'));
+    assert.ok(res.body.includes('d360-local-datetime'));
+    assert.ok(res.body.includes('d360-lastupdate'));
   });
 
   await t.test('GET /indicador/FAO_CP_23012 returns indicator page', async () => {
@@ -69,6 +71,12 @@ test('HTTP routes', async (t) => {
   await t.test('GET / body includes recent indicators section when data exists', async () => {
     const res = await get(base + '/');
     assert.ok(res.body.includes('d360-picker'));
+  });
+
+  await t.test('GET / without country cookie links Portada to country picker', async () => {
+    const res = await get(base + '/');
+    assert.match(res.body, /d360-site-nav__link[^>]+href="\/"/);
+    assert.doesNotMatch(res.body, /d360-site-nav__link[^>]+href="\/argentina"/);
   });
 
   await t.test('GET /argentina nav links Portada to country edition', async () => {

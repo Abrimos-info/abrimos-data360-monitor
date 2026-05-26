@@ -13,8 +13,11 @@ header.d360-site-nav
           span= _("ui.subscribe", lang)
         div.d360-site-nav__locale(role="group" aria-label=_("nav.locale_group", lang))
           button.d360-country-select(type="button" data-open-onboarding="countries" aria-haspopup="dialog" aria-expanded="false" aria-label=_("nav.editions", lang))
-            span.d360-country__flag(aria-hidden="true")= countryFlag(selectedCountryIso)
-            span.d360-country__name= _("chat.country." + selectedCountryIso, lang)
+            if selectedCountryIso
+              span.d360-country__flag(aria-hidden="true")= countryFlag(selectedCountryIso)
+              span.d360-country__name= _("chat.country." + selectedCountryIso, lang)
+            else
+              span.d360-country__name= _("nav.editions", lang)
             span.d360-country-select__caret(aria-hidden="true") ▾
           div.d360-lang(role="group" aria-label="Language")
             button.d360-lang__btn(class=(langMode === "es" ? "is-active" : "") data-lang="es" type="button") ES
