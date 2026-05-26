@@ -174,9 +174,9 @@ block scripts
   script.
     window.D360_ALERTS = !{JSON.stringify(allAlerts)};
     window.D360_FILTERS = !{JSON.stringify(filters)};
-  script(src="/static/js/charts.js" defer)
-  script(src="/static/js/chat-cards.js" defer)
-  script(src="/static/js/alerts-feed.js" defer)
-  script(src="/static/js/pcn-claims.js" defer)
-  script(src="/static/js/detail-panel.js" defer)
-  script(src="/static/js/behavior.js" defer)
+  script(src=staticAsset('js/charts.js') defer)
+  script(src=staticAsset('js/chat-cards.js') defer)
+  script(src=staticAsset('js/alerts-feed.js') defer)
+  script(src=staticAsset('js/pcn-claims.js') defer)
+  script(src=staticAsset('js/detail-panel.js') defer)
+  script(src=staticAsset('js/behavior.js') defer)

@@ -9,8 +9,8 @@ html(lang=lang)
     else
       meta(name="description" content=_("tagline", lang))
     block header
-    link(rel="stylesheet" href="/static/css/tokens.css")
-    link(rel="stylesheet" href="/static/css/main.css")
+    link(rel="preload" fetchpriority="high" as="style" href=staticAsset('css/tokens.css'))
+    link(rel="preload" fetchpriority="high" as="style" href=staticAsset('css/main.css'))
   body
     div.d360-app
       include partials/site-nav
@@ -22,9 +22,15 @@ html(lang=lang)
       window.D360_LANG = !{JSON.stringify(lang)};
       window.D360_LANG_MODE = !{JSON.stringify(langMode || lang)};
       window.D360_STRINGS = { es: !{JSON.stringify(stringsEs)}, en: !{JSON.stringify(stringsEn)} };
-    script(src="/static/js/country-flag.js" defer)
-    script(src="/static/js/data360-urls.js" defer)
-    script(src="/static/js/onboarding.js" defer)
-    script(src="/static/js/lang-toggle.js" defer)
-    script(src="/static/js/newsletter-modal.js" defer)
+      window.staticVersion = !{JSON.stringify(String(staticVersion))};
+    script(src=staticAsset('js/country-flag.js') defer)
+    script(src=staticAsset('js/data360-urls.js') defer)
+    script(src=staticAsset('js/onboarding.js') defer)
+    script(src=staticAsset('js/lang-toggle.js') defer)
+    script(src=staticAsset('js/newsletter-modal.js') defer)
+    link(rel="preload" href=staticAsset('css/tokens.css') as="style" onload="this.onload=null;this.rel='stylesheet'")
+    link(rel="preload" href=staticAsset('css/main.css') as="style" onload="this.onload=null;this.rel='stylesheet'")
+    noscript
+      link(rel="stylesheet" href=staticAsset('css/tokens.css'))
+      link(rel="stylesheet" href=staticAsset('css/main.css'))
     block scripts

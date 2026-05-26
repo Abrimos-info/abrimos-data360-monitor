@@ -130,6 +130,19 @@ test('HTTP routes', async (t) => {
     assert.ok(res.headers['content-type'].includes('text/css'));
   });
 
+  await t.test('GET /static/css/main.css with ?v= returns 200', async () => {
+    const res = await get(base + '/static/css/main.css?v=123');
+    assert.equal(res.status, 200);
+    assert.ok(res.headers['content-type'].includes('text/css'));
+  });
+
+  await t.test('HTML pages reference versioned static assets', async () => {
+    const res = await get(base + '/about');
+    assert.equal(res.status, 200);
+    assert.match(res.body, /\/static\/css\/main\.css\?v=\d+/);
+    assert.match(res.body, /window\.staticVersion\s*=\s*"\d+"/);
+  });
+
   await t.test('GET /static/css/tokens.css returns 200 text/css', async () => {
     const res = await get(base + '/static/css/tokens.css');
     assert.equal(res.status, 200);
