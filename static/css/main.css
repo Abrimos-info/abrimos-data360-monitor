@@ -1956,6 +1956,33 @@ a:hover { color: var(--brand-red-deep); border-bottom-color: var(--brand-red-dee
 .d360-frontpage__ticker-chip { flex: 0 0 auto; display: flex; flex-direction: column; gap: 2px; padding: var(--space-2, 8px) var(--space-3, 12px); border: 1px solid var(--border, #e2e5e8); border-radius: 6px; text-decoration: none; color: inherit; min-width: 140px; }
 .d360-frontpage__ticker-name { font-size: 0.75rem; font-weight: 600; }
 .d360-frontpage__ticker-val { font-size: 0.95rem; }
+.d360-frontpage__ticker-sparkline { display: block; margin-bottom: 4px; }
+.d360-frontpage__ticker-sparkline .d360-sparkline__line { stroke: var(--brand-red, #b31918); stroke-width: 1.5; fill: none; }
+.d360-frontpage__headline-item--reportaje .d360-frontpage__headline { padding-top: var(--space-4, 16px); }
+.d360-header--frontpage .d360-header__masthead { text-align: center; margin-bottom: var(--space-3, 12px); }
+.d360-header__edition { font-family: Georgia, serif; font-size: 1.05rem; margin: 0; color: var(--fg-bold, #3d4449); }
+.d360-header__country-btn { display: inline-flex; align-items: center; gap: 6px; background: none; border: 0; cursor: pointer; padding: 0; font: inherit; color: inherit; }
+.d360-header__country-caret { font-size: 0.7rem; opacity: 0.7; }
+.d360-country-menu { position: fixed; inset: 0; z-index: 1200; }
+.d360-country-menu__scrim { position: absolute; inset: 0; background: rgba(0,0,0,0.35); }
+.d360-country-menu__panel { position: relative; z-index: 1; max-width: 320px; margin: 10vh auto 0; background: #fff; border-radius: 8px; padding: var(--space-4, 16px); box-shadow: 0 8px 32px rgba(0,0,0,0.15); }
+.d360-country-menu__list { list-style: none; padding: 0; margin: var(--space-3, 12px) 0 0; }
+.d360-country-menu__link { display: flex; align-items: center; gap: 8px; padding: 8px 0; text-decoration: none; color: inherit; border-bottom: 1px solid var(--border, #e2e5e8); }
+.d360-country-menu__link.is-active { font-weight: 700; color: var(--brand-red, #b31918); }
+.d360-picker__recent { margin-top: var(--space-8, 32px); }
+.d360-picker__section-title { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--fg-light, #9fa3a6); }
+.d360-picker__indicator-list { list-style: none; padding: 0; margin: var(--space-3, 12px) 0 0; }
+.d360-picker__indicator { display: flex; flex-wrap: wrap; gap: 8px 12px; padding: 8px 0; border-bottom: 1px solid var(--border, #e2e5e8); text-decoration: none; color: inherit; }
+.d360-picker__indicator-id { font-family: monospace; font-size: 0.85rem; }
+.d360-picker__indicator-date { margin-left: auto; font-size: 0.75rem; color: var(--fg-light, #9fa3a6); }
+.d360-page--indicators, .d360-page--indicator-detail { padding: var(--space-6, 24px); max-width: 56rem; margin: 0 auto; }
+.d360-indicators__list, .d360-indicator-detail__alerts { list-style: none; padding: 0; margin: 0; }
+.d360-indicators__link, .d360-indicator-detail__alert { display: block; padding: 8px 0; border-bottom: 1px solid var(--border, #e2e5e8); text-decoration: none; color: inherit; }
+.d360-indicators__section { margin-bottom: var(--space-6, 24px); }
+.d360-onboard__bilingual { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4, 16px); margin-bottom: var(--space-4, 16px); }
+.d360-onboard__col { border-right: 1px solid var(--border, #e2e5e8); padding-right: var(--space-3, 12px); }
+.d360-onboard__col:last-child { border-right: 0; padding-right: 0; padding-left: var(--space-3, 12px); }
+.d360-article__crumb-edition { display: flex; flex-wrap: wrap; align-items: center; gap: 0.35rem 0.65rem; }
 .d360-refresh { margin-left: var(--space-3, 12px); }
 .d360-country__name { font-weight: 600; margin-right: 4px; }
 
@@ -2237,4 +2264,7 @@ a:hover { color: var(--brand-red-deep); border-bottom-color: var(--brand-red-dee
 
 @media (max-width: 720px) {
   .d360-frontpage__grid { grid-template-columns: 1fr; }
+  .d360-onboard__bilingual { grid-template-columns: 1fr; }
+  .d360-onboard__col { border-right: 0; padding-right: 0; padding-left: 0; border-bottom: 1px solid var(--border, #e2e5e8); padding-bottom: var(--space-3, 12px); }
+  .d360-onboard__col:last-child { border-bottom: 0; padding-bottom: 0; }
 }

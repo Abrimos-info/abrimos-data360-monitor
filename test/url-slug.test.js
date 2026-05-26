@@ -36,6 +36,18 @@ test('parseArticlePath roundtrip', () => {
   assert.equal(parsed.slug, 'test-slug');
 });
 
+test('assignUniquePaths creates per-country paths', () => {
+  const alert = {
+    content_type: 'reportaje',
+    countries: ['ARG', 'ECU'],
+    title: { es: 'Panorama regional' },
+    detected_at: '2026-05-22T10:00:00Z',
+  };
+  const [out] = assignUniquePaths([alert]);
+  assert.match(out._paths.ARG, /^\/argentina\/reportaje\/2026\/05\//);
+  assert.match(out._paths.ECU, /^\/ecuador\/reportaje\/2026\/05\//);
+  assert.notEqual(out._paths.ARG, out._paths.ECU);
+});
 test('assignUniquePaths resolves collisions', () => {
   const base = {
     content_type: 'noticia',

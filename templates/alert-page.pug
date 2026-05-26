@@ -22,13 +22,11 @@ block content
   - var storyText = (alert.story && alert.story[lng]) || (alert.body && alert.body[lng]) || ''
 
   main.d360-page.d360-page--article
-    nav.d360-article__crumb
-      a(href="/")= _("nav.monitor", lang)
-      span ·
-      a.d360-article__crumb-country(href="/" + countrySlug)
-        +countryTag(countryIso, lang, _)
-      span ·
-      span= alert.content_type === "reportaje" ? _("badge.reportaje", lang) : _("badge.noticia", lang)
+    nav.d360-article__crumb(aria-label=_("article.crumb", lang))
+      span.d360-article__crumb-edition
+        a(href="/" + countrySlug)= _("article.edition", lang, { country: _("chat.country." + countryIso, lang) })
+        span ·
+        span= alert.content_type === "reportaje" ? _("badge.reportaje", lang) : _("badge.noticia", lang)
 
     article.d360-article
       header.d360-article__head

@@ -1,0 +1,32 @@
+extends layout
+include mixins
+
+block content
+  - var langKey = (lang === "en") ? "en" : "es"
+  - var indName = (catalog && catalog.label) || idno
+  - var data360Link = (typeof indicatorUrl === "function") ? indicatorUrl(idno) : ("https://data360.worldbank.org/en/indicator/" + encodeURIComponent(idno))
+  main.d360-page.d360-page--indicator-detail
+    header.d360-indicator-detail__head
+      h1= indName
+      p.d360-indicator-detail__id
+        code= idno
+        if catalog && catalog.database_id
+          span · #{catalog.database_id}
+      p
+        a.d360-indicator-detail__data360(href=data360Link target="_blank" rel="noopener")= _("indicator.view_data360", lang)
+
+    if alerts && alerts.length
+      each iso in demoCountries
+        - var countryAlerts = byCountry && byCountry[iso] ? byCountry[iso] : []
+        if countryAlerts.length
+          section.d360-indicator-detail__country
+            h2
+              +countryTag(iso, lang, _)
+            ul.d360-indicator-detail__alerts
+              each alert in countryAlerts
+                li
+                  a.d360-indicator-detail__alert(href=pathForCountry(alert, iso))
+                    +contentTypeBadge(alert.content_type || "noticia", lang, _)
+                    span= pickHeadline(alert, lang)
+    else
+      p.d360-empty__help= _("indicator.no_stories", lang)

@@ -5,6 +5,7 @@ header.d360-site-nav
       span.d360-site-nav__name= _("site_brand_suffix", lang)
     nav.d360-site-nav__links(role="navigation" aria-label="Main")
       a.d360-site-nav__link(class=(activeRoute === "monitor" ? "is-active" : "") href="/")= _("nav.monitor", lang)
+      a.d360-site-nav__link(class=(activeRoute === "indicators" ? "is-active" : "") href="/indicadores")= _("nav.indicators", lang)
       a.d360-site-nav__link(class=(activeRoute === "about" ? "is-active" : "") href="/about")= _("nav.about", lang)
     div.d360-site-nav__right
       div.d360-site-nav__actions

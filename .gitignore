@@ -16,6 +16,7 @@ build/
 coverage/
 archive/
 design/
+2026-05-26 Notas.txt
 data/context/**/*.csv
 data/news/
 data/analyses/*.llm-call.md

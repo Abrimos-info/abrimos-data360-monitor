@@ -1,0 +1,31 @@
+extends layout
+
+block content
+  main.d360-page.d360-page--indicators
+    header.d360-indicators__head
+      h1= _("indicators.title", lang)
+      p.d360-indicators__lead= _("indicators.lead", lang)
+
+    if recentIndicators && recentIndicators.length
+      section.d360-indicators__section
+        h2= _("indicators.recent", lang)
+        ul.d360-indicators__list
+          each ind in recentIndicators
+            li
+              a.d360-indicators__link(href="/indicador/" + encodeURIComponent(ind.idno))
+                code= ind.idno
+                if ind.label && ind.label !== ind.idno
+                  span= ind.label
+
+    each tierKey in ["pulse", "annual", "forecast", "dynamic"]
+      - var tierItems = tiers && tiers[tierKey] ? tiers[tierKey] : []
+      if tierItems.length
+        section.d360-indicators__section
+          h2= _("indicators.tier." + tierKey, lang)
+          ul.d360-indicators__list
+            each entry in tierItems
+              li
+                a.d360-indicators__link(href="/indicador/" + encodeURIComponent(entry.idno))
+                  code= entry.idno
+                  if entry.label && entry.label !== entry.idno
+                    span= entry.label

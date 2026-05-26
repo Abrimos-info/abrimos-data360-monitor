@@ -12,3 +12,16 @@ block content
             a.d360-picker__card(href="/" + link.slug)
               span.d360-picker__flag(aria-hidden="true")= countryFlag(link.iso)
               span.d360-picker__name= cname
+
+    if recentIndicators && recentIndicators.length
+      section.d360-picker__recent
+        h2.d360-picker__section-title= _("picker.recent_indicators", lang)
+        ul.d360-picker__indicator-list
+          each ind in recentIndicators
+            li
+              a.d360-picker__indicator(href="/indicador/" + encodeURIComponent(ind.idno))
+                span.d360-picker__indicator-id= ind.idno
+                if ind.label && ind.label !== ind.idno
+                  span.d360-picker__indicator-label= ind.label
+                if ind.last_modified
+                  time.d360-picker__indicator-date(datetime=ind.last_modified)= ind.last_modified

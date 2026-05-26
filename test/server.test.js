@@ -52,6 +52,28 @@ test('HTTP routes', async (t) => {
     );
   });
 
+  await t.test('GET /indicadores returns indicators hub', async () => {
+    const res = await get(base + '/indicadores');
+    assert.equal(res.status, 200);
+    assert.ok(res.body.includes('d360-page--indicators'));
+  });
+
+  await t.test('GET /indicador/FAO_CP_23012 returns indicator page', async () => {
+    const res = await get(base + '/indicador/FAO_CP_23012');
+    assert.equal(res.status, 200);
+    assert.ok(res.body.includes('FAO_CP_23012'));
+  });
+
+  await t.test('GET / body includes recent indicators section when data exists', async () => {
+    const res = await get(base + '/');
+    assert.ok(res.body.includes('d360-picker'));
+  });
+
+  await t.test('GET /argentina front page has edition masthead', async () => {
+    const res = await get(base + '/argentina');
+    assert.ok(res.body.includes('d360-header__edition'));
+  });
+
   await t.test('GET /about returns 200 text/html', async () => {
     const res = await get(base + '/about');
     assert.equal(res.status, 200);

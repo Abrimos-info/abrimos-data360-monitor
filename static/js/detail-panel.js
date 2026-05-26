@@ -401,6 +401,16 @@
     if (firstFocusable) firstFocusable.focus();
   }
 
+  function alertHref(alert) {
+    if (!alert) return null;
+    var iso = window.D360_COUNTRY_ISO
+      || (window.D360_FILTERS && window.D360_FILTERS.country)
+      || alert.country
+      || (alert.countries && alert.countries[0]);
+    if (alert._paths && iso && alert._paths[iso]) return alert._paths[iso];
+    return alert._path || null;
+  }
+
   function bindCard(card) {
     if (!card || card.getAttribute('data-d360-bound')) return;
     card.setAttribute('data-d360-bound', '1');
@@ -408,9 +418,12 @@
       var id = card.getAttribute('data-alert-id');
       var alerts = window.D360_ALERTS || [];
       var alert = alerts.find(function (a) { return a.id === id; });
-      if (alert && alert._path) {
-        window.location.href = alert._path;
-        return;
+      if (alert) {
+        var href = alertHref(alert);
+        if (href) {
+          window.location.href = href;
+          return;
+        }
       }
       openDetail(id);
     });

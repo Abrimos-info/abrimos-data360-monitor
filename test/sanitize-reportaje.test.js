@@ -78,3 +78,21 @@ test('sanitizeReportajeItem fills metadata from source noticias', () => {
   const { ok, failures } = validateAlert(item, new Set(['a1', 'a2']));
   assert.equal(ok, true, failures.map((f) => f.notes).join('; '));
 });
+
+test('sanitizeReportajeItem replaces invalid LLM csv_links with source noticias URLs', () => {
+  const item = sanitizeReportajeItem({
+    content_type: 'reportaje',
+    id: 'reportaje_WJP_ROL_test',
+    dataset_id: 'WJP_ROL',
+    title: { es: 'Panorama', en: 'Overview' },
+    lead: { es: 'Resumen.', en: 'Summary.' },
+    story: { es: 'y'.repeat(300), en: 'y'.repeat(300) },
+    claim_tokens: [{ claim_id: 'a1', value: '1' }],
+    verification_trace: {
+      csv_links: ['...', 'WJP_ROL_OVRL.csv', 'not-a-uri'],
+    },
+  }, sourceNoticias.map((n) => ({ ...n, dataset_id: 'WJP_ROL' })));
+
+  assert.ok(item.verification_trace.csv_links.every((u) => u.startsWith('https://')));
+  assert.equal(item.verification_trace.csv_links.length, 2);
+});

@@ -18,6 +18,95 @@ Ten-day sprint (21 to 31 May 2026). Submission deadline is 31 May 2026, via Medi
 - **Hosting**. Abrimos-owned infrastructure
 - **Production roadmap**. Apache NiFi orchestrates continuous updates
 
+## Deployment
+
+The demo runs two independent processes on the server: the **Node monitor** (dashboard + chat UI) and the **Data360 MCP server** (Python, chat tools only). Nginx terminates TLS and proxies only the monitor; MCP stays on localhost.
+
+| Service | Default port | Repo / entrypoint |
+|---------|--------------|-------------------|
+| Monitor | `8090` (`D360_PORT`) | this repo — `node data360-monitor.js` |
+| Data360 MCP | `8021` | [worldbank/data360-mcp](https://github.com/worldbank/data360-mcp) |
+
+Nginx example. [`infra/nginx/data360.example.conf`](infra/nginx/data360.example.conf) and [`infra/nginx/README.md`](infra/nginx/README.md).
+
+### Data360 MCP server
+
+The chat agent calls Data360 through MCP (`mcp_search_indicators`, `mcp_get_data`, `mcp_compare_countries`, etc.). If MCP is down, `lib/chat/tools.js` falls back to the REST client automatically — the UI keeps working, but responses may be less enriched.
+
+**1. Install MCP (once per host)**
+
+Requires Python 3.10+ and [uv](https://github.com/astral-sh/uv).
+
+```bash
+git clone https://github.com/worldbank/data360-mcp.git
+cd data360-mcp
+uv sync
+uv pip install -e data360-mcp
+uv pip install -e data360-mcp-server
+```
+
+Create `.env` in the MCP repo (or export):
+
+```bash
+DATA360_API_BASE_URL=https://data360api.worldbank.org
+```
+
+**2. Run MCP**
+
+Development:
+
+```bash
+uv run fastmcp run data360-mcp-server/src/data360_mcp_server/main.py:mcp --transport http --port 8021
+```
+
+Or use the upstream script: `./run_server.sh`.
+
+The HTTP endpoint must be reachable at `http://127.0.0.1:8021/mcp` (Streamable HTTP + SSE).
+
+**3. Point the monitor at MCP**
+
+In this repo's `.env`:
+
+```bash
+MCP_URL=http://127.0.0.1:8021/mcp
+```
+
+Do not expose MCP through nginx — bind to localhost and let only the Node process call it.
+
+**4. Verify**
+
+With MCP running:
+
+```bash
+node bin/evaluate-mcp.js
+```
+
+Smoke-test from the deployed site: open an article chat and ask for a LAC comparison or a sparkline; tool traces should show `source: data360_mcp`.
+
+**5. Production (systemd sketch)**
+
+Run MCP as its own unit, restart independently of the monitor:
+
+```ini
+# /etc/systemd/system/data360-mcp.service
+[Unit]
+Description=World Bank Data360 MCP server
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+WorkingDirectory=/opt/data360-mcp
+Environment=DATA360_API_BASE_URL=https://data360api.worldbank.org
+ExecStart=/usr/local/bin/uv run fastmcp run data360-mcp-server/src/data360_mcp_server/main.py:mcp --transport http --host 127.0.0.1 --port 8021
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+```
+
+Adjust paths, then `systemctl enable --now data360-mcp`. Restart the monitor after changing `MCP_URL`.
+
 ## Documentation
 
 | Document | Description |

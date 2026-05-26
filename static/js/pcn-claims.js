@@ -116,15 +116,31 @@
       + '</span>';
   }
 
+  function formatManualNumber(n, lang, decimals) {
+    if (!Number.isFinite(n)) return null;
+    var d = decimals == null ? 2 : decimals;
+    var fixed = n.toFixed(d);
+    var parts = fixed.split('.');
+    var intPart = parts[0];
+    var decPart = parts[1];
+    if (lang === 'en') {
+      var groupedEn = intPart.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+      return d > 0 && decPart ? groupedEn + '.' + decPart : groupedEn;
+    }
+    var groupedEs = intPart.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    return d > 0 && decPart ? groupedEs + ',' + decPart : groupedEs;
+  }
+
   function localeNumberVariants(raw, lang) {
     var n = Number(raw);
     if (!Number.isFinite(n)) return [];
     var lng = lang === 'en' ? 'en' : 'es';
     var out = [];
-    out.push(n.toLocaleString(lng, { minimumFractionDigits: 2, maximumFractionDigits: 2 }));
-    if (Math.round(n * 10) / 10 === n) {
-      out.push(n.toLocaleString(lng, { minimumFractionDigits: 1, maximumFractionDigits: 1 }));
-    }
+    [0, 1, 2, 3].forEach(function (d) {
+      var manual = formatManualNumber(n, lng, d);
+      if (manual) out.push(manual);
+      out.push(n.toLocaleString(lng, { minimumFractionDigits: d, maximumFractionDigits: d }));
+    });
     return out;
   }
 

@@ -22,8 +22,9 @@
         : null);
 
     var leadEl = document.getElementById('d360-article-lead');
-    if (leadEl && leadEl.textContent && renderClaims) {
-      leadEl.innerHTML = renderClaims(leadEl.textContent);
+    var leadText = alert.lead && alert.lead[lng];
+    if (leadEl && leadText && renderClaims) {
+      leadEl.innerHTML = renderClaims(leadText);
     }
 
     var storyEl = document.getElementById('d360-article-story');
