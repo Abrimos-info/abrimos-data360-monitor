@@ -84,17 +84,37 @@ describe('chat tools', () => {
     }));
   });
 
-  it('mcp_get_data builds chart_series from MCP data rows', async () => {
+  it('mcp_get_data builds chart_series from data rows', async (t) => {
+    // Deterministic: avoid relying on a live MCP server or external network in CI.
+    const mcp = require('../lib/mcp-client');
+    const rest = require('../lib/data360-client');
+    const origCallTool = mcp.callTool;
+    const origGetData = rest.getData;
+
+    mcp.callTool = async () => { throw new Error('MCP unavailable (test stub)'); };
+    rest.getData = async () => ({
+      value: [
+        { TIME_PERIOD: '2024-01-01', OBS_VALUE: '7.15', OBS_STATUS: 'A', UNIT_MEASURE: 'PERCENT', SEX: '_T' },
+        { TIME_PERIOD: '2025-01-01', OBS_VALUE: '7.145', OBS_STATUS: 'A', UNIT_MEASURE: 'PERCENT', SEX: '_T' },
+      ],
+    });
+
+    t.after(() => {
+      mcp.callTool = origCallTool;
+      rest.getData = origGetData;
+    });
+
     const out = await executeTool('mcp_get_data', {
       database_id: 'WB_WDI',
       indicator_id: 'WB_WDI_SL_UEM_TOTL_ZS',
       country_code: 'ARG',
+      chart_points: 48,
     });
     assert.equal(out.ok, true);
     assert.ok(Array.isArray(out.chart_series));
-    assert.ok(out.chart_series.length >= 10, `expected series points, got ${out.chart_series.length}`);
-    assert.ok(Number.isFinite(out.chart_series[0].value));
-    assert.ok(out.chart_series[0].period);
+    assert.ok(out.chart_series.length >= 2, `expected series points, got ${out.chart_series.length}`);
+    assert.ok(Number.isFinite(out.chart_series[out.chart_series.length - 1].value));
+    assert.ok(out.chart_series[out.chart_series.length - 1].period);
   });
 });
 
