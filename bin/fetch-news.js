@@ -119,7 +119,10 @@ async function main() {
         to: args.to,
         maxRecords: args.maxRecords,
         maxPerTheme: args.maxPerTheme,
-        useThemes: args.useThemes,
+        // When Gemini aborts, prefer a fast, always-on "context headlines" fallback.
+        // The themes mode runs many queries and can look stuck; for the demo it's
+        // better to fetch a small general set per country.
+        useThemes: false,
       });
     }
   } else {
