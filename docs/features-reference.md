@@ -63,9 +63,9 @@ Variantes visuales históricas (compatibilidad):
 
 | Variante | Clase CSS | Contenido principal |
 |----------|-----------|---------------------|
-| narr | `d360-card--narr` | `narrative_citizen` |
+| narr | `d360-card--narr` | `lead` (o fallback `_lead` en fixtures) |
 | num | `d360-card--num` | Valor grande + metadatos |
-| news | `d360-card--news` | Titular + lede periodística |
+| news | `d360-card--news` | `title` + `lead` (o fallbacks `_title` / `_lead`) |
 
 Mixins: `templates/mixins.pug`, `templates/cards.pug`.
 
@@ -73,7 +73,7 @@ Mixins: `templates/mixins.pug`, `templates/cards.pug`.
 
 Implementación: `static/js/detail-panel.js`, template en `templates/partials/detail-panel.pug`.
 
-Bindings: país, categoría, type chip, título, IDNO, valor, periodo, magnitud, sparkline, narrativas citizen/journalist, verification trace, meta (score, detected_at), copiar cita.
+Bindings: país, categoría, type chip, título, IDNO, valor, periodo, magnitud, sparkline, `lead`, `story`, indicators (en Reportaje), verification trace, meta (score, detected_at), copiar cita.
 
 Deep link: `?alert={id}` abre panel al cargar.
 

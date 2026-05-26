@@ -76,7 +76,7 @@ Highest leverage before submission: every shipped alert must match the public sc
 | `verification_trace` | `data360_dataset_url` and `csv_link` present; URLs well-formed |
 | Countries | Only `GTM`, `HND`, `ARG`, `ECU`, `MEX` (D-003) |
 | Types | Only `abrupt_change` and `anomaly` (D-010); align `alerts-store.test.js` (today allows `cross_indicator_anomaly`) |
-| Bilingual narratives | `narrative_citizen` / `narrative_journalist` have `es` and `en` |
+| Bilingual content | `title` / `lead` / `story` have `es` and `en` |
 | Q1 claim traceability | Each `claim_tokens[].claim_id` appears in numbered analysis context for that indicator |
 | Q4 length | `story` length within 250–4000 chars; bilingual `es`/`en` fields present |
 | `chart_series` | Non-empty array; points have `period` and numeric `value` |

@@ -205,18 +205,21 @@ Página estática con: qué es el producto, alcance LAC, metodología de detecci
 | Campo | Descripción |
 |-------|-------------|
 | `id` | Identificador único (deep link `/?alert=`) |
-| `type` | `abrupt_change` o cross-indicator anomaly |
-| `country` | ISO3 |
-| `indicator` | IDNO, database_id, nombre bilingüe |
-| `observation` | Valor, `time_period`, displays localizados |
-| `magnitude` | Delta o σ formateado (+/−) |
-| `narrative_citizen` / `narrative_journalist` | Texto es/en con tokens PCN |
-| `claim_tokens` | Valores verificables enlazados a filas CSV |
-| `verification_trace` | URLs Data360, CSV, metodología |
-| `chart_series` | Puntos `{period, value}` para sparkline |
-| `score` | Severidad de la detección |
-| `detected_at` | Cuándo corrió el pipeline |
-| `data_period_stale` | Si el dato es anterior al umbral de frescura |
+| `content_type` | `noticia` o `reportaje` |
+| `title` / `lead` / `story` | Texto bilingüe `{ es, en }` (la UI muestra un idioma a la vez) |
+| `countries` | ISO3 (lista). En **Noticia** suele tener 1 país; en **Reportaje** puede incluir varios |
+| `dataset_id` | Identificador del dataset Data360 (agrupa Noticias y Reportajes) |
+| `indicator` | (Solo **Noticia**) IDNO, `database_id`, `name` bilingüe |
+| `indicators` | (Solo **Reportaje**) lista de IDNO cubiertos (≥2) |
+| `noticia_ids` | (Solo **Reportaje**) ids de las Noticias sintetizadas |
+| `observation` | (Opcional) valor, `time_period`, unit (y displays localizados derivados) |
+| `magnitude` | (Opcional) magnitud formateada (ej. delta o σ) |
+| `claim_tokens` | Valores verificables con `claim_id` y displays localizados |
+| `verification_trace` | URLs Data360: dataset + CSV(s) + referencia metodológica (según tipo) |
+| `chart_series` | (Opcional) puntos `{period, value}` para sparkline |
+| `score` | Severidad normalizada (0–1) |
+| `detected_at` | Timestamp ISO de generación |
+| `data_period_stale` | Si el dato es anterior al umbral de frescura (derivado del `time_period`) |
 
 Esquema formal: `docs/alert-schema.json`.
 

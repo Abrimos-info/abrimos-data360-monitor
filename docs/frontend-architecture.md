@@ -223,9 +223,10 @@ function openDetail(alertId) {
 
 The localization subsystem (`lib/i18n.js`) parses `strings.es.json` and `strings.en.json` to resolve localized phrases. 
 
-Dynamic page narratives (citizen and journalist copies) are pre-translated and stored directly inside the alert JSON schema:
-* `alert.narrative_citizen.es` and `alert.narrative_citizen.en`
-* `alert.narrative_journalist.es` and `alert.narrative_journalist.en`
+Dynamic content is pre-translated and stored directly inside the alert JSON schema:
+* `alert.title.es` / `alert.title.en`
+* `alert.lead.es` / `alert.lead.en`
+* `alert.story.es` / `alert.story.en`
 
 The active display language is managed via standard styling tags on the global app element (e.g. `d360-app--lang-es` vs `d360-app--lang-en`). Alert JSON always carries `es` and `en` text; filters and chrome follow the selected UI language. `lib/alerts-store.js` `normalizeItem` reads `ev.lead?.[langKey]` and `ev.title?.[langKey]` directly so the active language drives the rendered lead/title — there is no Spanish-by-default hardcoding.
 
@@ -243,9 +244,22 @@ Example (Noticia):
 
 ```json
 {
+  "content_type": "noticia",
   "id": "alert_2026-05-21_001",
-  "type": "abrupt_change",
-  "country": "ARG",
+  "countries": ["ARG"],
+  "dataset_id": "FAO_CP",
+  "title": {
+    "es": "Inflación en Argentina alcanza un nuevo máximo",
+    "en": "Argentina inflation reaches a new high"
+  },
+  "lead": {
+    "es": "Los precios al consumidor se aceleraron en el último período observado…",
+    "en": "Consumer prices accelerated in the latest observed period…"
+  },
+  "story": {
+    "es": "…",
+    "en": "…"
+  },
   "indicator": {
     "idno": "FAO_CP_23012",
     "database_id": "FAO_CP",
@@ -257,16 +271,7 @@ Example (Noticia):
   "observation": {
     "value": 11322.289801,
     "time_period": "2025-09-01",
-    "unit": "index",
-    "disaggregation": { "SEX": "_T", "AGE": "_T" }
-  },
-  "narrative_citizen": {
-    "es": "Argentina registró 11322.29 en Índices de Precios al Consumidor...",
-    "en": "Argentina recorded 11322.29 in Consumer Prices, General Indices..."
-  },
-  "narrative_journalist": {
-    "es": "Detección automática: Argentina 11322.29 (2025-09-01). z-score +2.1σ...",
-    "en": "Auto-detected: Argentina 11322.29 (2025-09-01). z-score +2.1σ against baseline."
+    "unit": "index"
   },
   "claim_tokens": [
     {
@@ -281,17 +286,14 @@ Example (Noticia):
     "csv_link": "https://data360files.worldbank.org/data360-data/data/FAO_CP/FAO_CP_23012.csv",
     "methodology_ref": "https://www.fao.org"
   },
-  "score": 2.14,
+  "score": 0.78,
   "detected_at": "2026-05-21T14:32:00Z",
   "license": "CC BY-4.0",
   "chart_series": [
     { "period": "2020-01-01", "value": 100.0 },
     { "period": "2025-09-01", "value": 11322.289801 }
   ],
-  "magnitude": {
-    "es": "+2.1σ",
-    "en": "+2.1σ"
-  },
+  "magnitude": "+2.1σ",
   "category": "economy"
 }
 ```
