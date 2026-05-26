@@ -82,6 +82,19 @@ mixin indicatorRef(ind, lang, opts)
           span.d360-indicator-meta__label= _("indicators.last_data", lang)
           span= dataText
 
+mixin indicatorAlertCounts(entry, lang, _)
+  if entry && entry.alert_counts
+    - var nCount = entry.alert_counts.noticias || 0
+    - var rCount = entry.alert_counts.reportajes || 0
+    if nCount || rCount
+      span.d360-indicators__counts
+        if nCount
+          span.d360-indicators__counts-part= _ ? _("indicators.alerts.noticias", lang, { count: nCount }) : (nCount + " noticias")
+        if nCount && rCount
+          span.d360-indicators__counts-sep(aria-hidden="true") ·
+        if rCount
+          span.d360-indicators__counts-part= _ ? _("indicators.alerts.reportajes", lang, { count: rCount }) : (rCount + " reportajes")
+
 mixin indicatorRefFromAlert(alert, lang, opts)
   if alert && typeof indicatorFromAlert === "function"
     - var indRow = indicatorFromAlert(alert, lang)
@@ -93,19 +106,21 @@ mixin articleMetaBar(alert, lang, _)
   - var lng = (lang === "en") ? "en" : "es"
   - var magText = (alert.magnitude && alert.magnitude[lng]) || ''
   - var hasObs = alert.observation && (alert.observation.display || alert.observation.value != null)
-  if hasObs || magText || alert.detected_at || alert.llm_debug
+  - var llmSummary = alert.llm_debug && typeof formatLlmDebugSummary === "function" ? formatLlmDebugSummary(alert.llm_debug) : ''
+  - var llmTitle = alert.llm_debug && typeof formatLlmDebugTitle === "function" ? formatLlmDebugTitle(alert.llm_debug) : ''
+  - var hasGeneration = alert.detected_at || llmSummary
+  if hasObs || magText || hasGeneration
     div.d360-article__meta(role="group" aria-label=_ ? _("article.meta.group", lang) : "Detection data")
-      if alert.detected_at
+      if hasGeneration
         div.d360-article__meta-item
           span.d360-article__meta-label= _ ? _("article.meta.generated_at", lang) : "Generated"
-          time.d360-article__meta-value.d360-local-datetime(datetime=alert.detected_at)
-      if alert.llm_debug && typeof formatLlmDebugSummary === "function"
-        - var llmSummary = formatLlmDebugSummary(alert.llm_debug)
-        - var llmTitle = typeof formatLlmDebugTitle === "function" ? formatLlmDebugTitle(alert.llm_debug) : ''
-        if llmSummary
-          div.d360-article__meta-item
-            span.d360-article__meta-label= _ ? _("article.meta.llm", lang) : "Model"
-            span.d360-article__meta-value(title=llmTitle)= llmSummary
+          span.d360-article__meta-value
+            if alert.detected_at
+              time.d360-local-datetime(datetime=alert.detected_at)
+            if llmSummary
+              if alert.detected_at
+                |  · 
+              span.d360-article__meta-llm(title=llmTitle)= llmSummary
       if hasObs
         div.d360-article__meta-item
           span.d360-article__meta-label= _ ? _("article.meta.value", lang) : "Value"

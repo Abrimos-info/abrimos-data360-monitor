@@ -6,6 +6,10 @@ const {
   recentUpdatedIndicators,
   watchlistByTier,
   indicatorKnown,
+  buildIndicatorAlertCounts,
+  attachAlertCounts,
+  sortHubTierEntries,
+  HUB_TIER_ORDER,
 } = require('../lib/indicators-hub');
 
 test('recentUpdatedIndicators returns sorted list', () => {
@@ -27,4 +31,30 @@ test('watchlistByTier includes static tiers', () => {
 test('indicatorKnown matches watchlist idno', () => {
   assert.equal(indicatorKnown('FAO_CP_23012'), true);
   assert.equal(indicatorKnown('NOT_A_REAL_IDNO_XYZ'), false);
+});
+
+test('HUB_TIER_ORDER puts dynamic first', () => {
+  assert.equal(HUB_TIER_ORDER[0], 'dynamic');
+});
+
+test('buildIndicatorAlertCounts splits noticias and reportajes', () => {
+  const counts = buildIndicatorAlertCounts();
+  const fao = counts.get('FAO_CP_23012');
+  assert.ok(fao);
+  assert.ok(fao.noticias >= 1);
+  const wjp = counts.get('WJP_ROL_OVRL');
+  if (wjp) assert.ok(wjp.reportajes >= 1);
+});
+
+test('sortHubTierEntries ranks dynamic tier by alert volume', () => {
+  const counts = buildIndicatorAlertCounts();
+  const entries = attachAlertCounts(
+    [{ idno: 'AAA' }, { idno: 'FAO_CP_23012' }],
+    counts,
+  );
+  const sorted = sortHubTierEntries(entries, 'dynamic');
+  const faoIdx = sorted.findIndex((e) => e.idno === 'FAO_CP_23012');
+  const aaaIdx = sorted.findIndex((e) => e.idno === 'AAA');
+  assert.ok(faoIdx >= 0 && aaaIdx >= 0);
+  assert.ok(faoIdx < aaaIdx);
 });

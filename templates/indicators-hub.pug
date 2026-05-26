@@ -24,8 +24,10 @@ block content
             li
               a.d360-indicators__link(href="/indicador/" + encodeURIComponent(ind.idno))
                 +indicatorRef(ind, lang)
+                +indicatorAlertCounts(ind, lang, _)
 
-    each tierKey in ["pulse", "annual", "forecast", "dynamic"]
+    - var hubTiers = tierOrder || ["dynamic", "pulse", "annual", "forecast"]
+    each tierKey in hubTiers
       - var tierItems = tiers && tiers[tierKey] ? tiers[tierKey] : []
       if tierItems.length
         section.d360-indicators__section
@@ -35,3 +37,4 @@ block content
               li
                 a.d360-indicators__link(href="/indicador/" + encodeURIComponent(entry.idno))
                   +indicatorRef(entry, lang)
+                  +indicatorAlertCounts(entry, lang, _)

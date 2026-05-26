@@ -204,6 +204,8 @@
   "indicators.updated_at": "Actualización CSV",
   "indicators.last_data": "Último dato",
   "indicators.date_unknown": "—",
+  "indicators.alerts.noticias": "{count} noticias",
+  "indicators.alerts.reportajes": "{count} reportajes",
   "indicator.view_data360": "Ver ficha en Data360",
   "indicator.no_stories": "Sin noticias generadas para este indicador todavía.",
   "article.crumb": "Navegación del artículo",

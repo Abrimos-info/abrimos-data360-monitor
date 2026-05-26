@@ -2324,6 +2324,17 @@ body.d360-onboard-open {
   color: inherit;
 }
 .d360-indicators__link:hover .d360-ind-name { color: var(--brand-red, #b31918); }
+.d360-indicators__counts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem;
+  margin-top: 4px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--fg-light);
+}
+.d360-indicators__counts-sep { opacity: 0.65; }
 .d360-indicator-detail__alert { display: block; padding: 8px 0; border-bottom: 1px solid var(--border); text-decoration: none; color: inherit; }
 .d360-indicator-detail__database { font-size: 0.85rem; color: var(--fg-light); margin: 8px 0 0; }
 .d360-frontpage__headline-meta .d360-ind-ref,
@@ -2465,6 +2476,14 @@ body.d360-onboard-open {
   font-weight: 700;
   color: var(--fg-bold, #2a3033);
   line-height: 1.25;
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0;
+}
+.d360-article__meta-llm {
+  font-weight: 600;
+  color: var(--fg, #3d4548);
 }
 .d360-article__meta-value .d360-mag { font-size: inherit; font-weight: inherit; }
 .d360-article__chart { margin: var(--space-5, 20px) 0; }
