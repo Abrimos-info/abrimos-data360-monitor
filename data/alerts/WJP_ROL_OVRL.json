@@ -1,0 +1,153 @@
+[
+  {
+    "content_type": "noticia",
+    "id": "noticia_WJP_ROL_OVRL_ARG_7330248235f40f96_2025_1",
+    "title": {
+      "es": "El índice de justicia bajó en Argentina",
+      "en": "World Justice Project's Justice Index fell in Argentina"
+    },
+    "lead": {
+      "es": "El Índice de Justicia del World Justice Project en Argentina registró una disminución del 1% en 2025, pasando de 0.545865 en 2024 a 0.540456. {{claim:7330248235f40f96|0.540456}}",
+      "en": "The World Justice Project's Justice Index for Argentina recorded a 1% decrease in 2025, dropping from 0.545865 in 2024 to 0.540456. {{claim:7330248235f40f96|0.540456}}"
+    },
+    "story": {
+      "es": "Según el Índice de Justicia del World Justice Project, Argentina experimentó una disminución del 1% en su puntaje en 2025, pasando de 0.545865 en 2024 a 0.540456. {{claim:7330248235f40f96|0.540456}} Esta reducción se compara con otros países de la región. Por ejemplo, Ecuador también registró una caída en su puntaje, pasando de 0.462152 en 2024 a 0.455506 en 2025, lo que representa una disminución del 1.4%. {{claim:ce6f1a1704e3bde3|0.455506}} En contraste, México presentó una disminución aún mayor, pasando de 0.414753 en 2024 a 0.403113 en 2025, lo que equivale a una reducción del 2.8%. {{claim:351c9dbb71180fb9|0.403113}} A pesar de estas disminuciones, Argentina sigue manteniendo un puntaje superior a la media regional, lo que indica que aún presenta un mejor desempeño en términos de justicia comparado con sus vecinos. {{claim:7330248235f40f96|0.540456}}",
+      "en": "According to the World Justice Project's Justice Index, Argentina experienced a 1% decrease in its score in 2025, dropping from 0.545865 in 2024 to 0.540456. {{claim:7330248235f40f96|0.540456}} This reduction is compared to other countries in the region. For example, Ecuador also registered a fall in its score, dropping from 0.462152 in 2024 to 0.455506 in 2025, which represents a 1.4% decrease. {{claim:ce6f1a1704e3bde3|0.455506}} In contrast, Mexico showed an even greater decrease, dropping from 0.414753 in 2024 to 0.403113 in 2025, equivalent to a 2.8% reduction. {{claim:351c9dbb71180fb9|0.403113}} Despite these decreases, Argentina still maintains a score above the regional average, indicating that it still performs better in terms of justice compared to its neighbors. {{claim:7330248235f40f96|0.540456}}"
+    },
+    "countries": [
+      "ARG",
+      "ECU",
+      "MEX"
+    ],
+    "dataset_id": "WJP_ROL",
+    "indicator": {
+      "idno": "WJP_ROL_OVRL",
+      "database_id": "WJP_ROL",
+      "name": {
+        "es": "Índice de Justicia del World Justice Project",
+        "en": "World Justice Project's Justice Index"
+      }
+    },
+    "observation": {
+      "value": "0.540456",
+      "time_period": "2025",
+      "unit": "0_TO_1",
+      "display": {
+        "es": "0,54",
+        "en": "0.54"
+      },
+      "period_display": {
+        "es": "2025",
+        "en": "2025"
+      },
+      "period_narrative": {
+        "es": "2025",
+        "en": "2025"
+      }
+    },
+    "magnitude": "-1.0%",
+    "chart_series": [
+      {
+        "period": "2012-2013",
+        "value": 0.505377
+      },
+      {
+        "period": "2014",
+        "value": 0.503136
+      },
+      {
+        "period": "2015",
+        "value": 0.524826
+      },
+      {
+        "period": "2016",
+        "value": 0.556856
+      },
+      {
+        "period": "2017-2018",
+        "value": 0.58328
+      },
+      {
+        "period": "2019",
+        "value": 0.582345
+      },
+      {
+        "period": "2020",
+        "value": 0.579584
+      },
+      {
+        "period": "2021",
+        "value": 0.558388
+      },
+      {
+        "period": "2022",
+        "value": 0.548633
+      },
+      {
+        "period": "2023",
+        "value": 0.545862
+      },
+      {
+        "period": "2024",
+        "value": 0.545865
+      },
+      {
+        "period": "2025",
+        "value": 0.540456
+      }
+    ],
+    "claim_tokens": [
+      {
+        "claim_id": "7330248235f40f96",
+        "value": "0.540456",
+        "pcn_status": "verified",
+        "pcn_reason": "Verified: WJP_ROL_OVRL ARG 2025 = 0.540456 0_TO_1",
+        "pcn_source": "data/context/ARG/dynamic.csv",
+        "pcn_observation": {
+          "indicator": "WJP_ROL_OVRL",
+          "refArea": "ARG",
+          "timePeriod": "2025",
+          "value": "0.540456",
+          "unit": "0_TO_1"
+        }
+      },
+      {
+        "claim_id": "ce6f1a1704e3bde3",
+        "value": "0.455506",
+        "pcn_status": "verified",
+        "pcn_reason": "Verified: WJP_ROL_OVRL ECU 2025 = 0.455506 0_TO_1",
+        "pcn_source": "data/context/ECU/dynamic.csv",
+        "pcn_observation": {
+          "indicator": "WJP_ROL_OVRL",
+          "refArea": "ECU",
+          "timePeriod": "2025",
+          "value": "0.455506",
+          "unit": "0_TO_1"
+        }
+      },
+      {
+        "claim_id": "351c9dbb71180fb9",
+        "value": "0.403113",
+        "pcn_status": "verified",
+        "pcn_reason": "Verified: WJP_ROL_OVRL MEX 2025 = 0.403113 0_TO_1",
+        "pcn_source": "data/context/MEX/dynamic.csv",
+        "pcn_observation": {
+          "indicator": "WJP_ROL_OVRL",
+          "refArea": "MEX",
+          "timePeriod": "2025",
+          "value": "0.403113",
+          "unit": "0_TO_1"
+        }
+      }
+    ],
+    "verification_trace": {
+      "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/WJP_ROL",
+      "csv_link": "https://data360files.worldbank.org/data360-data/data/WJP_ROL/WJP_ROL_OVRL.csv"
+    },
+    "score": 0,
+    "detected_at": "2026-05-26T01:20:22.323Z",
+    "data_period_stale": false,
+    "quality_status": "accepted",
+    "quality_tags": []
+  }
+]

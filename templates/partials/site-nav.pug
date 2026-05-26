@@ -1,10 +1,10 @@
 header.d360-site-nav
   div.d360-site-nav__inner
-    a.d360-site-nav__brand(href="/")
-      span.d360-site-nav__name= _("site_name", lang)
+    a.d360-site-nav__brand(href="/" aria-label=_("site_name", lang) title=_("site_name", lang))
+      span.d360-brand__mark(aria-hidden="true") D360
+      span.d360-site-nav__name= _("site_brand_suffix", lang)
     nav.d360-site-nav__links(role="navigation" aria-label="Main")
       a.d360-site-nav__link(class=(activeRoute === "monitor" ? "is-active" : "") href="/")= _("nav.monitor", lang)
-      a.d360-site-nav__link(class=(activeRoute === "chat" ? "is-active" : "") href="/chat")= _("nav.chat", lang)
       a.d360-site-nav__link(class=(activeRoute === "about" ? "is-active" : "") href="/about")= _("nav.about", lang)
     div.d360-site-nav__right
       div.d360-site-nav__actions

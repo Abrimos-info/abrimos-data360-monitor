@@ -1,0 +1,81 @@
+extends layout
+include mixins
+
+block headerExtras
+  header.d360-header.d360-header--frontpage
+    div.d360-header__top
+      div.d360-header__left
+        a.d360-header__country(href="/")
+          +countryTag(countryIso, lang, _)
+      if lastUpdate
+        div.d360-header__right
+          div.d360-lastupdate
+            span.d360-lastupdate__dot(aria-hidden="true")
+            span.d360-lastupdate__label= _("ui.last_update", lang)
+            span.d360-lastupdate__sep(aria-hidden="true") ·
+            span.d360-lastupdate__time= lastUpdate
+          button.d360-refresh#d360-refresh-btn(type="button" disabled=(dataAgeSeconds != null && dataAgeSeconds < 3600))= _("ui.refresh_data", lang)
+          span.d360-refresh__status#d360-refresh-status(style="display:none")
+
+block content
+  - var langKey = (lang === "en") ? "en" : "es"
+  main.d360-page.d360-page--frontpage
+    if heroReportaje
+      section.d360-frontpage__hero
+        a.d360-frontpage__hero-link(href=heroReportaje._path)
+          +contentTypeBadge("reportaje", lang, _)
+          h2.d360-frontpage__hero-title= pickHeadline(heroReportaje, lang)
+          p.d360-frontpage__hero-lede= pickLead(heroReportaje, lang)
+    else
+      section.d360-frontpage__hero.d360-frontpage__hero--empty
+        p= _("frontpage.no_reportaje", lang)
+
+    div.d360-frontpage__grid
+      section.d360-frontpage__headlines
+        h2.d360-frontpage__section-title= _("frontpage.headlines", lang)
+        if noticias.length
+          ul.d360-frontpage__headline-list
+            each ev in noticias
+              - var titleText = pickHeadline(ev, lang)
+              - var indName = (ev.indicator && ev.indicator.name && ev.indicator.name[langKey]) || (ev.indicator && ev.indicator.idno) || ''
+              - var periodText = ev.observation && ev.observation.period_narrative ? ev.observation.period_narrative[langKey] : ''
+              li
+                a.d360-frontpage__headline(href=ev._path)
+                  span.d360-frontpage__headline-title= titleText
+                  span.d360-frontpage__headline-meta
+                    +countryTag(ev.country || countryIso, lang, _)
+                    if indName
+                      span · #{indName}
+                    if periodText
+                      span · #{periodText}
+        else
+          p.d360-empty__help= _("ui.empty_title", lang)
+
+      if secondaryReportajes && secondaryReportajes.length
+        aside.d360-frontpage__aside
+          h2.d360-frontpage__section-title= _("frontpage.more_reportajes", lang)
+          each rep in secondaryReportajes
+            a.d360-frontpage__aside-item(href=rep._path)
+              +contentTypeBadge("reportaje", lang, _)
+              span= pickHeadline(rep, lang)
+
+    section.d360-frontpage__ticker-wrap
+      h2.d360-frontpage__section-title= _("frontpage.ticker", lang)
+      div.d360-frontpage__ticker(role="list")
+        each ev in noticias
+          - var chipLabel = (ev.indicator && ev.indicator.name && ev.indicator.name[langKey]) || (ev.indicator && ev.indicator.idno) || ev.id
+          - var magText = (ev.magnitude && ev.magnitude[langKey]) || ''
+          a.d360-frontpage__ticker-chip(href=ev._path role="listitem")
+            span.d360-frontpage__ticker-name= chipLabel
+            if ev.observation
+              span.d360-frontpage__ticker-val
+                +observationDisplay(ev, lang)
+            if magText
+              span.d360-frontpage__ticker-mag
+                +magnitude(magText)
+
+block scripts
+  script.
+    window.D360_DATA_AGE = !{JSON.stringify({ seconds: dataAgeSeconds, iso: dataAgeIso })};
+    window.D360_COUNTRY_ISO = !{JSON.stringify(countryIso)};
+  script(src="/static/js/pipeline-refresh.js" defer)

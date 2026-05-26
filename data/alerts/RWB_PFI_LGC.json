@@ -1,0 +1,91 @@
+[
+  {
+    "content_type": "noticia",
+    "id": "noticia_anomaly_ARG_RWB_PFI_LGC_2025_1",
+    "title": {
+      "es": "Argentina empeoró su posición en el índice de libertad de prensa",
+      "en": "Argentina's position worsened in the press freedom index"
+    },
+    "lead": {
+      "es": "Según el Índice de Libertad de Prensa de Reporters Without Borders, Argentina ocupó el puesto 48 en 2025, empeorando respecto al puesto 37 del año anterior.",
+      "en": "According to the Press Freedom Index by Reporters Without Borders, Argentina ranked 48th in 2025, worsening from its position of 37th in the previous year."
+    },
+    "story": {
+      "es": "El Índice de Libertad de Prensa de Reporters Without Borders registró una disminución significativa en la posición de Argentina en 2025. Según el índice, el país pasó del puesto 37 en 2024 al puesto 48 en 2025, lo que representa una caída de 11 posiciones.\n\nEsta disminución se produce en un contexto donde Argentina ha enfrentado diversos desafíos en materia de libertad de expresión y protección de los medios de comunicación. La posición global de Argentina en el índice muestra una tendencia negativa en los últimos años, lo que sugiere una preocupante situación en términos de libertades informativas.\n\nEn comparación con otros países de la región, Argentina también ha experimentado una caída en su ranking. Por ejemplo, Brasil, que ocupa el puesto 103 en 2025, ha mostrado una estabilidad en su posición en los últimos años, mientras que Argentina ha visto una disminución considerable.\n\nEsta tendencia negativa en la posición de Argentina en el índice de Reporters Without Borders destaca la importancia de implementar políticas efectivas para mejorar la libertad de prensa y proteger a los periodistas en el país.",
+      "en": "The Press Freedom Index by Reporters Without Borders recorded a significant decline in Argentina's position in 2025. According to the index, the country dropped from 37th place in 2024 to 48th place in 2025, representing a fall of 11 positions.\n\nThis decline occurred in a context where Argentina has faced various challenges regarding freedom of expression and protection of the media. The country's global position in the index shows a negative trend in recent years, suggesting a concerning situation in terms of information freedoms.\n\nCompared to other countries in the region, Argentina has also experienced a drop in its ranking. For example, Brazil, which ranked 103rd in 2025, has shown stability in its position over the last few years, while Argentina has seen a considerable decrease.\n\nThis negative trend in Argentina's position in the Reporters Without Borders index highlights the importance of implementing effective policies to improve press freedom and protect journalists in the country."
+    },
+    "countries": [
+      "ARG"
+    ],
+    "dataset_id": "RWB_PFI",
+    "indicator": {
+      "idno": "RWB_PFI_LGC",
+      "database_id": "RWB_PFI",
+      "name": {
+        "es": "Legal framework",
+        "en": "Legal framework"
+      }
+    },
+    "observation": {
+      "value": "48",
+      "time_period": "2025",
+      "unit": "RANK",
+      "display": {
+        "es": "48,00",
+        "en": "48.00"
+      },
+      "period_display": {
+        "es": "2025",
+        "en": "2025"
+      },
+      "period_narrative": {
+        "es": "2025",
+        "en": "2025"
+      }
+    },
+    "magnitude": "-2.36σ",
+    "chart_series": [
+      {
+        "period": "2022",
+        "value": 2
+      },
+      {
+        "period": "2023",
+        "value": 2
+      },
+      {
+        "period": "2024",
+        "value": 37
+      },
+      {
+        "period": "2025",
+        "value": 48
+      }
+    ],
+    "claim_tokens": [
+      {
+        "claim_id": "71eb45d03cc2934a",
+        "value": "48.00",
+        "pcn_status": "verified",
+        "pcn_reason": "Verified: RWB_PFI_LGC ARG 2025 = 48 RANK",
+        "pcn_source": "data/context/ARG/dynamic.csv",
+        "pcn_observation": {
+          "indicator": "RWB_PFI_LGC",
+          "refArea": "ARG",
+          "timePeriod": "2025",
+          "value": "48",
+          "unit": "RANK"
+        }
+      }
+    ],
+    "verification_trace": {
+      "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/RWB_PFI",
+      "csv_link": "https://data360files.worldbank.org/data360-data/data/RWB_PFI/RWB_PFI_LGC.csv"
+    },
+    "score": 0,
+    "detected_at": "2026-05-26T01:20:52.345Z",
+    "data_period_stale": false,
+    "quality_status": "accepted",
+    "quality_tags": []
+  }
+]

@@ -1,24 +1,38 @@
 [
   {
-    "id": "alert_2026-05-22_037",
-    "type": "anomaly",
-    "country": "MEX",
-    "category": "economy",
+    "content_type": "noticia",
+    "id": "noticia_anomaly_MEX_IMF_BOP_IPDG_BP6_2024_Q3_1",
+    "title": {
+      "es": "Aumenta la deuda externa del gobierno mexicano",
+      "en": "External Debt of the Mexican Government Increases"
+    },
+    "lead": {
+      "es": "Según datos del Fondo Monetario Internacional (FMI), la deuda externa del gobierno de México registrada en el balance de pagos aumentó significativamente en el tercer trimestre de 2024, alcanzando niveles récord. 186.184.000.000,00",
+      "en": "According to data from the International Monetary Fund (IMF), the external debt of the Mexican government recorded in the balance of payments has significantly increased in the third quarter of 2024, reaching record levels. 186,184,000,000.00"
+    },
+    "story": {
+      "es": "La deuda externa del gobierno mexicano ha experimentado un aumento significativo durante el tercer trimestre de 2024. Según los datos proporcionados por el Fondo Monetario Internacional (FMI), esta deuda alcanzó un valor récord de 186.184.000.000,00, superando los niveles observados en años anteriores. Esta tendencia refleja una política financiera que busca obtener fondos adicionales a través de la emisión de bonos de deuda gubernamental para financiar proyectos de infraestructura y otros gastos públicos.\n\nEn comparación con otros países de la región, México se destaca por tener una deuda externa mucho mayor. La mediana de deuda externa del gobierno en la región es de 186.184.000.000,00, lo que indica que México supera ampliamente a sus vecinos en este indicador. Esto sugiere que México está utilizando una estrategia diferente para financiar sus obligaciones y proyectos de inversión.\n\nEste aumento en la deuda externa del gobierno mexicano puede tener implicaciones significativas para la economía del país. Aunque la emisión de deuda puede ser una herramienta útil para financiar proyectos importantes, también puede aumentar la carga financiera del gobierno y potencialmente afectar la estabilidad económica a largo plazo si no se gestiona adecuadamente. [HIPÓTESIS] Es importante que las autoridades económicas monitoreen de cerca estos niveles de deuda para garantizar que no se alcancen umbrales insostenibles que puedan poner en riesgo la estabilidad financiera del país.[HIPÓTESIS]",
+      "en": "The external debt of the Mexican government has experienced a significant increase during the third quarter of 2024. According to data provided by the International Monetary Fund (IMF), this debt reached a record value of 186,184,000,000.00, surpassing levels observed in previous years. This trend reflects a financial policy that seeks to obtain additional funds through the issuance of government bonds to finance infrastructure projects and other public expenses.\n\nCompared to other countries in the region, Mexico stands out for having much higher external debt. The median of external government debt in the region is 186,184,000,000.00, indicating that Mexico far exceeds its neighbors in this indicator. This suggests that Mexico is using a different strategy to finance its obligations and investment projects.\n\nThis increase in the external debt of the Mexican government may have significant implications for the country's economy. Although the issuance of debt can be a useful tool for financing important projects, it can also increase the financial burden on the government and potentially affect long-term economic stability if not managed properly. [HYPOTHESIS] It is important that economic authorities closely monitor these levels of debt to ensure that unsustainable thresholds are not reached, which could put the country's financial stability at risk.[HYPOTHESIS]"
+    },
+    "countries": [
+      "MEX"
+    ],
+    "dataset_id": "IMF_BOP",
     "indicator": {
       "idno": "IMF_BOP_IPDG_BP6",
       "database_id": "IMF_BOP",
       "name": {
-        "es": "IIP, Portfolio investment, Debt securities, General government",
-        "en": "IIP, Portfolio investment, Debt securities, General government"
+        "es": "Deuda gubernamental externa (IIP)",
+        "en": "External Government Debt (IIP)"
       }
     },
     "observation": {
-      "value": 186184000000,
+      "value": "186184000000",
       "time_period": "2024-Q3",
       "unit": "USD",
       "display": {
-        "es": "186,184 millones USD",
-        "en": "186,184 million USD"
+        "es": "186.184.000.000,00",
+        "en": "186,184,000,000.00"
       },
       "period_display": {
         "es": "T3 2024",
@@ -29,343 +43,8 @@
         "en": "Q3 2024"
       }
     },
-    "magnitude": {
-      "es": "+6.0σ",
-      "en": "+6.0σ"
-    },
+    "magnitude": "+6.04σ",
     "chart_series": [
-      {
-        "period": "2001",
-        "value": 44527300000
-      },
-      {
-        "period": "2002",
-        "value": 43548300000
-      },
-      {
-        "period": "2003",
-        "value": 44800900000
-      },
-      {
-        "period": "2004",
-        "value": 52229000000
-      },
-      {
-        "period": "2005",
-        "value": 54814700000
-      },
-      {
-        "period": "2006",
-        "value": 50240600000
-      },
-      {
-        "period": "2007",
-        "value": 57767500000
-      },
-      {
-        "period": "2008",
-        "value": 53454800000
-      },
-      {
-        "period": "2009",
-        "value": 59940200000
-      },
-      {
-        "period": "2009-Q1",
-        "value": 50951200000
-      },
-      {
-        "period": "2009-Q2",
-        "value": 51922800000
-      },
-      {
-        "period": "2009-Q3",
-        "value": 56192400000
-      },
-      {
-        "period": "2009-Q4",
-        "value": 59940200000
-      },
-      {
-        "period": "2010",
-        "value": 91528000000
-      },
-      {
-        "period": "2010-Q1",
-        "value": 67556700000
-      },
-      {
-        "period": "2010-Q2",
-        "value": 69855500000
-      },
-      {
-        "period": "2010-Q3",
-        "value": 79339400000
-      },
-      {
-        "period": "2010-Q4",
-        "value": 91528000000
-      },
-      {
-        "period": "2011",
-        "value": 115340000000
-      },
-      {
-        "period": "2011-Q1",
-        "value": 103035000000
-      },
-      {
-        "period": "2011-Q2",
-        "value": 111685000000
-      },
-      {
-        "period": "2011-Q3",
-        "value": 109988000000
-      },
-      {
-        "period": "2011-Q4",
-        "value": 115340000000
-      },
-      {
-        "period": "2012",
-        "value": 176543000000
-      },
-      {
-        "period": "2012-Q1",
-        "value": 140686000000
-      },
-      {
-        "period": "2012-Q2",
-        "value": 144651000000
-      },
-      {
-        "period": "2012-Q3",
-        "value": 164853000000
-      },
-      {
-        "period": "2012-Q4",
-        "value": 176543000000
-      },
-      {
-        "period": "2013",
-        "value": 194469000000
-      },
-      {
-        "period": "2013-Q1",
-        "value": 196529000000
-      },
-      {
-        "period": "2013-Q2",
-        "value": 183597000000
-      },
-      {
-        "period": "2013-Q3",
-        "value": 187849000000
-      },
-      {
-        "period": "2013-Q4",
-        "value": 194469000000
-      },
-      {
-        "period": "2014",
-        "value": 207681000000
-      },
-      {
-        "period": "2014-Q1",
-        "value": 204384000000
-      },
-      {
-        "period": "2014-Q2",
-        "value": 216103000000
-      },
-      {
-        "period": "2014-Q3",
-        "value": 211475000000
-      },
-      {
-        "period": "2014-Q4",
-        "value": 207681000000
-      },
-      {
-        "period": "2015",
-        "value": 194232000000
-      },
-      {
-        "period": "2015-Q1",
-        "value": 206283000000
-      },
-      {
-        "period": "2015-Q2",
-        "value": 202312000000
-      },
-      {
-        "period": "2015-Q3",
-        "value": 195443000000
-      },
-      {
-        "period": "2015-Q4",
-        "value": 194232000000
-      },
-      {
-        "period": "2016",
-        "value": 164769000000
-      },
-      {
-        "period": "2016-Q1",
-        "value": 192518000000
-      },
-      {
-        "period": "2016-Q2",
-        "value": 176523000000
-      },
-      {
-        "period": "2016-Q3",
-        "value": 175567000000
-      },
-      {
-        "period": "2016-Q4",
-        "value": 164769000000
-      },
-      {
-        "period": "2017",
-        "value": 171261000000
-      },
-      {
-        "period": "2017-Q1",
-        "value": 183564000000
-      },
-      {
-        "period": "2017-Q2",
-        "value": 186661000000
-      },
-      {
-        "period": "2017-Q3",
-        "value": 187584000000
-      },
-      {
-        "period": "2017-Q4",
-        "value": 171261000000
-      },
-      {
-        "period": "2018",
-        "value": 172509000000
-      },
-      {
-        "period": "2018-Q1",
-        "value": 187155000000
-      },
-      {
-        "period": "2018-Q2",
-        "value": 177071000000
-      },
-      {
-        "period": "2018-Q3",
-        "value": 184147000000
-      },
-      {
-        "period": "2018-Q4",
-        "value": 172509000000
-      },
-      {
-        "period": "2019",
-        "value": 190997000000
-      },
-      {
-        "period": "2019-Q1",
-        "value": 185414000000
-      },
-      {
-        "period": "2019-Q2",
-        "value": 186022000000
-      },
-      {
-        "period": "2019-Q3",
-        "value": 185858000000
-      },
-      {
-        "period": "2019-Q4",
-        "value": 190997000000
-      },
-      {
-        "period": "2020",
-        "value": 188633000000
-      },
-      {
-        "period": "2020-Q1",
-        "value": 163840000000
-      },
-      {
-        "period": "2020-Q2",
-        "value": 167337000000
-      },
-      {
-        "period": "2020-Q3",
-        "value": 172553000000
-      },
-      {
-        "period": "2020-Q4",
-        "value": 188633000000
-      },
-      {
-        "period": "2021",
-        "value": 165692000000
-      },
-      {
-        "period": "2021-Q1",
-        "value": 177312000000
-      },
-      {
-        "period": "2021-Q2",
-        "value": 176643000000
-      },
-      {
-        "period": "2021-Q3",
-        "value": 169594000000
-      },
-      {
-        "period": "2021-Q4",
-        "value": 165692000000
-      },
-      {
-        "period": "2022",
-        "value": 166730000000
-      },
-      {
-        "period": "2022-Q1",
-        "value": 169246000000
-      },
-      {
-        "period": "2022-Q2",
-        "value": 159924000000
-      },
-      {
-        "period": "2022-Q3",
-        "value": 156197000000
-      },
-      {
-        "period": "2022-Q4",
-        "value": 166730000000
-      },
-      {
-        "period": "2023",
-        "value": 188828000000
-      },
-      {
-        "period": "2023-Q1",
-        "value": 178499000000
-      },
-      {
-        "period": "2023-Q2",
-        "value": 181090000000
-      },
-      {
-        "period": "2023-Q3",
-        "value": 175864000000
-      },
-      {
-        "period": "2023-Q4",
-        "value": 188828000000
-      },
       {
         "period": "2024-Q1",
         "value": 198523000000
@@ -376,34 +55,27 @@
       },
       {
         "period": "2024-Q3",
-        "value": 186184000000,
-        "is_change_point": true
+        "value": 186184000000
+      }
+    ],
+    "claim_tokens": [
+      {
+        "claim_id": "a22dcf986bb532f3",
+        "value": "186,184,000,000.00",
+        "pcn_status": "rejected",
+        "pcn_reason": "Claim ID mismatch: got a22dcf986bb532f3, expected a14c2fb1bf64f11c"
       }
     ],
     "verification_trace": {
       "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/IMF_BOP",
-      "csv_link": "https://data360files.worldbank.org/data360-data/data/IMF_BOP/IMF_BOP_IPDG_BP6.csv",
-      "methodology_ref": "https://data.imf.org/?sk=7a51304b-6426-40c0-83dd-ca473ca1fd52"
+      "csv_link": "https://data360files.worldbank.org/data360-data/data/IMF_BOP/IMF_BOP_IPDG_BP6.csv"
     },
-    "score": 1,
-    "detected_at": "2026-05-22T00:21:20.836Z",
-    "license": "License Specified Externally",
-    "narrative_citizen": {
-      "es": "La deuda pública de México alcanzó 186,184 millones USD en el tercer trimestre de 2024, superando la mediana regional.",
-      "en": "Mexico's public debt reached 186,184 million USD in the third quarter of 2024, surpassing the regional median."
-    },
-    "narrative_journalist": {
-      "es": "La deuda pública de México alcanzó 186,184 millones USD en el tercer trimestre de 2024, con un z-score de 6.04, superando la mediana regional de 26,529 millones USD.",
-      "en": "Mexico's public debt reached 186,184 million USD in the third quarter of 2024, with a z-score of 6.04, surpassing the regional median of 26,529 million USD."
-    },
-    "claim_tokens": [
-      {
-        "claim_id": "a22dcf986bb532f3",
-        "value": 186184000000,
-        "display_es": "186,184 millones USD",
-        "display_en": "186,184 million USD"
-      }
-    ],
-    "data_period_stale": true
+    "score": 0,
+    "detected_at": "2023-10-05T12:34:56Z",
+    "data_period_stale": true,
+    "quality_status": "incomplete",
+    "quality_tags": [
+      "1_claims_rejected"
+    ]
   }
 ]

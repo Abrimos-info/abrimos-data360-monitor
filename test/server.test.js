@@ -29,11 +29,16 @@ test('HTTP routes', async (t) => {
     assert.ok(res.headers['content-type'].includes('text/html'));
   });
 
-  await t.test('GET / body includes app shell and inline data', async () => {
+  await t.test('GET / body includes country picker', async () => {
     const res = await get(base + '/');
-    assert.ok(res.body.includes('d360-app'),        'missing app shell element');
-    assert.ok(res.body.includes('D360_ALERTS'),     'missing inline alert data');
-    assert.ok(res.body.includes('d360-detail-tpl'), 'missing detail template element');
+    assert.ok(res.body.includes('d360-app'), 'missing app shell element');
+    assert.ok(res.body.includes('d360-picker'), 'missing country picker');
+  });
+
+  await t.test('GET /argentina returns front page', async () => {
+    const res = await get(base + '/argentina');
+    assert.equal(res.status, 200);
+    assert.ok(res.body.includes('d360-frontpage') || res.body.includes('d360-page--frontpage'));
   });
 
   await t.test('GET / tagline matches D-006 exact phrase', async () => {
@@ -81,18 +86,19 @@ test('HTTP routes', async (t) => {
     assert.equal(res.status, 404);
   });
 
-  await t.test('GET /?country=ARG returns 200 without crashing', async () => {
-    const res = await get(base + '/?country=ARG');
+  await t.test('GET /?country=ARG legacy feed via query on country path', async () => {
+    const res = await get(base + '/argentina?legacy=1');
+    assert.equal(res.status, 200);
+    assert.ok(res.body.includes('D360_ALERTS'));
+  });
+
+  await t.test('GET /?variant=num on legacy feed', async () => {
+    const res = await get(base + '/argentina?legacy=1&variant=num');
     assert.equal(res.status, 200);
   });
 
-  await t.test('GET /?variant=num returns 200 without crashing', async () => {
-    const res = await get(base + '/?variant=num');
-    assert.equal(res.status, 200);
-  });
-
-  await t.test('GET /?variant=invalid defaults gracefully', async () => {
-    const res = await get(base + '/?variant=invalid');
+  await t.test('GET /?variant=invalid on legacy feed', async () => {
+    const res = await get(base + '/argentina?legacy=1&variant=invalid');
     assert.equal(res.status, 200);
   });
 
@@ -101,10 +107,10 @@ test('HTTP routes', async (t) => {
     assert.equal(res.status, 200);
   });
 
-  await t.test('GET /chat returns 200 text/html', async () => {
+  await t.test('GET /chat redirects to home', async () => {
     const res = await get(base + '/chat');
-    assert.equal(res.status, 200);
-    assert.ok(res.body.includes('d360-chat') || res.body.includes('chat'));
+    assert.equal(res.status, 302);
+    assert.equal(res.headers.location, '/');
   });
 
   await t.test('newsletter UI elements present on dashboard', async () => {

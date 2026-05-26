@@ -1,0 +1,91 @@
+[
+  {
+    "content_type": "noticia",
+    "id": "noticia_anomaly_ECU_cand_anomaly_ECU_RWB_PFI_ECC_2025_1",
+    "title": {
+      "es": "Ecuador retrocede en libertad de prensa económica",
+      "en": "Ecuador regresses in economic press freedom"
+    },
+    "lead": {
+      "es": "Según el Índice de Libertad de Prensa de Reporters Without Borders, Ecuador retrocedió del puesto 33 al 77 en el ranking económico de libertad de prensa en 2025.",
+      "en": "According to the Reporters Without Borders Press Freedom Index, Ecuador has regressed from position 33 to 77 in the economic press freedom ranking in 2025."
+    },
+    "story": {
+      "es": "El Índice de Libertad de Prensa de Reporters Without Borders (RWB_PFI_ECC) registró una disminución significativa en la posición económica de Ecuador en el ranking global de libertad de prensa. En 2025, Ecuador ocupó el puesto 77, lo que representa un retroceso considerable desde el puesto 33 en 2023.\n\nEsta caída en la posición económica se debe a diversos factores, entre ellos las políticas gubernamentales que pueden dificultar la creación de medios de comunicación y la influencia de actores no estatales. Además, la posición económica de Ecuador ha empeorado en comparación con otros países de la región, lo que sugiere una situación compleja en el sector de medios.\n\nEs importante destacar que esta medida evalúa tanto las restricciones económicas relacionadas con las políticas gubernamentales como las influencias de actores no estatales y los intereses de los propietarios de medios de comunicación. La disminución en la posición económica de Ecuador en este índice podría indicar una mayor presión sobre la libertad de prensa en el país.",
+      "en": "The Reporters Without Borders Press Freedom Index (RWB_PFI_ECC) recorded a significant decrease in Ecuador's economic standing in the global press freedom ranking. In 2025, Ecuador ranked 77th, which represents a considerable regression from its position of 33rd in 2023.\n\nThis decline in economic standing is attributed to various factors, including governmental policies that may hinder the creation of media outlets and the influence of non-state actors. Furthermore, Ecuador's economic position has worsened compared to other countries in the region, suggesting a complex situation in the media sector.\n\nIt is important to note that this measure evaluates both economic constraints related to governmental policies and the influences of non-state actors and the interests of media owners. The decrease in Ecuador's economic standing in this index could indicate increased pressure on press freedom in the country."
+    },
+    "countries": [
+      "ECU"
+    ],
+    "dataset_id": "RWB_PFI",
+    "indicator": {
+      "idno": "RWB_PFI_ECC",
+      "database_id": "RWB_PFI",
+      "name": {
+        "es": "Índice de Libertad de Prensa - Contexto Económico",
+        "en": "Press Freedom Index - Economic Context"
+      }
+    },
+    "observation": {
+      "value": "77",
+      "time_period": "2025",
+      "unit": "RANK",
+      "display": {
+        "es": "77,00",
+        "en": "77.00"
+      },
+      "period_display": {
+        "es": "2025",
+        "en": "2025"
+      },
+      "period_narrative": {
+        "es": "2025",
+        "en": "2025"
+      }
+    },
+    "magnitude": "-2.3σ",
+    "chart_series": [
+      {
+        "period": "2022",
+        "value": 42
+      },
+      {
+        "period": "2023",
+        "value": 33
+      },
+      {
+        "period": "2024",
+        "value": 94
+      },
+      {
+        "period": "2025",
+        "value": 77
+      }
+    ],
+    "claim_tokens": [
+      {
+        "claim_id": "0b4a9a724c4c63f0",
+        "value": "77.00",
+        "pcn_status": "verified",
+        "pcn_reason": "Verified: RWB_PFI_ECC ECU 2025 = 77 RANK",
+        "pcn_source": "data/context/ECU/dynamic.csv",
+        "pcn_observation": {
+          "indicator": "RWB_PFI_ECC",
+          "refArea": "ECU",
+          "timePeriod": "2025",
+          "value": "77",
+          "unit": "RANK"
+        }
+      }
+    ],
+    "verification_trace": {
+      "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/RWB_PFI",
+      "csv_link": "https://data360files.worldbank.org/data360-data/data/RWB_PFI/RWB_PFI_ECC.csv"
+    },
+    "score": 0,
+    "detected_at": "2026-05-26T01:02:39.752Z",
+    "data_period_stale": false,
+    "quality_status": "accepted",
+    "quality_tags": []
+  }
+]

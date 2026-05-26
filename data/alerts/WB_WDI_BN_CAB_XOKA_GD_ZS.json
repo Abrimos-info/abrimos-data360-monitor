@@ -1,24 +1,38 @@
 [
   {
-    "id": "alert_2026-05-22_003",
-    "type": "abrupt_change",
-    "country": "ECU",
-    "category": "economy",
+    "content_type": "noticia",
+    "id": "noticia_abrupt_change_ECU_f742660d8165afc8_2024",
+    "title": {
+      "es": "El saldo de cuenta corriente de Ecuador aumenta significativamente",
+      "en": "Ecuador's Current Account Balance Increases Significantly"
+    },
+    "lead": {
+      "es": "El saldo de cuenta corriente de Ecuador alcanzó un nuevo récord en 2024, llegando al 5.65% del PIB, según datos del Banco Mundial. 5,65",
+      "en": "Ecuador's current account balance reached a new record in 2024, hitting 5.65% of the GDP, according to World Bank data. 5.65"
+    },
+    "story": {
+      "es": "En 2024, el saldo de cuenta corriente de Ecuador registró un aumento significativo, llegando al 5.65% del PIB. Este resultado representa un cambio drástico en comparación con años anteriores, donde el saldo fluctuaba entre valores negativos y positivos.\n\nHistóricamente, Ecuador ha enfrentado desafíos económicos que han afectado su cuenta corriente. Sin embargo, en los últimos años, se han implementado políticas económicas que han contribuido a estabilizar esta métrica. Por ejemplo, en 2023, el saldo de cuenta corriente era de apenas 1.98% del PIB, lo que indica una mejora considerable en solo un año.\n\nPara poner en contexto este cambio, es importante destacar que Ecuador se encuentra en una región donde los saldos de cuenta corriente varían ampliamente. Comparando con otros países de la región, Ecuador muestra un desempeño superior en términos de estabilidad económica. En particular, el z-score de 3.13 indica que el aumento del saldo de cuenta corriente en Ecuador es significativamente mayor que la media regional.\n\nEste avance económico tiene importantes implicaciones para la ciudadanía ecuatoriana. Un saldo de cuenta corriente positivo sugiere que el país está generando ingresos netos en sus transacciones comerciales y financieras internacionales, lo cual puede contribuir a una mayor estabilidad macroeconómica y atractivo para inversionistas extranjeros. Además, este resultado refleja una mejor gestión de las finanzas públicas y una mayor competitividad en el mercado global.",
+      "en": "In 2024, Ecuador's current account balance saw a significant increase, reaching 5.65% of the GDP. This result represents a drastic change compared to previous years, where the balance fluctuated between negative and positive values.\n\nHistorically, Ecuador has faced economic challenges that have affected its current account. However, in recent years, economic policies have been implemented that have contributed to stabilizing this metric. For example, in 2023, the current account balance was only 1.98% of the GDP, indicating a considerable improvement in just one year.\n\nTo put this change into context, it is important to note that Ecuador is located in a region where current account balances vary widely. Compared to other countries in the region, Ecuador shows superior performance in terms of economic stability. In particular, the z-score of 3.13 indicates that the increase in Ecuador's current account balance is significantly higher than the regional average.\n\nThis economic advancement has important implications for Ecuadorian citizens. A positive current account balance suggests that the country is generating net income in its international commercial and financial transactions, which can contribute to greater macroeconomic stability and attractiveness to foreign investors. Additionally, this result reflects better management of public finances and increased competitiveness in the global market."
+    },
+    "countries": [
+      "ECU"
+    ],
+    "dataset_id": "WB_WDI",
     "indicator": {
       "idno": "WB_WDI_BN_CAB_XOKA_GD_ZS",
       "database_id": "WB_WDI",
       "name": {
-        "es": "Current account balance (% of GDP)",
-        "en": "Current account balance (% of GDP)"
+        "es": "Saldo de cuenta corriente (% del PIB)",
+        "en": "Current Account Balance (% of GDP)"
       }
     },
     "observation": {
-      "value": 5.650429,
+      "value": "5.650429",
       "time_period": "2024",
       "unit": "PT_GDP",
       "display": {
-        "es": "5.650429 PT_GDP",
-        "en": "5.650429 PT_GDP"
+        "es": "5,65",
+        "en": "5.65"
       },
       "period_display": {
         "es": "2024",
@@ -29,239 +43,35 @@
         "en": "2024"
       }
     },
-    "magnitude": {
-      "es": "+3.1σ",
-      "en": "+3.1σ"
-    },
+    "magnitude": "+5.65%",
     "chart_series": [
-      {
-        "period": "1976",
-        "value": -0.105588
-      },
-      {
-        "period": "1977",
-        "value": -3.11436
-      },
-      {
-        "period": "1978",
-        "value": -5.898932
-      },
-      {
-        "period": "1979",
-        "value": -4.44651
-      },
-      {
-        "period": "1980",
-        "value": -3.588008
-      },
-      {
-        "period": "1981",
-        "value": -4.575723
-      },
-      {
-        "period": "1982",
-        "value": -5.930803
-      },
-      {
-        "period": "1983",
-        "value": -0.670457
-      },
-      {
-        "period": "1984",
-        "value": -1.61419
-      },
-      {
-        "period": "1985",
-        "value": 0.443172
-      },
-      {
-        "period": "1986",
-        "value": -3.80041
-      },
-      {
-        "period": "1987",
-        "value": -8.511751
-      },
-      {
-        "period": "1988",
-        "value": -5.209977
-      },
-      {
-        "period": "1989",
-        "value": -5.147283
-      },
-      {
-        "period": "1990",
-        "value": -2.362317
-      },
-      {
-        "period": "1991",
-        "value": -4.167516
-      },
-      {
-        "period": "1992",
-        "value": -0.674248
-      },
-      {
-        "period": "1993",
-        "value": -4.482299
-      },
-      {
-        "period": "1994",
-        "value": -3.955845
-      },
-      {
-        "period": "1995",
-        "value": -4.092886
-      },
-      {
-        "period": "1996",
-        "value": -0.217391
-      },
-      {
-        "period": "1997",
-        "value": -1.62197
-      },
-      {
-        "period": "1998",
-        "value": -7.499492
-      },
-      {
-        "period": "1999",
-        "value": 4.673491
-      },
-      {
-        "period": "2000",
-        "value": 6.343554
-      },
-      {
-        "period": "2001",
-        "value": -2.383251
-      },
-      {
-        "period": "2002",
-        "value": -4.505862
-      },
-      {
-        "period": "2003",
-        "value": -1.249204
-      },
-      {
-        "period": "2004",
-        "value": -1.362192
-      },
-      {
-        "period": "2005",
-        "value": 1.176611
-      },
-      {
-        "period": "2006",
-        "value": 3.80805
-      },
-      {
-        "period": "2007",
-        "value": 3.784427
-      },
-      {
-        "period": "2008",
-        "value": 2.894053
-      },
-      {
-        "period": "2009",
-        "value": 0.520924
-      },
-      {
-        "period": "2010",
-        "value": -2.321726
-      },
-      {
-        "period": "2011",
-        "value": -0.506587
-      },
-      {
-        "period": "2012",
-        "value": -0.16691
-      },
-      {
-        "period": "2013",
-        "value": -0.966038
-      },
-      {
-        "period": "2014",
-        "value": -0.651048
-      },
-      {
-        "period": "2015",
-        "value": -2.284844
-      },
-      {
-        "period": "2016",
-        "value": 0.912554
-      },
-      {
-        "period": "2017",
-        "value": -0.387243
-      },
-      {
-        "period": "2018",
-        "value": -1.533165
-      },
-      {
-        "period": "2019",
-        "value": -0.506461
-      },
-      {
-        "period": "2020",
-        "value": 2.09334
-      },
-      {
-        "period": "2021",
-        "value": 2.838943
-      },
-      {
-        "period": "2022",
-        "value": 1.953571
-      },
       {
         "period": "2023",
         "value": 1.984823
       },
       {
         "period": "2024",
-        "value": 5.650429,
-        "is_change_point": true
+        "value": 5.650429
+      }
+    ],
+    "claim_tokens": [
+      {
+        "claim_id": "f742660d8165afc8",
+        "value": "5.650429",
+        "pcn_status": "rejected",
+        "pcn_reason": "Claim ID mismatch: got f742660d8165afc8, expected 0459ce8b93265946"
       }
     ],
     "verification_trace": {
       "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/WB_WDI",
-      "csv_link": "https://data360files.worldbank.org/data360-data/data/WB_WDI/WB_WDI_BN_CAB_XOKA_GD_ZS.csv",
-      "methodology_ref": "https://dsbb.imf.org/"
+      "csv_link": "https://data360files.worldbank.org/data360-data/data/WB_WDI/WB_WDI_BN_CAB_XOKA_GD_ZS.csv"
     },
-    "score": 0.7823521863158628,
-    "detected_at": "2026-05-22T00:21:20.830Z",
-    "license": "CC BY-4.0",
-    "narrative_citizen": {
-      "es": "Subió drásticamente el saldo de cuenta corriente en Ecuador en 2024.",
-      "en": "The current account balance in Ecuador surged dramatically in 2024."
-    },
-    "narrative_journalist": {
-      "es": "El saldo de cuenta corriente en Ecuador aumentó a 5.650429 PT_GDP en 2024, un incremento del 184% respecto al año anterior.",
-      "en": "Ecuador's current account balance rose to 5.650429 PT_GDP in 2024, a 184% increase from the previous year."
-    },
-    "claim_tokens": [
-      {
-        "claim_id": "f742660d8165afc8",
-        "value": 5.650429,
-        "display_es": "5.650429 PT_GDP",
-        "display_en": "5.650429 PT_GDP"
-      },
-      {
-        "claim_id": "0e2a6b41a86cc930",
-        "value": 1.984823,
-        "display_es": "1,98 PT_GDP",
-        "display_en": "1.98 PT_GDP"
-      }
-    ],
-    "data_period_stale": true
+    "score": 0,
+    "detected_at": "2024-02-29T12:00:00Z",
+    "data_period_stale": true,
+    "quality_status": "incomplete",
+    "quality_tags": [
+      "1_claims_rejected"
+    ]
   }
 ]

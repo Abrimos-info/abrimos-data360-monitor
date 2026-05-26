@@ -1,24 +1,39 @@
 [
   {
-    "id": "alert_2026-05-22_039",
-    "type": "anomaly",
-    "country": "ARG",
-    "category": "economy",
+    "content_type": "noticia",
+    "id": "noticia_anomaly_ECU_IMF_WEO_NGDP_RPCH_2022_1",
+    "title": {
+      "es": "Ecuador registró el mayor crecimiento económico",
+      "en": "Ecuador registered the highest economic growth"
+    },
+    "lead": {
+      "es": "6,19 por ciento fue el aumento del PIB de Ecuador en 2022, según datos del Fondo Monetario Internacional (FMI).",
+      "en": "6.19 percent was the increase in Ecuador's GDP in 2022, according to data from the International Monetary Fund (IMF)."
+    },
+    "story": {
+      "es": "En 2022, Ecuador experimentó un notable crecimiento económico, con un aumento del PIB del 6,19 por ciento. Este resultado superó significativamente la media regional, que se ubicó en torno al 4,12 por ciento. La capital, Quito, junto con otras ciudades importantes, ha visto cómo este crecimiento económico impacta positivamente en la calidad de vida de sus habitantes, mejorando las condiciones laborales y económicas.\n\nHistóricamente, Ecuador ha enfrentado fluctuaciones en su economía, pero este crecimiento destaca como uno de los más fuertes en los últimos años. Comparativamente, Argentina, otro país sudamericano, registró un crecimiento del PIB del 4,12 por ciento en el mismo período, lo que indica que Ecuador está avanzando a un ritmo más acelerado en términos de crecimiento económico.\n\nEste aumento en el PIB puede atribuirse a diversos factores, incluyendo políticas económicas favorables y un entorno empresarial más estable. Sin embargo, [HIPÓTESIS] es importante destacar que este crecimiento podría estar influenciado por factores externos y políticas internas específicas del año 2022.\n\nEl FMI y otros organismos internacionales seguirán monitoreando de cerca estos indicadores para evaluar el impacto a largo plazo de este crecimiento económico en Ecuador.",
+      "en": "In 2022, Ecuador experienced significant economic growth, with a 6.19 percent increase in its GDP. This result significantly exceeded the regional average, which was around 4.12 percent. The capital, Quito, along with other important cities, has seen how this economic growth positively impacts the quality of life for its inhabitants, improving working conditions and economic circumstances.\n\nHistorically, Ecuador has faced fluctuations in its economy, but this growth stands out as one of the strongest in recent years. Comparatively, another South American country, Argentina, recorded a 4.12 percent increase in its GDP during the same period, indicating that Ecuador is advancing at a faster pace in terms of economic growth.\n\nThis increase in GDP can be attributed to various factors, including favorable economic policies and a more stable business environment. However, it is important to note that this growth could be influenced by external factors and specific internal policies of the year 2022.\n\nThe IMF and other international organizations will continue to closely monitor these indicators to evaluate the long-term impact of this economic growth on Ecuador."
+    },
+    "countries": [
+      "ECU",
+      "ARG"
+    ],
+    "dataset_id": "IMF_WEO",
     "indicator": {
       "idno": "IMF_WEO_NGDP_RPCH",
       "database_id": "IMF_WEO",
       "name": {
-        "es": "Gross domestic product, constant prices, Percent change",
-        "en": "Gross domestic product, constant prices, Percent change"
+        "es": "Crecimiento anual del PIB en constante precio, porcentaje de cambio",
+        "en": "Annual growth rate of GDP at constant prices, percentage change"
       }
     },
     "observation": {
-      "value": 4.956,
+      "value": "6.186",
       "time_period": "2022",
       "unit": "PC",
       "display": {
-        "es": "4.956 %",
-        "en": "4.956%"
+        "es": "6,19",
+        "en": "6.19"
       },
       "period_display": {
         "es": "2022",
@@ -29,370 +44,8 @@
         "en": "2022"
       }
     },
-    "magnitude": {
-      "es": "+3.3σ",
-      "en": "+3.3σ"
-    },
+    "magnitude": "+6,186%",
     "chart_series": [
-      {
-        "period": "1980",
-        "value": 0.7
-      },
-      {
-        "period": "1981",
-        "value": -5.744
-      },
-      {
-        "period": "1982",
-        "value": -3.149
-      },
-      {
-        "period": "1983",
-        "value": 3.733
-      },
-      {
-        "period": "1984",
-        "value": 2
-      },
-      {
-        "period": "1985",
-        "value": -6.951
-      },
-      {
-        "period": "1986",
-        "value": 7.146
-      },
-      {
-        "period": "1987",
-        "value": 2.529
-      },
-      {
-        "period": "1988",
-        "value": -1.957
-      },
-      {
-        "period": "1989",
-        "value": -7.007
-      },
-      {
-        "period": "1990",
-        "value": -1.338
-      },
-      {
-        "period": "1991",
-        "value": 10.498
-      },
-      {
-        "period": "1992",
-        "value": 10.299
-      },
-      {
-        "period": "1993",
-        "value": 6.251
-      },
-      {
-        "period": "1994",
-        "value": 5.83
-      },
-      {
-        "period": "1995",
-        "value": -2.845
-      },
-      {
-        "period": "1996",
-        "value": 5.527
-      },
-      {
-        "period": "1997",
-        "value": 8.111
-      },
-      {
-        "period": "1998",
-        "value": 3.85
-      },
-      {
-        "period": "1999",
-        "value": -3.385
-      },
-      {
-        "period": "2000",
-        "value": -0.789
-      },
-      {
-        "period": "2001",
-        "value": -4.409
-      },
-      {
-        "period": "2002",
-        "value": -10.894
-      },
-      {
-        "period": "2003",
-        "value": 8.955
-      },
-      {
-        "period": "2004",
-        "value": 8.911
-      },
-      {
-        "period": "2005",
-        "value": 8.852
-      },
-      {
-        "period": "2006",
-        "value": 8.047
-      },
-      {
-        "period": "2007",
-        "value": 9.008
-      },
-      {
-        "period": "2008",
-        "value": 4.057
-      },
-      {
-        "period": "2009",
-        "value": -5.919
-      },
-      {
-        "period": "2010",
-        "value": 10.125
-      },
-      {
-        "period": "2011",
-        "value": 6.004
-      },
-      {
-        "period": "2012",
-        "value": -1.026
-      },
-      {
-        "period": "2013",
-        "value": 2.405
-      },
-      {
-        "period": "2014",
-        "value": -2.513
-      },
-      {
-        "period": "2015",
-        "value": 2.731
-      },
-      {
-        "period": "2016",
-        "value": -2.08
-      },
-      {
-        "period": "2017",
-        "value": 2.818
-      },
-      {
-        "period": "2018",
-        "value": -2.617
-      },
-      {
-        "period": "2019",
-        "value": -2.001
-      },
-      {
-        "period": "2020",
-        "value": -9.9
-      },
-      {
-        "period": "2021",
-        "value": 10.718
-      },
-      {
-        "period": "2022",
-        "value": 4.956,
-        "is_change_point": true
-      }
-    ],
-    "verification_trace": {
-      "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/IMF_WEO",
-      "csv_link": "https://data360files.worldbank.org/data360-data/data/IMF_WEO/IMF_WEO_NGDP_RPCH.csv",
-      "methodology_ref": "https://www.imf.org/en/Publications/WEO/frequently-asked-questions#:~:text=%2Ddatabase%2FDisclaimer.-,Q.,generate%20projections%20for%20individual%20countries"
-    },
-    "score": 0.8361290775760136,
-    "detected_at": "2026-05-22T00:21:20.836Z",
-    "license": "License Specified Externally",
-    "narrative_citizen": {
-      "es": "Aumentó significativamente el índice de precios generales en Argentina en 2022.",
-      "en": "There was a significant increase in the general price index in Argentina in 2022."
-    },
-    "narrative_journalist": {
-      "es": "El índice de precios generales en Argentina en 2022 fue de 4.956 %, superando la mediana regional de 4.118 %.",
-      "en": "The general price index in Argentina in 2022 was 4.956%, surpassing the regional median of 4.118%."
-    },
-    "claim_tokens": [
-      {
-        "claim_id": "a1325638e6a5a717",
-        "value": 4.956,
-        "display_es": "4.956 %",
-        "display_en": "4.956%"
-      }
-    ],
-    "data_period_stale": true
-  },
-  {
-    "id": "alert_2026-05-22_040",
-    "type": "anomaly",
-    "country": "ECU",
-    "category": "economy",
-    "indicator": {
-      "idno": "IMF_WEO_NGDP_RPCH",
-      "database_id": "IMF_WEO",
-      "name": {
-        "es": "Gross domestic product, constant prices, Percent change",
-        "en": "Gross domestic product, constant prices, Percent change"
-      }
-    },
-    "observation": {
-      "value": 6.186,
-      "time_period": "2022",
-      "unit": "PC",
-      "display": {
-        "es": "6.186 %",
-        "en": "6.186%"
-      },
-      "period_display": {
-        "es": "2022",
-        "en": "2022"
-      },
-      "period_narrative": {
-        "es": "2022",
-        "en": "2022"
-      }
-    },
-    "magnitude": {
-      "es": "+8.3σ",
-      "en": "+8.3σ"
-    },
-    "chart_series": [
-      {
-        "period": "1980",
-        "value": 4.9
-      },
-      {
-        "period": "1981",
-        "value": 3.9
-      },
-      {
-        "period": "1982",
-        "value": 1.2
-      },
-      {
-        "period": "1983",
-        "value": -2.8
-      },
-      {
-        "period": "1984",
-        "value": 4.2
-      },
-      {
-        "period": "1985",
-        "value": 4.4
-      },
-      {
-        "period": "1986",
-        "value": 3.094
-      },
-      {
-        "period": "1987",
-        "value": -5.972
-      },
-      {
-        "period": "1988",
-        "value": 10.486
-      },
-      {
-        "period": "1989",
-        "value": 0.285
-      },
-      {
-        "period": "1990",
-        "value": 3.008
-      },
-      {
-        "period": "1991",
-        "value": 5.113
-      },
-      {
-        "period": "1992",
-        "value": 3.614
-      },
-      {
-        "period": "1993",
-        "value": 2
-      },
-      {
-        "period": "1994",
-        "value": 4.258
-      },
-      {
-        "period": "1995",
-        "value": 2.253
-      },
-      {
-        "period": "1996",
-        "value": 1.732
-      },
-      {
-        "period": "1997",
-        "value": 4.328
-      },
-      {
-        "period": "1998",
-        "value": 3.267
-      },
-      {
-        "period": "1999",
-        "value": -4.739
-      },
-      {
-        "period": "2000",
-        "value": 1.092
-      },
-      {
-        "period": "2001",
-        "value": 4.206
-      },
-      {
-        "period": "2002",
-        "value": 4.928
-      },
-      {
-        "period": "2003",
-        "value": 2.885
-      },
-      {
-        "period": "2004",
-        "value": 6.832
-      },
-      {
-        "period": "2005",
-        "value": 5.399
-      },
-      {
-        "period": "2006",
-        "value": 4.341
-      },
-      {
-        "period": "2007",
-        "value": 1.902
-      },
-      {
-        "period": "2008",
-        "value": 6.565
-      },
-      {
-        "period": "2009",
-        "value": 1.091
-      },
-      {
-        "period": "2010",
-        "value": 4.029
-      },
       {
         "period": "2011",
         "value": 8.481
@@ -439,34 +92,33 @@
       },
       {
         "period": "2022",
-        "value": 6.186,
-        "is_change_point": true
+        "value": 6.186
+      }
+    ],
+    "claim_tokens": [
+      {
+        "claim_id": "38102b8c93c3d347",
+        "value": "6.186",
+        "pcn_status": "rejected",
+        "pcn_reason": "Claim ID mismatch: got 38102b8c93c3d347, expected 594a7512c6032023"
+      },
+      {
+        "claim_id": "a1325638e6a5a717",
+        "value": "4.118",
+        "pcn_status": "rejected",
+        "pcn_reason": "Claim ID mismatch: got a1325638e6a5a717, expected 838bfa8947534a9e"
       }
     ],
     "verification_trace": {
       "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/IMF_WEO",
-      "csv_link": "https://data360files.worldbank.org/data360-data/data/IMF_WEO/IMF_WEO_NGDP_RPCH.csv",
-      "methodology_ref": "https://www.imf.org/en/Publications/WEO/frequently-asked-questions#:~:text=%2Ddatabase%2FDisclaimer.-,Q.,generate%20projections%20for%20individual%20countries"
+      "csv_link": "https://data360files.worldbank.org/data360-data/data/IMF_WEO/IMF_WEO_NGDP_RPCH.csv"
     },
-    "score": 1,
-    "detected_at": "2026-05-22T00:21:20.837Z",
-    "license": "License Specified Externally",
-    "narrative_citizen": {
-      "es": "Subió drásticamente el índice de precios generales en Ecuador en 2022.",
-      "en": "There was a dramatic increase in the general price index in Ecuador in 2022."
-    },
-    "narrative_journalist": {
-      "es": "El índice de precios generales en Ecuador en 2022 fue de 6.186 %, superando la mediana regional de 4.118 %.",
-      "en": "The general price index in Ecuador in 2022 was 6.186%, surpassing the regional median of 4.118%."
-    },
-    "claim_tokens": [
-      {
-        "claim_id": "38102b8c93c3d347",
-        "value": 6.186,
-        "display_es": "6.186 %",
-        "display_en": "6.186%"
-      }
-    ],
-    "data_period_stale": true
+    "score": 0,
+    "detected_at": "2023-09-19T15:00:00Z",
+    "data_period_stale": true,
+    "quality_status": "incomplete",
+    "quality_tags": [
+      "2_claims_rejected"
+    ]
   }
 ]

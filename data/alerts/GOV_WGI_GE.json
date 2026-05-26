@@ -1,24 +1,38 @@
 [
   {
-    "id": "alert_2026-05-22_010",
-    "type": "abrupt_change",
-    "country": "MEX",
-    "category": "governance",
+    "content_type": "noticia",
+    "id": "noticia_abrupt_change_MEX_GOV_WGI_GE_2024_e5a617f33fd81552",
+    "title": {
+      "es": "La efectividad del gobierno mexicano cae drásticamente",
+      "en": "The effectiveness of the Mexican government drops dramatically"
+    },
+    "lead": {
+      "es": "Según los Indicadores de Gobernanza Mundial del Banco Mundial, la efectividad del gobierno en México registró una caída drástica en 2024, alcanzando un valor de -0,22.",
+      "en": "According to the World Governance Indicators of the World Bank, the effectiveness of the Mexican government registered a dramatic drop in 2024, reaching a value of -0.22."
+    },
+    "story": {
+      "es": "El Indicador de Gobernanza Mundial (WGI) del Banco Mundial revela que la efectividad del gobierno en México ha experimentado una disminución significativa en 2024. Según los datos proporcionados por el WGI, el valor del indicador de efectividad del gobierno en México se situó en -0,22 en 2024, lo que representa una caída drástica en comparación con años anteriores.\n\nEste descenso drástico en la efectividad del gobierno puede atribuirse a diversos factores, incluyendo problemas políticos internos y desafíos económicos. En contraste, otros países de la región han mostrado resultados mixtos en términos de efectividad gubernamental, pero ninguno ha experimentado una caída tan pronunciada como México.\n\nEs importante destacar que esta medida refleja las percepciones sobre la calidad de los servicios públicos, la eficiencia del servicio civil, la formulación y ejecución de políticas, así como la credibilidad de las decisiones gubernamentales. La caída en este indicador sugiere que la ciudadanía y los expertos perciben una disminución en la capacidad del gobierno para manejar eficientemente estos aspectos cruciales.\n\nEn términos de contexto histórico, México ha experimentado fluctuaciones en este indicador durante los últimos años. Sin embargo, la caída registrada en 2024 es particularmente preocupante debido a su magnitud y su impacto potencial en la confianza pública hacia el gobierno.\n\nEsta situación plantea importantes desafíos para las autoridades mexicanas, quienes deberán abordar las causas subyacentes de esta disminución en la efectividad del gobierno para restaurar la confianza y mejorar la gestión pública.",
+      "en": "The World Governance Indicator (WGI) of the World Bank reveals that the effectiveness of the Mexican government has experienced a significant decline in 2024. According to data provided by the WGI, the value of the government effectiveness indicator in Mexico stood at -0.22 in 2024, which represents a dramatic fall compared to previous years.\n\nThis drastic decrease in government effectiveness can be attributed to various factors, including internal political issues and economic challenges. In contrast, other countries in the region have shown mixed results in terms of government effectiveness, but none have experienced such a pronounced decline as Mexico.\n\nIt is important to note that this measure reflects perceptions about the quality of public services, the efficiency of the civil service, policy formulation and implementation, as well as the credibility of government decisions. The decline in this indicator suggests that citizens and experts perceive a reduction in the government's capacity to manage these crucial aspects effectively.\n\nIn terms of historical context, Mexico has experienced fluctuations in this indicator over the past few years. However, the drop recorded in 2024 is particularly concerning due to its magnitude and its potential impact on public confidence in the government.\n\nThis situation poses significant challenges for Mexican authorities, who will need to address the underlying causes of this decline in government effectiveness to restore confidence and improve public management."
+    },
+    "countries": [
+      "MEX"
+    ],
+    "dataset_id": "WB_WGI",
     "indicator": {
       "idno": "GOV_WGI_GE",
       "database_id": "WB_WGI",
       "name": {
-        "es": "Worldwide Governance Indicators: Government Effectiveness",
-        "en": "Worldwide Governance Indicators: Government Effectiveness"
+        "es": "Efectividad del Gobierno",
+        "en": "Government Effectiveness"
       }
     },
     "observation": {
-      "value": -0.219933,
+      "value": "-0.219933",
       "time_period": "2024",
       "unit": "U",
       "display": {
-        "es": "-0.220 (índice)",
-        "en": "-0.220 (index)"
+        "es": "-0,22",
+        "en": "-0.22"
       },
       "period_display": {
         "es": "2024",
@@ -29,147 +43,35 @@
         "en": "2024"
       }
     },
-    "magnitude": {
-      "es": "−5.5σ",
-      "en": "−5.5σ"
-    },
+    "magnitude": "-0.219933",
     "chart_series": [
-      {
-        "period": "1996",
-        "value": -0.413603
-      },
-      {
-        "period": "1998",
-        "value": 0.037653
-      },
-      {
-        "period": "2000",
-        "value": 0.01828
-      },
-      {
-        "period": "2002",
-        "value": -0.31513
-      },
-      {
-        "period": "2003",
-        "value": -0.270301
-      },
-      {
-        "period": "2004",
-        "value": -0.243361
-      },
-      {
-        "period": "2005",
-        "value": -0.130268
-      },
-      {
-        "period": "2006",
-        "value": -0.085116
-      },
-      {
-        "period": "2007",
-        "value": -0.159786
-      },
-      {
-        "period": "2008",
-        "value": 0.006614
-      },
-      {
-        "period": "2009",
-        "value": 0.103917
-      },
-      {
-        "period": "2010",
-        "value": -0.070423
-      },
-      {
-        "period": "2011",
-        "value": 0.0989
-      },
-      {
-        "period": "2012",
-        "value": 0.198193
-      },
-      {
-        "period": "2013",
-        "value": 0.222828
-      },
-      {
-        "period": "2014",
-        "value": 0.131427
-      },
-      {
-        "period": "2015",
-        "value": 0.099996
-      },
-      {
-        "period": "2016",
-        "value": 0.12806
-      },
-      {
-        "period": "2017",
-        "value": 0.009986
-      },
-      {
-        "period": "2018",
-        "value": -0.026929
-      },
-      {
-        "period": "2019",
-        "value": -0.008668
-      },
-      {
-        "period": "2020",
-        "value": -0.046266
-      },
-      {
-        "period": "2021",
-        "value": -0.045743
-      },
-      {
-        "period": "2022",
-        "value": -0.087418
-      },
       {
         "period": "2023",
         "value": -0.074865
       },
       {
         "period": "2024",
-        "value": -0.219933,
-        "is_change_point": true
+        "value": -0.219933
+      }
+    ],
+    "claim_tokens": [
+      {
+        "claim_id": "e5a617f33fd81552",
+        "value": "-0.22",
+        "pcn_status": "rejected",
+        "pcn_reason": "Claim ID mismatch: got e5a617f33fd81552, expected b7374eaefe9a3548"
       }
     ],
     "verification_trace": {
       "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/WB_WGI",
-      "csv_link": "https://data360files.worldbank.org/data360-data/data/WB_WGI/GOV_WGI_GE.csv",
-      "methodology_ref": "https://datacatalog.worldbank.org/search/dataset/0038026/Worldwide-Governance-Indicators"
+      "csv_link": "https://data360files.worldbank.org/data360-data/data/WB_WGI/GOV_WGI_GE.csv"
     },
-    "score": 1,
-    "detected_at": "2026-05-22T00:21:20.832Z",
-    "license": "unspecified",
-    "narrative_citizen": {
-      "es": "Disminuyó bruscamente la efectividad gubernamental en México en 2024.",
-      "en": "Government effectiveness in Mexico plummeted sharply in 2024."
-    },
-    "narrative_journalist": {
-      "es": "El índice de efectividad gubernamental en México registró un z-score de -5.48 en 2024, muy por debajo de su promedio histórico.",
-      "en": "Mexico's government effectiveness index recorded a z-score of -5.48 in 2024, significantly below its historical average."
-    },
-    "claim_tokens": [
-      {
-        "claim_id": "e5a617f33fd81552",
-        "value": -0.219933,
-        "display_es": "-0.220 (índice)",
-        "display_en": "-0.220 (index)"
-      },
-      {
-        "claim_id": "6978c01b37adbe9e",
-        "value": -0.074865,
-        "display_es": "-0,07 U",
-        "display_en": "-0.07 U"
-      }
-    ],
-    "data_period_stale": true
+    "score": 0,
+    "detected_at": "2024-01-01T00:00:00Z",
+    "data_period_stale": true,
+    "quality_status": "incomplete",
+    "quality_tags": [
+      "1_claims_rejected"
+    ]
   }
 ]

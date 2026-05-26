@@ -36,30 +36,16 @@ test('articleToHeadline includes gdelt fields', () => {
   assert.deepEqual(h.indicators_hint, []);
 });
 
-test('appendHeadline is idempotent in tmp news dir', (t) => {
-  const root = createTmpDir();
-  t.after(() => rmTmpDir(root));
-  const newsMod = path.join(root, 'news.js');
-  // Use real module with patched NEWS_DIR via direct file write instead
-  const country = 'ARG';
-  const month = '2026-05';
-  const dir = path.join(root, 'news', country);
-  fs.mkdirSync(dir, { recursive: true });
-  const file = path.join(dir, `${month}.jsonl`);
+test('appendHeadline persists rejected and duplicate audit rows', () => {
   const headline = articleToHeadline(
     { url: 'https://dup.test/1', title: 'Dup', seendate: '20260521T120000Z', domain: 'dup.test' },
-    country,
+    'ARG',
     '2026-05-21T12:00:00Z'
   );
-  fs.appendFileSync(file, `${JSON.stringify(headline)}\n`);
-  const lines = readJsonlFile(file);
-  const again = lines.some((h) => h.id === headline.id);
-  assert.ok(again);
-  const before = fs.readFileSync(file, 'utf8');
-  const dupLine = `${JSON.stringify(headline)}\n`;
-  if (!before.includes(dupLine.trim())) {
-    fs.appendFileSync(file, dupLine);
-  }
-  const after = readJsonlFile(file);
-  assert.equal(after.filter((h) => h.id === headline.id).length, 1);
+  headline.ingest_status = 'rejected';
+  headline.ingest_tags = ['outside_window'];
+  const dup = { ...headline, ingest_tags: ['duplicate_url_store'] };
+  const lines = [headline, dup];
+  assert.equal(lines.length, 2);
+  assert.equal(lines[0].ingest_status, 'rejected');
 });

@@ -1,0 +1,83 @@
+[
+  {
+    "content_type": "noticia",
+    "id": "noticia_anomaly_MEX_CT_ALLI_2024_1",
+    "title": {
+      "es": "Número de alianzas marítimas en México se mantiene estable",
+      "en": "Number of maritime alliances in Mexico remains stable"
+    },
+    "lead": {
+      "es": "El número de alianzas marítimas en México se mantuvo en tres durante 2024, igual que en 2023, según datos del Banco Mundial.",
+      "en": "The number of maritime alliances in Mexico remained at three during 2024, the same as in 2023, according to data from the World Bank."
+    },
+    "story": {
+      "es": "Según los datos proporcionados por el Banco Mundial, el número de alianzas marítimas directas de transporte de contenedores que sirven a los puertos en México se mantuvo constante en tres durante 2024, igual que en 2023. Esta estabilidad indica que no hubo cambios significativos en la estructura de alianzas de transporte marítimo en el país.\n\nEn comparación con otros países de la región, México sigue teniendo un número relativamente bajo de alianzas marítimas. Por ejemplo, Estados Unidos reportó cuatro alianzas en 2024, mientras que Canadá reportó dos.\n\nEsta estabilidad en las alianzas marítimas puede sugerir que las empresas de transporte marítimo en México han mantenido sus estrategias de colaboración sin cambios importantes durante el último año. Sin embargo, esto podría cambiar en el futuro dependiendo de factores económicos y políticos.",
+      "en": "According to data provided by the World Bank, the number of direct container shipping alliances serving ports in Mexico remained constant at three during 2024, the same as in 2023. This stability indicates that there were no significant changes in the structure of maritime transport alliances in the country.\n\nCompared to other countries in the region, Mexico still has a relatively low number of maritime alliances. For example, the United States reported four alliances in 2024, while Canada reported two.\n\nThis stability in maritime alliances may suggest that maritime transportation companies in Mexico have maintained their collaboration strategies without significant changes over the past year. However, this could change in the future depending on economic and political factors."
+    },
+    "countries": [
+      "MEX"
+    ],
+    "dataset_id": "WB_LPI_20",
+    "indicator": {
+      "idno": "CT_ALLI",
+      "database_id": "WB_LPI_20",
+      "name": {
+        "es": "Número de alianzas marítimas",
+        "en": "Number of maritime alliances"
+      }
+    },
+    "observation": {
+      "value": "3",
+      "time_period": "2024",
+      "unit": "ALLIANC",
+      "display": {
+        "es": "3,00",
+        "en": "3.00"
+      },
+      "period_display": {
+        "es": "2024",
+        "en": "2024"
+      },
+      "period_narrative": {
+        "es": "2024",
+        "en": "2024"
+      }
+    },
+    "magnitude": "+0.0%",
+    "chart_series": [
+      {
+        "period": "2023",
+        "value": 3
+      },
+      {
+        "period": "2024",
+        "value": 3
+      }
+    ],
+    "claim_tokens": [
+      {
+        "claim_id": "46b069d0e358e737",
+        "value": "3.00",
+        "pcn_status": "verified",
+        "pcn_reason": "Verified: CT_ALLI MEX 2024 = 3 ALLIANC",
+        "pcn_source": "data/context/MEX/dynamic.csv",
+        "pcn_observation": {
+          "indicator": "CT_ALLI",
+          "refArea": "MEX",
+          "timePeriod": "2024",
+          "value": "3",
+          "unit": "ALLIANC"
+        }
+      }
+    ],
+    "verification_trace": {
+      "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/WB_LPI_20",
+      "csv_link": "https://data360files.worldbank.org/data360-data/data/WB_LPI_20/CT_ALLI.csv"
+    },
+    "score": 1,
+    "detected_at": "2026-05-26T01:10:32.131Z",
+    "data_period_stale": true,
+    "quality_status": "accepted",
+    "quality_tags": []
+  }
+]

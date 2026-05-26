@@ -1,0 +1,85 @@
+[
+  {
+    "content_type": "noticia",
+    "id": "noticia_anomaly_HND_CT_TAT_PT_2024",
+    "title": {
+      "es": "Tiempo de giro en puertos de Honduras se mantiene estable",
+      "en": "Turnaround Time at Honduran Ports Remains Stable"
+    },
+    "lead": {
+      "es": "El tiempo de giro en los puertos de Honduras se mantuvo estable en 2024, con un valor de 0.6 días, igual al registrado en 2023, según indica el indicador CT_TAT_PT del Banco Mundial.",
+      "en": "The turnaround time at Honduran ports remained stable in 2024, with a value of 0.6 days, the same as recorded in 2023, according to the CT_TAT_PT indicator from the World Bank."
+    },
+    "story": {
+      "es": "El tiempo de giro en los puertos de Honduras se mantuvo estable en 2024, con un valor de {{claim:4b40a9363dcaa15b|0.6}} días, igual al registrado en 2023. Esta estabilidad se observa en el contexto de la región, donde la mediana regional es de 1.5 días.\n\nComparando con otros países de la región, Honduras se sitúa por debajo de la mediana regional, lo que sugiere que aún hay espacio para mejorar la eficiencia en los puertos hondureños. Sin embargo, la estabilidad en estos indicadores demuestra que las medidas implementadas hasta ahora han sido efectivas en mantener el tiempo de giro constante.\n\n[HIPÓTESIS] La estabilidad en el tiempo de giro puede estar relacionada con políticas consistentes en la gestión portuaria y operaciones logísticas.",
+      "en": "The turnaround time at Honduran ports remained stable in 2024, with a value of {{claim:4b40a9363dcaa15b|0.6}} days, the same as recorded in 2023. This stability is observed in the context of the region, where the regional median is 1.5 days.\n\nCompared to other countries in the region, Honduras is below the regional median, suggesting there is still room for improving efficiency at Honduran ports. However, the stability in these indicators demonstrates that measures implemented so far have been effective in maintaining a constant turnaround time.\n\n[HYPOTHESIS] The stability in turnaround time may be related to consistent policies in port management and logistics operations."
+    },
+    "countries": [
+      "HND"
+    ],
+    "dataset_id": "WB_LPI_20",
+    "indicator": {
+      "idno": "CT_TAT_PT",
+      "database_id": "WB_LPI_20",
+      "name": {
+        "es": "Tiempo de giro en los puertos",
+        "en": "Port Turnaround Time"
+      }
+    },
+    "observation": {
+      "value": "0.6",
+      "time_period": "2024",
+      "unit": "D",
+      "display": {
+        "es": "0,60",
+        "en": "0.60"
+      },
+      "period_display": {
+        "es": "2024",
+        "en": "2024"
+      },
+      "period_narrative": {
+        "es": "2024",
+        "en": "2024"
+      }
+    },
+    "magnitude": "+0.0%",
+    "chart_series": [
+      {
+        "period": "2023",
+        "value": 0.6
+      },
+      {
+        "period": "2024",
+        "value": 0.6
+      }
+    ],
+    "claim_tokens": [
+      {
+        "claim_id": "4b40a9363dcaa15b",
+        "value": "0.6",
+        "pcn_status": "rejected",
+        "pcn_reason": "Value mismatch: claimed 0.6, stored 0.5 (delta 0.1000)",
+        "pcn_source": "data/context/HND/dynamic.csv",
+        "pcn_observation": {
+          "indicator": "CT_TAT_PT",
+          "refArea": "HND",
+          "timePeriod": "2024",
+          "value": "0.5",
+          "unit": "D"
+        }
+      }
+    ],
+    "verification_trace": {
+      "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/WB_LPI_20",
+      "csv_link": "https://data360files.worldbank.org/data360-data/data/WB_LPI_20/CT_TAT_PT.csv"
+    },
+    "score": 0,
+    "detected_at": "2026-05-26T01:17:59.523Z",
+    "data_period_stale": true,
+    "quality_status": "incomplete",
+    "quality_tags": [
+      "1_claims_rejected"
+    ]
+  }
+]

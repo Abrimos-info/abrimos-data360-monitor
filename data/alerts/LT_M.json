@@ -1,0 +1,85 @@
+[
+  {
+    "content_type": "noticia",
+    "id": "noticia_anomaly_ARG_cand_anomaly_ARG_LT_M_2024_2024_1",
+    "title": {
+      "es": "El tiempo de tránsito de contenedores aumentó en Argentina",
+      "en": "Container transit time increased in Argentina"
+    },
+    "lead": {
+      "es": "El tiempo de tránsito de contenedores entre el puerto de origen y el destino en Argentina aumentó de 45 días en 2023 a 49.6 días en 2024, según datos del Índice de Logística del Banco Mundial.",
+      "en": "The container transit time between the port of origin and the destination in Argentina increased from 45 days in 2023 to 49.6 days in 2024, according to data from the World Bank Logistics Index."
+    },
+    "story": {
+      "es": "Según los datos proporcionados por el Índice de Logística del Banco Mundial, el tiempo de tránsito de contenedores entre el puerto de origen y el destino en Argentina aumentó de 45 días en 2023 a 49.6 días en 2024, lo que representa un incremento del 10.2%. Esta tendencia podría estar relacionada con factores como la infraestructura portuaria, las regulaciones comerciales y las condiciones económicas del país.\n\nEn comparación con otros países de la región, Argentina presenta un tiempo de tránsito superior a la mediana regional, que se sitúa en 33.1 días. Esto sugiere que Argentina puede enfrentar desafíos adicionales en términos de eficiencia logística comparada con sus vecinos.\n\nEste aumento en el tiempo de tránsito podría afectar negativamente la competitividad del comercio exterior argentino, ya que un tiempo de tránsito más largo puede disuadir a los inversores y reducir la eficiencia en las cadenas de suministro internacionales.",
+      "en": "According to data provided by the World Bank Logistics Index, the container transit time between the port of origin and the destination in Argentina increased from 45 days in 2023 to 49.6 days in 2024, representing an increase of 10.2%. This trend may be related to factors such as port infrastructure, commercial regulations, and economic conditions in the country.\n\nCompared to other countries in the region, Argentina presents a higher transit time than the regional median, which stands at 33.1 days. This suggests that Argentina may face additional challenges in terms of logistics efficiency compared to its neighbors.\n\nThis increase in transit time could negatively affect the competitiveness of Argentine foreign trade, as longer transit times can discourage investors and reduce efficiency in international supply chains."
+    },
+    "countries": [
+      "ARG"
+    ],
+    "dataset_id": "WB_LPI_20",
+    "indicator": {
+      "idno": "LT_M",
+      "database_id": "WB_LPI_20",
+      "name": {
+        "es": "Tiempo de tránsito de contenedores entre el puerto de origen y el destino",
+        "en": "Container transit time between the port of origin and the destination"
+      }
+    },
+    "observation": {
+      "value": "49.6",
+      "time_period": "2024",
+      "unit": "D",
+      "display": {
+        "es": "49,60",
+        "en": "49.60"
+      },
+      "period_display": {
+        "es": "2024",
+        "en": "2024"
+      },
+      "period_narrative": {
+        "es": "2024",
+        "en": "2024"
+      }
+    },
+    "magnitude": "+10.2%",
+    "chart_series": [
+      {
+        "period": "2023",
+        "value": 45
+      },
+      {
+        "period": "2024",
+        "value": 49.6
+      }
+    ],
+    "claim_tokens": [
+      {
+        "claim_id": "f9291ab4df7f2567",
+        "value": "49.60",
+        "pcn_status": "rejected",
+        "pcn_reason": "Value mismatch: claimed 49.60, stored 47.2 (delta 2.4000)",
+        "pcn_source": "data/context/ARG/dynamic.csv",
+        "pcn_observation": {
+          "indicator": "LT_M",
+          "refArea": "ARG",
+          "timePeriod": "2024",
+          "value": "47.2",
+          "unit": "D"
+        }
+      }
+    ],
+    "verification_trace": {
+      "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/WB_LPI_20",
+      "csv_link": "https://data360files.worldbank.org/data360-data/data/WB_LPI_20/LT_M.csv"
+    },
+    "score": 1,
+    "detected_at": "2026-05-26T01:18:28.316Z",
+    "data_period_stale": true,
+    "quality_status": "incomplete",
+    "quality_tags": [
+      "1_claims_rejected"
+    ]
+  }
+]

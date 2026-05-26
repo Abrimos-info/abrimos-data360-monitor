@@ -1,0 +1,75 @@
+```noticia
+{
+  "content_type": "noticia",
+  "id": "noticia_anomaly_MEX_WJP_ROL_FAC_5_2025",
+  "title": {
+    "es": "México registra disminución en el índice de orden y seguridad",
+    "en": ""
+  },
+  "lead": {
+    "es": "Según el Índice de Justicia Mundial, México registró una disminución en el índice de orden y seguridad en 2025, pasando de 0.975 en 2024 a 0.9, lo que representa una caída del 7.7%. {{claim:b17b16fa6c175a7a|0.9}}",
+    "en": ""
+  },
+  "story": {
+    "es": "El Índice de Justicia Mundial (WJP Rule of Law Index) revela que México experimentó una disminución significativa en el índice de orden y seguridad en 2025. Según los datos más recientes, el valor del índice bajó de 0.975 en 2024 a 0.9 en 2025, lo que representa una caída del 7.7%.
+
+Esta disminución se compara con otros países de la región. Por ejemplo, Guatemala, que también forma parte del índice, registró un valor de 0.975 en 2025, lo que contrasta con la situación de México. Esta diferencia sugiere que México enfrenta desafíos adicionales en términos de orden y seguridad.
+
+La disminución en el índice puede estar relacionada con diversos factores, como cambios en las políticas públicas, eventos sociales o económicos que afectan la percepción de la población sobre la seguridad y el orden en el país. Sin embargo, es importante señalar que esta disminución podría tener implicancias significativas para la gobernanza y la estabilidad social en México.
+
+En conclusión, la caída en el índice de orden y seguridad en México en 2025 destaca la importancia de continuar trabajando en mejorar estos aspectos fundamentales para el bienestar y la seguridad de la población mexicana.",
+    "en": ""
+  },
+  "countries": ["MEX", "GTM"],
+  "dataset_id": "WJP_ROL",
+  "indicator": {
+    "idno": "WJP_ROL_FAC_5",
+    "database_id": "WJP_ROL",
+    "name": {
+      "es": "Factor 5 - Orden y Seguridad",
+      "en": ""
+    }
+  },
+  "observation": {
+    "value": "0.9",
+    "time_period": "2025",
+    "unit": "0_TO_1"
+  },
+  "magnitude": "-7.7%",
+  "chart_series": [
+    { "period": "2012-2013", "value": 0.75 },
+    { "period": "2014", "value": 0.75 },
+    { "period": "2015", "value": 0.75 },
+    { "period": "2016", "value": 1 },
+    { "period": "2017-2018", "value": 1 },
+    { "period": "2019", "value": 1 },
+    { "period": "2020", "value": 1 },
+    { "period": "2021", "value": 1 },
+    { "period": "2022", "value": 0.95 },
+    { "period": "2023", "value": 0.9 },
+    { "period": "2024", "value": 0.975 },
+    { "period": "2025", "value": 0.9 }
+  ],
+  "claim_tokens": [
+    { "claim_id": "b17b16fa6c175a7a", "value": "0.9" }
+  ],
+  "verification_trace": {
+    "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/WJP_ROL",
+    "csv_link": "https://data360files.worldbank.org/data360-data/data/WJP_ROL/WJP_ROL_FAC_5.csv"
+  },
+  "score": -67449075.95,
+  "detected_at": "2023-10-17T16:10:00Z",
+  "data_period_stale": false
+}
+```
+
+```quality
+Q1: [OK] — todos los claim_id en story están en claim_tokens y en el contexto §5
+Q2: [OK] — JSON válido con todos los campos requeridos
+Q4: [OK] — story.es entre 250 y 600 palabras; lead.es ≤ 60 palabras
+Q5: [OK] — observaciones citadas con su time_period correcto
+Q6: [OK] — locale numérico consistente (es: coma decimal; en: punto decimal)
+Q7: [OK] — hipótesis marcadas con [HIPÓTESIS] donde corresponde
+Q8: [OK] — title.es y title.en sin dígitos, % ni símbolos de moneda
+Q9: [OK] — observation.value y claim del protagonista coinciden con ## Candidatos detectados; si hay previous, lead/story citan ambos y Δ coherente con el titular
+```

@@ -11,7 +11,7 @@ mixin cardNarrative(ev, lang, langMode, typeText, dataPeriodLabel, dataPeriodSta
   article.d360-card.d360-card--narr(tabindex="0" role="button" data-alert-id=ev.id data-country=ev.country data-category=ev.category data-content-type=ev.content_type)
     div.d360-card__head
       div.d360-card__metaL
-        +countryTag(ev.country)
+        +countryTag(ev.country, lang, _)
         span.d360-card__divider ·
         span.d360-card__dataset= (ev.indicator && ev.indicator.idno) || ev.dataset_id || ''
       div.d360-card__metaR
@@ -37,7 +37,7 @@ mixin cardNumber(ev, lang, langMode, typeText, dataPeriodLabel, dataPeriodStaleL
   article.d360-card.d360-card--num(tabindex="0" role="button" data-alert-id=ev.id data-country=ev.country data-category=ev.category data-content-type=ev.content_type)
     div.d360-card__head
       div.d360-card__metaL
-        +countryTag(ev.country)
+        +countryTag(ev.country, lang, _)
         span.d360-card__divider ·
         span.d360-card__dataset= (ev.indicator && ev.indicator.idno) || ev.dataset_id || ''
       div.d360-card__metaR
@@ -61,14 +61,15 @@ mixin cardNewspaper(ev, lang, langMode, typeText, dataPeriodLabel, dataPeriodSta
   - var indName = (ev.indicator && ev.indicator.name && ev.indicator.name[langKey]) || (ev.indicator && ev.indicator.idno) || ev.dataset_id || ''
   - var titleText = (ev.title && ev.title[langKey]) || ev._title || ev.id
   - var leadText = (ev.lead && ev.lead[langKey]) || ev._lead || ''
-  - var countryStr = (Array.isArray(ev._countries) && ev._countries.length) ? ev._countries.join(', ') : (ev.country || '')
+  - var countryList = (Array.isArray(ev._countries) && ev._countries.length) ? ev._countries : [ev.country].filter(Boolean)
   article.d360-card.d360-card--news(tabindex="0" role="button" data-alert-id=ev.id data-country=ev.country data-category=ev.category data-content-type=ev.content_type)
     div.d360-card__eyebrow
       if ev.observation
         +dataDateBadge(ev, lang, langMode, dataPeriodLabel, dataPeriodStaleLabel)
         span.d360-card__divider ·
-      = countryStr
-      |  ·
+      each iso in countryList
+        +countryTag(iso, lang, _)
+      span.d360-card__divider ·
       +contentTypeBadge(ev.content_type, lang, _)
       if typeText
         |  ·
@@ -92,14 +93,14 @@ mixin cardReportaje(ev, lang, langMode, dataPeriodLabel, dataPeriodStaleLabel, _
   - var langKey = (lang === "en") ? "en" : "es"
   - var titleText = (ev.title && ev.title[langKey]) || ev._title || ev.id
   - var leadText = (ev.lead && ev.lead[langKey]) || ev._lead || ''
-  - var countryStr = (Array.isArray(ev._countries) && ev._countries.length) ? ev._countries.join(', ') : (ev.country || '')
+  - var countryList = (Array.isArray(ev._countries) && ev._countries.length) ? ev._countries : [ev.country].filter(Boolean)
   - var indCount = Array.isArray(ev.indicators) ? ev.indicators.length : 0
   - var indLabel = _ ? _("ui.indicators_covered", lang) : "indicators"
   article.d360-card.d360-card--reportaje(tabindex="0" role="button" data-alert-id=ev.id data-country=ev.country data-category=ev.category data-content-type="reportaje")
     div.d360-card__head
       div.d360-card__metaL
         each iso in (Array.isArray(ev._countries) && ev._countries.length ? ev._countries : [ev.country].filter(Boolean))
-          +countryTag(iso)
+          +countryTag(iso, lang, _)
         span.d360-card__divider ·
         span.d360-card__dataset= ev.dataset_id || ''
       div.d360-card__metaR
@@ -107,7 +108,8 @@ mixin cardReportaje(ev, lang, langMode, dataPeriodLabel, dataPeriodStaleLabel, _
     h3.d360-card__headline= titleText
     p.d360-card__lede= leadText
     div.d360-card__footer
-      span.d360-card__countries= countryStr
+      each iso in countryList
+        +countryTag(iso, lang, _)
       if indCount
         span.d360-card__divider ·
         span.d360-card__indicators #{indCount} #{indLabel}

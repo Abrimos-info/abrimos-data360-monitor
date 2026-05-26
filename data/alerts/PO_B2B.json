@@ -1,0 +1,99 @@
+[
+  {
+    "content_type": "noticia",
+    "id": "noticia_anomaly_ECU_PO_B2B_2024_1",
+    "title": {
+      "es": "El tiempo de entrega postal empresarial aumentó en Ecuador",
+      "en": "Postal delivery time for business mail increased in Ecuador"
+    },
+    "lead": {
+      "es": "El tiempo promedio de entrega de paquetes empresariales en Ecuador aumentó de 57.3 días en 2023 a 75.1 días en 2024, según datos del Índice de Logística del Banco Mundial.",
+      "en": "The average delivery time for business parcels in Ecuador has increased from 57.3 days in 2023 to 75.1 days in 2024, according to data from the World Bank's Logistics Performance Index."
+    },
+    "story": {
+      "es": "El incremento del tiempo de entrega postal empresarial en Ecuador se ha elevado significativamente en el último año. Según los datos proporcionados por el Índice de Logística del Banco Mundial, en 2023 el tiempo promedio de entrega era de {{claim:bccbbe39e7c19845|57.3}} días, mientras que en 2024 esta cifra alcanzó los {{claim:bccbbe39e7c19845|75.1}} días, representando un aumento del 31.1%.\n\nEste aumento en el tiempo de entrega postal empresarial puede estar relacionado con diversos factores, como problemas logísticos, restricciones de tráfico o cambios en las políticas postales. La comparación con otros países de la región muestra que Ecuador supera la mediana regional de 27.1 días, lo que indica que el problema de la entrega postal empresarial en Ecuador es superior a la media de la región.\n\nEs importante destacar que este indicador mide la eficiencia del sistema postal en la entrega de paquetes empresariales, lo que puede tener implicancias en la competitividad económica y en la satisfacción de los clientes empresariales.",
+      "en": "The increase in the postal delivery time for business mail in Ecuador has significantly risen in the last year. According to data provided by the World Bank's Logistics Performance Index, in 2023 the average delivery time was {{claim:bccbbe39e7c19845|57.3}} days, while in 2024 this figure reached {{claim:bccbbe39e7c19845|75.1}} days, representing an increase of 31.1%.\n\nThis increase in postal delivery time for business mail may be related to various factors such as logistical problems, traffic restrictions, or changes in postal policies. The comparison with other countries in the region shows that Ecuador exceeds the regional median of 27.1 days, indicating that the problem of postal delivery for business mail in Ecuador is above the regional average.\n\nIt is important to note that this indicator measures the efficiency of the postal system in delivering business parcels, which can have implications on economic competitiveness and customer satisfaction among businesses."
+    },
+    "countries": [
+      "ECU"
+    ],
+    "dataset_id": "WB_LPI_20",
+    "indicator": {
+      "idno": "PO_B2B",
+      "database_id": "WB_LPI_20",
+      "name": {
+        "es": "Tiempo de entrega postal empresarial",
+        "en": "Postal delivery time for business mail"
+      }
+    },
+    "observation": {
+      "value": "75.1",
+      "time_period": "2024",
+      "unit": "D",
+      "display": {
+        "es": "75,10",
+        "en": "75.10"
+      },
+      "period_display": {
+        "es": "2024",
+        "en": "2024"
+      },
+      "period_narrative": {
+        "es": "2024",
+        "en": "2024"
+      }
+    },
+    "magnitude": "+31.1%",
+    "chart_series": [
+      {
+        "period": "2023",
+        "value": 57.3
+      },
+      {
+        "period": "2024",
+        "value": 75.1
+      }
+    ],
+    "claim_tokens": [
+      {
+        "claim_id": "bccbbe39e7c19845",
+        "value": "75.10",
+        "pcn_status": "rejected",
+        "pcn_reason": "Value mismatch: claimed 75.10, stored 33.2 (delta 41.9000)",
+        "pcn_source": "data/context/ECU/dynamic.csv",
+        "pcn_observation": {
+          "indicator": "PO_B2B",
+          "refArea": "ECU",
+          "timePeriod": "2024",
+          "value": "33.2",
+          "unit": "D"
+        }
+      },
+      {
+        "claim_id": "bccbbe39e7c19845",
+        "value": "57.30",
+        "pcn_status": "rejected",
+        "pcn_reason": "Value mismatch: claimed 57.30, stored 33.2 (delta 24.1000)",
+        "pcn_source": "data/context/ECU/dynamic.csv",
+        "pcn_observation": {
+          "indicator": "PO_B2B",
+          "refArea": "ECU",
+          "timePeriod": "2024",
+          "value": "33.2",
+          "unit": "D"
+        }
+      }
+    ],
+    "verification_trace": {
+      "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/WB_LPI_20",
+      "csv_link": "https://data360files.worldbank.org/data360-data/data/WB_LPI_20/PO_B2B.csv"
+    },
+    "score": 1,
+    "detected_at": "2026-05-26T01:17:32.459Z",
+    "data_period_stale": true,
+    "quality_status": "incomplete",
+    "quality_tags": [
+      "2_claims_rejected"
+    ]
+  }
+]

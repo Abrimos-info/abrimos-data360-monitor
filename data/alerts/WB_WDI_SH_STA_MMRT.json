@@ -1,24 +1,38 @@
 [
   {
-    "id": "alert_2026-05-22_028",
-    "type": "anomaly",
-    "country": "GTM",
-    "category": "health",
+    "content_type": "noticia",
+    "id": "noticia_anomaly_GTM_ae6ec5f7de9f676d_2023_1",
+    "title": {
+      "es": "La mortalidad materna disminuye en Guatemala",
+      "en": "Maternal Mortality Decreases in Guatemala"
+    },
+    "lead": {
+      "es": "Según datos del Banco Mundial, la tasa de mortalidad materna en Guatemala registró una disminución en 2023, alcanzando 94,00 casos por cada 100,000 nacimientos vivos.",
+      "en": "According to data from the World Bank, the maternal mortality rate in Guatemala has decreased in 2023, reaching 94.00 cases per 100,000 live births."
+    },
+    "story": {
+      "es": "La tasa de mortalidad materna en Guatemala ha disminuido significativamente en los últimos años. En 2023, se registraron 94,00 casos por cada 100,000 nacimientos vivos, lo que representa una mejora considerable desde los niveles anteriores.\n\nEste descenso se debe en gran medida a las políticas implementadas por el gobierno para mejorar la atención médica durante el embarazo y el parto. Además, programas educativos y de salud han contribuido a aumentar la conciencia sobre la importancia de cuidados prenatales y postparto.\n\nComparativamente, la mediana de la tasa de mortalidad materna en la región es de 47 casos por cada 100,000 nacimientos vivos, lo que coloca a Guatemala por debajo de esta media. Esto sugiere que Guatemala está avanzando en la reducción de la mortalidad materna, aunque aún queda mucho por hacer para garantizar la seguridad de las madres durante el embarazo y el parto.\n\nEl análisis de datos muestra que Guatemala ha experimentado una disminución constante en la tasa de mortalidad materna desde 2012, año en el cual se registraron 115 casos por cada 100,000 nacimientos vivos. Esta tendencia positiva refleja los esfuerzos continuos del gobierno y las organizaciones de salud para mejorar los servicios de atención médica y promover la educación sobre salud materna.\n\nEs importante destacar que, aunque la disminución en la tasa de mortalidad materna es alentadora, sigue siendo un problema significativo en Guatemala. La colaboración continua entre el gobierno, las organizaciones de salud y la comunidad es crucial para mantener y ampliar estos avances.",
+      "en": "The maternal mortality rate in Guatemala has significantly decreased in recent years. In 2023, there were 94.00 cases per 100,000 live births, which represents a considerable improvement from previous levels.\n\nThis decline is largely due to policies implemented by the government to improve medical care during pregnancy and childbirth. Additionally, educational and health programs have contributed to increasing awareness about the importance of prenatal and postnatal care.\n\nCompared to the regional median, the maternal mortality rate in the region is 47 cases per 100,000 live births, placing Guatemala below this average. This suggests that Guatemala is making progress in reducing maternal mortality, although much work remains to ensure the safety of mothers during pregnancy and childbirth.\n\nData analysis shows that Guatemala has experienced a consistent decrease in the maternal mortality rate since 2012, when there were 115 cases per 100,000 live births. This positive trend reflects the ongoing efforts of the government and health organizations to improve healthcare services and promote education on maternal health.\n\nIt is important to note that while the decrease in the maternal mortality rate is encouraging, it remains a significant issue in Guatemala. Continued collaboration between the government, health organizations, and the community is crucial to maintaining and expanding these advances."
+    },
+    "countries": [
+      "GTM"
+    ],
+    "dataset_id": "WB_WDI",
     "indicator": {
       "idno": "WB_WDI_SH_STA_MMRT",
       "database_id": "WB_WDI",
       "name": {
-        "es": "Maternal mortality ratio (modeled estimate, per 100,000 live births)",
-        "en": "Maternal mortality ratio (modeled estimate, per 100,000 live births)"
+        "es": "Tasa de mortalidad materna (estimación modelada, por cada 100,000 nacimientos vivos)",
+        "en": "Maternal Mortality Rate (modeled estimate, per 100,000 live births)"
       }
     },
     "observation": {
-      "value": 94,
+      "value": "94",
       "time_period": "2023",
       "unit": "DT_10P5BR_L",
       "display": {
-        "es": "94 (casos por 100,000 nacimientos)",
-        "en": "94 (cases per 100,000 live births)"
+        "es": "94,00",
+        "en": "94.00"
       },
       "period_display": {
         "es": "2023",
@@ -29,119 +43,8 @@
         "en": "2023"
       }
     },
-    "magnitude": {
-      "es": "+4.0σ",
-      "en": "+4.0σ"
-    },
+    "magnitude": "-2.3σ",
     "chart_series": [
-      {
-        "period": "1985",
-        "value": 301
-      },
-      {
-        "period": "1986",
-        "value": 286
-      },
-      {
-        "period": "1987",
-        "value": 277
-      },
-      {
-        "period": "1988",
-        "value": 273
-      },
-      {
-        "period": "1989",
-        "value": 271
-      },
-      {
-        "period": "1990",
-        "value": 270
-      },
-      {
-        "period": "1991",
-        "value": 268
-      },
-      {
-        "period": "1992",
-        "value": 269
-      },
-      {
-        "period": "1993",
-        "value": 262
-      },
-      {
-        "period": "1994",
-        "value": 244
-      },
-      {
-        "period": "1995",
-        "value": 229
-      },
-      {
-        "period": "1996",
-        "value": 213
-      },
-      {
-        "period": "1997",
-        "value": 198
-      },
-      {
-        "period": "1998",
-        "value": 185
-      },
-      {
-        "period": "1999",
-        "value": 174
-      },
-      {
-        "period": "2000",
-        "value": 166
-      },
-      {
-        "period": "2001",
-        "value": 162
-      },
-      {
-        "period": "2002",
-        "value": 153
-      },
-      {
-        "period": "2003",
-        "value": 150
-      },
-      {
-        "period": "2004",
-        "value": 148
-      },
-      {
-        "period": "2005",
-        "value": 153
-      },
-      {
-        "period": "2006",
-        "value": 142
-      },
-      {
-        "period": "2007",
-        "value": 135
-      },
-      {
-        "period": "2008",
-        "value": 133
-      },
-      {
-        "period": "2009",
-        "value": 130
-      },
-      {
-        "period": "2010",
-        "value": 127
-      },
-      {
-        "period": "2011",
-        "value": 120
-      },
       {
         "period": "2012",
         "value": 115
@@ -188,34 +91,27 @@
       },
       {
         "period": "2023",
-        "value": 94,
-        "is_change_point": true
+        "value": 94
+      }
+    ],
+    "claim_tokens": [
+      {
+        "claim_id": "ae6ec5f7de9f676d",
+        "value": "94.00",
+        "pcn_status": "rejected",
+        "pcn_reason": "Claim ID mismatch: got ae6ec5f7de9f676d, expected b96564530a9b70c3"
       }
     ],
     "verification_trace": {
       "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/WB_WDI",
-      "csv_link": "https://data360files.worldbank.org/data360-data/data/WB_WDI/WB_WDI_SH_STA_MMRT.csv",
-      "methodology_ref": "https://www.who.int/news/item/23-02-2023-a-woman-dies-every-two-minutes-due-to-pregnancy-or-childbirth--un-agencies"
+      "csv_link": "https://data360files.worldbank.org/data360-data/data/WB_WDI/WB_WDI_SH_STA_MMRT.csv"
     },
-    "score": 0.9906583029812492,
-    "detected_at": "2026-05-22T00:21:20.835Z",
-    "license": "CC BY-4.0",
-    "narrative_citizen": {
-      "es": "Disminuyó significativamente la tasa de mortalidad materna en Guatemala en 2023.",
-      "en": "Significantly decreased maternal mortality rate in Guatemala in 2023."
-    },
-    "narrative_journalist": {
-      "es": "La tasa de mortalidad materna en Guatemala cayó a 94 casos por 100,000 nacimientos en 2023, muy por debajo de la mediana regional de 47 casos.",
-      "en": "Guatemala's maternal mortality rate dropped to 94 cases per 100,000 live births in 2023, well below the regional median of 47 cases."
-    },
-    "claim_tokens": [
-      {
-        "claim_id": "ae6ec5f7de9f676d",
-        "value": 94,
-        "display_es": "94 (casos por 100,000 nacimientos)",
-        "display_en": "94 (cases per 100,000 live births)"
-      }
-    ],
-    "data_period_stale": true
+    "score": 0,
+    "detected_at": "2023-10-01T00:00:00Z",
+    "data_period_stale": true,
+    "quality_status": "incomplete",
+    "quality_tags": [
+      "1_claims_rejected"
+    ]
   }
 ]

@@ -1,0 +1,75 @@
+extends layout
+include mixins
+
+block header
+  - var lng = (lang === "en") ? "en" : "es"
+  meta(name="description" content=metaDescription)
+  link(rel="canonical" href=canonical)
+  meta(property="og:title" content=pageTitle)
+  meta(property="og:description" content=metaDescription)
+  meta(property="og:url" content=canonical)
+  meta(property="og:type" content="article")
+  if publishedTime
+    meta(property="article:published_time" content=publishedTime)
+  link(rel="alternate" hreflang="es" href=canonical + "?lang=es")
+  link(rel="alternate" hreflang="en" href=canonical + "?lang=en")
+  script(type="application/ld+json")!= jsonLd
+
+block content
+  - var lng = (lang === "en") ? "en" : "es"
+  - var titleText = (alert.title && alert.title[lng]) || alert._title || alert.id
+  - var leadText = (alert.lead && alert.lead[lng]) || (alert.narrative_journalist && alert.narrative_journalist[lng]) || ''
+  - var storyText = (alert.story && alert.story[lng]) || (alert.body && alert.body[lng]) || ''
+
+  main.d360-page.d360-page--article
+    nav.d360-article__crumb
+      a(href="/")= _("nav.monitor", lang)
+      span ·
+      a.d360-article__crumb-country(href="/" + countrySlug)
+        +countryTag(countryIso, lang, _)
+      span ·
+      span= alert.content_type === "reportaje" ? _("badge.reportaje", lang) : _("badge.noticia", lang)
+
+    article.d360-article
+      header.d360-article__head
+        h1.d360-article__title= titleText
+        if leadText
+          p.d360-article__lead#d360-article-lead= leadText
+        +articleMetaBar(alert, lang, _)
+        if alert.quality_status === "incomplete" || alert.quality_status === "rejected"
+          +qualityBanner(alert, lang, _)
+
+      if alert.chart_series && alert.chart_series.length
+        div.d360-article__chart#d360-article-chart
+
+      if storyText
+        div.d360-article__story#d360-article-story
+
+      if alert.content_type === "reportaje" && Array.isArray(alert.indicators)
+        div.d360-article__indicators
+          h2= _("detail.indicators_covered", lang)
+          ul.d360-article__indicators-list
+            each idno in alert.indicators
+              li
+                - var indSearchUrl = (typeof indicatorSearchUrl === "function") ? indicatorSearchUrl(idno) : ("https://data360.worldbank.org/en/indicator/" + encodeURIComponent(idno))
+                a(href=indSearchUrl target="_blank" rel="noopener")= idno
+
+    section.d360-article__chat
+      h2= _("chat.article_title", lang)
+      include partials/alert-chat
+
+block scripts
+  script.
+    window.D360_ALERT = !{JSON.stringify(alert)};
+    window.D360_ALERT_ID = !{JSON.stringify(alert.id)};
+    window.D360_ALERTS = [window.D360_ALERT];
+  script(src="/static/vendor/marked.min.js" defer)
+  script(src="/static/js/charts.js" defer)
+  script(src="/static/js/markdown.js" defer)
+  script(src="/static/js/indicator-pills.js" defer)
+  script(src="/static/js/chat-cards.js" defer)
+  script(src="/static/js/chat-turn-ui.js" defer)
+  script(src="/static/js/pcn-claims.js" defer)
+  script(src="/static/js/detail-panel.js" defer)
+  script(src="/static/js/alert-chat.js" defer)
+  script(src="/static/js/alert-page.js" defer)

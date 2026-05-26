@@ -1,0 +1,63 @@
+{
+  "content_type": "reportaje",
+  "id": "reportaje_FAO_CP_2026_05_21",
+  "title": {
+    "es": "Inflación y precios al consumidor en América Latina",
+    "en": "Inflation and Consumer Prices in Latin America"
+  },
+  "lead": {
+    "es": "Los últimos datos muestran una disminución en la inflación alimentaria en Argentina, mientras que el índice de precios al consumidor muestra un aumento significativo en el mismo país. Estos cambios reflejan la compleja situación económica en varios países de la región.",
+    "en": "Recent data shows a decrease in food inflation in Argentina, while the consumer price index has significantly increased in the same country. These changes reflect the complex economic situation in several countries in the region."
+  },
+  "story": {
+    "es": "En septiembre de 2025, la inflación alimentaria en Argentina registró una baja significativa, alcanzando un valor de 27,26. Por otro lado, el índice de precios al consumidor (IPC) en Argentina experimentó un aumento drástico, llegando a un valor de 11.322,29. Este incremento representa una escalada notable en los costos de vida para los ciudadanos argentinos.\n\nHistóricamente, Argentina ha enfrentado desafíos económicos que han afectado la estabilidad de sus indicadores de precios. Comparativamente, el IPC en Ecuador se mantuvo estable en septiembre de 2025, con un valor de 111,22, lo que contrasta con la situación en Argentina.\n\nEstos cambios reflejan la compleja situación económica en varios países de la región. En Argentina, la disminución en la inflación alimentaria puede atribuirse a diversas políticas implementadas por el gobierno para controlar los precios y estabilizar la economía. Sin embargo, el aumento en el IPC indica que aún persisten desafíos en la estabilidad de precios.\n\nEn Ecuador, el IPC se mantuvo estable, lo que sugiere una mayor estabilidad en los precios de consumo. Esto contrasta con la situación en Argentina, donde se observa una mayor volatilidad en los indicadores de precios.\n\nEstos datos son relevantes para entender la evolución económica de los países de la región. La disminución en la inflación alimentaria en Argentina es una señal positiva, pero el aumento en el IPC indica que aún existen desafíos en la estabilidad de precios. En Ecuador, la estabilidad en el IPC sugiere una mayor estabilidad en los precios de consumo, lo que puede indicar una mejor gestión económica en comparación con Argentina.\n\nEn resumen, estos cambios reflejan la compleja situación económica en varios países de la región. Mientras que algunos países como Ecuador muestran una mayor estabilidad en los precios de consumo, otros como Argentina enfrentan desafíos en la estabilidad de precios. Estos datos son cruciales para comprender la evolución económica de la región y para informar sobre las políticas económicas necesarias para mejorar la estabilidad de precios en los países de la región.",
+    "en": "In September 2025, food inflation in Argentina recorded a significant decline, reaching a value of 27.26. On the other hand, the Consumer Price Index (CPI) in Argentina experienced a dramatic increase, reaching a value of 11,322.29. This increase represents a notable escalation in living costs for Argentine citizens.\n\nHistorically, Argentina has faced economic challenges that have affected the stability of its price indices. Comparatively, the CPI in Ecuador remained stable in September 2025, with a value of 111.22, which contrasts with the situation in Argentina.\n\nThese changes reflect the complex economic situation in several countries in the region. In Argentina, the decrease in food inflation can be attributed to various policies implemented by the government to control prices and stabilize the economy. However, the increase in the CPI indicates that there are still challenges in price stability. In Ecuador, the stability in the CPI suggests greater stability in consumer prices, which may indicate better economic management compared to Argentina.\n\nThese data are relevant to understand the economic evolution of the countries in the region. The decrease in food inflation in Argentina is a positive signal, but the increase in the CPI indicates that there are still challenges in price stability. In Ecuador, the stability in the CPI suggests greater stability in consumer prices, which may indicate better economic management compared to Argentina.\n\nIn summary, these changes reflect the complex economic situation in several countries in the region. While some countries like Ecuador show greater stability in consumer prices, others like Argentina face challenges in price stability. These data are crucial to understand the economic evolution of the region and to inform about the necessary economic policies to improve price stability in the countries of the region."
+  },
+  "countries": [
+    "ARG",
+    "ECU"
+  ],
+  "dataset_id": "FAO_CP",
+  "indicators": [
+    "FAO_CP_23014",
+    "FAO_CP_23012"
+  ],
+  "noticia_ids": [
+    "noticia_anomaly_ARG_FAO_CP_23014_2025_09_01_1",
+    "noticia_abrupt_change_ARG_2025_09_01_1"
+  ],
+  "claim_tokens": [
+    {
+      "claim_id": "787cff6379a8aad9",
+      "value": "27.26",
+      "pcn_status": "rejected",
+      "pcn_reason": "Claim ID mismatch: got 787cff6379a8aad9, expected fc404f507aa3db77"
+    },
+    {
+      "claim_id": "d4aab454133fb62a",
+      "value": "11322.289801",
+      "pcn_status": "rejected",
+      "pcn_reason": "Claim ID mismatch: got d4aab454133fb62a, expected d12d58b118e45dd0"
+    },
+    {
+      "claim_id": "f8b1748b041661b9",
+      "value": "111.218491",
+      "pcn_status": "rejected",
+      "pcn_reason": "Claim ID mismatch: got f8b1748b041661b9, expected d12d58b118e45dd0"
+    }
+  ],
+  "verification_trace": {
+    "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/FAO_CP",
+    "csv_links": [
+      "https://data360.worldbank.org/en/int/dataset/FAO_CP/csv",
+      "https://data360files.worldbank.org/data360-data/data/FAO_CP/FAO_CP_23014.csv",
+      "https://data360files.worldbank.org/data360-data/data/FAO_CP/FAO_CP_23012.csv"
+    ]
+  },
+  "score": 0,
+  "detected_at": "2026-05-21T12:00:00Z",
+  "quality_status": "incomplete",
+  "quality_tags": [
+    "3_claims_rejected"
+  ]
+}

@@ -74,7 +74,7 @@ function metaToMarkdown(idno, db, label, sd) {
   parts.push('## Links'); parts.push('');
   if (sd.csv_link) parts.push(`- **csv**: ${sd.csv_link}`);
   if (sd.json_link) parts.push(`- **json metadata**: ${sd.json_link}`);
-  parts.push(`- **dataset on Data360**: https://data360.worldbank.org/en/int/dataset/${db}`);
+  parts.push(`- **dataset on Data360**: ${require('../lib/data360-urls').datasetSearchUrl(db)}`);
   parts.push('');
   if (sd.definition_long) { parts.push('## Definition'); parts.push(''); parts.push(sd.definition_long.trim()); parts.push(''); }
   if (sd.methodology) { parts.push('## Methodology'); parts.push(''); parts.push(sd.methodology.trim()); parts.push(''); }

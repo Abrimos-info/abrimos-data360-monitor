@@ -1,11 +1,11 @@
-# Guía de usuario — Data360 Monitor
+# Guía de usuario — Data360 News Agent
 
 > **Audiencia**: redacciones de América Latina y el Caribe.  
 > **Estado**: borrador funcional al 2026-05-22 (demo fase 2, entrega 2026-05-31).
 
 ## Qué hace esta herramienta
 
-Data360 Monitor vigila un conjunto curado de indicadores económicos, sociales y de gobernanza en **Guatemala, Honduras, Argentina, Ecuador y México**. Cuando detecta un cambio estadísticamente notable, genera dos tipos de contenido verificado:
+**Data360 News Agent** es una agencia de noticias basada en inteligencia artificial que vigila indicadores económicos, sociales y de gobernanza en **Guatemala, Honduras, Argentina, Ecuador y México**. Cuando detecta un hecho estadísticamente notable, publica dos tipos de contenido verificado:
 
 - **Noticia**. Pieza bilingüe (250–600 palabras) por indicador y país, disparada por un candidato de detección.
 - **Reportaje**. Pieza bilingüe larga (500–1200 palabras) por *dataset*, generada solo cuando dos o más Noticias comparten el mismo `dataset_id`. Sintetiza una mirada regional con secciones por país y reutiliza los `claim_id` de las Noticias que sintetiza.
@@ -16,10 +16,10 @@ El producto tiene dos caras:
 
 | Vista | URL | Para qué sirve |
 |-------|-----|----------------|
-| **Monitor** | `/` | Explorar, filtrar y verificar alertas ya generadas |
-| **Chat analítico** | `/chat` | Preguntar en lenguaje natural, consultar Data360 en vivo, titulares GDELT y re-ejecutar análisis bajo demanda |
+| **Portada** | `/` (por país) | Portada de periódico: reportajes destacados, titulares e indicadores actualizados |
+| **Chat por pieza** | en cada noticia/reportaje | Profundizar en datos y fuentes de esa pieza |
 
-Ambas leen el mismo archivo de alertas (`data/alerts.json`) y comparten el panel de detalle y las tarjetas de alerta.
+Ambas leen el mismo archivo de alertas (`data/alerts.json`) y comparten la vista de artículo y las tarjetas de pieza.
 
 ---
 
@@ -27,8 +27,8 @@ Ambas leen el mismo archivo de alertas (`data/alerts.json`) y comparten el panel
 
 - **Países**: GTM, HND, ARG, ECU, MEX (no sustituir por BRA, CHL, COL, etc.).
 - **Indicadores**: dos modos de selección.
-  - **Watchlist estático**: ~35 indicadores en tres tiers (pulse, annual, forecast). Lista canónica en `lib/watchlist.js`.
-  - **Modo dinámico**: indicadores descubiertos en vivo desde `/data360/searchv2` ordenados por fecha de actualización, expandidos vía `/data360/indicators?datasetId=…`, persistidos en `data/dynamic-watchlist.json` y tratados como un cuarto tier `dynamic`. Útil cuando se quiere cubrir más indicadores sin tocar la lista a mano.
+  - **Watchlist estático**: ~35 indicadores en tres tiers de fetch (pulse, annual, forecast). Lista canónica en `lib/watchlist.js`. El tier `pulse` ya no entra en detección ni verificación PCN.
+  - **Modo dinámico** (recomendado): indicadores descubiertos en vivo desde `/data360/searchv2`, expandidos vía `/data360/indicators?datasetId=…`, persistidos en `data/dynamic-watchlist.json` y escritos en `data/context/{PAÍS}/dynamic.csv`. Es la fuente que usa el pipeline por defecto (`NOTICIA_TIERS = ['dynamic']`).
 - **Detección**: estrategias **1** (cambios abruptos, z-score) y **4** (anomalías cross-indicador).
 - **Modo**: replay histórico sobre snapshots CSV, no tiempo real continuo (D-007).
 - **Titulares**: GDELT en español, almacenados en `data/news/{PAÍS}/{YYYY-MM}.jsonl` (contexto pasivo para narrativas; divergencia narrativa-dato queda en roadmap).
@@ -41,31 +41,36 @@ Ambas leen el mismo archivo de alertas (`data/alerts.json`) y comparten el panel
 
 Barra superior con tres secciones:
 
-- **Monitor** — feed de alertas
-- **Chat** — agente conversacional con tools
+- **Portada** — agencia por país: reportajes, titulares e indicadores
 - **About** — metodología, límites, equipo, licencia
 
 Botón **Suscribirse** (placeholder visual, sin backend en el demo).
 
 ### Idiomas
 
-Selector **ES / EN** en la barra. Cambia la interfaz y el idioma de las narrativas mostradas. Las alertas guardan texto en ambos idiomas en el JSON; la UI muestra **un idioma a la vez** (no hay modo bilingüe simultáneo en pantalla).
+Selector **ES / EN** en la barra. Cambia la interfaz y el idioma de las narrativas mostradas. Las piezas guardan texto en ambos idiomas en el JSON; la UI muestra **un idioma a la vez** (no hay modo bilingüe simultáneo en pantalla).
 
 Parámetros URL: `?lang=es` o `?lang=en`.
 
 ### Onboarding
 
-Modal de bienvenida en la primera visita (dismissible). Explica el flujo básico del monitor.
+Modal de bienvenida en la primera visita (dismissible). Presenta **Data360 News Agent** como agencia de noticias con IA: detecta hechos noticiosos en los 12.000 indicadores de Data360 y los entrega verificados con perspectiva local a newsrooms LAC.
 
 ---
 
-## Monitor (`/`)
+## Portada (`/{país}`)
 
-### Feed de alertas
+### Layout de periódico
 
-Lista todas las alertas del pipeline, ordenadas por **fecha del dato** (`time_period`), no por fecha de detección.
+La portada por país muestra:
 
-Cada tarjeta muestra:
+- **Reportaje destacado** — pieza de profundidad en hero
+- **Titulares** — listado de noticias (enlace al artículo)
+- **Indicadores actualizados** — barra horizontal con chips (valor + magnitud; enlace a la misma noticia)
+
+Orden por **fecha del dato** (`time_period`), no por fecha de detección.
+
+Cada titular o chip muestra:
 
 - País (ISO3)
 - Código de indicador (IDNO)
@@ -161,7 +166,11 @@ Botón **Datos recién publicados (N)** abre un panel con indicadores cuyo CSV c
 
 Los códigos IDNO en el texto se renderizan como:
 
-**Nombre legible** `WB_… · Data360` (enlace al indicador en Data360).
+**Nombre legible** `WB_… · Data360` (enlace a `https://data360.worldbank.org/en/indicator/{IDNO}` vía `lib/data360-urls.js`).
+
+### Chat por pieza (página de artículo)
+
+Cada noticia y reportaje incluye un chat acotado a esa pieza (`static/js/alert-chat.js`). La conversación se guarda en `sessionStorage` por `alert_id` y, al recargar, se restauran markdown, trace de tools, sparklines en caché y pasos de actividad colapsados (no solo el texto plano).
 
 ### Exportar conversación
 
@@ -259,7 +268,7 @@ Flujo típico dinámico: `pipeline:dynamic` (o `pipeline:dynamic:force` cuando h
 
 El paso `analyze` delega en `lib/analysis/runner.js` para Noticias (una por indicador) y luego en `lib/analysis/reportaje-runner.js` para Reportajes (uno por dataset cuando ≥2 Noticias comparten `dataset_id`). Consolida `data/alerts/{IDNO}.json`, `data/alerts/reportaje_{dataset}.json` y `data/alerts.json`.
 
-Salida principal: **`data/alerts.json`** consumido por Monitor y Chat.
+Salida principal: **`data/alerts.json`** consumido por la portada y el chat por pieza.
 
 Variables de entorno: pipeline en `.env.example` (`AI_PROVIDER`, `AI_MODEL`); chat en `lib/ai-client.js` (`CHAT_AI_PROVIDER`, default `vllm`; `CHAT_MAX_TURNS`, default `8`).
 
@@ -269,7 +278,8 @@ Variables de entorno: pipeline en `.env.example` (`AI_PROVIDER`, `AI_MODEL`); ch
 
 | Método | Ruta | Descripción |
 |--------|------|-------------|
-| GET | `/` | Monitor (HTML) |
+| GET | `/` | Selector de país (HTML) |
+| GET | `/{país}` | Portada (HTML) |
 | GET | `/chat` | Chat (HTML) |
 | GET | `/about` | About (HTML) |
 | GET | `/api/alerts` | JSON `{ alerts: [...] }` (recarga store) |
@@ -297,9 +307,9 @@ Definiciones: `lib/chat/tools.js`. Prompt del sistema: `lib/prompts/chat-system.
 
 ---
 
-## Monitor vs Chat — cuándo usar cada uno
+## Portada vs chat por pieza — cuándo usar cada uno
 
-| Necesidad | Monitor | Chat |
+| Necesidad | Portada | Chat por pieza |
 |-----------|---------|------|
 | Browse rápido de alertas | ✓ | |
 | Verificación PCN completa | ✓ | parcial (tarjetas + enlace) |

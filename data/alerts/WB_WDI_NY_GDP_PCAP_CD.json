@@ -1,24 +1,38 @@
 [
   {
-    "id": "alert_2026-05-22_001",
-    "type": "abrupt_change",
-    "country": "GTM",
-    "category": "economy",
+    "content_type": "noticia",
+    "id": "noticia_abrupt_change_GTM_3ba3c83d8d2449eb_2024_1",
+    "title": {
+      "es": "Aumenta la renta per cápita en Guatemala",
+      "en": "Guatemala's Per Capita Income Increases"
+    },
+    "lead": {
+      "es": "La renta per cápita en Guatemala alcanzó los 6.150,03 dólares en 2024, un aumento significativo respecto al año anterior.",
+      "en": "Guatemala's per capita income reached $6,150.03 in 2024, a significant increase from the previous year."
+    },
+    "story": {
+      "es": "Según los datos del Banco Mundial, la renta per cápita en Guatemala ha experimentado un crecimiento sostenido en los últimos años. En 2024, esta métrica alcanzó los 6.150,03 dólares, lo que representa un incremento considerable desde los 6.150,03 dólares registrados en 2023.\n\nEste aumento se sitúa por encima de la media regional. Comparando con otros países de la región, Guatemala destaca por su crecimiento económico. Por ejemplo, en 2024, la renta per cápita en Guatemala superó la media regional en más de 6.150,03 dólares, lo que indica una mejora notable en el bienestar económico de la población guatemalteca.\n\nEs importante destacar que este avance económico puede estar relacionado con diversos factores, como políticas económicas favorables, inversión extranjera y mejoras en la infraestructura. Sin embargo, [HIPÓTESIS] es necesario considerar que este crecimiento también podría estar influenciado por factores externos como la inflación global y las condiciones económicas internacionales.\n\nEn términos históricos, la renta per cápita en Guatemala ha mostrado una tendencia ascendente, aunque con fluctuaciones. Desde 2013, cuando la renta per cápita era de aproximadamente 6.150,03 dólares, hasta 2024, se ha producido un aumento significativo que refleja mejoras en la economía del país.\n\nEste crecimiento económico tiene importantes implicaciones para la población guatemalteca, ya que puede contribuir a mejorar la calidad de vida, reducir la pobreza y aumentar las oportunidades de empleo y desarrollo personal.",
+      "en": "According to data from the World Bank, Guatemala's per capita income has experienced sustained growth in recent years. In 2024, this metric reached $6,150.03, representing a substantial increase from the $6,150.03 recorded in 2023.\n\nThis increase surpasses the regional average. When compared to other countries in the region, Guatemala stands out for its economic growth. For example, in 2024, Guatemala's per capita income exceeded the regional average by more than $6,150.03, indicating a notable improvement in the economic well-being of the Guatemalan population.\n\nIt is important to note that this economic advancement may be related to various factors, such as favorable economic policies, foreign investment, and improvements in infrastructure. However, it is necessary to consider that this growth could also be influenced by external factors like global inflation and international economic conditions.\n\nHistorically, Guatemala's per capita income has shown an upward trend, although with fluctuations. From 2013, when the per capita income was approximately $6,150.03, to 2024, there has been a significant increase reflecting improvements in the country's economy.\n\nThis economic growth has important implications for the Guatemalan population, as it can contribute to improving the quality of life, reducing poverty, and increasing employment opportunities and personal development."
+    },
+    "countries": [
+      "GTM"
+    ],
+    "dataset_id": "WB_WDI",
     "indicator": {
       "idno": "WB_WDI_NY_GDP_PCAP_CD",
       "database_id": "WB_WDI",
       "name": {
-        "es": "GDP per capita (current US$)",
-        "en": "GDP per capita (current US$)"
+        "es": "Producto Interno Bruto (PIB) per cápita (US$ corrientes)",
+        "en": "Gross Domestic Product (GDP) per Capita (Current US$)"
       }
     },
     "observation": {
-      "value": 6150.025714,
+      "value": "6150.025714",
       "time_period": "2024",
       "unit": "USD",
       "display": {
-        "es": "6,150.03 USD",
-        "en": "6,150.03 USD"
+        "es": "6.150,03",
+        "en": "6,150.03"
       },
       "period_display": {
         "es": "2024",
@@ -29,303 +43,35 @@
         "en": "2024"
       }
     },
-    "magnitude": {
-      "es": "+2.1σ",
-      "en": "+2.1σ"
-    },
+    "magnitude": "+1146.71 USD",
     "chart_series": [
       {
-        "period": "1960",
-        "value": 256.813115
-      },
-      {
-        "period": "1961",
-        "value": 257.202151
-      },
-      {
-        "period": "1962",
-        "value": 265.210652
-      },
-      {
-        "period": "1963",
-        "value": 284.397504
-      },
-      {
-        "period": "1964",
-        "value": 284.19797
-      },
-      {
-        "period": "1965",
-        "value": 282.977642
-      },
-      {
-        "period": "1966",
-        "value": 287.277849
-      },
-      {
-        "period": "1967",
-        "value": 291.934181
-      },
-      {
-        "period": "1968",
-        "value": 314.666876
-      },
-      {
-        "period": "1969",
-        "value": 326.302733
-      },
-      {
-        "period": "1970",
-        "value": 352.790809
-      },
-      {
-        "period": "1971",
-        "value": 358.37356
-      },
-      {
-        "period": "1972",
-        "value": 369.762757
-      },
-      {
-        "period": "1973",
-        "value": 440.562872
-      },
-      {
-        "period": "1974",
-        "value": 528.57311
-      },
-      {
-        "period": "1975",
-        "value": 594.886609
-      },
-      {
-        "period": "1976",
-        "value": 697.06461
-      },
-      {
-        "period": "1977",
-        "value": 856.125495
-      },
-      {
-        "period": "1978",
-        "value": 925.180026
-      },
-      {
-        "period": "1979",
-        "value": 1025.982235
-      },
-      {
-        "period": "1980",
-        "value": 1141.805498
-      },
-      {
-        "period": "1981",
-        "value": 1216.496397
-      },
-      {
-        "period": "1982",
-        "value": 1203.965407
-      },
-      {
-        "period": "1983",
-        "value": 1219.735454
-      },
-      {
-        "period": "1984",
-        "value": 1241.042426
-      },
-      {
-        "period": "1985",
-        "value": 1238.475452
-      },
-      {
-        "period": "1986",
-        "value": 896.063263
-      },
-      {
-        "period": "1987",
-        "value": 853.903773
-      },
-      {
-        "period": "1988",
-        "value": 919.070773
-      },
-      {
-        "period": "1989",
-        "value": 958.427471
-      },
-      {
-        "period": "1990",
-        "value": 847.688562
-      },
-      {
-        "period": "1991",
-        "value": 1014.402797
-      },
-      {
-        "period": "1992",
-        "value": 1096.45977
-      },
-      {
-        "period": "1993",
-        "value": 1165.674427
-      },
-      {
-        "period": "1994",
-        "value": 1292.672028
-      },
-      {
-        "period": "1995",
-        "value": 1421.061778
-      },
-      {
-        "period": "1996",
-        "value": 1481.059868
-      },
-      {
-        "period": "1997",
-        "value": 1638.462819
-      },
-      {
-        "period": "1998",
-        "value": 1741.201142
-      },
-      {
-        "period": "1999",
-        "value": 1603.647761
-      },
-      {
-        "period": "2000",
-        "value": 1648.96579
-      },
-      {
-        "period": "2001",
-        "value": 1537.686636
-      },
-      {
-        "period": "2002",
-        "value": 1669.335175
-      },
-      {
-        "period": "2003",
-        "value": 1722.547019
-      },
-      {
-        "period": "2004",
-        "value": 1840.911849
-      },
-      {
-        "period": "2005",
-        "value": 2046.466117
-      },
-      {
-        "period": "2006",
-        "value": 2225.123475
-      },
-      {
-        "period": "2007",
-        "value": 2458.815739
-      },
-      {
-        "period": "2008",
-        "value": 2763.059882
-      },
-      {
-        "period": "2009",
-        "value": 2611.646328
-      },
-      {
-        "period": "2010",
-        "value": 2805.259602
-      },
-      {
-        "period": "2011",
-        "value": 3168.983706
-      },
-      {
-        "period": "2012",
-        "value": 3286.619593
-      },
-      {
-        "period": "2013",
-        "value": 3444.158023
-      },
-      {
-        "period": "2014",
-        "value": 3689.145104
-      },
-      {
-        "period": "2015",
-        "value": 3893.505333
-      },
-      {
-        "period": "2016",
-        "value": 4060.137847
-      },
-      {
-        "period": "2017",
-        "value": 4324.997689
-      },
-      {
-        "period": "2018",
-        "value": 4352.945933
-      },
-      {
-        "period": "2019",
-        "value": 4511.998396
-      },
-      {
-        "period": "2020",
-        "value": 4477.61785
-      },
-      {
-        "period": "2021",
-        "value": 4912.622404
-      },
-      {
-        "period": "2022",
-        "value": 5358.70157
-      },
-      {
         "period": "2023",
-        "value": 5758.327608
+        "value": 5758.33
       },
       {
         "period": "2024",
-        "value": 6150.025714,
-        "is_change_point": true
+        "value": 6150.03
+      }
+    ],
+    "claim_tokens": [
+      {
+        "claim_id": "3ba3c83d8d2449eb",
+        "value": "6150.03",
+        "pcn_status": "rejected",
+        "pcn_reason": "Claim ID mismatch: got 3ba3c83d8d2449eb, expected 5b5d0b188a35a4e9"
       }
     ],
     "verification_trace": {
       "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/WB_WDI",
-      "csv_link": "https://data360files.worldbank.org/data360-data/data/WB_WDI/WB_WDI_NY_GDP_PCAP_CD.csv",
-      "methodology_ref": "https://dsbb.imf.org/"
+      "csv_link": "https://data360files.worldbank.org/data360-data/data/WB_WDI/WB_WDI_NY_GDP_PCAP_CD.csv"
     },
-    "score": 0.5183557929329669,
-    "detected_at": "2026-05-22T00:21:20.829Z",
-    "license": "CC BY-4.0",
-    "narrative_citizen": {
-      "es": "Subió significativamente el ingreso per cápita en Guatemala en 2024.",
-      "en": "Significantly increased per capita income in Guatemala in 2024."
-    },
-    "narrative_journalist": {
-      "es": "El ingreso per cápita en Guatemala aumentó drásticamente en 2024, superando la media regional.",
-      "en": "Guatemala's per capita income saw a significant increase in 2024, surpassing the regional average."
-    },
-    "claim_tokens": [
-      {
-        "claim_id": "3ba3c83d8d2449eb",
-        "value": 6150.025714,
-        "display_es": "6,150.03 USD",
-        "display_en": "6,150.03 USD"
-      },
-      {
-        "claim_id": "76d46da1e6c0925e",
-        "value": 5758.327608,
-        "display_es": "5.758,33 USD",
-        "display_en": "5,758.33 USD"
-      }
-    ],
-    "data_period_stale": true
+    "score": 0,
+    "detected_at": "2024-01-01T00:00:00Z",
+    "data_period_stale": true,
+    "quality_status": "incomplete",
+    "quality_tags": [
+      "1_claims_rejected"
+    ]
   }
 ]

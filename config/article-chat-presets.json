@@ -1,0 +1,30 @@
+[
+  {
+    "id": "source",
+    "label_es": "Fuente del dato",
+    "label_en": "Data source",
+    "prompt_es": "¿De dónde proviene el dato principal de esta noticia y cómo lo verifico en Data360?",
+    "prompt_en": "Where does the main figure in this story come from and how do I verify it in Data360?"
+  },
+  {
+    "id": "methodology",
+    "label_es": "Qué mide el indicador",
+    "label_en": "What the indicator measures",
+    "prompt_es": "Explicá qué mide exactamente el indicador de esta noticia y cómo interpretarlo.",
+    "prompt_en": "Explain exactly what this story's indicator measures and how to interpret it."
+  },
+  {
+    "id": "magnitude",
+    "label_es": "Magnitud del cambio",
+    "label_en": "Change magnitude",
+    "prompt_es": "¿Qué significa la magnitud o el z-score detectado en esta noticia?",
+    "prompt_en": "What does the magnitude or z-score detected in this story mean?"
+  },
+  {
+    "id": "region",
+    "label_es": "Comparación regional",
+    "label_en": "Regional comparison",
+    "prompt_es": "¿Cómo se compara este dato con otros países de la región mencionados en la noticia?",
+    "prompt_en": "How does this figure compare with other countries in the region mentioned in the story?"
+  }
+]

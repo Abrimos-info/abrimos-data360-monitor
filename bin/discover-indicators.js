@@ -4,6 +4,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { createTimer } = require('../lib/timing');
 const { buildDynamicWatchlist } = require('../lib/dynamic-watchlist');
 
 const REPO_ROOT = path.resolve(__dirname, '..');
@@ -18,10 +19,12 @@ function parseArgs(argv) {
 }
 
 async function main() {
+  const timer = createTimer('discover');
   const args = parseArgs(process.argv.slice(2));
   console.log(`[discover] Searching for datasets updated in the last ${args.daysBack} days ...`);
 
   const watchlist = await buildDynamicWatchlist({ daysBack: args.daysBack });
+  timer.lap('search', `${watchlist.length} indicators`);
   console.log(`[discover] Found ${watchlist.length} indicators across ${new Set(watchlist.map((e) => e.database_id)).size} datasets`);
 
   fs.mkdirSync(path.dirname(args.out), { recursive: true });
@@ -36,6 +39,7 @@ async function main() {
   for (const [db, idnos] of Object.entries(byDataset)) {
     console.log(`  ${db}: ${idnos.length} indicators`);
   }
+  timer.end('total');
 }
 
 main().catch((e) => { process.stderr.write(`Error: ${e.message}\n`); process.exit(1); });

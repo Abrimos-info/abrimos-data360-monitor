@@ -5,10 +5,21 @@
 //- HTML. No data access, no i18n calls beyond what callers pass in.
 //- ====================================================================
 
-//- Country tag: ISO3 code with optional flag emoji.
-mixin countryTag(iso)
+//- Quality banner for incomplete / rejected PCN status.
+mixin qualityBanner(alert, lang, _)
+  if alert && (alert.quality_status === "incomplete" || alert.quality_status === "rejected")
+    - var qKey = alert.quality_status === "rejected" ? "rejected" : "incomplete"
+    div.d360-quality-banner(class=("d360-quality-banner--" + alert.quality_status) role="status")
+      strong.d360-quality-banner__title= _("quality." + qKey + ".title", lang)
+      p.d360-quality-banner__body= _("quality." + qKey + ".body", lang)
+
+//- Country tag: flag emoji + localized name (no ISO3 suffix).
+mixin countryTag(iso, lang, _)
   span.d360-country
-    span.d360-country__iso= iso
+    if iso && countryFlag
+      span.d360-country__flag(aria-hidden="true")= countryFlag(iso)
+    if _ && iso
+      span.d360-country__name= _("chat.country." + iso, lang || "es")
 
 //- Content-type badge: Noticia or Reportaje. Uses i18n locals helper `_`.
 mixin contentTypeBadge(contentType, lang, _)
@@ -45,6 +56,30 @@ mixin observationDisplay(ev, lang)
     = ev.observation.display[lng]
   else if ev.observation
     = ev.observation.value
+
+//- Labeled data bar for article pages (value, magnitude, period).
+mixin articleMetaBar(alert, lang, _)
+  - var lng = (lang === "en") ? "en" : "es"
+  - var magText = (alert.magnitude && alert.magnitude[lng]) || ''
+  - var hasObs = alert.observation && (alert.observation.display || alert.observation.value != null)
+  if hasObs || magText
+    div.d360-article__meta(role="group" aria-label=_ ? _("article.meta.group", lang) : "Detection data")
+      if hasObs
+        div.d360-article__meta-item
+          span.d360-article__meta-label= _ ? _("article.meta.value", lang) : "Value"
+          span.d360-article__meta-value
+            +observationDisplay(alert, lang)
+      if magText
+        div.d360-article__meta-item
+          span.d360-article__meta-label= _ ? _("article.meta.magnitude", lang) : "Magnitude"
+          span.d360-article__meta-value
+            +magnitude(magText)
+      if alert.observation
+        - var periodText = alert.observation.period_narrative ? alert.observation.period_narrative[lng] : (alert.observation.period_display ? alert.observation.period_display[lng] : alert.observation.time_period)
+        - var staleTip = alert.data_period_stale && _ ? _("detail.data_period_stale", lang) : null
+        div.d360-article__meta-item(class=(alert.data_period_stale ? "d360-article__meta-item--stale" : ""))
+          span.d360-article__meta-label= _ ? _("article.meta.period", lang) : "Period"
+          span.d360-article__meta-value(title=staleTip)= periodText
 
 mixin dataDateBadge(ev, lang, label, staleLabel)
   - var lng = (lang === "en") ? "en" : "es"
@@ -140,9 +175,13 @@ mixin chart(series)
       text.d360-chart__label(x="4" y=(y(maxV) + 3))= Math.round(maxV * 100) / 100
       text.d360-chart__label(x="4" y=(y(minV) + 3))= Math.round(minV * 100) / 100
 
-//- Claim token: numeric value wrapped with verification mark inline.
+//- Claim token: numeric value wrapped with PCN verification mark inline.
 mixin claim(token, lang, state)
   - var display = (lang === "en") ? (token.display_en || String(token.value)) : (token.display_es || String(token.value))
-  span.d360-claim(data-claim-id=token.claim_id)
+  - var pcnState = state || (token.pcn_status === "rejected" ? "failed" : (token.pcn_status === "unverified" ? "pending" : (token.pcn_status === "verified" ? "verified" : "verified")))
+  - var tipTitle = pcnState === "failed" ? (lang === "en" ? "Verification failed" : "Verificación fallida") : (pcnState === "pending" ? (lang === "en" ? "Unverified" : "Sin verificar") : (lang === "en" ? "Verified" : "Verificado"))
+  - var tipDesc = token.pcn_reason || (pcnState === "verified" ? (lang === "en" ? "Mechanically checked against the source." : "Comprobado mecánicamente contra la fuente.") : null)
+  - var claimCls = "d360-claim" + (pcnState === "failed" ? " d360-claim--failed" : (pcnState === "pending" ? " d360-claim--pending" : " d360-claim--verified"))
+  span(class=claimCls data-claim-id=token.claim_id data-pcn-status=(token.pcn_status || pcnState))
     span.d360-claim__num= display
-    +verificationMark(state || "verified", "Verified", "Mechanically checked against the source.", 12)
+    +verificationMark(pcnState, tipTitle, tipDesc, 12)

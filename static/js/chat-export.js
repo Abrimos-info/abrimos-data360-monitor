@@ -79,7 +79,9 @@
     if (!indicators || !indicators.length) return '';
     return indicators.map(function (ind) {
       var name = ind.name && ind.name !== ind.idno ? ind.name + ' (' + ind.idno + ')' : ind.idno;
-      var url = ind.url || ('https://data360.worldbank.org/en/int/indicators/' + encodeURIComponent(ind.idno));
+      var url = ind.url || ((window.D360Urls && window.D360Urls.indicatorSearchUrl)
+        ? window.D360Urls.indicatorSearchUrl(ind.idno)
+        : ('https://data360.worldbank.org/en/indicator/' + encodeURIComponent(ind.idno)));
       return '- [' + name + '](' + url + ')';
     }).join('\n');
   }
@@ -88,7 +90,7 @@
     options = options || {};
     var lang = options.lang || 'es';
     var labels = Object.assign(defaultLabels(lang), options.labels || {});
-    var title = options.title || 'Data360 Monitor — Chat';
+    var title = options.title || 'Data360 News Agent — Chat';
     var exportedAt = options.exportedAt || isoStamp();
     var lines = [
       '# ' + title,
@@ -177,7 +179,7 @@
     var bodyHtml = markedFn
       ? markedFn(String(markdown || ''), { gfm: true, breaks: false })
       : '<pre>' + escapeHtml(markdown) + '</pre>';
-    var title = options.title || 'Data360 Monitor — Chat';
+    var title = options.title || 'Data360 News Agent — Chat';
     var win = window.open('', '_blank');
     if (!win) throw new Error('popup blocked');
     win.document.open();

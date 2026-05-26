@@ -1,0 +1,96 @@
+[
+  {
+    "content_type": "noticia",
+    "id": "noticia_anomaly_MEX_WB_KNOMAD_BRE_2021_1",
+    "title": {
+      "es": "México registró un aumento significativo en las remesas bilaterales",
+      "en": "Mexico registered a significant increase in bilateral remittances"
+    },
+    "lead": {
+      "es": "Según datos del Banco Mundial, México reportó remesas bilaterales de $3,274.88 millones en 2021, lo que representa un incremento notable respecto a años anteriores.",
+      "en": "According to data from the World Bank, Mexico reported bilateral remittances of $3,274.88 million in 2021, representing a notable increase compared to previous years."
+    },
+    "story": {
+      "es": "El análisis de los datos indica que las remesas bilaterales enviadas a México aumentaron significativamente en 2021, alcanzando un valor de {{claim:a9c6bead76204747|3,274.88}} millones de dólares. Este aumento se compara con la mediana regional de $867.52 millones, lo que coloca a México por encima de la media de la región.\n\nEn contraste, Argentina reportó remesas bilaterales de $3,147.93 millones en el mismo período, lo que muestra que México superó a su vecino en términos de remesas recibidas.\n\nEste aumento en las remesas puede estar relacionado con factores económicos y políticos que han afectado la movilidad laboral y las condiciones financieras de los migrantes mexicanos en otros países. Sin embargo, es importante considerar las limitaciones del método utilizado para estimar estas remesas, como la suposición de que los ingresos y costos de vida se pueden aproximar mediante ingresos per cápita en términos de poder adquisitivo.",
+      "en": "The analysis of the data indicates that bilateral remittances sent to Mexico increased significantly in 2021, reaching a value of {{claim:a9c6bead76204747|3,274.88}} million dollars. This increase compares with the regional median of $867.52 million, placing Mexico above the regional average.\n\nIn contrast, Argentina reported bilateral remittances of $3,147.93 million during the same period, showing that Mexico surpassed its neighbor in terms of received remittances.\n\nThis increase in remittances may be related to economic and political factors that have affected the mobility of Mexican workers in other countries and their financial conditions. However, it is important to consider the limitations of the method used to estimate these remittances, such as the assumption that incomes and living costs can be approximated by per capita incomes in terms of purchasing power parity."
+    },
+    "countries": [
+      "MEX",
+      "ARG"
+    ],
+    "dataset_id": "WB_KNOMAD",
+    "indicator": {
+      "idno": "WB_KNOMAD_BRE",
+      "database_id": "WB_KNOMAD",
+      "name": {
+        "es": "Estimaciones de Remesas Bilaterales usando Stocks de Migrantes, Ingresos del País Anfitrión y del País de Origen (en millones de USD)",
+        "en": "Bilateral Remittance Estimates using Stocks of Migrants, Host Country Income and Origin Country Income (in millions of USD)"
+      }
+    },
+    "observation": {
+      "value": "3274.880339",
+      "time_period": "2021",
+      "unit": "USD_CUR",
+      "display": {
+        "es": "3.274,88",
+        "en": "3,274.88"
+      },
+      "period_display": {
+        "es": "2021",
+        "en": "2021"
+      },
+      "period_narrative": {
+        "es": "2021",
+        "en": "2021"
+      }
+    },
+    "magnitude": "+2.22σ",
+    "chart_series": [
+      {
+        "period": "2021",
+        "value": 3274.880339
+      }
+    ],
+    "claim_tokens": [
+      {
+        "claim_id": "a9c6bead76204747",
+        "value": "3274.880339",
+        "pcn_status": "rejected",
+        "pcn_reason": "Value mismatch: claimed 3274.880339, stored 0.185806 (delta 3274.6945)",
+        "pcn_source": "data/context/MEX/dynamic.csv",
+        "pcn_observation": {
+          "indicator": "WB_KNOMAD_BRE",
+          "refArea": "MEX",
+          "timePeriod": "2021",
+          "value": "0.185806",
+          "unit": "USD_CUR"
+        }
+      },
+      {
+        "claim_id": "2e54cd56f798f4c8",
+        "value": "3147.931614",
+        "pcn_status": "rejected",
+        "pcn_reason": "Value mismatch: claimed 3147.931614, stored 0.010059 (delta 3147.9216)",
+        "pcn_source": "data/context/ARG/dynamic.csv",
+        "pcn_observation": {
+          "indicator": "WB_KNOMAD_BRE",
+          "refArea": "ARG",
+          "timePeriod": "2021",
+          "value": "0.010059",
+          "unit": "USD_CUR"
+        }
+      }
+    ],
+    "verification_trace": {
+      "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/WB_KNOMAD",
+      "csv_link": "https://data360files.worldbank.org/data360-data/data/WB_KNOMAD/WB_KNOMAD_BRE.csv"
+    },
+    "score": 1,
+    "detected_at": "2026-05-26T01:22:20.810Z",
+    "data_period_stale": true,
+    "quality_status": "incomplete",
+    "quality_tags": [
+      "2_claims_rejected"
+    ]
+  }
+]

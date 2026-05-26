@@ -7,8 +7,8 @@ Emitís exactamente este bloque fenced (sin texto adicional antes o después, ex
   "content_type": "noticia",
   "id": "noticia_{type}_{country}_{idno}_{time_period}_{seq}",
   "title": {
-    "es": "Titular en español (máx 12 palabras)",
-    "en": "Headline in English (max 12 words)"
+    "es": "Titular en español (máx 12 palabras, sin cifras ni %)",
+    "en": "Headline in English (max 12 words, no digits or %)"
   },
   "lead": {
     "es": "Lede en español (máx 60 palabras).",
@@ -57,6 +57,8 @@ Q4: [OK|FAIL] — story.es entre 250 y 600 palabras; lead.es ≤ 60 palabras
 Q5: [OK|FAIL] — observaciones citadas con su time_period correcto
 Q6: [OK|FAIL] — locale numérico consistente (es: coma decimal; en: punto decimal)
 Q7: [OK|FAIL] — hipótesis marcadas con [HIPÓTESIS] donde corresponde
+Q8: [OK|FAIL] — title.es y title.en sin dígitos, % ni símbolos de moneda
+Q9: [OK|FAIL] — observation.value y claim del protagonista coinciden con ## Candidatos detectados; si hay previous, lead/story citan ambos y Δ coherente con el titular
 ```
 
 ## Tipos críticos (errores Q2 frecuentes)

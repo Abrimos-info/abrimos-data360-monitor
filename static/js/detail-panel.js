@@ -79,17 +79,31 @@
     return String(url).replace(/[)\],.;]+$/, '');
   }
 
+  function resolveClaimDisplay(token, lang, fallback) {
+    if (!token) return fallback || '';
+    var field = lang === 'en' ? 'display_en' : 'display_es';
+    if (token[field] && token[field].indexOf('{{claim:') === -1) return token[field];
+    return fallback || String(token.value || '');
+  }
+
+  function renderClaimMarkersHtml(text, alert, lang) {
+    if (window.D360PcnClaims && window.D360PcnClaims.renderClaimMarkersHtml) {
+      return window.D360PcnClaims.renderClaimMarkersHtml(text, alert, lang);
+    }
+    if (!text) return '';
+    var map = new Map((alert.claim_tokens || []).map(function (t) { return [String(t.claim_id), t]; }));
+    return String(text).replace(/\{\{claim:([^}|]+)\|([^}]*)\}\}/g, function (_, id, fallback) {
+      var token = map.get(String(id));
+      return escHtml(resolveClaimDisplay(token, lang, fallback || id));
+    });
+  }
+
   function renderNarrativeText(text, alert, lang) {
     if (!text) return '';
     var map = new Map((alert.claim_tokens || []).map(function (t) { return [String(t.claim_id), t]; }));
     return String(text).replace(/\{\{claim:([^}|]+)\|([^}]*)\}\}/g, function (_, id, fallback) {
       var token = map.get(String(id));
-      if (token) {
-        var field = lang === 'en' ? 'display_en' : 'display_es';
-        if (token[field] && token[field].indexOf('{{claim:') === -1) return token[field];
-        return fallback || String(token.value);
-      }
-      return fallback || id;
+      return resolveClaimDisplay(token, lang, fallback || id);
     });
   }
 
@@ -160,7 +174,11 @@
       ? alert._countries
       : (alert.countries && alert.countries.length ? alert.countries : (alert.country ? [alert.country] : []));
     var countriesHtml = countriesArr.map(function (iso) {
-      return '<span class="d360-country"><span class="d360-country__iso">' + escHtml(iso) + '</span></span>';
+      var name = uiString('chat.country.' + iso, lang) || iso;
+      if (window.D360CountryFlag && window.D360CountryFlag.renderCountryTagHtml) {
+        return window.D360CountryFlag.renderCountryTagHtml(iso, name);
+      }
+      return '<span class="d360-country"><span class="d360-country__name">' + escHtml(name) + '</span></span>';
     }).join(' ');
     bind('countryTag', countriesHtml || '');
 
@@ -212,7 +230,7 @@
     var leadEl = node.querySelector('[data-bind="lead"]');
     var leadWrap = node.querySelector('[data-bind="leadWrap"]');
     if (leadText && leadEl) {
-      leadEl.textContent = renderNarrativeText(leadText, alert, lng);
+      leadEl.innerHTML = renderClaimMarkersHtml(leadText, alert, lng);
     } else if (leadWrap) {
       leadWrap.style.display = 'none';
     }
@@ -221,11 +239,14 @@
     var storyEl = node.querySelector('[data-bind="story"]');
     var storyWrap = node.querySelector('[data-bind="storyWrap"]');
     if (storyText && storyEl) {
-      var resolved = renderNarrativeText(storyText, alert, lng);
-      if (window.marked && window.marked.parse) {
-        storyEl.innerHTML = window.marked.parse(resolved, { gfm: true, breaks: false });
+      var resolved = renderClaimMarkersHtml(storyText, alert, lng);
+      var paragraphs = resolved.split(/\n{2,}/).map(function (p) { return p.trim(); }).filter(Boolean);
+      if (!paragraphs.length) {
+        storyEl.innerHTML = '';
       } else {
-        storyEl.innerHTML = renderStoryHtml(resolved);
+        storyEl.innerHTML = paragraphs.map(function (p) {
+          return '<p>' + p.replace(/\n/g, '<br>') + '</p>';
+        }).join('');
       }
     } else if (storyWrap) {
       storyWrap.style.display = 'none';
@@ -244,7 +265,9 @@
     var indicatorsEl = node.querySelector('[data-bind="indicators"]');
     if (isReportaje && Array.isArray(alert.indicators) && alert.indicators.length && indicatorsEl) {
       indicatorsEl.innerHTML = alert.indicators.map(function (idno) {
-        var url = 'https://data360.worldbank.org/en/int/indicators/' + encodeURIComponent(idno);
+        var url = (window.D360Urls && window.D360Urls.indicatorSearchUrl)
+          ? window.D360Urls.indicatorSearchUrl(idno)
+          : ('https://data360.worldbank.org/en/indicator/' + encodeURIComponent(idno));
         return '<li><a href="' + escAttr(url) + '" target="_blank" rel="noopener">' + escHtml(idno) + '</a></li>';
       }).join('');
     } else if (indicatorsWrap) {
@@ -311,7 +334,7 @@
       copyBtn.addEventListener('click', function () {
         var traceUrl = alert.verification_trace && alert.verification_trace.data360_dataset_url
           ? alert.verification_trace.data360_dataset_url
-          : 'https://data360.worldbank.org';
+          : ((window.D360Urls && window.D360Urls.SEARCH_BASE) || 'https://data360.worldbank.org/en/search');
         var parts = [];
         if (copyTitle) parts.push(copyTitle);
         if (copyBody) parts.push(copyBody);
@@ -382,7 +405,14 @@
     if (!card || card.getAttribute('data-d360-bound')) return;
     card.setAttribute('data-d360-bound', '1');
     card.addEventListener('click', function () {
-      openDetail(card.getAttribute('data-alert-id'));
+      var id = card.getAttribute('data-alert-id');
+      var alerts = window.D360_ALERTS || [];
+      var alert = alerts.find(function (a) { return a.id === id; });
+      if (alert && alert._path) {
+        window.location.href = alert._path;
+        return;
+      }
+      openDetail(id);
     });
     card.addEventListener('keydown', function (e) {
       if (e.key === 'Enter' || e.key === ' ') {
@@ -397,6 +427,8 @@
     close: closeDetail,
     mergeAlerts: mergeAlerts,
     bindCard: bindCard,
+    renderNarrativeText: renderNarrativeText,
+    renderClaimMarkersHtml: renderClaimMarkersHtml,
   };
 
   document.addEventListener('keydown', function (e) {

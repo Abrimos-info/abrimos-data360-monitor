@@ -1,24 +1,39 @@
 [
   {
-    "id": "alert_2026-05-22_004",
-    "type": "abrupt_change",
-    "country": "HND",
-    "category": "economy",
+    "content_type": "noticia",
+    "id": "noticia_abrupt_change_HND_WB_WDI_GC_XPN_INTP_RV_ZS_2020",
+    "title": {
+      "es": "Los pagos de intereses aumentaron en Honduras",
+      "en": "Interest Payments Increased in Honduras"
+    },
+    "lead": {
+      "es": "10,63 del presupuesto hondureño se destinó a pagar intereses en 2020, un aumento significativo desde 10,63 en 2015.",
+      "en": "10.63 of the Honduran budget was allocated to pay interest in 2020, a significant increase from 7.73 in 2015."
+    },
+    "story": {
+      "es": "En 2020, Honduras experimentó un aumento significativo en sus pagos de intereses, representando el 10,63% de su presupuesto, según datos del Banco Mundial. Esto representa un incremento considerable desde el 7,73% registrado en 2015.\n\nEste aumento en los pagos de intereses puede estar relacionado con una mayor deuda pública o con tasas de interés más altas. En comparación con otros países de la región, Honduras muestra un nivel de pagos de intereses relativamente alto. Por ejemplo, México, que también experimentó un aumento en sus pagos de intereses, registró un 20,00% en 2024, pero esto podría ser debido a factores específicos de su economía.\n\nPara la ciudadanía hondureña, este aumento en los pagos de intereses puede tener implicaciones negativas en términos de reducción de fondos disponibles para gastos sociales y de infraestructura. Sin embargo, es importante considerar el contexto económico y político del país para entender completamente la situación.",
+      "en": "In 2020, Honduras experienced a significant increase in its interest payments, representing 10.63% of its budget, according to data from the World Bank. This represents a considerable increase from the 7.73% recorded in 2015.\n\nThis increase in interest payments may be related to higher public debt or higher interest rates. Compared to other countries in the region, Honduras shows a relatively high level of interest payments. For example, Mexico, which also saw an increase in its interest payments, recorded 20.00% in 2024, but this could be due to specific factors in its economy.\n\nFor the Honduran citizenry, this increase in interest payments may have negative implications in terms of reducing funds available for social spending and infrastructure. However, it is important to consider the economic and political context of the country to fully understand the situation."
+    },
+    "countries": [
+      "HND",
+      "MEX"
+    ],
+    "dataset_id": "WB_WDI",
     "indicator": {
       "idno": "WB_WDI_GC_XPN_INTP_RV_ZS",
       "database_id": "WB_WDI",
       "name": {
-        "es": "Interest payments (% of revenue)",
-        "en": "Interest payments (% of revenue)"
+        "es": "Pagos de intereses (% del presupuesto)",
+        "en": "Interest Payments (% of Budget)"
       }
     },
     "observation": {
-      "value": 10.629658,
+      "value": "10.629658",
       "time_period": "2020",
       "unit": "PT_REV",
       "display": {
-        "es": "7.73 %",
-        "en": "7.73%"
+        "es": "10,63",
+        "en": "10.63"
       },
       "period_display": {
         "es": "2020",
@@ -29,372 +44,41 @@
         "en": "2020"
       }
     },
-    "magnitude": {
-      "es": "+2.6σ",
-      "en": "+2.6σ"
-    },
+    "magnitude": "+2.62σ",
     "chart_series": [
-      {
-        "period": "1972",
-        "value": 6.225681
-      },
-      {
-        "period": "1973",
-        "value": 5.955335
-      },
-      {
-        "period": "1974",
-        "value": 5.323741
-      },
-      {
-        "period": "1975",
-        "value": 4.930263
-      },
-      {
-        "period": "1976",
-        "value": 4.303279
-      },
-      {
-        "period": "2003",
-        "value": 6.883061
-      },
-      {
-        "period": "2004",
-        "value": 6.267235
-      },
-      {
-        "period": "2005",
-        "value": 5.644546
-      },
-      {
-        "period": "2006",
-        "value": 3.870304
-      },
-      {
-        "period": "2007",
-        "value": 2.595133
-      },
-      {
-        "period": "2008",
-        "value": 2.4956
-      },
-      {
-        "period": "2009",
-        "value": 2.89511
-      },
-      {
-        "period": "2010",
-        "value": 3.894267
-      },
-      {
-        "period": "2011",
-        "value": 5.524876
-      },
-      {
-        "period": "2012",
-        "value": 6.921105
-      },
-      {
-        "period": "2013",
-        "value": 8.940982
-      },
-      {
-        "period": "2014",
-        "value": 7.632188
-      },
       {
         "period": "2015",
         "value": 7.731239
       },
       {
         "period": "2020",
-        "value": 10.629658,
-        "is_change_point": true
+        "value": 10.629658
       }
     ],
-    "verification_trace": {
-      "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/WB_WDI",
-      "csv_link": "https://data360files.worldbank.org/data360-data/data/WB_WDI/WB_WDI_GC_XPN_INTP_RV_ZS.csv",
-      "methodology_ref": "https://dsbb.imf.org/"
-    },
-    "score": 0.6548050586553917,
-    "detected_at": "2026-05-22T00:21:20.830Z",
-    "license": "CC BY-4.0",
-    "narrative_citizen": {
-      "es": "Subió significativamente el porcentaje de pagos de intereses sobre la recaudación en Honduras en 2020.",
-      "en": "Significantly increased the percentage of interest payments over revenue in Honduras in 2020."
-    },
-    "narrative_journalist": {
-      "es": "El porcentaje de pagos de intereses sobre la recaudación en Honduras aumentó a 10.63 % en 2020, un incremento del 37.2 % respecto a 2015.",
-      "en": "The percentage of interest payments over revenue in Honduras rose to 10.63% in 2020, a 37.2% increase from 2015."
-    },
     "claim_tokens": [
       {
         "claim_id": "071f7ff074eefe59",
-        "value": 7.731239,
-        "display_es": "7.73 %",
-        "display_en": "7.73%"
+        "value": "10.629658",
+        "pcn_status": "rejected",
+        "pcn_reason": "Claim ID mismatch: got 071f7ff074eefe59, expected 54b4b67480eb4b0f"
       },
       {
-        "claim_id": "be899fe5f5b37912",
-        "value": 7.731239,
-        "display_es": "7,73 PT_REV",
-        "display_en": "7.73 PT_REV"
-      }
-    ],
-    "data_period_stale": true
-  },
-  {
-    "id": "alert_2026-05-22_005",
-    "type": "abrupt_change",
-    "country": "MEX",
-    "category": "economy",
-    "indicator": {
-      "idno": "WB_WDI_GC_XPN_INTP_RV_ZS",
-      "database_id": "WB_WDI",
-      "name": {
-        "es": "Interest payments (% of revenue)",
-        "en": "Interest payments (% of revenue)"
-      }
-    },
-    "observation": {
-      "value": 20.000111,
-      "time_period": "2024",
-      "unit": "PT_REV",
-      "display": {
-        "es": "18.55 %",
-        "en": "18.55%"
-      },
-      "period_display": {
-        "es": "2024",
-        "en": "2024"
-      },
-      "period_narrative": {
-        "es": "2024",
-        "en": "2024"
-      }
-    },
-    "magnitude": {
-      "es": "+2.2σ",
-      "en": "+2.2σ"
-    },
-    "chart_series": [
-      {
-        "period": "1972",
-        "value": 8.62069
-      },
-      {
-        "period": "1973",
-        "value": 10.294118
-      },
-      {
-        "period": "1974",
-        "value": 11.578947
-      },
-      {
-        "period": "1975",
-        "value": 10.447761
-      },
-      {
-        "period": "1976",
-        "value": 11.764706
-      },
-      {
-        "period": "1977",
-        "value": 13.278008
-      },
-      {
-        "period": "1978",
-        "value": 12.732919
-      },
-      {
-        "period": "1979",
-        "value": 12.072893
-      },
-      {
-        "period": "1980",
-        "value": 11.144131
-      },
-      {
-        "period": "1981",
-        "value": 19.336384
-      },
-      {
-        "period": "1982",
-        "value": 27.689243
-      },
-      {
-        "period": "1983",
-        "value": 54.192022
-      },
-      {
-        "period": "1984",
-        "value": 48.622471
-      },
-      {
-        "period": "1985",
-        "value": 59.879254
-      },
-      {
-        "period": "1986",
-        "value": 99.340075
-      },
-      {
-        "period": "1987",
-        "value": 114.436971
-      },
-      {
-        "period": "1988",
-        "value": 100.529649
-      },
-      {
-        "period": "1989",
-        "value": 66.083312
-      },
-      {
-        "period": "1990",
-        "value": 52.497021
-      },
-      {
-        "period": "1991",
-        "value": 30.602439
-      },
-      {
-        "period": "1992",
-        "value": 21.867526
-      },
-      {
-        "period": "1993",
-        "value": 16.249579
-      },
-      {
-        "period": "1994",
-        "value": 13.419373
-      },
-      {
-        "period": "1995",
-        "value": 18.860298
-      },
-      {
-        "period": "1996",
-        "value": 18.806716
-      },
-      {
-        "period": "1997",
-        "value": 15.118355
-      },
-      {
-        "period": "1998",
-        "value": 16.549672
-      },
-      {
-        "period": "1999",
-        "value": 18.278167
-      },
-      {
-        "period": "2000",
-        "value": 13.959809
-      },
-      {
-        "period": "2008",
-        "value": 11.879447
-      },
-      {
-        "period": "2009",
-        "value": 13.956711
-      },
-      {
-        "period": "2010",
-        "value": 12.997932
-      },
-      {
-        "period": "2011",
-        "value": 11.615215
-      },
-      {
-        "period": "2012",
-        "value": 11.99208
-      },
-      {
-        "period": "2013",
-        "value": 12.003038
-      },
-      {
-        "period": "2014",
-        "value": 12.549271
-      },
-      {
-        "period": "2015",
-        "value": 11.329458
-      },
-      {
-        "period": "2016",
-        "value": 11.684321
-      },
-      {
-        "period": "2017",
-        "value": 13.619226
-      },
-      {
-        "period": "2018",
-        "value": 14.499616
-      },
-      {
-        "period": "2019",
-        "value": 14.095193
-      },
-      {
-        "period": "2020",
-        "value": 15.447815
-      },
-      {
-        "period": "2021",
-        "value": 15.825938
-      },
-      {
-        "period": "2022",
-        "value": 17.196605
-      },
-      {
-        "period": "2023",
-        "value": 18.549315
-      },
-      {
-        "period": "2024",
-        "value": 20.000111,
-        "is_change_point": true
+        "claim_id": "2e8991dcc784df63",
+        "value": "20.000111",
+        "pcn_status": "rejected",
+        "pcn_reason": "Claim ID mismatch: got 2e8991dcc784df63, expected 87ee0bd6c9147710"
       }
     ],
     "verification_trace": {
       "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/WB_WDI",
-      "csv_link": "https://data360files.worldbank.org/data360-data/data/WB_WDI/WB_WDI_GC_XPN_INTP_RV_ZS.csv",
-      "methodology_ref": "https://dsbb.imf.org/"
+      "csv_link": "https://data360files.worldbank.org/data360-data/data/WB_WDI/WB_WDI_GC_XPN_INTP_RV_ZS.csv"
     },
-    "score": 0.5534119434554561,
-    "detected_at": "2026-05-22T00:21:20.830Z",
-    "license": "CC BY-4.0",
-    "narrative_citizen": {
-      "es": "Subió considerablemente el porcentaje de pagos de intereses sobre la recaudación en México en 2024.",
-      "en": "Considerably increased the percentage of interest payments over revenue in Mexico in 2024."
-    },
-    "narrative_journalist": {
-      "es": "El porcentaje de pagos de intereses sobre la recaudación en México aumentó a 20.00 % en 2024, un incremento del 9.4 % respecto a 2023.",
-      "en": "The percentage of interest payments over revenue in Mexico rose to 20.00% in 2024, a 9.4% increase from 2023."
-    },
-    "claim_tokens": [
-      {
-        "claim_id": "2e8991dcc784df63",
-        "value": 18.549315,
-        "display_es": "18.55 %",
-        "display_en": "18.55%"
-      },
-      {
-        "claim_id": "49afd15342bb7f06",
-        "value": 18.549315,
-        "display_es": "18,55 PT_REV",
-        "display_en": "18.55 PT_REV"
-      }
-    ],
-    "data_period_stale": true
+    "score": 0,
+    "detected_at": "2023-10-01T00:00:00Z",
+    "data_period_stale": true,
+    "quality_status": "incomplete",
+    "quality_tags": [
+      "2_claims_rejected"
+    ]
   }
 ]

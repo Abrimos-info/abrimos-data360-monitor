@@ -1,0 +1,89 @@
+{
+  "content_type": "reportaje",
+  "id": "reportaje_IMF_BOP_2026-05-25",
+  "title": {
+    "es": "América Latina: Reservas internacionales y deuda externa en ascenso",
+    "en": "Latin America: Rising International Reserves and External Debt"
+  },
+  "lead": {
+    "es": "Los datos del Fondo Monetario Internacional (FMI) revelan un aumento significativo en las reservas internacionales y la deuda externa en varios países de América Latina durante el tercer trimestre de 2024.",
+    "en": "Data from the International Monetary Fund (IMF) reveals a significant increase in international reserves and external debt in several Latin American countries during the third quarter of 2024."
+  },
+  "story": {
+    "es": "El Balance of Payments (BOP) de varios países de América Latina muestra un aumento significativo en las reservas internacionales y la deuda externa durante el tercer trimestre de 2024. Según los datos proporcionados por el Fondo Monetario Internacional (FMI), México, Guatemala y Ecuador han experimentado cambios notables en estos indicadores económicos.\n\nEn Guatemala, las inversiones portafolio netas aumentaron significativamente, registrando un valor de -1,405,760,000,00 USD en el tercer trimestre de 2024, en comparación con el segundo trimestre, donde el valor fue de -89,137,200,00 USD. Este aumento representa un cambio drástico en la tendencia de las inversiones portafolio en Guatemala.\n\nMéxico, por su parte, registró una inversión extranjera récord de 148,730,000,000,00 USD en el tercer trimestre de 2024, superando las expectativas económicas. Además, las reservas internacionales de México alcanzaron un nuevo récord de 231,867,000,000,00 USD en el mismo período. Sin embargo, la deuda externa del gobierno mexicano también aumentó significativamente, alcanzando un valor récord de 186,184,000,000,00 USD.\n\nEn Ecuador, aunque no se mencionan cifras específicas, se destacan los esfuerzos del gobierno para combatir las estructuras criminales y mejorar la economía del país. A pesar de los desafíos, el país ha logrado importantes avances en diversos sectores.\n\nEstos cambios reflejan una tendencia generalizada en América Latina hacia una mayor apertura financiera y una mayor dependencia de la inversión extranjera. Sin embargo, también evidencian un aumento en la deuda externa, lo que plantea interrogantes sobre la sostenibilidad de estas políticas económicas a largo plazo.\n\nEn el caso de Guatemala, la economía ha estado experimentando fluctuaciones significativas en los últimos años, lo que ha llevado a la diplomacia activa con Estados Unidos para mitigar los efectos de las nuevas regulaciones financieras. Por ejemplo, el Ministerio de Relaciones Exteriores de Guatemala ha iniciado un diálogo con las autoridades estadounidenses y mantiene un monitoreo constante de las disposiciones del Departamento del Tesoro.\n\nEn México, la Financiera para el Bienestar (Finabien) se ha consolidado como la remesadora líder en el envío de remesas desde Estados Unidos, ofreciendo un esquema de bajas comisiones y un tipo de cambio competitivo. Sin embargo, la orden ejecutiva de Donald Trump ha puesto en riesgo más de mil millones de dólares en remesas para Puebla, lo que ha llevado a la implementación de medidas adicionales para garantizar la continuidad de estos flujos financieros.\n\nEn conclusión, los datos del FMI muestran una tendencia ascendente en las reservas internacionales y la deuda externa en varios países de América Latina. Estos cambios reflejan tanto oportunidades como desafíos para la región, y requieren una evaluación cuidadosa para asegurar la estabilidad financiera a largo plazo.",
+    "en": "The Balance of Payments (BOP) data for several Latin American countries shows a significant increase in international reserves and external debt during the third quarter of 2024. According to data provided by the International Monetary Fund (IMF), Mexico, Guatemala, and Ecuador have experienced notable changes in these economic indicators.\n\nIn Guatemala, net portfolio investments saw a significant increase, registering a value of -1,405,760,000,00 USD in the third quarter of 2024, compared to -89,137,200,00 USD in the second quarter. This increase represents a drastic change in the trend of portfolio investments in Guatemala.\n\nMexico, on the other hand, recorded a record foreign investment of $148,730,000,000.00 in the third quarter of 2024, surpassing economic expectations. Additionally, Mexico's international reserves reached a new record of $231,867,000,000.00 in the same period. However, the external debt of the Mexican government also significantly increased, reaching a record value of $186,184,000,000.00.\n\nIn Ecuador, although specific figures are not mentioned, efforts by the government to combat criminal structures and improve the country's economy are highlighted. Despite challenges, the country has achieved important advancements in various sectors.\n\nThese changes reflect a general trend towards greater financial openness and increased reliance on foreign investment across Latin America. However, they also highlight an increase in external debt, which raises questions about the sustainability of these economic policies over the long term.\n\nIn the case of Guatemala, the economy has been experiencing significant fluctuations in recent years, leading to active diplomacy with the United States to mitigate the effects of new financial regulations. For example, the Ministry of Foreign Relations in Guatemala has initiated dialogue with US authorities and maintains constant monitoring of Treasury Department regulations.\n\nIn Mexico, the Financial Institution for Well-being (Finabien) has consolidated its position as the leading remittance service provider from the United States, offering a low-commission scheme and competitive exchange rates. However, an executive order from Donald Trump has put more than a billion dollars in remittances at risk for Puebla, leading to additional measures being implemented to ensure the continuity of these financial flows.\n\nIn conclusion, IMF data shows an upward trend in international reserves and external debt in several Latin American countries. These changes reflect both opportunities and challenges for the region, and require careful evaluation to ensure long-term financial stability."
+  },
+  "countries": [
+    "GTM",
+    "ARG",
+    "MEX",
+    "ECU"
+  ],
+  "dataset_id": "IMF_BOP",
+  "indicators": [
+    "IMF_BOP_BFP_BP6",
+    "IMF_BOP_IPE_BP6",
+    "IMF_BOP_IR_BP6",
+    "IMF_BOP_IPDG_BP6"
+  ],
+  "noticia_ids": [
+    "noticia_abrupt_change_GTM_777aca311d9c5fb8_2024_Q3_1",
+    "noticia_anomaly_MEX_IMF_BOP_IPE_BP6_2024_Q3",
+    "noticia_abrupt_change_MEX_IMF_BOP_IR_BP6_2024_Q3",
+    "noticia_anomaly_MEX_IMF_BOP_IPDG_BP6_2024_Q3_1"
+  ],
+  "claim_tokens": [
+    {
+      "claim_id": "777aca311d9c5fb8",
+      "value": "-1405760000",
+      "pcn_status": "rejected",
+      "pcn_reason": "Claim ID mismatch: got 777aca311d9c5fb8, expected e1b9bda5d05c3254"
+    },
+    {
+      "claim_id": "4efa1e2fb0bc250b",
+      "value": "-89137200",
+      "pcn_status": "rejected",
+      "pcn_reason": "Claim ID mismatch: got 4efa1e2fb0bc250b, expected e1b9bda5d05c3254"
+    },
+    {
+      "claim_id": "a05ff8947a7dbcc6",
+      "value": "148730000000",
+      "pcn_status": "rejected",
+      "pcn_reason": "Claim ID mismatch: got a05ff8947a7dbcc6, expected 9152ef4c0dab30b7"
+    },
+    {
+      "claim_id": "6ddf602613b272ec",
+      "value": "231867000000",
+      "pcn_status": "rejected",
+      "pcn_reason": "Claim ID mismatch: got 6ddf602613b272ec, expected a84471df6e224482"
+    },
+    {
+      "claim_id": "312901f559d19de4",
+      "value": "8584590000",
+      "pcn_status": "rejected",
+      "pcn_reason": "Claim ID mismatch: got 312901f559d19de4, expected a84471df6e224482"
+    },
+    {
+      "claim_id": "a22dcf986bb532f3",
+      "value": "186184000000",
+      "pcn_status": "rejected",
+      "pcn_reason": "Claim ID mismatch: got a22dcf986bb532f3, expected a14c2fb1bf64f11c"
+    }
+  ],
+  "verification_trace": {
+    "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/IMF_BOP",
+    "csv_links": [
+      "https://data360.worldbank.org/en/int/dataset/IMF_BOP/csv",
+      "https://data360files.worldbank.org/data360-data/data/IMF_BOP/IMF_BOP_BFP_BP6.csv",
+      "https://data360files.worldbank.org/data360-data/data/IMF_BOP/IMF_BOP_IPE_BP6.csv",
+      "https://data360files.worldbank.org/data360-data/data/IMF_BOP/IMF_BOP_IR_BP6.csv",
+      "https://data360files.worldbank.org/data360-data/data/IMF_BOP/IMF_BOP_IPDG_BP6.csv"
+    ]
+  },
+  "score": 0,
+  "detected_at": "2026-05-25T12:00:00.000Z",
+  "quality_status": "incomplete",
+  "quality_tags": [
+    "6_claims_rejected"
+  ]
+}

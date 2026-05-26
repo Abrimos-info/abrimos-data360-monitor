@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Data360 Monitor Content Item",
+  "title": "Data360 News Agent Content Item",
   "description": "A Noticia (per-indicator news story) or Reportaje (per-dataset investigative piece)",
   "oneOf": [
     { "$ref": "#/definitions/noticia" },
@@ -21,7 +21,12 @@
       "required": ["claim_id", "value"],
       "properties": {
         "claim_id": { "type": "string" },
-        "value": { "type": "string" }
+        "value": { "type": "string" },
+        "display_es": { "type": "string" },
+        "display_en": { "type": "string" },
+        "pcn_status": { "type": "string", "enum": ["verified", "rejected", "unverified"] },
+        "pcn_reason": { "type": "string" },
+        "pcn_source": { "type": "string" }
       }
     },
     "chart_point": {
@@ -82,7 +87,9 @@
         "score": { "type": "number", "minimum": 0, "maximum": 1 },
         "detected_at": { "type": "string", "format": "date-time" },
         "data_period_stale": { "type": "boolean" },
-        "license": { "type": "string" }
+        "license": { "type": "string" },
+        "quality_status": { "type": "string", "enum": ["accepted", "incomplete", "rejected"] },
+        "quality_tags": { "type": "array", "items": { "type": "string" } }
       },
       "additionalProperties": false
     },
@@ -114,7 +121,9 @@
         },
         "score": { "type": "number", "minimum": 0, "maximum": 1 },
         "detected_at": { "type": "string", "format": "date-time" },
-        "license": { "type": "string" }
+        "license": { "type": "string" },
+        "quality_status": { "type": "string", "enum": ["accepted", "incomplete", "rejected"] },
+        "quality_tags": { "type": "array", "items": { "type": "string" } }
       },
       "additionalProperties": false
     }

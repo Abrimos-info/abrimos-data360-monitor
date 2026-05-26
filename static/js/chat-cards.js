@@ -102,7 +102,10 @@
   function indicatorUrl(ev) {
     var idno = ev.indicator && ev.indicator.idno;
     if (!idno) return null;
-    return 'https://data360.worldbank.org/en/int/indicators/' + encodeURIComponent(idno);
+    if (window.D360Urls && window.D360Urls.indicatorSearchUrl) {
+      return window.D360Urls.indicatorSearchUrl(idno);
+    }
+    return 'https://data360.worldbank.org/en/indicator/' + encodeURIComponent(idno);
   }
 
   function renderNarrativeCard(ev, lang) {
@@ -116,10 +119,22 @@
     var name = (ev.indicator && ev.indicator.name && ev.indicator.name[lng]) || idno || '';
     var narrative = (ev.narrative_citizen && ev.narrative_citizen[lng]) || '';
 
+    function countryName(iso, langKey) {
+      var bag = (window.D360_STRINGS && window.D360_STRINGS[langKey]) || {};
+      return bag['chat.country.' + iso] || iso;
+    }
+
+    function countryTagHtml(iso, langKey) {
+      if (window.D360CountryFlag && window.D360CountryFlag.renderCountryTagHtml) {
+        return window.D360CountryFlag.renderCountryTagHtml(iso, countryName(iso, langKey));
+      }
+      return '<span class="d360-country"><span class="d360-country__name">' + escapeHtml(countryName(iso, langKey)) + '</span></span>';
+    }
+
     return '<article class="d360-card d360-card--narr d360-card--chat" tabindex="0" role="button" data-alert-id="' + escapeHtml(ev.id || '') + '">' +
       '<div class="d360-card__head">' +
         '<div class="d360-card__metaL">' +
-          '<span class="d360-country"><span class="d360-country__iso">' + escapeHtml(ev.country || '') + '</span></span>' +
+          countryTagHtml(ev.country, lng) +
           '<span class="d360-card__divider">·</span>' + indLink +
         '</div>' +
         '<div class="d360-card__metaR">' +

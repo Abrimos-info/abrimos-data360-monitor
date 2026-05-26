@@ -1,0 +1,197 @@
+[
+  {
+    "content_type": "noticia",
+    "id": "noticia_abrupt_change_MEX_a94c15413ad0608c_2025",
+    "title": {
+      "es": "México registra disminución en el índice de poder gubernamental",
+      "en": "Mexico Records Decrease in Government Power Restriction Index"
+    },
+    "lead": {
+      "es": "El Índice de Ley de Justicia Mundial (WJP ROL) reporta que México registró una disminución en el índice de restricciones sobre el poder gubernamental, pasando de {{claim:a94c15413ad0608c|0.604119}} en 2024 a {{claim:a94c15413ad0608c|0.572014}} en 2025.",
+      "en": "The World Justice Project Rule of Law Index (WJP ROL) reports that Mexico recorded a decrease in the index of restrictions on government power, dropping from {{claim:a94c15413ad0608c|0.604119}} in 2024 to {{claim:a94c15413ad0608c|0.572014}} in 2025."
+    },
+    "story": {
+      "es": "Según el Índice de Ley de Justicia Mundial (WJP ROL), México experimentó una disminución significativa en el índice de restricciones sobre el poder gubernamental, que se ubicó en {{claim:a94c15413ad0608c|0.572014}} en 2025, comparado con {{claim:a94c15413ad0608c|0.604119}} en 2024. Esta disminución representa una caída del 5.3%, lo que indica una menor efectividad en las restricciones sobre el poder gubernamental.\n\nEn comparación con otros países de la región, Honduras también registró una disminución en su índice, pasando de {{claim:26b69b4cd236e863|0.511104}} en 2024 a {{claim:26b69b4cd236e863|0.490426}} en 2025, lo que representa una caída del 4%. Sin embargo, Argentina mostró una disminución menos pronunciada, pasando de {{claim:a542ef633d179ee1|0.738399}} en 2024 a {{claim:a542ef633d179ee1|0.718678}} en 2025, lo que representa una caída del 2.7%.\n\nEsta disminución en el índice de México podría estar relacionada con cambios políticos internos o con factores externos que afectan la percepción de restricciones sobre el poder gubernamental. La situación en Honduras y Argentina sugiere que estos países también enfrentan desafíos similares en términos de restricciones sobre el poder gubernamental.",
+      "en": "According to the World Justice Project Rule of Law Index (WJP ROL), Mexico experienced a significant decrease in the index of restrictions on government power, which stood at {{claim:a94c15413ad0608c|0.572014}} in 2025 compared to {{claim:a94c15413ad0608c|0.604119}} in 2024. This decrease represents a fall of 5.3%, indicating a lower effectiveness in restrictions on government power.\n\nIn comparison with other countries in the region, Honduras also recorded a decrease in its index, dropping from {{claim:26b69b4cd236e863|0.511104}} in 2024 to {{claim:26b69b4cd236e863|0.490426}} in 2025, representing a decline of 4%. However, Argentina showed a less pronounced decrease, falling from {{claim:a542ef633d179ee1|0.738399}} in 2024 to {{claim:a542ef633d179ee1|0.718678}} in 2025, representing a decline of 2.7%.\n\nThis decrease in Mexico's index could be related to internal political changes or external factors affecting the perception of restrictions on government power. The situation in Honduras and Argentina suggests that these countries are also facing similar challenges in terms of restrictions on government power."
+    },
+    "countries": [
+      "MEX",
+      "HND",
+      "ARG"
+    ],
+    "dataset_id": "WJP_ROL",
+    "indicator": {
+      "idno": "WJP_ROL_FAC_1",
+      "database_id": "WJP_ROL",
+      "name": {
+        "es": "Factor 1 - Restricciones sobre el poder gubernamental",
+        "en": "Factor 1 - Restrictions on Government Power"
+      }
+    },
+    "observation": {
+      "value": "0.572014",
+      "time_period": "2025",
+      "unit": "0_TO_1",
+      "display": {
+        "es": "0,57",
+        "en": "0.57"
+      },
+      "period_display": {
+        "es": "2025",
+        "en": "2025"
+      },
+      "period_narrative": {
+        "es": "2025",
+        "en": "2025"
+      }
+    },
+    "magnitude": "-5.3%",
+    "chart_series": [
+      {
+        "period": "2012-2013",
+        "value": 0.72
+      },
+      {
+        "period": "2014",
+        "value": 0.704308
+      },
+      {
+        "period": "2015",
+        "value": 0.655732
+      },
+      {
+        "period": "2016",
+        "value": 0.619409
+      },
+      {
+        "period": "2017-2018",
+        "value": 0.577731
+      },
+      {
+        "period": "2019",
+        "value": 0.592037
+      },
+      {
+        "period": "2020",
+        "value": 0.600789
+      },
+      {
+        "period": "2021",
+        "value": 0.599759
+      },
+      {
+        "period": "2022",
+        "value": 0.612072
+      },
+      {
+        "period": "2023",
+        "value": 0.61861
+      },
+      {
+        "period": "2024",
+        "value": 0.604119
+      },
+      {
+        "period": "2025",
+        "value": 0.572014
+      }
+    ],
+    "claim_tokens": [
+      {
+        "claim_id": "a94c15413ad0608c",
+        "value": "0.572014",
+        "pcn_status": "verified",
+        "pcn_reason": "Verified: WJP_ROL_FAC_1 MEX 2025 = 0.572014 0_TO_1",
+        "pcn_source": "data/context/MEX/dynamic.csv",
+        "pcn_observation": {
+          "indicator": "WJP_ROL_FAC_1",
+          "refArea": "MEX",
+          "timePeriod": "2025",
+          "value": "0.572014",
+          "unit": "0_TO_1"
+        }
+      },
+      {
+        "claim_id": "a94c15413ad0608c",
+        "value": "0.604119",
+        "pcn_status": "rejected",
+        "pcn_reason": "Value mismatch: claimed 0.604119, stored 0.572014 (delta 0.0321)",
+        "pcn_source": "data/context/MEX/dynamic.csv",
+        "pcn_observation": {
+          "indicator": "WJP_ROL_FAC_1",
+          "refArea": "MEX",
+          "timePeriod": "2025",
+          "value": "0.572014",
+          "unit": "0_TO_1"
+        }
+      },
+      {
+        "claim_id": "26b69b4cd236e863",
+        "value": "0.490426",
+        "pcn_status": "rejected",
+        "pcn_reason": "Value mismatch: claimed 0.490426, stored 0.471229 (delta 0.0192)",
+        "pcn_source": "data/context/HND/dynamic.csv",
+        "pcn_observation": {
+          "indicator": "WJP_ROL_FAC_1",
+          "refArea": "HND",
+          "timePeriod": "2025",
+          "value": "0.471229",
+          "unit": "0_TO_1"
+        }
+      },
+      {
+        "claim_id": "26b69b4cd236e863",
+        "value": "0.511104",
+        "pcn_status": "rejected",
+        "pcn_reason": "Value mismatch: claimed 0.511104, stored 0.471229 (delta 0.0399)",
+        "pcn_source": "data/context/HND/dynamic.csv",
+        "pcn_observation": {
+          "indicator": "WJP_ROL_FAC_1",
+          "refArea": "HND",
+          "timePeriod": "2025",
+          "value": "0.471229",
+          "unit": "0_TO_1"
+        }
+      },
+      {
+        "claim_id": "a542ef633d179ee1",
+        "value": "0.718678",
+        "pcn_status": "verified",
+        "pcn_reason": "Verified: WJP_ROL_FAC_1 ARG 2025 = 0.718678 0_TO_1",
+        "pcn_source": "data/context/ARG/dynamic.csv",
+        "pcn_observation": {
+          "indicator": "WJP_ROL_FAC_1",
+          "refArea": "ARG",
+          "timePeriod": "2025",
+          "value": "0.718678",
+          "unit": "0_TO_1"
+        }
+      },
+      {
+        "claim_id": "a542ef633d179ee1",
+        "value": "0.738399",
+        "pcn_status": "rejected",
+        "pcn_reason": "Value mismatch: claimed 0.738399, stored 0.718678 (delta 0.0197)",
+        "pcn_source": "data/context/ARG/dynamic.csv",
+        "pcn_observation": {
+          "indicator": "WJP_ROL_FAC_1",
+          "refArea": "ARG",
+          "timePeriod": "2025",
+          "value": "0.718678",
+          "unit": "0_TO_1"
+        }
+      }
+    ],
+    "verification_trace": {
+      "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/WJP_ROL",
+      "csv_link": "https://data360files.worldbank.org/data360-data/data/WJP_ROL/WJP_ROL_FAC_1.csv"
+    },
+    "score": 0,
+    "detected_at": "2026-05-26T01:14:45.649Z",
+    "data_period_stale": false,
+    "quality_status": "incomplete",
+    "quality_tags": [
+      "4_claims_rejected"
+    ]
+  }
+]

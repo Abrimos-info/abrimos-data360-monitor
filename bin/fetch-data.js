@@ -20,6 +20,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { createTimer } = require('../lib/timing');
 const { getWatchlist } = require('../lib/watchlist');
 const { probeWatchlist, buildChangedSinceReport, buildIndex } = require('../lib/freshness-probe');
 const { downloadCsvSnapshot, downloadDataDict, downloadMetadataJson, refreshContextForIndicators } = require('../lib/context-fetch');
@@ -65,6 +66,7 @@ function writeJson(filePath, obj) {
 }
 
 async function runFetchData(argv, hooks = {}) {
+  const timer = createTimer('fetch-data');
   const opts = parseArgs(argv);
   const { DATA_DIR, SNAPSHOTS_DIR, CONTEXT_DIR, INDICATORS_DIR } = resolveDirs(opts.dataDir);
   const watchlist = loadWatchlist(opts);
@@ -87,6 +89,7 @@ async function runFetchData(argv, hooks = {}) {
   writeJson(path.join(DATA_DIR, 'index.json'), index);
 
   console.log(`[fetch-data] probe done in ${probeResult.elapsed_ms} ms`);
+  timer.lap('probe', `${probeResult.changed} changed, ${probeResult.errors} errors`);
   console.log(`[fetch-data] changed: ${probeResult.changed} | unchanged: ${probeResult.unchanged} | errors: ${probeResult.errors}`);
   if (probeResult.since) {
     console.log(`[fetch-data] since last probe: ${probeResult.since}`);
@@ -108,12 +111,14 @@ async function runFetchData(argv, hooks = {}) {
 
   if (opts.probeOnly) {
     console.log('[fetch-data] --probe-only: skipping snapshot and context fetch');
+    timer.end('total', 'probe-only');
     return;
   }
 
   const toFetch = watchlist.filter((e) => probeResult.changed_indicators.includes(e.idno));
   if (toFetch.length === 0) {
     console.log('[fetch-data] nothing to download');
+    timer.end('total', 'no changes');
     return;
   }
 
@@ -138,10 +143,13 @@ async function runFetchData(argv, hooks = {}) {
     }
   }
 
+  timer.lap('csv-download', `${toFetch.length} indicators`);
+
   console.log('[fetch-data] refreshing LAC context for changed indicators ...');
   await refreshContextForIndicators(CONTEXT_DIR, INDICATORS_DIR, SNAPSHOTS_DIR, toFetch, {
     forceMetadata: opts.force,
   });
+  timer.lap('context-refresh');
 
   console.log('[fetch-data] downloading data dictionaries and metadata JSON for changed indicators ...');
   for (const entry of toFetch) {
@@ -149,7 +157,9 @@ async function runFetchData(argv, hooks = {}) {
     await downloadMetadataJson(SNAPSHOTS_DIR, entry).catch((e) => console.warn(`  meta ${entry.idno}: ${e.message}`));
   }
 
+  timer.lap('metadata');
   console.log('[fetch-data] done');
+  timer.end('total', `${toFetch.length} indicators fetched`);
 }
 
 async function main() {

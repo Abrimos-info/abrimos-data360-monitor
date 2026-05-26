@@ -1,6 +1,6 @@
-# Frontend Architecture Specification: Data360 Monitor
+# Frontend Architecture Specification: Data360 News Agent
 
-This document defines the structural, functional, and layout architecture of the frontend dashboard for the `abrimos-data360-monitor` web application.
+This document defines the structural, functional, and layout architecture of the frontend for the `abrimos-data360-monitor` web application (**Data360 News Agent**).
 
 ---
 
@@ -50,7 +50,12 @@ data360/
 │   │   ├── detail-panel.js    # Side drawer + PCN claim resolution
 │   │   ├── charts.js          # Sparkline SVG renderer
 │   │   ├── alerts-feed.js     # Merge chat alerts into monitor feed
-│   │   ├── chat.js            # SSE chat client
+│   │   ├── chat.js            # SSE chat client (global /chat)
+│   │   ├── alert-chat.js      # Scoped chat on article pages (sessionStorage restore)
+│   │   ├── chat-turn-ui.js    # Shared SSE turn UI (activity, trace, markdown)
+│   │   ├── alert-page.js      # Article page: story PCN, sparklines, chat init
+│   │   ├── data360-urls.js    # indicatorUrl() → /en/indicator/{IDNO}
+│   │   ├── pcn-claims.js      # Client-side PCN claim markers
 │   │   ├── chat-cards.js      # Inline alert cards in chat
 │   │   ├── markdown.js        # Markdown + sparkline blocks
 │   │   ├── onboarding.js      # First-visit welcome modal
@@ -73,8 +78,9 @@ data360/
 ### Routing
 Driven by a structured route manifest (`config/routes.json`) plus explicit API routes in `lib/router.js`:
 
-* `/`: Monitor — compiled `dashboard.pug`, SSR alert grid with filters and cards.
+* `/`: Country home — newspaper front page (reportajes, headlines, indicator ticker). Legacy card feed available via `?legacy=1`.
 * `/chat`: Chat — compiled `chat.pug`, SSE client to `/api/chat`.
+* `/{país}/{slug}`: Article page — noticia/reportaje with scoped chat (`alert-page.pug`, `alert-chat.js`).
 * `/about`: About — methodology, limits, team, license.
 * `GET /api/alerts`: JSON `{ alerts: [...] }` for monitor/chat sync.
 * `POST /api/chat`: SSE agent stream (`messages`, `focus_countries`, `focus_changed`).
@@ -93,6 +99,9 @@ script.
   window.D360_LANG = !{JSON.stringify(lang)};
   window.D360_LANG_MODE = !{JSON.stringify(langMode || lang)};
   window.D360_STRINGS = { es: !{JSON.stringify(stringsEs)}, en: !{JSON.stringify(stringsEn)} };
+
+// layout.pug — all pages (defer)
+// script(src="/static/js/data360-urls.js")
 
 // dashboard.pug (monitor only)
 script.
@@ -222,7 +231,7 @@ The active display language is managed via standard styling tags on the global a
 
 ### Onboarding
 
-`templates/partials/onboarding.pug` + `static/js/onboarding.js`: modal on first visit (`localStorage` key `d360_onboarding_seen`), dismissible, CTAs to Monitor / Chat / About. Force with `?onboarding=1`.
+`templates/partials/onboarding.pug` + `static/js/onboarding.js`: modal on first visit (`localStorage` key `d360_onboarding_seen`), dismissible, CTAs to Home / About. Introduces **Data360 News Agent** as an AI news agency. Force with `?onboarding=1`.
 
 ---
 

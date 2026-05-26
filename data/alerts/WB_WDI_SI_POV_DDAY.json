@@ -1,24 +1,38 @@
 [
   {
-    "id": "alert_2026-05-22_007",
-    "type": "abrupt_change",
-    "country": "HND",
-    "category": "poverty",
+    "content_type": "noticia",
+    "id": "noticia_abrupt_change_HND_8c6bba0568efc716_2024_1",
+    "title": {
+      "es": "Disminuyó la pobreza en Honduras",
+      "en": "Poverty Decreased in Honduras"
+    },
+    "lead": {
+      "es": "Según datos del Banco Mundial, la tasa de personas viviendo con menos de $3.00 al día en Honduras disminuyó de 17% en 2023 a 15.7% en 2024. 15,70",
+      "en": "According to data from the World Bank, the rate of people living with less than $3.00 per day in Honduras decreased from 17% in 2023 to 15.7% in 2024."
+    },
+    "story": {
+      "es": "La reducción de la pobreza en Honduras se ha evidenciado en los últimos años. Según el Banco Mundial, la tasa de personas viviendo con menos de $3.00 al día en Honduras disminuyó de 17% en 2023 a 15.7% en 2024, lo que representa una caída de 1.3 puntos porcentuales. 15,70 Esta disminución se compara con la media histórica del país, que ha oscilado entre 18% y 24% en los últimos años. La reducción en la tasa de pobreza puede atribuirse a diversas políticas económicas y sociales implementadas por el gobierno hondureño en los últimos años. Sin embargo, aún queda mucho por hacer, ya que la tasa de pobreza sigue siendo significativa y requiere de medidas adicionales para continuar reduciendo esta cifra. 15,70",
+      "en": "The reduction in poverty in Honduras has been evident in recent years. According to the World Bank, the rate of people living with less than $3.00 per day in Honduras decreased from 17% in 2023 to 15.7% in 2024, representing a decline of 1.3 percentage points. This decrease compares with the historical average of the country, which has fluctuated between 18% and 24% in recent years. The reduction in the poverty rate can be attributed to various economic and social policies implemented by the Honduran government in recent years. However, there is still much to be done, as the poverty rate remains significant and requires additional measures to continue reducing this figure."
+    },
+    "countries": [
+      "HND"
+    ],
+    "dataset_id": "WB_WDI",
     "indicator": {
       "idno": "WB_WDI_SI_POV_DDAY",
       "database_id": "WB_WDI",
       "name": {
-        "es": "Poverty headcount ratio at $3.00 a day (2021 PPP) (% of population)",
-        "en": "Poverty headcount ratio at $3.00 a day (2021 PPP) (% of population)"
+        "es": "Tasa de pobreza en Honduras",
+        "en": "Poverty Rate in Honduras"
       }
     },
     "observation": {
-      "value": 15.7,
+      "value": "15.7",
       "time_period": "2024",
       "unit": "PT_POP",
       "display": {
-        "es": "15.7 %",
-        "en": "15.7 %"
+        "es": "15,70",
+        "en": "15.70"
       },
       "period_display": {
         "es": "2024",
@@ -29,91 +43,8 @@
         "en": "2024"
       }
     },
-    "magnitude": {
-      "es": "−2.8σ",
-      "en": "−2.8σ"
-    },
+    "magnitude": "-1.3%",
     "chart_series": [
-      {
-        "period": "1989",
-        "value": 49.5
-      },
-      {
-        "period": "1990",
-        "value": 51.7
-      },
-      {
-        "period": "1991",
-        "value": 41.3
-      },
-      {
-        "period": "1992",
-        "value": 36.5
-      },
-      {
-        "period": "1993",
-        "value": 31.3
-      },
-      {
-        "period": "1994",
-        "value": 32.9
-      },
-      {
-        "period": "1995",
-        "value": 34.4
-      },
-      {
-        "period": "1996",
-        "value": 38.2
-      },
-      {
-        "period": "1997",
-        "value": 27.5
-      },
-      {
-        "period": "1998",
-        "value": 32.3
-      },
-      {
-        "period": "1999",
-        "value": 32.1
-      },
-      {
-        "period": "2001",
-        "value": 26.5
-      },
-      {
-        "period": "2002",
-        "value": 29
-      },
-      {
-        "period": "2003",
-        "value": 34
-      },
-      {
-        "period": "2004",
-        "value": 33.3
-      },
-      {
-        "period": "2005",
-        "value": 31.3
-      },
-      {
-        "period": "2006",
-        "value": 27.3
-      },
-      {
-        "period": "2007",
-        "value": 22
-      },
-      {
-        "period": "2008",
-        "value": 20.9
-      },
-      {
-        "period": "2009",
-        "value": 18.1
-      },
       {
         "period": "2010",
         "value": 19.6
@@ -160,231 +91,27 @@
       },
       {
         "period": "2024",
-        "value": 15.7,
-        "is_change_point": true
+        "value": 15.7
+      }
+    ],
+    "claim_tokens": [
+      {
+        "claim_id": "8c6bba0568efc716",
+        "value": "15.7",
+        "pcn_status": "rejected",
+        "pcn_reason": "Claim ID mismatch: got 8c6bba0568efc716, expected 33623d19de1fecba"
       }
     ],
     "verification_trace": {
       "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/WB_WDI",
-      "csv_link": "https://data360files.worldbank.org/data360-data/data/WB_WDI/WB_WDI_SI_POV_DDAY.csv",
-      "methodology_ref": "http://pip.worldbank.org"
+      "csv_link": "https://data360files.worldbank.org/data360-data/data/WB_WDI/WB_WDI_SI_POV_DDAY.csv"
     },
-    "score": 0.6976539745814242,
-    "detected_at": "2026-05-22T00:21:20.831Z",
-    "license": "CC BY-4.0",
-    "narrative_citizen": {
-      "es": "Disminuyó bruscamente la proporción de personas viviendo con menos de $3.00 al día en Honduras en 2024.",
-      "en": "There was a sharp decrease in the proportion of people living on less than $3.00 a day in Honduras in 2024."
-    },
-    "narrative_journalist": {
-      "es": "La proporción de personas viviendo con menos de $3.00 al día en Honduras cayó drásticamente en 2024, según datos del Banco Mundial.",
-      "en": "The proportion of people living on less than $3.00 a day in Honduras dropped sharply in 2024, according to World Bank data."
-    },
-    "claim_tokens": [
-      {
-        "claim_id": "8c6bba0568efc716",
-        "value": 15.7,
-        "display_es": "15.7 %",
-        "display_en": "15.7 %"
-      },
-      {
-        "claim_id": "5e5a42faa03c2956",
-        "value": 17,
-        "display_es": "17,00 PT_POP",
-        "display_en": "17.00 PT_POP"
-      }
-    ],
-    "data_period_stale": true
-  },
-  {
-    "id": "alert_2026-05-22_026",
-    "type": "anomaly",
-    "country": "HND",
-    "category": "poverty",
-    "indicator": {
-      "idno": "WB_WDI_SI_POV_DDAY",
-      "database_id": "WB_WDI",
-      "name": {
-        "es": "Poverty headcount ratio at $3.00 a day (2021 PPP) (% of population)",
-        "en": "Poverty headcount ratio at $3.00 a day (2021 PPP) (% of population)"
-      }
-    },
-    "observation": {
-      "value": 15.7,
-      "time_period": "2024",
-      "unit": "PT_POP",
-      "display": {
-        "es": "4.45 %",
-        "en": "4.45 %"
-      },
-      "period_display": {
-        "es": "2024",
-        "en": "2024"
-      },
-      "period_narrative": {
-        "es": "2024",
-        "en": "2024"
-      }
-    },
-    "magnitude": {
-      "es": "+2.4σ",
-      "en": "+2.4σ"
-    },
-    "chart_series": [
-      {
-        "period": "1989",
-        "value": 49.5
-      },
-      {
-        "period": "1990",
-        "value": 51.7
-      },
-      {
-        "period": "1991",
-        "value": 41.3
-      },
-      {
-        "period": "1992",
-        "value": 36.5
-      },
-      {
-        "period": "1993",
-        "value": 31.3
-      },
-      {
-        "period": "1994",
-        "value": 32.9
-      },
-      {
-        "period": "1995",
-        "value": 34.4
-      },
-      {
-        "period": "1996",
-        "value": 38.2
-      },
-      {
-        "period": "1997",
-        "value": 27.5
-      },
-      {
-        "period": "1998",
-        "value": 32.3
-      },
-      {
-        "period": "1999",
-        "value": 32.1
-      },
-      {
-        "period": "2001",
-        "value": 26.5
-      },
-      {
-        "period": "2002",
-        "value": 29
-      },
-      {
-        "period": "2003",
-        "value": 34
-      },
-      {
-        "period": "2004",
-        "value": 33.3
-      },
-      {
-        "period": "2005",
-        "value": 31.3
-      },
-      {
-        "period": "2006",
-        "value": 27.3
-      },
-      {
-        "period": "2007",
-        "value": 22
-      },
-      {
-        "period": "2008",
-        "value": 20.9
-      },
-      {
-        "period": "2009",
-        "value": 18.1
-      },
-      {
-        "period": "2010",
-        "value": 19.6
-      },
-      {
-        "period": "2011",
-        "value": 20.1
-      },
-      {
-        "period": "2012",
-        "value": 24
-      },
-      {
-        "period": "2013",
-        "value": 20.8
-      },
-      {
-        "period": "2014",
-        "value": 20.6
-      },
-      {
-        "period": "2015",
-        "value": 19.9
-      },
-      {
-        "period": "2016",
-        "value": 19.8
-      },
-      {
-        "period": "2017",
-        "value": 19.3
-      },
-      {
-        "period": "2018",
-        "value": 19.8
-      },
-      {
-        "period": "2019",
-        "value": 18.8
-      },
-      {
-        "period": "2023",
-        "value": 17
-      },
-      {
-        "period": "2024",
-        "value": 15.7,
-        "is_change_point": true
-      }
-    ],
-    "verification_trace": {
-      "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/WB_WDI",
-      "csv_link": "https://data360files.worldbank.org/data360-data/data/WB_WDI/WB_WDI_SI_POV_DDAY.csv",
-      "methodology_ref": "http://pip.worldbank.org"
-    },
-    "score": 0.6022238923898171,
-    "detected_at": "2026-05-22T00:21:20.834Z",
-    "license": "CC BY-4.0",
-    "narrative_citizen": {
-      "es": "Superó la mediana regional la proporción de personas viviendo con menos de $3.00 al día en Honduras en 2024.",
-      "en": "Honduras exceeded the regional median for the proportion of people living on less than $3.00 a day in 2024."
-    },
-    "narrative_journalist": {
-      "es": "La proporción de personas viviendo con menos de $3.00 al día en Honduras en 2024 superó la mediana regional, según datos del Banco Mundial.",
-      "en": "The proportion of people living on less than $3.00 a day in Honduras in  Yö2024 exceeded the regional median, according to World Bank data."
-    },
-    "claim_tokens": [
-      {
-        "claim_id": "8c6bba0568efc716",
-        "value": 4.45,
-        "display_es": "4.45 %",
-        "display_en": "4.45 %"
-      }
-    ],
-    "data_period_stale": true
+    "score": 0,
+    "detected_at": "2024-01-01T00:00:00Z",
+    "data_period_stale": true,
+    "quality_status": "incomplete",
+    "quality_tags": [
+      "1_claims_rejected"
+    ]
   }
 ]

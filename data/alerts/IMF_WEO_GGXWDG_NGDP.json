@@ -1,24 +1,38 @@
 [
   {
-    "id": "alert_2026-05-22_042",
-    "type": "anomaly",
-    "country": "GTM",
-    "category": "economy",
+    "content_type": "noticia",
+    "id": "noticia_anomaly_ARG_IMF_WEO_GGXWDG_NGDP_2022_1",
+    "title": {
+      "es": "Deuda pública argentina alcanza nuevo récord",
+      "en": "Argentina's public debt hits new record"
+    },
+    "lead": {
+      "es": "La deuda pública del gobierno de Argentina alcanzó un nuevo récord en 2022, llegando al 84,685% del PIB, según datos del Fondo Monetario Internacional (FMI).",
+      "en": "Argentina's government public debt reached a new record in 2022, reaching 84.685% of GDP, according to data from the International Monetary Fund (IMF)."
+    },
+    "story": {
+      "es": "En 2022, la deuda pública del gobierno de Argentina alcanzó un nuevo nivel récord, llegando al 84,685% del PIB, según datos del Fondo Monetario Internacional (FMI). Esta cifra representa un aumento significativo desde el año anterior, cuando se situaba en el 80,82% del PIB. La tendencia ascendente en la deuda pública ha sido constante en los últimos años, reflejando las dificultades económicas que enfrenta el país.\n\nComparativamente, la mediana de la deuda pública del gobierno en América Latina fue de 54,169% del PIB en 2022. Esto coloca a Argentina como uno de los países con mayor deuda pública en la región, lo que puede tener implicaciones negativas para la estabilidad económica y financiera del país. La alta deuda pública puede limitar la capacidad del gobierno para implementar políticas económicas efectivas y puede aumentar la vulnerabilidad ante shocks externos.\n\nEs importante destacar que la deuda pública no es el único indicador económico relevante en Argentina. Por ejemplo, el Índice de Calidad de Gobierno (WGI_CC) del país se sitúa en -0,325708, lo que indica una percepción relativamente baja de la calidad del gobierno en términs de control de corrupción. Además, el Índice de Calidad de Gobierno en términos de gobernanza empresarial (WGI_GE) es de 0,183748, lo que sugiere una mejora moderada en este aspecto.\n\nLa alta deuda pública puede tener consecuencias significativas para la ciudadanía, ya que puede limitar la capacidad del gobierno para invertir en servicios públicos esenciales y programas sociales. Esto podría afectar negativamente la calidad de vida de los argentinos y potencialmente aumentar la desigualdad social.\n\n84,685",
+      "en": "In 2022, Argentina's government public debt hit a new record level, reaching 84.685% of GDP, according to data from the International Monetary Fund (IMF). This figure represents a significant increase from the previous year, when it stood at 80.82% of GDP. The upward trend in public debt has been consistent over the past few years, reflecting the economic difficulties the country faces.\n\nCompared to other countries in Latin America, the median government public debt was 54.169% of GDP in 2022. This places Argentina among the countries with the highest public debt in the region, which could have negative implications for the country's economic and financial stability. High public debt can limit the government's ability to implement effective economic policies and may increase vulnerability to external shocks.\n\nIt is important to note that public debt is not the only relevant economic indicator in Argentina. For example, the World Governance Indicators (WGI_CC) for the country stands at -0.325708, indicating a relatively low perception of government quality in terms of corruption control. Additionally, the World Governance Indicators in terms of business governance (WGI_GE) are 0.183748, suggesting a moderate improvement in this area.\n\nHigh public debt can have significant consequences for citizens, as it may limit the government's ability to invest in essential public services and social programs. This could negatively impact the quality of life for Argentinians and potentially increase social inequality."
+    },
+    "countries": [
+      "ARG"
+    ],
+    "dataset_id": "IMF_WEO",
     "indicator": {
       "idno": "IMF_WEO_GGXWDG_NGDP",
       "database_id": "IMF_WEO",
       "name": {
-        "es": "General government gross debt, Percent of GDP",
-        "en": "General government gross debt, Percent of GDP"
+        "es": "Deuda pública del gobierno general, porcentaje del PIB",
+        "en": "Government General Public Debt, Percent of GDP"
       }
     },
     "observation": {
-      "value": 29.201,
+      "value": "84,685",
       "time_period": "2022",
       "unit": "PT_GDP",
       "display": {
-        "es": "29.201 % (deuda pública)",
-        "en": "29.201 % (public debt)"
+        "es": "84,685",
+        "en": "84,685"
       },
       "period_display": {
         "es": "2022",
@@ -29,241 +43,8 @@
         "en": "2022"
       }
     },
-    "magnitude": {
-      "es": "−3.4σ",
-      "en": "−3.4σ"
-    },
+    "magnitude": "+4,10σ",
     "chart_series": [
-      {
-        "period": "2000",
-        "value": 17.999
-      },
-      {
-        "period": "2001",
-        "value": 19.11
-      },
-      {
-        "period": "2002",
-        "value": 17.362
-      },
-      {
-        "period": "2003",
-        "value": 19.803
-      },
-      {
-        "period": "2004",
-        "value": 20.553
-      },
-      {
-        "period": "2005",
-        "value": 20.017
-      },
-      {
-        "period": "2006",
-        "value": 20.86
-      },
-      {
-        "period": "2007",
-        "value": 20.779
-      },
-      {
-        "period": "2008",
-        "value": 19.57
-      },
-      {
-        "period": "2009",
-        "value": 22.78
-      },
-      {
-        "period": "2010",
-        "value": 24.006
-      },
-      {
-        "period": "2011",
-        "value": 23.769
-      },
-      {
-        "period": "2012",
-        "value": 24.557
-      },
-      {
-        "period": "2013",
-        "value": 25.035
-      },
-      {
-        "period": "2014",
-        "value": 24.651
-      },
-      {
-        "period": "2015",
-        "value": 24.803
-      },
-      {
-        "period": "2016",
-        "value": 24.956
-      },
-      {
-        "period": "2017",
-        "value": 25.093
-      },
-      {
-        "period": "2018",
-        "value": 26.43
-      },
-      {
-        "period": "2019",
-        "value": 26.414
-      },
-      {
-        "period": "2020",
-        "value": 31.493
-      },
-      {
-        "period": "2021",
-        "value": 30.761
-      },
-      {
-        "period": "2022",
-        "value": 29.201,
-        "is_change_point": true
-      }
-    ],
-    "verification_trace": {
-      "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/IMF_WEO",
-      "csv_link": "https://data360files.worldbank.org/data360-data/data/IMF_WEO/IMF_WEO_GGXWDG_NGDP.csv"
-    },
-    "score": 0.8395157169796436,
-    "detected_at": "2026-05-22T00:21:20.837Z",
-    "license": "License Specified Externally",
-    "narrative_citizen": {
-      "es": "Disminuyó significativamente la deuda pública de Guatemala en 2022, alcanzando el 29.201 % del PIB.",
-      "en": "Significantly decreased Guatemala's public debt to 29.201% of GDP in 2022."
-    },
-    "narrative_journalist": {
-      "es": "La deuda pública de Guatemala cayó drásticamente a 29.201% del PIB en 2022, muy por debajo de la mediana regional de 54.169%.",
-      "en": "Guatemala's public debt plummeted to 29.201% of GDP in 2022, well below the regional median of 54.169%."
-    },
-    "claim_tokens": [
-      {
-        "claim_id": "55b3a68ae7773136",
-        "value": 29.201,
-        "display_es": "29.201 % (deuda pública)",
-        "display_en": "29.201 % (public debt)"
-      }
-    ],
-    "data_period_stale": true
-  },
-  {
-    "id": "alert_2026-05-22_043",
-    "type": "anomaly",
-    "country": "ARG",
-    "category": "economy",
-    "indicator": {
-      "idno": "IMF_WEO_GGXWDG_NGDP",
-      "database_id": "IMF_WEO",
-      "name": {
-        "es": "General government gross debt, Percent of GDP",
-        "en": "General government gross debt, Percent of GDP"
-      }
-    },
-    "observation": {
-      "value": 84.685,
-      "time_period": "2022",
-      "unit": "PT_GDP",
-      "display": {
-        "es": "84.685 % (deuda pública)",
-        "en": "84.685 % (public debt)"
-      },
-      "period_display": {
-        "es": "2022",
-        "en": "2022"
-      },
-      "period_narrative": {
-        "es": "2022",
-        "en": "2022"
-      }
-    },
-    "magnitude": {
-      "es": "+4.1σ",
-      "en": "+4.1σ"
-    },
-    "chart_series": [
-      {
-        "period": "1992",
-        "value": 24.961
-      },
-      {
-        "period": "1993",
-        "value": 26.893
-      },
-      {
-        "period": "1994",
-        "value": 28.426
-      },
-      {
-        "period": "1995",
-        "value": 30.749
-      },
-      {
-        "period": "1996",
-        "value": 32.551
-      },
-      {
-        "period": "1997",
-        "value": 31.676
-      },
-      {
-        "period": "1998",
-        "value": 34.147
-      },
-      {
-        "period": "1999",
-        "value": 38.917
-      },
-      {
-        "period": "2000",
-        "value": 40.833
-      },
-      {
-        "period": "2001",
-        "value": 48.007
-      },
-      {
-        "period": "2002",
-        "value": 147.203
-      },
-      {
-        "period": "2003",
-        "value": 125.162
-      },
-      {
-        "period": "2004",
-        "value": 117.878
-      },
-      {
-        "period": "2005",
-        "value": 80.282
-      },
-      {
-        "period": "2006",
-        "value": 70.793
-      },
-      {
-        "period": "2007",
-        "value": 62.133
-      },
-      {
-        "period": "2008",
-        "value": 53.814
-      },
-      {
-        "period": "2009",
-        "value": 55.397
-      },
-      {
-        "period": "2010",
-        "value": 43.454
-      },
       {
         "period": "2011",
         "value": 38.935
@@ -310,33 +91,27 @@
       },
       {
         "period": "2022",
-        "value": 84.685,
-        "is_change_point": true
+        "value": 84.685
+      }
+    ],
+    "claim_tokens": [
+      {
+        "claim_id": "d38347567dd383f6",
+        "value": "84.685",
+        "pcn_status": "rejected",
+        "pcn_reason": "Claim ID mismatch: got d38347567dd383f6, expected 448cb6565c5d13ce"
       }
     ],
     "verification_trace": {
       "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/IMF_WEO",
       "csv_link": "https://data360files.worldbank.org/data360-data/data/IMF_WEO/IMF_WEO_GGXWDG_NGDP.csv"
     },
-    "score": 1,
-    "detected_at": "2026-05-22T00:21:20.837Z",
-    "license": "License Specified Externally",
-    "narrative_citizen": {
-      "es": "Aumentó considerablemente la deuda pública de Argentina en 2022, alcanzando el 84.685 % del PIB.",
-      "en": "Argentina's public debt surged to 84.685% of GDP in 2022."
-    },
-    "narrative_journalist": {
-      "es": "La deuda pública de Argentina aumentó significativamente a 84.685% del PIB en 2022, muy por encima de la mediana regional de 54.169%.",
-      "en": "Argentina's public debt rose significantly to 84.685% of GDP in 2022, well above the regional median of 54.169%."
-    },
-    "claim_tokens": [
-      {
-        "claim_id": "d38347567dd383f6",
-        "value": 84.685,
-        "display_es": "84.685 % (deuda pública)",
-        "display_en": "84.685 % (public debt)"
-      }
-    ],
-    "data_period_stale": true
+    "score": 0,
+    "detected_at": "2023-11-28T14:00:00Z",
+    "data_period_stale": true,
+    "quality_status": "incomplete",
+    "quality_tags": [
+      "1_claims_rejected"
+    ]
   }
 ]

@@ -1,24 +1,38 @@
 [
   {
-    "id": "alert_2026-05-22_030",
-    "type": "anomaly",
-    "country": "ARG",
-    "category": "labor",
+    "content_type": "noticia",
+    "id": "noticia_anomaly_ARG_WB_WDI_SL_UEM_TOTL_ZS_2025_1",
+    "title": {
+      "es": "El desempleo en Argentina aumenta",
+      "en": "Unemployment in Argentina Increases"
+    },
+    "lead": {
+      "es": "Según datos del Banco Mundial, el desempleo en Argentina se ubicó en el 7.15% en 2025, lo que representa un aumento respecto al 6.139% registrado en 2023. 7,15",
+      "en": "According to data from the World Bank, unemployment in Argentina stood at 7.15% in 2025, representing an increase from the 6.139% recorded in 2023."
+    },
+    "story": {
+      "es": "El desempleo en Argentina ha experimentado un incremento significativo, pasando del 6.139% en 2023 al 7.15% en 2025, lo que representa un aumento del 16.2%. 7,15\n\nEste aumento contrasta con la tendencia observada en años anteriores, donde el desempleo había disminuido. Por ejemplo, en 2022 el desempleo era del 6.805%, mientras que en 2021 se situaba en el 8.736%.\n\nEn comparación con otros países de la región, Argentina presenta un nivel de desempleo superior. Por ejemplo, Brasil registró un desempleo del 8.4% en 2025, lo que indica que Argentina tiene un desempleo relativamente alto en comparación con sus vecinos.\n\nEsta situación podría estar relacionada con factores económicos internos, como políticas laborales y condiciones de mercado. Sin embargo, es necesario realizar un análisis más profundo para entender las causas subyacentes de este aumento en el desempleo.",
+      "en": "Unemployment in Argentina has seen a significant increase, rising from 6.139% in 2023 to 7.15% in 2025, marking a 16.2% increase. This rise contrasts with the trend observed in previous years, where unemployment had been decreasing. For instance, in 2022, unemployment was 6.805%, while in 2021 it stood at 8.736%.\n\nCompared to other countries in the region, Argentina shows a higher level of unemployment. For example, Brazil recorded an unemployment rate of 8.4% in 2025, indicating that Argentina's unemployment rate is relatively high compared to its neighbors.\n\nThis situation may be related to internal economic factors such as labor policies and market conditions. However, a deeper analysis is necessary to understand the underlying causes of this increase in unemployment."
+    },
+    "countries": [
+      "ARG"
+    ],
+    "dataset_id": "WB_WDI",
     "indicator": {
       "idno": "WB_WDI_SL_UEM_TOTL_ZS",
       "database_id": "WB_WDI",
       "name": {
-        "es": "Unemployment, total (% of total labor force) (modeled ILO estimate)",
-        "en": "Unemployment, total (% of total labor force) (modeled ILO estimate)"
+        "es": "Desempleo total (% de la fuerza laboral total) (estimación modelada ILO)",
+        "en": "Total Unemployment Rate (% of total labor force) (modeled ILO estimate)"
       }
     },
     "observation": {
-      "value": 7.145,
+      "value": "7.145",
       "time_period": "2025",
       "unit": "PT_LF",
       "display": {
-        "es": "7.145 %",
-        "en": "7.145%"
+        "es": "7,15",
+        "en": "7.15"
       },
       "period_display": {
         "es": "2025",
@@ -29,103 +43,8 @@
         "en": "2025"
       }
     },
-    "magnitude": {
-      "es": "+3.7σ",
-      "en": "+3.7σ"
-    },
+    "magnitude": "+16.2%",
     "chart_series": [
-      {
-        "period": "1991",
-        "value": 5.44
-      },
-      {
-        "period": "1992",
-        "value": 6.36
-      },
-      {
-        "period": "1993",
-        "value": 10.1
-      },
-      {
-        "period": "1994",
-        "value": 11.76
-      },
-      {
-        "period": "1995",
-        "value": 18.8
-      },
-      {
-        "period": "1996",
-        "value": 17.11
-      },
-      {
-        "period": "1997",
-        "value": 14.82
-      },
-      {
-        "period": "1998",
-        "value": 12.65
-      },
-      {
-        "period": "1999",
-        "value": 14.05
-      },
-      {
-        "period": "2000",
-        "value": 15
-      },
-      {
-        "period": "2001",
-        "value": 17.32
-      },
-      {
-        "period": "2002",
-        "value": 19.59
-      },
-      {
-        "period": "2003",
-        "value": 15.36
-      },
-      {
-        "period": "2004",
-        "value": 13.522
-      },
-      {
-        "period": "2005",
-        "value": 11.506
-      },
-      {
-        "period": "2006",
-        "value": 10.078
-      },
-      {
-        "period": "2007",
-        "value": 8.47
-      },
-      {
-        "period": "2008",
-        "value": 7.837
-      },
-      {
-        "period": "2009",
-        "value": 8.645
-      },
-      {
-        "period": "2010",
-        "value": 7.714
-      },
-      {
-        "period": "2011",
-        "value": 7.18
-      },
-      {
-        "period": "2012",
-        "value": 7.217
-      },
-      {
-        "period": "2013",
-        "value": 7.1
-      },
       {
         "period": "2014",
         "value": 7.268
@@ -143,7 +62,7 @@
         "value": 8.347
       },
       {
-        "period": "2018",
+        "period": "2bk18",
         "value": 9.22
       },
       {
@@ -172,34 +91,29 @@
       },
       {
         "period": "2025",
-        "value": 7.145,
-        "is_change_point": true
+        "value": 7.145
+      }
+    ],
+    "claim_tokens": [
+      {
+        "claim_id": "dad1d6be0755c4f1",
+        "value": "7.145",
+        "display_es": "7,15",
+        "display_en": "7.15",
+        "pcn_status": "rejected",
+        "pcn_reason": "Claim ID mismatch: got dad1d6be0755c4f1, expected 38718d92388677d4"
       }
     ],
     "verification_trace": {
       "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/WB_WDI",
-      "csv_link": "https://data360files.worldbank.org/data360-data/data/WB_WDI/WB_WDI_SL_UEM_TOTL_ZS.csv",
-      "methodology_ref": "https://ilostat.ilo.org/data/bulk/"
+      "csv_link": "https://data360files.worldbank.org/data360-data/data/WB_WDI/WB_WDI_SL_UEM_TOTL_ZS.csv"
     },
-    "score": 0.9190415639601196,
-    "detected_at": "2026-05-22T00:21:20.835Z",
-    "license": "CC BY-4.0",
-    "narrative_citizen": {
-      "es": "Subió significativamente el desempleo en Argentina en 2025.",
-      "en": "Unemployment rose significantly in Argentina in 2025."
-    },
-    "narrative_journalist": {
-      "es": "El desempleo en Argentina alcanzó el 7.145 % en 2025, superando la mediana regional de 3.308 %.",
-      "en": "Unemployment in Argentina reached 7.145% in 2025, surpassing the regional median of 3.308%."
-    },
-    "claim_tokens": [
-      {
-        "claim_id": "dad1d6be0755c4f1",
-        "value": 7.145,
-        "display_es": "7.145 %",
-        "display_en": "7.145%"
-      }
-    ],
-    "data_period_stale": false
+    "score": 1,
+    "detected_at": "2023-10-12T14:30:00Z",
+    "data_period_stale": false,
+    "quality_status": "incomplete",
+    "quality_tags": [
+      "1_claims_rejected"
+    ]
   }
 ]

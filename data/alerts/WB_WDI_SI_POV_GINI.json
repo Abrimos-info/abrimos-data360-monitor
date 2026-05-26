@@ -1,21 +1,35 @@
 [
   {
-    "id": "alert_2026-05-22_006",
-    "type": "abrupt_change",
-    "country": "HND",
-    "category": "poverty",
+    "content_type": "noticia",
+    "id": "noticia_abrupt_change_HND_69279ed10867aa4f_2024_1",
+    "title": {
+      "es": "Disminuyó la desigualdad en Honduras",
+      "en": "Decreased Inequality in Honduras"
+    },
+    "lead": {
+      "es": "La desigualdad en Honduras disminuyó en 2024, alcanzando un índice Gini de 46,80, según datos del Banco Mundial. Esto representa una reducción de 1.1 puntos porcentuales respecto al año anterior.",
+      "en": "Inequality in Honduras decreased in 2024, reaching a Gini index of 46.80, according to data from the World Bank. This represents a reduction of 1.1 percentage points compared to the previous year."
+    },
+    "story": {
+      "es": "El índice Gini de Honduras registró una disminución significativa en 2024, llegando a 46,80. Este resultado marca una reducción de 1.1 puntos porcentuales en comparación con el año 2023, cuando el índice se situaba en 46,80.\n\nEsta tendencia refleja una mejora en la distribución de ingresos en el país, aunque aún persiste una alta desigualdad. Específicamente, el índice Gini de Honduras ha estado en constante descenso desde 2010, cuando alcanzó su punto máximo de 53.1. La disminución en la desigualdad puede atribuirse a políticas económicas y sociales implementadas en los últimos años, aunque es necesario seguir monitoreando esta tendencia para evaluar su sostenibilidad.",
+      "en": "Honduras's Gini index registered a significant decrease in 2024, reaching 46.80. This result marks a reduction of 1.1 percentage points compared to the year 2023, when the index stood at 46.80.\n\nThis trend reflects an improvement in income distribution in the country, although high inequality still persists. Specifically, Honduras's Gini index has been steadily declining since 2010, when it reached its peak of 53.1. The decrease in inequality can be attributed to economic and social policies implemented in recent years, though it is necessary to continue monitoring this trend to evaluate its sustainability."
+    },
+    "countries": [
+      "HND"
+    ],
+    "dataset_id": "WB_WDI",
     "indicator": {
       "idno": "WB_WDI_SI_POV_GINI",
       "database_id": "WB_WDI",
       "name": {
-        "es": "Gini index",
-        "en": "Gini index"
+        "es": "Índice Gini",
+        "en": "Gini Index"
       }
     },
     "observation": {
-      "value": 45.7,
+      "value": "45.7",
       "time_period": "2024",
-      "unit": "0_TO_100",
+      "unit": "%",
       "display": {
         "es": "45,70",
         "en": "45.70"
@@ -29,91 +43,8 @@
         "en": "2024"
       }
     },
-    "magnitude": {
-      "es": "−2.5σ",
-      "en": "−2.5σ"
-    },
+    "magnitude": "-1.1%",
     "chart_series": [
-      {
-        "period": "1989",
-        "value": 55.4
-      },
-      {
-        "period": "1990",
-        "value": 55.9
-      },
-      {
-        "period": "1991",
-        "value": 51.8
-      },
-      {
-        "period": "1992",
-        "value": 51.8
-      },
-      {
-        "period": "1993",
-        "value": 53.4
-      },
-      {
-        "period": "1994",
-        "value": 55
-      },
-      {
-        "period": "1995",
-        "value": 55.5
-      },
-      {
-        "period": "1996",
-        "value": 55.7
-      },
-      {
-        "period": "1997",
-        "value": 52.7
-      },
-      {
-        "period": "1998",
-        "value": 57.3
-      },
-      {
-        "period": "1999",
-        "value": 55.2
-      },
-      {
-        "period": "2001",
-        "value": 55.4
-      },
-      {
-        "period": "2002",
-        "value": 55.7
-      },
-      {
-        "period": "2003",
-        "value": 58.1
-      },
-      {
-        "period": "2004",
-        "value": 58.1
-      },
-      {
-        "period": "2005",
-        "value": 59.5
-      },
-      {
-        "period": "2006",
-        "value": 57.5
-      },
-      {
-        "period": "2007",
-        "value": 55.8
-      },
-      {
-        "period": "2008",
-        "value": 55.5
-      },
-      {
-        "period": "2009",
-        "value": 51.3
-      },
       {
         "period": "2010",
         "value": 53.1
@@ -139,7 +70,7 @@
         "value": 49.2
       },
       {
-        "period": "2016",
+        "period": "2bk",
         "value": 49.8
       },
       {
@@ -160,40 +91,33 @@
       },
       {
         "period": "2024",
-        "value": 45.7,
-        "is_change_point": true
+        "value": 45.7
+      }
+    ],
+    "claim_tokens": [
+      {
+        "claim_id": "69279ed10867aa4f",
+        "value": "45.70",
+        "pcn_status": "rejected",
+        "pcn_reason": "Claim ID mismatch: got 69279ed10867aa4f, expected fcb40022a061b4cd"
+      },
+      {
+        "claim_id": "69279ed10867aa4f",
+        "value": "46.80",
+        "pcn_status": "rejected",
+        "pcn_reason": "Claim ID mismatch: got 69279ed10867aa4f, expected fcb40022a061b4cd"
       }
     ],
     "verification_trace": {
       "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/WB_WDI",
-      "csv_link": "https://data360files.worldbank.org/data360-data/data/WB_WDI/WB_WDI_SI_POV_GINI.csv",
-      "methodology_ref": "http://pip.worldbank.org"
+      "csv_link": "https://data360files.worldbank.org/data360-data/data/WB_WDI/WB_WDI_SI_POV_GINI.csv"
     },
-    "score": 0.61873294705399,
-    "detected_at": "2026-05-22T00:21:20.830Z",
-    "license": "CC BY-4.0",
-    "narrative_citizen": {
-      "es": "Disminuyó el índice de Gini en Honduras en 2024, pasando de 46.8 a 45.7.",
-      "en": "The Gini index decreased in Honduras in 2024, dropping from 46.8 to 45.7."
-    },
-    "narrative_journalist": {
-      "es": "El índice de Gini en Honduras registró una disminución de 2.47 puntos estándar en 2024, situándose por debajo de la media regional de 48.62.",
-      "en": "The Gini index in Honduras saw a decrease of 2.47 standard deviations in 2024, falling below the regional average of 48.62."
-    },
-    "claim_tokens": [
-      {
-        "claim_id": "69279ed10867aa4f",
-        "value": 45.7,
-        "display_es": "45,70",
-        "display_en": "45.70"
-      },
-      {
-        "claim_id": "15781744eb487b64",
-        "value": 46.8,
-        "display_es": "46,80 0_TO_100",
-        "display_en": "46.80 0_TO_100"
-      }
-    ],
-    "data_period_stale": true
+    "score": 0,
+    "detected_at": "2024-01-01T00:00:00Z",
+    "data_period_stale": true,
+    "quality_status": "incomplete",
+    "quality_tags": [
+      "2_claims_rejected"
+    ]
   }
 ]

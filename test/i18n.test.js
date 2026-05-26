@@ -8,12 +8,12 @@ test('getString returns known EN tagline (D-006 exact phrase)', () => {
   const val = i18n.getString('tagline', 'en');
   assert.equal(
     val,
-    'Autonomous monitor that detects newsworthy events across the 12,000 indicators of Data360 and delivers them verified to LAC newsrooms.'
+    "AI-powered news agency that detects newsworthy facts from Data360's 12,000 indicators and delivers them verified with local perspective to LAC newsrooms."
   );
 });
 
 test('getString returns EN site_name', () => {
-  assert.equal(i18n.getString('site_name', 'en'), 'Data360 Monitor');
+  assert.equal(i18n.getString('site_name', 'en'), 'D360 News Agent');
 });
 
 test('getString returns placeholder for missing key', () => {
@@ -32,7 +32,7 @@ test('getString falls back to EN when ES key is absent', () => {
 
 test('getString with params leaves string unchanged when no placeholders', () => {
   const val = i18n.getString('site_name', 'en', { anything: 'ignored' });
-  assert.equal(val, 'Data360 Monitor');
+  assert.equal(val, 'D360 News Agent');
 });
 
 test('getAll(en) returns object with expected top-level keys', () => {
@@ -49,7 +49,7 @@ test('getAll(es) returns an object', () => {
 
 test('reload() leaves getString functional', () => {
   i18n.reload();
-  assert.equal(i18n.getString('site_name', 'en'), 'Data360 Monitor');
+  assert.equal(i18n.getString('site_name', 'en'), 'D360 News Agent');
 });
 
 test('newsletter keys exist in ES and EN', () => {

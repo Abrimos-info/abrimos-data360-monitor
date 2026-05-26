@@ -60,7 +60,7 @@ TeseoETL fetcher  →  CSV + DATADICT + meta.json  →  LLM phase 1 (Noticia per
 
 Two indicator-selection modes share this pipeline:
 
-- **Static watchlist**. 35 indicators in `lib/watchlist.js`, three tiers (pulse, annual, forecast).
+- **Static watchlist**. 35 indicators in `lib/watchlist.js`, three fetch tiers (pulse, annual, forecast). Analysis and PCN read `annual`, `forecast`, and `dynamic` only (`CONTEXT_TIERS`); `pulse.csv` is legacy on disk.
 - **Dynamic discovery**. Indicators discovered from `/data360/searchv2`, expanded to codes via `/data360/indicators?datasetId=…`, persisted to `data/dynamic-watchlist.json`, and stored as a fourth tier (`dynamic`). Run via `npm run pipeline:dynamic`.
 
 This keeps the demo cheap, deterministic, and demonstrable. The pieces marked as production above are described in the deliverables as roadmap. They are not part of what runs on 31 May 2026.

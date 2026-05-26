@@ -163,6 +163,32 @@
       .replace(/^\s*\{\s*"name"\s*:\s*"(?:fetch_news|read_news)"[\s\S]*?\}\s*$/gm, '');
   }
 
+  function escHtml(str) {
+    return String(str == null ? '' : str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  var HYPOTHESIS_RE = /\[HIP[ÓO]TESIS\]([\s\S]*?)(?:\[\/HIP[ÓO]TESIS\]|(?=\[HIP[ÓO]TESIS\]|$))/gi;
+
+  function renderHypothesisText(text) {
+    if (!text) return '';
+    return String(text).replace(HYPOTHESIS_RE, function (_, body) {
+      return '<span class="d360-hypothesis"><span class="d360-hypothesis__label">Hipótesis</span> '
+        + escHtml(body.trim()) + '</span>';
+    });
+  }
+
+  function renderHypothesisMarkdown(text) {
+    if (!text) return text;
+    return String(text).replace(HYPOTHESIS_RE, function (_, body) {
+      return '<span class="d360-hypothesis"><span class="d360-hypothesis__label">Hipótesis</span> '
+        + escHtml(body.trim()) + '</span>';
+    });
+  }
+
   function preprocessSparklines(text) {
     if (!text) return text;
     var out = stripFakeToolBlocks(text);
@@ -184,7 +210,7 @@
     }
 
     var rendered = new Set();
-    var processed = preprocessSparklines(text);
+    var processed = renderHypothesisMarkdown(preprocessSparklines(text));
     var html = markedFn(processed, { gfm: true, breaks: false });
     html = replaceSparklineBlocks(html, rendered);
     html = removeFakeImagesFromHtml(html);
@@ -226,6 +252,8 @@
 
   global.D360Markdown = {
     renderMarkdown: renderMarkdown,
+    renderHypothesisText: renderHypothesisText,
+    renderHypothesisMarkdown: renderHypothesisMarkdown,
     resolveSparklineSeries: resolveSparklineSeries,
     cacheSeriesFromTool: cacheSeriesFromTool,
     toChartPoints: toChartPoints,

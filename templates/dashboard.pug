@@ -21,7 +21,7 @@ block headerExtras
           select(name="country" id="d360-filter-country")
             option(value="ALL" selected=(filters.country === "ALL"))= _("ui.filter_all", lang)
             each iso in countries
-              option(value=iso selected=(filters.country === iso))= iso
+              option(value=iso selected=(filters.country === iso)) #{countryFlag(iso)} #{_("chat.country." + iso, lang)}
         label.d360-filter
           span.d360-filter__label= _("ui.category", lang)
           select(name="category" id="d360-filter-category")
@@ -73,14 +73,13 @@ block content
             - var titleText = (ev.title && ev.title[langKey]) || ev._title || ev.id
             - var leadText = (ev.lead && ev.lead[langKey]) || ev._lead || ''
             - var magnitudeText = (ev.magnitude && ev.magnitude[langKey]) || ''
-            - var countryStr = cardCountries.join(', ')
             - var indCount = Array.isArray(ev.indicators) ? ev.indicators.length : 0
             if ev.content_type === "reportaje"
               article.d360-card.d360-card--reportaje(class=(hidden ? "d360-card--hidden" : "") tabindex="0" role="button" data-alert-id=ev.id data-country=cardCountryAttr data-category=ev.category data-content-type="reportaje")
                 div.d360-card__head
                   div.d360-card__metaL
                     each iso in cardCountries
-                      +countryTag(iso)
+                      +countryTag(iso, lang, _)
                     if cardCountries.length
                       span.d360-card__divider ·
                     span.d360-card__dataset= ev.dataset_id || ''
@@ -89,7 +88,8 @@ block content
                 h3.d360-card__headline= titleText
                 p.d360-card__lede= leadText
                 div.d360-card__footer
-                  span.d360-card__countries= countryStr
+                  each iso in cardCountries
+                    +countryTag(iso, lang, _)
                   if indCount
                     span.d360-card__divider ·
                     span.d360-card__indicators #{indCount} #{indicatorsLabel}
@@ -97,7 +97,7 @@ block content
               article.d360-card.d360-card--num(class=(hidden ? "d360-card--hidden" : "") tabindex="0" role="button" data-alert-id=ev.id data-country=cardCountryAttr data-category=ev.category data-content-type=ev.content_type)
                 div.d360-card__head
                   div.d360-card__metaL
-                    +countryTag(ev.country)
+                    +countryTag(ev.country, lang, _)
                     span.d360-card__divider ·
                     span.d360-card__dataset= indIdno
                   div.d360-card__metaR
@@ -121,8 +121,9 @@ block content
                   if ev.observation
                     +dataDateBadge(ev, lang, dataPeriodLabel, dataPeriodStaleLabel)
                     span.d360-card__divider ·
-                  = ev.country || countryStr
-                  |  ·
+                  each iso in cardCountries
+                    +countryTag(iso, lang, _)
+                  span.d360-card__divider ·
                   +contentTypeBadge(ev.content_type, lang, _)
                   if typeText
                     |  ·
@@ -145,7 +146,7 @@ block content
               article.d360-card.d360-card--narr(class=(hidden ? "d360-card--hidden" : "") tabindex="0" role="button" data-alert-id=ev.id data-country=cardCountryAttr data-category=ev.category data-content-type=ev.content_type)
                 div.d360-card__head
                   div.d360-card__metaL
-                    +countryTag(ev.country)
+                    +countryTag(ev.country, lang, _)
                     span.d360-card__divider ·
                     span.d360-card__dataset= indIdno
                   div.d360-card__metaR
@@ -176,5 +177,6 @@ block scripts
   script(src="/static/js/charts.js" defer)
   script(src="/static/js/chat-cards.js" defer)
   script(src="/static/js/alerts-feed.js" defer)
+  script(src="/static/js/pcn-claims.js" defer)
   script(src="/static/js/detail-panel.js" defer)
   script(src="/static/js/behavior.js" defer)

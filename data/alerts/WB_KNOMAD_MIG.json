@@ -1,0 +1,81 @@
+[
+  {
+    "content_type": "noticia",
+    "id": "noticia_anomaly_MEX_3a606687e0169d1f_2021_1",
+    "title": {
+      "es": "Estiman un aumento significativo en las remesas mexicanas",
+      "en": "Significant Increase Estimated in Mexican Remittances"
+    },
+    "lead": {
+      "es": "Según datos del Banco Mundial, se estima que las remesas bilaterales de México ascendieron a {{claim:3a606687e0169d1f|11267241}} dólares en 2021, lo que representa un aumento considerable respecto a años anteriores.",
+      "en": "According to data from the World Bank, bilateral remittances from Mexico are estimated to have reached {{claim:3a606687e0169d1f|11267241}} dollars in 2021, representing a considerable increase compared to previous years."
+    },
+    "story": {
+      "es": "El Banco Mundial ha publicado un informe que indica un aumento significativo en las remesas bilaterales de México en 2021, alcanzando un valor de {{claim:3a606687e0169d1f|11267241}} dólares. Esta cifra representa un incremento notable en comparación con los años anteriores, lo que sugiere una mejora en las condiciones económicas de los migrantes mexicanos y sus familias en el extranjero.\n\nEs importante señalar que este aumento contrasta con la tendencia observada en años anteriores, donde los valores de remesas habían fluctuado. La mediana regional de remesas para 2021 fue de {{claim:3a606687e0169d1f|1143078}} dólares, lo que coloca a México en una posición destacada en términos de remesas recibidas.\n\nEste aumento en las remesas puede atribuirse a diversos factores, incluyendo mejoras en las condiciones laborales y económicas de los migrantes mexicanos en sus países de residencia, así como posibles cambios en las políticas migratorias y económicas tanto en México como en los países receptores de estas remesas.",
+      "en": "The World Bank has published a report indicating a significant increase in bilateral remittances from Mexico in 2021, reaching a value of {{claim:3a606687e0169d1f|11267241}} dollars. This figure represents a notable increase compared to previous years, suggesting an improvement in the economic conditions of Mexican migrants and their families abroad.\n\nIt is important to note that this increase contrasts with the trend observed in previous years, where remittance values had fluctuated. The median regional remittance for 2021 was {{claim:3a606687e0169d1f|1143078}} dollars, placing Mexico in a prominent position in terms of remittances received.\n\nThis increase in remittances can be attributed to various factors, including improvements in the working and economic conditions of Mexican migrants in their host countries, as well as possible changes in migration and economic policies both in Mexico and in the recipient countries of these remittances."
+    },
+    "countries": [
+      "MEX"
+    ],
+    "dataset_id": "WB_KNOMAD",
+    "indicator": {
+      "idno": "WB_KNOMAD_MIG",
+      "database_id": "WB_KNOMAD",
+      "name": {
+        "es": "Estimación de Stocks de Migrantes",
+        "en": "Estimation of Stocks of Migrants"
+      }
+    },
+    "observation": {
+      "value": "11267241",
+      "time_period": "2021",
+      "unit": "USD_CUR",
+      "display": {
+        "es": "11.267.241,00",
+        "en": "11,267,241.00"
+      },
+      "period_display": {
+        "es": "2021",
+        "en": "2021"
+      },
+      "period_narrative": {
+        "es": "2021",
+        "en": "2021"
+      }
+    },
+    "magnitude": "+43.54σ",
+    "chart_series": [
+      {
+        "period": "2021",
+        "value": 11267241
+      }
+    ],
+    "claim_tokens": [
+      {
+        "claim_id": "3a606687e0169d1f",
+        "value": "11,267,241.00",
+        "pcn_status": "rejected",
+        "pcn_reason": "Value mismatch: claimed 11,267,241.00, stored 517 (delta 11266724.0000)",
+        "pcn_source": "data/context/MEX/dynamic.csv",
+        "pcn_observation": {
+          "indicator": "WB_KNOMAD_MIG",
+          "refArea": "MEX",
+          "timePeriod": "2021",
+          "value": "517",
+          "unit": "USD_CUR"
+        }
+      }
+    ],
+    "verification_trace": {
+      "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/WB_KNOMAD",
+      "csv_link": "https://data360files.worldbank.org/data360-data/data/WB_KNOMAD/WB_KNOMAD_MIG.csv"
+    },
+    "score": 1,
+    "detected_at": "2026-05-26T01:12:06.512Z",
+    "data_period_stale": true,
+    "quality_status": "incomplete",
+    "quality_tags": [
+      "1_claims_rejected"
+    ]
+  }
+]

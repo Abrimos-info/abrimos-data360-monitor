@@ -1,0 +1,85 @@
+[
+  {
+    "content_type": "noticia",
+    "id": "noticia_anomaly_ECU_SC_START_2024_1",
+    "title": {
+      "es": "El tiempo de inicio de la cadena de suministro de exportación disminuyó en Ecuador",
+      "en": "The start time of the export supply chain decreased in Ecuador"
+    },
+    "lead": {
+      "es": "Según los datos más recientes del Banco Mundial, el tiempo de inicio de la cadena de suministro de exportación en Ecuador fue de 1.6 días en 2024, frente a 1.7 días en 2023, lo que representa una reducción del 5.9%. {{claim:590551370b51f13a|1.6}}",
+      "en": "According to the latest data from the World Bank, the start time of the export supply chain in Ecuador was 1.6 days in 2024, compared to 1.7 days in 2023, representing a reduction of 5.9%. {{claim:590551370b51f13a|1.6}}"
+    },
+    "story": {
+      "es": "Los datos proporcionados por el Banco Mundial muestran que el tiempo necesario para iniciar la cadena de suministro de exportación en Ecuador ha disminuido de 1.7 días en 2023 a 1.6 días en 2024, lo que representa una reducción del 5.9%. Esta disminución puede atribuirse a mejoras en la eficiencia logística y en los procesos de exportación.\n\nEn comparación con otros países de la región, Ecuador sigue siendo uno de los países con menor tiempo de inicio de la cadena de suministro de exportación. La mediana regional para este indicador es de 3.9 días, lo que coloca a Ecuador en una posición favorable en términos de eficiencia logística.\n\nEsta mejora en la eficiencia logística puede tener un impacto positivo en la competitividad de las exportaciones ecuatorianas, facilitando así el comercio internacional y potencialmente aumentando la productividad del sector exportador.",
+      "en": "Data provided by the World Bank shows that the time required to initiate the export supply chain in Ecuador has decreased from 1.7 days in 2023 to 1.6 days in 2024, representing a reduction of 5.9%. This decrease can be attributed to improvements in logistical efficiency and export processes.\n\nCompared to other countries in the region, Ecuador remains one of the countries with the shortest start time for the export supply chain. The regional median for this indicator is 3.9 days, placing Ecuador in a favorable position in terms of logistical efficiency.\n\nThis improvement in logistical efficiency may have a positive impact on the competitiveness of Ecuadorian exports, facilitating international trade and potentially increasing the productivity of the export sector."
+    },
+    "countries": [
+      "ECU"
+    ],
+    "dataset_id": "WB_LPI_20",
+    "indicator": {
+      "idno": "SC_START",
+      "database_id": "WB_LPI_20",
+      "name": {
+        "es": "Tiempo de inicio de la cadena de suministro de exportación",
+        "en": "Start time of the export supply chain"
+      }
+    },
+    "observation": {
+      "value": "1.6",
+      "time_period": "2024",
+      "unit": "D",
+      "display": {
+        "es": "1,60",
+        "en": "1.60"
+      },
+      "period_display": {
+        "es": "2024",
+        "en": "2024"
+      },
+      "period_narrative": {
+        "es": "2024",
+        "en": "2024"
+      }
+    },
+    "magnitude": "-5.9%",
+    "chart_series": [
+      {
+        "period": "2023",
+        "value": 1.7
+      },
+      {
+        "period": "2024",
+        "value": 1.6
+      }
+    ],
+    "claim_tokens": [
+      {
+        "claim_id": "590551370b51f13a",
+        "value": "1.6",
+        "pcn_status": "rejected",
+        "pcn_reason": "Value mismatch: claimed 1.6, stored 1 (delta 0.6000)",
+        "pcn_source": "data/context/ECU/dynamic.csv",
+        "pcn_observation": {
+          "indicator": "SC_START",
+          "refArea": "ECU",
+          "timePeriod": "2024",
+          "value": "1",
+          "unit": "D"
+        }
+      }
+    ],
+    "verification_trace": {
+      "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/WB_LPI_20",
+      "csv_link": "https://data360files.worldbank.org/data360-data/data/WB_LPI_20/SC_START.csv"
+    },
+    "score": 0,
+    "detected_at": "2026-05-26T01:18:57.472Z",
+    "data_period_stale": true,
+    "quality_status": "incomplete",
+    "quality_tags": [
+      "1_claims_rejected"
+    ]
+  }
+]

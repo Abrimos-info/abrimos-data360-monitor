@@ -1,24 +1,39 @@
 [
   {
-    "id": "alert_2026-05-22_024",
-    "type": "anomaly",
-    "country": "GTM",
-    "category": "economy",
+    "content_type": "noticia",
+    "id": "noticia_anomaly_ARG_WB_CCDFS_GGDY_2022_1",
+    "title": {
+      "es": "Deuda pública argentina alcanza niveles récord",
+      "en": "Argentine public debt reaches record levels"
+    },
+    "lead": {
+      "es": "La deuda pública del gobierno general de Argentina alcanzó el 84,685% del PIB en 2022, según datos del Banco Mundial. 84,69",
+      "en": "The public debt of the general government of Argentina reached 84.685% of GDP in 2022, according to data from the World Bank."
+    },
+    "story": {
+      "es": "En 2022, la deuda pública del gobierno general de Argentina alcanzó el 84,685% del PIB, superando ampliamente la media regional de 54,073%. Este nivel récord representa un aumento significativo desde los 80,82% registrados en 2021. La tendencia ascendente en la deuda pública ha sido constante durante varios años, reflejando las dificultades económicas y financieras del país.\n\nEl alto nivel de deuda puede tener graves consecuencias para la economía argentina, limitando la capacidad del gobierno para financiar servicios públicos y programas sociales. Además, puede aumentar la vulnerabilidad a shocks externos y dificultar la estabilización económica en el futuro. La situación actual contrasta notablemente con otros países de la región, como Guatemala, donde la deuda pública se mantuvo relativamente estable en 2022, alrededor del 29,222% del PIB. 29,22\n\nEs importante destacar que la deuda pública argentina ha estado creciendo consistentemente desde 2011, cuando se situaba en torno al 38,935% del PIB. Esta tendencia preocupa a expertos y analistas económicos, quienes advierten sobre la necesidad de implementar políticas fiscales efectivas para controlar y reducir la deuda pública en el futuro.",
+      "en": "In 2022, the public debt of the general government of Argentina reached 84.685% of GDP, far exceeding the regional average of 54.073%. This record level represents a significant increase from the 80.82% recorded in 2021. The upward trend in public debt has been consistent over several years, reflecting the economic and financial difficulties of the country.\n\nThe high level of debt can have severe consequences for the Argentine economy, limiting the government's ability to finance public services and social programs. Additionally, it may increase vulnerability to external shocks and complicate future economic stabilization. The current situation starkly contrasts with other countries in the region, such as Guatemala, where public debt remained relatively stable in 2022 at around 29.222% of GDP.\n\nIt is important to note that Argentine public debt has been consistently growing since 2011, when it was around 38.935% of GDP. This trend concerns economic experts and analysts, who warn about the need to implement effective fiscal policies to control and reduce public debt in the future."
+    },
+    "countries": [
+      "ARG",
+      "GTM"
+    ],
+    "dataset_id": "WB_CCDFS",
     "indicator": {
       "idno": "WB_CCDFS_GGDY",
       "database_id": "WB_CCDFS",
       "name": {
-        "es": "General government gross debt, % of GDP",
-        "en": "General government gross debt, % of GDP"
+        "es": "Deuda pública del gobierno general, % del PIB",
+        "en": "Public debt of the general government, % of GDP"
       }
     },
     "observation": {
-      "value": 29.222,
+      "value": "84.685",
       "time_period": "2022",
       "unit": "%",
       "display": {
-        "es": "29.222 %",
-        "en": "29.222%"
+        "es": "84,69",
+        "en": "84.69"
       },
       "period_display": {
         "es": "2022",
@@ -29,242 +44,8 @@
         "en": "2022"
       }
     },
-    "magnitude": {
-      "es": "−3.4σ",
-      "en": "−3.4σ"
-    },
+    "magnitude": "+4.14σ",
     "chart_series": [
-      {
-        "period": "2000",
-        "value": 17.999
-      },
-      {
-        "period": "2001",
-        "value": 19.11
-      },
-      {
-        "period": "2002",
-        "value": 17.362
-      },
-      {
-        "period": "2003",
-        "value": 19.803
-      },
-      {
-        "period": "2004",
-        "value": 20.553
-      },
-      {
-        "period": "2005",
-        "value": 20.017
-      },
-      {
-        "period": "2006",
-        "value": 20.86
-      },
-      {
-        "period": "2007",
-        "value": 20.779
-      },
-      {
-        "period": "2008",
-        "value": 19.57
-      },
-      {
-        "period": "2009",
-        "value": 22.78
-      },
-      {
-        "period": "2010",
-        "value": 24.006
-      },
-      {
-        "period": "2011",
-        "value": 23.779
-      },
-      {
-        "period": "2012",
-        "value": 24.577
-      },
-      {
-        "period": "2013",
-        "value": 24.997
-      },
-      {
-        "period": "2014",
-        "value": 24.651
-      },
-      {
-        "period": "2015",
-        "value": 24.803
-      },
-      {
-        "period": "2016",
-        "value": 24.956
-      },
-      {
-        "period": "2017",
-        "value": 25.093
-      },
-      {
-        "period": "2018",
-        "value": 26.43
-      },
-      {
-        "period": "2019",
-        "value": 26.432
-      },
-      {
-        "period": "2020",
-        "value": 31.48
-      },
-      {
-        "period": "2021",
-        "value": 30.751
-      },
-      {
-        "period": "2022",
-        "value": 29.222,
-        "is_change_point": true
-      }
-    ],
-    "verification_trace": {
-      "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/WB_CCDFS",
-      "csv_link": "https://data360files.worldbank.org/data360-data/data/WB_CCDFS/WB_CCDFS_GGDY.csv",
-      "methodology_ref": "https://www.worldbank.org/en/research/brief/fiscal-space"
-    },
-    "score": 0.8411165126331227,
-    "detected_at": "2026-05-22T00:21:20.834Z",
-    "license": "CC BY 4.0",
-    "narrative_citizen": {
-      "es": "Disminuyó drásticamente la deuda pública del gobierno de Guatemala en 2022.",
-      "en": "Guatemala's government gross debt sharply decreased in 2022."
-    },
-    "narrative_journalist": {
-      "es": "La deuda pública del gobierno de Guatemala cayó por debajo de la mediana regional en 2022, con un valor del 29.222 % del PIB.",
-      "en": "Guatemala's government gross debt fell below the regional median in 2022, with a value of 29.222% of GDP."
-    },
-    "claim_tokens": [
-      {
-        "claim_id": "7f536ec6bea03d4e",
-        "value": 29.222,
-        "display_es": "29.222 %",
-        "display_en": "29.222%"
-      }
-    ],
-    "data_period_stale": true
-  },
-  {
-    "id": "alert_2026-05-22_025",
-    "type": "anomaly",
-    "country": "ARG",
-    "category": "economy",
-    "indicator": {
-      "idno": "WB_CCDFS_GGDY",
-      "database_id": "WB_CCDFS",
-      "name": {
-        "es": "General government gross debt, % of GDP",
-        "en": "General government gross debt, % of GDP"
-      }
-    },
-    "observation": {
-      "value": 84.685,
-      "time_period": "2022",
-      "unit": "%",
-      "display": {
-        "es": "84.685 %",
-        "en": "84.685%"
-      },
-      "period_display": {
-        "es": "2022",
-        "en": "2022"
-      },
-      "period_narrative": {
-        "es": "2022",
-        "en": "2022"
-      }
-    },
-    "magnitude": {
-      "es": "+4.1σ",
-      "en": "+4.1σ"
-    },
-    "chart_series": [
-      {
-        "period": "1992",
-        "value": 24.961
-      },
-      {
-        "period": "1993",
-        "value": 26.893
-      },
-      {
-        "period": "1994",
-        "value": 28.426
-      },
-      {
-        "period": "1995",
-        "value": 30.749
-      },
-      {
-        "period": "1996",
-        "value": 32.551
-      },
-      {
-        "period": "1997",
-        "value": 31.676
-      },
-      {
-        "period": "1998",
-        "value": 34.147
-      },
-      {
-        "period": "1999",
-        "value": 38.917
-      },
-      {
-        "period": "2000",
-        "value": 40.833
-      },
-      {
-        "period": "2001",
-        "value": 48.007
-      },
-      {
-        "period": "2002",
-        "value": 147.203
-      },
-      {
-        "period": "2003",
-        "value": 125.162
-      },
-      {
-        "period": "2004",
-        "value": 117.878
-      },
-      {
-        "period": "2005",
-        "value": 80.282
-      },
-      {
-        "period": "2006",
-        "value": 70.793
-      },
-      {
-        "period": "2007",
-        "value": 62.133
-      },
-      {
-        "period": "2008",
-        "value": 53.814
-      },
-      {
-        "period": "2009",
-        "value": 55.397
-      },
-      {
-        "period": "2010",
-        "value": 43.454
-      },
       {
         "period": "2011",
         "value": 38.935
@@ -294,7 +75,7 @@
         "value": 57.028
       },
       {
-        "period": "2018",
+        "period": "2bk",
         "value": 85.246
       },
       {
@@ -311,34 +92,33 @@
       },
       {
         "period": "2022",
-        "value": 84.685,
-        "is_change_point": true
+        "value": 84.685
+      }
+    ],
+    "claim_tokens": [
+      {
+        "claim_id": "581748259e057799",
+        "value": "84.685",
+        "pcn_status": "rejected",
+        "pcn_reason": "Claim ID mismatch: got 581748259e057799, expected 8337c7558587c725"
+      },
+      {
+        "claim_id": "7f536ec6bea03d4e",
+        "value": "29.222",
+        "pcn_status": "rejected",
+        "pcn_reason": "Claim ID mismatch: got 7f536ec6bea03d4e, expected 1fa3d0579532f3b6"
       }
     ],
     "verification_trace": {
       "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/WB_CCDFS",
-      "csv_link": "https://data360files.worldbank.org/data360-data/data/WB_CCDFS/WB_CCDFS_GGDY.csv",
-      "methodology_ref": "https://www.worldbank.org/en/research/brief/fiscal-space"
+      "csv_link": "https://data360files.worldbank.org/data360-data/data/WB_CCDFS/WB_CCDFS_GGDY.csv"
     },
-    "score": 1,
-    "detected_at": "2026-05-22T00:21:20.834Z",
-    "license": "CC BY 4.0",
-    "narrative_citizen": {
-      "es": "Aumentó drásticamente la deuda pública del gobierno de Argentina en 2022.",
-      "en": "Argentina's government gross debt sharply increased in 2022."
-    },
-    "narrative_journalist": {
-      "es": "La deuda pública del gobierno de Argentina superó la mediana regional en 2022, con un valor del 84.685 % del PIB.",
-      "en": "Argentina's government gross debt exceeded the regional median in 2022, with a value of 84.685% of GDP."
-    },
-    "claim_tokens": [
-      {
-        "claim_id": "581748259e057799",
-        "value": 84.685,
-        "display_es": "84.685 %",
-        "display_en": "84.685%"
-      }
-    ],
-    "data_period_stale": true
+    "score": 0,
+    "detected_at": "2023-10-01T00:00:00Z",
+    "data_period_stale": true,
+    "quality_status": "incomplete",
+    "quality_tags": [
+      "2_claims_rejected"
+    ]
   }
 ]

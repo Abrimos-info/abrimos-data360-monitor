@@ -1,6 +1,6 @@
 # abrimos-data360-monitor
 
-> Autonomous monitor that detects newsworthy events across the 12,000 indicators of Data360 and delivers them verified to LAC newsrooms.
+> AI-powered news agency that detects newsworthy facts from Data360's 12,000 indicators and delivers them verified with local perspective to LAC newsrooms.
 
 A prototype by **[Abrimos.info](https://abrimos.info)** for the **Data360 Global Challenge** (World Bank and Media Party), phase 2.
 
@@ -10,7 +10,7 @@ Ten-day sprint (21 to 31 May 2026). Submission deadline is 31 May 2026, via Medi
 
 ## Stack
 
-- **Frontend**. Node.js, Pug templates, vanilla JavaScript (Monitor + Chat + About)
+- **Frontend**. Node.js, Pug templates, vanilla JavaScript (Data360 News Agent — home, chat, about)
 - **Backend**. Node.js HTTP server (`data360-monitor.js`)
 - **Data layer**. Data360 API v3 (REST + MCP opcional en chat)
 - **LLM**. Claude Opus 4.7 via Agent SDK (pipeline); chat multi-proveedor (`lib/ai-client.js`)
@@ -22,7 +22,7 @@ Ten-day sprint (21 to 31 May 2026). Submission deadline is 31 May 2026, via Medi
 
 | Document | Description |
 |----------|-------------|
-| [**User guide (ES)**](./docs/user-guide.md) | All product features for newsrooms — Monitor, Chat, verification, pipeline |
+| [**User guide (ES)**](./docs/user-guide.md) | All product features for newsrooms — home page, chat, verification, pipeline |
 | [Features reference](./docs/features-reference.md) | Technical feature catalog (API, tools, files) |
 | [Architecture overview](./docs/architecture-overview.md) | Demo vs production |
 | [Frontend architecture](./docs/frontend-architecture.md) | Pug, filters, detail panel |

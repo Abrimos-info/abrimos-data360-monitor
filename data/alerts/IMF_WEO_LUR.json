@@ -1,24 +1,38 @@
 [
   {
-    "id": "alert_2026-05-22_022",
-    "type": "abrupt_change",
-    "country": "ARG",
-    "category": "economy",
+    "content_type": "noticia",
+    "id": "noticia_abrupt_change_ARG_IMF_WEO_LUR_2022",
+    "title": {
+      "es": "La tasa de desempleo en Argentina disminuyó",
+      "en": "Unemployment Rate in Argentina Decreased"
+    },
+    "lead": {
+      "es": "Según datos del Fondo Monetario Internacional (FMI), la tasa de desempleo en Argentina cayó a 6,83% en 2022, desde el 8.75% registrado en 2021.",
+      "en": "According to data from the International Monetary Fund (IMF), the unemployment rate in Argentina dropped to 6.83% in 2022, down from 8.75% recorded in 2021."
+    },
+    "story": {
+      "es": "El Fondo Monetario Internacional (FMI) reporta que la tasa de desempleo en Argentina se redujo significativamente en 2022, alcanzando un nivel del 6,83%. Esta disminución representa una mejora considerable desde el 8.75% observado en 2021.\n\nEste descenso en la tasa de desempleo se produce en un contexto económico complejo para Argentina. A pesar de las dificultades económicas, la reducción en la tasa de desempleo sugiere que las políticas implementadas por el gobierno han tenido cierto impacto positivo en la economía laboral del país.\n\nEs importante destacar que esta disminución contrasta con la tendencia generalizada de aumento en años anteriores. Por ejemplo, en 2020 la tasa de desempleo había alcanzado el 11.55%, lo que indica una recuperación notable en los últimos dos años.\n\nComparativamente, si bien no tenemos datos actualizados para todos los países de la región, podemos observar que la tasa de desempleo en Argentina ha sido históricamente alta en comparación con otros países latinoamericanos. Sin embargo, esta disminución en 2022 podría ser indicativa de una mejoría económica en curso.\n\nEn términos de impacto social, una disminución en la tasa de desempleo puede tener efectos positivos en la calidad de vida de los ciudadanos argentinos, contribuyendo a una mayor estabilidad económica y social en el país.",
+      "en": "The International Monetary Fund (IMF) reports that the unemployment rate in Argentina significantly decreased in 2022, reaching a level of 6.83%. This reduction represents a considerable improvement from the 8.75% observed in 2021.\n\nThis decline in the unemployment rate occurs within a complex economic context for Argentina. Despite economic difficulties, the reduction in the unemployment rate suggests that policies implemented by the government have had some positive impact on the country's labor market.\n\nIt is important to note that this decrease contrasts with the general trend of increase in previous years. For example, in 2020, the unemployment rate had reached 11.55%, indicating a notable recovery over the last two years.\n\nCompared to other countries in the region, while we do not have updated data for all countries, historically, Argentina has had a higher unemployment rate compared to other Latin American countries. However, this decrease in 2022 could be indicative of an ongoing economic improvement.\n\nIn terms of social impact, a decrease in the unemployment rate can have positive effects on the quality of life of Argentine citizens, contributing to greater economic and social stability in the country."
+    },
+    "countries": [
+      "ARG"
+    ],
+    "dataset_id": "IMF_WEO",
     "indicator": {
       "idno": "IMF_WEO_LUR",
       "database_id": "IMF_WEO",
       "name": {
-        "es": "Unemployment rate, Percent of total labor force",
-        "en": "Unemployment rate, Percent of total labor force"
+        "es": "Tasa de desempleo, porcentaje de la fuerza laboral total",
+        "en": "Unemployment rate, percentage of total labor force"
       }
     },
     "observation": {
-      "value": 6.825,
+      "value": "6.825",
       "time_period": "2022",
       "unit": "PT_LF",
       "display": {
-        "es": "6.825 %",
-        "en": "6.825%"
+        "es": "6,83",
+        "en": "6.83"
       },
       "period_display": {
         "es": "2022",
@@ -29,215 +43,75 @@
         "en": "2022"
       }
     },
-    "magnitude": {
-      "es": "−2.2σ",
-      "en": "−2.2σ"
-    },
+    "magnitude": "-2.16σ",
     "chart_series": [
       {
-        "period": "1980",
-        "value": 3
-      },
-      {
-        "period": "1981",
-        "value": 5
-      },
-      {
-        "period": "1982",
-        "value": 4.5
-      },
-      {
-        "period": "1983",
-        "value": 5
-      },
-      {
-        "period": "1984",
-        "value": 5
-      },
-      {
-        "period": "1985",
-        "value": 6.25
-      },
-      {
-        "period": "1986",
-        "value": 6.3
-      },
-      {
-        "period": "1987",
-        "value": 6
-      },
-      {
-        "period": "1988",
-        "value": 6.5
-      },
-      {
-        "period": "1989",
-        "value": 8
-      },
-      {
-        "period": "1990",
-        "value": 7.6
-      },
-      {
-        "period": "1991",
-        "value": 6.48
-      },
-      {
-        "period": "1992",
-        "value": 7.112
-      },
-      {
-        "period": "1993",
-        "value": 11.606
-      },
-      {
-        "period": "1994",
-        "value": 13.348
-      },
-      {
-        "period": "1995",
-        "value": 18.904
-      },
-      {
-        "period": "1996",
-        "value": 18.76
-      },
-      {
-        "period": "1997",
-        "value": 16.808
-      },
-      {
-        "period": "1998",
-        "value": 14.789
-      },
-      {
-        "period": "1999",
-        "value": 16.061
-      },
-      {
-        "period": "2000",
-        "value": 17.134
-      },
-      {
-        "period": "2001",
-        "value": 19.209
-      },
-      {
-        "period": "2002",
-        "value": 22.45
-      },
-      {
-        "period": "2003",
-        "value": 17.25
-      },
-      {
-        "period": "2004",
-        "value": 13.625
-      },
-      {
-        "period": "2005",
-        "value": 11.575
-      },
-      {
-        "period": "2006",
-        "value": 10.175
-      },
-      {
-        "period": "2007",
-        "value": 8.475
-      },
-      {
-        "period": "2008",
-        "value": 7.875
-      },
-      {
-        "period": "2009",
-        "value": 8.675
-      },
-      {
-        "period": "2010",
-        "value": 7.75
-      },
-      {
-        "period": "2011",
-        "value": 7.15
-      },
-      {
-        "period": "2012",
-        "value": 7.2
-      },
-      {
-        "period": "2013",
-        "value": 7.075
-      },
-      {
-        "period": "2014",
-        "value": 7.25
-      },
-      {
-        "period": "2015",
-        "value": 6.533
-      },
-      {
-        "period": "2016",
-        "value": 8.467
-      },
-      {
-        "period": "2017",
-        "value": 8.35
-      },
-      {
-        "period": "2018",
-        "value": 9.2
-      },
-      {
-        "period": "2019",
-        "value": 9.825
-      },
-      {
-        "period": "2020",
-        "value": 11.55
+        "period": "2022",
+        "value": 6.825
       },
       {
         "period": "2021",
         "value": 8.75
       },
       {
-        "period": "2022",
-        "value": 6.825,
-        "is_change_point": true
+        "period": "2020",
+        "value": 11.55
+      },
+      {
+        "period": "2019",
+        "value": 9.825
+      },
+      {
+        "period": "2018",
+        "value": 9.2
+      },
+      {
+        "period": "2017",
+        "value": 8.35
+      },
+      {
+        "period": "2016",
+        "value": 8.467
+      },
+      {
+        "period": "2015",
+        "value": 6.533
+      },
+      {
+        "period": "2014",
+        "value": 7.25
+      },
+      {
+        "period": "2013",
+        "value": 7.075
+      },
+      {
+        "period": "2012",
+        "value": 7.2
+      },
+      {
+        "period": "2011",
+        "value": 7.15
+      }
+    ],
+    "claim_tokens": [
+      {
+        "claim_id": "2a2e030904a94b63",
+        "value": "6.825",
+        "pcn_status": "rejected",
+        "pcn_reason": "Claim ID mismatch: got 2a2e030904a94b63, expected 0ab63e1631a33857"
       }
     ],
     "verification_trace": {
       "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/IMF_WEO",
-      "csv_link": "https://data360files.worldbank.org/data360-data/data/IMF_WEO/IMF_WEO_LUR.csv",
-      "methodology_ref": "https://www.imf.org/en/Publications/WEO/frequently-asked-questions#:~:text=%2Ddatabase%2FDisclaimer.-,Q.,generate%20projections%20for%20individual%20countries"
+      "csv_link": "https://data360files.worldbank.org/data360-data/data/IMF_WEO/IMF_WEO_LUR.csv"
     },
-    "score": 0.5408330595289388,
-    "detected_at": "2026-05-22T00:21:20.834Z",
-    "license": "License Specified Externally",
-    "narrative_citizen": {
-      "es": "Disminuyó drásticamente la tasa de desempleo en Argentina en 2022.",
-      "en": "There was a significant decrease in the unemployment rate in Argentina in 2022."
-    },
-    "narrative_journalist": {
-      "es": "La tasa de desempleo en Argentina cayó a 6.825 % % en 2022, un cambio drástico desde el año anterior.",
-      "en": "The unemployment rate in Argentina dropped to 6.825%% in 2022, a sharp change from the previous year."
-    },
-    "claim_tokens": [
-      {
-        "claim_id": "2a2e030904a94b63",
-        "value": 6.825,
-        "display_es": "6.825 %",
-        "display_en": "6.825%"
-      },
-      {
-        "claim_id": "609af1ad155fe4f3",
-        "value": 8.75,
-        "display_es": "8,75 PT_LF",
-        "display_en": "8.75 PT_LF"
-      }
-    ],
-    "data_period_stale": true
+    "score": 0,
+    "detected_at": "2023-10-01T00:00:00Z",
+    "data_period_stale": true,
+    "quality_status": "incomplete",
+    "quality_tags": [
+      "1_claims_rejected"
+    ]
   }
 ]

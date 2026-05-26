@@ -1,0 +1,100 @@
+[
+  {
+    "content_type": "noticia",
+    "id": "noticia_anomaly_HND_CT_DT_M_2024_1",
+    "title": {
+      "es": "El tiempo de retención de contenedores en Honduras aumentó",
+      "en": "Retention time for containers in Honduras increased"
+    },
+    "lead": {
+      "es": "El tiempo de retención de contenedores en Honduras aumentó de 9.5 días en 2023 a 10 días en 2024, según datos del Banco Mundial. {{claim:d9ff6181e443d8f8|10}}, lo que representa un incremento del 5.3%. Además, México registró un aumento similar, pasando de 8.4 a 9.3 días en el mismo período.",
+      "en": "The retention time for containers in Honduras increased from 9.5 days in 2023 to 10 days in 2024, according to data from the World Bank. {{claim:d9ff6181e443d8f8|10.00}}, representing an increase of 5.3%. Additionally, Mexico registered a similar increase, going from 8.4 to 9.3 days during the same period."
+    },
+    "story": {
+      "es": "El tiempo de retención de contenedores en Honduras aumentó de 9.5 días en 2023 a 10 días en 2024, lo que representa un incremento del 5.3%. Según datos del Banco Mundial, esta tendencia se observa también en otros países de la región. Por ejemplo, México experimentó un aumento similar, pasando de 8.4 a 9.3 días en el mismo período. Este incremento puede afectar la eficiencia logística y los costos operativos en las terminales portuarias de Honduras. La mejora en los tiempos de retención de contenedores podría ser un indicador de mejoras en la infraestructura portuaria o en los procedimientos administrativos.",
+      "en": "The retention time for containers in Honduras increased from 9.5 days in 2023 to 10 days in 2024, which represents an increase of 5.3%. According to data from the World Bank, this trend is also observed in other countries in the region. For example, Mexico experienced a similar increase, going from 8.4 to 9.3 days during the same period. This increase may affect the logistical efficiency and operational costs at the port terminals in Honduras. An improvement in container retention times could be an indicator of improvements in port infrastructure or administrative procedures."
+    },
+    "countries": [
+      "HND",
+      "MEX"
+    ],
+    "dataset_id": "WB_LPI_20",
+    "indicator": {
+      "idno": "CT_DT_M",
+      "database_id": "WB_LPI_20",
+      "name": {
+        "es": "Tiempo de retención de contenedores",
+        "en": "Container retention time"
+      }
+    },
+    "observation": {
+      "value": "10",
+      "time_period": "2024",
+      "unit": "D",
+      "display": {
+        "es": "10,00",
+        "en": "10.00"
+      },
+      "period_display": {
+        "es": "2024",
+        "en": "2024"
+      },
+      "period_narrative": {
+        "es": "2024",
+        "en": "2024"
+      }
+    },
+    "magnitude": "+5.3%",
+    "chart_series": [
+      {
+        "period": "2023",
+        "value": 9.5
+      },
+      {
+        "period": "2024",
+        "value": 10
+      }
+    ],
+    "claim_tokens": [
+      {
+        "claim_id": "d9ff6181e443d8f8",
+        "value": "10.00",
+        "pcn_status": "rejected",
+        "pcn_reason": "Value mismatch: claimed 10.00, stored 7.7 (delta 2.3000)",
+        "pcn_source": "data/context/HND/dynamic.csv",
+        "pcn_observation": {
+          "indicator": "CT_DT_M",
+          "refArea": "HND",
+          "timePeriod": "2024",
+          "value": "7.7",
+          "unit": "D"
+        }
+      },
+      {
+        "claim_id": "728b8c884029c431",
+        "value": "9.30",
+        "pcn_status": "rejected",
+        "pcn_reason": "Value mismatch: claimed 9.30, stored 6.9 (delta 2.4000)",
+        "pcn_source": "data/context/MEX/dynamic.csv",
+        "pcn_observation": {
+          "indicator": "CT_DT_M",
+          "refArea": "MEX",
+          "timePeriod": "2024",
+          "value": "6.9",
+          "unit": "D"
+        }
+      }
+    ],
+    "verification_trace": {
+      "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/WB_LPI_20",
+      "csv_link": "https://data360files.worldbank.org/data360-data/data/WB_LPI_20/CT_DT_M.csv"
+    },
+    "score": 1,
+    "detected_at": "2026-05-26T01:13:11.921Z",
+    "data_period_stale": true,
+    "quality_status": "incomplete",
+    "quality_tags": [
+      "2_claims_rejected"
+    ]
+  }
+]

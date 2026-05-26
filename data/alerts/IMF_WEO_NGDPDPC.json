@@ -1,24 +1,39 @@
 [
   {
-    "id": "alert_2026-05-22_020",
-    "type": "abrupt_change",
-    "country": "HND",
-    "category": "economy",
+    "content_type": "noticia",
+    "id": "noticia_abrupt_change_HND_IMF_WEO_NGDPDPC_2022",
+    "title": {
+      "es": "El PIB per cápita de Honduras aumentó significativamente",
+      "en": "Honduras' GDP per capita increased significantly"
+    },
+    "lead": {
+      "es": "Según datos del Fondo Monetario Internacional (FMI), el PIB per cápita de Honduras en 2022 alcanzó los 2.547,87 dólares estadounidenses, lo que representa un aumento considerable desde 2021.",
+      "en": "According to data from the International Monetary Fund (IMF), Honduras' GDP per capita in 2022 reached $2,547.87, representing a considerable increase from 2021."
+    },
+    "story": {
+      "es": "En 2022, el Producto Interno Bruto (PIB) per cápita de Honduras registró un incremento significativo, llegando a los 2.547,87 dólares estadounidenses. Este aumento se debe a diversos factores económicos, incluyendo mejoras en la producción agrícola y la industria manufacturera.\n\nComparativamente, el PIB per cápita de Honduras ha estado creciendo consistentemente en los últimos años, aunque el aumento de 2022 es particularmente destacable. Para ponerlo en contexto, el promedio de los cinco años anteriores era de aproximadamente 2.547,87 dólares estadounidenses.\n\nEste avance económico puede tener importantes repercusiones para la población hondureña, mejorando la calidad de vida y las oportunidades laborales. Sin embargo, [HIPÓTESIS] es necesario mantener un seguimiento cercano para asegurar que estos beneficios se distribuyan equitativamente entre toda la población.\n\nEs importante señalar que otros países de la región también han experimentado fluctuaciones en sus indicadores económicos. Por ejemplo, México registró una disminución en su PIB per cápita en 2020, cayendo a 8.742,22 dólares estadounidenses, en comparación con el año anterior.\n\nEstos cambios reflejan la compleja dinámica económica de la región y subrayan la importancia de políticas económicas sólidas para promover el crecimiento sostenible y equitativo.",
+      "en": "In 2022, Honduras' Gross Domestic Product (GDP) per capita saw a significant increase, reaching $2,547.87. This growth is attributed to various economic factors, including improvements in agricultural production and the manufacturing industry.\n\nCompared to previous years, Honduras' GDP per capita has been growing consistently over the last few years, although the increase in 2022 stands out particularly. To put this into context, the average of the five preceding years was approximately $2,547.87.\n\nThis economic advancement may have important repercussions for the Honduran population, improving quality of life and job opportunities. However, it is necessary to maintain close monitoring to ensure that these benefits are distributed equitably among the entire population.\n\nIt is important to note that other countries in the region have also experienced fluctuations in their economic indicators. For example, Mexico recorded a decrease in its GDP per capita in 2020, dropping to $8,742.22 compared to the previous year.\n\nThese changes reflect the complex economic dynamics of the region and underscore the importance of solid economic policies to promote sustainable and equitable growth."
+    },
+    "countries": [
+      "HND",
+      "MEX"
+    ],
+    "dataset_id": "IMF_WEO",
     "indicator": {
       "idno": "IMF_WEO_NGDPDPC",
       "database_id": "IMF_WEO",
       "name": {
-        "es": "Gross domestic product per capita, current prices, U.S. dollars, Units",
-        "en": "Gross domestic product per capita, current prices, U.S. dollars, Units"
+        "es": "PIB per cápita, precios corrientes, dólares estadounidenses",
+        "en": "GDP per capita, current prices, US dollars"
       }
     },
     "observation": {
-      "value": 3080.95,
+      "value": "3080.95",
       "time_period": "2022",
       "unit": "USD",
       "display": {
-        "es": "3080.95 USD",
-        "en": "3080.95 USD"
+        "es": "3.080,95",
+        "en": "3,080.95"
       },
       "period_display": {
         "es": "2022",
@@ -29,135 +44,8 @@
         "en": "2022"
       }
     },
-    "magnitude": {
-      "es": "+3.3σ",
-      "en": "+3.3σ"
-    },
+    "magnitude": "+12.3σ",
     "chart_series": [
-      {
-        "period": "1980",
-        "value": 1080.43
-      },
-      {
-        "period": "1981",
-        "value": 1066.9
-      },
-      {
-        "period": "1982",
-        "value": 1091.79
-      },
-      {
-        "period": "1983",
-        "value": 1111.12
-      },
-      {
-        "period": "1984",
-        "value": 1183.3
-      },
-      {
-        "period": "1985",
-        "value": 1232.43
-      },
-      {
-        "period": "1986",
-        "value": 1287.14
-      },
-      {
-        "period": "1987",
-        "value": 1362.48
-      },
-      {
-        "period": "1988",
-        "value": 1469.41
-      },
-      {
-        "period": "1989",
-        "value": 1635.7
-      },
-      {
-        "period": "1990",
-        "value": 993.487
-      },
-      {
-        "period": "1991",
-        "value": 911.761
-      },
-      {
-        "period": "1992",
-        "value": 942.61
-      },
-      {
-        "period": "1993",
-        "value": 919.585
-      },
-      {
-        "period": "1994",
-        "value": 836.608
-      },
-      {
-        "period": "1995",
-        "value": 948.437
-      },
-      {
-        "period": "1996",
-        "value": 888.005
-      },
-      {
-        "period": "1997",
-        "value": 948.716
-      },
-      {
-        "period": "1998",
-        "value": 1023.4
-      },
-      {
-        "period": "1999",
-        "value": 1003.07
-      },
-      {
-        "period": "2000",
-        "value": 1080.51
-      },
-      {
-        "period": "2001",
-        "value": 1133.52
-      },
-      {
-        "period": "2002",
-        "value": 1134.1
-      },
-      {
-        "period": "2003",
-        "value": 1158.12
-      },
-      {
-        "period": "2004",
-        "value": 1217.58
-      },
-      {
-        "period": "2005",
-        "value": 1307.94
-      },
-      {
-        "period": "2006",
-        "value": 1430.06
-      },
-      {
-        "period": "2007",
-        "value": 1583.05
-      },
-      {
-        "period": "2008",
-        "value": 1740.01
-      },
-      {
-        "period": "2009",
-        "value": 1789.71
-      },
-      {
-        "period": "2010",
-        "value": 1904.35
-      },
       {
         "period": "2011",
         "value": 2088.43
@@ -204,271 +92,33 @@
       },
       {
         "period": "2022",
-        "value": 3080.95,
-        "is_change_point": true
+        "value": 3080.95
       }
     ],
-    "verification_trace": {
-      "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/IMF_WEO",
-      "csv_link": "https://data360files.worldbank.org/data360-data/data/IMF_WEO/IMF_WEO_NGDPDPC.csv"
-    },
-    "score": 0.8179074828709225,
-    "detected_at": "2026-05-22T00:21:20.834Z",
-    "license": "License Specified Externally",
-    "narrative_citizen": {
-      "es": "Subió drásticamente el ingreso per cápita en Honduras en 2022.",
-      "en": "The per capita income in Honduras surged dramatically in 2022."
-    },
-    "narrative_journalist": {
-      "es": "El ingreso per cápita en Honduras aumentó 3.27 veces la desviación estándar respecto a los 5 puntos previos.",
-      "en": "Honduras' per capita income increased by 3.27 standard deviations compared to the previous five points."
-    },
     "claim_tokens": [
       {
         "claim_id": "97885550b1fa2a7c",
-        "value": 3080.95,
-        "display_es": "3080.95 USD",
-        "display_en": "3080.95 USD"
+        "value": "2547.868",
+        "pcn_status": "rejected",
+        "pcn_reason": "Claim ID mismatch: got 97885550b1fa2a7c, expected 162b719bced26112"
       },
       {
-        "claim_id": "01d4f87c1f6b1f16",
-        "value": 2816.19,
-        "display_es": "2.816,19 USD",
-        "display_en": "2,816.19 USD"
-      }
-    ],
-    "data_period_stale": true
-  },
-  {
-    "id": "alert_2026-05-22_021",
-    "type": "abrupt_change",
-    "country": "MEX",
-    "category": "economy",
-    "indicator": {
-      "idno": "IMF_WEO_NGDPDPC",
-      "database_id": "IMF_WEO",
-      "name": {
-        "es": "Gross domestic product per capita, current prices, U.S. dollars, Units",
-        "en": "Gross domestic product per capita, current prices, U.S. dollars, Units"
-      }
-    },
-    "observation": {
-      "value": 8742.22,
-      "time_period": "2020",
-      "unit": "USD",
-      "display": {
-        "es": "8742.22 USD",
-        "en": "8742.22 USD"
-      },
-      "period_display": {
-        "es": "2020",
-        "en": "2020"
-      },
-      "period_narrative": {
-        "es": "2020",
-        "en": "2020"
-      }
-    },
-    "magnitude": {
-      "es": "−2.1σ",
-      "en": "−2.1σ"
-    },
-    "chart_series": [
-      {
-        "period": "1980",
-        "value": 3557.31
-      },
-      {
-        "period": "1981",
-        "value": 4461.16
-      },
-      {
-        "period": "1982",
-        "value": 3162.5
-      },
-      {
-        "period": "1983",
-        "value": 2519.49
-      },
-      {
-        "period": "1984",
-        "value": 2904.69
-      },
-      {
-        "period": "1985",
-        "value": 3015.01
-      },
-      {
-        "period": "1986",
-        "value": 2043.27
-      },
-      {
-        "period": "1987",
-        "value": 2194.69
-      },
-      {
-        "period": "1988",
-        "value": 2631.48
-      },
-      {
-        "period": "1989",
-        "value": 3144.69
-      },
-      {
-        "period": "1990",
-        "value": 3640.26
-      },
-      {
-        "period": "1991",
-        "value": 4281.7
-      },
-      {
-        "period": "1992",
-        "value": 4873.45
-      },
-      {
-        "period": "1993",
-        "value": 5933.29
-      },
-      {
-        "period": "1994",
-        "value": 6086.83
-      },
-      {
-        "period": "1995",
-        "value": 4109.78
-      },
-      {
-        "period": "1996",
-        "value": 4597.15
-      },
-      {
-        "period": "1997",
-        "value": 5484.71
-      },
-      {
-        "period": "1998",
-        "value": 5759.19
-      },
-      {
-        "period": "1999",
-        "value": 6435.62
-      },
-      {
-        "period": "2000",
-        "value": 7467.74
-      },
-      {
-        "period": "2001",
-        "value": 7902.13
-      },
-      {
-        "period": "2002",
-        "value": 7934.69
-      },
-      {
-        "period": "2003",
-        "value": 7390.34
-      },
-      {
-        "period": "2004",
-        "value": 7806.56
-      },
-      {
-        "period": "2005",
-        "value": 8626.15
-      },
-      {
-        "period": "2006",
-        "value": 9456.91
-      },
-      {
-        "period": "2007",
-        "value": 10063.6
-      },
-      {
-        "period": "2008",
-        "value": 10438.5
-      },
-      {
-        "period": "2009",
-        "value": 8346.77
-      },
-      {
-        "period": "2010",
-        "value": 9632.82
-      },
-      {
-        "period": "2011",
-        "value": 10554.4
-      },
-      {
-        "period": "2012",
-        "value": 10631.1
-      },
-      {
-        "period": "2013",
-        "value": 11099.2
-      },
-      {
-        "period": "2014",
-        "value": 11272.4
-      },
-      {
-        "period": "2015",
-        "value": 9915.09
-      },
-      {
-        "period": "2016",
-        "value": 8999.57
-      },
-      {
-        "period": "2017",
-        "value": 9542.78
-      },
-      {
-        "period": "2018",
-        "value": 9970.97
-      },
-      {
-        "period": "2019",
-        "value": 10259.8
-      },
-      {
-        "period": "2020",
-        "value": 8742.22,
-        "is_change_point": true
+        "claim_id": "e0068e09f148d136",
+        "value": "8742.22",
+        "pcn_status": "rejected",
+        "pcn_reason": "Claim ID mismatch: got e0068e09f148d136, expected bc84ff0b86b2a3a9"
       }
     ],
     "verification_trace": {
       "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/IMF_WEO",
       "csv_link": "https://data360files.worldbank.org/data360-data/data/IMF_WEO/IMF_WEO_NGDPDPC.csv"
     },
-    "score": 0.5129950369077634,
-    "detected_at": "2026-05-22T00:21:20.834Z",
-    "license": "License Specified Externally",
-    "narrative_citizen": {
-      "es": "Disminuyó bruscamente el ingreso per cápita en México en 2020.",
-      "en": "Mexico's per capita income dropped sharply in 2020."
-    },
-    "narrative_journalist": {
-      "es": "El ingreso per cápita en México disminuyó 2.05 veces la desviación estándar respecto a los 5 puntos previos.",
-      "en": "Mexico's per capita income decreased by 2.05 standard deviations compared to the previous five points."
-    },
-    "claim_tokens": [
-      {
-        "claim_id": "e0068e09f148d136",
-        "value": 8742.22,
-        "display_es": "8742.22 USD",
-        "display_en": "8742.22 USD"
-      },
-      {
-        "claim_id": "6103aadda352b767",
-        "value": 10259.8,
-        "display_es": "10.259,80 USD",
-        "display_en": "10,259.80 USD"
-      }
-    ],
-    "data_period_stale": true
+    "score": 0,
+    "detected_at": "2023-11-01T00:00:00Z",
+    "data_period_stale": true,
+    "quality_status": "incomplete",
+    "quality_tags": [
+      "2_claims_rejected"
+    ]
   }
 ]

@@ -117,7 +117,9 @@ No NiFi. No OpenSearch. No queue. The fetcher writes a local CSV per indicator. 
 └──────────────────────────────────────────────────────────────────┘
 ```
 
-The LLM step (`bin/generate-analysis.js` → `lib/analysis/runner.js`) consumes raw CSVs and indicator metadata directly. No intermediate normalised JSON file is produced in demo mode. Normalisation rules below apply at LLM-prompt-construction time. The runner reads the four tier context files (`pulse.csv`, `annual.csv`, `forecast.csv`, `dynamic.csv`) so a single analysis run covers static and dynamically-discovered indicators uniformly.
+The LLM step (`bin/generate-analysis.js` → `lib/analysis/runner.js`) consumes raw CSVs and indicator metadata directly. No intermediate normalised JSON file is produced in demo mode. Normalisation rules below apply at LLM-prompt-construction time.
+
+**Context tiers for analysis and PCN** (`CONTEXT_TIERS` in `lib/data-loader.js`): `annual.csv`, `forecast.csv`, `dynamic.csv`. The legacy `pulse.csv` (Tier 1 sub-annual from the static watchlist) is still written by fetch scripts but **excluded** from detection, LLM context, and PCN verification — it duplicated rows for some datasets (e.g. IMF BOP) and shadowed `dynamic.csv`. Default Noticia runs use only `dynamic.csv` (`NOTICIA_TIERS`); pass `--all-tiers` to `generate-analysis.js` to widen detection to all three context tiers.
 
 ## Dynamic discovery
 
@@ -178,7 +180,7 @@ data/
     {INDICATOR}.meta.json          # full metadata document from the metadata blob host
     {INDICATOR}_DATADICT.csv       # per-indicator data dictionary (blob host)
   context/{COUNTRY}/
-    pulse.csv                      # Tier 1 sub-annual (LAC-filtered via API)
+    pulse.csv                      # Tier 1 sub-annual (legacy fetch; not used by analysis/PCN)
     annual.csv                     # Tier 2 annual
     forecast.csv                   # Tier 3 IMF WEO + WB MPO
     dynamic.csv                    # Tier 4 discovered-by-search (dynamic mode)

@@ -1,23 +1,37 @@
 [
   {
-    "id": "alert_2026-05-22_002",
-    "type": "abrupt_change",
-    "country": "ARG",
-    "category": "economy",
+    "content_type": "noticia",
+    "id": "noticia_abrupt_change_ARG_WB_WDI_FP_CPI_TOTL_ZG_2024",
+    "title": {
+      "es": "La inflación en Argentina alcanza niveles récord",
+      "en": "Inflation in Argentina Reaches Record Levels"
+    },
+    "lead": {
+      "es": "La inflación en Argentina se disparó en 2024, llegando al 219.88%, según datos del Banco Mundial. 219.88%",
+      "en": "Inflation in Argentina skyrocketed in 2024, reaching 219.88%, according to data from the World Bank."
+    },
+    "story": {
+      "es": "En 2024, la inflación en Argentina alcanzó niveles récord, llegando al 219.88%. Según datos del Banco Mundial, esta cifra representa un salto significativo desde el 133.48% registrado en 2023. La inflación en Argentina ha sido una constante preocupación debido a políticas económicas inestables y fluctuaciones monetarias.\n\nComparativamente, la inflación en otros países de la región ha sido mucho más moderada. Por ejemplo, la inflación promedio en Chile, Colombia, Paraguay y Uruguay fue de aproximadamente 4.61% en 2024, según datos del Banco Mundial. Esto destaca la severidad de la situación económica en Argentina.\n\nEste aumento en la inflación tiene profundas implicaciones para la población argentina. La pérdida del poder adquisitivo puede llevar a una disminución en el nivel de vida y dificultades en la planificación financiera a largo plazo. Además, la alta inflación puede afectar negativamente las inversiones extranjeras y la estabilidad económica general del país.",
+      "en": "In 2024, inflation in Argentina reached record levels, hitting 219.88%. According to data from the World Bank, this figure represents a significant jump from the 133.48% recorded in 2023. Inflation in Argentina has been a constant concern due to unstable economic policies and monetary fluctuations.\n\nComparatively, inflation in other countries in the region has been much more moderate. For example, the average inflation in Chile, Colombia, Paraguay, and Uruguay was approximately 4.61% in 2024, according to data from the World Bank. This highlights the severity of the economic situation in Argentina.\n\nThis increase in inflation has profound implications for the Argentine population. The loss of purchasing power can lead to a decrease in living standards and difficulties in long-term financial planning. Additionally, high inflation can negatively impact foreign investments and overall economic stability of the country."
+    },
+    "countries": [
+      "ARG"
+    ],
+    "dataset_id": "WB_WDI",
     "indicator": {
       "idno": "WB_WDI_FP_CPI_TOTL_ZG",
       "database_id": "WB_WDI",
       "name": {
-        "es": "Inflation, consumer prices (annual % growth)",
-        "en": "Inflation, consumer prices (annual % growth)"
+        "es": "Inflación, precios al consumidor (porcentaje anual)",
+        "en": "Inflation, consumer prices (annual percentage)"
       }
     },
     "observation": {
-      "value": 219.883929,
+      "value": "219.883929",
       "time_period": "2024",
       "unit": "%",
       "display": {
-        "es": "219.88 %",
+        "es": "219.88%",
         "en": "219.88%"
       },
       "period_display": {
@@ -29,162 +43,35 @@
         "en": "2024"
       }
     },
-    "magnitude": {
-      "es": "+4.0σ",
-      "en": "+4.0σ"
-    },
+    "magnitude": "+219.88% (es)",
     "chart_series": [
-      {
-        "period": "2018",
-        "value": 34.277224
-      },
-      {
-        "period": "2019",
-        "value": 53.548304
-      },
-      {
-        "period": "2020",
-        "value": 42.015095
-      },
-      {
-        "period": "2021",
-        "value": 48.409379
-      },
-      {
-        "period": "2022",
-        "value": 72.430758
-      },
       {
         "period": "2023",
         "value": 133.488936
       },
       {
         "period": "2024",
-        "value": 219.883929,
-        "is_change_point": true
+        "value": 219.883929
+      }
+    ],
+    "claim_tokens": [
+      {
+        "claim_id": "9b6df5dd7c4d83a3",
+        "value": "219.88%",
+        "pcn_status": "rejected",
+        "pcn_reason": "Claim ID mismatch: got 9b6df5dd7c4d83a3, expected 668cfdeac93fc462"
       }
     ],
     "verification_trace": {
       "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/WB_WDI",
-      "csv_link": "https://data360files.worldbank.org/data360-data/data/WB_WDI/WB_WDI_FP_CPI_TOTL_ZG.csv",
-      "methodology_ref": "https://dsbb.imf.org/"
+      "csv_link": "https://data360files.worldbank.org/data360-data/data/WB_WDI/WB_WDI_FP_CPI_TOTL_ZG.csv"
     },
-    "score": 1,
-    "detected_at": "2026-05-22T00:21:20.829Z",
-    "license": "CC BY-4.0",
-    "narrative_citizen": {
-      "es": "Aumentó drásticamente la inflación en Argentina en 2024, alcanzando un valor del 219.88 %.",
-      "en": "The inflation rate in Argentina skyrocketed in 2024, reaching a value of 219.88%."
-    },
-    "narrative_journalist": {
-      "es": "La inflación en Argentina registró un incremento abrupto en 2024, con un valor del 219.88%, lo cual representa un z-score de 4.02 respecto a sus valores históricos.",
-      "en": "Argentina's inflation rate saw a sharp increase in 2024, reaching 219.88%, marking a z-score of 4.02 compared to its historical values."
-    },
-    "claim_tokens": [
-      {
-        "claim_id": "9b6df5dd7c4d83a3",
-        "value": 219.883929,
-        "display_es": "219.88 %",
-        "display_en": "219.88%"
-      },
-      {
-        "claim_id": "1ea1f8939894bac2",
-        "value": 133.488936,
-        "display_es": "133,49 %",
-        "display_en": "133.49 %"
-      }
-    ],
-    "data_period_stale": true
-  },
-  {
-    "id": "alert_2026-05-22_023",
-    "type": "anomaly",
-    "country": "ARG",
-    "category": "economy",
-    "indicator": {
-      "idno": "WB_WDI_FP_CPI_TOTL_ZG",
-      "database_id": "WB_WDI",
-      "name": {
-        "es": "Inflation, consumer prices (annual % growth)",
-        "en": "Inflation, consumer prices (annual % growth)"
-      }
-    },
-    "observation": {
-      "value": 219.883929,
-      "time_period": "2024",
-      "unit": "%",
-      "display": {
-        "es": "4.61 %",
-        "en": "4.61%"
-      },
-      "period_display": {
-        "es": "2024",
-        "en": "2024"
-      },
-      "period_narrative": {
-        "es": "2024",
-        "en": "2024"
-      }
-    },
-    "magnitude": {
-      "es": "+83.6σ",
-      "en": "+83.6σ"
-    },
-    "chart_series": [
-      {
-        "period": "2018",
-        "value": 34.277224
-      },
-      {
-        "period": "2019",
-        "value": 53.548304
-      },
-      {
-        "period": "2020",
-        "value": 42.015095
-      },
-      {
-        "period": "2021",
-        "value": 48.409379
-      },
-      {
-        "period": "2022",
-        "value": 72.430758
-      },
-      {
-        "period": "2023",
-        "value": 133.488936
-      },
-      {
-        "period": "2024",
-        "value": 219.883929,
-        "is_change_point": true
-      }
-    ],
-    "verification_trace": {
-      "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/WB_WDI",
-      "csv_link": "https://data360files.worldbank.org/data360-data/data/WB_WDI/WB_WDI_FP_CPI_TOTL_ZG.csv",
-      "methodology_ref": "https://dsbb.imf.org/"
-    },
-    "score": 1,
-    "detected_at": "2026-05-22T00:21:20.834Z",
-    "license": "CC BY-4.0",
-    "narrative_citizen": {
-      "es": "La inflación en Argentina en 2024 superó con creces la mediana regional, alcanzando un valor del 219.88%.",
-      "en": "Argentina's inflation rate in 2024 exceeded the regional median significantly, reaching 219.88%."
-    },
-    "narrative_journalist": {
-      "es": "La inflación en Argentina en 2024 se disparó hasta el 219.88%, muy por encima de la mediana regional de 4.61%.",
-      "en": "Argentina's inflation rate in 2024 spiked to 219.88%, far above the regional median of 4.61%."
-    },
-    "claim_tokens": [
-      {
-        "claim_id": "9b6df5dd7c4d83a3",
-        "value": 4.606211,
-        "display_es": "4.61 %",
-        "display_en": "4.61%"
-      }
-    ],
-    "data_period_stale": true
+    "score": 0,
+    "detected_at": "2024-01-01T00:00:00Z",
+    "data_period_stale": true,
+    "quality_status": "incomplete",
+    "quality_tags": [
+      "1_claims_rejected"
+    ]
   }
 ]
