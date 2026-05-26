@@ -3,299 +3,102 @@
   "schema_ref": "docs/alert-schema.json",
   "alerts": [
     {
-      "id": "alert_2026-05-21_001",
-      "type": "abrupt_change",
-      "country": "ARG",
-      "category": "economy",
+      "content_type": "noticia",
+      "id": "noticia_fixture_ARG_WB_WDI_FP_CPI_TOTL_ZG_2024",
+      "title": { "es": "Inflación se acelera en Argentina", "en": "Inflation Accelerates in Argentina" },
+      "lead": { "es": "El IPC anual en Argentina llegó a 211,4% en 2024, según Data360.", "en": "Annual CPI inflation in Argentina reached 211.4% in 2024, according to Data360." },
+      "story": { "es": "El indicador de inflación anual (IPC) para Argentina registra 211,4% en 2024, de acuerdo con la serie WB_WDI publicada en Data360.", "en": "Argentina's annual inflation (CPI) records 211.4% in 2024 according to the WB_WDI series published on Data360." },
+      "countries": ["ARG"],
+      "dataset_id": "WB_WDI",
       "indicator": {
         "idno": "WB_WDI_FP_CPI_TOTL_ZG",
         "database_id": "WB_WDI",
-        "name": {
-          "es": "Inflación, precios al consumidor (variación anual %)",
-          "en": "Inflation, consumer prices (annual % growth)"
-        }
+        "name": { "es": "Inflación, precios al consumidor (variación anual %)", "en": "Inflation, consumer prices (annual % growth)" }
       },
-      "observation": {
-        "value": 211.4,
-        "display": { "es": "211,4 %", "en": "211.4%" },
-        "time_period": "2024",
-        "unit": "%"
-      },
-      "magnitude": { "es": "+78 pp", "en": "+78 pp" },
-      "chart_series": [
-        { "period": "2017", "value": 25.7 },
-        { "period": "2018", "value": 34.3 },
-        { "period": "2019", "value": 53.5 },
-        { "period": "2020", "value": 42.0 },
-        { "period": "2021", "value": 48.4 },
-        { "period": "2022", "value": 72.4 },
-        { "period": "2023", "value": 133.5 },
-        { "period": "2024", "value": 211.4, "is_change_point": true }
-      ],
-      "narrative_citizen": {
-        "es": "La inflación anual en Argentina llegó a 211,4 % en 2024, un salto de 78 puntos porcentuales frente al año anterior.",
-        "en": "Annual inflation in Argentina reached 211.4% in 2024, a jump of 78 percentage points versus the previous year."
-      },
-      "narrative_journalist": {
-        "es": "El índice de precios al consumidor de Argentina cerró 2024 en 211,4 % interanual, su valor más alto de la serie disponible en Data360. La aceleración respecto a 2023 (133,5 %) es la mayor variación absoluta en 7 años.",
-        "en": "Argentina's consumer price index closed 2024 at 211.4% year over year, the highest value in the Data360 series. The acceleration relative to 2023 (133.5%) is the largest absolute change in 7 years."
-      },
+      "observation": { "value": "211.4", "time_period": "2024", "unit": "%" },
+      "magnitude": "+78 pp",
+      "chart_series": [{ "period": "2023", "value": 133.5 }, { "period": "2024", "value": 211.4 }],
       "claim_tokens": [
-        { "claim_id": "WB_WDI_FP_CPI_TOTL_ZG@ARG@2024", "value": 211.4, "display_es": "211,4 %", "display_en": "211.4%" },
-        { "claim_id": "WB_WDI_FP_CPI_TOTL_ZG@ARG@2023", "value": 133.5, "display_es": "133,5 %", "display_en": "133.5%" }
+        { "claim_id": "WB_WDI_FP_CPI_TOTL_ZG@ARG@2024", "value": "211.4", "display_es": "211,4 %", "display_en": "211.4%" },
+        { "claim_id": "WB_WDI_FP_CPI_TOTL_ZG@ARG@2023", "value": "133.5", "display_es": "133,5 %", "display_en": "133.5%" }
       ],
       "verification_trace": {
         "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/WB_WDI",
-        "csv_link": "https://data360files.worldbank.org/data360-data/data/WB_WDI/WB_WDI_FP_CPI_TOTL_ZG.csv",
-        "methodology_ref": "https://datacatalog.worldbank.org/search/dataset/0037712"
+        "csv_link": "https://data360files.worldbank.org/data360-data/data/WB_WDI/WB_WDI_FP_CPI_TOTL_ZG.csv"
       },
       "score": 0.94,
-      "detected_at": "2026-05-21T16:00:00Z",
-      "license": "CC BY-4.0"
+      "detected_at": "2026-05-21T16:00:00Z"
     },
     {
-      "id": "alert_2026-05-21_002",
-      "type": "anomaly",
-      "country": "GTM",
-      "category": "health",
+      "content_type": "noticia",
+      "id": "noticia_fixture_ARG_FAO_CP_23012_2025_09_01",
+      "title": { "es": "El IPC general sube en Argentina", "en": "General CPI Rises in Argentina" },
+      "lead": { "es": "El índice general (2015=100) alcanza 11.322,29 en septiembre de 2025.", "en": "The general index (2015=100) reaches 11,322.29 in September 2025." },
+      "story": { "es": "En septiembre de 2025, el índice general de precios al consumidor (2015=100) en Argentina registra 11.322,29. Serie FAO_CP en Data360.", "en": "In September 2025, Argentina's general consumer price index (2015=100) records 11,322.29. FAO_CP series in Data360." },
+      "countries": ["ARG"],
+      "dataset_id": "FAO_CP",
       "indicator": {
-        "idno": "WB_WDI_SH_DYN_MORT",
-        "database_id": "WB_WDI",
-        "name": {
-          "es": "Tasa de mortalidad de menores de 5 años (por 1.000 nacidos vivos)",
-          "en": "Mortality rate, under-5 (per 1,000 live births)"
-        }
+        "idno": "FAO_CP_23012",
+        "database_id": "FAO_CP",
+        "name": { "es": "Índice de Precios al Consumidor General (2015 = 100)", "en": "General Consumer Price Index (2015 = 100)" }
       },
-      "observation": {
-        "value": 22.1,
-        "display": { "es": "22,1 por 1.000", "en": "22.1 per 1,000" },
-        "time_period": "2023",
-        "unit": "per_thousand"
-      },
-      "magnitude": { "es": "2,3σ regional", "en": "2.3σ regional" },
-      "chart_series": [
-        { "period": "2018", "value": 24.8, "regional_avg": 17.0 },
-        { "period": "2019", "value": 24.0, "regional_avg": 16.4 },
-        { "period": "2020", "value": 23.4, "regional_avg": 16.2 },
-        { "period": "2021", "value": 23.1, "regional_avg": 15.8 },
-        { "period": "2022", "value": 22.5, "regional_avg": 15.3 },
-        { "period": "2023", "value": 22.1, "regional_avg": 14.9, "is_change_point": true }
-      ],
-      "narrative_citizen": {
-        "es": "Guatemala registró en 2023 una mortalidad infantil de 22,1 por cada 1.000 nacidos vivos, 7,2 puntos por encima del promedio regional.",
-        "en": "Guatemala reported child mortality of 22.1 per 1,000 live births in 2023, 7.2 points above the regional average."
-      },
-      "narrative_journalist": {
-        "es": "La tasa de mortalidad de menores de 5 años en Guatemala (22,1 por 1.000 en 2023) se ubica 2,3 desviaciones estándar por encima del promedio LAC (14,9). La brecha se ha ampliado en 5 años consecutivos.",
-        "en": "Guatemala's under-5 mortality rate (22.1 per 1,000 in 2023) sits 2.3 standard deviations above the LAC average (14.9). The gap has widened in 5 consecutive years."
-      },
-      "claim_tokens": [
-        { "claim_id": "WB_WDI_SH_DYN_MORT@GTM@2023", "value": 22.1, "display_es": "22,1 por 1.000", "display_en": "22.1 per 1,000" },
-        { "claim_id": "WB_WDI_SH_DYN_MORT@LAC_AVG@2023", "value": 14.9, "display_es": "14,9", "display_en": "14.9" }
-      ],
+      "observation": { "value": "11322.289801", "time_period": "2025-09-01", "unit": "IX" },
+      "magnitude": "+2.11σ",
+      "chart_series": [{ "period": "2025-09-01", "value": 11322.289801 }],
+      "claim_tokens": [{ "claim_id": "FAO_CP_23012@ARG@2025-09-01", "value": "11322.289801", "display_es": "11.322,29", "display_en": "11,322.29" }],
       "verification_trace": {
-        "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/WB_WDI",
-        "csv_link": "https://data360files.worldbank.org/data360-data/data/WB_WDI/WB_WDI_SH_DYN_MORT.csv"
+        "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/FAO_CP",
+        "csv_link": "https://data360files.worldbank.org/data360-data/data/FAO_CP/FAO_CP_23012.csv"
       },
-      "score": 0.88,
-      "detected_at": "2026-05-21T16:05:00Z",
-      "license": "CC BY-4.0"
+      "score": 0.75,
+      "detected_at": "2026-05-21T16:05:00Z"
     },
     {
-      "id": "alert_2026-05-21_003",
-      "type": "abrupt_change",
-      "country": "ECU",
-      "category": "poverty",
-      "indicator": {
-        "idno": "WB_WDI_SI_POV_DDAY",
-        "database_id": "WB_WDI",
-        "name": {
-          "es": "Pobreza a USD 3 al día (% de la población)",
-          "en": "Poverty headcount at USD 3 a day (% of population)"
-        }
-      },
-      "observation": {
-        "value": 12.4,
-        "display": { "es": "12,4 %", "en": "12.4%" },
-        "time_period": "2023",
-        "unit": "%"
-      },
-      "magnitude": { "es": "+3,6 pp", "en": "+3.6 pp" },
-      "chart_series": [
-        { "period": "2017", "value": 6.8 },
-        { "period": "2018", "value": 6.3 },
-        { "period": "2019", "value": 6.5 },
-        { "period": "2020", "value": 9.1 },
-        { "period": "2021", "value": 8.4 },
-        { "period": "2022", "value": 8.8 },
-        { "period": "2023", "value": 12.4, "is_change_point": true }
-      ],
-      "narrative_citizen": {
-        "es": "La pobreza extrema en Ecuador subió a 12,4 % en 2023, el mayor salto interanual desde 2020.",
-        "en": "Extreme poverty in Ecuador rose to 12.4% in 2023, the largest year-over-year jump since 2020."
-      },
-      "narrative_journalist": {
-        "es": "La pobreza a USD 3/día en Ecuador alcanzó 12,4 % en 2023, un aumento de 3,6 puntos porcentuales respecto a 2022 (8,8 %). Es el segundo mayor salto en la serie 2017 a 2023, superado solo por el efecto pandemia.",
-        "en": "Ecuador's USD 3/day poverty headcount reached 12.4% in 2023, up 3.6 percentage points from 2022 (8.8%). It is the second largest jump in the 2017 to 2023 series, surpassed only by the pandemic effect."
-      },
-      "claim_tokens": [
-        { "claim_id": "WB_WDI_SI_POV_DDAY@ECU@2023", "value": 12.4, "display_es": "12,4 %", "display_en": "12.4%" },
-        { "claim_id": "WB_WDI_SI_POV_DDAY@ECU@2022", "value": 8.8, "display_es": "8,8 %", "display_en": "8.8%" }
-      ],
-      "verification_trace": {
-        "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/WB_WDI",
-        "csv_link": "https://data360files.worldbank.org/data360-data/data/WB_WDI/WB_WDI_SI_POV_DDAY.csv"
-      },
-      "score": 0.91,
-      "detected_at": "2026-05-21T16:10:00Z",
-      "license": "CC BY-4.0"
-    },
-    {
-      "id": "alert_2026-05-21_004",
-      "type": "anomaly",
-      "country": "HND",
-      "category": "governance",
-      "indicator": {
-        "idno": "GOV_WGI_CC",
-        "database_id": "GOV_WGI",
-        "name": {
-          "es": "Control de la corrupción (estimación)",
-          "en": "Control of Corruption (estimate)"
-        }
-      },
-      "observation": {
-        "value": -0.92,
-        "display": { "es": "−0,92", "en": "−0.92" },
-        "time_period": "2023",
-        "unit": "score"
-      },
-      "magnitude": { "es": "−1,8σ regional", "en": "−1.8σ regional" },
-      "chart_series": [
-        { "period": "2017", "value": -0.74, "regional_avg": -0.20 },
-        { "period": "2018", "value": -0.78, "regional_avg": -0.22 },
-        { "period": "2019", "value": -0.81, "regional_avg": -0.21 },
-        { "period": "2020", "value": -0.83, "regional_avg": -0.19 },
-        { "period": "2021", "value": -0.86, "regional_avg": -0.18 },
-        { "period": "2022", "value": -0.89, "regional_avg": -0.17 },
-        { "period": "2023", "value": -0.92, "regional_avg": -0.15, "is_change_point": true }
-      ],
-      "narrative_citizen": {
-        "es": "El indicador de control de la corrupción de Honduras cayó a −0,92 en 2023, su peor valor en 7 años.",
-        "en": "Honduras's control of corruption indicator fell to −0.92 in 2023, its worst value in 7 years."
-      },
-      "narrative_journalist": {
-        "es": "El score WGI de control de la corrupción para Honduras se ubica en −0,92 en 2023, 1,8 desviaciones por debajo del promedio LAC (−0,15). El deterioro es continuo desde 2017.",
-        "en": "Honduras's WGI control of corruption score stands at −0.92 in 2023, 1.8 deviations below the LAC average (−0.15). The deterioration has been continuous since 2017."
-      },
-      "claim_tokens": [
-        { "claim_id": "GOV_WGI_CC@HND@2023", "value": -0.92, "display_es": "−0,92", "display_en": "−0.92" }
-      ],
-      "verification_trace": {
-        "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/GOV_WGI",
-        "csv_link": "https://data360files.worldbank.org/data360-data/data/GOV_WGI/GOV_WGI_CC.csv"
-      },
-      "score": 0.83,
-      "detected_at": "2026-05-21T16:12:00Z",
-      "license": "CC BY-4.0"
-    },
-    {
-      "id": "alert_2026-05-21_005",
-      "type": "abrupt_change",
-      "country": "MEX",
-      "category": "labor",
+      "content_type": "noticia",
+      "id": "noticia_fixture_ARG_WB_WDI_SL_UEM_TOTL_ZS_2025",
+      "title": { "es": "Desempleo en Argentina en 2025", "en": "Unemployment in Argentina in 2025" },
+      "lead": { "es": "La tasa de desempleo total se ubica en 7,1% en 2025, según Data360.", "en": "The total unemployment rate stands at 7.1% in 2025, according to Data360." },
+      "story": { "es": "El indicador de desempleo total para Argentina muestra 7,1% en 2025. Serie WB_WDI en Data360.", "en": "Argentina's total unemployment indicator shows 7.1% in 2025. WB_WDI series in Data360." },
+      "countries": ["ARG"],
+      "dataset_id": "WB_WDI",
       "indicator": {
         "idno": "WB_WDI_SL_UEM_TOTL_ZS",
         "database_id": "WB_WDI",
-        "name": {
-          "es": "Desempleo, total (% de la fuerza laboral)",
-          "en": "Unemployment, total (% of labor force)"
-        }
+        "name": { "es": "Desempleo, total (% de la fuerza laboral total)", "en": "Unemployment, total (% of total labor force)" }
       },
-      "observation": {
-        "value": 2.6,
-        "display": { "es": "2,6 %", "en": "2.6%" },
-        "time_period": "2024",
-        "unit": "%"
-      },
-      "magnitude": { "es": "−1,2 pp", "en": "−1.2 pp" },
-      "chart_series": [
-        { "period": "2017", "value": 3.4 },
-        { "period": "2018", "value": 3.3 },
-        { "period": "2019", "value": 3.5 },
-        { "period": "2020", "value": 4.7 },
-        { "period": "2021", "value": 4.1 },
-        { "period": "2022", "value": 3.3 },
-        { "period": "2023", "value": 3.8 },
-        { "period": "2024", "value": 2.6, "is_change_point": true }
-      ],
-      "narrative_citizen": {
-        "es": "El desempleo en México cayó a 2,6 % en 2024, su menor nivel en al menos 7 años.",
-        "en": "Unemployment in Mexico fell to 2.6% in 2024, its lowest level in at least 7 years."
-      },
-      "narrative_journalist": {
-        "es": "La tasa de desempleo de México (2,6 % en 2024) cae 1,2 puntos porcentuales respecto a 2023 y se ubica por debajo del piso pre-pandemia (3,3 % en 2018). El descenso pide cruce con tasa de participación.",
-        "en": "Mexico's unemployment rate (2.6% in 2024) drops 1.2 percentage points from 2023 and sits below the pre-pandemic floor (3.3% in 2018). The decline calls for cross-check with labor force participation."
-      },
-      "claim_tokens": [
-        { "claim_id": "WB_WDI_SL_UEM_TOTL_ZS@MEX@2024", "value": 2.6, "display_es": "2,6 %", "display_en": "2.6%" },
-        { "claim_id": "WB_WDI_SL_UEM_TOTL_ZS@MEX@2023", "value": 3.8, "display_es": "3,8 %", "display_en": "3.8%" }
-      ],
+      "observation": { "value": "7.145", "time_period": "2025", "unit": "% of labor force" },
+      "chart_series": [{ "period": "2024", "value": 7.15 }, { "period": "2025", "value": 7.145 }],
+      "claim_tokens": [{ "claim_id": "WB_WDI_SL_UEM_TOTL_ZS@ARG@2025", "value": "7.145", "display_es": "7,1 %", "display_en": "7.1%" }],
       "verification_trace": {
         "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/WB_WDI",
         "csv_link": "https://data360files.worldbank.org/data360-data/data/WB_WDI/WB_WDI_SL_UEM_TOTL_ZS.csv"
       },
-      "score": 0.79,
-      "detected_at": "2026-05-21T16:15:00Z",
-      "license": "CC BY-4.0"
+      "score": 0.66,
+      "detected_at": "2026-05-21T16:10:00Z"
     },
     {
-      "id": "alert_2026-05-21_006",
-      "type": "anomaly",
-      "country": "GTM",
-      "category": "education",
-      "indicator": {
-        "idno": "WB_WDI_SE_SEC_ENRR",
-        "database_id": "WB_WDI",
-        "name": {
-          "es": "Matrícula escolar, secundaria (% bruto)",
-          "en": "School enrollment, secondary (% gross)"
-        }
-      },
-      "observation": {
-        "value": 64.2,
-        "display": { "es": "64,2 %", "en": "64.2%" },
-        "time_period": "2022",
-        "unit": "%"
-      },
-      "magnitude": { "es": "−2,1σ regional", "en": "−2.1σ regional" },
-      "chart_series": [
-        { "period": "2016", "value": 66.0, "regional_avg": 88.4 },
-        { "period": "2017", "value": 66.4, "regional_avg": 89.2 },
-        { "period": "2018", "value": 66.8, "regional_avg": 89.7 },
-        { "period": "2019", "value": 66.5, "regional_avg": 90.1 },
-        { "period": "2020", "value": 65.3, "regional_avg": 89.5 },
-        { "period": "2021", "value": 64.7, "regional_avg": 88.8 },
-        { "period": "2022", "value": 64.2, "regional_avg": 89.4, "is_change_point": true }
-      ],
-      "narrative_citizen": {
-        "es": "La matrícula en secundaria en Guatemala bajó a 64,2 % en 2022, 25 puntos por debajo del promedio regional.",
-        "en": "Secondary school enrollment in Guatemala dropped to 64.2% in 2022, 25 points below the regional average."
-      },
-      "narrative_journalist": {
-        "es": "La tasa bruta de matrícula secundaria de Guatemala (64,2 % en 2022) está 2,1 σ por debajo del promedio LAC (89,4 %). La brecha es estable y se ha ampliado 2 puntos desde 2019.",
-        "en": "Guatemala's gross secondary enrollment rate (64.2% in 2022) is 2.1 σ below the LAC average (89.4%). The gap is stable and has widened by 2 points since 2019."
-      },
+      "content_type": "reportaje",
+      "id": "reportaje_fixture_WJP_ROL_2026_05_25",
+      "title": { "es": "Índice de Estado de derecho en la región", "en": "Rule of Law Index Across the Region" },
+      "lead": { "es": "El World Justice Project muestra movimientos en varios países.", "en": "The World Justice Project shows movements across several countries." },
+      "story": { "es": "Este reportaje sintetiza cambios regionales a partir de varias noticias por indicador.", "en": "This reportaje synthesizes regional changes using multiple indicator stories." },
+      "countries": ["ARG", "ECU", "MEX", "HND", "GTM"],
+      "dataset_id": "WJP_ROL",
+      "indicators": ["WJP_ROL_OVRL", "WJP_ROL_FAC_3"],
+      "noticia_ids": ["noticia_fixture_ARG_WB_WDI_FP_CPI_TOTL_ZG_2024", "noticia_fixture_ARG_FAO_CP_23012_2025_09_01"],
       "claim_tokens": [
-        { "claim_id": "WB_WDI_SE_SEC_ENRR@GTM@2022", "value": 64.2, "display_es": "64,2 %", "display_en": "64.2%" },
-        { "claim_id": "WB_WDI_SE_SEC_ENRR@LAC_AVG@2022", "value": 89.4, "display_es": "89,4 %", "display_en": "89.4%" }
+        { "claim_id": "WJP_ROL_OVRL@ARG@2025", "value": "0.540456", "display_es": "0,54", "display_en": "0.54" },
+        { "claim_id": "WJP_ROL_FAC_3@HND@2025", "value": "0.510000", "display_es": "0,51", "display_en": "0.51" }
       ],
       "verification_trace": {
-        "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/WB_WDI",
-        "csv_link": "https://data360files.worldbank.org/data360-data/data/WB_WDI/WB_WDI_SE_SEC_ENRR.csv"
+        "data360_dataset_url": "https://data360.worldbank.org/en/int/dataset/WJP_ROL",
+        "csv_links": [
+          "https://data360files.worldbank.org/data360-data/data/WJP_ROL/WJP_ROL_OVRL.csv",
+          "https://data360files.worldbank.org/data360-data/data/WJP_ROL/WJP_ROL_FAC_3.csv"
+        ]
       },
-      "score": 0.86,
-      "detected_at": "2026-05-21T16:18:00Z",
-      "license": "CC BY-4.0"
+      "score": 0.8,
+      "detected_at": "2026-05-21T16:15:00Z"
     }
   ]
 }
