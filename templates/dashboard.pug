@@ -5,49 +5,52 @@ include mixins
 
 block headerExtras
   - var variant = filters.variant || "narr"
-  header.d360-header
-    div.d360-header__top
-      if lastUpdateIso
-        div.d360-header__right
-          div.d360-lastupdate
-            span.d360-lastupdate__dot(aria-hidden="true")
-            span.d360-lastupdate__label= _("ui.last_update", lang)
-            span.d360-lastupdate__sep(aria-hidden="true") ·
-            time.d360-local-datetime.d360-lastupdate__time(datetime=lastUpdateIso)
-    div.d360-header__bar
-      form.d360-filters(method="get" id="d360-filters-form")
-        label.d360-filter
-          span.d360-filter__label= _("ui.country", lang)
-          select(name="country" id="d360-filter-country")
-            option(value="ALL" selected=(filters.country === "ALL"))= _("ui.filter_all", lang)
-            each iso in countries
-              option(value=iso selected=(filters.country === iso)) #{countryFlag(iso)} #{_("chat.country." + iso, lang)}
-        label.d360-filter
-          span.d360-filter__label= _("ui.category", lang)
-          select(name="category" id="d360-filter-category")
-            option(value="ALL" selected=(filters.category === "ALL"))= _("ui.filter_all", lang)
-            each cat in categories
-              option(value=cat selected=(filters.category === cat))= cat
-        label.d360-filter
-          span.d360-filter__label= _("ui.content_type", lang)
-          select(name="content_type" id="d360-filter-content-type" data-filter="content_type")
-            option(value="ALL" selected=((filters.content_type || "ALL") === "ALL"))= _("ui.filter_all_types", lang)
-            option(value="noticia" selected=(filters.content_type === "noticia"))= _("badge.noticia", lang)
-            option(value="reportaje" selected=(filters.content_type === "reportaje"))= _("badge.reportaje", lang)
-        label.d360-filter
-          span.d360-filter__label= _("ui.card", lang)
-          select(name="variant" id="d360-filter-variant")
-            option(value="narr" selected=(variant === "narr")) Narrative
-            option(value="num"  selected=(variant === "num"))  Number
-            option(value="news" selected=(variant === "news")) Newspaper
-      div.d360-eventcount
-        strong#d360-event-count= visibleAlerts.length
-        |  #{_("ui.events_count", lang)}
+  div.wb-filterbar
+    div.wb-filterbar__row
+      div.wb-filterbar__filters
+        header.d360-header
+          div.d360-header__top
+            if lastUpdateIso
+              div.d360-header__right
+                div.d360-lastupdate
+                  span.d360-lastupdate__dot(aria-hidden="true")
+                  span.d360-lastupdate__label= _("ui.last_update", lang)
+                  span.d360-lastupdate__sep(aria-hidden="true") ·
+                  time.d360-local-datetime.d360-lastupdate__time(datetime=lastUpdateIso)
+          div.d360-header__bar
+            form.d360-filters(method="get" id="d360-filters-form")
+              label.d360-filter
+                span.d360-filter__label= _("ui.country", lang)
+                select(name="country" id="d360-filter-country")
+                  option(value="ALL" selected=(filters.country === "ALL"))= _("ui.filter_all", lang)
+                  each iso in countries
+                    option(value=iso selected=(filters.country === iso)) #{countryFlag(iso)} #{_("chat.country." + iso, lang)}
+              label.d360-filter
+                span.d360-filter__label= _("ui.category", lang)
+                select(name="category" id="d360-filter-category")
+                  option(value="ALL" selected=(filters.category === "ALL"))= _("ui.filter_all", lang)
+                  each cat in categories
+                    option(value=cat selected=(filters.category === cat))= cat
+              label.d360-filter
+                span.d360-filter__label= _("ui.content_type", lang)
+                select(name="content_type" id="d360-filter-content-type" data-filter="content_type")
+                  option(value="ALL" selected=((filters.content_type || "ALL") === "ALL"))= _("ui.filter_all_types", lang)
+                  option(value="noticia" selected=(filters.content_type === "noticia"))= _("badge.noticia", lang)
+                  option(value="reportaje" selected=(filters.content_type === "reportaje"))= _("badge.reportaje", lang)
+              label.d360-filter
+                span.d360-filter__label= _("ui.card", lang)
+                select(name="variant" id="d360-filter-variant")
+                  option(value="narr" selected=(variant === "narr")) Narrative
+                  option(value="num"  selected=(variant === "num"))  Number
+                  option(value="news" selected=(variant === "news")) Newspaper
+            div.d360-eventcount
+              strong#d360-event-count= visibleAlerts.length
+              |  #{_("ui.events_count", lang)}
+      div.wb-filterbar__legend
+        +pcnLegend(lang, _)
 
 block content
   - var langKey = (lang === "en") ? "en" : "es"
-
-  include partials/detail-panel
 
   main.d360-main
     div.d360-main__feed
@@ -63,6 +66,7 @@ block content
           each ev in allAlerts
             - var cardCountries = (Array.isArray(ev._countries) && ev._countries.length) ? ev._countries : (ev.country ? [ev.country] : [])
             - var cardCountryAttr = ev.country || (cardCountries[0] || '')
+            - var articleHref = pathForCountry(ev, cardCountryAttr) || ev._path || '#'
             - var countryHit = (filters.country === "ALL") || cardCountries.indexOf(filters.country) >= 0
             - var categoryHit = (filters.country !== "ALL" && false) || (filters.category === "ALL") || (filters.category === ev.category)
             - var typeHit = (!filters.content_type || filters.content_type === "ALL") || (ev.content_type === filters.content_type) || (ev.type === filters.content_type)
@@ -75,7 +79,7 @@ block content
             - var magnitudeText = (ev.magnitude && ev.magnitude[langKey]) || ''
             - var indCount = Array.isArray(ev.indicators) ? ev.indicators.length : 0
             if ev.content_type === "reportaje"
-              article.d360-card.d360-card--reportaje(class=(hidden ? "d360-card--hidden" : "") tabindex="0" role="button" data-alert-id=ev.id data-country=cardCountryAttr data-category=ev.category data-content-type="reportaje")
+              a.d360-card.d360-card--reportaje.d360-card--link(class=(hidden ? "d360-card--hidden" : "") href=articleHref data-country=cardCountryAttr data-category=ev.category data-content-type="reportaje")
                 div.d360-card__head
                   div.d360-card__metaL
                     each iso in cardCountries
@@ -94,7 +98,7 @@ block content
                     span.d360-card__divider ·
                     span.d360-card__indicators #{indCount} #{indicatorsLabel}
             else if variant === "num"
-              article.d360-card.d360-card--num(class=(hidden ? "d360-card--hidden" : "") tabindex="0" role="button" data-alert-id=ev.id data-country=cardCountryAttr data-category=ev.category data-content-type=ev.content_type)
+              a.d360-card.d360-card--num.d360-card--link(class=(hidden ? "d360-card--hidden" : "") href=articleHref data-country=cardCountryAttr data-category=ev.category data-content-type=ev.content_type)
                 div.d360-card__head
                   div.d360-card__metaL
                     +countryTag(ev.country, lang, _)
@@ -109,14 +113,14 @@ block content
                 div.d360-card__body
                   if ev.observation
                     span.d360-card__bignum
-                      +observationDisplay(ev, lang)
+                      +observationWithPcn(ev, lang)
                   span.d360-card__bigtext
                     = indName
                     if magnitudeText
                       |  ·
                       +magnitude(magnitudeText)
             else if variant === "news"
-              article.d360-card.d360-card--news(class=(hidden ? "d360-card--hidden" : "") tabindex="0" role="button" data-alert-id=ev.id data-country=cardCountryAttr data-category=ev.category data-content-type=ev.content_type)
+              a.d360-card.d360-card--news.d360-card--link(class=(hidden ? "d360-card--hidden" : "") href=articleHref data-country=cardCountryAttr data-category=ev.category data-content-type=ev.content_type)
                 div.d360-card__eyebrow
                   if ev.observation
                     +dataDateBadge(ev, lang, dataPeriodLabel, dataPeriodStaleLabel)
@@ -138,12 +142,12 @@ block content
                     | #{indName}
                     if ev.observation
                       |  ·
-                      +observationDisplay(ev, lang)
+                      +observationWithPcn(ev, lang)
                     if magnitudeText
                       |  ·
                       +magnitude(magnitudeText)
             else
-              article.d360-card.d360-card--narr(class=(hidden ? "d360-card--hidden" : "") tabindex="0" role="button" data-alert-id=ev.id data-country=cardCountryAttr data-category=ev.category data-content-type=ev.content_type)
+              a.d360-card.d360-card--narr.d360-card--link(class=(hidden ? "d360-card--hidden" : "") href=articleHref data-country=cardCountryAttr data-category=ev.category data-content-type=ev.content_type)
                 div.d360-card__head
                   div.d360-card__metaL
                     +countryTag(ev.country, lang, _)
@@ -161,7 +165,7 @@ block content
                   | #{indName}
                   if ev.observation
                     |  ·
-                    +observationDisplay(ev, lang)
+                    +observationWithPcn(ev, lang)
                   if magnitudeText
                     |  ·
                     +magnitude(magnitudeText)
@@ -174,9 +178,9 @@ block scripts
   script.
     window.D360_ALERTS = !{JSON.stringify(allAlerts)};
     window.D360_FILTERS = !{JSON.stringify(filters)};
+    window.D360_DEMO_COUNTRIES = !{JSON.stringify(countries || [])};
   script(src=staticAsset('js/charts.js') defer)
   script(src=staticAsset('js/chat-cards.js') defer)
   script(src=staticAsset('js/alerts-feed.js') defer)
   script(src=staticAsset('js/pcn-claims.js') defer)
-  script(src=staticAsset('js/detail-panel.js') defer)
   script(src=staticAsset('js/behavior.js') defer)

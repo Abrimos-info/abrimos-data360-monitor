@@ -1,7 +1,6 @@
 extends layout
 
 block content
-  include partials/detail-panel
   include partials/chat-freshness
   main.d360-page.d360-page--chat
     div.d360-chat
@@ -56,7 +55,6 @@ block scripts
   script(src=staticAsset('js/charts.js') defer)
   script(src=staticAsset('js/indicator-pills.js') defer)
   script(src=staticAsset('js/pcn-claims.js') defer)
-  script(src=staticAsset('js/detail-panel.js') defer)
   script(src=staticAsset('js/markdown.js') defer)
   script(src=staticAsset('js/chat-cards.js') defer)
   script(src=staticAsset('js/alerts-feed.js') defer)

@@ -25,7 +25,7 @@ Cada bloque `alert` tiene todos los campos del schema definido en el system prom
 - `observation.value` como string.
 - `observation.time_period` con el período cubierto.
 - `claim_tokens` no vacío.
-- `narrative_citizen` y `narrative_journalist` presentes y no vacías.
+- `claim_tokens` con al menos un token verificable.
 - `verification_trace.csv_link` y `verification_trace.data360_url`.
 
 ---
@@ -37,10 +37,6 @@ Cada bloque `alert` tiene todos los campos del schema definido en el system prom
 - Si hay más, recortá quedando las de mayor `score`.
 
 ---
-
-## Q4. Longitud de narrativas
-
-`narrative_citizen` y `narrative_journalist` cada una con máximo 300 caracteres incluyendo los `{{claim:...}}`. Si excedés, recortá sin sacrificar la cifra y la idea principal.
 
 ---
 

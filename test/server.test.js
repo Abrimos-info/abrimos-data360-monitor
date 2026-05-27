@@ -77,8 +77,8 @@ test('HTTP routes', async (t) => {
 
   await t.test('GET / without country cookie links Portada to country picker', async () => {
     const res = await get(base + '/');
-    assert.match(res.body, /d360-site-nav__link[^>]+href="\/"/);
-    assert.doesNotMatch(res.body, /d360-site-nav__link[^>]+href="\/argentina"/);
+    assert.match(res.body, /wb-nav__link[^>]+href="\/"/);
+    assert.doesNotMatch(res.body, /wb-nav__link[^>]+href="\/argentina"/);
   });
 
   await t.test('GET /argentina nav links Portada to country edition', async () => {
@@ -100,9 +100,32 @@ test('HTTP routes', async (t) => {
     assert.ok(res.body.includes('d360-frontpage__indicator-value-col'));
   });
 
+  await t.test('GET /argentina front page has PCN legend and no visible ISO tag', async () => {
+    const res = await get(base + '/argentina');
+    assert.equal(res.status, 200);
+    assert.ok(res.body.includes('d360-pcn-legend'));
+    assert.doesNotMatch(res.body, /class="d360-country__iso"/);
+  });
+
+  await t.test('GET /argentina front page ticker uses observationWithPcn when indicators exist', async () => {
+    const res = await get(base + '/argentina');
+    if (!res.body.includes('d360-frontpage__indicator-val')) return;
+    assert.ok(
+      res.body.includes('d360-obs-with-pcn') || res.body.includes('d360-vmark'),
+      'expected PCN markup in indicator rail',
+    );
+  });
+
+  await t.test('GET /argentina front page hero has editorial eyebrow', async () => {
+    const res = await get(base + '/argentina');
+    if (!res.body.includes('d360-frontpage__hero')) return;
+    assert.ok(res.body.includes('d360-frontpage__hero-eyebrow'));
+    assert.ok(res.body.includes('d360-frontpage__hero-rule'));
+  });
+
   await t.test('GET /about has country selector with language', async () => {
     const res = await get(base + '/about');
-    assert.ok(res.body.includes('d360-site-nav__locale'));
+    assert.ok(res.body.includes('wb-header__locale'));
     assert.ok(res.body.includes('d360-country-select'));
   });
 
@@ -238,10 +261,20 @@ test('HTTP routes', async (t) => {
     assert.ok(data.model);
   });
 
-  await t.test('GET /chat redirects to home', async () => {
+  await t.test('GET /chat returns chat page with wb chrome', async () => {
     const res = await get(base + '/chat');
-    assert.equal(res.status, 302);
-    assert.equal(res.headers.location, '/');
+    assert.equal(res.status, 200);
+    assert.ok(res.body.includes('wb-nav'));
+    assert.ok(res.body.includes('d360-chat'));
+    assert.ok(res.body.includes('assets/d360-mark.svg'));
+  });
+
+  await t.test('GET / includes product chrome and logo', async () => {
+    const res = await get(base + '/');
+    assert.ok(res.body.includes('wb-nav'));
+    assert.ok(res.body.includes('d360-mark.svg'));
+    assert.ok(!res.body.includes('WORLD BANK GROUP'));
+    assert.ok(!res.body.includes('wb-globe.svg'));
   });
 
   await t.test('newsletter UI elements present on dashboard', async () => {
@@ -265,8 +298,9 @@ test('HTTP routes', async (t) => {
     assert.match(res.body, /<html[^>]*lang="es"/);
   });
 
-  await t.test('GET /?langMode=both returns 200 on monitor', async () => {
-    const res = await get(base + '/?langMode=both');
+  await t.test('GET /?langMode=both ignores both and uses lang', async () => {
+    const res = await get(base + '/?langMode=both&lang=en');
     assert.equal(res.status, 200);
+    assert.match(res.body, /lang="en"/);
   });
 });

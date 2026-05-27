@@ -63,24 +63,19 @@
 
   function renderVerificationMarkHtml(state, tipTitle, tipDesc, size) {
     size = size || 12;
-    var color = state === 'verified'
-      ? 'var(--ok)'
-      : (state === 'failed' ? 'var(--err)' : 'var(--warn)');
+    var stroke = state === 'failed' ? 'var(--err)' : 'var(--warn)';
     var svg;
     if (state === 'verified') {
       svg = '<svg width="' + size + '" height="' + size + '" viewBox="0 0 14 14" aria-hidden="true">'
-        + '<circle cx="7" cy="7" r="6" fill="none" stroke="' + color + '" stroke-width="1.4"/>'
-        + '<path d="M4 7.2 L6.2 9.4 L10 5.6" stroke="' + color + '" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>'
+        + '<rect class="d360-vmark__diamond" x="3" y="3" width="8" height="8" rx="0.5" transform="rotate(45 7 7)" fill="#0083C8"/>'
         + '</svg>';
     } else if (state === 'pending') {
       svg = '<svg width="' + size + '" height="' + size + '" viewBox="0 0 14 14" aria-hidden="true">'
-        + '<circle cx="7" cy="7" r="6" fill="none" stroke="' + color + '" stroke-width="1.4"/>'
-        + '<path d="M7 4 L7 7 L9 8.5" stroke="' + color + '" stroke-width="1.4" fill="none" stroke-linecap="round"/>'
+        + '<rect class="d360-vmark__diamond" x="3" y="3" width="8" height="8" rx="0.5" transform="rotate(45 7 7)" fill="none" stroke="' + stroke + '" stroke-width="1.5"/>'
         + '</svg>';
     } else {
       svg = '<svg width="' + size + '" height="' + size + '" viewBox="0 0 14 14" aria-hidden="true">'
-        + '<circle cx="7" cy="7" r="6" fill="none" stroke="' + color + '" stroke-width="1.4"/>'
-        + '<path d="M4 4 L10 10 M10 4 L4 10" stroke="' + color + '" stroke-width="1.4" stroke-linecap="round"/>'
+        + '<rect class="d360-vmark__diamond" x="3" y="3" width="8" height="8" rx="0.5" transform="rotate(45 7 7)" fill="none" stroke="' + stroke + '" stroke-width="1.5"/>'
         + '</svg>';
     }
     var tipHtml = '<span class="d360-vmark__tip"><strong>' + escHtml(tipTitle) + '</strong>';

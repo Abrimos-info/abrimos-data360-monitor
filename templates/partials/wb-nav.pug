@@ -1,0 +1,6 @@
+nav.wb-nav(role="navigation" aria-label=_("nav.main", lang))
+  div.wb-nav__inner
+    a.wb-nav__link(class=(activeRoute === "monitor" ? "is-active" : "") href=monitorHomeUrl)= _("nav.monitor", lang)
+    a.wb-nav__link(class=(activeRoute === "indicators" ? "is-active" : "") href="/indicadores")= _("nav.indicators", lang)
+    a.wb-nav__link(class=(activeRoute === "chat" ? "is-active" : "") href="/chat")= _("nav.chat", lang)
+    a.wb-nav__link(class=(activeRoute === "about" ? "is-active" : "") href="/about")= _("nav.about", lang)

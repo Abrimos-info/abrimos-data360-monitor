@@ -14,10 +14,10 @@ test('pickLang prefers query param', () => {
   assert.equal(pickLang(mockReq('lang=es')), 'es');
 });
 
-test('langModeForRoute keeps both on monitor route', () => {
+test('langModeForRoute always matches active lang (no both mode)', () => {
   const req = mockReq('langMode=both&lang=en');
   assert.equal(langModeForRoute(req, 'monitor', 'en', pickLangMode(req)), 'en');
-  assert.equal(langModeForRoute(req, 'about', 'en', pickLangMode(req)), 'en');
+  assert.equal(pickLangMode(req), 'en');
 });
 
 test('readFilters defaults invalid variant to narr', () => {

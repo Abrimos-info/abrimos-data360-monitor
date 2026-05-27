@@ -34,7 +34,7 @@
       var c = country.value;
       var k = category.value;
       var t = contentType ? contentType.value : 'ALL';
-      var cards = document.querySelectorAll('[data-alert-id]');
+      var cards = document.querySelectorAll('.d360-card--link[data-country]');
       var visible = 0;
       cards.forEach(function (card) {
         var cc = card.getAttribute('data-country');
@@ -63,16 +63,8 @@
     if (el) el.style.display = show ? '' : 'none';
   }
 
-  function initCardClicks() {
-    if (!window.D360DetailPanel) return;
-    document.querySelectorAll('[data-alert-id]').forEach(function (card) {
-      window.D360DetailPanel.bindCard(card);
-    });
-  }
-
   function init() {
     initFilters();
-    initCardClicks();
 
     if (window.D360AlertsFeed && window.D360AlertsFeed.bindRefreshOnFocus) {
       window.D360AlertsFeed.bindRefreshOnFocus(window.D360_LANG || 'es');

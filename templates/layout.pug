@@ -4,6 +4,7 @@ html(lang=lang)
     meta(charset="utf-8")
     meta(name="viewport" content="width=device-width, initial-scale=1")
     title= pageTitle || title || _("site_name", lang)
+    link(rel="icon" href=staticAsset('assets/d360-mark-favicon.svg') type="image/svg+xml")
     if metaDescription
       meta(name="description" content=metaDescription)
     else
@@ -11,26 +12,24 @@ html(lang=lang)
     block header
     link(rel="preload" fetchpriority="high" as="style" href=staticAsset('css/tokens.css'))
     link(rel="preload" fetchpriority="high" as="style" href=staticAsset('css/wb-theme.css'))
+    link(rel="preload" fetchpriority="high" as="style" href=staticAsset('css/wb-chrome.css'))
+    link(rel="preload" fetchpriority="high" as="style" href=staticAsset('css/wb-chat-fab.css'))
     link(rel="preload" fetchpriority="high" as="style" href=staticAsset('css/wb-chat-embed.css'))
     link(rel="preload" fetchpriority="high" as="style" href=staticAsset('css/main.css'))
   body
     div.d360-app
-      div.wb-topbar(role="navigation" aria-label="World Bank")
-        div.wb-topbar__inner
-          div.wb-topbar__group
-            a(href="https://www.worldbank.org" target="_blank" rel="noopener") World Bank
-            span.wb-topbar__dot(aria-hidden="true")
-            a(href="https://data360.worldbank.org" target="_blank" rel="noopener") Data360
-          div.wb-topbar__group
-            a(href="/about")= _("nav.about", lang)
-      include partials/site-nav
+      include partials/wb-header
+      include partials/wb-nav
       block headerExtras
       block content
+      include partials/wb-footer
+      if includeFloatingChat !== false
+        include partials/floating-chat
     include partials/onboarding
     include partials/newsletter-modal
     script.
       window.D360_LANG = !{JSON.stringify(lang)};
-      window.D360_LANG_MODE = !{JSON.stringify(langMode || lang)};
+      window.D360_LANG_MODE = !{JSON.stringify(lang)};
       window.D360_STRINGS = { es: !{JSON.stringify(stringsEs)}, en: !{JSON.stringify(stringsEn)} };
       window.staticVersion = !{JSON.stringify(String(staticVersion))};
     script(src=staticAsset('js/local-datetime.js'))
@@ -41,11 +40,20 @@ html(lang=lang)
     script(src=staticAsset('js/newsletter-modal.js') defer)
     link(rel="preload" href=staticAsset('css/tokens.css') as="style" onload="this.onload=null;this.rel='stylesheet'")
     link(rel="preload" href=staticAsset('css/wb-theme.css') as="style" onload="this.onload=null;this.rel='stylesheet'")
+    link(rel="preload" href=staticAsset('css/wb-chrome.css') as="style" onload="this.onload=null;this.rel='stylesheet'")
+    link(rel="preload" href=staticAsset('css/wb-chat-fab.css') as="style" onload="this.onload=null;this.rel='stylesheet'")
     link(rel="preload" href=staticAsset('css/wb-chat-embed.css') as="style" onload="this.onload=null;this.rel='stylesheet'")
     link(rel="preload" href=staticAsset('css/main.css') as="style" onload="this.onload=null;this.rel='stylesheet'")
     noscript
       link(rel="stylesheet" href=staticAsset('css/tokens.css'))
       link(rel="stylesheet" href=staticAsset('css/wb-theme.css'))
+      link(rel="stylesheet" href=staticAsset('css/wb-chrome.css'))
+      link(rel="stylesheet" href=staticAsset('css/wb-chat-fab.css'))
       link(rel="stylesheet" href=staticAsset('css/wb-chat-embed.css'))
       link(rel="stylesheet" href=staticAsset('css/main.css'))
     block scripts
+    if includeFloatingChat !== false
+      script(src=staticAsset('vendor/marked.min.js') defer)
+      script(src=staticAsset('js/markdown.js') defer)
+      script(src=staticAsset('js/pcn-claims.js') defer)
+      script(src=staticAsset('js/floating-chat.js') defer)

@@ -33,7 +33,7 @@
 
   function enrichAlert(alert) {
     if (!alert) return null;
-    if (alert.indicator && alert.narrative_citizen) return alert;
+    if (alert.indicator && (alert.lead || alert.title)) return alert;
     if (alert.id && window.D360_ALERTS) {
       var full = window.D360_ALERTS.find(function (a) { return a.id === alert.id; });
       if (full) return full;
@@ -54,9 +54,9 @@
           display: alert.value != null ? { es: String(alert.value), en: String(alert.value) } : undefined,
         },
         magnitude: alert.magnitude || { es: '', en: '' },
-        narrative_citizen: alert.narrative_citizen || {
-          es: alert.citizen_es || '',
-          en: alert.citizen_en || alert.citizen_es || '',
+        lead: alert.lead || {
+          es: alert.lead_es || alert.citizen_es || '',
+          en: alert.lead_en || alert.citizen_en || '',
         },
         data_period_stale: alert.data_period_stale,
       };
@@ -117,7 +117,7 @@
       : '<span class="d360-card__dataset">' + escapeHtml(idno || '') + '</span>';
     var mag = (ev.magnitude && ev.magnitude[lng]) || '';
     var name = (ev.indicator && ev.indicator.name && ev.indicator.name[lng]) || idno || '';
-    var narrative = (ev.narrative_citizen && ev.narrative_citizen[lng]) || '';
+    var narrative = (ev.lead && ev.lead[lng]) || (ev.title && ev.title[lng]) || '';
 
     function countryName(iso, langKey) {
       var bag = (window.D360_STRINGS && window.D360_STRINGS[langKey]) || {};

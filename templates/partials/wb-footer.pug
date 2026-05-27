@@ -1,0 +1,17 @@
+footer.wb-footer
+  div.wb-footer__inner
+    a.wb-footer__brand(href=monitorHomeUrl)
+      img.wb-footer__mark(src=staticAsset('assets/d360-mark-mono.svg') alt="" width="36" height="36")
+      span.wb-footer__name Data 360 · News Agent
+    ul.wb-footer__links
+      li
+        a(href=monitorHomeUrl)= _("nav.monitor", lang)
+      li
+        a(href="/indicadores")= _("nav.indicators", lang)
+      li
+        a(href="/chat")= _("nav.chat", lang)
+      li
+        a(href="/about")= _("nav.about", lang)
+      li
+        a(href="/about#methodology")= _("footer.methodology", lang)
+    p.wb-footer__legal= _("footer.legal", lang)

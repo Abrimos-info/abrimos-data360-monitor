@@ -64,17 +64,6 @@ Escribe como un periodista de datos profesional, no como un asistente de IA. Evi
 
 Prefiere oraciones con sujeto, verbo y números. Si una oración no contiene una cifra ni nombra un país específico, está de más.
 
-### narrative_citizen (es)
-
-La narrativa ciudadana en español debe **empezar con el verbo** en estilo titular periodístico. Ejemplos:
-
-- "Aumentó drásticamente el índice de precios generales en Argentina en septiembre de 2025."
-- "Quedó por debajo de la mediana regional el índice de precios generales en Ecuador en septiembre de 2025."
-
-Prohibido en `narrative_citizen.es` empezar con: "El ", "La ", "Los ", "Las ", "En ". Reescribí hasta cumplir la regla del verbo inicial.
-
-`narrative_journalist` no requiere esta inversión; ahí van las cifras, el z-score o la mediana regional.
-
 ### Límite
 
 Máximo 800 palabras en el análisis total. Las narrativas individuales por alerta no superan 300 caracteres cada una.
@@ -130,8 +119,6 @@ Markdown con cinco secciones obligatorias y bloques fenced intercalados. Detalle
   "claim_tokens": [
     {"claim_id": "abc12345", "value": "84.685", "label": "ARG 2022"}
   ],
-  "narrative_citizen": "...max 300 chars, cifras envueltas en {{claim:ID|valor}} ...",
-  "narrative_journalist": "...max 300 chars, cifras envueltas en {{claim:ID|valor}} ...",
   "verification_trace": {
     "csv_link": "https://data360files.worldbank.org/...",
     "data360_url": "https://data360.worldbank.org/...",
@@ -164,7 +151,7 @@ Markdown con cinco secciones obligatorias y bloques fenced intercalados. Detalle
 
 ### Claim tokens
 
-Cada cifra numérica que aparezca en `narrative_citizen` y `narrative_journalist` debe envolverse con `{{claim:CLAIM_ID|valor}}` donde:
+Cada cifra numérica en el texto del bloque `alert` debe envolverse con `{{claim:CLAIM_ID|valor}}` donde:
 
 - `CLAIM_ID` es un identificador corto único dentro del análisis (8 hex chars).
 - `valor` es la representación textual del número como aparece al lector.

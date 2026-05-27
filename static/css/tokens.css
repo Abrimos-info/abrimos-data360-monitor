@@ -1,14 +1,30 @@
 /* Design tokens — Data360 Monitor
    Brand palette inherits from Abrimos.info (logo red #b31918). */
 
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Roboto+Slab:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap");
 
 :root {
-  /* Brand */
-  --brand-red:        #b31918;
-  --brand-red-deep:   #8a1311;
-  --brand-red-soft:   #c93938;
-  --brand-red-wash:   #f7e3e3;
+  /* WB / Data360 product palette */
+  --wb-navy:           #002244;
+  --wb-navy-deep:      #001A33;
+  --wb-blue:           #0083C8;
+  --wb-blue-dark:      #006BA6;
+  --wb-blue-bright:    #2074D0;
+  --wb-blue-pale:      #E8F0F7;
+  --wb-blue-wash:      #F2F7FB;
+  --wb-yellow:         #FDB813;
+  --wb-shell-max:      1320px;
+  --wb-header-h:       68px;
+
+  /* Brand (product navy/blue; literal hex for contrast tooling) */
+  --brand-red:        #002244;
+  --brand-red-deep:   #001A33;
+  --brand-red-soft:   #0083C8;
+  --brand-red-wash:   #E8F0F7;
+  --accent:           var(--wb-blue);
+  --accent-hover:     var(--wb-blue-dark);
+  --accent-active:    var(--wb-navy);
+  --accent-wash:      var(--wb-blue-pale);
 
   /* Neutrals (text ≥4.5:1 on --bg / --bg-alt; borders ≥3:1 vs --bg, WCAG 2.1 AA) */
   --bg:               #ffffff;
@@ -30,7 +46,7 @@
 
   /* Typography (display overridden by wb-theme.css to Open Sans + Lora serif) */
   --font-body:        "Open Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-display:     "Roboto Slab", Georgia, serif;
+  --font-display:     "Open Sans", system-ui, sans-serif;
   --font-serif:       "Lora", Georgia, serif;
   --font-mono:        "Courier New", ui-monospace, Menlo, monospace;
 

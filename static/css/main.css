@@ -286,6 +286,18 @@ time.d360-local-datetime {
 
 .d360-card--hidden { display: none !important; }
 
+a.d360-card--link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  border-bottom: none;
+}
+a.d360-card--link:hover {
+  color: inherit;
+  border-bottom: none;
+}
+
 .d360-card {
   position: relative;
   background: var(--bg);
@@ -2149,37 +2161,42 @@ body.d360-onboard-open {
 .d360-picker__card { display: flex; flex-direction: column; gap: 4px; padding: var(--space-4, 16px); border: 1px solid var(--border); border-radius: 8px; text-decoration: none; color: inherit; }
 .d360-picker__card:hover { border-color: var(--accent, #c45c26); }
 .d360-picker__flag { font-size: 1.75rem; line-height: 1; }
-.d360-picker__iso { font-size: 0.75rem; color: var(--fg-light); }
 .d360-picker__name { font-weight: 600; }
 
-/* --- Front page --- */
+/* --- Front page (layout; typography in wb-theme.css) --- */
 .d360-page--frontpage { padding: var(--space-4, 16px) var(--space-6, 24px); }
-.d360-frontpage__hero { border-bottom: 2px solid var(--fg-bold, #3d4449); padding-bottom: var(--space-4, 16px); margin-bottom: var(--space-5, 20px); }
+.d360-frontpage__hero { padding-bottom: var(--space-4, 16px); margin-bottom: var(--space-5, 20px); }
 .d360-frontpage__hero-link { text-decoration: none; color: inherit; display: block; }
-.d360-frontpage__hero-link:hover .d360-frontpage__hero-title { color: var(--brand-red, #b31918); }
-.d360-frontpage__hero-title { font-family: Georgia, 'Times New Roman', serif; font-size: 2rem; margin: var(--space-2, 8px) 0 0; line-height: 1.15; transition: color 0.15s ease; }
+.d360-frontpage__hero-title { font-size: 2rem; margin: var(--space-2, 8px) 0 0; line-height: 1.15; transition: color 0.15s ease; }
 .d360-frontpage__hero-lede {
-  font-family: Georgia, 'Times New Roman', serif;
   font-size: 1.15rem;
   line-height: 1.45;
-  color: var(--fg-bold, #3d4449);
   max-width: 52rem;
   margin: var(--space-3, 12px) 0 0;
 }
+.d360-frontpage__hero-eyebrow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: var(--space-2, 8px);
+  font-size: 10px;
+}
+.d360-frontpage__hero-eyebrow-sep { color: var(--fg-light); user-select: none; }
+.d360-frontpage__hero-rule { margin: var(--space-2, 8px) 0 var(--space-3, 12px); }
 .d360-frontpage__grid { display: grid; grid-template-columns: 2fr 1fr; gap: var(--space-6, 24px); margin-bottom: var(--space-5, 20px); }
-.d360-frontpage__section-title { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--fg-light); margin: 0 0 var(--space-3, 12px); }
+.d360-frontpage__section-title { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; margin: 0 0 var(--space-3, 12px); }
 .d360-frontpage__headline-list { list-style: none; padding: 0; margin: 0; }
 .d360-frontpage__headline { display: block; padding: var(--space-3, 12px) 0; border-bottom: 1px solid var(--border); text-decoration: none; color: inherit; }
-.d360-frontpage__headline-title { display: block; font-family: Georgia, serif; font-size: 1.1rem; font-weight: 600; }
+.d360-frontpage__headline-title { display: block; font-size: 1.1rem; font-weight: 600; }
 .d360-frontpage__headline-lede {
   display: block;
-  font-family: Georgia, serif;
   font-size: 0.95rem;
   line-height: 1.4;
-  color: var(--fg);
   margin-top: 6px;
   font-weight: 400;
 }
+.d360-frontpage__headline-meta .d360-typechip { flex-shrink: 0; }
 .d360-frontpage__headline-meta {
   display: flex;
   flex-flow: row nowrap;
@@ -2207,7 +2224,7 @@ body.d360-onboard-open {
 .d360-frontpage__ticker-name { font-size: 0.75rem; font-weight: 600; }
 .d360-frontpage__ticker-val { font-size: 0.95rem; }
 .d360-frontpage__ticker-sparkline { display: block; margin-bottom: 4px; }
-.d360-frontpage__ticker-sparkline .d360-sparkline__line { stroke: var(--brand-red, #b31918); stroke-width: 1.5; fill: none; }
+.d360-frontpage__ticker-sparkline .d360-sparkline__line { stroke-width: 1.5; fill: none; }
 .d360-frontpage__headline-item--reportaje .d360-frontpage__headline { padding-top: var(--space-4, 16px); }
 .d360-frontpage__indicator-list { list-style: none; padding: 0; margin: 0; }
 .d360-frontpage__indicator-row {
@@ -2217,7 +2234,7 @@ body.d360-onboard-open {
   text-decoration: none;
   color: inherit;
 }
-.d360-frontpage__indicator-row:hover .d360-ind-name { color: var(--brand-red, #b31918); }
+.d360-frontpage__indicator-row:hover .d360-ind-name { color: var(--accent-hover); }
 .d360-frontpage__indicator-row .d360-ind-ref { margin-bottom: 6px; }
 .d360-frontpage__indicator-cols {
   display: grid;
@@ -2228,7 +2245,7 @@ body.d360-onboard-open {
 .d360-frontpage__indicator-sparkline-col { min-width: 0; }
 .d360-frontpage__indicator-sparkline { display: block; }
 .d360-frontpage__indicator-sparkline .d360-sparkline { display: block; max-width: 100%; height: auto; }
-.d360-frontpage__indicator-sparkline .d360-sparkline__line { stroke: var(--brand-red, #b31918); stroke-width: 1.5; fill: none; }
+.d360-frontpage__indicator-sparkline .d360-sparkline__line { stroke-width: 1.5; fill: none; }
 .d360-frontpage__indicator-value-col {
   text-align: right;
   line-height: 1;
@@ -2236,11 +2253,6 @@ body.d360-onboard-open {
 }
 .d360-frontpage__indicator-val {
   display: block;
-  font-family: var(--font-display, Georgia, serif);
-  font-size: 1.35rem;
-  font-weight: 700;
-  font-variant-numeric: tabular-nums;
-  color: var(--fg-bold, #3d4449);
   white-space: nowrap;
 }
 .d360-frontpage__indicator-mag {
@@ -2258,10 +2270,8 @@ body.d360-onboard-open {
   border-bottom: 1px solid var(--border);
 }
 .d360-header__edition {
-  font-family: Georgia, serif;
   font-size: 1.05rem;
   margin: 0;
-  color: var(--fg-bold, #3d4449);
 }
 .d360-header__meta-sep {
   color: var(--fg-light);
@@ -2433,6 +2443,16 @@ body.d360-onboard-open {
   margin: 0;
   font-size: 0.92rem;
   line-height: 1.5;
+}
+.d360-quality-banner__mark {
+  display: inline-flex;
+  vertical-align: middle;
+  margin: 0 2px;
+  position: relative;
+  top: -1px;
+}
+.d360-quality-banner__mark .d360-vmark__tip {
+  z-index: 50;
 }
 .d360-article__title { font-family: Georgia, serif; font-size: 2rem; line-height: 1.2; margin: 0 0 var(--space-3, 12px); }
 .d360-article__lead { font-size: 1.15rem; line-height: 1.5; color: var(--fg); margin: 0 0 var(--space-4, 16px); }

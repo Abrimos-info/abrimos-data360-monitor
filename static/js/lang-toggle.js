@@ -7,11 +7,10 @@
     buttons.forEach(function (btn) {
       btn.addEventListener('click', function () {
         var mode = btn.getAttribute('data-lang');
+        if (mode !== 'es' && mode !== 'en') return;
         var url = new URL(window.location.href);
-        url.searchParams.set('langMode', mode);
-        if (mode === 'es' || mode === 'en') {
-          url.searchParams.set('lang', mode);
-        }
+        url.searchParams.set('lang', mode);
+        url.searchParams.delete('langMode');
         window.location.href = url.toString();
       });
     });

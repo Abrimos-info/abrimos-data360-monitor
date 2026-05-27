@@ -11,9 +11,16 @@ mixin qualityBanner(alert, lang, _)
     - var qKey = alert.quality_status === "rejected" ? "rejected" : "incomplete"
     div.d360-quality-banner(class=("d360-quality-banner--" + alert.quality_status) role="status")
       strong.d360-quality-banner__title= _("quality." + qKey + ".title", lang)
-      p.d360-quality-banner__body= _("quality." + qKey + ".body", lang)
+      if alert.quality_status === "incomplete"
+        p.d360-quality-banner__body
+          = _("quality.incomplete.body_before", lang)
+          span.d360-quality-banner__mark(aria-hidden="true")
+            +verificationMark("failed", _("pcn.failed.title", lang), _("pcn.failed.desc", lang), 12)
+          = _("quality.incomplete.body_after", lang)
+      else
+        p.d360-quality-banner__body= _("quality.rejected.body", lang)
 
-//- Country tag: flag emoji + localized name (no ISO3 suffix).
+//- Country tag: flag emoji + localized name.
 mixin countryTag(iso, lang, _)
   span.d360-country
     if iso && countryFlag
@@ -56,6 +63,31 @@ mixin observationDisplay(ev, lang)
     = ev.observation.display[lng]
   else if ev.observation
     = ev.observation.value
+
+mixin observationWithPcn(ev, lang)
+  - var lng = (lang === "en") ? "en" : "es"
+  - var hasClaims = Array.isArray(ev.claim_tokens) && ev.claim_tokens.length > 0
+  - var indLabel = (ev.indicator && ev.indicator.idno) || ev.dataset_id || ''
+  - var periodText = ev.observation && ev.observation.period_narrative ? ev.observation.period_narrative[lng] : (ev.observation && ev.observation.time_period ? ev.observation.time_period : '')
+  - var tipTitle = _("pcn.verified.title", lang)
+  - var tipDesc = indLabel + (periodText ? ' · ' + periodText : '')
+  span.d360-obs-with-pcn
+    +observationDisplay(ev, lang)
+    if ev.observation && hasClaims
+      +verificationMark('verified', tipTitle, tipDesc, 12)
+
+mixin pcnLegend(lang, _)
+  div.d360-pcn-legend(role="group" aria-label=_("pcn.legend.title", lang))
+    span.d360-pcn-legend__label= _("pcn.legend.title", lang)
+    span.d360-pcn-legend__item
+      +verificationMark('verified', _("pcn.legend.verified", lang), null, 12)
+      span= _("pcn.legend.verified", lang)
+    span.d360-pcn-legend__item
+      +verificationMark('pending', _("pcn.legend.pending", lang), null, 12)
+      span= _("pcn.legend.pending", lang)
+    span.d360-pcn-legend__item
+      +verificationMark('failed', _("pcn.legend.failed", lang), null, 12)
+      span= _("pcn.legend.failed", lang)
 
 //- Indicator code pill + full name (matches chat `.d360-ind-ref` pattern).
 mixin indicatorRef(ind, lang, opts)
@@ -153,29 +185,18 @@ mixin periodDisplay(ev, lang)
   else if ev.observation
     = ev.observation.time_period
 
-mixin citizenNarrative(ev, lang)
-  - var lng = (lang === "en") ? "en" : "es"
-  = (ev.lead && ev.lead[lng]) || ''
-
-//- Verification mark. state: 'verified' | 'pending' | 'failed'.
-//- Tip text is provided by caller for now (i18n later).
+//- Verification mark (PCN diamond). state: 'verified' | 'pending' | 'failed'.
 mixin verificationMark(state, tipTitle, tipDesc, size)
   - state = state || "verified"
   - size = size || 14
-  - var color = (state === "verified") ? "var(--ok)" : ((state === "failed") ? "var(--err)" : "var(--warn)")
   span.d360-vmark(class=("d360-vmark--" + state) tabindex="0" role="img" aria-label=tipTitle)
-    if state === "verified"
-      svg(width=size height=size viewBox="0 0 14 14")
-        circle(cx="7" cy="7" r="6" fill="none" stroke=color stroke-width="1.4")
-        path(d="M4 7.2 L6.2 9.4 L10 5.6" stroke=color stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round")
-    else if state === "pending"
-      svg(width=size height=size viewBox="0 0 14 14")
-        circle(cx="7" cy="7" r="6" fill="none" stroke=color stroke-width="1.4")
-        path(d="M7 4 L7 7 L9 8.5" stroke=color stroke-width="1.4" fill="none" stroke-linecap="round")
-    else
-      svg(width=size height=size viewBox="0 0 14 14")
-        circle(cx="7" cy="7" r="6" fill="none" stroke=color stroke-width="1.4")
-        path(d="M4 4 L10 10 M10 4 L4 10" stroke=color stroke-width="1.4" stroke-linecap="round")
+    svg(width=size height=size viewBox="0 0 14 14" aria-hidden="true")
+      if state === "verified"
+        rect.d360-vmark__diamond(x="3" y="3" width="8" height="8" rx="0.5" transform="rotate(45 7 7)" fill="#0083C8")
+      else if state === "pending"
+        rect.d360-vmark__diamond(x="3" y="3" width="8" height="8" rx="0.5" transform="rotate(45 7 7)" fill="none" stroke="var(--warn)" stroke-width="1.5")
+      else
+        rect.d360-vmark__diamond(x="3" y="3" width="8" height="8" rx="0.5" transform="rotate(45 7 7)" fill="none" stroke="var(--err)" stroke-width="1.5")
     span.d360-vmark__tip
       strong= tipTitle
       if tipDesc

@@ -15,13 +15,20 @@ block headerExtras
 
 block content
   - var langKey = (lang === "en") ? "en" : "es"
+  - var dataPeriodLabel = _("detail.data_period", lang)
+  - var dataPeriodStaleLabel = _("detail.data_period_stale", lang)
   main.d360-page.d360-page--frontpage
     if heroReportaje
       - var heroLead = pickLead(heroReportaje, lang)
       section.d360-frontpage__hero
-        a.d360-frontpage__hero-link(href=pathForCountry(heroReportaje, countryIso))
+        div.d360-frontpage__hero-eyebrow
           +contentTypeBadge("reportaje", lang, _)
+          if heroReportaje.observation
+            span.d360-frontpage__hero-eyebrow-sep(aria-hidden="true") ·
+            +dataDateBadge(heroReportaje, lang, dataPeriodLabel, dataPeriodStaleLabel)
+        a.d360-frontpage__hero-link(href=pathForCountry(heroReportaje, countryIso))
           h2.d360-frontpage__hero-title= pickHeadline(heroReportaje, lang)
+        hr.d360-card__rule.d360-frontpage__hero-rule(aria-hidden="true")
         if heroLead
           p.d360-frontpage__hero-lede= heroLead
         if heroReportaje.detected_at
@@ -43,6 +50,7 @@ block content
               - var titleText = pickHeadline(ev, lang)
               - var headlineLead = item.kind === "reportaje" ? pickLead(ev, lang) : ""
               - var dateText = headlineDateLabel(ev, lang)
+              - var typeText = ev.type ? ((ev.type === "abrupt_change") ? _("type.abrupt_change", lang) : _("type.anomaly", lang)) : null
               li(class=item.kind === "reportaje" ? "d360-frontpage__headline-item--reportaje" : "")
                 a.d360-frontpage__headline(href=pathForCountry(ev, countryIso))
                   if item.kind === "reportaje"
@@ -51,19 +59,22 @@ block content
                   if headlineLead
                     span.d360-frontpage__headline-lede= headlineLead
                   span.d360-frontpage__headline-meta
+                    if typeText
+                      +typeChip(ev.type, typeText)
+                      span.d360-frontpage__headline-meta-sep(aria-hidden="true") ·
                     - var indRow = (ev.indicator && ev.indicator.idno && typeof indicatorFromAlert === "function") ? indicatorFromAlert(ev, lang) : null
                     if ev.detected_at
                       time.d360-local-datetime.d360-frontpage__headline-generated(datetime=ev.detected_at)
                     if dateText
-                      if ev.detected_at
+                      if ev.detected_at || typeText
                         span.d360-frontpage__headline-meta-sep(aria-hidden="true") ·
                       span.d360-frontpage__headline-date= dateText
                     if indRow && indRow.name && indRow.name !== indRow.idno
-                      if ev.detected_at || dateText
+                      if ev.detected_at || dateText || typeText
                         span.d360-frontpage__headline-meta-sep(aria-hidden="true") ·
                       span.d360-frontpage__headline-ind-name= indRow.name
                     if indRow && indRow.idno
-                      if ev.detected_at || dateText || (indRow.name && indRow.name !== indRow.idno)
+                      if ev.detected_at || dateText || typeText || (indRow.name && indRow.name !== indRow.idno)
                         span.d360-frontpage__headline-meta-sep(aria-hidden="true") ·
                       span.d360-ind-pill
                         code.d360-ind-pill__id= indRow.idno
@@ -72,6 +83,7 @@ block content
 
       aside.d360-frontpage__aside
         h2.d360-frontpage__section-title= _("frontpage.ticker", lang)
+        +pcnLegend(lang, _)
         if tickerIndicators && tickerIndicators.length
           ul.d360-frontpage__indicator-list(role="list")
             each ev in tickerIndicators
@@ -87,7 +99,7 @@ block content
                     if ev.observation
                       div.d360-frontpage__indicator-value-col
                         span.d360-frontpage__indicator-val
-                          +observationDisplay(ev, lang)
+                          +observationWithPcn(ev, lang)
                   if magText
                     span.d360-frontpage__indicator-mag
                       +magnitude(magText)

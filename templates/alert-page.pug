@@ -18,7 +18,7 @@ block header
 block content
   - var lng = (lang === "en") ? "en" : "es"
   - var titleText = (alert.title && alert.title[lng]) || alert._title || alert.id
-  - var leadText = (alert.lead && alert.lead[lng]) || (alert.narrative_journalist && alert.narrative_journalist[lng]) || ''
+  - var leadText = (alert.lead && alert.lead[lng]) || ''
   - var storyText = (alert.story && alert.story[lng]) || (alert.body && alert.body[lng]) || ''
 
   main.d360-page.d360-page--article
