@@ -5,6 +5,7 @@ div.d360-floating-chat(class=(fabScoped ? "d360-floating-chat--scoped" : "") dat
   button.d360-chatfab#d360-chatfab(type="button" aria-label=_("floating_chat.open", lang) aria-expanded="false" aria-controls="d360-chatwin")
     svg(viewBox="0 0 24 24" aria-hidden="true")
       path(d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z")
+  span.d360-chatfab__label#d360-chatfab-label(aria-hidden="true")= fabTitle
   div.d360-chatwin#d360-chatwin(role="dialog" aria-labelledby="d360-chatwin-title" aria-hidden="true")
     div.d360-chatwin__head
       span.d360-chatwin__title#d360-chatwin-title= fabTitle

@@ -1,10 +1,15 @@
 /* Floating chat FAB + Messenger-style panel (global). */
 
-.d360-chatfab {
+.d360-floating-chat {
   position: fixed;
   right: 24px;
   bottom: 24px;
-  z-index: 100;
+  z-index: 110;
+}
+
+.d360-chatfab {
+  position: relative;
+  z-index: 111;
   width: 56px;
   height: 56px;
   border-radius: 50%;
@@ -16,11 +21,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.15s, background 0.15s;
+  transition: transform 0.15s, background 0.15s, box-shadow 0.15s;
 }
 .d360-chatfab:hover {
   background: var(--wb-blue-dark);
   transform: scale(1.04);
+  box-shadow: 0 6px 20px rgba(0, 34, 68, 0.30), 0 0 0 4px rgba(253, 184, 19, 0.28);
 }
 .d360-chatfab svg {
   width: 28px;
@@ -31,11 +37,47 @@
   display: none;
 }
 
+.d360-chatfab__label {
+  position: absolute;
+  right: calc(56px + 12px);
+  bottom: 50%;
+  transform: translateY(50%);
+  z-index: 110;
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+  padding: 9px 12px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: var(--wb-navy);
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  box-shadow: 0 10px 26px rgba(0, 34, 68, 0.20);
+}
+.d360-floating-chat.is-open .d360-chatfab__label {
+  display: none;
+}
+.d360-chatfab__label::after {
+  content: "";
+  position: absolute;
+  right: -6px;
+  top: 50%;
+  width: 10px;
+  height: 10px;
+  transform: translateY(-50%) rotate(45deg);
+  background: #fff;
+  border-right: 1px solid var(--border);
+  border-top: 1px solid var(--border);
+}
+
 .d360-chatwin {
   position: fixed;
-  right: 24px;
-  bottom: 92px;
-  z-index: 99;
+  right: 0;
+  bottom: 68px;
+  z-index: 109;
   width: min(400px, calc(100vw - 32px));
   max-height: min(520px, calc(100vh - 120px));
   background: var(--bg);
@@ -212,6 +254,7 @@
 }
 
 @media (max-width: 600px) {
-  .d360-chatfab { right: 16px; bottom: 16px; }
-  .d360-chatwin { right: 16px; bottom: 80px; width: calc(100vw - 32px); }
+  .d360-floating-chat { right: 16px; bottom: 16px; }
+  .d360-chatwin { right: 0; bottom: 68px; width: calc(100vw - 32px); }
+  .d360-chatfab__label { display: none; }
 }

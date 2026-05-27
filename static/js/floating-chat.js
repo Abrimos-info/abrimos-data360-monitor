@@ -1,6 +1,7 @@
 'use strict';
 
 (function () {
+  var root = document.querySelector('.d360-floating-chat');
   var fab = document.getElementById('d360-chatfab');
   var panel = document.getElementById('d360-chatwin');
   var closeBtn = document.getElementById('d360-chatwin-close');
@@ -21,6 +22,7 @@
     panel.classList.toggle('is-open', open);
     panel.setAttribute('aria-hidden', open ? 'false' : 'true');
     fab.setAttribute('aria-expanded', open ? 'true' : 'false');
+    if (root) root.classList.toggle('is-open', open);
     if (open) inputEl.focus();
   }
 
