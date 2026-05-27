@@ -6,6 +6,7 @@
   var panel = document.getElementById('d360-chatwin');
   var closeBtn = document.getElementById('d360-chatwin-close');
   var minBtn = document.getElementById('d360-chatwin-min');
+  var resetBtn = document.getElementById('d360-chatwin-reset');
   var messagesEl = document.getElementById('d360-fab-messages');
   var formEl = document.getElementById('d360-fab-form');
   var inputEl = document.getElementById('d360-fab-input');
@@ -42,6 +43,7 @@
       panelEl: panel,
       messagesEl: messagesEl,
       presetsEl: presetsEl,
+      resetEl: resetBtn,
       formEl: formEl,
       inputEl: inputEl,
       sendEl: sendEl,

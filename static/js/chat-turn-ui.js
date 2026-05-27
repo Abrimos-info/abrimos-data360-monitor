@@ -98,6 +98,13 @@
       '<div class="d360-chat__trace"></div>';
   }
 
+  function buildSummary(kind, label, meta, state) {
+    return stepIcon(state) +
+      '<span class="d360-chat__step-label">' + escapeHtml(label) + '</span>' +
+      (meta ? '<span class="d360-chat__step-meta">' + escapeHtml(meta) + '</span>' : '') +
+      '<span class="d360-chat__step-chevron" aria-hidden="true"></span>';
+  }
+
   function renderChatMarkdown(targetEl, text, pendingCharts) {
     if (!targetEl) return;
     if (global.D360Markdown) {
@@ -194,13 +201,6 @@
 
     function scroll() {
       messagesEl.scrollTop = messagesEl.scrollHeight;
-    }
-
-    function buildSummary(kind, label, meta, state) {
-      return stepIcon(state) +
-        '<span class="d360-chat__step-label">' + escapeHtml(label) + '</span>' +
-        (meta ? '<span class="d360-chat__step-meta">' + escapeHtml(meta) + '</span>' : '') +
-        '<span class="d360-chat__step-chevron" aria-hidden="true"></span>';
     }
 
     function ensureStep(id, kind, label, meta, state) {

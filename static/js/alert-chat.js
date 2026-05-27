@@ -12,6 +12,9 @@
     var history = [];
     var busy = false;
     var storageKey = 'd360-chat-' + alertId;
+    var resetBtn = opts.resetEl ||
+      document.getElementById('d360-chatwin-reset') ||
+      document.getElementById('d360-alert-chat-reset');
 
     try {
       var saved = sessionStorage.getItem(storageKey);
@@ -37,6 +40,24 @@
       opts.messagesEl.hidden = false;
       if (opts.welcomeEl) opts.welcomeEl.hidden = true;
       if (opts.panelEl) opts.panelEl.classList.add('d360-alert-chat__panel--has-messages');
+      if (resetBtn) resetBtn.hidden = false;
+    }
+
+    function resetConversation() {
+      if (busy) return;
+      history = [];
+      try { sessionStorage.removeItem(storageKey); } catch (_) { /* ignore */ }
+      if (opts.messagesEl) {
+        opts.messagesEl.innerHTML = '';
+        opts.messagesEl.hidden = true;
+      }
+      if (opts.welcomeEl) opts.welcomeEl.hidden = false;
+      if (opts.presetsEl) opts.presetsEl.hidden = false;
+      if (opts.panelEl) {
+        opts.panelEl.classList.remove('d360-alert-chat__panel--has-messages');
+        opts.panelEl.classList.remove('d360-alert-chat__panel--active');
+      }
+      if (resetBtn) resetBtn.hidden = true;
     }
 
     function hidePresets() {
@@ -170,6 +191,11 @@
           opts.formEl.dispatchEvent(new Event('submit', { cancelable: true }));
         }
       });
+    }
+
+    if (resetBtn) {
+      resetBtn.hidden = !history.length;
+      resetBtn.addEventListener('click', resetConversation);
     }
 
     async function stream(userText) {

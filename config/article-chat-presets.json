@@ -22,7 +22,7 @@
   },
   {
     "id": "region",
-    "label_es": "Comparación regional",
+    "label_es": "Comparar con otros países",
     "label_en": "Regional comparison",
     "prompt_es": "¿Cómo se compara este dato con otros países de la región mencionados en la noticia?",
     "prompt_en": "How does this figure compare with other countries in the region mentioned in the story?"
