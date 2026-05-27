@@ -21,26 +21,18 @@ describe('reportaje-chart', () => {
     assert.ok(payload.series.some((s) => Array.isArray(s.points) && s.points.length >= 2));
   });
 
-  it('renderReportajeChartForAlert returns compact and full variants', () => {
+  it('renderReportajeChartForAlert returns dumbbell SVG', () => {
     const reportaje = alertsStore.getAlerts().find((a) => a.content_type === 'reportaje');
     if (!reportaje) return;
 
-    const compact = renderReportajeChartForAlert(reportaje, (id) => alertsStore.getAlertById(id), {
-      variant: 'compact',
+    const svg = renderReportajeChartForAlert(reportaje, (id) => alertsStore.getAlertById(id), {
       lang: 'es',
-      getAllAlerts: () => alertsStore.getAlerts(),
-    });
-    const full = renderReportajeChartForAlert(reportaje, (id) => alertsStore.getAlertById(id), {
-      variant: 'full',
-      lang: 'es',
-      focusCountry: 'ARG',
       getAllAlerts: () => alertsStore.getAlerts(),
     });
 
-    assert.match(compact, /d360-chart--multi/);
-    assert.match(full, /d360-chart--multi/);
-    assert.match(full, /opacity="0\.35"/);
-    assert.match(compact, /<polyline/);
+    assert.match(svg, /d360-dumbbell/);
+    assert.match(svg, /d360-dumbbell__connector/);
+    assert.match(svg, /d360-dumbbell__dot--end/);
   });
 
   it('renderReportajeChartForAlert returns empty for noticia', () => {

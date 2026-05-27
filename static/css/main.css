@@ -891,6 +891,61 @@ a.d360-card--link:hover {
 .d360-chart__label  { fill: var(--fg-light); font-family: var(--font-mono); font-size: 9px; }
 
 /* -----------------------------------------------------------------
+   Dumbbell (range) chart
+----------------------------------------------------------------- */
+
+.d360-frontpage__hero-chart .d360-dumbbell,
+.d360-frontpage__hero-chart .d360-dumbbell-tabs {
+  width: 100%;
+}
+
+.d360-dumbbell-wrap {
+  margin: 0;
+}
+
+.d360-dumbbell-tabs__nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  margin-bottom: 0.5rem;
+}
+.d360-dumbbell-tab {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--fg-light);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 0.2rem 0.6rem;
+  cursor: pointer;
+  transition: background 0.1s, color 0.1s;
+  white-space: nowrap;
+}
+.d360-dumbbell-tab:hover { background: var(--bg-alt); color: var(--fg); }
+.d360-dumbbell-tab.is-active {
+  background: var(--brand-blue, #0083C8);
+  color: #fff;
+  border-color: var(--brand-blue, #0083C8);
+  font-weight: 600;
+}
+
+.d360-dumbbell-panel { display: none; }
+.d360-dumbbell-panel.is-active { display: block; }
+.d360-dumbbell {
+  width: 100%;
+  display: block;
+  overflow: visible;
+}
+.d360-dumbbell__grid  { stroke: var(--border); stroke-width: 1; }
+.d360-dumbbell__tick  { fill: var(--fg-light); font-family: var(--font-mono); font-size: 9px; }
+.d360-dumbbell__label { fill: var(--fg); font-size: 11px; font-family: var(--font-ui, sans-serif); }
+.d360-dumbbell__connector { stroke-width: 2; stroke-opacity: 0.5; }
+.d360-dumbbell__dot   { }
+.d360-dumbbell__value { fill: var(--fg); font-family: var(--font-mono); font-size: 10px; font-weight: 600; }
+.d360-dumbbell__legend-text { fill: var(--fg-light); font-size: 9px; font-family: var(--font-mono); }
+.d360-dumbbell-hint { font-size: 0.75rem; color: var(--brand-blue, #0083C8); margin: 0.25rem 0 0; }
+
+/* -----------------------------------------------------------------
    Empty / loading states
 ----------------------------------------------------------------- */
 
@@ -1130,19 +1185,25 @@ body.d360-onboard-open {
   list-style: none;
   padding: 0;
   margin: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  display: flex;
+  flex-wrap: nowrap;
   gap: var(--space-2);
+}
+.d360-onboard__country-grid > li {
+  flex: 1 1 0;
+  min-width: 0;
 }
 .d360-onboard__country-card {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 4px;
-  padding: var(--space-3);
+  padding: var(--space-2) var(--space-1);
   border: 1px solid var(--border);
   border-radius: 8px;
   text-decoration: none;
   color: inherit;
+  text-align: center;
 }
 .d360-onboard__country-card:hover { border-color: var(--brand-red); }
 .d360-onboard__country-card.is-active {
@@ -1150,8 +1211,15 @@ body.d360-onboard-open {
   color: var(--brand-red);
   font-weight: 700;
 }
-.d360-onboard__country-flag { font-size: 1.5rem; line-height: 1; }
-.d360-onboard__country-name { font-size: 0.9rem; }
+.d360-onboard__country-flag { font-size: 1.35rem; line-height: 1; }
+.d360-onboard__country-name {
+  font-size: 0.72rem;
+  line-height: 1.2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+}
 .d360-onboard__close {
   position: absolute;
   top: 12px;
@@ -1272,8 +1340,8 @@ body.d360-onboard-open {
   .d360-onboard__countries {
     margin-bottom: 0;
   }
-  .d360-onboard__country-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .d360-onboard__country-name {
+    font-size: 0.65rem;
   }
   .d360-onboard__actions {
     flex-direction: column;
@@ -2171,11 +2239,43 @@ body.d360-onboard-open {
 .d360-frontpage__hero { padding-bottom: var(--space-4, 16px); margin-bottom: var(--space-5, 20px); }
 .d360-frontpage__hero-link { text-decoration: none; color: inherit; display: block; }
 .d360-frontpage__hero-title { font-size: 2rem; margin: var(--space-2, 8px) 0 0; line-height: 1.15; transition: color 0.15s ease; }
+.d360-frontpage__hero-body {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  margin-top: var(--space-3, 12px);
+}
 .d360-frontpage__hero-lede {
   font-size: 1.15rem;
   line-height: 1.45;
-  max-width: 52rem;
-  margin: var(--space-3, 12px) 0 0;
+  flex: 1 1 0;
+  margin: 0;
+}
+.d360-frontpage__hero-chart {
+  flex: 0 0 360px;
+  width: 360px;
+}
+@media (max-width: 600px) {
+  .d360-frontpage__hero-body {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .d360-frontpage__hero-lede {
+    font-size: 1rem;
+  }
+  .d360-frontpage__hero-chart {
+    flex: none;
+    width: 100%;
+  }
+}
+.d360-frontpage__hero-chart-title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--fg-light);
+  margin: 0 0 0.25rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .d360-frontpage__hero-eyebrow {
   display: flex;

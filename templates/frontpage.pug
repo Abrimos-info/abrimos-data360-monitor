@@ -31,14 +31,14 @@ block content
           a.d360-frontpage__hero-link(href=pathForCountry(heroReportaje, countryIso))
             h2.d360-frontpage__hero-title= pickHeadline(heroReportaje, lang)
           hr.d360-card__rule.d360-frontpage__hero-rule(aria-hidden="true")
-          if heroLead
-            p.d360-frontpage__hero-lede= heroLead
-          if renderReportajeChart
-            - var heroChart = renderReportajeChart(heroReportaje, "compact")
-            if heroChart
-              div.d360-frontpage__hero-chart
-                != heroChart
-                p.d360-frontpage__hero-chart-caption= _("reportaje.chart.caption", lang)
+          - var heroChart = renderReportajeChart ? renderReportajeChart(heroReportaje, "compact") : null
+          if heroLead || heroChart
+            div.d360-frontpage__hero-body
+              if heroLead
+                p.d360-frontpage__hero-lede= heroLead
+              if heroChart
+                div.d360-frontpage__hero-chart
+                  != heroChart
           if heroReportaje.detected_at
             p.d360-frontpage__hero-generated
               span.d360-frontpage__generated-label= _("article.meta.generated_at", lang)

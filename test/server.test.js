@@ -211,7 +211,7 @@ test('HTTP routes', async (t) => {
     }
   });
 
-  await t.test('country frontpage and reportaje article render multi-series chart', async () => {
+  await t.test('country frontpage and reportaje article render dumbbell chart', async () => {
     const reportaje = require('../lib/alerts-store').getAlerts()
       .find((a) => a.content_type === 'reportaje' && (a.noticia_ids || []).length >= 2);
     if (!reportaje) return;
@@ -221,7 +221,7 @@ test('HTTP routes', async (t) => {
     const countryPath = slugMap[iso] || 'argentina';
     const fp = await get(`${base}/${countryPath}`);
     if (fp.body.includes('d360-frontpage__hero-chart')) {
-      assert.match(fp.body, /d360-chart--multi/);
+      assert.match(fp.body, /d360-dumbbell/);
     }
 
     const articlePath = reportaje._paths && reportaje._paths[iso];
@@ -229,7 +229,7 @@ test('HTTP routes', async (t) => {
     const art = await get(`${base}${articlePath}`);
     assert.equal(art.status, 200);
     assert.match(art.body, /d360-article__reportaje-chart/);
-    assert.match(art.body, /d360-chart--multi/);
+    assert.match(art.body, /d360-dumbbell/);
   });
 
   await t.test('GET /about returns 200 text/html', async () => {
