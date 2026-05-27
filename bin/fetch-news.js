@@ -9,7 +9,7 @@ const fs = require('fs');
 const path = require('path');
 const { buildNewsSectionLines } = require('../lib/news');
 const { themesForAnnualWatchlist } = require('../lib/news-themes');
-const { fetchNews, DEFAULT_COUNTRIES, GDELT_PACE_MS } = require('../lib/news-fetch');
+const { fetchNews, fetchGdeltForIndicators, DEFAULT_COUNTRIES, GDELT_PACE_MS, GDELT_FALLBACK_MAX_RECORDS } = require('../lib/news-fetch');
 const { fetchNewsGemini } = require('../lib/news-gemini');
 
 function parseArgs(argv) {
@@ -112,18 +112,39 @@ async function main() {
     const fallbackEnabled = process.env.GEMINI_FALLBACK_TO_GDELT !== 'false';
     if (fallbackEnabled && result.aborted && result.abortedReason === 'quota_exhausted') {
       pipeLog('fetch-news', 'fallback', { provider: 'gdelt', reason: result.abortedReason }, 'warn');
-      pipeLog('fetch-news', 'gdelt', { pace: `${GDELT_PACE_MS}ms` });
-      await fetchNews({
+      const fallbackMax = parseInt(process.env.GDELT_FALLBACK_MAX_RECORDS || String(GDELT_FALLBACK_MAX_RECORDS), 10);
+
+      if (result.pendingIdnos?.length) {
+        pipeLog('fetch-news', 'gdelt-indicators', {
+          count: result.pendingIdnos.length,
+          pace: `${GDELT_PACE_MS}ms`,
+        });
+        const indSummary = await fetchGdeltForIndicators({
+          idnos: result.pendingIdnos,
+          countries: args.countries,
+          from: args.from,
+          to: args.to,
+        });
+        pipeLog('fetch-news', 'gdelt-indicators-done', {
+          appended: indSummary.totalNew,
+          failed: indSummary.failedIdnos?.length || 0,
+        });
+      }
+
+      pipeLog('fetch-news', 'gdelt', { pace: `${GDELT_PACE_MS}ms`, max: fallbackMax });
+      const countrySummary = await fetchNews({
         countries: args.countries,
         from: args.from,
         to: args.to,
-        maxRecords: args.maxRecords,
+        maxRecords: fallbackMax,
         maxPerTheme: args.maxPerTheme,
-        // When Gemini aborts, prefer a fast, always-on "context headlines" fallback.
-        // The themes mode runs many queries and can look stuck; for the demo it's
-        // better to fetch a small general set per country.
         useThemes: false,
       });
+      if (countrySummary.failedCountries?.length) {
+        pipeLog('fetch-news', 'gdelt-failed-countries', {
+          countries: countrySummary.failedCountries.join(','),
+        }, 'warn');
+      }
     }
   } else {
     pipeLog('fetch-news', 'gdelt', { pace: `${GDELT_PACE_MS}ms` });

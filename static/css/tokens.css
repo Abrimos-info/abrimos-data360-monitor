@@ -28,9 +28,10 @@
   --err:              #b31918;
   --err-soft:         rgba(179, 25, 24, 0.15);
 
-  /* Typography */
+  /* Typography (display overridden by wb-theme.css to Open Sans + Lora serif) */
   --font-body:        "Open Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-display:     "Roboto Slab", Georgia, serif;
+  --font-serif:       "Lora", Georgia, serif;
   --font-mono:        "Courier New", ui-monospace, Menlo, monospace;
 
   /* Type scale */

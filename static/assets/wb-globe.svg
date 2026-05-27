@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" width="80" height="80" aria-label="World Bank Group globe">
+  
+  <circle cx="40" cy="40" r="38" fill="#002244"></circle>
+  <g fill="none" stroke="#ffffff" stroke-width="1.6" stroke-linecap="round">
+    
+    <ellipse cx="40" cy="40" rx="38" ry="14"></ellipse>
+    <ellipse cx="40" cy="40" rx="36" ry="26"></ellipse>
+    
+    <line x1="40" y1="2" x2="40" y2="78"></line>
+    
+    <ellipse cx="40" cy="40" rx="14" ry="38"></ellipse>
+    <ellipse cx="40" cy="40" rx="26" ry="38"></ellipse>
+    
+    <line x1="2" y1="40" x2="78" y2="40"></line>
+  </g>
+</svg>

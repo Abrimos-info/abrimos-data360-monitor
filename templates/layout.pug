@@ -10,9 +10,19 @@ html(lang=lang)
       meta(name="description" content=_("tagline", lang))
     block header
     link(rel="preload" fetchpriority="high" as="style" href=staticAsset('css/tokens.css'))
+    link(rel="preload" fetchpriority="high" as="style" href=staticAsset('css/wb-theme.css'))
+    link(rel="preload" fetchpriority="high" as="style" href=staticAsset('css/wb-chat-embed.css'))
     link(rel="preload" fetchpriority="high" as="style" href=staticAsset('css/main.css'))
   body
     div.d360-app
+      div.wb-topbar(role="navigation" aria-label="World Bank")
+        div.wb-topbar__inner
+          div.wb-topbar__group
+            a(href="https://www.worldbank.org" target="_blank" rel="noopener") World Bank
+            span.wb-topbar__dot(aria-hidden="true")
+            a(href="https://data360.worldbank.org" target="_blank" rel="noopener") Data360
+          div.wb-topbar__group
+            a(href="/about")= _("nav.about", lang)
       include partials/site-nav
       block headerExtras
       block content
@@ -30,8 +40,12 @@ html(lang=lang)
     script(src=staticAsset('js/lang-toggle.js') defer)
     script(src=staticAsset('js/newsletter-modal.js') defer)
     link(rel="preload" href=staticAsset('css/tokens.css') as="style" onload="this.onload=null;this.rel='stylesheet'")
+    link(rel="preload" href=staticAsset('css/wb-theme.css') as="style" onload="this.onload=null;this.rel='stylesheet'")
+    link(rel="preload" href=staticAsset('css/wb-chat-embed.css') as="style" onload="this.onload=null;this.rel='stylesheet'")
     link(rel="preload" href=staticAsset('css/main.css') as="style" onload="this.onload=null;this.rel='stylesheet'")
     noscript
       link(rel="stylesheet" href=staticAsset('css/tokens.css'))
+      link(rel="stylesheet" href=staticAsset('css/wb-theme.css'))
+      link(rel="stylesheet" href=staticAsset('css/wb-chat-embed.css'))
       link(rel="stylesheet" href=staticAsset('css/main.css'))
     block scripts

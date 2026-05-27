@@ -24,6 +24,8 @@
     "build": "npm run fetch && npm run fetch:news && npm run analyze",
     "pipeline:dynamic": "node bin/pipeline-dynamic.js",
     "pipeline:dynamic:force": "node bin/pipeline-dynamic.js --force",
+    "pipeline:dynamic:news-gdelt": "NEWS_FETCH_BODY=false node bin/fetch-news.js --no-preview --provider=gdelt --watchlist-file data/dynamic-watchlist.json --no-themes",
+    "pipeline:dynamic:analyze": "npm run analyze:dynamic",
     "pretest": "node -e \"require('fs').mkdirSync('test/tmp',{recursive:true})\"",
     "test": "node --test test/*.test.js",
     "test:watch": "node --test --watch test/*.test.js"

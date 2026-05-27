@@ -1,8 +1,14 @@
 header.d360-site-nav
   div.d360-site-nav__inner
-    a.d360-site-nav__brand(href=monitorHomeUrl aria-label=_("site_name", lang) title=_("site_name", lang))
-      span.d360-brand__mark(aria-hidden="true") D360
-      span.d360-site-nav__name= _("site_brand_suffix", lang)
+    a.wb-lockup.d360-site-nav__brand(href=monitorHomeUrl aria-label=_("site_name", lang) title=_("site_name", lang))
+      img.wb-lockup__globe(src=staticAsset('assets/wb-globe.svg') alt="" width="38" height="38")
+      div.wb-lockup__group
+        div.wb-lockup__wbg
+          span.wb-lockup__wbg-row1 WORLD BANK GROUP
+        span.wb-lockup__divider(aria-hidden="true")
+        div.wb-lockup__product
+          span.wb-lockup__product-name Data360
+          span.wb-lockup__product-sub= _("site_brand_suffix", lang)
     nav.d360-site-nav__links(role="navigation" aria-label="Main")
       a.d360-site-nav__link(class=(activeRoute === "monitor" ? "is-active" : "") href=monitorHomeUrl)= _("nav.monitor", lang)
       a.d360-site-nav__link(class=(activeRoute === "indicators" ? "is-active" : "") href="/indicadores")= _("nav.indicators", lang)

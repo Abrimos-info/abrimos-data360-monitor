@@ -172,6 +172,13 @@ Los códigos IDNO en el texto se renderizan como:
 
 Cada noticia y reportaje incluye un chat acotado a esa pieza (`static/js/alert-chat.js`). La conversación se guarda en `sessionStorage` por `alert_id` y, al recargar, se restauran markdown, trace de tools, sparklines en caché y pasos de actividad colapsados (no solo el texto plano).
 
+El agente usa el prompt dedicado `lib/prompts/chat-scoped-system.md` y recibe en el system prompt:
+
+1. **Pieza publicada** — titular, lead, story y `claim_id`s del JSON en `data/alerts.json`.
+2. **Contexto de generación** — el mismo markdown omnibus que alimentó el pipeline (`data/analyses/{IDNO}.md`, o fallback `*.llm-call.md`). En reportajes se concatenan los `.md` de cada indicador del dataset; si falta alguno, se añade solo el texto publicado de la noticia hija.
+
+Límite configurable: `CHAT_GENERATION_CONTEXT_MAX_CHARS` (default 48000). La UI del artículo sigue el tema World Bank (paleta v2 en `static/css/wb-theme.css`).
+
 ### Exportar conversación
 
 Botones en el encabezado del chat:

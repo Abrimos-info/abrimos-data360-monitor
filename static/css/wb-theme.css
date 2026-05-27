@@ -1,0 +1,268 @@
+/* World Bank theme — ported from design/v2/wb-theme.css (Pug SSR, no React). */
+
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap");
+
+:root {
+  --wb-navy:           #002244;
+  --wb-navy-deep:      #001A33;
+  --wb-blue:           #0083C8;
+  --wb-blue-dark:      #006BA6;
+  --wb-blue-bright:    #2074D0;
+  --wb-blue-pale:      #E8F0F7;
+  --wb-blue-wash:      #F2F7FB;
+  --wb-yellow:         #FDB813;
+
+  --brand-red:         var(--wb-navy);
+  --brand-red-deep:    var(--wb-navy-deep);
+  --brand-red-soft:    var(--wb-blue);
+  --brand-red-wash:    var(--wb-blue-pale);
+
+  --accent:            var(--wb-blue);
+  --accent-hover:      var(--wb-blue-dark);
+  --accent-active:     var(--wb-navy);
+  --accent-wash:       var(--wb-blue-pale);
+
+  --bg:                #ffffff;
+  --bg-alt:            #f5f7fa;
+  --bg-alt-2:          #eaeef3;
+
+  --fg:                #4a5560;
+  --fg-bold:           #1d2733;
+  --fg-light:          #6b7682;
+
+  --border:            #d6dde5;
+  --border-strong:     #b8c2cc;
+
+  --font-body:         "Open Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display:      "Open Sans", system-ui, -apple-system, sans-serif;
+  --font-serif:        "Lora", Georgia, serif;
+  --font-mono:         "Courier New", ui-monospace, Menlo, monospace;
+
+  --wb-shell-max:      1320px;
+  --wb-top-h:          54px;
+  --feed-max:          880px;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--fg-bold);
+  background: var(--bg);
+}
+
+.wb-topbar {
+  background: var(--wb-navy);
+  color: #fff;
+  font-size: 11.5px;
+}
+.wb-topbar__inner {
+  max-width: var(--wb-shell-max);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 32px;
+}
+.wb-topbar__group {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.wb-topbar a {
+  color: #fff;
+  opacity: 0.85;
+  text-decoration: none;
+  transition: opacity 0.15s;
+}
+.wb-topbar a:hover { opacity: 1; text-decoration: underline; }
+.wb-topbar__dot { width: 4px; height: 4px; background: rgba(255,255,255,0.35); border-radius: 50%; }
+
+.wb-lockup {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--wb-navy);
+  flex-shrink: 0;
+  min-width: 0;
+}
+.wb-lockup__globe {
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+}
+.wb-lockup__group {
+  display: flex;
+  align-items: stretch;
+  gap: 10px;
+  white-space: nowrap;
+}
+.wb-lockup__wbg {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 1;
+}
+.wb-lockup__wbg-row1 {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: var(--wb-navy);
+}
+.wb-lockup__divider {
+  width: 1px;
+  background: #c4ccd5;
+  align-self: stretch;
+  flex-shrink: 0;
+}
+.wb-lockup__product-name {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 17px;
+  color: var(--wb-navy);
+  letter-spacing: -0.005em;
+}
+.wb-lockup__product-sub {
+  font-size: 10px;
+  color: var(--wb-blue);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-top: 3px;
+  font-weight: 600;
+}
+
+.d360-site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 1px 0 rgba(0, 34, 68, 0.04);
+}
+.d360-site-nav__inner {
+  max-width: var(--wb-shell-max);
+  margin: 0 auto;
+  padding: 14px 32px;
+  gap: 20px;
+}
+.d360-site-nav__brand.d360-brand--hidden { display: none; }
+.d360-site-nav__link {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--fg);
+}
+.d360-site-nav__link:hover,
+.d360-site-nav__link.is-active {
+  color: var(--wb-navy);
+  background: var(--wb-blue-wash);
+}
+.d360-subscribe {
+  background: var(--wb-blue);
+  color: #fff;
+  font-family: var(--font-body);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 22px;
+  padding: 10px 18px;
+  border: 0;
+}
+.d360-subscribe:hover { background: var(--wb-blue-dark); }
+.d360-site-nav__locale {
+  border: 1px solid var(--border);
+  border-radius: 3px;
+}
+.d360-lang__btn {
+  color: var(--fg);
+  border-right: 1px solid var(--border);
+}
+.d360-lang__btn.is-active {
+  background: var(--wb-navy);
+  color: #fff;
+}
+.d360-country-select:hover { background: var(--wb-blue-wash); }
+
+.d360-page {
+  max-width: var(--wb-shell-max);
+  margin: 0 auto;
+  padding-left: 32px;
+  padding-right: 32px;
+}
+.d360-page--frontpage,
+.d360-page--article {
+  background: var(--bg-alt);
+  padding-top: 28px;
+  padding-bottom: 48px;
+}
+.d360-page--article .d360-article {
+  max-width: var(--feed-max);
+  margin: 0 auto;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 32px 40px 40px;
+}
+.d360-article__title {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  color: var(--wb-navy);
+}
+.d360-article__lead {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  color: var(--fg);
+}
+.d360-article__crumb a {
+  color: var(--wb-blue);
+}
+.d360-article__crumb a:hover {
+  color: var(--wb-blue-dark);
+}
+.d360-frontpage__hero-title,
+.d360-frontpage__headline-title {
+  font-family: var(--font-serif);
+  color: var(--wb-navy);
+}
+.d360-frontpage__hero-lede,
+.d360-frontpage__headline-lede {
+  font-family: var(--font-serif);
+}
+.d360-header--frontpage {
+  max-width: var(--wb-shell-max);
+  margin: 0 auto;
+  padding: 0 32px 16px;
+  border-bottom: 1px solid var(--border);
+}
+.d360-header__edition {
+  font-family: var(--font-body);
+  font-weight: 700;
+  color: var(--wb-navy);
+  letter-spacing: 0.02em;
+}
+.d360-lastupdate__dot {
+  background: #4caf50;
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.18);
+}
+
+.vmark--verified svg g rect { fill: var(--wb-blue); }
+.claim {
+  background: var(--wb-blue-pale);
+  color: var(--wb-navy);
+}
+.d360-numblock { border-left-color: var(--wb-blue); }
+.d360-mag--up { color: #b3261e; background: rgba(179, 38, 30, 0.10); }
+.d360-mag--down { color: #1d6a47; background: rgba(29, 106, 71, 0.10); }
+
+.d360-onboard__note { border-left-color: var(--wb-blue); }
+
+@media (max-width: 900px) {
+  .wb-lockup__product-sub { display: none; }
+  .wb-topbar__inner,
+  .d360-site-nav__inner,
+  .d360-page,
+  .d360-header--frontpage { padding-left: 16px; padding-right: 16px; }
+  .d360-page--article .d360-article { padding: 24px 20px; }
+}

@@ -80,3 +80,44 @@ test('validateAlert Q4 fails on short story', () => {
   assert.equal(ok, false);
   assert.ok(failures.some((f) => f.check === 'Q4'));
 });
+
+test('sanitizeReportajeItem forces indicators from source noticias', () => {
+  const { sanitizeReportajeItem } = require('../lib/analysis/alert-extractor');
+  const { validateAlert } = require('../lib/analysis/quality-validator');
+  const sourceNoticias = [
+    {
+      id: 'n1',
+      dataset_id: 'WB_KNOMAD',
+      countries: ['ARG'],
+      indicator: { idno: 'WB_KNOMAD_BRE', database_id: 'WB_KNOMAD' },
+    },
+    {
+      id: 'n2',
+      dataset_id: 'WB_KNOMAD',
+      countries: ['MEX'],
+      indicator: { idno: 'WB_KNOMAD_MIG', database_id: 'WB_KNOMAD' },
+    },
+  ];
+  const item = {
+    content_type: 'reportaje',
+    id: 'reportaje_test',
+    title: { es: 'Título largo para reportaje regional', en: 'Long regional feature title' },
+    lead: { es: 'Lead del reportaje.', en: 'Feature lead.' },
+    story: { es: 'x'.repeat(600), en: 'y'.repeat(600) },
+    dataset_id: 'WB_KNOMAD',
+    indicators: [{ idno: 'WB_KNOMAD_BRE' }],
+    countries: ['ARG'],
+    noticia_ids: ['n1', 'n2'],
+    claim_tokens: [],
+    verification_trace: {
+      data360_dataset_url: 'https://data360.worldbank.org/en/int/dataset/WB_KNOMAD',
+      csv_links: [],
+    },
+    score: 0.8,
+    detected_at: '2026-05-26T12:00:00Z',
+  };
+  sanitizeReportajeItem(item, sourceNoticias);
+  assert.deepEqual(item.indicators, ['WB_KNOMAD_BRE', 'WB_KNOMAD_MIG']);
+  const { ok } = validateAlert(item, new Set());
+  assert.equal(ok, true);
+});

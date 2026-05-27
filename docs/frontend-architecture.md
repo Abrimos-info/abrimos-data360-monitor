@@ -8,7 +8,7 @@ This document defines the structural, functional, and layout architecture of the
 
 1. **Aesthetic Excellence & Premium Visuals**: Render a highly polished, responsive dashboard with two content types (Noticia and Reportaje) rendered through distinct card variants — `+cardNewspaper` for Noticia, `+cardReportaje` (wider, `grid-column: span 2`) for Reportaje — plus the historical Narrative/Number/Newspaper layout variants, an interactive analytics sidebar drawer, live sparkline trend charts, and clear verification marks.
 2. **Deterministic Data Consumption**: Load all detected events from a precomputed `data/alerts.json` produced by the data processing pipeline into the client window space on page paint.
-3. **High-Performance Architecture**: Built as a standalone Node.js and CommonJS web app utilizing server-side Pug templates, direct vanilla JavaScript UI routines, and unified vanilla CSS variables for immediate responsiveness. No complex frameworks, Express wrappers, or heavy client build steps are utilized.
+3. **High-Performance Architecture**: Built as a standalone Node.js and CommonJS web app utilizing server-side Pug templates, direct vanilla JavaScript UI routines, and unified vanilla CSS variables for immediate responsiveness. No complex frameworks, Express wrappers, or heavy client build steps are utilized. Visual theme follows `design/v2` via `static/css/wb-theme.css` (World Bank palette, Open Sans + Lora); the React files in `design/v2/` are reference-only.
 4. **Immediate Client-Side Responsiveness**: Perform visual card filtering in the browser using hybrid DOM toggles to achieve zero-latency updates without roundtrip server calls.
 
 ---

@@ -199,6 +199,55 @@ describe('chat markdown', () => {
   });
 });
 
+describe('chat generation context', () => {
+  it('loads noticia context from data/analyses/{IDNO}.md', () => {
+    const { loadGenerationContext, loadNoticiaContextMarkdown } = require('../lib/chat/generation-context');
+    const r = loadNoticiaContextMarkdown('RWB_PFI_LGC');
+    assert.equal(r.source, 'analyses_md');
+    assert.ok(r.markdown && r.markdown.includes('CONTEXTO SLIM'));
+    const alert = {
+      id: 'noticia_test',
+      content_type: 'noticia',
+      indicator: { idno: 'RWB_PFI_LGC' },
+    };
+    const gen = loadGenerationContext(alert);
+    assert.ok(gen);
+    assert.ok(gen.markdown.includes('CONTEXTO SLIM'));
+    assert.equal(gen.truncated, false);
+  });
+
+  it('truncates oversized context', () => {
+    const { truncateMarkdown } = require('../lib/chat/generation-context');
+    const long = 'x'.repeat(100);
+    const out = truncateMarkdown(long, 50);
+    assert.equal(out.truncated, true);
+    assert.ok(out.markdown.includes('truncado'));
+  });
+
+  it('aggregates reportaje context from indicator analyses files', () => {
+    const { loadGenerationContext } = require('../lib/chat/generation-context');
+    const store = require('../lib/alerts-store');
+    const reportaje = store.getAlerts().find((a) => a.content_type === 'reportaje' && Array.isArray(a.indicators) && a.indicators.length >= 2);
+    if (!reportaje) return;
+    const gen = loadGenerationContext(reportaje);
+    assert.ok(gen, 'expected aggregate context for reportaje');
+    assert.ok(gen.source.includes('aggregate') || gen.source === 'analyses_md');
+    assert.ok(gen.markdown.length > 100);
+  });
+});
+
+describe('chat scoped system prompt', () => {
+  it('loadSystemPrompt includes scoped base and generation context for alert', () => {
+    const { loadSystemPrompt } = require('../lib/chat/agent');
+    const store = require('../lib/alerts-store');
+    const alert = store.getAlerts().find((a) => a.indicator?.idno === 'RWB_PFI_LGC') || store.getAlerts()[0];
+    assert.ok(alert);
+    const system = loadSystemPrompt(['ARG'], false, alert);
+    assert.match(system, /chat acotado|Pieza publicada/i);
+    assert.match(system, /Contexto de generación|contexto omnibus|CONTEXTO SLIM|no hay archivo/i);
+  });
+});
+
 describe('chat agent helpers', () => {
   it('detects news refresh intent', () => {
     const { wantsNewsToolsRequired } = require('../lib/chat/agent');

@@ -26,3 +26,17 @@ test('groupNoticiasByDataset excludes single-noticia datasets when minNoticias =
   assert.ok(groups.has('FAO_CP'));
   assert.ok(!groups.has('SOLO'));
 });
+
+test('reportajeFingerprint changes when noticia set changes', () => {
+  const { reportajeFingerprint } = require('../lib/analysis/reportaje-runner');
+  const a = [
+    { id: 'n1', quality_status: 'accepted' },
+    { id: 'n2', quality_status: 'accepted' },
+  ];
+  const b = [
+    { id: 'n1', quality_status: 'accepted' },
+    { id: 'n3', quality_status: 'accepted' },
+  ];
+  assert.notEqual(reportajeFingerprint(a), reportajeFingerprint(b));
+  assert.equal(reportajeFingerprint(a), reportajeFingerprint([...a].reverse()));
+});
