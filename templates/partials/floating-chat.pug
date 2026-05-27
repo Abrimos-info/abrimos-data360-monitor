@@ -1,16 +1,26 @@
-div.d360-floating-chat(aria-live="polite")
+- var fabScoped = !!(articlePresets && articlePresets.length && alert && alert.id)
+- var fabTitle = fabScoped ? _("chat.article_title", lang) : _("floating_chat.title", lang)
+- var fabWelcome = fabScoped ? _("chat.article_empty", lang) : _("floating_chat.welcome", lang)
+div.d360-floating-chat(class=(fabScoped ? "d360-floating-chat--scoped" : "") data-alert-id=(fabScoped ? alert.id : null))
   button.d360-chatfab#d360-chatfab(type="button" aria-label=_("floating_chat.open", lang) aria-expanded="false" aria-controls="d360-chatwin")
     svg(viewBox="0 0 24 24" aria-hidden="true")
       path(d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z")
   div.d360-chatwin#d360-chatwin(role="dialog" aria-labelledby="d360-chatwin-title" aria-hidden="true")
     div.d360-chatwin__head
-      span.d360-chatwin__title#d360-chatwin-title= _("floating_chat.title", lang)
+      span.d360-chatwin__title#d360-chatwin-title= fabTitle
       div.d360-chatwin__controls
         button.d360-chatwin__btn#d360-chatwin-min(type="button" aria-label=_("floating_chat.minimize", lang)) −
         button.d360-chatwin__btn#d360-chatwin-close(type="button" aria-label=_("floating_chat.close", lang)) ×
     div.d360-chatwin__body
-      p.d360-chatwin__welcome= _("floating_chat.welcome", lang)
-      div.d360-chatwin__messages#d360-fab-messages
+      p.d360-chatwin__welcome#d360-fab-welcome= fabWelcome
+      p.d360-chat-llm-meta#d360-fab-chat-llm(role="status" aria-live="polite" hidden)
+      div.d360-chatwin__messages#d360-fab-messages(aria-live="polite" hidden)
+      if fabScoped
+        div.d360-chatwin__presets#d360-fab-presets(role="toolbar" aria-label=_("chat.article_presets_label", lang))
+          each preset in articlePresets
+            - var plabel = (lang === "en") ? preset.label_en : preset.label_es
+            - var pprompt = (lang === "en") ? preset.prompt_en : preset.prompt_es
+            button.d360-chatwin__preset(type="button" data-prompt=pprompt)= plabel
       form.d360-chatwin__form#d360-fab-form
         textarea.d360-chatwin__input#d360-fab-input(name="message" rows="2" placeholder=_("floating_chat.placeholder", lang))
         button.d360-chatwin__send#d360-fab-send(type="submit" aria-label=_("chat.send", lang)) →

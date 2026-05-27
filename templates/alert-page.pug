@@ -21,54 +21,51 @@ block content
   - var leadText = (alert.lead && alert.lead[lng]) || ''
   - var storyText = (alert.story && alert.story[lng]) || (alert.body && alert.body[lng]) || ''
 
-  main.d360-page.d360-page--article
-    nav.d360-article__crumb(aria-label=_("article.crumb", lang))
-      span.d360-article__crumb-edition
-        a(href="/" + countrySlug)= _("article.edition", lang, { country: _("chat.country." + countryIso, lang) })
-        span ·
-        span= alert.content_type === "reportaje" ? _("badge.reportaje", lang) : _("badge.noticia", lang)
+  main.d360-page.d360-page--article.d360-page--band
+    div.d360-shell
+      nav.d360-article__crumb(aria-label=_("article.crumb", lang))
+        span.d360-article__crumb-edition
+          a(href="/" + countrySlug)= _("article.edition", lang, { country: _("chat.country." + countryIso, lang) })
+          span ·
+          span= alert.content_type === "reportaje" ? _("badge.reportaje", lang) : _("badge.noticia", lang)
 
-    article.d360-article
-      header.d360-article__head
-        h1.d360-article__title= titleText
-        if leadText
-          p.d360-article__lead#d360-article-lead= leadText
-        +articleMetaBar(alert, lang, _)
-        if alert.quality_status === "incomplete" || alert.quality_status === "rejected"
-          +qualityBanner(alert, lang, _)
+      article.d360-article
+        header.d360-article__head
+          h1.d360-article__title= titleText
+          if leadText
+            p.d360-article__lead#d360-article-lead= leadText
+          +articleMetaBar(alert, lang, _)
+          if alert.quality_status === "incomplete" || alert.quality_status === "rejected"
+            +qualityBanner(alert, lang, _)
 
-      if alert.chart_series && alert.chart_series.length
-        div.d360-article__chart#d360-article-chart
+        if alert.chart_series && alert.chart_series.length
+          div.d360-article__chart#d360-article-chart
 
-      if storyText
-        div.d360-article__story#d360-article-story
+        if alert.content_type === "reportaje" && renderReportajeChart
+          - var reportajeChart = renderReportajeChart(alert, "full")
+          if reportajeChart
+            figure.d360-article__reportaje-chart
+              != reportajeChart
+              figcaption.d360-article__reportaje-chart-caption= _("reportaje.chart.caption", lang)
 
-      if alert.content_type === "reportaje" && Array.isArray(alert.indicators)
-        div.d360-article__indicators
-          h2= _("detail.indicators_covered", lang)
-          ul.d360-article__indicators-list
-            each idno in alert.indicators
-              li
-                - var indSearchUrl = (typeof indicatorSearchUrl === "function") ? indicatorSearchUrl(idno) : ("https://data360.worldbank.org/en/indicator/" + encodeURIComponent(idno))
-                a.d360-article__indicators-link(href=indSearchUrl target="_blank" rel="noopener")
-                  +indicatorRef(enrichIndicator({ idno: idno }, lang), lang, { dates: false })
+        if storyText
+          div.d360-article__story#d360-article-story
 
-    section.d360-article__chat
-      h2= _("chat.article_title", lang)
-      include partials/alert-chat
+        if alert.content_type === "reportaje" && Array.isArray(alert.indicators)
+          div.d360-article__indicators
+            h2= _("detail.indicators_covered", lang)
+            ul.d360-article__indicators-list
+              each idno in alert.indicators
+                li
+                  - var indSearchUrl = (typeof indicatorSearchUrl === "function") ? indicatorSearchUrl(idno) : ("https://data360.worldbank.org/en/indicator/" + encodeURIComponent(idno))
+                  a.d360-article__indicators-link(href=indSearchUrl target="_blank" rel="noopener")
+                    +indicatorRef(enrichIndicator({ idno: idno }, lang), lang, { dates: false })
 
-block scripts
+block pageScripts
   script.
     window.D360_ALERT = !{JSON.stringify(alert)};
     window.D360_ALERT_ID = !{JSON.stringify(alert.id)};
     window.D360_ALERTS = [window.D360_ALERT];
-  script(src=staticAsset('vendor/marked.min.js') defer)
   script(src=staticAsset('js/charts.js') defer)
-  script(src=staticAsset('js/markdown.js') defer)
   script(src=staticAsset('js/indicator-pills.js') defer)
-  script(src=staticAsset('js/chat-cards.js') defer)
-  script(src=staticAsset('js/chat-turn-ui.js') defer)
-  script(src=staticAsset('js/pcn-claims.js') defer)
-  script(src=staticAsset('js/detail-panel.js') defer)
-  script(src=staticAsset('js/alert-chat.js') defer)
   script(src=staticAsset('js/alert-page.js') defer)

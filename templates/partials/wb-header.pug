@@ -1,7 +1,7 @@
 header.wb-header
   div.wb-header__inner
     a.d360-lockup(href=monitorHomeUrl aria-label=_("site_name", lang) title=_("site_name", lang))
-      img.d360-lockup__mark(src=staticAsset('assets/d360-mark.svg') alt="" width="40" height="40")
+      include d360-mark-inline
       div.d360-lockup__text
         span.d360-lockup__product Data 360
         span.d360-lockup__name= _("site_brand_suffix", lang)

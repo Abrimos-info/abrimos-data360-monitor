@@ -52,8 +52,12 @@ html(lang=lang)
       link(rel="stylesheet" href=staticAsset('css/wb-chat-embed.css'))
       link(rel="stylesheet" href=staticAsset('css/main.css'))
     block scripts
-    if includeFloatingChat !== false
-      script(src=staticAsset('vendor/marked.min.js') defer)
-      script(src=staticAsset('js/markdown.js') defer)
-      script(src=staticAsset('js/pcn-claims.js') defer)
-      script(src=staticAsset('js/floating-chat.js') defer)
+      if includeFloatingChat !== false
+        script(src=staticAsset('vendor/marked.min.js') defer)
+        script(src=staticAsset('js/markdown.js') defer)
+        script(src=staticAsset('js/pcn-claims.js') defer)
+        script(src=staticAsset('js/chat-turn-ui.js') defer)
+        script(src=staticAsset('js/alert-chat.js') defer)
+      block pageScripts
+      if includeFloatingChat !== false
+        script(src=staticAsset('js/floating-chat.js') defer)

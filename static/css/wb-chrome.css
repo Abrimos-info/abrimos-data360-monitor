@@ -4,6 +4,7 @@
   position: sticky;
   top: 0;
   z-index: 40;
+  width: 100%;
   background: var(--bg);
   border-bottom: 1px solid var(--border);
   box-shadow: 0 1px 0 rgba(0, 34, 68, 0.04);
@@ -40,12 +41,18 @@
   color: var(--wb-navy);
   flex-shrink: 0;
   min-width: 0;
+  border-bottom: 0;
+}
+.d360-lockup:hover {
+  color: var(--wb-navy);
+  border-bottom: 0;
 }
 .d360-lockup__mark {
   flex-shrink: 0;
   display: block;
   width: 40px;
   height: 40px;
+  overflow: visible;
 }
 .d360-lockup__text {
   display: flex;
@@ -78,6 +85,7 @@
 }
 
 .wb-nav {
+  width: 100%;
   background: var(--wb-blue);
   color: #fff;
   position: sticky;

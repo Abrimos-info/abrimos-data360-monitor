@@ -3,109 +3,117 @@ include mixins
 
 block headerExtras
   header.d360-header.d360-header--frontpage
-    div.d360-header__edition-line
-      span.d360-header__edition= editionLabel
-      if lastUpdateIso
-        span.d360-header__meta-sep(aria-hidden="true") ·
-        div.d360-lastupdate
-          span.d360-lastupdate__dot(aria-hidden="true")
-          span.d360-lastupdate__label= _("ui.last_update", lang)
-          span.d360-lastupdate__sep(aria-hidden="true") ·
-          time.d360-local-datetime.d360-lastupdate__time(datetime=lastUpdateIso)
+    div.d360-shell
+      div.d360-header__edition-line
+        span.d360-header__edition= editionLabel
+        if lastUpdateIso
+          span.d360-header__meta-sep(aria-hidden="true") ·
+          div.d360-lastupdate
+            span.d360-lastupdate__dot(aria-hidden="true")
+            span.d360-lastupdate__label= _("ui.last_update", lang)
+            span.d360-lastupdate__sep(aria-hidden="true") ·
+            time.d360-local-datetime.d360-lastupdate__time(datetime=lastUpdateIso)
 
 block content
   - var langKey = (lang === "en") ? "en" : "es"
   - var dataPeriodLabel = _("detail.data_period", lang)
   - var dataPeriodStaleLabel = _("detail.data_period_stale", lang)
-  main.d360-page.d360-page--frontpage
-    if heroReportaje
-      - var heroLead = pickLead(heroReportaje, lang)
-      section.d360-frontpage__hero
-        div.d360-frontpage__hero-eyebrow
-          +contentTypeBadge("reportaje", lang, _)
-          if heroReportaje.observation
-            span.d360-frontpage__hero-eyebrow-sep(aria-hidden="true") ·
-            +dataDateBadge(heroReportaje, lang, dataPeriodLabel, dataPeriodStaleLabel)
-        a.d360-frontpage__hero-link(href=pathForCountry(heroReportaje, countryIso))
-          h2.d360-frontpage__hero-title= pickHeadline(heroReportaje, lang)
-        hr.d360-card__rule.d360-frontpage__hero-rule(aria-hidden="true")
-        if heroLead
-          p.d360-frontpage__hero-lede= heroLead
-        if heroReportaje.detected_at
-          p.d360-frontpage__hero-generated
-            span.d360-frontpage__generated-label= _("article.meta.generated_at", lang)
-            span.d360-frontpage__generated-sep(aria-hidden="true") ·
-            time.d360-local-datetime(datetime=heroReportaje.detected_at)
-    else
-      section.d360-frontpage__hero.d360-frontpage__hero--empty
-        p= _("frontpage.no_reportaje", lang)
+  main.d360-page.d360-page--frontpage.d360-page--band
+    div.d360-shell
+      if heroReportaje
+        - var heroLead = pickLead(heroReportaje, lang)
+        section.d360-frontpage__hero
+          div.d360-frontpage__hero-eyebrow
+            +contentTypeBadge("reportaje", lang, _)
+            if heroReportaje.observation
+              span.d360-frontpage__hero-eyebrow-sep(aria-hidden="true") ·
+              +dataDateBadge(heroReportaje, lang, dataPeriodLabel, dataPeriodStaleLabel)
+          a.d360-frontpage__hero-link(href=pathForCountry(heroReportaje, countryIso))
+            h2.d360-frontpage__hero-title= pickHeadline(heroReportaje, lang)
+          hr.d360-card__rule.d360-frontpage__hero-rule(aria-hidden="true")
+          if heroLead
+            p.d360-frontpage__hero-lede= heroLead
+          if renderReportajeChart
+            - var heroChart = renderReportajeChart(heroReportaje, "compact")
+            if heroChart
+              div.d360-frontpage__hero-chart
+                != heroChart
+                p.d360-frontpage__hero-chart-caption= _("reportaje.chart.caption", lang)
+          if heroReportaje.detected_at
+            p.d360-frontpage__hero-generated
+              span.d360-frontpage__generated-label= _("article.meta.generated_at", lang)
+              span.d360-frontpage__generated-sep(aria-hidden="true") ·
+              time.d360-local-datetime(datetime=heroReportaje.detected_at)
+      else
+        section.d360-frontpage__hero.d360-frontpage__hero--empty
+          p= _("frontpage.no_reportaje", lang)
 
-    div.d360-frontpage__grid
-      section.d360-frontpage__headlines
-        h2.d360-frontpage__section-title= _("frontpage.headlines", lang)
-        if headlineItems && headlineItems.length
-          ul.d360-frontpage__headline-list
-            each item in headlineItems
-              - var ev = item.alert
-              - var titleText = pickHeadline(ev, lang)
-              - var headlineLead = item.kind === "reportaje" ? pickLead(ev, lang) : ""
-              - var dateText = headlineDateLabel(ev, lang)
-              - var typeText = ev.type ? ((ev.type === "abrupt_change") ? _("type.abrupt_change", lang) : _("type.anomaly", lang)) : null
-              li(class=item.kind === "reportaje" ? "d360-frontpage__headline-item--reportaje" : "")
-                a.d360-frontpage__headline(href=pathForCountry(ev, countryIso))
-                  if item.kind === "reportaje"
-                    +contentTypeBadge("reportaje", lang, _)
-                  span.d360-frontpage__headline-title= titleText
-                  if headlineLead
-                    span.d360-frontpage__headline-lede= headlineLead
-                  span.d360-frontpage__headline-meta
-                    if typeText
-                      +typeChip(ev.type, typeText)
-                      span.d360-frontpage__headline-meta-sep(aria-hidden="true") ·
-                    - var indRow = (ev.indicator && ev.indicator.idno && typeof indicatorFromAlert === "function") ? indicatorFromAlert(ev, lang) : null
-                    if ev.detected_at
-                      time.d360-local-datetime.d360-frontpage__headline-generated(datetime=ev.detected_at)
-                    if dateText
-                      if ev.detected_at || typeText
+      div.d360-frontpage__grid
+        section.d360-frontpage__headlines
+          h2.d360-frontpage__section-title= _("frontpage.headlines", lang)
+          if headlineItems && headlineItems.length
+            ul.d360-frontpage__headline-list
+              each item in headlineItems
+                - var ev = item.alert
+                - var titleText = pickHeadline(ev, lang)
+                - var headlineLead = item.kind === "reportaje" ? pickLead(ev, lang) : ""
+                - var dateText = headlineDateLabel(ev, lang)
+                - var typeText = ev.type ? ((ev.type === "abrupt_change") ? _("type.abrupt_change", lang) : _("type.anomaly", lang)) : null
+                li(class=item.kind === "reportaje" ? "d360-frontpage__headline-item--reportaje" : "")
+                  a.d360-frontpage__headline(href=pathForCountry(ev, countryIso))
+                    if item.kind === "reportaje"
+                      +contentTypeBadge("reportaje", lang, _)
+                    span.d360-frontpage__headline-title= titleText
+                    if headlineLead
+                      span.d360-frontpage__headline-lede= headlineLead
+                    span.d360-frontpage__headline-meta
+                      if typeText
+                        +typeChip(ev.type, typeText)
                         span.d360-frontpage__headline-meta-sep(aria-hidden="true") ·
-                      span.d360-frontpage__headline-date= dateText
-                    if indRow && indRow.name && indRow.name !== indRow.idno
-                      if ev.detected_at || dateText || typeText
-                        span.d360-frontpage__headline-meta-sep(aria-hidden="true") ·
-                      span.d360-frontpage__headline-ind-name= indRow.name
-                    if indRow && indRow.idno
-                      if ev.detected_at || dateText || typeText || (indRow.name && indRow.name !== indRow.idno)
-                        span.d360-frontpage__headline-meta-sep(aria-hidden="true") ·
-                      span.d360-ind-pill
-                        code.d360-ind-pill__id= indRow.idno
-        else
-          p.d360-empty__help= _("ui.empty_title", lang)
+                      - var indRow = (ev.indicator && ev.indicator.idno && typeof indicatorFromAlert === "function") ? indicatorFromAlert(ev, lang) : null
+                      if ev.detected_at
+                        time.d360-local-datetime.d360-frontpage__headline-generated(datetime=ev.detected_at)
+                      if dateText
+                        if ev.detected_at || typeText
+                          span.d360-frontpage__headline-meta-sep(aria-hidden="true") ·
+                        span.d360-frontpage__headline-date= dateText
+                      if indRow && indRow.name && indRow.name !== indRow.idno
+                        if ev.detected_at || dateText || typeText
+                          span.d360-frontpage__headline-meta-sep(aria-hidden="true") ·
+                        span.d360-frontpage__headline-ind-name= indRow.name
+                      if indRow && indRow.idno
+                        if ev.detected_at || dateText || typeText || (indRow.name && indRow.name !== indRow.idno)
+                          span.d360-frontpage__headline-meta-sep(aria-hidden="true") ·
+                        span.d360-ind-pill
+                          code.d360-ind-pill__id= indRow.idno
+          else
+            p.d360-empty__help= _("ui.empty_title", lang)
 
-      aside.d360-frontpage__aside
-        h2.d360-frontpage__section-title= _("frontpage.ticker", lang)
-        +pcnLegend(lang, _)
-        if tickerIndicators && tickerIndicators.length
-          ul.d360-frontpage__indicator-list(role="list")
-            each ev in tickerIndicators
-              - var magText = (ev.magnitude && ev.magnitude[langKey]) || ''
-              li(role="listitem")
-                a.d360-frontpage__indicator-row(href=pathForCountry(ev, countryIso))
-                  if ev.indicator && ev.indicator.idno
-                    +indicatorRefFromAlert(ev, lang, { dates: false, block: false })
-                  div.d360-frontpage__indicator-cols
-                    if ev.chart_series && ev.chart_series.length && renderSparklineSvg
-                      div.d360-frontpage__indicator-sparkline-col
-                        span.d360-frontpage__indicator-sparkline!= renderSparklineSvg(ev.chart_series, { width: 96, height: 32 })
-                    if ev.observation
-                      div.d360-frontpage__indicator-value-col
-                        span.d360-frontpage__indicator-val
-                          +observationWithPcn(ev, lang)
-                  if magText
-                    span.d360-frontpage__indicator-mag
-                      +magnitude(magText)
-        else
-          p.d360-empty__help= _("ui.empty_title", lang)
+        aside.d360-frontpage__aside
+          h2.d360-frontpage__section-title= _("frontpage.ticker", lang)
+          +pcnLegend(lang, _)
+          if tickerIndicators && tickerIndicators.length
+            ul.d360-frontpage__indicator-list(role="list")
+              each ev in tickerIndicators
+                - var magText = (ev.magnitude && ev.magnitude[langKey]) || ''
+                li(role="listitem")
+                  a.d360-frontpage__indicator-row(href=pathForCountry(ev, countryIso))
+                    if ev.indicator && ev.indicator.idno
+                      +indicatorRefFromAlert(ev, lang, { dates: false, block: false })
+                    div.d360-frontpage__indicator-cols
+                      if ev.chart_series && ev.chart_series.length && renderSparklineSvg
+                        div.d360-frontpage__indicator-sparkline-col
+                          span.d360-frontpage__indicator-sparkline!= renderSparklineSvg(ev.chart_series, { width: 96, height: 32 })
+                      if ev.observation
+                        div.d360-frontpage__indicator-value-col
+                          span.d360-frontpage__indicator-val
+                            +observationWithPcn(ev, lang)
+                    if magText
+                      span.d360-frontpage__indicator-mag
+                        +magnitude(magText)
+          else
+            p.d360-empty__help= _("ui.empty_title", lang)
 
-block scripts
+block pageScripts
   script.
     window.D360_COUNTRY_ISO = !{JSON.stringify(countryIso)};

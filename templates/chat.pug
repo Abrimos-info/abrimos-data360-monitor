@@ -1,49 +1,51 @@
 extends layout
+include partials/chat-freshness
 
 block content
-  include partials/chat-freshness
-  main.d360-page.d360-page--chat
-    div.d360-chat
-      header.d360-chat__head
-        div.d360-chat__head-row
-          div.d360-chat__headtext
-            h1.d360-chat__title= _("chat.title", lang)
-            p.d360-chat__sub= _("chat.subtitle", lang)
-            p.d360-chat-llm-meta#d360-chat-llm(role="status" aria-live="polite" hidden)
-          div.d360-chat__export(role="toolbar" aria-label=_("chat.export_toolbar", lang))
-            button.d360-chat__export-btn(type="button" id="d360-export-copy" disabled)= _("chat.export_copy", lang)
-            button.d360-chat__export-btn(type="button" id="d360-export-md" disabled)= _("chat.export_md", lang)
-            button.d360-chat__export-btn(type="button" id="d360-export-pdf" disabled)= _("chat.export_pdf", lang)
-      if freshnessCatalog && freshnessCatalog.length
-        - var freshDefault = presets.find(function (p) { return p.id === "freshness_updated"; })
-        - var freshPrompt = freshDefault ? ((lang === "en") ? freshDefault.prompt_en : freshDefault.prompt_es) : ""
-        - var freshnessMoreLabel = _("chat.freshness_more", lang).replace("{n}", String(freshnessCatalog.length - 6))
-        template#d360-fresh-tpl
-          +chatFreshnessPanel(freshnessCatalog, demoCountries, lang, _, freshnessProbedAt, freshPrompt, freshnessMoreLabel)
-      div.d360-chat__presets#d360-chat-presets
+  main.d360-page.d360-page--chat.d360-page--band
+    div.d360-shell
+      include partials/chat-freshness
+      div.d360-chat
+        header.d360-chat__head
+          div.d360-chat__head-row
+            div.d360-chat__headtext
+              h1.d360-chat__title= _("chat.title", lang)
+              p.d360-chat__sub= _("chat.subtitle", lang)
+              p.d360-chat-llm-meta#d360-chat-llm(role="status" aria-live="polite" hidden)
+            div.d360-chat__export(role="toolbar" aria-label=_("chat.export_toolbar", lang))
+              button.d360-chat__export-btn(type="button" id="d360-export-copy" disabled)= _("chat.export_copy", lang)
+              button.d360-chat__export-btn(type="button" id="d360-export-md" disabled)= _("chat.export_md", lang)
+              button.d360-chat__export-btn(type="button" id="d360-export-pdf" disabled)= _("chat.export_pdf", lang)
         if freshnessCatalog && freshnessCatalog.length
-          button.d360-chat__preset.d360-chat__preset--fresh(type="button" id="d360-freshness-open")= _("chat.freshness_btn", lang).replace("{n}", String(freshnessCatalog.length))
-        each preset in presets
-          if preset.id !== "freshness_updated"
-            - var plabel = (lang === "en") ? preset.label_en : preset.label_es
-            - var pprompt = (lang === "en") ? preset.prompt_en : preset.prompt_es
-            button.d360-chat__preset(type="button" data-preset-id=preset.id data-prompt=pprompt)= plabel
-      div.d360-chat__focus#d360-chat-focus
-        label.d360-chat__focus-label(for="d360-focus-country")= _("chat.focus_label", lang)
-        select.d360-chat__focus-select#d360-focus-country(name="focus-country" aria-label=_("chat.focus_label", lang))
-          option(value="ALL" selected)= _("chat.focus_all", lang)
-          each iso in demoCountries
-            - var cname = _("chat.country." + iso, lang)
-            - var optLabel = cname && cname !== ("chat.country." + iso) ? (iso + " · " + cname) : iso
-            option(value=iso)= optLabel
-      div.d360-chat__messages#d360-chat-messages
-        p.d360-chat__empty= _("chat.empty", lang)
-      div.d360-chat__tools#d360-chat-tools(style="display:none")
-      form.d360-chat__form#d360-chat-form
-        textarea.d360-chat__input#d360-chat-input(name="message" rows="2" placeholder=_("chat.placeholder", lang))
-        button.d360-chat__send#d360-chat-send(type="submit")= _("chat.send", lang)
+          - var freshDefault = presets.find(function (p) { return p.id === "freshness_updated"; })
+          - var freshPrompt = freshDefault ? ((lang === "en") ? freshDefault.prompt_en : freshDefault.prompt_es) : ""
+          - var freshnessMoreLabel = _("chat.freshness_more", lang).replace("{n}", String(freshnessCatalog.length - 6))
+          template#d360-fresh-tpl
+            +chatFreshnessPanel(freshnessCatalog, demoCountries, lang, _, freshnessProbedAt, freshPrompt, freshnessMoreLabel)
+        div.d360-chat__presets#d360-chat-presets
+          if freshnessCatalog && freshnessCatalog.length
+            button.d360-chat__preset.d360-chat__preset--fresh(type="button" id="d360-freshness-open")= _("chat.freshness_btn", lang).replace("{n}", String(freshnessCatalog.length))
+          each preset in presets
+            if preset.id !== "freshness_updated"
+              - var plabel = (lang === "en") ? preset.label_en : preset.label_es
+              - var pprompt = (lang === "en") ? preset.prompt_en : preset.prompt_es
+              button.d360-chat__preset(type="button" data-preset-id=preset.id data-prompt=pprompt)= plabel
+        div.d360-chat__focus#d360-chat-focus
+          label.d360-chat__focus-label(for="d360-focus-country")= _("chat.focus_label", lang)
+          select.d360-chat__focus-select#d360-focus-country(name="focus-country" aria-label=_("chat.focus_label", lang))
+            option(value="ALL" selected)= _("chat.focus_all", lang)
+            each iso in demoCountries
+              - var cname = _("chat.country." + iso, lang)
+              - var optLabel = cname && cname !== ("chat.country." + iso) ? (iso + " · " + cname) : iso
+              option(value=iso)= optLabel
+        div.d360-chat__messages#d360-chat-messages
+          p.d360-chat__empty= _("chat.empty", lang)
+        div.d360-chat__tools#d360-chat-tools(style="display:none")
+        form.d360-chat__form#d360-chat-form
+          textarea.d360-chat__input#d360-chat-input(name="message" rows="2" placeholder=_("chat.placeholder", lang))
+          button.d360-chat__send#d360-chat-send(type="submit")= _("chat.send", lang)
 
-block scripts
+block pageScripts
   script.
     window.D360_ALERTS = !{JSON.stringify(allAlerts || [])};
     window.D360_CHAT_PRESETS = !{JSON.stringify(presets)};
@@ -51,11 +53,8 @@ block scripts
     window.D360_INDICATOR_CATALOG = !{JSON.stringify((freshnessCatalog || []).map(function (i) { return { idno: i.idno, name: i.label, database_id: i.database_id }; }))};
     window.D360_DEMO_COUNTRIES = !{JSON.stringify(demoCountries || [])};
     window.D360_SPARKLINE_CACHE = {};
-  script(src=staticAsset('vendor/marked.min.js') defer)
   script(src=staticAsset('js/charts.js') defer)
   script(src=staticAsset('js/indicator-pills.js') defer)
-  script(src=staticAsset('js/pcn-claims.js') defer)
-  script(src=staticAsset('js/markdown.js') defer)
   script(src=staticAsset('js/chat-cards.js') defer)
   script(src=staticAsset('js/alerts-feed.js') defer)
   script(src=staticAsset('js/chat-export.js') defer)

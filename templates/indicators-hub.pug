@@ -3,38 +3,40 @@ include mixins
 
 block headerExtras
   if lastUpdateIso
-    header.d360-header.d360-header--indicators
-      div.d360-lastupdate
-        span.d360-lastupdate__dot(aria-hidden="true")
-        span.d360-lastupdate__label= _("ui.last_update", lang)
-        span.d360-lastupdate__sep(aria-hidden="true") ·
-        time.d360-local-datetime.d360-lastupdate__time(datetime=lastUpdateIso)
+    header.d360-header.d360-header--band.d360-header--indicators
+      div.d360-shell
+        div.d360-lastupdate
+          span.d360-lastupdate__dot(aria-hidden="true")
+          span.d360-lastupdate__label= _("ui.last_update", lang)
+          span.d360-lastupdate__sep(aria-hidden="true") ·
+          time.d360-local-datetime.d360-lastupdate__time(datetime=lastUpdateIso)
 
 block content
-  main.d360-page.d360-page--indicators
-    header.d360-indicators__head
-      h1= _("indicators.title", lang)
-      p.d360-indicators__lead= _("indicators.lead", lang)
+  main.d360-page.d360-page--indicators.d360-page--band
+    div.d360-shell
+      header.d360-indicators__head
+        h1= _("indicators.title", lang)
+        p.d360-indicators__lead= _("indicators.lead", lang)
 
-    if recentIndicators && recentIndicators.length
-      section.d360-indicators__section
-        h2= _("indicators.recent", lang)
-        ul.d360-indicators__list
-          each ind in recentIndicators
-            li
-              a.d360-indicators__link(href="/indicador/" + encodeURIComponent(ind.idno))
-                +indicatorRef(ind, lang)
-                +indicatorAlertCounts(ind, lang, _)
-
-    - var hubTiers = tierOrder || ["dynamic", "pulse", "annual", "forecast"]
-    each tierKey in hubTiers
-      - var tierItems = tiers && tiers[tierKey] ? tiers[tierKey] : []
-      if tierItems.length
+      if recentIndicators && recentIndicators.length
         section.d360-indicators__section
-          h2= _("indicators.tier." + tierKey, lang)
+          h2= _("indicators.recent", lang)
           ul.d360-indicators__list
-            each entry in tierItems
+            each ind in recentIndicators
               li
-                a.d360-indicators__link(href="/indicador/" + encodeURIComponent(entry.idno))
-                  +indicatorRef(entry, lang)
-                  +indicatorAlertCounts(entry, lang, _)
+                a.d360-indicators__link(href="/indicador/" + encodeURIComponent(ind.idno))
+                  +indicatorRef(ind, lang)
+                  +indicatorAlertCounts(ind, lang, _)
+
+      - var hubTiers = tierOrder || ["dynamic", "pulse", "annual", "forecast"]
+      each tierKey in hubTiers
+        - var tierItems = tiers && tiers[tierKey] ? tiers[tierKey] : []
+        if tierItems.length
+          section.d360-indicators__section
+            h2= _("indicators.tier." + tierKey, lang)
+            ul.d360-indicators__list
+              each entry in tierItems
+                li
+                  a.d360-indicators__link(href="/indicador/" + encodeURIComponent(entry.idno))
+                    +indicatorRef(entry, lang)
+                    +indicatorAlertCounts(entry, lang, _)

@@ -54,19 +54,6 @@
     if (chartEl && alert.chart_series && window.D360Charts) {
       chartEl.innerHTML = window.D360Charts.renderChartSvg(alert.chart_series);
     }
-
-    if (window.D360Chat && window.D360Chat.initScoped) {
-      window.D360Chat.initScoped({
-        alertId: alert.id,
-        container: document.querySelector('.d360-alert-chat'),
-        panelEl: document.querySelector('.d360-alert-chat__panel'),
-        messagesEl: document.getElementById('d360-alert-chat-messages'),
-        presetsEl: document.getElementById('d360-alert-chat-presets'),
-        formEl: document.getElementById('d360-alert-chat-form'),
-        inputEl: document.getElementById('d360-alert-chat-input'),
-        sendEl: document.getElementById('d360-alert-chat-send'),
-      });
-    }
   }
 
   document.addEventListener('DOMContentLoaded', initArticle);

@@ -33,12 +33,16 @@ test('HTTP routes', async (t) => {
     const res = await get(base + '/');
     assert.ok(res.body.includes('d360-app'), 'missing app shell element');
     assert.ok(res.body.includes('d360-picker'), 'missing country picker');
+    assert.ok(res.body.includes('d360-page--band'));
+    assert.ok(res.body.includes('d360-shell'));
   });
 
   await t.test('GET /argentina returns front page', async () => {
     const res = await get(base + '/argentina');
     assert.equal(res.status, 200);
     assert.ok(res.body.includes('d360-frontpage') || res.body.includes('d360-page--frontpage'));
+    assert.ok(res.body.includes('d360-page--band'));
+    assert.ok(res.body.includes('d360-shell'));
   });
 
   await t.test('GET / tagline matches D-006 exact phrase', async () => {
@@ -56,6 +60,8 @@ test('HTTP routes', async (t) => {
     const res = await get(base + '/indicadores');
     assert.equal(res.status, 200);
     assert.ok(res.body.includes('d360-page--indicators'));
+    assert.ok(res.body.includes('d360-page--band'));
+    assert.ok(res.body.includes('d360-shell'));
     assert.ok(res.body.includes('d360-ind-pill__id'));
     assert.ok(res.body.includes('d360-indicator-meta'));
     assert.ok(res.body.includes('d360-local-datetime'));
@@ -68,6 +74,8 @@ test('HTTP routes', async (t) => {
     const res = await get(base + '/indicador/' + encodeURIComponent(idno));
     assert.equal(res.status, 200);
     assert.ok(res.body.includes(idno));
+    assert.ok(res.body.includes('d360-page--band'));
+    assert.ok(res.body.includes('d360-shell'));
   });
 
   await t.test('GET / body includes recent indicators section when data exists', async () => {
@@ -173,6 +181,25 @@ test('HTTP routes', async (t) => {
     assert.match(res.body, /time[^>]+d360-local-datetime[^>]+datetime="/);
   });
 
+  await t.test('GET article page uses floating scoped chat without embedded chat', async () => {
+    const store = require('../lib/alerts-store');
+    const argAlert = store.getAlertsForCountry('ARG')[0];
+    if (!argAlert || !argAlert._paths || !argAlert._paths.ARG) return;
+    const res = await get(base + argAlert._paths.ARG);
+    assert.doesNotMatch(res.body, /d360-article__chat/);
+    assert.doesNotMatch(res.body, /d360-alert-chat/);
+    assert.ok(res.body.includes('d360-floating-chat--scoped'));
+    assert.ok(res.body.includes('d360-fab-presets'));
+    assert.ok(res.body.includes('window.D360_ALERT_ID'));
+    assert.ok(res.body.includes('d360-shell'));
+  });
+
+  await t.test('GET / includes inline logo mark in header', async () => {
+    const res = await get(base + '/');
+    assert.ok(res.body.includes('d360-lockup__mark'));
+    assert.match(res.body, /d360-lockup__mark[\s\S]{0,200}circle/);
+  });
+
   await t.test('GET /argentina hero reportaje shows lead text', async () => {
     const res = await get(base + '/argentina');
     // Hero reportaje isn't present in the legacy fixture dataset.
@@ -184,10 +211,34 @@ test('HTTP routes', async (t) => {
     }
   });
 
+  await t.test('country frontpage and reportaje article render multi-series chart', async () => {
+    const reportaje = require('../lib/alerts-store').getAlerts()
+      .find((a) => a.content_type === 'reportaje' && (a.noticia_ids || []).length >= 2);
+    if (!reportaje) return;
+
+    const iso = (reportaje.countries || [])[0] || 'ARG';
+    const slugMap = { ARG: 'argentina', ECU: 'ecuador', GTM: 'guatemala', HND: 'honduras', MEX: 'mexico' };
+    const countryPath = slugMap[iso] || 'argentina';
+    const fp = await get(`${base}/${countryPath}`);
+    if (fp.body.includes('d360-frontpage__hero-chart')) {
+      assert.match(fp.body, /d360-chart--multi/);
+    }
+
+    const articlePath = reportaje._paths && reportaje._paths[iso];
+    if (!articlePath) return;
+    const art = await get(`${base}${articlePath}`);
+    assert.equal(art.status, 200);
+    assert.match(art.body, /d360-article__reportaje-chart/);
+    assert.match(art.body, /d360-chart--multi/);
+  });
+
   await t.test('GET /about returns 200 text/html', async () => {
     const res = await get(base + '/about');
     assert.equal(res.status, 200);
     assert.ok(res.headers['content-type'].includes('text/html'));
+    assert.ok(res.body.includes('d360-page--band'));
+    assert.ok(res.body.includes('d360-shell'));
+    assert.ok(res.body.includes('d360-prose'));
   });
 
   await t.test('GET /static/css/main.css returns 200 text/css', async () => {
@@ -266,13 +317,17 @@ test('HTTP routes', async (t) => {
     assert.equal(res.status, 200);
     assert.ok(res.body.includes('wb-nav'));
     assert.ok(res.body.includes('d360-chat'));
-    assert.ok(res.body.includes('assets/d360-mark.svg'));
+    assert.ok(res.body.includes('d360-page--band'));
+    assert.ok(res.body.includes('d360-shell'));
+    assert.ok(res.body.includes('d360-lockup__mark'));
+    assert.match(res.body, /d360-lockup__mark[\s\S]{0,200}circle/);
   });
 
   await t.test('GET / includes product chrome and logo', async () => {
     const res = await get(base + '/');
     assert.ok(res.body.includes('wb-nav'));
-    assert.ok(res.body.includes('d360-mark.svg'));
+    assert.ok(res.body.includes('d360-lockup__mark'));
+    assert.match(res.body, /d360-lockup__mark[\s\S]{0,200}circle/);
     assert.ok(!res.body.includes('WORLD BANK GROUP'));
     assert.ok(!res.body.includes('wb-globe.svg'));
   });

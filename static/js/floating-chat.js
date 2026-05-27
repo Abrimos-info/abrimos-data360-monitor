@@ -8,17 +8,14 @@
   var messagesEl = document.getElementById('d360-fab-messages');
   var formEl = document.getElementById('d360-fab-form');
   var inputEl = document.getElementById('d360-fab-input');
+  var sendEl = document.getElementById('d360-fab-send');
+  var presetsEl = document.getElementById('d360-fab-presets');
+  var welcomeEl = document.getElementById('d360-fab-welcome');
+  var llmMetaEl = document.getElementById('d360-fab-chat-llm');
   if (!fab || !panel || !messagesEl || !formEl || !inputEl) return;
 
-  var history = [];
-  var busy = false;
-  var lang = window.D360_LANG || 'es';
-  var strings = (window.D360_STRINGS && window.D360_STRINGS[lang]) || {};
-  var demoCountries = window.D360_DEMO_COUNTRIES || ['GTM', 'HND', 'ARG', 'ECU', 'MEX'];
-
-  function ui(key) {
-    return strings[key] || (window.D360_STRINGS.en && window.D360_STRINGS.en[key]) || key;
-  }
+  var alertId = window.D360_ALERT_ID || null;
+  var scoped = !!(alertId && window.D360Chat && window.D360Chat.initScoped);
 
   function setOpen(open) {
     panel.classList.toggle('is-open', open);
@@ -37,6 +34,31 @@
     });
   }
 
+  if (scoped) {
+    window.D360Chat.initScoped({
+      alertId: alertId,
+      panelEl: panel,
+      messagesEl: messagesEl,
+      presetsEl: presetsEl,
+      formEl: formEl,
+      inputEl: inputEl,
+      sendEl: sendEl,
+      llmMetaEl: llmMetaEl,
+      welcomeEl: welcomeEl,
+    });
+    return;
+  }
+
+  var history = [];
+  var busy = false;
+  var lang = window.D360_LANG || 'es';
+  var strings = (window.D360_STRINGS && window.D360_STRINGS[lang]) || {};
+  var demoCountries = window.D360_DEMO_COUNTRIES || ['GTM', 'HND', 'ARG', 'ECU', 'MEX'];
+
+  function ui(key) {
+    return strings[key] || (window.D360_STRINGS.en && window.D360_STRINGS.en[key]) || key;
+  }
+
   if (window.location.search.indexOf('chat=1') >= 0) {
     setOpen(true);
   }
@@ -49,6 +71,7 @@
   }
 
   function appendBubble(role, html) {
+    messagesEl.hidden = false;
     var div = document.createElement('div');
     div.className = 'd360-chat__msg d360-chat__msg--' + role;
     div.innerHTML = html;
@@ -88,6 +111,7 @@
   async function streamChat(userText) {
     busy = true;
     inputEl.disabled = true;
+    if (sendEl) sendEl.disabled = true;
     history.push({ role: 'user', content: userText });
     appendBubble('user', '<p>' + escapeHtml(userText) + '</p>');
 
@@ -138,6 +162,7 @@
     } finally {
       busy = false;
       inputEl.disabled = false;
+      if (sendEl) sendEl.disabled = false;
     }
   }
 

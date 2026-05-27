@@ -1,62 +1,63 @@
 extends layout
 
 block content
-  main.d360-page.d360-page--about
-    article.d360-prose
-      h1= _("about.title", lang)
-      p.d360-prose__lead= _("about.lead", lang)
+  main.d360-page.d360-page--about.d360-page--band
+    div.d360-shell
+      article.d360-prose
+        h1= _("about.title", lang)
+        p.d360-prose__lead= _("about.lead", lang)
 
-      section
-        h2= _("about.what_title", lang)
-        p= _("about.what_body", lang)
+        section
+          h2= _("about.what_title", lang)
+          p= _("about.what_body", lang)
 
-      section
-        h2= _("about.scope_title", lang)
-        p= _("about.scope_body", lang)
+        section
+          h2= _("about.scope_title", lang)
+          p= _("about.scope_body", lang)
 
-      section
-        h2= _("about.method_title", lang)
-        p= _("about.method_body", lang)
+        section
+          h2= _("about.method_title", lang)
+          p= _("about.method_body", lang)
 
-      section
-        h2= _("about.features_title", lang)
-        ul
-          li= _("about.feature_1", lang)
-          li= _("about.feature_2", lang)
-          li= _("about.feature_3", lang)
-          li= _("about.feature_4", lang)
-          li= _("about.feature_5", lang)
+        section
+          h2= _("about.features_title", lang)
+          ul
+            li= _("about.feature_1", lang)
+            li= _("about.feature_2", lang)
+            li= _("about.feature_3", lang)
+            li= _("about.feature_4", lang)
+            li= _("about.feature_5", lang)
 
-      section
-        h2= _("about.verify_title", lang)
-        p= _("about.verify_body", lang)
+        section
+          h2= _("about.verify_title", lang)
+          p= _("about.verify_body", lang)
 
-      section
-        h2= _("about.limits_title", lang)
-        ul
-          li= _("about.limit_1", lang)
-          li= _("about.limit_2", lang)
-          li= _("about.limit_3", lang)
-          li= _("about.limit_4", lang)
-          li= _("about.limit_5", lang)
-          li= _("about.limit_6", lang)
-          li= _("about.limit_7", lang)
+        section
+          h2= _("about.limits_title", lang)
+          ul
+            li= _("about.limit_1", lang)
+            li= _("about.limit_2", lang)
+            li= _("about.limit_3", lang)
+            li= _("about.limit_4", lang)
+            li= _("about.limit_5", lang)
+            li= _("about.limit_6", lang)
+            li= _("about.limit_7", lang)
 
-      section
-        h2= _("about.roadmap_title", lang)
-        p= _("about.roadmap_body", lang)
+        section
+          h2= _("about.roadmap_title", lang)
+          p= _("about.roadmap_body", lang)
 
-      section.d360-about-team
-        h2= _("about.team_title", lang)
-        a.d360-about-team__brand(href="https://abrimos.info" target="_blank" rel="noopener")
-          img.d360-about-team__logo(src=staticAsset('images/abrimos-info.png') alt="Abrimos.info" width="120" height="120")
-          span.d360-about-team__name abrimos.info
-        p= _("about.team_body", lang)
-        p= _("about.team_experience", lang)
+        section.d360-about-team
+          h2= _("about.team_title", lang)
+          a.d360-about-team__brand(href="https://abrimos.info" target="_blank" rel="noopener")
+            img.d360-about-team__logo(src=staticAsset('images/abrimos-info.png') alt="Abrimos.info" width="120" height="120")
+            span.d360-about-team__name abrimos.info
+          p= _("about.team_body", lang)
+          p= _("about.team_experience", lang)
 
-      section
-        h2= _("about.license_title", lang)
-        p
-          = _("about.license_body", lang)
-          |  
-          a(href="https://github.com/Abrimos-info/abrimos-data360-monitor" target="_blank" rel="noopener") GitHub
+        section
+          h2= _("about.license_title", lang)
+          p
+            = _("about.license_body", lang)
+            |  
+            a(href="https://github.com/Abrimos-info/abrimos-data360-monitor" target="_blank" rel="noopener") GitHub

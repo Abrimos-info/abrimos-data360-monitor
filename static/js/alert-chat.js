@@ -35,6 +35,7 @@
 
     function showMessages() {
       opts.messagesEl.hidden = false;
+      if (opts.welcomeEl) opts.welcomeEl.hidden = true;
       if (opts.panelEl) opts.panelEl.classList.add('d360-alert-chat__panel--has-messages');
     }
 
@@ -203,7 +204,8 @@
           buffer: '',
           handler: function (event, payload) {
             if (event === 'chat_start' && TurnUi.mountChatLlmMeta) {
-              TurnUi.mountChatLlmMeta(document.getElementById('d360-alert-chat-llm'), payload, strings, lang);
+              var metaTarget = opts.llmMetaEl || document.getElementById('d360-alert-chat-llm');
+              TurnUi.mountChatLlmMeta(metaTarget, payload, strings, lang);
             }
             if (event === 'llm_start') steps.llmStart(payload);
             if (event === 'llm_end') steps.llmEnd(payload);
@@ -306,7 +308,7 @@
       opts.messagesEl.scrollTop = opts.messagesEl.scrollHeight;
     }
 
-    var llmMetaEl = document.getElementById('d360-alert-chat-llm');
+    var llmMetaEl = opts.llmMetaEl || document.getElementById('d360-alert-chat-llm');
     if (llmMetaEl && TurnUi.loadChatLlmMeta) {
       TurnUi.loadChatLlmMeta(llmMetaEl, strings, lang);
     }

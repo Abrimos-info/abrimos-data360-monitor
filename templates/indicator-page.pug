@@ -1,31 +1,75 @@
 extends layout
 include mixins
 
+block headerExtras
+  if lastUpdateIso
+    header.d360-header.d360-header--band.d360-header--indicators
+      div.d360-shell
+        div.d360-lastupdate
+          span.d360-lastupdate__dot(aria-hidden="true")
+          span.d360-lastupdate__label= _("ui.last_update", lang)
+          span.d360-lastupdate__sep(aria-hidden="true") ·
+          time.d360-local-datetime.d360-lastupdate__time(datetime=lastUpdateIso)
+
 block content
   - var data360Link = (typeof indicatorUrl === "function") ? indicatorUrl(idno) : ("https://data360.worldbank.org/en/indicator/" + encodeURIComponent(idno))
-  main.d360-page.d360-page--indicator-detail
-    header.d360-indicator-detail__head
-      if catalog
-        +indicatorRef(catalog, lang)
-      else
-        +indicatorRef({ idno: idno, name: idno }, lang)
-      if catalog && catalog.database_id
-        p.d360-indicator-detail__database= catalog.database_id
-      p
-        a.d360-indicator-detail__data360(href=data360Link target="_blank" rel="noopener")= _("indicator.view_data360", lang)
+  - var titleText = (catalog && catalog.name && catalog.name !== idno) ? catalog.name : idno
+  - var unknown = _("indicators.date_unknown", lang)
+  main.d360-page.d360-page--indicator-detail.d360-page--band
+    div.d360-shell
+      nav.d360-article__crumb(aria-label=_("indicator.crumb", lang))
+        a(href="/indicadores")= _("indicators.title", lang)
 
-    if alerts && alerts.length
-      each iso in demoCountries
-        - var countryAlerts = byCountry && byCountry[iso] ? byCountry[iso] : []
-        if countryAlerts.length
-          section.d360-indicator-detail__country
-            h2
-              +countryTag(iso, lang, _)
-            ul.d360-indicator-detail__alerts
-              each alert in countryAlerts
-                li
-                  a.d360-indicator-detail__alert(href=pathForCountry(alert, iso))
-                    +contentTypeBadge(alert.content_type || "noticia", lang, _)
-                    span= pickHeadline(alert, lang)
-    else
-      p.d360-empty__help= _("indicator.no_stories", lang)
+      header.d360-indicator-detail__head
+        h1.d360-indicator-detail__title= titleText
+        div.d360-indicator-detail__idrow
+          span.d360-ind-pill
+            code.d360-ind-pill__id= idno
+        if catalog
+          span.d360-indicator-meta
+            span.d360-indicator-meta__item
+              span.d360-indicator-meta__label= _("indicators.updated_at", lang)
+              if catalog.last_modified_iso || catalog.last_modified
+                time.d360-local-datetime(datetime=(catalog.last_modified_iso || catalog.last_modified))
+              else
+                span= catalog.last_modified_display || unknown
+            span.d360-indicator-meta__item
+              span.d360-indicator-meta__label= _("indicators.last_data", lang)
+              span= catalog.last_data_display || unknown
+        if catalog && catalog.database_id
+          p.d360-indicator-detail__database= catalog.database_id
+        p.d360-indicator-detail__links
+          a.d360-indicator-detail__data360(href=data360Link target="_blank" rel="noopener")= _("indicator.view_data360", lang)
+
+      if alerts && alerts.length
+        each iso in demoCountries
+          - var countryAlerts = byCountry && byCountry[iso] ? byCountry[iso] : []
+          if countryAlerts.length
+            section.d360-indicator-detail__country
+              h2.d360-indicator-detail__country-title
+                +countryTag(iso, lang, _)
+              ul.d360-frontpage__headline-list
+                each alert in countryAlerts
+                  - var headlineText = pickHeadline(alert, lang)
+                  - var headlineLead = alert.content_type === "reportaje" && typeof pickLead === "function" ? pickLead(alert, lang) : ""
+                  - var dateText = typeof headlineDateLabel === "function" ? headlineDateLabel(alert, lang) : ""
+                  - var typeText = alert.type ? ((alert.type === "abrupt_change") ? _("type.abrupt_change", lang) : _("type.anomaly", lang)) : null
+                  li(class=(alert.content_type === "reportaje" ? "d360-frontpage__headline-item--reportaje" : ""))
+                    a.d360-frontpage__headline(href=pathForCountry(alert, iso))
+                      div.d360-indicator-detail__alert-eyebrow
+                        +contentTypeBadge(alert.content_type || "noticia", lang, _)
+                      span.d360-frontpage__headline-title= headlineText
+                      if headlineLead
+                        span.d360-frontpage__headline-lede= headlineLead
+                      span.d360-frontpage__headline-meta
+                        if typeText
+                          +typeChip(alert.type, typeText)
+                          span.d360-frontpage__headline-meta-sep(aria-hidden="true") ·
+                        if alert.detected_at
+                          time.d360-local-datetime.d360-frontpage__headline-generated(datetime=alert.detected_at)
+                        if dateText
+                          if alert.detected_at || typeText
+                            span.d360-frontpage__headline-meta-sep(aria-hidden="true") ·
+                          span.d360-frontpage__headline-date= dateText
+      else
+        p.d360-empty__help= _("indicator.no_stories", lang)

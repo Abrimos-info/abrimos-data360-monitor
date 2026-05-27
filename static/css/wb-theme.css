@@ -55,11 +55,51 @@ body {
   padding-left: 32px;
   padding-right: 32px;
 }
-.d360-page--frontpage,
-.d360-page--article {
+
+/* Full-bleed gray band; inner shell matches nav/header content column (1320px). */
+.d360-shell {
+  max-width: var(--wb-shell-max);
+  margin: 0 auto;
+  padding-left: 32px;
+  padding-right: 32px;
+  box-sizing: border-box;
+}
+.d360-band {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
   background: var(--bg-alt);
+}
+.d360-page.d360-page--band {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  background: var(--bg-alt);
+}
+.d360-page.d360-page--band > .d360-shell {
   padding-top: 28px;
   padding-bottom: 48px;
+}
+.d360-header.d360-header--band,
+.d360-header.d360-header--frontpage {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  background: var(--bg-alt);
+  border-bottom: 1px solid var(--border);
+  box-sizing: border-box;
+  position: static;
+}
+.d360-header.d360-header--band > .d360-shell,
+.d360-header.d360-header--frontpage > .d360-shell {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.d360-header.d360-header--band .d360-lastupdate {
+  padding: 12px 0 16px;
 }
 .d360-page--article .d360-article {
   max-width: var(--feed-max);
@@ -68,6 +108,18 @@ body {
   border: 1px solid var(--border);
   border-radius: 4px;
   padding: 32px 40px 40px;
+}
+.d360-page--chat .d360-chat {
+  max-width: 920px;
+  margin: 0 auto;
+}
+.d360-page--about .d360-prose {
+  max-width: 760px;
+}
+.d360-indicators__head h1,
+.d360-indicator-detail__title {
+  font-family: var(--font-serif);
+  color: var(--wb-navy);
 }
 .d360-article__title {
   font-family: var(--font-serif);
@@ -102,8 +154,120 @@ body {
   font-family: var(--font-serif);
   color: var(--fg);
 }
+.d360-frontpage__hero-chart {
+  margin: var(--space-4, 16px) 0 var(--space-3, 12px);
+  max-width: 100%;
+}
+.d360-frontpage__hero-chart-caption {
+  margin: var(--space-2, 8px) 0 0;
+  font-size: 0.75rem;
+  color: var(--fg-light);
+  letter-spacing: 0.02em;
+}
+
+/* --- Reportaje multi-series chart (reuse .d360-chart base from main.css) --- */
+.d360-chart--multi .d360-chart__line {
+  stroke: currentColor; /* actual stroke set inline per series */
+}
+.d360-chart--multi .d360-chart__legend-label {
+  fill: var(--fg-light);
+  font-family: var(--font-body);
+  font-size: 11px;
+}
+.d360-chart--multi .d360-chart__legend-more {
+  fill: var(--fg-light);
+  font-family: var(--font-body);
+  font-size: 11px;
+  opacity: 0.85;
+}
+.d360-article__reportaje-chart {
+  margin: var(--space-5, 20px) 0;
+  padding: var(--space-4, 16px);
+  background: var(--surface, #fff);
+  border: 1px solid var(--border, #e0e4e8);
+  border-radius: 4px;
+}
+.d360-article__reportaje-chart-caption {
+  margin-top: var(--space-3, 12px);
+  font-size: 0.8125rem;
+  color: var(--fg-light);
+  text-align: center;
+}
 .d360-frontpage__headline:hover .d360-frontpage__headline-title {
   color: var(--wb-blue);
+}
+.d360-indicator-detail__head {
+  margin-bottom: var(--space-5, 24px);
+  padding-bottom: 0;
+}
+.d360-indicator-detail__title {
+  font-size: var(--fs-h1, 28px);
+  font-weight: 500;
+  line-height: var(--lh-tight, 1.35);
+  margin: 0 0 var(--space-2, 8px);
+}
+.d360-indicator-detail__idrow {
+  margin-bottom: var(--space-2, 8px);
+}
+.d360-indicator-detail__database {
+  font-size: 0.85rem;
+  color: var(--fg-light);
+  margin: var(--space-2, 8px) 0 0;
+}
+.d360-indicator-detail__links {
+  margin: var(--space-2, 8px) 0 0;
+}
+.d360-indicator-detail__data360 {
+  color: var(--wb-blue);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+.d360-indicator-detail__data360:hover {
+  color: var(--wb-blue-dark);
+  text-decoration: underline;
+}
+.d360-indicator-detail__country {
+  margin-top: var(--space-5, 24px);
+}
+.d360-indicator-detail__country-title {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--fg-light);
+  margin: 0 0 var(--space-3, 12px);
+  font-weight: 700;
+}
+.d360-indicator-detail__country-title .d360-country__name {
+  text-transform: none;
+  letter-spacing: normal;
+  font-size: 1rem;
+  color: var(--wb-navy);
+}
+.d360-indicator-detail__alert-eyebrow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 6px;
+}
+.d360-indicators__head h1 {
+  font-size: var(--fs-h1, 28px);
+  font-weight: 500;
+  line-height: var(--lh-tight, 1.35);
+  margin: 0 0 var(--space-2, 8px);
+}
+.d360-indicators__lead {
+  color: var(--fg);
+  max-width: 42rem;
+  margin: 0 0 var(--space-5, 24px);
+  line-height: var(--lh-body, 1.55);
+}
+.d360-indicators__head {
+  margin-bottom: var(--space-4, 16px);
+  padding-bottom: var(--space-4, 16px);
+  border-bottom: 1px solid var(--border);
 }
 .d360-frontpage__section-title {
   font-family: var(--font-body);
@@ -146,12 +310,6 @@ body {
   letter-spacing: 0.06em;
   color: var(--fg-light);
 }
-.d360-header--frontpage {
-  max-width: var(--wb-shell-max);
-  margin: 0 auto;
-  padding: 0 32px 16px;
-  border-bottom: 1px solid var(--border);
-}
 .d360-header__edition {
   font-family: var(--font-body);
   font-weight: 700;
@@ -175,7 +333,9 @@ body {
 .d360-onboard__note { border-left-color: var(--wb-blue); }
 
 @media (max-width: 900px) {
-  .d360-page,
-  .d360-header--frontpage { padding-left: 16px; padding-right: 16px; }
+  .d360-shell {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
   .d360-page--article .d360-article { padding: 24px 20px; }
 }
