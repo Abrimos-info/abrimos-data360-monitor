@@ -54,9 +54,6 @@ bin/
   fetch-news.js          # GDELT headlines → data/news/{COUNTRY}/{YYYY-MM}.jsonl
   generate-analysis.js   # CLI: detect (1+4) + LLM + emit data/alerts.json
   discover-indicators.js # Query Data360 for recently-updated datasets → data/dynamic-watchlist.json
-  fetch-baseline.js      # Legacy tier fetcher (annual)
-  fetch-pulse.js         # Legacy tier fetcher (pulse)
-  fetch-forecast.js      # Legacy tier fetcher (forecast)
 lib/
   analysis/runner.js          # Phase 1: detect + narrate Noticias; Phase 2: invokes reportaje-runner
   analysis/reportaje-runner.js # Groups Noticias by dataset; one LLM call per dataset → Reportaje
@@ -108,7 +105,7 @@ docs/
 | D-006 | Product tagline. "AI-powered news agency that detects newsworthy facts from Data360's 12,000 indicators and delivers them verified with local perspective to LAC newsrooms." (ES: agencia de noticias basada en IA, 12.000 indicadores, perspectiva local LAC.) |
 | D-007 | Demo works backwards (replay over historical snapshots), not real-time. |
 | D-008 | Deliverable is a static dashboard reading `data/alerts.json`. |
-| D-009 | Non-functional newsletter subscribe button (visual placeholder). |
+| D-009 | Demo subscription saves email + type to local TSV (`data/newsletter/subscribers.tsv`); no real email send (roadmap). |
 | D-010 | Covers strategies 1 (abrupt changes) and 4 (cross-indicator anomalies). |
 | D-011 | Node.js stack. NiFi roadmap. LLM does one call per indicator. |
 | D-012 | Hosting on Abrimos-owned infrastructure. |

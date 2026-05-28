@@ -57,6 +57,32 @@ test('formatLlmDebugSummary and title', () => {
   assert.match(formatLlmDebugTitle(debug), /8000/);
 });
 
+test('buildProductionMetaRows surfaces alert and llm_debug fields', () => {
+  const { buildProductionMetaRows } = require('../lib/analysis/llm-debug');
+  const rows = buildProductionMetaRows({
+    id: 'noticia_abrupt_change_ARG_X_2024_1',
+    indicator: { idno: 'FAO_CP_23012' },
+    detected_at: '2026-05-22T12:00:00Z',
+    quality_status: 'accepted',
+    llm_debug: {
+      provider: 'nvidia',
+      provider_label: 'NVIDIA',
+      model: 'moonshotai/kimi-k2.6',
+      duration_ms: 45000,
+      input_tokens: 12000,
+      output_tokens: 900,
+      steps: [],
+    },
+  }, 'es', (key) => key);
+
+  const labels = rows.map((r) => r.label);
+  assert.ok(labels.includes('article.production.indicator'));
+  assert.ok(labels.includes('article.production.detection'));
+  assert.ok(labels.includes('article.production.model'));
+  assert.ok(labels.includes('article.production.duration'));
+  assert.ok(labels.includes('article.production.tokens_in'));
+});
+
 test('validateAlert accepts optional llm_debug on noticia', () => {
   const { validateAlert } = require('../lib/analysis/quality-validator');
   const item = {

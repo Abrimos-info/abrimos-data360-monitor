@@ -170,9 +170,7 @@ No dedicated coverage today. Highest priority for newly implemented code; alread
 
 | Script | Expected behaviour |
 |--------|-------------------|
-| `bin/fetch-pulse.js` | Writes `data/context/{COUNTRY}/pulse.csv` (mock HTTP) |
-| `bin/fetch-baseline.js` | Writes `annual.csv` per country |
-| `bin/fetch-forecast.js` | Writes `forecast.csv` per country |
+| Legacy tier fetch (`fetch-baseline.js`, `fetch-pulse.js`, `fetch-forecast.js`) | Removed; use `bin/fetch-data.js` (`npm run fetch`) |
 
 ---
 

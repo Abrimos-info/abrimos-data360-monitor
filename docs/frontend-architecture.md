@@ -76,14 +76,19 @@ data360/
 5. In production mode, the server initializes on a configured port (default `8090`) driving `http.createServer`. In development mode, integrated watchers track files for instant dev feedback.
 
 ### Routing
-Driven by a structured route manifest (`config/routes.json`) plus explicit API routes in `lib/router.js`:
+Driven by `config/routes.json` via `lib/route-registry.js`, plus explicit API routes in `lib/router.js`:
 
-* `/`: Country home — newspaper front page (reportajes, headlines, indicator ticker). Legacy card feed available via `?legacy=1`.
-* `/chat`: Chat — compiled `chat.pug`, SSE client to `/api/chat`.
-* `/{país}/{slug}`: Article page — noticia/reportaje with scoped chat (`alert-page.pug`, `alert-chat.js`).
-* `/about`: About — methodology, limits, team, license.
-* `GET /api/alerts`: JSON `{ alerts: [...] }` for monitor/chat sync.
-* `POST /api/chat`: SSE agent stream (`messages`, `focus_countries`, `focus_changed`).
+* `/`: Country picker + hero; links to five country front pages.
+* `/{countrySlug}`: Country front page (reportajes, headlines, indicator ticker).
+* `/indicador/{idno}`: Indicator detail hub page.
+* `/{country}/{tipo}/{slug}/{id}`: Article page — noticia/reportaje with scoped chat.
+* `/chat`, `/about`, `/indicadores`, `/metodologia`, `/privacidad`, `/terminos`, `/uso`: Static pages.
+* `/newsletter`, `/newsletter/lac/{date}`: Newsletter preview (fixture editions).
+* `/alertas/{countrySlug}/ejemplo`: Indicator-alerts subscription preview.
+* `/dev/feed`: Legacy card feed (dev-only).
+* `POST /api/subscribe`: Append subscription to local TSV.
+* `GET /api/alerts`, `POST /api/chat`: JSON/SSE APIs.
+* Fallback: `notFoundPage` for unmatched paths.
 * `/static/*`: CSS, JS, vendor assets with cache-control headers.
 
 ---

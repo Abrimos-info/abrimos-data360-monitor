@@ -79,3 +79,11 @@ test('reload() keeps getAlerts() consistent', () => {
   assert.ok(Array.isArray(store.getCountries()));
   assert.ok(Array.isArray(store.getCategories()));
 });
+
+test('findPcnDemoAlert returns a path to a story with claim tokens', () => {
+  const demo = store.findPcnDemoAlert();
+  if (store.getAlerts().length === 0) return;
+  assert.ok(demo);
+  assert.ok(demo.path.startsWith('/'));
+  assert.ok(Array.isArray(demo.alert.claim_tokens) && demo.alert.claim_tokens.length > 0);
+});

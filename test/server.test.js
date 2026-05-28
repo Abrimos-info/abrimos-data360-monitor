@@ -170,13 +170,14 @@ test('HTTP routes', async (t) => {
     assert.ok(res.body.includes('local-datetime.js'));
   });
 
-  await t.test('GET article page shows generation datetime in meta bar', async () => {
+  await t.test('GET article page shows production metadata in chrome footer', async () => {
     const store = require('../lib/alerts-store');
     const argAlert = store.getAlertsForCountry('ARG')[0];
     if (!argAlert || !argAlert._paths || !argAlert._paths.ARG) return;
     const res = await get(base + argAlert._paths.ARG);
     assert.equal(res.status, 200);
-    assert.ok(res.body.includes('d360-article__meta'));
+    assert.ok(res.body.includes('d360-article-chrome'));
+    assert.ok(res.body.includes('d360-article__production-meta') || res.body.includes('d360-article__disclaimer'));
     assert.match(res.body, /Generado|Generated/);
     assert.match(res.body, /time[^>]+d360-local-datetime[^>]+datetime="/);
   });
@@ -239,6 +240,14 @@ test('HTTP routes', async (t) => {
     assert.ok(res.body.includes('d360-page--band'));
     assert.ok(res.body.includes('d360-shell'));
     assert.ok(res.body.includes('d360-prose'));
+    assert.ok(res.body.includes('trazabilidad activa') || res.body.includes('active traceability'));
+  });
+
+  await t.test('GET /alertas/mexico/ejemplo returns alerts sample copy', async () => {
+    const res = await get(base + '/alertas/mexico/ejemplo');
+    assert.equal(res.status, 200);
+    assert.ok(res.body.includes('Alertas de indicadores') || res.body.includes('Indicator alerts'));
+    assert.doesNotMatch(res.body, /\[alerts\.sample_/);
   });
 
   await t.test('GET /static/css/main.css returns 200 text/css', async () => {
@@ -332,6 +341,17 @@ test('HTTP routes', async (t) => {
     assert.ok(!res.body.includes('wb-globe.svg'));
   });
 
+  await t.test('newsletter modal form fields present on home', async () => {
+    const res = await get(base + '/');
+    assert.ok(res.body.includes('id="d360-subscribe-form"'));
+    assert.ok(res.body.includes('name="subscription_type"'));
+    assert.ok(res.body.includes('value="newsletter_lac"'));
+    assert.ok(res.body.includes('value="indicator_alerts"'));
+    assert.ok(res.body.includes('id="d360-subscribe-country"'));
+    assert.ok(res.body.includes('id="d360-subscribe-email"'));
+    assert.ok(res.body.includes('data-open-subscribe'));
+  });
+
   await t.test('newsletter UI elements present on dashboard', async () => {
     const res = await get(base + '/');
     assert.ok(res.body.includes('id="d360-subscribe-btn"'));
@@ -351,6 +371,36 @@ test('HTTP routes', async (t) => {
   await t.test('GET /?lang=es sets html lang', async () => {
     const res = await get(base + '/?lang=es');
     assert.match(res.body, /<html[^>]*lang="es"/);
+  });
+
+  await t.test('GET /metodologia returns methodology page', async () => {
+    const res = await get(base + '/metodologia');
+    assert.equal(res.status, 200);
+    assert.ok(res.body.includes('static.metodologia') || res.body.includes('Metodolog'));
+  });
+
+  await t.test('POST /api/subscribe accepts newsletter_lac', async () => {
+    const res = await new Promise((resolve, reject) => {
+      const req = http.request(base + '/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+      }, (r) => {
+        let body = '';
+        r.on('data', (chunk) => { body += chunk; });
+        r.on('end', () => resolve({ status: r.statusCode, body }));
+      });
+      req.on('error', reject);
+      req.write(JSON.stringify({
+        email: 'test@example.com',
+        subscription_type: 'newsletter_lac',
+        lang: 'es',
+      }));
+      req.end();
+    });
+    assert.equal(res.status, 200);
+    const data = JSON.parse(res.body);
+    assert.equal(data.ok, true);
+    assert.ok(data.preview_url.includes('/newsletter/lac/'));
   });
 
   await t.test('GET /?langMode=both ignores both and uses lang', async () => {

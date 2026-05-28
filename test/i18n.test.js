@@ -62,6 +62,9 @@ test('newsletter keys exist in ES and EN', () => {
     'newsletter.audience',
     'newsletter.demo_note',
     'newsletter.close',
+    'newsletter.edition_kicker',
+    'newsletter.read_story',
+    'newsletter.featured_title',
   ];
   for (const key of keys) {
     const es = i18n.getString(key, 'es');
@@ -69,6 +72,41 @@ test('newsletter keys exist in ES and EN', () => {
     assert.ok(!es.startsWith('['), `${key} missing in es`);
     assert.ok(!en.startsWith('['), `${key} missing in en`);
   }
+});
+
+test('subscribe keys exist in ES and EN', () => {
+  const keys = [
+    'subscribe.modal_title',
+    'subscribe.type_newsletter',
+    'subscribe.type_alerts',
+    'subscribe.success_newsletter',
+    'subscribe.preview_link',
+  ];
+  for (const key of keys) {
+    assert.ok(!i18n.getString(key, 'es').startsWith('['), `${key} missing in es`);
+    assert.ok(!i18n.getString(key, 'en').startsWith('['), `${key} missing in en`);
+  }
+});
+
+test('alerts sample and about pcn demo keys exist', () => {
+  const keys = [
+    'about.pcn_demo_link',
+    'alerts.sample_title',
+    'alerts.sample_lead',
+    'alerts.sample_empty',
+    'article.production_title',
+    'article.chrome_label',
+  ];
+  for (const key of keys) {
+    assert.ok(!i18n.getString(key, 'es').startsWith('['), `${key} missing in es`);
+    assert.ok(!i18n.getString(key, 'en').startsWith('['), `${key} missing in en`);
+  }
+});
+
+test('copy keys A-1 lockup and nav exist', () => {
+  assert.equal(i18n.getString('lockup.product_sub', 'es'), 'Agencia de noticias · LAC');
+  assert.equal(i18n.getString('nav.indicators', 'es'), 'Indicadores');
+  assert.equal(i18n.getString('ui.subscribe', 'es'), 'Newsletter');
 });
 
 test('getString interpolates params', () => {

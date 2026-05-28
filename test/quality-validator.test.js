@@ -72,6 +72,14 @@ test('validateAlert Q2 fails on schema violation', () => {
   assert.ok(failures.some((f) => f.check === 'Q2'));
 });
 
+test('shared bilingual normalizer used by extractor and validator', () => {
+  const { ensureBilingual, isBilingualField } = require('../lib/analysis/normalizers');
+  const normalized = ensureBilingual({ es: 'Hola', en: '' }, 'fallback');
+  assert.equal(normalized.en, 'Hola');
+  assert.equal(isBilingualField(normalized), true);
+  assert.equal(isBilingualField({ es: 'x' }), false);
+});
+
 test('validateAlert Q4 fails on short story', () => {
   const bad = minimalNoticia({
     story: { es: 'corta', en: 'short' },
