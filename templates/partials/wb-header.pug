@@ -7,9 +7,9 @@ header.wb-header
         span.d360-lockup__name= _("site_brand_suffix", lang)
         span.d360-lockup__sub= _("lockup.product_sub", lang)
     div.wb-header__actions
-      button.d360-subscribe(type="button" id="d360-subscribe-btn" disabled aria-disabled="true" title=_("ui.coming_soon", lang) data-tip=_("ui.coming_soon", lang))
-        span= _("ui.subscribe", lang)
       div.wb-header__locale(role="group" aria-label=_("nav.locale_group", lang))
+        button.d360-subscribe(type="button" id="d360-subscribe-btn" data-open-subscribe="true" aria-haspopup="dialog")
+          span= _("ui.subscribe", lang)
         button.d360-country-select(type="button" data-open-onboarding="countries" aria-haspopup="dialog" aria-expanded="false" aria-label=_("nav.editions", lang))
           if selectedCountryIso
             span.d360-country__flag(aria-hidden="true")= countryFlag(selectedCountryIso)

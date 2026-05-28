@@ -133,26 +133,13 @@ mixin indicatorRefFromAlert(alert, lang, opts)
     if indRow
       +indicatorRef(indRow, lang, opts)
 
-//- Labeled data bar for article pages (value, magnitude, period, generation time).
+//- Labeled data bar for article pages (value, magnitude, period).
 mixin articleMetaBar(alert, lang, _)
   - var lng = (lang === "en") ? "en" : "es"
-  - var magText = (alert.magnitude && alert.magnitude[lng]) || ''
+  - var magText = (alert.magnitude && alert.magnitude[lng]) || alert.magnitude || ''
   - var hasObs = alert.observation && (alert.observation.display || alert.observation.value != null)
-  - var llmSummary = alert.llm_debug && typeof formatLlmDebugSummary === "function" ? formatLlmDebugSummary(alert.llm_debug) : ''
-  - var llmTitle = alert.llm_debug && typeof formatLlmDebugTitle === "function" ? formatLlmDebugTitle(alert.llm_debug) : ''
-  - var hasGeneration = alert.detected_at || llmSummary
-  if hasObs || magText || hasGeneration
+  if hasObs || magText
     div.d360-article__meta(role="group" aria-label=_ ? _("article.meta.group", lang) : "Detection data")
-      if hasGeneration
-        div.d360-article__meta-item
-          span.d360-article__meta-label= _ ? _("article.meta.generated_at", lang) : "Generated"
-          span.d360-article__meta-value
-            if alert.detected_at
-              time.d360-local-datetime(datetime=alert.detected_at)
-            if llmSummary
-              if alert.detected_at
-                |  · 
-              span.d360-article__meta-llm(title=llmTitle)= llmSummary
       if hasObs
         div.d360-article__meta-item
           span.d360-article__meta-label= _ ? _("article.meta.value", lang) : "Value"

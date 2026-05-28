@@ -18,6 +18,22 @@ block content
         section
           h2= _("about.method_title", lang)
           p= _("about.method_body", lang)
+          p: a(href="/metodologia")= _("about.method_link", lang)
+
+        section#trazabilidad
+          h2= _("about.pcn_title", lang)
+          p= _("about.pcn_intro", lang)
+          p: strong= _("about.pcn_list_title", lang)
+          ul
+            li= _("about.pcn_li_1", lang)
+            li= _("about.pcn_li_2", lang)
+            li= _("about.pcn_li_3", lang)
+            li= _("about.pcn_li_4", lang)
+          p= _("about.pcn_fail", lang)
+          p= _("about.pcn_mechanical", lang)
+          p= _("about.pcn_lib", lang)
+          if pcnDemoPath
+            p: a(href=pcnDemoPath)= _("about.pcn_demo_link", lang)
 
         section
           h2= _("about.features_title", lang)
@@ -31,6 +47,29 @@ block content
         section
           h2= _("about.verify_title", lang)
           p= _("about.verify_body", lang)
+          p: a(href="/about#trazabilidad")= _("about.verify_link", lang)
+
+        section
+          h2= _("about.ai_title", lang)
+          p= _("about.ai_intro", lang)
+          h3= _("about.ai_why_title", lang)
+          p= _("about.ai_why_body", lang)
+          h3= _("about.ai_compensate_title", lang)
+          ol
+            li= _("about.ai_comp_1", lang)
+            li= _("about.ai_comp_2", lang)
+            li= _("about.ai_comp_3", lang)
+            li
+              = _("about.ai_comp_4", lang)
+              a(href="/metodologia")= _("about.ai_comp_4_link", lang)
+              | .
+            li= _("about.ai_comp_5", lang)
+          h3= _("about.ai_newsroom_title", lang)
+          ul
+            li= _("about.ai_newsroom_1", lang)
+            li= _("about.ai_newsroom_2", lang)
+            li= _("about.ai_newsroom_3", lang)
+          p= _("about.ai_roadmap", lang)
 
         section
           h2= _("about.limits_title", lang)
@@ -47,17 +86,46 @@ block content
           h2= _("about.roadmap_title", lang)
           p= _("about.roadmap_body", lang)
 
+        section
+          p= _("about.abrimos_body", lang)
+
         section.d360-about-team
           h2= _("about.team_title", lang)
+          p= _("about.team_body", lang)
+          h3= _("about.team_edu_name", lang)
+          p= _("about.team_edu_bio", lang)
+          p.d360-about-team__links
+            a(href="https://linkedin.com/in/emartinborregon" target="_blank" rel="noopener") LinkedIn ↗
+            |  · 
+            a(href="mailto:edu@abrimos.info") edu@abrimos.info
+          h3= _("about.team_martin_name", lang)
+          p= _("about.team_martin_bio", lang)
+          p.d360-about-team__links
+            a(href="https://linkedin.com/in/martinsz/" target="_blank" rel="noopener") LinkedIn ↗
+            |  · 
+            a(href="mailto:martin@abrimos.info") martin@abrimos.info
+          h3= _("about.team_fer_name", lang)
+          p= _("about.team_fer_bio", lang)
+          p.d360-about-team__links
+            a(href="https://linkedin.com/in/fernando-matzdorf-639b2215b/" target="_blank" rel="noopener") LinkedIn ↗
+            |  · 
+            a(href="mailto:fer@abrimos.info") fer@abrimos.info
+          hr
+          p= _("about.team_experience", lang)
+          p: a(href="https://abrimos.info" target="_blank" rel="noopener")= _("about.team_more", lang)
           a.d360-about-team__brand(href="https://abrimos.info" target="_blank" rel="noopener")
             img.d360-about-team__logo(src=staticAsset('images/abrimos-info.png') alt="Abrimos.info" width="120" height="120")
             span.d360-about-team__name abrimos.info
-          p= _("about.team_body", lang)
-          p= _("about.team_experience", lang)
 
         section
           h2= _("about.license_title", lang)
+          p= _("about.license_code", lang)
           p
-            = _("about.license_body", lang)
+            = _("about.license_content", lang)
             |  
-            a(href="https://github.com/Abrimos-info/abrimos-data360-monitor" target="_blank" rel="noopener") GitHub
+            a(href="/uso")= _("footer.uso", lang)
+          p= _("about.license_docs", lang)
+          p
+            = _("about.license_repo", lang)
+            |  
+            a(href="https://github.com/abrimos-info/abrimos-data360-monitor" target="_blank" rel="noopener") GitHub

@@ -4,9 +4,13 @@ include mixins
 block content
   main.d360-page.d360-page--picker.d360-page--band
     div.d360-shell
+      section.d360-home-hero
+        h1.d360-home-hero__title= _("home.hero.title", lang)
+        h2.d360-home-hero__subtitle= _("home.hero.subtitle", lang)
+        p.d360-home-hero__body= _("home.hero.body", lang)
+
       section.d360-picker
-        h1.d360-picker__title= _("picker.title", lang)
-        p.d360-picker__lead= _("tagline", lang)
+        h2.d360-picker__title= _("picker.title", lang)
         ul.d360-picker__grid
           each link in countryLinks
             - var cname = _("chat.country." + link.iso, lang)
@@ -18,6 +22,7 @@ block content
       if recentIndicators && recentIndicators.length
         section.d360-picker__recent
           h2.d360-picker__section-title= _("picker.recent_indicators", lang)
+          p.d360-picker__section-lead= _("picker.recent_lead", lang)
           ul.d360-picker__indicator-list
             each ind in recentIndicators
               li

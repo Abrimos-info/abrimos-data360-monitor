@@ -16,21 +16,30 @@
   display: flex;
   align-items: center;
   gap: 20px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 .wb-header__actions {
   margin-left: auto;
   display: flex;
   align-items: center;
   gap: 12px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  flex-shrink: 0;
 }
 .wb-header__locale {
   display: flex;
   align-items: center;
   gap: 0;
+  flex-wrap: nowrap;
+  flex-shrink: 0;
   border: 1px solid var(--border);
   border-radius: 3px;
+  overflow: hidden;
+}
+.wb-header__locale .d360-subscribe {
+  border-radius: 0;
+  border-right: 1px solid var(--border);
+  white-space: nowrap;
 }
 
 .d360-lockup {
@@ -39,7 +48,8 @@
   gap: 12px;
   text-decoration: none;
   color: var(--wb-navy);
-  flex-shrink: 0;
+  flex: 1 1 auto;
+  flex-shrink: 1;
   min-width: 0;
   border-bottom: 0;
 }
@@ -136,10 +146,15 @@
   border-radius: 22px;
   padding: 10px 18px;
   border: 0;
-  cursor: not-allowed;
-  opacity: 0.85;
+  cursor: pointer;
+  opacity: 1;
+  transition: background 0.15s;
+}
+.d360-subscribe:hover {
+  background: var(--brand-red-deep);
 }
 .d360-subscribe:disabled {
+  cursor: not-allowed;
   opacity: 0.7;
 }
 .d360-country-select {
@@ -319,9 +334,11 @@
 
 @media (max-width: 900px) {
   .d360-lockup__sub { display: none; }
+  .d360-lockup__name { display: none; }
   .wb-header__inner,
   .wb-nav__inner,
   .wb-filterbar,
   .wb-footer__inner { padding-left: 16px; padding-right: 16px; }
   .wb-nav { top: 0; position: relative; }
+  .wb-header__locale .d360-country__name { max-width: 5.5rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 }

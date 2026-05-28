@@ -46,33 +46,9 @@
     }
   }
 
-  function bindLangTabs(el) {
-    var tabs = el.querySelectorAll('[data-onboard-lang]');
-    var cols = el.querySelectorAll('[data-onboard-lang-col]');
-    if (!tabs.length) return;
-    tabs.forEach(function (tab) {
-      tab.addEventListener('click', function () {
-        var lng = tab.getAttribute('data-onboard-lang');
-        tabs.forEach(function (t) {
-          var active = t === tab;
-          t.classList.toggle('is-active', active);
-          t.setAttribute('aria-selected', active ? 'true' : 'false');
-        });
-        cols.forEach(function (col) {
-          col.classList.toggle('is-active', col.getAttribute('data-onboard-lang-col') === lng);
-        });
-      });
-    });
-  }
-
   function bindOnboarding(el) {
-    bindLangTabs(el);
     el.querySelectorAll('[data-onboard-dismiss]').forEach(function (node) {
       node.addEventListener('click', function () { dismiss(true); });
-    });
-
-    el.querySelectorAll('[data-onboard-go]').forEach(function (link) {
-      link.addEventListener('click', function () { dismiss(true); });
     });
 
     el.querySelectorAll('[data-country-iso]').forEach(function (link) {
@@ -81,6 +57,18 @@
         dismiss(true);
       });
     });
+
+    var switchBtn = el.querySelector('[data-onboard-switch-lang]');
+    if (switchBtn) {
+      switchBtn.addEventListener('click', function () {
+        var url = new URL(window.location.href);
+        var next = (window.D360_LANG === 'en') ? 'es' : 'en';
+        url.searchParams.set('lang', next);
+        url.searchParams.set('onboarding', '1');
+        url.searchParams.delete('langMode');
+        window.location.href = url.toString();
+      });
+    }
 
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') dismiss(true);
