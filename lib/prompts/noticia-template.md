@@ -15,8 +15,8 @@ Emitís exactamente este bloque fenced (sin texto adicional antes o después, ex
     "en": "Lead in English (max 60 words)."
   },
   "story": {
-    "es": "Cuerpo completo de la noticia en español (250–600 palabras). Incluye {{claim:CLAIM_ID|valor}} para cada número citado.",
-    "en": "Full story body in English (250–600 words). Include {{claim:CLAIM_ID|value}} for each number cited."
+    "es": "Cuerpo completo de la noticia en español (350–500 palabras, andamiaje 6 bloques). Incluye {{claim:CLAIM_ID|valor}} para cada número citado y enlace markdown a toda fuente periodística mencionada.",
+    "en": "Full story body in English (350–500 words, 6-block scaffold). Include {{claim:CLAIM_ID|value}} for each number cited and markdown links for every news source mentioned."
   },
   "countries": ["ISO3"],
   "dataset_id": "DATABASE_ID",
@@ -53,7 +53,9 @@ Emitís exactamente este bloque fenced (sin texto adicional antes o después, ex
 ```quality
 Q1: [OK|FAIL] — todos los claim_id en story están en claim_tokens y en el contexto §5
 Q2: [OK|FAIL] — JSON válido con todos los campos requeridos
-Q4: [OK|FAIL] — story.es entre 250 y 600 palabras; lead.es ≤ 60 palabras
+Q4: [OK|FAIL] — story.es entre 350 y 500 palabras (300-550 tolerado); lead.es ≤ 60 palabras
+Q10: [OK|FAIL] — toda mención a una noticia (prensa GDELT §8 o archivo §9) lleva enlace markdown a la URL original; ninguna URL fue inventada; el dataset Data360 está enlazado en el cuerpo
+Q11: [OK|FAIL] — los tres ejes país/LAC/mundo están presentes en story.es; si falta contexto mundo, está declarado explícitamente
 Q5: [OK|FAIL] — observaciones citadas con su time_period correcto
 Q6: [OK|FAIL] — locale numérico consistente (es: coma decimal; en: punto decimal)
 Q7: [OK|FAIL] — hipótesis marcadas con [HIPÓTESIS] donde corresponde
