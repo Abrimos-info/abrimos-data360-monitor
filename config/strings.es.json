@@ -230,5 +230,7 @@
   "floating_chat.placeholder": "Escribí tu pregunta…",
   "floating_chat.open": "Abrir chat",
   "floating_chat.close": "Cerrar",
-  "floating_chat.minimize": "Minimizar"
+  "floating_chat.minimize": "Minimizar",
+  "floating_chat.expand": "Expandir chat",
+  "floating_chat.collapse": "Restaurar tamaño"
 }

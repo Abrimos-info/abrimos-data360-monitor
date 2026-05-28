@@ -101,6 +101,14 @@
   max-height: 48px;
   overflow: hidden;
 }
+.d360-chatwin.is-expanded {
+  width: min(560px, calc(100vw - 48px));
+  max-height: min(720px, calc(100vh - 96px));
+}
+.d360-chatwin.is-expanded .d360-chatwin__messages {
+  max-height: none;
+  min-height: 280px;
+}
 .d360-chatwin__head {
   display: flex;
   align-items: center;
@@ -253,8 +261,14 @@
   cursor: not-allowed;
 }
 
+@media (min-width: 601px) {
+  .d360-floating-chat.is-open .d360-chatfab {
+    opacity: 0.92;
+  }
+}
 @media (max-width: 600px) {
   .d360-floating-chat { right: 16px; bottom: 16px; }
   .d360-chatwin { right: 0; bottom: 68px; width: calc(100vw - 32px); }
   .d360-chatfab__label { display: none; }
+  .d360-chatwin__btn#d360-chatwin-expand { display: none; }
 }
