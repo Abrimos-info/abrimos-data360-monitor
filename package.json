@@ -20,7 +20,6 @@
     "analyze:noticias": "node bin/generate-analysis.js --noticias-only",
     "analyze:reportajes": "node bin/generate-analysis.js --reportajes-only",
     "analyze:no-llm": "node bin/generate-analysis.js --no-llm",
-    "fetch:baseline": "node bin/fetch-baseline.js",
     "build": "npm run fetch && npm run fetch:news && npm run analyze",
     "pipeline:dynamic": "node bin/pipeline-dynamic.js",
     "pipeline:dynamic:force": "node bin/pipeline-dynamic.js --force",

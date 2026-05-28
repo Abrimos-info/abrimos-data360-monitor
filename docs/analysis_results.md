@@ -59,9 +59,7 @@ The workspace is organized into highly modular, decoupled components:
 
 * **Entrypoint**: `data360-monitor.js` spins up a vanilla Node.js HTTP server (listening on port `8090`), serves templates via Pug, handles static asset minification, and implements a dev file watcher using `chokidar`.
 * **CLI Tools (`bin/`)**:
-  * `fetch-baseline.js`: Downloads Tier 2 annual indicators and writes `data/context/{COUNTRY}/annual.csv`.
-  * `fetch-pulse.js`: Fetches Tier 1 monthly/quarterly indicators (FAO prices, IPC security) to `pulse.csv`.
-  * `fetch-forecast.js`: Pulls Tier 3 IMF/WB future projections (WEO & MPO) to `forecast.csv`.
+  * Legacy tier scripts (`fetch-baseline.js`, `fetch-pulse.js`, `fetch-forecast.js`) were removed from `bin/`; use `npm run fetch` (`bin/fetch-data.js`) only.
   * `generate-analysis.js`: Decoupled pipeline orchestrator that loads data, executes anomaly detection strategies, compiles integrated prompt contexts, calls the LLM, runs schema validation, and saves alerts.
 * **Library Abstractions (`lib/`)**:
   * `router.js` & `views.js`: Simple, Express-free HTTP router and SSR page compiler.

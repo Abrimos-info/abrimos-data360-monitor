@@ -27,7 +27,7 @@ Pull historical observations and metadata from Data360 for a curated watchlist o
 | `data/index.json` | Implemented. Per-indicator freshness summary. |
 | `bin/build-catalog.js` / `bin/probe-freshness.js` | Roadmap (Phase 2, full ~13k catalog). |
 | `bin/discover-indicators.js` / `lib/dynamic-watchlist.js` | Implemented. Dynamic discovery mode — see "Dynamic discovery" below. |
-| `bin/fetch-baseline.js`, `fetch-pulse.js`, `fetch-forecast.js` | Legacy tier fetchers. Superseded by `fetch-data.js` for new runs; kept for reference. |
+| Legacy tier fetchers (`fetch-baseline.js`, `fetch-pulse.js`, `fetch-forecast.js`) | Removed from `bin/`; superseded by `fetch-data.js`. Historical copies may exist in local `archive/bin/` (gitignored). |
 | `examples/freshness-probe-demo.js` | Standalone spike used to validate HEAD/ETag behaviour before integration. |
 
 ## Two deployment modes
