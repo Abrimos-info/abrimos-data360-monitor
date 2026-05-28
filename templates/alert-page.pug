@@ -60,6 +60,9 @@ block content
                   a.d360-article__indicators-link(href=indSearchUrl target="_blank" rel="noopener")
                     +indicatorRef(enrichIndicator({ idno: idno }, lang), lang, { dates: false })
 
+      aside.d360-article-chrome(aria-label=_("article.chrome_label", lang))
+        include partials/article-footer
+
 block pageScripts
   script.
     window.D360_ALERT = !{JSON.stringify(alert)};

@@ -1,0 +1,46 @@
+section.d360-article__disclaimer
+  h2= _("article.disclaimer_title", lang)
+  p.d360-article-chrome__intro
+    = _("article.disclaimer_intro_before", lang)
+    a(href="/metodologia")= _("article.disclaimer_method_link", lang)
+    = _("article.disclaimer_intro_after", lang)
+  ul.d360-article-chrome__ai-list
+    li
+      strong= _("article.disclaimer_ai_did_label", lang)
+      |  
+      = _("article.disclaimer_ai_did_body", lang)
+    li
+      strong= _("article.disclaimer_ai_not_label", lang)
+      |  
+      = _("article.disclaimer_ai_not_body", lang)
+  p.d360-article-chrome__verify= _("article.disclaimer_verify", lang)
+  if productionMetaRows && productionMetaRows.length
+    div.d360-article__production-meta
+      h3.d360-article__production-heading= _("article.production_title", lang)
+      dl
+        each row in productionMetaRows
+          dt= row.label
+          dd(class=row.mono ? 'd360-article__production-value--mono' : null title=row.title || null)
+            if row.isTime
+              time.d360-local-datetime(datetime=row.value)
+            else
+              = row.value
+
+section.d360-article__reuse
+  h2= _("article.reuse_title", lang)
+  p= _("article.reuse_body", lang)
+  p.d360-article__reuse-actions(role="group" aria-label=_("article.reuse_title", lang))
+    button.d360-article-chrome__link-btn(type="button" data-copy-citation="short")= _("article.reuse_copy_short", lang)
+    span.d360-article-chrome__sep(aria-hidden="true") ·
+    button.d360-article-chrome__link-btn(type="button" data-copy-citation="full")= _("article.reuse_copy_full", lang)
+    span.d360-article-chrome__sep(aria-hidden="true") ·
+    a(href="/uso")= _("article.reuse_link", lang)
+
+section.d360-article__newsletter-cta
+  h2= _("article.newsletter_title", lang)
+  p= _("article.newsletter_body", lang)
+  button.d360-article-chrome__subscribe(type="button" data-open-subscribe="true")= _("ui.subscribe", lang)
+  p.d360-article__newsletter-note
+    em= _("article.newsletter_privacy", lang)
+    |  
+    a(href="/privacidad")= _("footer.privacidad", lang)
