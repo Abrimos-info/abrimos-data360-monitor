@@ -1,0 +1,47 @@
+{
+  "edition": {
+    "scope": "LAC",
+    "label": "LAC",
+    "date_iso": "2026-05-28",
+    "is_dry_day": false
+  },
+  "subject": {
+    "es": "Honduras retrocede en estado de derecho — y otros hallazgos LAC",
+    "en": "Honduras drops in rule of law — and other LAC findings"
+  },
+  "preheader": {
+    "es": "El mayor movimiento regional del día entre indicadores Data360 verificados.",
+    "en": "Today's largest verified regional move among Data360 indicators."
+  },
+  "greeting": {
+    "es": "Miércoles 28 de mayo. Cinco indicadores se movieron en América Latina y el Caribe ayer.",
+    "en": "Wednesday, May 28. Five indicators shifted across Latin America and the Caribbean yesterday."
+  },
+  "hero": {
+    "noticia_id": "sample",
+    "country_iso": "HND",
+    "title": {
+      "es": "Honduras retrocede en el índice de estado de derecho",
+      "en": "Honduras falls in rule of law index"
+    },
+    "lede_absorbed": {
+      "es": "Honduras cayó posiciones en el ranking regional de estado de derecho según el último update del World Justice Project en Data360.",
+      "en": "Honduras dropped in the regional rule-of-law ranking in the latest World Justice Project update on Data360."
+    },
+    "cta_link": "/honduras"
+  },
+  "featured": [],
+  "orphan": null,
+  "close": {
+    "type": "default",
+    "es": "Mañana sale otra edición con los movimientos del día.",
+    "en": "Another edition lands tomorrow with the day's indicator movements."
+  },
+  "cta": {
+    "label": {
+      "es": "Ver la edición completa en abrimos.info →",
+      "en": "See the full edition on abrimos.info →"
+    },
+    "url": "/newsletter/lac/2026-05-28"
+  }
+}

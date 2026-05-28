@@ -26,5 +26,6 @@ design/
 2026-05-26 Notas.txt
 data/context/**/*.csv
 data/news/
+data/newsletter/subscribers.tsv
 test/tmp/*
 !test/tmp/.gitkeep

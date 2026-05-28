@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  main.d360-page.d360-page--band
+    div.d360-shell
+      article.d360-prose
+        h1= _("alerts.sample_title", lang).replace("{country}", _("chat.country." + countryIso, lang))
+        p.d360-prose__lead= _("alerts.sample_lead", lang)
+        if indicators && indicators.length
+          ul.d360-alerts-sample
+            each ind in indicators
+              li
+                a(href="/indicador/" + encodeURIComponent(ind.idno))= ind.label || ind.idno
+                if ind.sparklineSvg
+                  span.d360-alerts-sample__spark!= ind.sparklineSvg
+        else
+          p= _("alerts.sample_empty", lang)
