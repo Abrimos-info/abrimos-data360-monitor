@@ -1,0 +1,74 @@
+{
+  "title": "Privacy policy",
+  "updated": "<em>Last updated: 27 May 2026.</em>",
+  "lead": "This policy explains what data Data360 News Agent collects, why, and how it is handled. It is meant to be readable — not a contract designed not to be read.",
+  "blocks": [
+    { "type": "h2", "text": "What we collect" },
+    {
+      "type": "p",
+      "text": "<strong>If you only browse the site</strong>: we do not collect personal identifiers. We do not use tracking cookies. There is no third-party analytics in this demo. <em>(When analytics are added, they will be self-hosted, respect <code>Do Not Track</code>, and not share data with third parties.)</em>"
+    },
+    {
+      "type": "p",
+      "text": "<strong>If you subscribe to the newsletter or indicator alerts</strong>: we store your email address and subscription type (and country, if you chose alerts). Nothing else. We do not ask for name, phone, or demographic data."
+    },
+    {
+      "type": "p",
+      "text": "<strong>If you use chat</strong>: your questions are processed by an external commercial large language model (LLM) to generate the answer. We do not store questions linked to your identity. <em>(Questions may remain in the LLM provider's logs under that provider's policy.)</em>"
+    },
+    { "type": "h2", "text": "How we use it" },
+    {
+      "type": "ul",
+      "items": [
+        "Newsletter email is used <strong>exclusively</strong> to send the daily email. It is not shared, sold, or cross-linked with other data.",
+        "Indicator alert email is used only to notify you when indicators update in your chosen country.",
+        "Chat questions are used to generate the answer you see. They are not stored to train our own models."
+      ]
+    },
+    { "type": "h2", "text": "How long we keep it" },
+    {
+      "type": "ul",
+      "items": [
+        "<strong>Subscriptions</strong>: until you unsubscribe. Each newsletter email includes a one-click unsubscribe link.",
+        "<strong>Technical logs</strong> (server IP, errors): 30 days, anonymized."
+      ]
+    },
+    { "type": "h2", "text": "Your rights" },
+    { "type": "p", "text": "You may at any time:" },
+    {
+      "type": "ul",
+      "items": [
+        "Request the email associated with your subscription.",
+        "Delete your subscription.",
+        "Request removal of any log associated with your email."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "To exercise any of these rights, write to <a href=\"mailto:contacto@abrimos.info\">contacto@abrimos.info</a>."
+    },
+    { "type": "h2", "text": "Third-party processing" },
+    {
+      "type": "ul",
+      "items": [
+        "<strong>Email delivery server</strong>: to be defined when the newsletter goes live (this policy will be updated).",
+        "<strong>Chat language model</strong>: a commercial LLM; processing follows that provider's privacy policy. The roadmap includes self-hosted open-source models for clients with strict requirements."
+      ]
+    },
+    { "type": "h2", "text": "Public data" },
+    {
+      "type": "p",
+      "text": "All content published by the agent (stories, features, cited indicators) comes from <strong>open public data in the World Bank's Data360 catalogue</strong>. We do not publish information about identified private individuals beyond public figures in their institutional roles."
+    },
+    { "type": "h2", "text": "Changes to this policy" },
+    {
+      "type": "p",
+      "text": "When we change this policy, we will update the date at the top of the page. If changes are material, we will announce them on the site before they take effect."
+    },
+    { "type": "h2", "text": "Data controller" },
+    {
+      "type": "p",
+      "text": "Abrimos.info, organization founded in Mexico. Contact: <a href=\"mailto:contacto@abrimos.info\">contacto@abrimos.info</a>."
+    }
+  ]
+}

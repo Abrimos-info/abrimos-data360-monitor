@@ -1,0 +1,58 @@
+{
+  "title": "Terms of use",
+  "updated": "<em>Last updated: 27 May 2026.</em>",
+  "blocks": [
+    { "type": "h2", "text": "What Data360 News Agent is" },
+    {
+      "type": "p",
+      "text": "Data360 News Agent is an automated news agency operated by Abrimos.info as a demo for the Data360 Global Challenge. The service is free for journalistic, academic, and civic use."
+    },
+    { "type": "h2", "text": "License for published content" },
+    {
+      "type": "p",
+      "text": "All <strong>stories and features</strong> published by the agent are distributed under <strong>Creative Commons Attribution 4.0 International (CC BY 4.0)</strong>. For practical guidance on citing and reusing, see <a href=\"/uso\">How to use these stories →</a>."
+    },
+    {
+      "type": "p",
+      "text": "Cited <strong>indicators and data</strong> belong to the World Bank and are governed by each dataset's license (visible on <code>data360.worldbank.org</code>)."
+    },
+    {
+      "type": "p",
+      "text": "The agent's <strong>source code</strong> is available under <strong>GPLv3</strong> at <a href=\"https://github.com/abrimos-info/abrimos-data360-monitor\" target=\"_blank\" rel=\"noopener\">github.com/abrimos-info/abrimos-data360-monitor</a>."
+    },
+    { "type": "h2", "text": "Acceptable use" },
+    { "type": "p", "text": "By using the site you agree to:" },
+    {
+      "type": "ul",
+      "items": [
+        "Not attempt to flood chat with automated queries (reasonable rate limits apply).",
+        "Not use content for deliberate disinformation or willful misrepresentation of data.",
+        "Respect attribution of published content."
+      ]
+    },
+    { "type": "h2", "text": "Nature of the content" },
+    {
+      "type": "p",
+      "text": "Stories are written by an artificial intelligence agent. Methodology, limitations, and the validation protocol are described at <a href=\"/metodologia\">/metodologia</a>. The site does not offer <strong>human editorial guarantee</strong> by default — each piece includes a notice on how it was produced."
+    },
+    {
+      "type": "p",
+      "text": "Figures in the text have mechanical traceability to the Data360 dataset, but editorial interpretation is generated automatically. <strong>For journalistic use we recommend verifying the figure and, if republishing, adding human editorial judgment.</strong>"
+    },
+    { "type": "h2", "text": "Limitation of liability" },
+    {
+      "type": "p",
+      "text": "Abrimos.info makes the service available in good faith without explicit or implied warranties of accuracy, completeness, or fitness for a particular purpose. Use of published content is the user's responsibility, especially for professional use or public decisions."
+    },
+    { "type": "h2", "text": "Changes to the service" },
+    {
+      "type": "p",
+      "text": "The site is an evolving demo. Features may change, pause, or be discontinued. When something material changes (coverage, scope, model), we will announce it on the site."
+    },
+    { "type": "h2", "text": "Contact" },
+    {
+      "type": "p",
+      "text": "For any legal query or question about content use: <a href=\"mailto:contacto@abrimos.info\">contacto@abrimos.info</a>."
+    }
+  ]
+}

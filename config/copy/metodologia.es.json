@@ -1,0 +1,257 @@
+{
+  "title": "Metodología",
+  "lead": "Esta página describe cómo el agente decide qué es noticia, cómo escribe la pieza y cómo se valida antes de publicar. Está pensada para periodistas que quieren entender la lógica antes de citar una pieza, y para evaluadores que quieren auditar el proceso.",
+  "blocks": [
+    {
+      "type": "p",
+      "text": "El agente opera en dos capas: una capa de <strong>análisis</strong> que detecta hechos estadísticamente notables, y una capa <strong>editorial</strong> que los convierte en pieza periodística. Cada capa tiene su propio protocolo de validación."
+    },
+    { "type": "hr" },
+    { "type": "h2", "text": "1. Selección de qué seguir" },
+    {
+      "type": "p",
+      "text": "El agente no procesa los 12.000 indicadores del catálogo Data360 — todavía. La demo trabaja sobre una <strong>watchlist</strong> de unos 35 indicadores, distribuidos en tres ritmos:"
+    },
+    {
+      "type": "ul",
+      "items": [
+        "<strong>Pulse</strong> — indicadores sub-anuales que se actualizan con frecuencia: inflación mensual (FAO), balance de pagos trimestral (FMI), fase IPC de seguridad alimentaria. Acá vive la noticia más reciente.",
+        "<strong>Anuales</strong> — indicadores que enmarcan estructuralmente al país: PIB per cápita, crecimiento, desempleo, indicadores del Banco Mundial (WDI).",
+        "<strong>Forecast</strong> — proyecciones forward-looking del Fondo Monetario Internacional (WEO) y del Banco Mundial (MPO)."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "La selección busca cubrir cinco dimensiones de cada país: macro, fiscal, social, seguridad alimentaria, gobernanza. Cinco países cubiertos hoy: Argentina, Ecuador, Guatemala, Honduras y México. El roadmap es expandir cobertura por indicador y por país hasta cubrir todo el catálogo."
+    },
+    { "type": "hr" },
+    { "type": "h2", "text": "2. Capa 1 — Análisis estadístico" },
+    { "type": "h3", "text": "2.1 Detección de qué merece nota" },
+    {
+      "type": "p",
+      "text": "Cuando un indicador se actualiza, el agente aplica dos estrategias estadísticas sobre la serie:"
+    },
+    {
+      "type": "p",
+      "text": "<strong>Cambio abrupto</strong> — se calcula el <em>z-score</em> del último valor respecto a la trayectoria histórica del país. Cuando supera el umbral (típicamente |z| ≥ 2), el cambio es estadísticamente notable: o no encaja con la tendencia, o rompe la varianza esperada."
+    },
+    {
+      "type": "p",
+      "text": "<strong>Anomalía cross-país</strong> — se compara la posición del país en el indicador contra el patrón regional. Si el país queda fuera del rango esperado para América Latina y el Caribe, el caso amerita análisis comparado."
+    },
+    {
+      "type": "p",
+      "text": "Estas dos estrategias son las que demuestra la demo. El roadmap suma una tercera: <strong>divergencia narrativa-dato</strong>, que cruza el discurso oficial (declaraciones, comunicados) con la serie del indicador para detectar contradicciones."
+    },
+    { "type": "h3", "text": "2.2 Salida de la capa de análisis: la \"alerta\"" },
+    {
+      "type": "p",
+      "text": "Para cada hallazgo, la capa de análisis emite una <strong>alerta</strong> con:"
+    },
+    {
+      "type": "ul",
+      "items": [
+        "Tipo (<code>abrupt_change</code> o <code>anomaly</code>), país (ISO3) y <code>score</code>.",
+        "Observación (valor + período + unidad), copiada literal del CSV.",
+        "Si aplica, valor previo (<code>previous</code>) y delta (Δ absoluto o relativo).",
+        "Una narrativa corta para el lector ciudadano y otra para el periodista (cada una ≤ 300 caracteres).",
+        "Un <code>verification_trace</code> con enlace al dataset, descarga del CSV y referencia metodológica.",
+        "Los <code>claim_tokens</code> de las cifras citadas en las narrativas."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "La capa de análisis se autovalida con un <strong>protocolo de siete preguntas</strong> (Q1–Q7) antes de pasar al editor. Cualquier falla bloquea la alerta."
+    },
+    {
+      "type": "table",
+      "headers": ["#", "Pregunta", "Qué chequea"],
+      "rows": [
+        ["Q1", "¿Cada cifra tiene un <em>claim token</em> trazable al contexto?", "Sin token o sin entrada en la serie, la narrativa se descarta."],
+        ["Q2", "¿La alerta tiene todos los campos del esquema?", "Integridad estructural mínima."],
+        ["Q3", "¿El volumen de alertas es razonable?", "Máximo 2 por país y 7 por corrida — evita inflación artificial."],
+        ["Q4", "¿Las narrativas respetan el límite de 300 caracteres?", "Brevedad obligatoria a nivel alerta."],
+        ["Q5", "¿Ninguna observación citada está ausente de la serie real?", "El modelo no puede inventar valores."],
+        ["Q6", "¿El locale numérico es consistente?", "Coma decimal y punto de miles en es-419."],
+        ["Q7", "¿Las hipótesis están marcadas como tales?", "Lo especulativo se identifica; no se vende como hecho."]
+      ]
+    },
+    { "type": "hr" },
+    { "type": "h2", "text": "3. Capa 2 — Redacción editorial" },
+    {
+      "type": "p",
+      "text": "A partir de las alertas, el agente compone dos formatos de pieza:"
+    },
+    {
+      "type": "ul",
+      "items": [
+        "<strong>Noticia</strong> — pieza editorial <strong>sobre un indicador</strong>. Es la unidad mínima publicable.",
+        "<strong>Reportaje</strong> — pieza editorial <strong>sobre un dataset</strong> (conjunto de indicadores). Integra varias noticias previas y suma profundidad histórica y comparativa."
+      ]
+    },
+    { "type": "h3", "text": "3.1 Contexto que recibe el modelo" },
+    {
+      "type": "p",
+      "text": "Por cada pieza, el modelo recibe un <strong>contexto numerado</strong> (lo llamamos <em>omnibus</em>):"
+    },
+    {
+      "type": "ul",
+      "items": [
+        "<strong>§1 — Definición del indicador</strong>: qué mide, cómo se calcula, unidad, fuente primaria, metodología.",
+        "<strong>§2 — Países y trayectorias</strong>: series históricas por país, en tablas <code>period | value | unit</code>.",
+        "<strong>§3 — Reglas de detección</strong>: umbrales z-score y de anomalía activos en la corrida.",
+        "<strong>§4 — Candidatos detectados</strong>: las alertas del paso anterior, con <code>claim_id</code> literales que el modelo debe reutilizar.",
+        "<strong>§5 — Diccionario de datos</strong>: columnas del CSV cuando aplica.",
+        "<strong>§6 — Reglas editoriales</strong>: largo objetivo, tono, glosario, prohibiciones.",
+        "<strong>§7 — Noticias ya generadas</strong> <em>(solo Reportajes)</em>: lista de Noticias previas del mismo dataset, con sus claims verificados — el reportaje las integra, no las repite.",
+        "<strong>§8 — Prensa local reciente</strong> <em>(GDELT)</em>: hasta 8 titulares por país, con autor, fecha y URL. El modelo cita con enlace markdown obligatorio; sin URL, no se cita.",
+        "<strong>§9 — Archivo Abrimos.info</strong> <em>(en roadmap)</em>: noticias previas del agente sobre el mismo <code>idno</code> o <code>dataset_id</code>, con <code>noticia_id</code> para enlace interno."
+      ]
+    },
+    { "type": "h3", "text": "3.2 Anclajes de estilo" },
+    {
+      "type": "p",
+      "text": "La capa editorial está atada a dos manuales reconocidos del periodismo internacional:"
+    },
+    {
+      "type": "ul",
+      "items": [
+        "<strong>Reuters Handbook of Journalism</strong> — estructura del cuerpo: lede de impacto (cifra → fuente → fecha en el primer párrafo), contexto antes que opinión, atribución explícita, voz activa por defecto.",
+        "<strong>AP Stylebook</strong> — microestilo: números (cero a nueve en letra, 10+ en cifra, excepto con unidad), porcentajes (5 % en ES, 5% en EN), siglas (spell-out en primera referencia), nada de adjetivos valorativos sin respaldo."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "La autoridad viene de la verificación, no de los adjetivos. Sobrio, descriptivo, sin editorializar."
+    },
+    { "type": "h3", "text": "3.3 Eje narrativo obligatorio: país → LAC → mundo" },
+    {
+      "type": "p",
+      "text": "Toda pieza se narra <strong>desde el país protagonista</strong>. El lector implícito vive en ese país."
+    },
+    {
+      "type": "ol",
+      "items": [
+        "<strong>Foco país</strong> — qué cambió en este país, cuánto, respecto a qué período anterior. Trayectoria histórica del país.",
+        "<strong>Contexto LAC</strong> — posición del país en la región, con al menos un país comparable de América Latina y el Caribe.",
+        "<strong>Contexto mundo</strong> — posición global, rank mundial o mediana global cuando esté en el contexto. Si no está, se declara la ausencia explícitamente."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Los tres ejes deben estar <strong>explícitamente presentes</strong> en el cuerpo. Si falta el contexto mundo o LAC sin declarar su ausencia, la pieza no se publica."
+    },
+    { "type": "h3", "text": "3.4 Andamiaje de la Noticia (350–500 palabras)" },
+    {
+      "type": "p",
+      "text": "Seis bloques que estructuran el cuerpo:"
+    },
+    {
+      "type": "ol",
+      "items": [
+        "<strong>Lede</strong> (40-60 palabras): cifra principal con su trazabilidad + variación respecto al período anterior + fuente con enlace al dataset Data360.",
+        "<strong>Contexto país</strong> (50-80): trayectoria 3-5 años del país, con dos o más puntos históricos citados.",
+        "<strong>Contexto LAC</strong> (60-90): posición regional, mínimo dos países comparables (siempre que tengan candidato).",
+        "<strong>Contexto mundo</strong> (30-60): rank global o mediana mundial, o declaración honesta de ausencia.",
+        "<strong>Implicancia concreta</strong> (40-60): una sola consecuencia anclada al delta. Marcada como [HIPÓTESIS] si no está respaldada por el contexto.",
+        "<strong>Metodología compacta</strong> (1 frase): qué mide el indicador, frecuencia, fuente."
+      ]
+    },
+    { "type": "h3", "text": "3.5 Andamiaje del Reportaje (1200–1800 palabras)" },
+    {
+      "type": "p",
+      "text": "Ocho bloques:"
+    },
+    {
+      "type": "ol",
+      "items": [
+        "<strong>Lede narrativo</strong> — una cifra-ancla o hallazgo del país protagonista que sintetiza la tesis. Enlace al dataset en el primer párrafo.",
+        "<strong>Síntesis de hallazgos</strong> — 3-5 hallazgos clave del dataset, cada uno con su trazabilidad.",
+        "<strong>Cuerpo por dimensiones</strong> — 3-5 sub-secciones (una por sub-indicador o factor) con sub-título propio. Cada dimensión con su delta y comparación intra-LAC.",
+        "<strong>Comparación LAC dedicada</strong> — posición país-por-país en los indicadores del dataset. Tabla cuando aporta.",
+        "<strong>Contexto mundo</strong> — posición global, mejores, peores, comparables fuera de la región si el contexto los lista.",
+        "<strong>Trayectoria histórica y noticias previas</strong> — citas de prensa GDELT (§8) y, cuando esté disponible, noticias previas del archivo Abrimos.info (§9). <strong>Nunca cita sin enlace; nunca inventa URL.</strong>",
+        "<strong>Cierre con perspectiva</strong> — no resumen. Kicker que abre el horizonte: conecta el patrón con un fenómeno mayor o plantea una pregunta abierta. Sin \"en conclusión\".",
+        "<strong>Caja metodológica</strong> — una sola caja con qué mide el dataset, número de sub-indicadores, frecuencia, fuente y link a Data360."
+      ]
+    },
+    { "type": "h3", "text": "3.6 Versión EN: adaptación, no traducción" },
+    {
+      "type": "p",
+      "text": "La versión inglesa de cada pieza <strong>no es traducción literal</strong>. Es una pieza wire en inglés que se sostiene por sí misma, con AP Stylebook y Reuters Handbook como referencia. El lector implícito anglosajón ya no vive en el país protagonista — son redacciones internacionales, fact-checkers, evaluadores, multilaterales. Los claim tokens (PCN) se preservan idénticos: mismos <code>claim_id</code>, valores reformateados al locale EN."
+    },
+    { "type": "h3", "text": "3.7 Trazabilidad inline (PCN)" },
+    {
+      "type": "p",
+      "text": "Cada cifra que el modelo escribe queda marcada con un <em>claim token</em> que apunta al bloque del contexto del que la sacó. Esto no es decoración: el validador descarta piezas con cifras sin token o con tokens que apuntan a bloques que no contienen la cifra. Detalle completo en <a href=\"/about#trazabilidad\">Cómo verificar una cifra →</a>."
+    },
+    { "type": "h3", "text": "3.8 Validación editorial — Q1 a Q12" },
+    {
+      "type": "p",
+      "text": "Antes de publicar, cada pieza pasa por un protocolo de hasta doce preguntas. Cualquiera que falle bloquea la publicación. Las preguntas críticas:"
+    },
+    {
+      "type": "table",
+      "headers": ["#", "Qué chequea"],
+      "rows": [
+        ["Q1", "Todas las cifras del cuerpo tienen <code>claim_id</code> válido, listados en <code>claim_tokens</code> y en el contexto."],
+        ["Q2", "El JSON de salida es válido y cumple el esquema (sin campos extra)."],
+        ["Q4", "Largo dentro de rango (Noticia: 350-500, tolerado 300-550; Reportaje: 1200-1800, tolerado 1000-2000)."],
+        ["Q5", "Cada observación citada coincide con el período correcto en la serie."],
+        ["Q6", "Locale numérico consistente (ES con coma decimal, EN con punto)."],
+        ["Q7", "Hipótesis marcadas explícitamente."],
+        ["Q8", "El titular no tiene cifras ni símbolos de moneda."],
+        ["Q9", "La cifra del candidato protagonista en lede y story coincide con la observación canónica del contexto."],
+        ["Q10", "Toda mención a una noticia (prensa GDELT §8 o archivo Abrimos.info §9) lleva enlace markdown a su URL original; ninguna URL fue inventada; el dataset Data360 está enlazado en el cuerpo."],
+        ["Q11", "Los tres ejes país / LAC / mundo están presentes; si falta el mundo, está declarado explícitamente."],
+        ["Q12 <em>(solo Reportajes)</em>", "El cuerpo respeta los 8 bloques del andamiaje."]
+      ]
+    },
+    { "type": "hr" },
+    { "type": "h2", "text": "4. Citas a fuentes externas" },
+    {
+      "type": "p",
+      "text": "Toda mención a una pieza periodística debe incluir enlace markdown a la URL original:"
+    },
+    {
+      "type": "ul",
+      "items": [
+        "<strong>Prensa externa</strong> (GDELT y otros): <code>\"[extracto entre comillas]\" — [autor], [Medio](url), [fecha]</code>.",
+        "<strong>Noticias previas del archivo Abrimos.info</strong>: <code>[ver nota previa](/?noticia=ID)</code> con el <code>noticia_id</code> real.",
+        "<strong>Datasets Data360</strong>: enlace al dataset en el primer párrafo del cuerpo, además del <code>verification_trace</code> al pie."
+      ]
+    },
+    { "type": "p", "text": "Reglas duras:" },
+    {
+      "type": "ul",
+      "items": [
+        "<strong>Sin URL en el contexto, no se cita.</strong>",
+        "<strong>No se inventa URL, medio, autor ni fecha bajo ninguna circunstancia.</strong>"
+      ]
+    },
+    { "type": "hr" },
+    { "type": "h2", "text": "5. Lo que el agente no hace" },
+    { "type": "p", "text": "Conviene aclararlo:" },
+    {
+      "type": "ul",
+      "items": [
+        "<strong>No tiene editor humano por defecto.</strong> Las piezas salen como las escribe el agente, validadas algorítmicamente. Cada pieza lleva un aviso al pie sobre esto.",
+        "<strong>No detecta intencionalidad ni juzga el contenido editorial del discurso oficial</strong> — solo la consistencia entre la afirmación numérica y el dato fuente.",
+        "<strong>No es un sustituto de la cobertura periodística</strong> — es una capa de descubrimiento, contexto y verificación que ahorra el trabajo de monitoreo y la verificación numérica básica."
+      ]
+    },
+    { "type": "hr" },
+    { "type": "h2", "text": "6. Limitaciones de la demo" },
+    {
+      "type": "p",
+      "text": "La demo opera en <em>replay sobre snapshots históricos</em>: el algoritmo es el de producción, pero los hechos detectados son cambios que ya ocurrieron, recreados con la fecha y los datos del momento. El monitoreo continuo (cron real sobre Data360, almacenamiento canónico de toda la historia de datos y notas para que el agente aprenda de su propio archivo) está en el roadmap inmediato."
+    },
+    {
+      "type": "links",
+      "items": [
+        { "href": "https://github.com/abrimos-info/abrimos-data360-monitor", "label": "Ver repositorio en GitHub →", "external": true },
+        { "href": "/about#trazabilidad", "label": "Cómo verificar una cifra →" }
+      ]
+    }
+  ]
+}

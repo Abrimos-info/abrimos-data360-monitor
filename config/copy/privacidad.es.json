@@ -1,0 +1,74 @@
+{
+  "title": "Política de privacidad",
+  "updated": "<em>Última actualización: 27 de mayo de 2026.</em>",
+  "lead": "Esta política explica qué datos recolecta Data360 News Agent, con qué fin y cómo se manejan. Está pensada para ser legible — no es un contrato pensado para no leerse.",
+  "blocks": [
+    { "type": "h2", "text": "Qué recolectamos" },
+    {
+      "type": "p",
+      "text": "<strong>Si solo navegás el sitio</strong>: no recolectamos identificadores personales. No usamos cookies de seguimiento. No hay analítica de terceros en esta demo. <em>(Cuando se incorpore analítica, será una herramienta self-hosted que respeta <code>Do Not Track</code> y no comparte datos con terceros.)</em>"
+    },
+    {
+      "type": "p",
+      "text": "<strong>Si te suscribís al newsletter o a alertas de indicadores</strong>: guardamos tu correo electrónico y el tipo de suscripción (y el país, si elegiste alertas). Nada más. No te pedimos nombre, teléfono ni datos demográficos."
+    },
+    {
+      "type": "p",
+      "text": "<strong>Si usás el chat</strong>: tus preguntas se procesan por un modelo de lenguaje (LLM) externo comercial para generar la respuesta. No guardamos las preguntas asociadas a tu identidad. <em>(Las preguntas pueden quedar en los logs del proveedor del LLM según la política de ese proveedor.)</em>"
+    },
+    { "type": "h2", "text": "Para qué los usamos" },
+    {
+      "type": "ul",
+      "items": [
+        "El correo del newsletter se usa <strong>exclusivamente</strong> para enviarte el correo diario. No se cede, no se vende, no se cruza con otros datos.",
+        "El correo de alertas de indicadores se usa solo para avisarte cuando se actualicen indicadores en el país elegido.",
+        "Las preguntas del chat se usan para generar la respuesta que ves. No se almacenan para entrenar modelos propios."
+      ]
+    },
+    { "type": "h2", "text": "Cuánto los guardamos" },
+    {
+      "type": "ul",
+      "items": [
+        "<strong>Suscripciones</strong>: hasta que te desuscribas. Cada correo del newsletter incluye un enlace de baja en un click.",
+        "<strong>Logs técnicos</strong> (IP del servidor, errores): 30 días, anonimizados."
+      ]
+    },
+    { "type": "h2", "text": "Tus derechos" },
+    { "type": "p", "text": "Podés en cualquier momento:" },
+    {
+      "type": "ul",
+      "items": [
+        "Pedir el correo asociado a tu suscripción.",
+        "Eliminar tu suscripción.",
+        "Solicitar la baja de cualquier log asociado a tu correo."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Para ejercer cualquiera de estos derechos, escribinos a <a href=\"mailto:contacto@abrimos.info\">contacto@abrimos.info</a>."
+    },
+    { "type": "h2", "text": "Procesamiento por terceros" },
+    {
+      "type": "ul",
+      "items": [
+        "<strong>Servidor de envío de correo</strong>: a definir cuando se active el newsletter (se actualizará esta política).",
+        "<strong>Modelo de lenguaje del chat</strong>: un LLM comercial; el procesamiento sigue la política de privacidad de ese proveedor. El roadmap incluye despliegue self-hosted con modelos open source para clientes con requisitos estrictos."
+      ]
+    },
+    { "type": "h2", "text": "Datos públicos" },
+    {
+      "type": "p",
+      "text": "Todo el contenido publicado por el agente (noticias, reportajes, indicadores citados) proviene de <strong>datos públicos abiertos del catálogo Data360 del Banco Mundial</strong>. No publicamos información sobre personas físicas identificadas más allá de figuras públicas en sus roles institucionales."
+    },
+    { "type": "h2", "text": "Cambios a esta política" },
+    {
+      "type": "p",
+      "text": "Cuando cambiemos esta política, actualizaremos la fecha al inicio de la página. Si los cambios son sustantivos, lo anunciaremos en el sitio antes de aplicarlos."
+    },
+    { "type": "h2", "text": "Responsable" },
+    {
+      "type": "p",
+      "text": "Abrimos.info, organización fundada en México. Contacto: <a href=\"mailto:contacto@abrimos.info\">contacto@abrimos.info</a>."
+    }
+  ]
+}

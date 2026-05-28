@@ -1,0 +1,58 @@
+{
+  "title": "Términos de uso",
+  "updated": "<em>Última actualización: 27 de mayo de 2026.</em>",
+  "blocks": [
+    { "type": "h2", "text": "Qué es Data360 News Agent" },
+    {
+      "type": "p",
+      "text": "Data360 News Agent es una agencia de noticias automatizada operada por Abrimos.info como demo del Data360 Global Challenge. El servicio está disponible sin costo para uso periodístico, académico y ciudadano."
+    },
+    { "type": "h2", "text": "Licencia del contenido publicado" },
+    {
+      "type": "p",
+      "text": "Todas las <strong>notas y reportajes</strong> publicados por el agente se distribuyen bajo licencia <strong>Creative Commons Atribución 4.0 Internacional (CC BY 4.0)</strong>. Para una guía práctica de cómo citar y reusar, ver <a href=\"/uso\">Cómo usar estas piezas →</a>."
+    },
+    {
+      "type": "p",
+      "text": "Los <strong>indicadores y datos</strong> citados son propiedad del Banco Mundial y se rigen por la licencia de cada dataset (visible en <code>data360.worldbank.org</code>)."
+    },
+    {
+      "type": "p",
+      "text": "El <strong>código fuente</strong> del agente está disponible bajo licencia <strong>GPLv3</strong> en <a href=\"https://github.com/abrimos-info/abrimos-data360-monitor\" target=\"_blank\" rel=\"noopener\">github.com/abrimos-info/abrimos-data360-monitor</a>."
+    },
+    { "type": "h2", "text": "Uso aceptable" },
+    { "type": "p", "text": "Al usar el sitio aceptás:" },
+    {
+      "type": "ul",
+      "items": [
+        "No intentar saturar el chat con consultas automatizadas (rate limit razonable).",
+        "No usar el contenido para desinformación deliberada o tergiversación dolosa de los datos.",
+        "Respetar la atribución del contenido publicado."
+      ]
+    },
+    { "type": "h2", "text": "Naturaleza del contenido" },
+    {
+      "type": "p",
+      "text": "Las notas son escritas por un agente de inteligencia artificial. La metodología, las limitaciones y el protocolo de validación se describen en <a href=\"/metodologia\">/metodologia</a>. El sitio no ofrece <strong>garantía editorial humana</strong> por defecto — cada pieza incluye un aviso sobre cómo se produjo."
+    },
+    {
+      "type": "p",
+      "text": "Las cifras del texto cuentan con trazabilidad mecánica al dataset Data360, pero la interpretación editorial es generada automáticamente. <strong>Para uso periodístico recomendamos verificar la cifra y, si la pieza se republica, sumar criterio editorial humano.</strong>"
+    },
+    { "type": "h2", "text": "Limitación de responsabilidad" },
+    {
+      "type": "p",
+      "text": "Abrimos.info pone el servicio a disposición de buena fe y sin garantías explícitas o implícitas de exactitud, completitud o adecuación a un propósito particular. El uso del contenido publicado es responsabilidad del usuario, especialmente cuando se usa con fines profesionales o decisiones públicas."
+    },
+    { "type": "h2", "text": "Cambios al servicio" },
+    {
+      "type": "p",
+      "text": "El sitio es una demo en evolución. Funcionalidades pueden cambiar, pausarse o discontinuarse. Cuando algo material cambie (cobertura, alcance, modelo), lo anunciaremos en el sitio."
+    },
+    { "type": "h2", "text": "Contacto" },
+    {
+      "type": "p",
+      "text": "Para cualquier consulta legal o sobre uso del contenido: <a href=\"mailto:contacto@abrimos.info\">contacto@abrimos.info</a>."
+    }
+  ]
+}

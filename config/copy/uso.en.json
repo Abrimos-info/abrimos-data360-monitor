@@ -1,0 +1,59 @@
+{
+  "title": "How to use these stories",
+  "lead": "The stories and features this agent publishes are meant to be used. They are reporting inputs, not finished products — and they are openly licensed in earnest, not in marketing speak.",
+  "blocks": [
+    { "type": "h2", "text": "License" },
+    {
+      "type": "p",
+      "text": "All published content is under <strong>Creative Commons Attribution 4.0 International (CC BY 4.0)</strong>. You may copy, translate, adapt, trim, and publish it — including in commercial projects — as long as you meet three requirements:"
+    },
+    {
+      "type": "ol",
+      "items": [
+        "<strong>Cite the original source</strong>: the Data360 indicator (with its code and link to <code>data360.worldbank.org</code>).",
+        "<strong>Attribute the agent</strong>: <em>\"Data360 News Agent — Abrimos.info\"</em>, with a link to the site if your outlet allows it.",
+        "<strong>Note changes</strong>: if you edit the text, say so in a footnote."
+      ]
+    },
+    { "type": "p", "text": "We do not require forms, registration, or advance notice." },
+    { "type": "h2", "text": "How to cite a story" },
+    { "type": "p", "text": "<strong>Short citation</strong> (at the foot of a story based on ours):" },
+    {
+      "type": "blockquote",
+      "text": "With data and analysis from Data360 News Agent (Abrimos.info), on the indicator <em>Food inflation — Argentina</em> (FAO_CP_23013) from the World Bank."
+    },
+    { "type": "p", "text": "<strong>Long citation</strong> (when republishing or reusing the full text):" },
+    {
+      "type": "blockquote",
+      "text": "<em>\"[Story text]\"</em>. Data360 News Agent, Argentina edition, 12 May 2026. Generated from indicator FAO_CP_23013 in the World Bank Data360 catalogue. CC BY 4.0. [Story URL]."
+    },
+    { "type": "h2", "text": "What we recommend before publishing" },
+    {
+      "type": "p",
+      "text": "The agent writes the piece, validates every figure against the dataset, and blocks publication when inconsistencies appear. That solves numeric traceability, not editorial judgment. Before moving the piece into your outlet:"
+    },
+    {
+      "type": "ul",
+      "items": [
+        "<strong>Verify the figures</strong> with a click on the underline — the system already takes you to the source row.",
+        "<strong>Add your editorial judgment</strong>: local angle, your outlet's voice, comparisons with cases the agent did not see.",
+        "<strong>Find a human source</strong> to enrich the piece if you will publish it as your own story.",
+        "<strong>When you do</strong>, send us a link at <a href=\"mailto:contacto@abrimos.info\">contacto@abrimos.info</a> — it helps us learn which pieces are working."
+      ]
+    },
+    { "type": "h2", "text": "What you may not do" },
+    {
+      "type": "ul",
+      "items": [
+        "Republish text without attribution.",
+        "Change a figure or indicator code without marking the change (breaks traceability for the next reader).",
+        "Sell the pieces as your own content without attributing the agent and the World Bank."
+      ]
+    },
+    { "type": "h2", "text": "If your outlet has special requirements" },
+    {
+      "type": "p",
+      "text": "If your newsroom needs a different format, a human review layer before publishing, or an institutional use agreement, write to <a href=\"mailto:contacto@abrimos.info\">contacto@abrimos.info</a>. That is part of what we are exploring with partner newsrooms in LAC."
+    }
+  ]
+}

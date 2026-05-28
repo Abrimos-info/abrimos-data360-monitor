@@ -1,0 +1,59 @@
+{
+  "title": "Cómo usar estas piezas",
+  "lead": "Las notas y reportajes que publica el agente están pensadas para que las uses. Son insumo de redacción, no producto final — y son abiertas en serio, no en marketing.",
+  "blocks": [
+    { "type": "h2", "text": "Licencia" },
+    {
+      "type": "p",
+      "text": "Todo el contenido publicado está bajo <strong>Creative Commons Atribución 4.0 Internacional (CC BY 4.0)</strong>. Podés copiarlo, traducirlo, adaptarlo, recortarlo y publicarlo — incluso en proyectos comerciales — siempre que cumplas tres cosas:"
+    },
+    {
+      "type": "ol",
+      "items": [
+        "<strong>Citá la fuente original</strong>: el indicador Data360 (con su código y enlace a <code>data360.worldbank.org</code>).",
+        "<strong>Atribuí al agente</strong>: <em>\"Data360 News Agent — Abrimos.info\"</em>, con enlace al sitio si tu medio lo permite.",
+        "<strong>Indicá los cambios</strong>: si editás el texto, hacelo notar al pie."
+      ]
+    },
+    { "type": "p", "text": "No te pedimos formulario, registro ni aviso previo." },
+    { "type": "h2", "text": "Cómo se cita una pieza" },
+    { "type": "p", "text": "<strong>Cita corta</strong> (al pie de una nota basada en una pieza nuestra):" },
+    {
+      "type": "blockquote",
+      "text": "Con datos y análisis de Data360 News Agent (Abrimos.info), sobre el indicador <em>Inflación de alimentos — Argentina</em> (FAO_CP_23013) del Banco Mundial."
+    },
+    { "type": "p", "text": "<strong>Cita larga</strong> (cuando republiques o reuses el texto íntegro):" },
+    {
+      "type": "blockquote",
+      "text": "<em>\"[Texto de la pieza]\"</em>. Data360 News Agent, edición Argentina, 12 de mayo de 2026. Generado a partir del indicador FAO_CP_23013 del catálogo Data360 del Banco Mundial. CC BY 4.0. [URL de la pieza]."
+    },
+    { "type": "h2", "text": "Lo que recomendamos antes de publicar" },
+    {
+      "type": "p",
+      "text": "El agente escribe la pieza, valida cada cifra contra el dataset y bloquea publicaciones con inconsistencias. Eso resuelve la trazabilidad numérica, no la decisión editorial. Antes de pasar la pieza a tu medio:"
+    },
+    {
+      "type": "ul",
+      "items": [
+        "<strong>Verificá las cifras</strong> con un click sobre el subrayado — el sistema ya te lleva al dato fuente.",
+        "<strong>Sumá tu criterio editorial</strong>: ángulo local, voz de tu medio, comparaciones con casos que el agente no vio.",
+        "<strong>Buscá una fuente humana</strong> que enriquezca la pieza si vas a publicarla como nota propia.",
+        "<strong>Cuando lo hagas</strong>, mandanos un link a <a href=\"mailto:contacto@abrimos.info\">contacto@abrimos.info</a> — nos ayuda a saber qué piezas están funcionando."
+      ]
+    },
+    { "type": "h2", "text": "Lo que no podés hacer" },
+    {
+      "type": "ul",
+      "items": [
+        "Republicar el texto sin atribución.",
+        "Cambiar una cifra o un código de indicador sin marcar el cambio (rompe la trazabilidad para el siguiente lector).",
+        "Vender las piezas como contenido propio sin atribuir al agente y al Banco Mundial."
+      ]
+    },
+    { "type": "h2", "text": "Si tu medio tiene requisitos especiales" },
+    {
+      "type": "p",
+      "text": "Si tu redacción necesita un formato distinto, una capa de revisión humana antes de publicar, o un acuerdo de uso institucional, escribinos a <a href=\"mailto:contacto@abrimos.info\">contacto@abrimos.info</a>. Es parte de lo que estamos explorando con redacciones aliadas en LAC."
+    }
+  ]
+}

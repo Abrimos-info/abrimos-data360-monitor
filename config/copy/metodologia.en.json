@@ -1,0 +1,257 @@
+{
+  "title": "Methodology",
+  "lead": "This page describes how the agent decides what is news, writes the story, and validates before publishing. It is for journalists who want to understand the logic before citing a piece, and for evaluators who want to audit the process.",
+  "blocks": [
+    {
+      "type": "p",
+      "text": "The agent runs in two layers: an <strong>analysis</strong> layer that detects statistically notable facts, and an <strong>editorial</strong> layer that turns them into journalistic pieces. Each layer has its own validation protocol."
+    },
+    { "type": "hr" },
+    { "type": "h2", "text": "1. What we follow" },
+    {
+      "type": "p",
+      "text": "The agent does not yet process all 12,000 indicators in the Data360 catalogue. The demo works from a <strong>watchlist</strong> of about 35 indicators in three rhythms:"
+    },
+    {
+      "type": "ul",
+      "items": [
+        "<strong>Pulse</strong> — sub-annual indicators updated frequently: monthly inflation (FAO), quarterly balance of payments (IMF), IPC food-security phase. This is where the freshest news lives.",
+        "<strong>Annual</strong> — indicators that structurally frame the country: GDP per capita, growth, unemployment, World Bank indicators (WDI).",
+        "<strong>Forecast</strong> — forward-looking projections from the International Monetary Fund (WEO) and the World Bank (MPO)."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Selection aims to cover five dimensions per country: macro, fiscal, social, food security, governance. Five countries covered today: Argentina, Ecuador, Guatemala, Honduras, and Mexico. The roadmap is to expand indicator and country coverage until the full catalogue is covered."
+    },
+    { "type": "hr" },
+    { "type": "h2", "text": "2. Layer 1 — Statistical analysis" },
+    { "type": "h3", "text": "2.1 Detecting what is worth a story" },
+    {
+      "type": "p",
+      "text": "When an indicator updates, the agent applies two statistical strategies to the series:"
+    },
+    {
+      "type": "p",
+      "text": "<strong>Abrupt change</strong> — the <em>z-score</em> of the latest value against the country's historical trajectory is computed. When it exceeds the threshold (typically |z| ≥ 2), the change is statistically notable: it either breaks the trend or the expected variance."
+    },
+    {
+      "type": "p",
+      "text": "<strong>Cross-country anomaly</strong> — the country's position on the indicator is compared to the regional pattern. If the country falls outside the expected range for Latin America and the Caribbean, the case warrants comparative analysis."
+    },
+    {
+      "type": "p",
+      "text": "These two strategies are what the demo shows. The roadmap adds a third: <strong>narrative-data divergence</strong>, crossing official discourse (statements, releases) with the indicator series to detect contradictions."
+    },
+    { "type": "h3", "text": "2.2 Output of the analysis layer: the \"alert\"" },
+    {
+      "type": "p",
+      "text": "For each finding, the analysis layer emits an <strong>alert</strong> with:"
+    },
+    {
+      "type": "ul",
+      "items": [
+        "Type (<code>abrupt_change</code> or <code>anomaly</code>), country (ISO3), and <code>score</code>.",
+        "Observation (value + period + unit), copied literally from the CSV.",
+        "Where applicable, previous value (<code>previous</code>) and delta (absolute or relative Δ).",
+        "A short narrative for the citizen reader and one for the journalist (each ≤ 300 characters).",
+        "A <code>verification_trace</code> with link to the dataset, CSV download, and methodology reference.",
+        "<code>claim_tokens</code> for figures cited in the narratives."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "The analysis layer self-validates with a <strong>seven-question protocol</strong> (Q1–Q7) before passing to the editor. Any failure blocks the alert."
+    },
+    {
+      "type": "table",
+      "headers": ["#", "Question", "What it checks"],
+      "rows": [
+        ["Q1", "Does every figure have a <em>claim token</em> traceable to context?", "Without token or series entry, the narrative is discarded."],
+        ["Q2", "Does the alert have all schema fields?", "Minimum structural integrity."],
+        ["Q3", "Is alert volume reasonable?", "Maximum 2 per country and 7 per run — avoids artificial inflation."],
+        ["Q4", "Do narratives respect the 300-character limit?", "Mandatory brevity at alert level."],
+        ["Q5", "Is no cited observation missing from the real series?", "The model cannot invent values."],
+        ["Q6", "Is numeric locale consistent?", "Decimal comma and thousands point in es-419."],
+        ["Q7", "Are hypotheses marked as such?", "Speculation is identified; not sold as fact."]
+      ]
+    },
+    { "type": "hr" },
+    { "type": "h2", "text": "3. Layer 2 — Editorial writing" },
+    {
+      "type": "p",
+      "text": "From alerts, the agent composes two piece formats:"
+    },
+    {
+      "type": "ul",
+      "items": [
+        "<strong>Story (Noticia)</strong> — editorial piece <strong>about one indicator</strong>. Minimum publishable unit.",
+        "<strong>Feature (Reportaje)</strong> — editorial piece <strong>about a dataset</strong> (indicator set). Integrates prior stories and adds historical and comparative depth."
+      ]
+    },
+    { "type": "h3", "text": "3.1 Context the model receives" },
+    {
+      "type": "p",
+      "text": "For each piece, the model receives a <strong>numbered context</strong> (we call it <em>omnibus</em>):"
+    },
+    {
+      "type": "ul",
+      "items": [
+        "<strong>§1 — Indicator definition</strong>: what it measures, how it is calculated, unit, primary source, methodology.",
+        "<strong>§2 — Countries and trajectories</strong>: historical series by country in <code>period | value | unit</code> tables.",
+        "<strong>§3 — Detection rules</strong>: z-score and anomaly thresholds active in the run.",
+        "<strong>§4 — Detected candidates</strong>: alerts from the previous step, with literal <code>claim_id</code> values the model must reuse.",
+        "<strong>§5 — Data dictionary</strong>: CSV columns where applicable.",
+        "<strong>§6 — Editorial rules</strong>: target length, tone, glossary, prohibitions.",
+        "<strong>§7 — Stories already generated</strong> <em>(Features only)</em>: prior Stories from the same dataset with verified claims — the feature integrates them, does not repeat them.",
+        "<strong>§8 — Recent local press</strong> <em>(GDELT)</em>: up to 8 headlines per country with author, date, and URL. The model must cite with markdown link; no URL, no citation.",
+        "<strong>§9 — Abrimos.info archive</strong> <em>(roadmap)</em>: prior agent stories on the same <code>idno</code> or <code>dataset_id</code>, with <code>noticia_id</code> for internal linking."
+      ]
+    },
+    { "type": "h3", "text": "3.2 Style anchors" },
+    {
+      "type": "p",
+      "text": "The editorial layer is tied to two internationally recognized journalism manuals:"
+    },
+    {
+      "type": "ul",
+      "items": [
+        "<strong>Reuters Handbook of Journalism</strong> — body structure: impact lede (figure → source → date in first paragraph), context before opinion, explicit attribution, active voice by default.",
+        "<strong>AP Stylebook</strong> — micro-style: numbers (zero through nine in words, 10+ in figures except with unit), percentages (5% in EN, 5 % in ES), acronyms (spell out on first reference), no value-laden adjectives without support."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Authority comes from verification, not adjectives. Sober, descriptive, no editorializing."
+    },
+    { "type": "h3", "text": "3.3 Mandatory narrative axis: country → LAC → world" },
+    {
+      "type": "p",
+      "text": "Every piece is narrated <strong>from the lead country</strong>. The implied reader lives in that country."
+    },
+    {
+      "type": "ol",
+      "items": [
+        "<strong>Country focus</strong> — what changed in this country, by how much, versus which prior period. The country's historical trajectory.",
+        "<strong>LAC context</strong> — the country's position in the region, with at least one comparable Latin American and Caribbean country.",
+        "<strong>World context</strong> — global position, world rank or global median when present in context. If absent, absence is stated explicitly."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "All three axes must be <strong>explicitly present</strong> in the body. If world or LAC context is missing without declaring absence, the piece is not published."
+    },
+    { "type": "h3", "text": "3.4 Story scaffold (350–500 words)" },
+    {
+      "type": "p",
+      "text": "Six blocks structure the body:"
+    },
+    {
+      "type": "ol",
+      "items": [
+        "<strong>Lede</strong> (40-60 words): main figure with traceability + change versus prior period + source with link to Data360 dataset.",
+        "<strong>Country context</strong> (50-80): 3-5 year country trajectory with two or more historical points cited.",
+        "<strong>LAC context</strong> (60-90): regional position, minimum two comparable countries (when candidates exist).",
+        "<strong>World context</strong> (30-60): global rank or world median, or honest statement of absence.",
+        "<strong>Concrete implication</strong> (40-60): one consequence anchored to the delta. Marked [HYPOTHESIS] if not supported by context.",
+        "<strong>Compact methodology</strong> (1 sentence): what the indicator measures, frequency, source."
+      ]
+    },
+    { "type": "h3", "text": "3.5 Feature scaffold (1200–1800 words)" },
+    {
+      "type": "p",
+      "text": "Eight blocks:"
+    },
+    {
+      "type": "ol",
+      "items": [
+        "<strong>Narrative lede</strong> — anchor figure or finding from the lead country that synthesizes the thesis. Dataset link in the first paragraph.",
+        "<strong>Findings synthesis</strong> — 3-5 key dataset findings, each with traceability.",
+        "<strong>Body by dimensions</strong> — 3-5 sub-sections (one per sub-indicator or factor) with their own sub-head. Each dimension with its delta and intra-LAC comparison.",
+        "<strong>Dedicated LAC comparison</strong> — country-by-country position on dataset indicators. Table when it helps.",
+        "<strong>World context</strong> — global position, best, worst, comparables outside the region when listed in context.",
+        "<strong>Historical trajectory and prior stories</strong> — GDELT press citations (§8) and, when available, prior stories from the Abrimos.info archive (§9). <strong>Never cite without link; never invent URL.</strong>",
+        "<strong>Closing with perspective</strong> — not a summary. Kicker that opens the horizon: connects the pattern to a larger phenomenon or poses an open question. No \"in conclusion\".",
+        "<strong>Methodology box</strong> — single box with what the dataset measures, number of sub-indicators, frequency, source, and Data360 link."
+      ]
+    },
+    { "type": "h3", "text": "3.6 EN version: adaptation, not translation" },
+    {
+      "type": "p",
+      "text": "The English version of each piece is <strong>not a literal translation</strong>. It is a wire in English that stands on its own, with AP Stylebook and Reuters Handbook as reference. The implied anglophone reader no longer lives in the lead country — international desks, fact-checkers, evaluators, multilaterals. Claim tokens (PCN) stay identical: same <code>claim_id</code>, values reformatted to EN locale."
+    },
+    { "type": "h3", "text": "3.7 Inline traceability (PCN)" },
+    {
+      "type": "p",
+      "text": "Every figure the model writes is marked with a <em>claim token</em> pointing to the context block it came from. This is not decoration: the validator discards pieces with figures without tokens or tokens pointing to blocks that do not contain the figure. Full detail at <a href=\"/about#trazabilidad\">How to verify a figure →</a>."
+    },
+    { "type": "h3", "text": "3.8 Editorial validation — Q1 to Q12" },
+    {
+      "type": "p",
+      "text": "Before publishing, each piece passes up to twelve questions. Any failure blocks publication. Critical questions:"
+    },
+    {
+      "type": "table",
+      "headers": ["#", "What it checks"],
+      "rows": [
+        ["Q1", "All body figures have valid <code>claim_id</code>, listed in <code>claim_tokens</code> and in context."],
+        ["Q2", "Output JSON is valid and matches schema (no extra fields)."],
+        ["Q4", "Length within range (Story: 350-500, tolerated 300-550; Feature: 1200-1800, tolerated 1000-2000)."],
+        ["Q5", "Each cited observation matches the correct period in the series."],
+        ["Q6", "Consistent numeric locale (ES decimal comma, EN decimal point)."],
+        ["Q7", "Hypotheses explicitly marked."],
+        ["Q8", "Headline has no figures or currency symbols."],
+        ["Q9", "Lead candidate figure in lede and story matches canonical observation in context."],
+        ["Q10", "Every news mention (GDELT press §8 or Abrimos.info archive §9) has markdown link to original URL; no URL invented; Data360 dataset linked in body."],
+        ["Q11", "All three country / LAC / world axes present; if world missing, explicitly declared."],
+        ["Q12 <em>(Features only)</em>", "Body respects the 8-block scaffold."]
+      ]
+    },
+    { "type": "hr" },
+    { "type": "h2", "text": "4. External source citations" },
+    {
+      "type": "p",
+      "text": "Every mention of a news piece must include a markdown link to the original URL:"
+    },
+    {
+      "type": "ul",
+      "items": [
+        "<strong>External press</strong> (GDELT and others): <code>\"[quoted excerpt]\" — [author], [Outlet](url), [date]</code>.",
+        "<strong>Prior stories from Abrimos.info archive</strong>: <code>[see prior story](/?noticia=ID)</code> with real <code>noticia_id</code>.",
+        "<strong>Data360 datasets</strong>: dataset link in the first body paragraph, plus <code>verification_trace</code> at the foot."
+      ]
+    },
+    { "type": "p", "text": "Hard rules:" },
+    {
+      "type": "ul",
+      "items": [
+        "<strong>No URL in context, no citation.</strong>",
+        "<strong>Never invent URL, outlet, author, or date under any circumstance.</strong>"
+      ]
+    },
+    { "type": "hr" },
+    { "type": "h2", "text": "5. What the agent does not do" },
+    { "type": "p", "text": "Worth stating clearly:" },
+    {
+      "type": "ul",
+      "items": [
+        "<strong>No human editor by default.</strong> Pieces ship as the agent writes them, algorithmically validated. Each piece carries a foot notice about this.",
+        "<strong>Does not detect intent or judge editorial content of official discourse</strong> — only consistency between numeric claim and source data.",
+        "<strong>Not a substitute for journalistic coverage</strong> — a layer of discovery, context, and verification that saves monitoring work and basic numeric verification."
+      ]
+    },
+    { "type": "hr" },
+    { "type": "h2", "text": "6. Demo limitations" },
+    {
+      "type": "p",
+      "text": "The demo runs in <em>replay over historical snapshots</em>: the algorithm is production-grade, but detected facts are changes that already happened, recreated with the date and data of the moment. Continuous monitoring (real cron over Data360, canonical storage of full data and story history so the agent learns from its own archive) is on the immediate roadmap."
+    },
+    {
+      "type": "links",
+      "items": [
+        { "href": "https://github.com/abrimos-info/abrimos-data360-monitor", "label": "View repository on GitHub →", "external": true },
+        { "href": "/about#trazabilidad", "label": "How to verify a figure →" }
+      ]
+    }
+  ]
+}

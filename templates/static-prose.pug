@@ -1,0 +1,52 @@
+extends layout
+
+block content
+  main.d360-page.d360-page--band
+    div.d360-shell
+      article.d360-prose
+        if staticCopy && staticCopy.title
+          h1= staticCopy.title
+        if staticCopy && staticCopy.lead
+          p.d360-prose__lead!= staticCopy.lead
+        if staticCopy && staticCopy.updated
+          p.d360-prose__meta!= staticCopy.updated
+        if staticCopy && staticCopy.blocks
+          each block in staticCopy.blocks
+            case block.type
+              when 'h2'
+                h2!= block.text
+              when 'h3'
+                h3!= block.text
+              when 'p'
+                p!= block.text
+              when 'ul'
+                ul
+                  each item in block.items
+                    li!= item
+              when 'ol'
+                ol
+                  each item in block.items
+                    li!= item
+              when 'blockquote'
+                blockquote
+                  p!= block.text
+              when 'hr'
+                hr
+              when 'table'
+                table.d360-prose__table
+                  if block.headers
+                    thead
+                      tr
+                        each h in block.headers
+                          th!= h
+                  tbody
+                    each row in block.rows
+                      tr
+                        each cell in row
+                          td!= cell
+              when 'links'
+                p.d360-prose__links
+                  each link, i in block.items
+                    if i > 0
+                      |  · 
+                    a(href=link.href target=link.external ? '_blank' : null rel=link.external ? 'noopener' : null)!= link.label
