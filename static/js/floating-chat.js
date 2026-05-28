@@ -6,6 +6,7 @@
   var panel = document.getElementById('d360-chatwin');
   var closeBtn = document.getElementById('d360-chatwin-close');
   var minBtn = document.getElementById('d360-chatwin-min');
+  var expandBtn = document.getElementById('d360-chatwin-expand');
   var resetBtn = document.getElementById('d360-chatwin-reset');
   var messagesEl = document.getElementById('d360-fab-messages');
   var formEl = document.getElementById('d360-fab-form');
@@ -18,6 +19,24 @@
 
   var alertId = window.D360_ALERT_ID || null;
   var scoped = !!(alertId && window.D360Chat && window.D360Chat.initScoped);
+  var lang = window.D360_LANG || 'es';
+  var strings = (window.D360_STRINGS && window.D360_STRINGS[lang]) || {};
+
+  function ui(key) {
+    return strings[key] || (window.D360_STRINGS.en && window.D360_STRINGS.en[key]) || key;
+  }
+
+  function isDesktop() {
+    return window.matchMedia('(min-width: 601px)').matches;
+  }
+
+  function setExpanded(expanded) {
+    panel.classList.toggle('is-expanded', expanded);
+    if (expandBtn) {
+      expandBtn.setAttribute('aria-pressed', expanded ? 'true' : 'false');
+      expandBtn.setAttribute('aria-label', ui(expanded ? 'floating_chat.collapse' : 'floating_chat.expand'));
+    }
+  }
 
   function setOpen(open) {
     panel.classList.toggle('is-open', open);
@@ -34,6 +53,13 @@
   if (minBtn) {
     minBtn.addEventListener('click', function () {
       panel.classList.toggle('is-minimized');
+      if (panel.classList.contains('is-minimized')) setExpanded(false);
+    });
+  }
+  if (expandBtn) {
+    expandBtn.addEventListener('click', function () {
+      panel.classList.remove('is-minimized');
+      setExpanded(!panel.classList.contains('is-expanded'));
     });
   }
 
@@ -50,20 +76,15 @@
       llmMetaEl: llmMetaEl,
       welcomeEl: welcomeEl,
     });
+    if (isDesktop() || window.location.search.indexOf('chat=1') >= 0) setOpen(true);
     return;
   }
 
   var history = [];
   var busy = false;
-  var lang = window.D360_LANG || 'es';
-  var strings = (window.D360_STRINGS && window.D360_STRINGS[lang]) || {};
   var demoCountries = window.D360_DEMO_COUNTRIES || ['GTM', 'HND', 'ARG', 'ECU', 'MEX'];
 
-  function ui(key) {
-    return strings[key] || (window.D360_STRINGS.en && window.D360_STRINGS.en[key]) || key;
-  }
-
-  if (window.location.search.indexOf('chat=1') >= 0) {
+  if (isDesktop() || window.location.search.indexOf('chat=1') >= 0) {
     setOpen(true);
   }
 

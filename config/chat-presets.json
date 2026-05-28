@@ -1,8 +1,8 @@
 [
   {
     "id": "analyze_indicator",
-    "label_es": "Analizar indicador",
-    "label_en": "Analyze indicator",
+    "label_es": "Analizar un indicador",
+    "label_en": "Analyze an indicator",
     "prompt_es": "Analizá el indicador FAO_CP_23012 y resumí las alertas detectadas para redacciones.",
     "prompt_en": "Analyze indicator FAO_CP_23012 and summarize detected alerts for newsrooms."
   },
@@ -15,29 +15,29 @@
   },
   {
     "id": "latest_alerts",
-    "label_es": "Alertas del monitor",
-    "label_en": "Monitor alerts",
-    "prompt_es": "¿Qué eventos detectó el monitor? Listá las alertas más recientes por fecha del dato.",
-    "prompt_en": "What events did the monitor detect? List the most recent alerts by data period."
+    "label_es": "Hallazgos del agente",
+    "label_en": "Agent findings",
+    "prompt_es": "¿Qué eventos detectó el agente? Listá las alertas más recientes por fecha del dato.",
+    "prompt_en": "What events did the agent detect? List the most recent alerts by data period."
   },
   {
     "id": "compare_lac",
-    "label_es": "Comparar países (MCP)",
-    "label_en": "Compare countries (MCP)",
+    "label_es": "Comparar países",
+    "label_en": "Compare countries",
     "prompt_es": "Usá MCP Data360 para comparar deuda pública (% del PIB) entre GTM, HND, ARG, ECU y MEX. Indicador: WB_CCDFS_GGDY.",
     "prompt_en": "Use Data360 MCP to compare general government gross debt (% of GDP) across GTM, HND, ARG, ECU and MEX. Indicator: WB_CCDFS_GGDY."
   },
   {
     "id": "search_indicator",
-    "label_es": "Buscar indicador",
-    "label_en": "Search indicator",
+    "label_es": "Buscar un indicador",
+    "label_en": "Search an indicator",
     "prompt_es": "Buscá en Data360 indicadores relacionados con inflación en América Latina.",
     "prompt_en": "Search Data360 for inflation-related indicators in Latin America."
   },
   {
     "id": "refresh_news",
-    "label_es": "Actualizar noticias",
-    "label_en": "Refresh news",
+    "label_es": "Refrescar titulares",
+    "label_en": "Refresh headlines",
     "prompt_es": "Actualizá titulares GDELT para Argentina y resumí lo más relevante para el contexto económico.",
     "prompt_en": "Refresh GDELT headlines for Argentina and summarize the most relevant economic context."
   }
