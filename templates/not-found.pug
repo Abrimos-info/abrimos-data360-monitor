@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  main.d360-page.d360-page--band
+    div.d360-shell
+      article.d360-prose
+        h1= _("static.not_found.title", lang)
+        p= _("static.not_found.body", lang)
+        ul.d360-not-found__countries
+          each link in countryLinks
+            li
+              a(href="/" + link.slug)
+                span(aria-hidden="true")= countryFlag(link.iso)
+                span= _("chat.country." + link.iso, lang)
+        p
+          a(href=monitorHomeUrl)= _("static.not_found.cta", lang)
+          |  · 
+          a(href="/indicadores")= _("static.not_found.indicators", lang)
+          |  · 
+          a(href="/about")= _("static.not_found.about", lang)
+        p= _("static.not_found.contact", lang)

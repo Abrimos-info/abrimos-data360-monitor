@@ -1,14 +1,25 @@
 {
   "meta": {
-    "site": "data360-monitor"
+    "site": "data360-monitor",
+    "version": 1
   },
-  "": {
-    "viewName": "dashboardPage"
-  },
-  "about": {
-    "viewName": "aboutPage"
-  },
-  "chat": {
-    "viewName": "chatPage"
-  }
+  "routes": [
+    { "id": "home", "match": "exact", "segments": [], "viewName": "countryPickerPage" },
+    { "id": "about", "match": "exact", "segments": ["about"], "viewName": "aboutPage" },
+    { "id": "chat", "match": "exact", "segments": ["chat"], "viewName": "chatPage" },
+    { "id": "indicators-es", "match": "exact", "segments": ["indicadores"], "viewName": "indicatorsHubPage" },
+    { "id": "indicators-en", "match": "exact", "segments": ["indicators"], "viewName": "indicatorsHubPage" },
+    { "id": "metodologia", "match": "exact", "segments": ["metodologia"], "viewName": "metodologiaPage" },
+    { "id": "privacidad", "match": "exact", "segments": ["privacidad"], "viewName": "privacidadPage" },
+    { "id": "terminos", "match": "exact", "segments": ["terminos"], "viewName": "terminosPage" },
+    { "id": "uso", "match": "exact", "segments": ["uso"], "viewName": "usoPage" },
+    { "id": "newsletter-root", "match": "exact", "segments": ["newsletter"], "viewName": "newsletterIndexPage" },
+    { "id": "newsletter-lac", "match": "exact", "segments": ["newsletter", "lac", ":date"], "viewName": "newsletterEditionPage" },
+    { "id": "alerts-sample", "match": "exact", "segments": ["alertas", ":countrySlug", "ejemplo"], "viewName": "alertsSamplePage" },
+    { "id": "dev-feed", "match": "exact", "segments": ["dev", "feed"], "viewName": "legacyDashboardPage" },
+    { "id": "indicator-detail", "match": "exact", "segments": ["indicador", ":idno"], "viewName": "indicatorDetailPage" },
+    { "id": "article", "match": "article", "viewName": "alertPage" },
+    { "id": "country-frontpage", "match": "countrySlug", "segments": [":countrySlug"], "viewName": "frontpagePage" },
+    { "id": "not-found", "match": "fallback", "viewName": "notFoundPage" }
+  ]
 }
