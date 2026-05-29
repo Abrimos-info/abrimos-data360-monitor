@@ -63,7 +63,7 @@ async function main() {
     appendAlerts: opts.append,
     onProgress: ({ idno, count }) => stepLog('analysis', `${idno}: ${count} candidate(s)`),
   });
-  stepLog('analysis', `finished ${result.alertCount} noticias, ${result.reportajeCount} reportajes (${result.indicatorsSkipped || 0} skipped unchanged, ${result.abruptCount} abrupt, ${result.anomalyCount} anomaly candidates)`);
+  stepLog('analysis', `finished ${result.alertCount} noticias, ${result.reportajeCount} reportajes (${result.indicatorsSkipped || 0} skipped unchanged, ${result.indicatorsSkippedLimit || 0} skipped limits, ${result.abruptCount} abrupt, ${result.anomalyCount} anomaly candidates)`);
   const stats = ai.getTokenStats();
   const llmTime = formatDuration(stats.durationMs || 0);
   const elapsed = formatRunElapsed();

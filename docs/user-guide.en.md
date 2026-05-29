@@ -296,7 +296,7 @@ Full reference: [`docs/environment-variables.md`](./environment-variables.md). T
 | Pipeline LLM | `AI_PROVIDER`, `AI_MODEL_NOTICIA`, `AI_MODEL_REPORTAJE`, `NOTICIA_TRANSLATE` |
 | Claude | `CLAUDE_MODEL`, `CLAUDE_EFFORT` (`low` \| `medium` \| `high`) |
 | Chat | `CHAT_AI_PROVIDER`, `CHAT_MAX_TURNS`, `CHAT_GENERATION_CONTEXT_MAX_CHARS` |
-| Analysis | `ANALYSIS_CHANGED_ONLY`, `ANALYSIS_MAX_INDICATORS`, `AI_SLIM_CONTEXT` |
+| Analysis | `ANALYSIS_CHANGED_ONLY`, `ANALYSIS_MAX_INDICATORS`, `ANALYSIS_MAX_NOTICIAS_PER_COUNTRY`, `ANALYSIS_MAX_NOTICIAS_PER_RUN`, `AI_SLIM_CONTEXT` |
 | Server | `D360_PORT`, `NODE_ENV`, `MCP_URL` |
 
 `CLAUDE_EFFORT` controls the Claude CLI `--effort=` flag for analysis, newsletter, and `replay:daily`. Default empty (no flag); `replay:daily` uses `medium` if unset.
