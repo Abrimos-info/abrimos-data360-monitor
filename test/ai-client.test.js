@@ -12,6 +12,8 @@ describe('ai-client provider labels', () => {
       'CHAT_AI_PROVIDER',
       'AI_MODEL',
       'AI_MODEL_NVIDIA',
+      'ANTHROPIC_API_KEY',
+      'CLAUDE_MODEL',
     ]) {
       saved[key] = process.env[key];
     }
@@ -98,5 +100,24 @@ describe('ai-client provider labels', () => {
     const info = ai.getChatModelInfo();
     assert.equal(info.providerLabel, 'NVIDIA');
     assert.equal(info.model, 'moonshotai/kimi-k2.6');
+  });
+
+  it('anthropicModelForAlias maps opus/sonnet/haiku aliases', () => {
+    delete require.cache[require.resolve('../lib/ai-client')];
+    const ai = require('../lib/ai-client');
+    assert.match(ai.anthropicModelForAlias('opus'), /opus/i);
+    assert.match(ai.anthropicModelForAlias('sonnet'), /sonnet/i);
+    assert.match(ai.anthropicModelForAlias('haiku'), /haiku/i);
+  });
+
+  it('getAnalysisModelInfo reports Anthropic when API key is set', () => {
+    process.env.AI_PROVIDER = 'claude-code';
+    process.env.ANTHROPIC_API_KEY = 'sk-ant-test';
+    process.env.CLAUDE_MODEL = 'opus';
+    delete require.cache[require.resolve('../lib/ai-client')];
+    const ai = require('../lib/ai-client');
+    const info = ai.getAnalysisModelInfo();
+    assert.equal(info.providerLabel, 'Anthropic');
+    assert.ok(ai.usesAnthropicApi());
   });
 });
