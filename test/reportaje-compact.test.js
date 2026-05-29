@@ -35,13 +35,13 @@ test('compactNoticiaForReportaje keeps structured data only, no story', () => {
   assert.equal(compact.claim_tokens[0].claim_id, 'abc');
 });
 
-test('noticiasEligibleForReportaje excludes incomplete and rejected', () => {
+test('noticiasEligibleForReportaje excludes rejected and incomplete without verified claims', () => {
   const list = [
     { id: 'ok', content_type: 'noticia', quality_status: 'accepted' },
-    { id: 'bad', content_type: 'noticia', quality_status: 'incomplete' },
+    { id: 'partial', content_type: 'noticia', quality_status: 'incomplete', claim_tokens: [{ pcn_status: 'verified' }] },
+    { id: 'bad', content_type: 'noticia', quality_status: 'incomplete', claim_tokens: [{ pcn_status: 'rejected' }] },
     { id: 'rej', content_type: 'noticia', quality_status: 'rejected' },
   ];
   const eligible = noticiasEligibleForReportaje(list);
-  assert.equal(eligible.length, 1);
-  assert.equal(eligible[0].id, 'ok');
+  assert.deepEqual(eligible.map((n) => n.id), ['ok', 'partial']);
 });

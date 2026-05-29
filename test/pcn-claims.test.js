@@ -2,7 +2,7 @@
 
 const test = require('node:test');
 const assert = require('node:assert/strict');
-const { computeClaimId, buildClaimToken } = require('../lib/pcn-claims');
+const { computeClaimId, buildClaimToken, claimInputFromObservation } = require('../lib/pcn-claims');
 
 const baseObs = {
   database_id: 'WB_WDI',
@@ -23,6 +23,22 @@ test('computeClaimId is stable for same tuple', () => {
 test('computeClaimId changes when time_period changes', () => {
   const a = computeClaimId(baseObs);
   const b = computeClaimId({ ...baseObs, time_period: '2025' });
+  assert.notEqual(a, b);
+});
+
+test('computeClaimId changes when comp_breakdown_1 changes', () => {
+  const base = claimInputFromObservation({
+    time_period: '2025',
+    value: '0.9',
+    unit_measure: '0_TO_1',
+    comp_breakdown_1: '_T',
+  }, {
+    database_id: 'WJP_ROL',
+    indicator: 'WJP_ROL_FAC_5',
+    country: 'MEX',
+  });
+  const a = computeClaimId(base);
+  const b = computeClaimId({ ...base, comp_breakdown_1: 'WJP_ROL_5_2' });
   assert.notEqual(a, b);
 });
 

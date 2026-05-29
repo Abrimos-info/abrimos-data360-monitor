@@ -34,3 +34,32 @@ test('annotateNoticiaClaims sets quality_status incomplete when claims rejected'
   assert.equal(noticia.quality_status, 'incomplete');
   assert.ok(noticia.quality_tags.includes('orphan_claim'));
 });
+
+test('buildClaimMapFromCandidates prefers unit_measure over display unit', () => {
+  const { buildClaimMapFromCandidates } = require('../lib/pcn-annotate');
+  const { buildCandidate } = require('../lib/analysis/candidate-builder');
+  const { computeClaimId, claimInputFromObservation } = require('../lib/pcn-claims');
+  const detection = {
+    type: 'anomaly',
+    indicator: 'FAO_CP_23014',
+    country: 'ARG',
+    z_score: 2.1,
+    observation: {
+      time_period: '2025-09-01',
+      value: '27.263038',
+      unit_measure: 'PC_A',
+    },
+    previous: null,
+    history: [],
+  };
+  const cand = buildCandidate(detection, 1);
+  const map = buildClaimMapFromCandidates([{ ...cand, country: 'ARG' }], 'FAO_CP_23014');
+  const claimId = cand.detection_meta.claim_id;
+  const meta = map.get(claimId);
+  assert.equal(meta.unit_measure, 'PC_A');
+  assert.equal(claimId, computeClaimId(claimInputFromObservation(detection.observation, {
+    database_id: 'FAO_CP',
+    indicator: 'FAO_CP_23014',
+    country: 'ARG',
+  })));
+});
