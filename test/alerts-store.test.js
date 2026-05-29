@@ -15,10 +15,9 @@ test('each alert has required schema fields', () => {
     if (a.category != null) {
       assert.ok(typeof a.category === 'string',                      `${a.id}: category must be string`);
     }
-    // Noticias/reportajes can attach one or more countries (reportajes are regional).
-    const countries = Array.isArray(a._countries) ? a._countries : (Array.isArray(a.countries) ? a.countries : (a.country ? [a.country] : []));
-    assert.ok(countries.length >= 1,                                `${a.id}: at least one country required`);
-    assert.ok(countries.every((c) => typeof c === 'string'),         `${a.id}: countries must be strings`);
+    assert.ok(typeof a.country === 'string' && a.country.length >= 2, `${a.id}: country (ISO3) required`);
+    assert.ok(a._countries == null,                                  `${a.id}: legacy _countries must not be set`);
+    assert.ok(a.countries == null,                                     `${a.id}: legacy countries must not be set`);
     // Narratives differ by content type: the new schema uses title/lead/story per language.
     if ((a.content_type || 'noticia') === 'noticia') {
       assert.ok(a.indicator && typeof a.indicator.idno === 'string',  `${a.id}: indicator.idno must be string`);
@@ -58,9 +57,7 @@ test('getCategories() returns a sorted array with no duplicates', () => {
 });
 
 test('getCountries() values are a subset of alert country fields', () => {
-  const alertCountries = new Set(
-    store.getAlerts().flatMap((a) => (Array.isArray(a._countries) && a._countries.length ? a._countries : (a.country ? [a.country] : [])))
-  );
+  const alertCountries = new Set(store.getAlerts().map((a) => a.country).filter(Boolean));
   for (const c of store.getCountries()) {
     assert.ok(alertCountries.has(c), `derived country "${c}" not found in any alert`);
   }

@@ -11,7 +11,7 @@ function minimalNoticia(overrides = {}) {
     title: { es: 'Aumentó la inflación en Argentina', en: 'Inflation rose in Argentina' },
     lead: { es: 'Resumen breve.', en: 'Brief summary.' },
     story: { es: 'x'.repeat(250), en: 'y'.repeat(250) },
-    countries: ['ARG'],
+    country: 'ARG',
     dataset_id: 'WB_WDI',
     indicator: { idno: 'WB_WDI_FP_CPI_TOTL_ZG', database_id: 'WB_WDI', name: { es: 'x', en: 'x' } },
     observation: { value: '5', time_period: '2024', unit: '%' },
@@ -96,13 +96,13 @@ test('sanitizeReportajeItem forces indicators from source noticias', () => {
     {
       id: 'n1',
       dataset_id: 'WB_KNOMAD',
-      countries: ['ARG'],
+      country: 'ARG',
       indicator: { idno: 'WB_KNOMAD_BRE', database_id: 'WB_KNOMAD' },
     },
     {
       id: 'n2',
       dataset_id: 'WB_KNOMAD',
-      countries: ['MEX'],
+      country: 'MEX',
       indicator: { idno: 'WB_KNOMAD_MIG', database_id: 'WB_KNOMAD' },
     },
   ];
@@ -114,7 +114,7 @@ test('sanitizeReportajeItem forces indicators from source noticias', () => {
     story: { es: 'x'.repeat(600), en: 'y'.repeat(600) },
     dataset_id: 'WB_KNOMAD',
     indicators: [{ idno: 'WB_KNOMAD_BRE' }],
-    countries: ['ARG'],
+    country: 'ARG',
     noticia_ids: ['n1', 'n2'],
     claim_tokens: [],
     verification_trace: {

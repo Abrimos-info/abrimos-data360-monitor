@@ -13,7 +13,6 @@ test('sanitizeNoticiaItem strips legacy keys and fills empty en from es', () => 
     title: { es: 'Subió el indicador', en: '' },
     lead: { es: 'Resumen.', en: '' },
     story: { es: 'x'.repeat(250), en: '' },
-    countries: ['MEX'],
     dataset_id: 'DS',
     indicator: { idno: 'X', database_id: 'DS', name: { es: 'Nombre', en: '' } },
     claim_tokens: [{ claim_id: 'abc', value: '1' }],

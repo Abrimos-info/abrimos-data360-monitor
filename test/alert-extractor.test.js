@@ -14,7 +14,7 @@ Análisis completado.
   "title": { "es": "IPC sube", "en": "CPI rises" },
   "lead": { "es": "El IPC subió.", "en": "CPI rose." },
   "story": { "es": "{{claim:abc123|128.5}} es el valor más reciente.", "en": "{{claim:abc123|128.5}} is the latest value." },
-  "countries": ["ARG"],
+  "country": "ARG",
   "dataset_id": "FAO_CP",
   "indicator": { "idno": "FAO_CP_23012", "database_id": "FAO_CP", "name": { "es": "IPC", "en": "CPI" } },
   "claim_tokens": [{ "claim_id": "abc123", "value": "128.5" }],

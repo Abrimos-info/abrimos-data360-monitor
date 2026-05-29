@@ -2,29 +2,30 @@
 const { test } = require('node:test');
 const assert = require('node:assert/strict');
 
-test('groupNoticiasByDataset groups by dataset_id', () => {
-  const { groupNoticiasByDataset } = require('../lib/analysis/reportaje-runner');
+test('groupNoticiasByDatasetAndCountry groups by dataset_id and country', () => {
+  const { groupNoticiasByDatasetAndCountry } = require('../lib/analysis/reportaje-runner');
   const noticias = [
-    { id: 'n1', dataset_id: 'FAO_CP', content_type: 'noticia', countries: ['ARG'] },
-    { id: 'n2', dataset_id: 'FAO_CP', content_type: 'noticia', countries: ['GTM'] },
-    { id: 'n3', dataset_id: 'WB_WDI', content_type: 'noticia', countries: ['ARG'] },
+    { id: 'n1', dataset_id: 'FAO_CP', content_type: 'noticia', country: 'ARG' },
+    { id: 'n2', dataset_id: 'FAO_CP', content_type: 'noticia', country: 'GTM' },
+    { id: 'n3', dataset_id: 'WB_WDI', content_type: 'noticia', country: 'ARG' },
   ];
-  const groups = groupNoticiasByDataset(noticias);
-  assert.equal(groups.size, 2);
-  assert.equal(groups.get('FAO_CP').length, 2);
-  assert.equal(groups.get('WB_WDI').length, 1);
+  const groups = groupNoticiasByDatasetAndCountry(noticias);
+  assert.equal(groups.size, 3);
+  assert.equal(groups.get('FAO_CP::ARG').length, 1);
+  assert.equal(groups.get('FAO_CP::GTM').length, 1);
+  assert.equal(groups.get('WB_WDI::ARG').length, 1);
 });
 
-test('groupNoticiasByDataset excludes single-noticia datasets when minNoticias = 2', () => {
-  const { groupNoticiasByDataset } = require('../lib/analysis/reportaje-runner');
+test('groupNoticiasByDatasetAndCountry groups same-country noticias for reportaje', () => {
+  const { groupNoticiasByDatasetAndCountry } = require('../lib/analysis/reportaje-runner');
   const noticias = [
-    { id: 'n1', dataset_id: 'FAO_CP', content_type: 'noticia' },
-    { id: 'n2', dataset_id: 'FAO_CP', content_type: 'noticia' },
-    { id: 'n3', dataset_id: 'SOLO', content_type: 'noticia' },
+    { id: 'n1', dataset_id: 'FAO_CP', content_type: 'noticia', country: 'ARG' },
+    { id: 'n2', dataset_id: 'FAO_CP', content_type: 'noticia', country: 'ARG' },
+    { id: 'n3', dataset_id: 'SOLO', content_type: 'noticia', country: 'ARG' },
   ];
-  const groups = groupNoticiasByDataset(noticias, { minNoticias: 2 });
-  assert.ok(groups.has('FAO_CP'));
-  assert.ok(!groups.has('SOLO'));
+  const groups = groupNoticiasByDatasetAndCountry(noticias, { minNoticias: 2 });
+  assert.ok(groups.has('FAO_CP::ARG'));
+  assert.ok(!groups.has('SOLO::ARG'));
 });
 
 test('reportajeFingerprint changes when noticia set changes', () => {

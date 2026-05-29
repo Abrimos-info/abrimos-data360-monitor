@@ -73,7 +73,7 @@
       "type": "object",
       "required": [
         "content_type", "id", "title", "lead", "story",
-        "countries", "dataset_id", "indicator",
+        "country", "dataset_id", "indicator",
         "claim_tokens", "verification_trace", "score", "detected_at"
       ],
       "properties": {
@@ -82,7 +82,7 @@
         "title": { "$ref": "#/definitions/bilingual" },
         "lead": { "$ref": "#/definitions/bilingual" },
         "story": { "$ref": "#/definitions/bilingual" },
-        "countries": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+        "country": { "type": "string", "enum": ["GTM", "HND", "ARG", "ECU", "MEX"] },
         "dataset_id": { "type": "string" },
         "indicator": {
           "type": "object",
@@ -130,7 +130,7 @@
       "type": "object",
       "required": [
         "content_type", "id", "title", "lead", "story",
-        "countries", "dataset_id", "indicators", "noticia_ids",
+        "country", "dataset_id", "indicators", "noticia_ids",
         "claim_tokens", "verification_trace", "score", "detected_at"
       ],
       "properties": {
@@ -139,7 +139,7 @@
         "title": { "$ref": "#/definitions/bilingual" },
         "lead": { "$ref": "#/definitions/bilingual" },
         "story": { "$ref": "#/definitions/bilingual" },
-        "countries": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+        "country": { "type": "string", "enum": ["GTM", "HND", "ARG", "ECU", "MEX"] },
         "dataset_id": { "type": "string" },
         "indicators": { "type": "array", "items": { "type": "string" }, "minItems": 2 },
         "noticia_ids": { "type": "array", "items": { "type": "string" } },

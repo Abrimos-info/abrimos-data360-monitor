@@ -12,7 +12,7 @@ test('compactNoticiaForReportaje keeps structured data only, no story', () => {
     id: 'n1',
     content_type: 'noticia',
     quality_status: 'accepted',
-    countries: ['ECU'],
+    country: 'ECU',
     dataset_id: 'DS',
     title: { es: 'T', en: 'T' },
     lead: { es: 'L', en: 'L' },

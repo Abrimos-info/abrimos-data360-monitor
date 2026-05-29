@@ -22,7 +22,7 @@ Pasos:
    - **Bloque 7 — Cierre con perspectiva (100-150 palabras)**: no resumen — kicker AP / close Reuters. Conecta el conjunto con un fenómeno más amplio o plantea pregunta abierta. Sin "en conclusión", "como hemos visto".
    - **Bloque 8 — Caja metodológica (50-80 palabras)**: una sola caja con qué mide el dataset, número de sub-indicadores, frecuencia, fuente, link a Data360.
    - No repitas párrafos entre bloques. Cada cifra en `{{claim:CLAIM_ID|valor}}`.
-5. Completá `countries` con todos los países que aparecen en alguna Noticia de §7.
+5. Completá `country` con el ISO3 compartido por todas las Noticias de §7 (deben ser del mismo país).
 6. Completá `indicators` con los IDNO de las Noticias del §7.
 7. Completá `noticia_ids` con los `id` de las Noticias del §7.
 8. Completá `claim_tokens` con todos los claim_id usados en el `story`. Cada `value` es un string.
@@ -35,7 +35,7 @@ Pasos:
   "title": { "es": "...", "en": "..." },
   "lead": { "es": "...", "en": "..." },
   "story": { "es": "...", "en": "..." },
-  "countries": ["ISO3"],
+  "country": "ISO3",
   "dataset_id": "DATABASE_ID",
   "indicators": ["IDNO1", "IDNO2"],
   "noticia_ids": ["noticia_id1", "noticia_id2"],

@@ -217,7 +217,7 @@ test('HTTP routes', async (t) => {
       .find((a) => a.content_type === 'reportaje' && (a.noticia_ids || []).length >= 2);
     if (!reportaje) return;
 
-    const iso = (reportaje.countries || [])[0] || 'ARG';
+    const iso = reportaje.country || 'ARG';
     const slugMap = { ARG: 'argentina', ECU: 'ecuador', GTM: 'guatemala', HND: 'honduras', MEX: 'mexico' };
     const countryPath = slugMap[iso] || 'argentina';
     const fp = await get(`${base}/${countryPath}`);

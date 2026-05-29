@@ -15,7 +15,7 @@ Pasos:
    - **Bloque 6 — Metodología compacta (1 frase final)**: qué mide el indicador, frecuencia, fuente. Una sola oración.
    - Incluí todos los números con sus `{{claim:CLAIM_ID|valor}}`.
    - Si citás prensa externa (§8) o noticia previa (§9), enlace markdown a la URL original es obligatorio.
-5. Completá `countries` con los países que tengan al menos un candidato detectado.
+5. Completá `country` con el ISO3 del candidato protagonista (mayor |z|) únicamente.
 6. Completá `claim_tokens` con todos los claim_id usados en `story`. Cada `value` debe ser el **string numérico crudo** del candidato (ej. `"10"`, no el texto formateado del token).
 7. Completá `observation` copiando verbatim el candidato protagonista (`value` string, `time_period`, `unit`).
 8. Completá `chart_series` con la serie del país protagonista desde la tabla del contexto (últimos puntos visibles).

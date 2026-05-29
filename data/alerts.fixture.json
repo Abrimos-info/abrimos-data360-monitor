@@ -8,7 +8,7 @@
       "title": { "es": "Inflación se acelera en Argentina", "en": "Inflation Accelerates in Argentina" },
       "lead": { "es": "El IPC anual en Argentina llegó a 211,4% en 2024, según Data360.", "en": "Annual CPI inflation in Argentina reached 211.4% in 2024, according to Data360." },
       "story": { "es": "El indicador de inflación anual (IPC) para Argentina registra 211,4% en 2024, de acuerdo con la serie WB_WDI publicada en Data360.", "en": "Argentina's annual inflation (CPI) records 211.4% in 2024 according to the WB_WDI series published on Data360." },
-      "countries": ["ARG"],
+      "country": "ARG",
       "dataset_id": "WB_WDI",
       "indicator": {
         "idno": "WB_WDI_FP_CPI_TOTL_ZG",
@@ -35,7 +35,7 @@
       "title": { "es": "El IPC general sube en Argentina", "en": "General CPI Rises in Argentina" },
       "lead": { "es": "El índice general (2015=100) alcanza 11.322,29 en septiembre de 2025.", "en": "The general index (2015=100) reaches 11,322.29 in September 2025." },
       "story": { "es": "En septiembre de 2025, el índice general de precios al consumidor (2015=100) en Argentina registra 11.322,29. Serie FAO_CP en Data360.", "en": "In September 2025, Argentina's general consumer price index (2015=100) records 11,322.29. FAO_CP series in Data360." },
-      "countries": ["ARG"],
+      "country": "ARG",
       "dataset_id": "FAO_CP",
       "indicator": {
         "idno": "FAO_CP_23012",
@@ -59,7 +59,7 @@
       "title": { "es": "Desempleo en Argentina en 2025", "en": "Unemployment in Argentina in 2025" },
       "lead": { "es": "La tasa de desempleo total se ubica en 7,1% en 2025, según Data360.", "en": "The total unemployment rate stands at 7.1% in 2025, according to Data360." },
       "story": { "es": "El indicador de desempleo total para Argentina muestra 7,1% en 2025. Serie WB_WDI en Data360.", "en": "Argentina's total unemployment indicator shows 7.1% in 2025. WB_WDI series in Data360." },
-      "countries": ["ARG"],
+      "country": "ARG",
       "dataset_id": "WB_WDI",
       "indicator": {
         "idno": "WB_WDI_SL_UEM_TOTL_ZS",
@@ -82,7 +82,7 @@
       "title": { "es": "Estado de derecho en Argentina", "en": "Rule of Law in Argentina" },
       "lead": { "es": "El índice general WJP alcanza 0,54 en 2025.", "en": "The WJP overall index reaches 0.54 in 2025." },
       "story": { "es": "Argentina registra 0,54 en el índice general del World Justice Project en 2025.", "en": "Argentina records 0.54 on the World Justice Project overall index in 2025." },
-      "countries": ["ARG"],
+      "country": "ARG",
       "dataset_id": "WJP_ROL",
       "indicator": {
         "idno": "WJP_ROL_OVRL",
@@ -109,7 +109,7 @@
       "title": { "es": "Orden y seguridad en Honduras", "en": "Order and Security in Honduras" },
       "lead": { "es": "El factor 3 del índice WJP se ubica en 0,51 en 2025.", "en": "WJP factor 3 stands at 0.51 in 2025." },
       "story": { "es": "Honduras registra 0,51 en el factor orden y seguridad del World Justice Project en 2025.", "en": "Honduras records 0.51 on the World Justice Project order and security factor in 2025." },
-      "countries": ["HND"],
+      "country": "HND",
       "dataset_id": "WJP_ROL",
       "indicator": {
         "idno": "WJP_ROL_FAC_3",
@@ -136,7 +136,7 @@
       "title": { "es": "Índice de Estado de derecho en la región", "en": "Rule of Law Index Across the Region" },
       "lead": { "es": "El World Justice Project muestra movimientos en varios países.", "en": "The World Justice Project shows movements across several countries." },
       "story": { "es": "Este reportaje sintetiza cambios regionales a partir de varias noticias por indicador.", "en": "This reportaje synthesizes regional changes using multiple indicator stories." },
-      "countries": ["ARG", "ECU", "MEX", "HND", "GTM"],
+      "country": "ARG",
       "dataset_id": "WJP_ROL",
       "indicators": ["WJP_ROL_OVRL", "WJP_ROL_FAC_3"],
       "noticia_ids": ["noticia_fixture_ARG_WJP_ROL_OVRL_2025", "noticia_fixture_HND_WJP_ROL_FAC_3_2025"],

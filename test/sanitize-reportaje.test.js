@@ -8,7 +8,7 @@ const { validateAlert } = require('../lib/analysis/quality-validator');
 const sourceNoticias = [
   {
     id: 'noticia_1',
-    countries: ['ARG'],
+    country: 'ARG',
     dataset_id: 'WB_WDI',
     indicator: { idno: 'WB_WDI_SL_UEM_TOTL_ZS', database_id: 'WB_WDI' },
     verification_trace: {
@@ -18,7 +18,7 @@ const sourceNoticias = [
   },
   {
     id: 'noticia_2',
-    countries: ['MEX'],
+    country: 'MEX',
     dataset_id: 'WB_WDI',
     indicator: { idno: 'WB_WDI_SI_POV_DDAY', database_id: 'WB_WDI' },
     verification_trace: {
@@ -42,7 +42,7 @@ test('sanitizeNoticiaItem fixes detected_at without timezone', () => {
     title: { es: 'Título', en: '' },
     lead: { es: 'Lead.', en: '' },
     story: { es: 'x'.repeat(250), en: '' },
-    countries: ['GTM'],
+    country: 'GTM',
     dataset_id: 'WB_WDI',
     indicator: { idno: 'WB_WDI_SH_DYN_MORT', name: { es: 'Mortalidad', en: '' } },
     claim_tokens: [{ claim_id: 'abc', value: '1' }],

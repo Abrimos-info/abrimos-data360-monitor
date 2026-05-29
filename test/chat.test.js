@@ -76,12 +76,7 @@ describe('chat tools', () => {
     const all = store.getAlertsForIndicator(idno);
     assert.ok(all.length >= 0);
     const arg = store.getAlertsForIndicator(idno, { country: 'ARG' });
-    assert.ok(arg.every((a) => {
-      if (a.country === 'ARG') return true;
-      if (Array.isArray(a._countries) && a._countries.includes('ARG')) return true;
-      if (Array.isArray(a.countries) && a.countries.includes('ARG')) return true;
-      return false;
-    }));
+    assert.ok(arg.every((a) => a.country === 'ARG'));
   });
 
   it('mcp_get_data builds chart_series from data rows', async (t) => {

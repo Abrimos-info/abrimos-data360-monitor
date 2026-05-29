@@ -91,7 +91,7 @@ test('validateAlert accepts optional llm_debug on noticia', () => {
     title: { es: 'Aumentó la inflación en Argentina', en: 'Inflation rose in Argentina' },
     lead: { es: 'Resumen breve.', en: 'Brief summary.' },
     story: { es: 'x'.repeat(250), en: 'y'.repeat(250) },
-    countries: ['ARG'],
+    country: 'ARG',
     dataset_id: 'WB_WDI',
     indicator: { idno: 'WB_WDI_FP_CPI_TOTL_ZG', database_id: 'WB_WDI', name: { es: 'x', en: 'x' } },
     observation: { value: '5', time_period: '2024', unit: '%' },

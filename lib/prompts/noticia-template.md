@@ -18,7 +18,7 @@ Emitís exactamente este bloque fenced (sin texto adicional antes o después, ex
     "es": "Cuerpo completo de la noticia en español (350–500 palabras, andamiaje 6 bloques). Incluye {{claim:CLAIM_ID|valor}} para cada número citado y enlace markdown a toda fuente periodística mencionada.",
     "en": "Full story body in English (350–500 words, 6-block scaffold). Include {{claim:CLAIM_ID|value}} for each number cited and markdown links for every news source mentioned."
   },
-  "countries": ["ISO3"],
+  "country": "ISO3",
   "dataset_id": "DATABASE_ID",
   "indicator": {
     "idno": "INDICATOR_IDNO",
