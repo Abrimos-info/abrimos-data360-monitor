@@ -201,6 +201,18 @@
     return out;
   }
 
+  function enhanceTables(container) {
+    if (!container || !container.querySelectorAll) return;
+    container.querySelectorAll('table').forEach(function (table) {
+      table.classList.add('d360-prose__table');
+      if (table.parentElement && table.parentElement.classList.contains('d360-table-scroll')) return;
+      var wrap = document.createElement('div');
+      wrap.className = 'd360-table-scroll';
+      table.parentNode.insertBefore(wrap, table);
+      wrap.appendChild(table);
+    });
+  }
+
   function renderMarkdown(text, options) {
     options = options || {};
     if (!text) return '';
@@ -217,6 +229,7 @@
     html = injectMissingSparklines(html, rendered, options.pendingCharts);
     var wrap = document.createElement('div');
     wrap.innerHTML = html;
+    enhanceTables(wrap);
     if (global.D360IndicatorPills && global.D360IndicatorPills.enhanceIndicatorPills) {
       global.D360IndicatorPills.enhanceIndicatorPills(wrap);
     }

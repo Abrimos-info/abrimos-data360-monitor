@@ -1715,6 +1715,15 @@ body.d360-onboard-open {
   padding-left: var(--space-4);
   color: var(--fg-bold);
 }
+.d360-table-scroll {
+  overflow-x: auto;
+  margin: var(--space-3) 0 var(--space-4);
+  -webkit-overflow-scrolling: touch;
+}
+.d360-table-scroll .d360-prose__table {
+  margin: 0;
+  min-width: min(100%, 28rem);
+}
 .d360-prose__table {
   width: 100%;
   border-collapse: collapse;
@@ -1726,10 +1735,23 @@ body.d360-onboard-open {
   border: 1px solid var(--border);
   padding: var(--space-2) var(--space-3);
   text-align: left;
-  vertical-align: top;
+  vertical-align: middle;
 }
 .d360-prose__table th {
   background: var(--bg-alt);
+  font-weight: 600;
+}
+/* Article tables: label column left, numeric columns right */
+.d360-article__story .d360-prose__table th:not(:first-child),
+.d360-article__story .d360-prose__table td:not(:first-child),
+.d360-article__story .d360-prose__table th[align="right"],
+.d360-article__story .d360-prose__table td[align="right"] {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.d360-article__story .d360-prose__table td:not(:first-child) .d360-claim {
+  justify-content: flex-end;
+  width: 100%;
 }
 .d360-about-team__links {
   margin: 0 0 var(--space-4);
