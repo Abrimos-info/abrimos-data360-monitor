@@ -25,7 +25,7 @@
     "pipeline:dynamic:force": "node bin/pipeline-dynamic.js --force",
     "pipeline:dynamic:news-gdelt": "NEWS_FETCH_BODY=false node bin/fetch-news.js --no-preview --provider=gdelt --watchlist-file data/dynamic-watchlist.json --no-themes",
     "pipeline:dynamic:analyze": "npm run analyze:dynamic",
-    "pretest": "node -e \"require('fs').mkdirSync('test/tmp',{recursive:true})\"",
+    "pretest": "node -e \"const fs=require('fs'),path=require('path');fs.mkdirSync('test/tmp',{recursive:true});const src=path.join('test','fixtures','analyses');const dst=path.join('data','analyses');if(fs.existsSync(src)){fs.mkdirSync(dst,{recursive:true});for(const f of fs.readdirSync(src)){if(f.endsWith('.md'))fs.copyFileSync(path.join(src,f),path.join(dst,f));}}\"",
     "test": "node --test test/*.test.js",
     "test:watch": "node --test --watch test/*.test.js"
   },
