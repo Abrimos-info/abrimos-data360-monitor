@@ -1716,13 +1716,17 @@ body.d360-onboard-open {
   color: var(--fg-bold);
 }
 .d360-table-scroll {
-  overflow-x: auto;
   margin: var(--space-3) 0 var(--space-4);
-  -webkit-overflow-scrolling: touch;
+  max-width: 100%;
+}
+@media (max-width: 720px) {
+  .d360-table-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
 }
 .d360-table-scroll .d360-prose__table {
   margin: 0;
-  min-width: min(100%, 28rem);
 }
 .d360-prose__table {
   width: 100%;
@@ -1741,17 +1745,31 @@ body.d360-onboard-open {
   background: var(--bg-alt);
   font-weight: 600;
 }
-/* Article tables: label column left, numeric columns right */
+/* Article tables: compact, content-sized, numeric columns right */
+.d360-article__story .d360-table-scroll .d360-prose__table,
+.d360-article__story .d360-prose__table {
+  width: auto;
+  max-width: 100%;
+}
+.d360-article__story .d360-prose__table th,
+.d360-article__story .d360-prose__table td {
+  padding: 0.35rem 0.55rem;
+}
+.d360-article__story .d360-prose__table th:not(:first-child) {
+  white-space: normal;
+  line-height: 1.35;
+  max-width: 9.5rem;
+}
 .d360-article__story .d360-prose__table th:not(:first-child),
 .d360-article__story .d360-prose__table td:not(:first-child),
 .d360-article__story .d360-prose__table th[align="right"],
 .d360-article__story .d360-prose__table td[align="right"] {
   text-align: right;
   font-variant-numeric: tabular-nums;
+  white-space: nowrap;
 }
-.d360-article__story .d360-prose__table td:not(:first-child) .d360-claim {
-  justify-content: flex-end;
-  width: 100%;
+.d360-article__story .d360-prose__table .d360-claim {
+  max-width: 100%;
 }
 .d360-about-team__links {
   margin: 0 0 var(--space-4);
