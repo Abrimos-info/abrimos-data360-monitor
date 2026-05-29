@@ -19,6 +19,7 @@
     "analyze:all-tiers": "node bin/generate-analysis.js --all-tiers",
     "analyze:noticias": "node bin/generate-analysis.js --noticias-only",
     "analyze:reportajes": "node bin/generate-analysis.js --reportajes-only",
+    "reportaje:regenerate": "node bin/regenerate-reportaje.js",
     "analyze:no-llm": "node bin/generate-analysis.js --no-llm",
     "generate:newsletter": "node bin/generate-newsletter.js",
     "replay:daily": "node bin/replay-daily.js",
