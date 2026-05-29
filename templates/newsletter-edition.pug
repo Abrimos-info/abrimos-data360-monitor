@@ -2,18 +2,19 @@ extends layout
 
 block content
   main.d360-page.d360-page--band
-    div.d360-shell
+    div.d360-shell.d360-newsletter-layout
       article.d360-prose.d360-newsletter-edition
         header.d360-newsletter-edition__head
           p.d360-newsletter-edition__kicker= _("newsletter.edition_kicker", lang).replace("{date}", edition.edition.date_iso)
           h1= edition.subject[lang] || edition.subject.es
           p.d360-newsletter-edition__pre= edition.preheader[lang] || edition.preheader.es
         p= edition.greeting[lang] || edition.greeting.es
-        section.d360-newsletter-edition__hero
-          h2= edition.hero.title[lang] || edition.hero.title.es
-          p= edition.hero.lede_absorbed[lang] || edition.hero.lede_absorbed.es
-          if edition.hero.cta_link
-            p: a(href=edition.hero.cta_link)= _("newsletter.read_story", lang)
+        if edition.hero
+          section.d360-newsletter-edition__hero
+            h2= edition.hero.title[lang] || edition.hero.title.es
+            p= edition.hero.lede_absorbed[lang] || edition.hero.lede_absorbed.es
+            if edition.hero.cta_link
+              p: a(href=edition.hero.cta_link)= _("newsletter.read_story", lang)
         if edition.featured && edition.featured.length
           section
             h2= _("newsletter.featured_title", lang)
@@ -22,3 +23,14 @@ block content
               p= item.one_liner[lang] || item.one_liner.es
         p.d360-newsletter-edition__close= edition.close[lang] || edition.close.es
         p: a.d360-newsletter-edition__cta(href=edition.cta.url)= edition.cta.label[lang] || edition.cta.label.es
+      if allEditions && allEditions.length > 1
+        aside.d360-newsletter-edition__archive(aria-label=_("newsletter.previous_editions", lang))
+          h2.d360-newsletter-edition__archive-title= _("newsletter.previous_editions", lang)
+          ul
+            each d in allEditions
+              li
+                - var isCurrent = d === dateIso
+                if isCurrent
+                  strong= d
+                else
+                  a(href="/newsletter/lac/" + d)= d

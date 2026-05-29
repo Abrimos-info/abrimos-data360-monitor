@@ -91,6 +91,7 @@
   "newsletter.edition_kicker": "Newsletter diario LAC · {date}",
   "newsletter.read_story": "Leer la nota →",
   "newsletter.featured_title": "Otros hallazgos del día",
+  "newsletter.previous_editions": "Ediciones anteriores",
   "subscribe.title": "Suscripciones",
   "subscribe.modal_title": "Suscripciones",
   "subscribe.intro": "Dos formas de recibir lo que el agente publica. Elegí una — o las dos.",

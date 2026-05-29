@@ -91,6 +91,7 @@
   "newsletter.edition_kicker": "Daily LAC newsletter · {date}",
   "newsletter.read_story": "Read the story →",
   "newsletter.featured_title": "Other findings today",
+  "newsletter.previous_editions": "Previous editions",
   "subscribe.title": "Subscriptions",
   "subscribe.modal_title": "Subscriptions",
   "subscribe.intro": "Two ways to get what the agent publishes. Pick one — or both.",
