@@ -8,6 +8,7 @@ cache/
 data/snapshots/
 data/alerts.json
 data/alerts/
+data/alerts.backup-*
 data/indicators/
 data/analyses/
 data/changed-since*.json
