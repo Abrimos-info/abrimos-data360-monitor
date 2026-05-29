@@ -8,20 +8,35 @@ block content
           p.d360-newsletter-edition__kicker= _("newsletter.edition_kicker", lang).replace("{date}", edition.edition.date_iso)
           h1= edition.subject[lang] || edition.subject.es
           p.d360-newsletter-edition__pre= edition.preheader[lang] || edition.preheader.es
-        p= edition.greeting[lang] || edition.greeting.es
-        if edition.hero
+        if display.greeting_html
+          p!= display.greeting_html
+        else
+          p= edition.greeting[lang] || edition.greeting.es
+        if display.hero
+          section.d360-newsletter-edition__hero
+            h2= display.hero.title
+            p!= display.hero.lede_html
+            if display.hero.cta_link
+              p: a(href=display.hero.cta_link)= _("newsletter.read_story", lang)
+        else if edition.hero
           section.d360-newsletter-edition__hero
             h2= edition.hero.title[lang] || edition.hero.title.es
             p= edition.hero.lede_absorbed[lang] || edition.hero.lede_absorbed.es
             if edition.hero.cta_link
               p: a(href=edition.hero.cta_link)= _("newsletter.read_story", lang)
-        if edition.featured && edition.featured.length
+        if display.featured && display.featured.length
+          section
+            h2= _("newsletter.featured_title", lang)
+            each item in display.featured
+              h3= item.title
+              p!= item.one_liner_html
+        else if edition.featured && edition.featured.length
           section
             h2= _("newsletter.featured_title", lang)
             each item in edition.featured
               h3= item.title[lang] || item.title.es
               p= item.one_liner[lang] || item.one_liner.es
-        p.d360-newsletter-edition__close= edition.close[lang] || edition.close.es
+        p.d360-newsletter-edition__close= display.close || edition.close[lang] || edition.close.es
         p: a.d360-newsletter-edition__cta(href=edition.cta.url)= edition.cta.label[lang] || edition.cta.label.es
       if allEditions && allEditions.length > 1
         aside.d360-newsletter-edition__archive(aria-label=_("newsletter.previous_editions", lang))
