@@ -1,5 +1,7 @@
 # Guía de usuario — Data360 News Agent
 
+> **Idioma** · Español · [English version](./user-guide.en.md)
+
 > **Audiencia**: redacciones de América Latina y el Caribe.  
 > **Estado**: borrador funcional al 2026-05-29 (demo fase 2, entrega 2026-05-31).
 
@@ -210,7 +212,7 @@ Página estática con: qué es el producto, alcance LAC, metodología de detecci
 | `id` | Identificador único |
 | `content_type` | `noticia` o `reportaje` |
 | `title` / `lead` / `story` | Texto bilingüe `{ es, en }` |
-| `countries` | ISO3 (lista) |
+| `country` | ISO3 del país de la pieza (`GTM`, `HND`, `ARG`, `ECU`, `MEX`) |
 | `dataset_id` | Identificador del dataset Data360 |
 | `indicator` | (Solo **Noticia**) IDNO, `database_id`, `name` bilingüe |
 | `indicators` | (Solo **Reportaje**) lista de IDNO cubiertos (≥2) |
@@ -257,28 +259,51 @@ Más contexto: `docs/data360-integration-methodology.md`.
 ```bash
 npm run fetch                    # descarga CSV + data dictionary + meta.json
 npm run fetch:probe              # solo sonda de cambios (~2 s)
-npm run fetch:news               # titulares (Gemini por defecto)
-npm run fetch:news:dynamic       # titulares contra watchlist dinámico
+npm run fetch:news               # titulares (Gemini, watchlist dinámico)
 npm run analyze                  # detección + Noticias + Reportajes → data/alerts.json
-npm run analyze:dynamic          # analyze solo indicadores changed-since
+npm run analyze:changed          # analyze solo indicadores changed-since
 npm run analyze:noticias         # solo Fase 1
 npm run analyze:reportajes       # solo Fase 2
 npm run analyze:no-llm           # pipeline sin LLM
-npm run discover                 # modo dinámico: /searchv2 → dynamic-watchlist.json
-npm run pipeline:dynamic         # discover → fetch → analyze
-npm run pipeline:dynamic:force   # igual, bypass ETag en fetch
-npm run pipeline:dynamic:news-gdelt  # fetch GDELT contra watchlist dinámico
+npm run discover                 # /searchv2 → dynamic-watchlist.json
+npm run pipeline                 # discover → fetch → news → analyze → newsletter
+npm run pipeline:force           # igual, bypass ETag en fetch
+npm run build                    # alias de pipeline
+npm run pipeline:news-gdelt      # fetch GDELT contra watchlist
+npm run generate:newsletter      # edición LAC del día (también al final de pipeline)
+npm run replay:daily             # replay histórico día a día (fetch + analyze + newsletter)
 npm run dev                      # servidor web :8090 (desarrollo)
 npm run start                    # producción
 npm test                         # tests Node
 ```
 
-Flujo estático: `fetch` → `fetch:news` (opcional) → `analyze`.  
-Flujo dinámico: `pipeline:dynamic`.
+Flujo completo: `npm run pipeline` (o `npm run build`).  
+Pasos sueltos: `fetch` → `fetch:news` (opcional) → `analyze`.  
+Replay multi-día: `replay:daily --from=2026-05-22 --to=2026-05-29` (respeta `CLAUDE_EFFORT`).
 
 Salida principal: **`data/alerts.json`**.
 
-Variables: pipeline en `.env.example` (`AI_PROVIDER`, `AI_MODEL`, `AI_PROVIDER=nvidia`); chat en `CHAT_AI_PROVIDER`, `CHAT_MAX_TURNS`.
+### Variables de entorno
+
+Referencia completa: [`docs/environment-variables.md`](./environment-variables.md). Plantilla: [`.env.example`](../.env.example).
+
+| Grupo | Variables clave |
+|-------|-----------------|
+| Pipeline LLM | `AI_PROVIDER`, `AI_MODEL_NOTICIA`, `AI_MODEL_REPORTAJE`, `NOTICIA_TRANSLATE` |
+| Claude | `CLAUDE_MODEL`, `CLAUDE_EFFORT` (`low` \| `medium` \| `high`) |
+| Chat | `CHAT_AI_PROVIDER`, `CHAT_MAX_TURNS`, `CHAT_GENERATION_CONTEXT_MAX_CHARS` |
+| Análisis | `ANALYSIS_CHANGED_ONLY`, `ANALYSIS_MAX_INDICATORS`, `AI_SLIM_CONTEXT` |
+| Servidor | `D360_PORT`, `NODE_ENV`, `MCP_URL` |
+
+`CLAUDE_EFFORT` controla el flag `--effort=` del CLI Claude en análisis, newsletter y `replay:daily`. Default vacío (sin flag); `replay:daily` usa `medium` si no se define.
+
+### Esquema de alertas
+
+Cada Noticia y Reportaje lleva un único campo **`country`** (ISO3), no una lista. El esquema formal está en `docs/alert-schema.json`.
+
+### Frontend — CSS crítico
+
+`templates/layout.pug` carga `static/css/layout.css` en el `<head>` (bloqueante) con tokens, tema WB y chrome. El resto de estilos de página viven en `static/css/main.css` y se incluyen por template. Esto reduce FOUC en la shell de la app.
 
 ---
 
@@ -362,6 +387,8 @@ Roadmap: `docs/architecture-overview.md`, `docs/sustainability-plan.md`.
 | [data360-integration-methodology.md](./data360-integration-methodology.md) | Integración API Data360 |
 | [news-architecture.md](./news-architecture.md) | Subsistema de titulares |
 | [security-data-handling.md](./security-data-handling.md) | Manejo de datos |
+| [environment-variables.md](./environment-variables.md) | Tabla de variables de entorno |
+| [user-guide.en.md](./user-guide.en.md) | Esta guía en inglés |
 | [CLAUDE.md](../CLAUDE.md) | Decisiones internas del repo |
 
 ---

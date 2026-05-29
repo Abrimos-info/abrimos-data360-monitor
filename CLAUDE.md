@@ -176,10 +176,10 @@ Newsletter editions: `lib/newsletter/editions.js`, fixtures under `data/newslett
 # Static replay (35-indicator watchlist): fetch → news → analyze
 npm run fetch && npm run fetch:news && npm run analyze
 
-# Dynamic replay (datasets updated in the last 7 days):
-npm run pipeline:dynamic
+# Full pipeline (discover → fetch → news → analyze → newsletter):
+npm run pipeline
 # … or force-refresh, bypassing the ETag cache:
-npm run pipeline:dynamic:force
+npm run pipeline:force
 
 # Just discover recently-updated datasets, no fetch
 npm run discover

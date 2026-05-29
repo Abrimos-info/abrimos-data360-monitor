@@ -37,7 +37,7 @@ The monitor serves a newspaper-style product for five LAC countries:
 
 Legacy card feed with client filters: `/dev/feed` or `?legacy=1` on a country page.
 
-Full operator guide: [`docs/user-guide.md`](docs/user-guide.md).
+Full operator guide: [`docs/user-guide.md`](docs/user-guide.md) (ES) · [`docs/user-guide.en.md`](docs/user-guide.en.md) (EN).
 
 ## Deployment
 
@@ -128,11 +128,48 @@ WantedBy=multi-user.target
 
 Adjust paths, then `systemctl enable --now data360-mcp`. Restart the monitor after changing `MCP_URL`.
 
+### PM2 (process manager)
+
+For persistent hosting of the Node monitor, use [PM2](https://pm2.keymetrics.io/) with the included ecosystem file:
+
+```bash
+npm install -g pm2
+cp .env.example .env   # configure D360_PORT, MCP_URL, AI_*, etc.
+pm2 start ecosystem.config.js
+pm2 save
+pm2 startup            # optional: survive reboot
+```
+
+[`ecosystem.config.js`](ecosystem.config.js) runs `data360-monitor.js` with `NODE_ENV=production`, `D360_PORT=8090`, and loads secrets from `.env` via `env_file`. Run the Data360 MCP server separately (systemd or another PM2 app on port 8021).
+
+```bash
+pm2 logs data360-monitor
+pm2 restart data360-monitor
+```
+
+Environment reference: [`docs/environment-variables.md`](docs/environment-variables.md).
+
+### Anthropic API (analysis pipeline)
+
+With `AI_PROVIDER=claude-code`, the pipeline calls the [Anthropic Messages API](https://docs.anthropic.com/en/api/messages) when `ANTHROPIC_API_KEY` is set. This is the expected path for local development and production (pm2).
+
+In `.env`:
+
+```bash
+AI_PROVIDER=claude-code
+ANTHROPIC_API_KEY=sk-ant-api03-...
+CLAUDE_MODEL=opus
+```
+
+Create keys at [console.anthropic.com](https://console.anthropic.com/settings/keys). Full variable reference: [`docs/environment-variables.md`](docs/environment-variables.md).
+
 ## Documentation
 
 | Document | Description |
 |----------|-------------|
 | [**User guide (ES)**](./docs/user-guide.md) | All product features for newsrooms — front pages, articles, chat, verification, pipeline |
+| [**User guide (EN)**](./docs/user-guide.en.md) | English translation of the user guide |
+| [Environment variables](./docs/environment-variables.md) | Complete `.env` reference (AI, chat, news, server) |
 | [Features reference](./docs/features-reference.md) | Technical feature catalog (API, tools, files) |
 | [Architecture overview](./docs/architecture-overview.md) | Demo vs production |
 | [Frontend architecture](./docs/frontend-architecture.md) | Pug, routes, article chat |
@@ -182,23 +219,28 @@ The pipeline emits two content types:
 - **Noticia** — bilingual news story (one per indicator/country, 250–600 words) triggered by a detection candidate.
 - **Reportaje** — bilingual long-form (one per dataset, 500–1200 words) generated only when two or more Noticias share the same `dataset_id`. Synthesises a regional view and reuses the Noticias' `claim_id`s.
 
+Each alert carries a single **`country`** field (ISO3), not a list — see `docs/alert-schema.json`.
+
 Per-indicator only: `node bin/generate-analysis.js --only FAO_CP_23012`
 
 Indicators can be picked from the static 35-item watchlist (`lib/watchlist.js`) or discovered dynamically from `/data360/searchv2`:
 
 ```bash
-npm run pipeline:dynamic         # discover → fetch → analyze
-npm run pipeline:dynamic:force   # same, but bypass the ETag cache
-npm run analyze:dynamic          # analyze changed indicators only (dynamic watchlist)
-npm run analyze:noticias         # Phase 1 only
-npm run analyze:reportajes       # Phase 2 only
-npm run fetch:news:dynamic       # headlines against dynamic watchlist
-npm run pipeline:dynamic:news-gdelt  # GDELT fetch for dynamic watchlist
+npm run pipeline               # discover → fetch → news → analyze → newsletter
+npm run pipeline:force         # same, but bypass the ETag cache
+npm run build                  # alias for pipeline
+npm run analyze:changed        # analyze changed indicators only
+npm run analyze:noticias       # Phase 1 only
+npm run analyze:reportajes     # Phase 2 only
+npm run fetch:news             # headlines (Gemini, dynamic watchlist)
+npm run pipeline:news-gdelt    # GDELT fetch for watchlist
+npm run generate:newsletter    # LAC newsletter edition for today (also run by pipeline)
+npm run replay:daily           # day-by-day replay (fetch + analyze + newsletter)
 ```
 
 ### LLM providers
 
-Pipeline (`AI_PROVIDER`) and chat (`CHAT_AI_PROVIDER`): `claude-code`, `vllm` (LAIA), `nvidia` (NIM), OpenRouter. See `.env.example`.
+Pipeline (`AI_PROVIDER`) and chat (`CHAT_AI_PROVIDER`): `claude-code`, `vllm` (LAIA), `nvidia` (NIM), OpenRouter. See [`.env.example`](.env.example) and [`docs/environment-variables.md`](docs/environment-variables.md).
 
 See [`docs/user-guide.md`](docs/user-guide.md) for the full operator reference.
 
@@ -209,7 +251,7 @@ See [`docs/user-guide.md`](docs/user-guide.md) for the full operator reference.
 3. Architecture overview. [`docs/architecture-overview.md`](docs/architecture-overview.md)
 4. Data360 API integration methodology. [`docs/data360-integration-methodology.md`](docs/data360-integration-methodology.md)
 5. Security and data handling. [`docs/security-data-handling.md`](docs/security-data-handling.md)
-6. User guide. [`docs/user-guide.md`](docs/user-guide.md)
+6. User guide. [`docs/user-guide.md`](docs/user-guide.md) (ES) · [`docs/user-guide.en.md`](docs/user-guide.en.md) (EN)
 7. Features reference. [`docs/features-reference.md`](docs/features-reference.md)
 8. Sustainability plan. [`docs/sustainability-plan.md`](docs/sustainability-plan.md)
 

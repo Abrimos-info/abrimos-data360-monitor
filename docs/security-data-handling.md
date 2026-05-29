@@ -56,7 +56,7 @@ Questions typed in global or article-scoped chat are sent to the configured LLM 
 
 ### LLM providers
 
-Configured via environment variables (`AI_PROVIDER`, `CHAT_AI_PROVIDER`):
+Configured via environment variables — see the full secrets and configuration table in [`docs/environment-variables.md`](./environment-variables.md) (`AI_PROVIDER`, `CHAT_AI_PROVIDER`, `GEMINI_API_KEY`, `NVIDIA_API_KEY`, etc.):
 
 | Provider | Typical use | Data sent |
 |----------|-------------|-----------|
@@ -115,7 +115,7 @@ Every numeric value in generated narratives should map to a verifiable **claim t
 - **Infrastructure**: Abrimos-owned servers.
 - **TLS**: HTTPS in production/staging via nginx.
 - **Staging gate**: optional HTTP basic auth on the monitor only (`infra/nginx/.htpasswd` — demo credentials documented as intentionally weak).
-- **Secrets**: API keys and provider tokens in `.env`, never committed (see `.gitignore`).
+- **Secrets**: API keys and provider tokens in `.env`, never committed (see `.gitignore`). Full variable list: [`docs/environment-variables.md`](./environment-variables.md).
 - **Static assets**: served from `/static/*` with cache headers; no user data in static files.
 
 MCP and subscriber TSV are not reachable from the public internet in the recommended deployment layout.
@@ -146,6 +146,8 @@ MCP and subscriber TSV are not reachable from the public internet in the recomme
 
 ## Related documentation
 
-- [User guide](./user-guide.md) — subscription and chat behaviour
+- [User guide (ES)](./user-guide.md) — subscription and chat behaviour
+- [User guide (EN)](./user-guide.en.md) — English user guide
+- [Environment variables](./environment-variables.md) — secrets and configuration reference
 - [Architecture overview](./architecture-overview.md) — deployment topology
 - [Data360 integration methodology](./data360-integration-methodology.md) — API access patterns
