@@ -79,13 +79,62 @@ npm run pipeline:dynamic
 npm run fetch:news:dynamic   # optional headlines refresh
 ```
 
-Cost tracking via `[AI-COST]` and `[AI-COST-NARRATE]` logs in `lib/ai-client.js`. Pipeline cost scales with number of changed indicators × LLM calls (one per Noticia, one per qualifying Reportaje). Chat cost is separate (`CHAT_AI_PROVIDER`).
+Cost tracking via `[AI-COST]`, `[AI-COST-NARRATE]`, and `[AI-COST-ANALYSIS]` logs in `lib/ai-client.js` / `bin/generate-analysis.js`. Pipeline cost scales with changed indicators × LLM calls (one per Noticia, one per qualifying Reportaje). Chat cost is separate (`CHAT_AI_PROVIDER`, default LAIA — free).
 
 Operators monitor:
 
 - `data/changed-since.json` — upstream freshness
 - Q1/Q2/Q4 validation failures in analyze logs
 - `data/alerts/*.raw.txt` — LLM parse failures
+
+### LLM cost model (measured + estimated)
+
+Reference run: **`run2.log`** (2026-05-29, `npm run pipeline:dynamic`). The log covers discover → fetch → `fetch:news:dynamic` (Gemini) → partial GDELT supplement; it ends before the analyze step, but records the scale of a full dynamic replay.
+
+| Stage | Observed in `run2.log` | LLM / provider |
+|-------|------------------------|----------------|
+| Discover + fetch | 160 indicators discovered; **121 CSVs changed** (first probe) | No LLM |
+| Headlines (`fetch:news:dynamic`) | **137 Gemini batch calls** planned (`gemini-2.5-flash-lite`); run **aborted** on rate-limit after saving 138 headlines | Google Gemini API |
+| Analysis (configured, not logged) | Pipeline header: **NVIDIA NIM** `moonshotai/kimi-k2.6` | NVIDIA free tier |
+| Steady-state changed set (local) | `data/changed-since.json` often **≤10 indicators/day** after bootstrap | — |
+
+**Gemini news tokens (estimated from `run2.log` + raw responses).**  
+Sampled batches average ~380 input tokens and ~345 output tokens per indicator call. Extrapolated to the full 137-call news pass:
+
+| | Input tokens | Output tokens | Total |
+|---|-------------:|--------------:|------:|
+| Full news fetch (137 calls) | ~52,000 | ~47,000 | **~99,000** |
+| Steady day (skip-covered, ~15 new calls) | ~6,000 | ~5,000 | **~11,000** |
+
+**Analysis tokens (estimated; not in `run2.log`).**  
+One Noticia call carries the full omnibus context (CSV tiers, data dictionary, up to 8 headlines). One Reportaje call synthesises multiple Noticias. Order-of-magnitude per call: **~18k in / ~2.5k out** (Noticia), **~35k in / ~5k out** (Reportaje). Current feed (`data/alerts.json`): 53 Noticias + 6 Reportajes accumulated over several runs.
+
+| Daily scenario | Noticia calls | Reportaje calls | Analysis tokens (in + out) |
+|----------------|-------------:|----------------:|---------------------------:|
+| Steady state (typical) | ~8–12 | ~0–1 | **~180k–250k** |
+| Heavy update day (like `run2.log` bootstrap) | ~25–40 | ~2–5 | **~600k–900k** |
+
+**Estimated daily cost (paid APIs).** Prices as of May 2026; Gemini Flash-Lite at [$0.10 / $0.40 per 1M input/output tokens](https://ai.google.dev/gemini-api/docs/pricing); Anthropic Claude Opus 4.7 at **$15 / $75 per 1M** (pipeline default in D-017, tracked in `lib/ai-client.js` `MODEL_PRICING`).
+
+| Stage | Steady day | Heavy day | Provider |
+|-------|----------:|----------:|----------|
+| News fetch (Gemini) | ~11k tok → **~$0.002** | ~99k tok → **~$0.02** | Gemini API |
+| Analysis (Noticias + Reportajes) | ~230k tok → **~$5–6** | ~750k tok → **~$15–18** | Anthropic Opus |
+| **Daily total (paid path)** | **~$5–6** | **~$15–20** | Gemini + Anthropic |
+
+Chat usage (global `/chat`, article-scoped FAB) is user-driven and not part of the scheduled pipeline; at default `CHAT_AI_PROVIDER=vllm` it routes to **LAIA** ($0).
+
+**Free backup providers (production default for demos).**  
+The Challenge demo and Abrimos staging runs use paid-capable providers only where quality requires it, but the stack is designed to fall back to **zero marginal cost**:
+
+| Provider | Env | Role | Cost |
+|----------|-----|------|------|
+| **LAIA** (Qwen 2.5 14B via vLLM) | `AI_PROVIDER=vllm` / `CHAT_AI_PROVIDER=vllm` | Chat default; atomic pipeline fallback | **$0** |
+| **NVIDIA NIM** (Kimi K2.6) | `AI_PROVIDER=nvidia` | Analysis path used in `run2.log` | **$0** on Abrimos NIM credits |
+| Claude Opus (Agent SDK) | `AI_PROVIDER=claude-code` | Highest-quality narratives (D-017) | Subscription / API |
+| Gemini Flash-Lite | `fetch:news` default | Headline discovery only | ~$0.02/day full pass |
+
+Operational rule: run **Gemini + NVIDIA/LAIA** for daily replay; reserve **Anthropic Opus** for final narrative polish or jury/demo builds where Q1 claim traceability is critical.
 
 ### Infrastructure
 
@@ -125,7 +174,7 @@ We are looking for partners to scale from five countries to full LAC coverage an
 
 | Risk | Mitigation |
 |------|------------|
-| LLM cost at scale | Dynamic discovery limits scope; cache `run_analysis`; LAIA/NIM fallbacks |
+| LLM cost at scale | Dynamic discovery limits scope; cache `run_analysis`; **LAIA + NVIDIA NIM as $0 fallbacks**; Gemini news ~$0.02/day; Opus analysis ~$5–6/day steady |
 | GDELT coverage gaps (HND, GTM) | Gemini supplement; partner-sourced headline lists |
 | Data360 API changes | Versioned client in `lib/data360-client.js`; HEAD probe catches blob moves |
 | Partner churn | Open repo allows any newsroom to self-host |
