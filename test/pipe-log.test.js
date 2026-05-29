@@ -2,7 +2,7 @@
 
 const test = require('node:test');
 const assert = require('node:assert/strict');
-const { pipeLog } = require('../lib/pipe-log');
+const { pipeLog, stepLog } = require('../lib/pipe-log');
 
 test('pipeLog formats key=value pairs', () => {
   const lines = [];
@@ -36,4 +36,24 @@ test('pipeLog omits empty fields', () => {
     console.warn = orig;
   }
   assert.match(lines[0], /^\[fetch-news\] fail \| country=ARG \| error=timeout$/);
+});
+
+test('stepLog and milestone pipeLog append run elapsed', () => {
+  const prev = process.env.D360_RUN_EPOCH;
+  process.env.D360_RUN_EPOCH = String(Date.now() - 65_000);
+  const lines = [];
+  const orig = console.log;
+  console.log = (line) => lines.push(line);
+  try {
+    stepLog('pipeline', 'discover ...');
+    pipeLog('fetch-news', 'done', { mode: 'pool', calls: 5 });
+    pipeLog('news-gemini', 'article', { idno: 'X', headline: 'H' });
+  } finally {
+    console.log = orig;
+    if (prev) process.env.D360_RUN_EPOCH = prev;
+    else delete process.env.D360_RUN_EPOCH;
+  }
+  assert.match(lines[0], /\[pipeline\] discover \.\.\. \| \+1m 5s/);
+  assert.match(lines[1], /\[fetch-news\] done \|.*\| \+1m 5s/);
+  assert.doesNotMatch(lines[2], /\+1m 5s/);
 });

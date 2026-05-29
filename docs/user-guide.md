@@ -259,7 +259,9 @@ Más contexto: `docs/data360-integration-methodology.md`.
 ```bash
 npm run fetch                    # descarga CSV + data dictionary + meta.json
 npm run fetch:probe              # solo sonda de cambios (~2 s)
-npm run fetch:news               # titulares (Gemini, watchlist dinámico)
+npm run fetch:news               # titulares pool (≤5 países: Gemini → GDELT)
+npm run fetch:news:indicator     # legacy: Gemini por indicador (watchlist)
+npm run fetch:news:gdelt           # solo GDELT, sin themes
 npm run analyze                  # detección + Noticias + Reportajes → data/alerts.json
 npm run analyze:changed          # analyze solo indicadores changed-since
 npm run analyze:noticias         # solo Fase 1
@@ -269,9 +271,9 @@ npm run discover                 # /searchv2 → dynamic-watchlist.json
 npm run pipeline                 # discover → fetch → news → analyze → newsletter
 npm run pipeline:force           # igual, bypass ETag en fetch
 npm run build                    # alias de pipeline
-npm run pipeline:news-gdelt      # fetch GDELT contra watchlist
+npm run pipeline:news-gdelt      # alias GDELT-only (fetch:news:gdelt)
 npm run generate:newsletter      # edición LAC del día (también al final de pipeline)
-npm run replay:daily             # replay histórico día a día (fetch + analyze + newsletter)
+npm run replay:daily             # replay histórico (analyze + newsletter por día)
 npm run dev                      # servidor web :8090 (desarrollo)
 npm run start                    # producción
 npm test                         # tests Node
@@ -279,7 +281,9 @@ npm test                         # tests Node
 
 Flujo completo: `npm run pipeline` (o `npm run build`).  
 Pasos sueltos: `fetch` → `fetch:news` (opcional) → `analyze`.  
-Replay multi-día: `replay:daily --from=2026-05-22 --to=2026-05-29` (respeta `CLAUDE_EFFORT`).
+Replay multi-día: `replay:daily --from=2026-05-22 --to=2026-05-29` (respeta `CLAUDE_EFFORT`). News **una vez** al inicio si el pool no cubre la ventana (`--from` − 30 días → `--to`); omitida si ya hay ≥8 titulares/país. `--force-news` fuerza refresh; `--skip-news` la salta. Con `--skip-fetch` solo corre analyze + newsletter.
+
+Los logs de pipeline/replay muestran tiempo transcurrido de corrida como `+2m 14s` en hitos (`stepLog`, `[TIMING]`, eventos `done`/`config` de `pipeLog`). Se propaga vía `D360_RUN_EPOCH` a subprocessos.
 
 Salida principal: **`data/alerts.json`**.
 

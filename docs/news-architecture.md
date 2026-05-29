@@ -41,7 +41,7 @@ Limitation: coverage is weakest for HND and GTM (fewer indexed outlets); English
 
 ### Fallback: Google News RSS (roadmap — not implemented)
 
-> **Demo code** (`bin/fetch-news.js`, `lib/news-fetch.js`): default npm script uses **Gemini** grounding (`--provider=gemini`). GDELT path available via `--provider=gdelt` and `npm run pipeline:news-gdelt`. Google News RSS remains roadmap (D-030); `rss-parser` is in `package.json` but unused in demo fetch.
+> **Demo code** (`bin/fetch-news.js`, `lib/news-pool.js`, `lib/news-fetch.js`): default **`npm run fetch:news`** uses **pool mode** — up to **5 Gemini calls** (macro headlines per LAC country) with **GDELT fallback** per country when Gemini fails or returns no accepted articles. Skips countries already covered (≥8 accepted headlines in window). Legacy per-indicator Gemini: `npm run fetch:news:indicator`. GDELT-only: `npm run fetch:news:gdelt`. Google News RSS remains roadmap (D-030).
 
 URL pattern: `https://news.google.com/rss/search?q={country_name}&hl=es-{cc}&gl={CC}&ceid={CC}:es`
 
@@ -181,13 +181,13 @@ A lightweight pass using LAIA (Qwen 2.5 14B, zero cost) can label each headline 
 | JSONL write | `fs.appendFileSync` | One line per headline; atomic per record |
 | Rate limiting | Manual: one request per country | GDELT has no stated limit; 12 requests max per demo run |
 
-Implemented: `bin/fetch-news.js`. Examples:
+Implemented: `bin/fetch-news.js`, `lib/news-pool.js`. Examples:
 
 ```bash
-npm run fetch:news                    # Gemini (default in package.json)
-npm run fetch:news            # Gemini + dynamic watchlist
-npm run pipeline:news-gdelt   # GDELT + watchlist
-node bin/fetch-news.js --provider=gdelt --countries GTM,HND,ARG,ECU,MEX
+npm run fetch:news              # pool: Gemini → GDELT, skip if covered
+npm run fetch:news:indicator    # legacy: Gemini per watchlist indicator
+npm run fetch:news:gdelt        # GDELT only (one query per country)
+node bin/fetch-news.js --mode=pool --from=2026-04-22 --to=2026-05-29
 ```
 
 ---
@@ -225,4 +225,4 @@ node bin/fetch-news.js --provider=gdelt --countries GTM,HND,ARG,ECU,MEX
 
 ## D-030 (standing)
 
-> **D-030** | News subsystem: headlines stored as `data/news/{COUNTRY}/{YYYY-MM}.jsonl`; fetch via GDELT and/or Gemini (`bin/fetch-news.js`); injected in omnibus context as §6 (max 8 per country); passive narrative context only; Strategy 2 activation deferred to production. Google News RSS fallback remains roadmap.
+> **D-030** | News subsystem: headlines stored as `data/news/{COUNTRY}/{YYYY-MM}.jsonl`; fetch via **pool mode** (Gemini per country → GDELT fallback, `lib/news-pool.js`) or legacy indicator mode; injected in reportaje context (max 8 per country, filtered by `--as-of`); passive narrative context only; Strategy 2 activation deferred to production. Google News RSS fallback remains roadmap.

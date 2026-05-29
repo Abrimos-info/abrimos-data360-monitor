@@ -6,6 +6,7 @@ const {
   classifyGeminiArticle,
   indicatorSearchContext,
   buildSearchPrompt,
+  buildCountrySearchPrompt,
   buildBatchSearchPrompt,
   normalizeArticleCountry,
   parseJsonFromText,
@@ -74,6 +75,20 @@ test('buildSearchPrompt includes date window and JSON-only instruction', () => {
 test('parseJsonFromText extracts JSON from fenced markdown', () => {
   const parsed = parseJsonFromText('```json\n{"articles":[{"headline":"H","url":"https://x.com/a"}]}\n```');
   assert.equal(parsed.articles[0].headline, 'H');
+});
+
+test('buildCountrySearchPrompt covers macro window without indicator id', () => {
+  const prompt = buildCountrySearchPrompt('ARG', {
+    from: '2026-04-22',
+    to: '2026-05-29',
+    mediaHints: ['La Nación'],
+    maxArticles: 8,
+  });
+  assert.match(prompt, /Argentina/);
+  assert.match(prompt, /2026-04-22/);
+  assert.match(prompt, /economía/i);
+  assert.match(prompt, /La Nación/);
+  assert.doesNotMatch(prompt, /Indicador \(/);
 });
 
 test('buildBatchSearchPrompt covers all countries and ISO3 field', () => {

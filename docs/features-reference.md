@@ -210,14 +210,16 @@ Implementación: `lib/chat/tools.js`
 |--------|---------|-----|
 | `discover` | `bin/discover-indicators.js` | `/searchv2` → `dynamic-watchlist.json` |
 | `fetch` / `fetch:probe` | `bin/fetch-data.js` | Probe + CSV + DATADICT |
-| `fetch:news` | `bin/fetch-news.js` | Titulares (Gemini, watchlist dinámico) |
+| `fetch:news` | `bin/fetch-news.js` | Pool por país (≤5 Gemini → GDELT); `--mode=pool` default |
+| `fetch:news:indicator` | idem `--mode=indicator` | Legacy: Gemini por indicador (watchlist) |
+| `fetch:news:gdelt` | idem `--mode=gdelt` | Solo GDELT |
 | `analyze` | `bin/generate-analysis.js` | Detect + Noticias + Reportajes |
 | `analyze:changed` | idem `--changed-only` | |
 | `analyze:noticias` / `analyze:reportajes` | fases separadas | |
 | `generate:newsletter` | `bin/generate-newsletter.js` | Edición LAC del día |
 | `pipeline` | `bin/pipeline.js` | discover → fetch → news → analyze → newsletter |
 | `build` | alias de `pipeline` | |
-| `pipeline:news-gdelt` | GDELT + watchlist | |
+| `pipeline:news-gdelt` | alias `fetch:news:gdelt` | |
 
 Orquestación: `lib/analysis/runner.js` (Fase 1) + `lib/analysis/reportaje-runner.js` (Fase 2).
 

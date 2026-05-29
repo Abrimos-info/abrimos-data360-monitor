@@ -76,8 +76,10 @@ Typical weekly run (dynamic mode):
 
 ```bash
 npm run pipeline
-npm run fetch:news   # optional headlines refresh only
+npm run fetch:news   # optional: headline pool refresh (≤5 countries)
 ```
+
+Logs show run elapsed time as `+Xm Ys` on pipeline milestones (`D360_RUN_EPOCH` shared across subprocesses).
 
 Cost tracking via `[AI-COST]`, `[AI-COST-NARRATE]`, and `[AI-COST-ANALYSIS]` logs in `lib/ai-client.js` / `bin/generate-analysis.js`. Pipeline cost scales with changed indicators × LLM calls (one per Noticia, one per qualifying Reportaje). Chat cost is separate (`CHAT_AI_PROVIDER`, default LAIA — free).
 
@@ -89,22 +91,12 @@ Operators monitor:
 
 ### LLM cost model (measured + estimated)
 
-Reference run: **`run2.log`** (2026-05-29, `npm run pipeline`). The log covers discover → fetch → `fetch:news` (Gemini) → partial GDELT supplement; it ends before the analyze step, but records the scale of a full replay.
+Reference run: **`run2.log`** (2026-05-29, pre-pool architecture). Current default **`fetch:news`** uses **pool mode** (`lib/news-pool.js`): up to **5 Gemini calls** (one per LAC country) with **GDELT fallback** per country; **0 calls** when the pool already has ≥8 accepted headlines per country in the window.
 
-| Stage | Observed in `run2.log` | LLM / provider |
-|-------|------------------------|----------------|
-| Discover + fetch | 160 indicators discovered; **121 CSVs changed** (first probe) | No LLM |
-| Headlines (`fetch:news`) | **137 Gemini batch calls** planned (`gemini-2.5-flash-lite`); run **aborted** on rate-limit after saving 138 headlines | Google Gemini API |
-| Analysis (configured, not logged) | Pipeline header: **NVIDIA NIM** `moonshotai/kimi-k2.6` | NVIDIA free tier |
-| Steady-state changed set (local) | `data/changed-since.json` often **≤10 indicators/day** after bootstrap | — |
-
-**Gemini news tokens (estimated from `run2.log` + raw responses).**  
-Sampled batches average ~380 input tokens and ~345 output tokens per indicator call. Extrapolated to the full 137-call news pass:
-
-| | Input tokens | Output tokens | Total |
-|---|-------------:|--------------:|------:|
-| Full news fetch (137 calls) | ~52,000 | ~47,000 | **~99,000** |
-| Steady day (skip-covered, ~15 new calls) | ~6,000 | ~5,000 | **~11,000** |
+| Stage | Legacy `run2.log` | Current pool mode |
+|-------|-------------------|-------------------|
+| Headlines (`fetch:news`) | **137 Gemini batch calls** (aborted on 429) | **≤5 Gemini + ≤5 GDELT**; skip when covered |
+| Steady day (skip-covered) | ~15 indicator calls | **0** if pool full |
 
 **Analysis tokens (estimated; not in `run2.log`).**  
 One Noticia call carries the full omnibus context (CSV tiers, data dictionary, up to 8 headlines). One Reportaje call synthesises multiple Noticias. Order-of-magnitude per call: **~18k in / ~2.5k out** (Noticia), **~35k in / ~5k out** (Reportaje). Current feed (`data/alerts.json`): 53 Noticias + 6 Reportajes accumulated over several runs.
@@ -118,7 +110,7 @@ One Noticia call carries the full omnibus context (CSV tiers, data dictionary, u
 
 | Stage | Steady day | Heavy day | Provider |
 |-------|----------:|----------:|----------|
-| News fetch (Gemini) | ~11k tok → **~$0.002** | ~99k tok → **~$0.02** | Gemini API |
+| News fetch (Gemini pool) | ~2k tok → **~$0.0005** | ~10k tok → **~$0.002** | Gemini API |
 | Analysis (Noticias + Reportajes) | ~230k tok → **~$5–6** | ~750k tok → **~$15–18** | Anthropic Opus |
 | **Daily total (paid path)** | **~$5–6** | **~$15–20** | Gemini + Anthropic |
 
@@ -132,7 +124,7 @@ The Challenge demo and Abrimos staging runs use paid-capable providers only wher
 | **LAIA** (Qwen 2.5 14B via vLLM) | `AI_PROVIDER=vllm` / `CHAT_AI_PROVIDER=vllm` | Chat default; atomic pipeline fallback | **$0** |
 | **NVIDIA NIM** (Kimi K2.6) | `AI_PROVIDER=nvidia` | Analysis path used in `run2.log` | **$0** on Abrimos NIM credits |
 | Claude Opus (Agent SDK) | `AI_PROVIDER=claude-code` | Highest-quality narratives (D-017) | Subscription / API |
-| Gemini Flash-Lite | `fetch:news` default | Headline discovery only | ~$0.02/day full pass |
+| Gemini Flash-Lite | `fetch:news` pool (≤5 calls) | Headline discovery only | ~$0.002/day full pass |
 
 Operational rule: run **Gemini + NVIDIA/LAIA** for daily replay; reserve **Anthropic Opus** for final narrative polish or jury/demo builds where Q1 claim traceability is critical.
 

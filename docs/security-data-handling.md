@@ -73,7 +73,7 @@ Optional Python MCP server ([worldbank/data360-mcp](https://github.com/worldbank
 
 ### Gemini (news fetch)
 
-When `npm run fetch:news` uses Gemini, article titles/URLs may be sent to Google's API for grounding or summarization. API keys belong in `.env` (gitignored).
+When `npm run fetch:news` runs in pool mode, article titles/URLs may be sent to Google's Gemini API (≤5 calls per run). API keys belong in `.env` (gitignored).
 
 ---
 

@@ -259,7 +259,9 @@ More context: `docs/data360-integration-methodology.md`.
 ```bash
 npm run fetch                    # download CSV + data dictionary + meta.json
 npm run fetch:probe              # change probe only (~2 s)
-npm run fetch:news               # headlines (Gemini, dynamic watchlist)
+npm run fetch:news               # headlines pool (≤5 countries: Gemini → GDELT)
+npm run fetch:news:indicator     # legacy: Gemini per indicator (watchlist)
+npm run fetch:news:gdelt           # GDELT only, no themes
 npm run analyze                  # detection + Noticias + Reportajes → data/alerts.json
 npm run analyze:changed          # analyze changed-since indicators only
 npm run analyze:noticias         # Phase 1 only
@@ -269,9 +271,9 @@ npm run discover                 # /searchv2 → dynamic-watchlist.json
 npm run pipeline                 # discover → fetch → news → analyze → newsletter
 npm run pipeline:force           # same, bypass ETag on fetch
 npm run build                    # alias for pipeline
-npm run pipeline:news-gdelt      # GDELT fetch against watchlist
+npm run pipeline:news-gdelt      # GDELT-only alias (fetch:news:gdelt)
 npm run generate:newsletter      # LAC edition for the day (also run at end of pipeline)
-npm run replay:daily             # day-by-day historical replay (fetch + analyze + newsletter)
+npm run replay:daily             # day-by-day replay (analyze + newsletter per day)
 npm run dev                      # web server :8090 (development)
 npm run start                    # production
 npm test                         # Node tests
@@ -279,7 +281,9 @@ npm test                         # Node tests
 
 Full flow: `npm run pipeline` (or `npm run build`).  
 Individual steps: `fetch` → `fetch:news` (optional) → `analyze`.  
-Multi-day replay: `replay:daily --from=2026-05-22 --to=2026-05-29` (respects `CLAUDE_EFFORT`).
+Multi-day replay: `replay:daily --from=2026-05-22 --to=2026-05-29` (respects `CLAUDE_EFFORT`). News runs **once** at start if the pool does not cover the window (`--from` − 30 days → `--to`); skipped when ≥8 accepted headlines/country already exist. `--force-news` refreshes; `--skip-news` skips. With `--skip-fetch`, only analyze + newsletter run.
+
+Pipeline/replay logs show run elapsed time as `+2m 14s` on milestones (`stepLog`, `[TIMING]`, milestone `pipeLog` events). Propagates to child processes via `D360_RUN_EPOCH`.
 
 Main output: **`data/alerts.json`**.
 

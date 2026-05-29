@@ -4,7 +4,8 @@
 require('dotenv').config();
 
 const ai = require('../lib/ai-client');
-const { formatDuration } = require('../lib/timing');
+const { formatDuration, startRunTimer, formatRunElapsed } = require('../lib/timing');
+const { stepLog } = require('../lib/pipe-log');
 const { runAnalysis } = require('../lib/analysis/runner');
 
 function parseArgs(argv) {
@@ -39,16 +40,17 @@ function parseArgs(argv) {
 }
 
 async function main() {
+  startRunTimer('analysis');
   const opts = parseArgs(process.argv.slice(2));
   ai.resetTokenStats();
   const llmInfo = ai.logAnalysisLlm('AI-ANALYSIS');
-  console.log('[analysis] starting pipeline ...', [
+  stepLog('analysis', `starting pipeline ... ${[
     opts.phase !== 'all' ? `(phase: ${opts.phase})` : '',
     opts.changedOnly ? '(changed-only)' : '',
     opts.asOf ? `(as-of: ${opts.asOf})` : '',
     opts.effort ? `(effort: ${opts.effort})` : '',
     opts.append ? '(append)' : '',
-  ].filter(Boolean).join(' '));
+  ].filter(Boolean).join(' ')}`.trim());
   const result = await runAnalysis({
     only: opts.only,
     noLlm: opts.noLlm,
@@ -59,12 +61,13 @@ async function main() {
     asOf: opts.asOf,
     effort: opts.effort,
     appendAlerts: opts.append,
-    onProgress: ({ idno, count }) => console.log(`[analysis] ${idno}: ${count} candidate(s)`),
+    onProgress: ({ idno, count }) => stepLog('analysis', `${idno}: ${count} candidate(s)`),
   });
-  console.log(`[analysis] finished ${result.alertCount} noticias, ${result.reportajeCount} reportajes (${result.indicatorsSkipped || 0} skipped unchanged, ${result.abruptCount} abrupt, ${result.anomalyCount} anomaly candidates)`);
+  stepLog('analysis', `finished ${result.alertCount} noticias, ${result.reportajeCount} reportajes (${result.indicatorsSkipped || 0} skipped unchanged, ${result.abruptCount} abrupt, ${result.anomalyCount} anomaly candidates)`);
   const stats = ai.getTokenStats();
   const llmTime = formatDuration(stats.durationMs || 0);
-  console.log(`[AI-COST-ANALYSIS] ${llmInfo.providerLabel} | ${llmInfo.model} | calls: ${stats.calls} | in: ${stats.inputTokens} | out: ${stats.outputTokens} | llm total: ${llmTime} | est: $${stats.cost.toFixed(4)}`);
+  const elapsed = formatRunElapsed();
+  console.log(`[AI-COST-ANALYSIS] ${llmInfo.providerLabel} | ${llmInfo.model} | calls: ${stats.calls} | in: ${stats.inputTokens} | out: ${stats.outputTokens} | llm total: ${llmTime} | est: $${stats.cost.toFixed(4)}${elapsed ? ` | ${elapsed}` : ''}`);
 }
 
 main().catch((e) => {

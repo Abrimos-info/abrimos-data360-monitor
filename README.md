@@ -210,7 +210,7 @@ Full design. [`docs/data-fetcher-architecture.md`](docs/data-fetcher-architectur
 Detection and narrative generation run in two phases inside one step:
 
 ```bash
-npm run fetch:news   # optional: headlines for narrative context (Gemini default)
+npm run fetch:news   # optional: headline pool (≤5 countries, Gemini → GDELT)
 npm run analyze      # strategies 1 + 4 → Phase 1 Noticias → Phase 2 Reportajes → data/alerts.json
 ```
 
@@ -232,11 +232,14 @@ npm run build                  # alias for pipeline
 npm run analyze:changed        # analyze changed indicators only
 npm run analyze:noticias       # Phase 1 only
 npm run analyze:reportajes     # Phase 2 only
-npm run fetch:news             # headlines (Gemini, dynamic watchlist)
-npm run pipeline:news-gdelt    # GDELT fetch for watchlist
+npm run fetch:news             # headline pool (≤5 countries)
+npm run fetch:news:indicator   # legacy: Gemini per watchlist indicator
+npm run fetch:news:gdelt         # GDELT only
 npm run generate:newsletter    # LAC newsletter edition for today (also run by pipeline)
 npm run replay:daily           # day-by-day replay (fetch + analyze + newsletter)
 ```
+
+Pipeline and replay logs append run elapsed time (`+2m 14s`) on milestones via `D360_RUN_EPOCH`.
 
 ### LLM providers
 
