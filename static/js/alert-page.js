@@ -36,11 +36,17 @@
     if (!storyText && alert.body) storyText = alert.body[lng];
     if (storyEl && storyText) {
       storyText = normalizeClaims(storyText);
+      if (window.D360PcnClaims && window.D360PcnClaims.shieldClaimMarkersForMarkdown) {
+        storyText = window.D360PcnClaims.shieldClaimMarkersForMarkdown(storyText);
+      }
       var storyHtml = storyText;
       if (window.D360Markdown && window.D360Markdown.renderMarkdown) {
         storyHtml = window.D360Markdown.renderMarkdown(storyText);
       } else if (window.marked) {
         storyHtml = window.marked.parse(storyText, { gfm: true, breaks: false });
+      }
+      if (window.D360PcnClaims && window.D360PcnClaims.unshieldClaimMarkers) {
+        storyHtml = window.D360PcnClaims.unshieldClaimMarkers(storyHtml);
       }
       if (window.D360PcnClaims && window.D360PcnClaims.injectClaimMarkersIntoHtml) {
         storyHtml = window.D360PcnClaims.injectClaimMarkersIntoHtml(storyHtml, alert, lng);

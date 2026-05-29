@@ -127,12 +127,48 @@
   function normalizeClaimMarkerText(text) {
     if (!text || text.indexOf('{{claim:') === -1) return text;
     return String(text).replace(/\{\{claim:([\s\S]*?)\}\}/g, function (full, inner) {
-      var pipe = inner.indexOf('|');
+      var pipe = inner.search(/[|\u0001]/);
       if (pipe === -1) return full;
       var cid = inner.slice(0, pipe).replace(/\s+/g, '');
       var val = inner.slice(pipe + 1).replace(/\s+/g, '');
       return '{{claim:' + cid + '|' + val + '}}';
     });
+  }
+
+  var CLAIM_PIPE_SUB = '\u0001';
+
+  function shieldClaimMarkersForMarkdown(text) {
+    if (!text || text.indexOf('{{claim:') === -1) return text;
+    return normalizeClaimMarkerText(text).replace(
+      /\{\{claim:([^}|]+)\|([^}]*)\}\}/g,
+      function (_, id, val) { return '{{claim:' + id + CLAIM_PIPE_SUB + val + '}}'; },
+    );
+  }
+
+  function unshieldClaimMarkers(text) {
+    if (!text || text.indexOf('{{claim:') === -1) return text;
+    return String(text).replace(
+      /\{\{claim:([^}\u0001]+)\u0001([^}]*)\}\}/g,
+      function (_, id, val) { return '{{claim:' + id + '|' + val + '}}'; },
+    );
+  }
+
+  function hydrateClaimText(raw, alert, lang) {
+    if (!raw || raw.indexOf('{{claim:') === -1) return null;
+    var replaced = renderClaimMarkersHtml(normalizeClaimMarkerText(raw), alert, lang);
+    if (replaced.indexOf('{{claim:') !== -1) {
+      replaced = normalizeClaimMarkerText(replaced).replace(
+        /\{\{claim:([^}|]+)\|([^}]*)\}\}/g,
+        function (_, id, fallback) {
+          var token = findClaimToken(alert.claim_tokens || [], id, fallback);
+          var display = resolveClaimDisplay(token, lang, fallback || id);
+          if (token && token.pcn_status) return renderClaimHtml(token, display, lang);
+          return escHtml(display);
+        },
+      );
+    }
+    if (replaced === escHtml(raw) && replaced.indexOf('d360-claim') === -1) return null;
+    return replaced;
   }
 
   function resolveClaimDisplay(token, lang, fallback) {
@@ -244,22 +280,30 @@
 
   function injectClaimMarkersIntoHtml(html, alert, lang) {
     if (!html || !alert) return html || '';
-    var hasMarkers = html.indexOf('{{claim:') !== -1;
+    var htmlUnshielded = unshieldClaimMarkers(html);
+    var hasMarkers = htmlUnshielded.indexOf('{{claim:') !== -1;
     var tokens = alert.claim_tokens || [];
     if (!hasMarkers && !tokens.some(function (t) { return t && t.pcn_status; })) return html;
     var wrap = document.createElement('div');
-    wrap.innerHTML = html;
+    wrap.innerHTML = htmlUnshielded;
+
+    wrap.querySelectorAll('td, th').forEach(function (cell) {
+      if (cell.closest('.d360-claim, .d360-vmark, .d360-hypothesis')) return;
+      var replaced = hydrateClaimText(cell.textContent, alert, lang);
+      if (replaced != null) cell.innerHTML = replaced;
+    });
+
     var walker = document.createTreeWalker(wrap, NodeFilter.SHOW_TEXT, null);
     var textNodes = [];
     while (walker.nextNode()) textNodes.push(walker.currentNode);
     textNodes.forEach(function (node) {
       var parent = node.parentElement;
       if (!parent || parent.closest('.d360-claim, .d360-vmark, .d360-hypothesis')) return;
+      if (parent.closest('td, th')) return;
       var raw = node.textContent;
       if (!raw || !raw.trim()) return;
-      var replaced = renderClaimMarkersHtml(raw, alert, lang);
-      if (replaced.indexOf('d360-claim') === -1 && replaced.indexOf('{{claim:') !== -1) return;
-      if (replaced === escHtml(raw)) return;
+      var replaced = hydrateClaimText(raw, alert, lang);
+      if (replaced == null) return;
       var holder = document.createElement('span');
       holder.innerHTML = replaced;
       while (holder.firstChild) parent.insertBefore(holder.firstChild, node);
@@ -292,6 +336,8 @@
     renderClaimMarkersHtml: renderClaimMarkersHtml,
     injectClaimMarkersIntoHtml: injectClaimMarkersIntoHtml,
     normalizeClaimMarkerText: normalizeClaimMarkerText,
+    shieldClaimMarkersForMarkdown: shieldClaimMarkersForMarkdown,
+    unshieldClaimMarkers: unshieldClaimMarkers,
     resolveClaimDisplay: resolveClaimDisplay,
     findClaimToken: findClaimToken,
   };

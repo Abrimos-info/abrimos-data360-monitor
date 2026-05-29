@@ -35,7 +35,7 @@ block content
           if heroLead || heroChart
             div.d360-frontpage__hero-body
               if heroLead
-                p.d360-frontpage__hero-lede= heroLead
+                p.d360-frontpage__hero-lede#d360-frontpage-hero-lede= heroLead
               if heroChart
                 div.d360-frontpage__hero-chart
                   != heroChart
@@ -65,7 +65,7 @@ block content
                       +contentTypeBadge("reportaje", lang, _)
                     span.d360-frontpage__headline-title= titleText
                     if headlineLead
-                      span.d360-frontpage__headline-lede= headlineLead
+                      span.d360-frontpage__headline-lede(data-alert-id=(item.kind === "reportaje" ? ev.id : null))= headlineLead
                     span.d360-frontpage__headline-meta
                       if typeText
                         +typeChip(ev.type, typeText)
@@ -115,5 +115,9 @@ block content
             p.d360-empty__help= _("ui.empty_title", lang)
 
 block pageScripts
+  script.
+    window.D360_HERO_ALERT = !{JSON.stringify(heroReportaje || null)};
+    window.D360_FRONTPAGE_ALERTS = !{JSON.stringify(frontpageClaimAlerts || {})};
+  script(src=staticAsset('js/frontpage-claims.js') defer)
   script.
     window.D360_COUNTRY_ISO = !{JSON.stringify(countryIso)};

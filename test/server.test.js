@@ -209,6 +209,7 @@ test('HTTP routes', async (t) => {
         res.body.includes('World Justice Project') || res.body.includes('Justicia del World Justice'),
         'expected hero lead copy from featured reportaje',
       );
+      assert.ok(res.body.includes('frontpage-claims.js'), 'expected client-side PCN hydration script');
     }
   });
 

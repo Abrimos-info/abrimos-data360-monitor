@@ -4,6 +4,8 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 const {
   normalizeClaimMarkerText,
+  shieldClaimMarkersForMarkdown,
+  unshieldClaimMarkers,
   findClaimToken,
   markerDisplayText,
   claimValuesMatch,
@@ -47,4 +49,13 @@ test('renderClaimMarkers resolves each marker value independently', () => {
 test('claimValuesMatch accepts locale decimal variants', () => {
   assert.equal(claimValuesMatch('0,559101', '0.559101'), true);
   assert.equal(claimValuesMatch('5,4 %', '5.4'), true);
+});
+
+test('shieldClaimMarkersForMarkdown protects pipe inside table cells', () => {
+  const row = '| ARG | {{claim:abc123|1,493,776.24}} | {{claim:def456|318.75}} |';
+  const shielded = shieldClaimMarkersForMarkdown(row);
+  assert.doesNotMatch(shielded, /\{\{claim:abc123\|/);
+  assert.match(shielded, /\{\{claim:abc123\u0001/);
+  const restored = unshieldClaimMarkers(shielded);
+  assert.equal(restored, row);
 });
