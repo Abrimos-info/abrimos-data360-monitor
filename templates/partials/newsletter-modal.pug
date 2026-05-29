@@ -42,6 +42,7 @@ div#d360-newsletter.d360-onboard.d360-onboard--subscribe(style="display:none" ro
         p.d360-subscribe-form__error#d360-subscribe-error(role="alert" hidden)
         button#d360-subscribe-submit.d360-onboard__cta(type="submit")= _("subscribe.cta_newsletter", lang)
       div#d360-subscribe-success.d360-subscribe-success(style="display:none")
+        div.d360-subscribe-success__icon(aria-hidden="true") ✓
         p#d360-subscribe-success-text
         p#d360-subscribe-success-hint= _("subscribe.success_hint", lang)
         p: a#d360-subscribe-preview-link(href="#")= _("subscribe.success_preview_newsletter", lang)

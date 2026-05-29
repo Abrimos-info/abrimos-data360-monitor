@@ -10,12 +10,7 @@ html(lang=lang)
     else
       meta(name="description" content=_("tagline", lang))
     block header
-    link(rel="preload" fetchpriority="high" as="style" href=staticAsset('css/tokens.css'))
-    link(rel="preload" fetchpriority="high" as="style" href=staticAsset('css/wb-theme.css'))
-    link(rel="preload" fetchpriority="high" as="style" href=staticAsset('css/wb-chrome.css'))
-    link(rel="preload" fetchpriority="high" as="style" href=staticAsset('css/wb-chat-fab.css'))
-    link(rel="preload" fetchpriority="high" as="style" href=staticAsset('css/wb-chat-embed.css'))
-    link(rel="preload" fetchpriority="high" as="style" href=staticAsset('css/main.css'))
+    link(rel="stylesheet" href=staticAsset('css/layout.css'))
   body
     div.d360-app
       include partials/wb-header
@@ -39,19 +34,13 @@ html(lang=lang)
     script(src=staticAsset('js/lang-toggle.js') defer)
     script(src=staticAsset('js/newsletter-modal.js') defer)
     script(src=staticAsset('js/dumbbell-tabs.js') defer)
-    link(rel="preload" href=staticAsset('css/tokens.css') as="style" onload="this.onload=null;this.rel='stylesheet'")
-    link(rel="preload" href=staticAsset('css/wb-theme.css') as="style" onload="this.onload=null;this.rel='stylesheet'")
-    link(rel="preload" href=staticAsset('css/wb-chrome.css') as="style" onload="this.onload=null;this.rel='stylesheet'")
+    link(rel="preload" href=staticAsset('css/main.css') as="style" onload="this.onload=null;this.rel='stylesheet'")
     link(rel="preload" href=staticAsset('css/wb-chat-fab.css') as="style" onload="this.onload=null;this.rel='stylesheet'")
     link(rel="preload" href=staticAsset('css/wb-chat-embed.css') as="style" onload="this.onload=null;this.rel='stylesheet'")
-    link(rel="preload" href=staticAsset('css/main.css') as="style" onload="this.onload=null;this.rel='stylesheet'")
     noscript
-      link(rel="stylesheet" href=staticAsset('css/tokens.css'))
-      link(rel="stylesheet" href=staticAsset('css/wb-theme.css'))
-      link(rel="stylesheet" href=staticAsset('css/wb-chrome.css'))
+      link(rel="stylesheet" href=staticAsset('css/main.css'))
       link(rel="stylesheet" href=staticAsset('css/wb-chat-fab.css'))
       link(rel="stylesheet" href=staticAsset('css/wb-chat-embed.css'))
-      link(rel="stylesheet" href=staticAsset('css/main.css'))
     block scripts
       if includeFloatingChat !== false
         script(src=staticAsset('vendor/marked.min.js') defer)

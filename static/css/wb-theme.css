@@ -313,10 +313,6 @@ body {
   font-family: var(--font-serif);
   color: var(--fg);
 }
-.d360-frontpage__hero-chart {
-  margin: var(--space-4, 16px) 0 var(--space-3, 12px);
-  max-width: 100%;
-}
 .d360-frontpage__hero-chart-caption {
   margin: var(--space-2, 8px) 0 0;
   font-size: 0.75rem;

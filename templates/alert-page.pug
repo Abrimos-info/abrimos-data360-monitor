@@ -47,6 +47,12 @@ block content
             figure.d360-article__reportaje-chart
               != reportajeChart
 
+        if alert.detected_at
+          p.d360-article__generated
+            span.d360-article__generated-label= _("article.meta.generated_at", lang)
+            | 
+            time.d360-local-datetime(datetime=alert.detected_at)= alert.detected_at
+
         if storyText
           div.d360-article__story#d360-article-story
 

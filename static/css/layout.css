@@ -1,0 +1,13 @@
+/* Critical layout — blocking in <head> (tokens, chrome, shell). */
+
+@import url("./tokens.css");
+@import url("./wb-theme.css");
+@import url("./wb-chrome.css");
+@import url("./critical.css");
+
+.d360-app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-alt);
+}
