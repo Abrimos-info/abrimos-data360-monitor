@@ -134,8 +134,8 @@ Entry points:
 
 ```bash
 npm run discover                 # populate data/dynamic-watchlist.json
-npm run pipeline:dynamic         # discover → fetch (probe-respecting) → analyze
-npm run pipeline:dynamic:force   # same, but pass --force to bypass the ETag cache
+npm run pipeline         # discover → fetch (probe-respecting) → news → analyze → newsletter
+npm run pipeline:force   # same, but pass --force to bypass the ETag cache
 ```
 
 The `:force` variant is the right tool when you have just changed disaggregation or filter rules and want a clean re-download regardless of `Last-Modified`.
@@ -197,8 +197,8 @@ npm run fetch              # probe + download changed + refresh LAC context
 npm run fetch:probe        # probe only (fast, ~2 s for 35 indicators)
 node bin/fetch-data.js --force   # bypass the ETag cache (bootstrap / forced refresh)
 npm run discover           # populate data/dynamic-watchlist.json from /searchv2
-npm run pipeline:dynamic   # discover → fetch → analyze (dynamic mode)
-npm run pipeline:dynamic:force  # same but with --force on the fetch step
+npm run pipeline   # discover → fetch → news → analyze → newsletter
+npm run pipeline:force  # same but with --force on the fetch step
 ```
 
 `--force` skips the conditional HEAD entirely and re-downloads the CSV, data dictionary, and metadata for every indicator in the active watchlist, regardless of `If-None-Match` / `If-Modified-Since`.

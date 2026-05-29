@@ -46,7 +46,7 @@ Post-deadline: expand to additional LAC outlets via Abrimos.info media network a
 
 | Component | Owner | Frequency |
 |-----------|-------|-----------|
-| Dynamic pipeline | Abrimos ops | Weekly (`pipeline:dynamic`) or on Data360 release cycles |
+| Pipeline | Abrimos ops | Weekly (`npm run pipeline`) or on Data360 release cycles |
 | Staging site | Abrimos infra | Continuous (monitor process) |
 | Newsletter editions | Editorial + pipeline | Target: daily LAC edition (fixture → generated) |
 | Repository maintenance | Abrimos dev | Issue triage, dependency updates |
@@ -75,8 +75,8 @@ Post-deadline: expand to additional LAC outlets via Abrimos.info media network a
 Typical weekly run (dynamic mode):
 
 ```bash
-npm run pipeline:dynamic
-npm run fetch:news:dynamic   # optional headlines refresh
+npm run pipeline
+npm run fetch:news   # optional headlines refresh only
 ```
 
 Cost tracking via `[AI-COST]`, `[AI-COST-NARRATE]`, and `[AI-COST-ANALYSIS]` logs in `lib/ai-client.js` / `bin/generate-analysis.js`. Pipeline cost scales with changed indicators × LLM calls (one per Noticia, one per qualifying Reportaje). Chat cost is separate (`CHAT_AI_PROVIDER`, default LAIA — free).
@@ -89,12 +89,12 @@ Operators monitor:
 
 ### LLM cost model (measured + estimated)
 
-Reference run: **`run2.log`** (2026-05-29, `npm run pipeline:dynamic`). The log covers discover → fetch → `fetch:news:dynamic` (Gemini) → partial GDELT supplement; it ends before the analyze step, but records the scale of a full dynamic replay.
+Reference run: **`run2.log`** (2026-05-29, `npm run pipeline`). The log covers discover → fetch → `fetch:news` (Gemini) → partial GDELT supplement; it ends before the analyze step, but records the scale of a full replay.
 
 | Stage | Observed in `run2.log` | LLM / provider |
 |-------|------------------------|----------------|
 | Discover + fetch | 160 indicators discovered; **121 CSVs changed** (first probe) | No LLM |
-| Headlines (`fetch:news:dynamic`) | **137 Gemini batch calls** planned (`gemini-2.5-flash-lite`); run **aborted** on rate-limit after saving 138 headlines | Google Gemini API |
+| Headlines (`fetch:news`) | **137 Gemini batch calls** planned (`gemini-2.5-flash-lite`); run **aborted** on rate-limit after saving 138 headlines | Google Gemini API |
 | Analysis (configured, not logged) | Pipeline header: **NVIDIA NIM** `moonshotai/kimi-k2.6` | NVIDIA free tier |
 | Steady-state changed set (local) | `data/changed-since.json` often **≤10 indicators/day** after bootstrap | — |
 

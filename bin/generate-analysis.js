@@ -15,6 +15,9 @@ function parseArgs(argv) {
     phase: 'all',
     allTiers: false,
     changedOnly: process.env.ANALYSIS_CHANGED_ONLY === 'true',
+    asOf: null,
+    effort: null,
+    append: false,
   };
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i];
@@ -26,6 +29,11 @@ function parseArgs(argv) {
     if (a === '--reportajes-only') { args.phase = 'reportajes'; continue; }
     if (a === '--all-tiers') { args.allTiers = true; continue; }
     if (a === '--changed-only') { args.changedOnly = true; continue; }
+    if (a === '--append') { args.append = true; continue; }
+    if (a === '--as-of' && argv[i + 1]) { args.asOf = argv[++i]; continue; }
+    if (a.startsWith('--as-of=')) { args.asOf = a.slice('--as-of='.length); continue; }
+    if (a === '--effort' && argv[i + 1]) { args.effort = argv[++i]; continue; }
+    if (a.startsWith('--effort=')) { args.effort = a.slice('--effort='.length); continue; }
   }
   return args;
 }
@@ -37,6 +45,9 @@ async function main() {
   console.log('[analysis] starting pipeline ...', [
     opts.phase !== 'all' ? `(phase: ${opts.phase})` : '',
     opts.changedOnly ? '(changed-only)' : '',
+    opts.asOf ? `(as-of: ${opts.asOf})` : '',
+    opts.effort ? `(effort: ${opts.effort})` : '',
+    opts.append ? '(append)' : '',
   ].filter(Boolean).join(' '));
   const result = await runAnalysis({
     only: opts.only,
@@ -45,6 +56,9 @@ async function main() {
     phase: opts.phase,
     allTiers: opts.allTiers,
     changedOnly: opts.changedOnly,
+    asOf: opts.asOf,
+    effort: opts.effort,
+    appendAlerts: opts.append,
     onProgress: ({ idno, count }) => console.log(`[analysis] ${idno}: ${count} candidate(s)`),
   });
   console.log(`[analysis] finished ${result.alertCount} noticias, ${result.reportajeCount} reportajes (${result.indicatorsSkipped || 0} skipped unchanged, ${result.abruptCount} abrupt, ${result.anomalyCount} anomaly candidates)`);

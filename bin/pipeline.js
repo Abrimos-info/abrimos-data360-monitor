@@ -13,7 +13,7 @@ const ROOT = path.resolve(__dirname, '..');
 const force = process.argv.includes('--force');
 
 function run(label, cmd, args) {
-  console.log(`[pipeline:dynamic] ${label} ...`);
+  console.log(`[pipeline] ${label} ...`);
   const result = spawnSync(cmd, args, { cwd: ROOT, stdio: 'inherit', env: process.env });
   if (result.status !== 0) {
     process.exit(result.status || 1);
@@ -21,9 +21,9 @@ function run(label, cmd, args) {
 }
 
 function main() {
-  const timer = createTimer('pipeline:dynamic');
-  ai.logAnalysisLlm('pipeline:dynamic');
-  console.log(`[pipeline:dynamic] starting${force ? ' (force refresh)' : ''} ...`);
+  const timer = createTimer('pipeline');
+  ai.logAnalysisLlm('pipeline');
+  console.log(`[pipeline] starting${force ? ' (force refresh)' : ''} ...`);
 
   run('discover', process.execPath, [path.join(ROOT, 'bin', 'discover-indicators.js')]);
   timer.lap('discover');
@@ -34,15 +34,18 @@ function main() {
   timer.lap('fetch');
 
   const npm = process.platform === 'win32' ? 'npm.cmd' : 'npm';
-  run('fetch:news:dynamic', npm, ['run', 'fetch:news:dynamic']);
+  run('fetch:news', npm, ['run', 'fetch:news']);
   timer.lap('fetch-news');
 
-  run('analyze:dynamic', npm, ['run', 'analyze:dynamic']);
+  run('analyze', npm, ['run', 'analyze:changed']);
   timer.lap('analyze');
 
-  printPipelineSummary('pipeline:dynamic');
+  run('newsletter', npm, ['run', 'generate:newsletter']);
+  timer.lap('newsletter');
+
+  printPipelineSummary('pipeline');
   timer.end('total');
-  console.log('[pipeline:dynamic] finished');
+  console.log('[pipeline] finished');
 }
 
 main();

@@ -41,7 +41,7 @@ Limitation: coverage is weakest for HND and GTM (fewer indexed outlets); English
 
 ### Fallback: Google News RSS (roadmap — not implemented)
 
-> **Demo code** (`bin/fetch-news.js`, `lib/news-fetch.js`): default npm script uses **Gemini** grounding (`--provider=gemini`). GDELT path available via `--provider=gdelt` and `npm run pipeline:dynamic:news-gdelt`. Google News RSS remains roadmap (D-030); `rss-parser` is in `package.json` but unused in demo fetch.
+> **Demo code** (`bin/fetch-news.js`, `lib/news-fetch.js`): default npm script uses **Gemini** grounding (`--provider=gemini`). GDELT path available via `--provider=gdelt` and `npm run pipeline:news-gdelt`. Google News RSS remains roadmap (D-030); `rss-parser` is in `package.json` but unused in demo fetch.
 
 URL pattern: `https://news.google.com/rss/search?q={country_name}&hl=es-{cc}&gl={CC}&ceid={CC}:es`
 
@@ -185,8 +185,8 @@ Implemented: `bin/fetch-news.js`. Examples:
 
 ```bash
 npm run fetch:news                    # Gemini (default in package.json)
-npm run fetch:news:dynamic            # Gemini + dynamic watchlist
-npm run pipeline:dynamic:news-gdelt   # GDELT + dynamic watchlist
+npm run fetch:news            # Gemini + dynamic watchlist
+npm run pipeline:news-gdelt   # GDELT + watchlist
 node bin/fetch-news.js --provider=gdelt --countries GTM,HND,ARG,ECU,MEX
 ```
 
