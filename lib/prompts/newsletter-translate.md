@@ -82,7 +82,7 @@ Esta **no es traducción literal**. Producís el espejo EN de la edición ya val
 - Si `close.type = thematic`: dos o tres frases. Citar `orphan_ratio` real con verbalización admitida: `"Three of today's five findings"`, `"Half of today's findings"`, `"Four of today's six findings"`. Ejemplo: `"Three of today's five findings did not appear in any regional headline. That is the distance between reading newspapers and reading the data. Why this email goes out every morning."`
 
 ### `cta.label.en`
-- String fijo: `"See the full edition on abrimos.info →"` (puede variar si la URL cambia de dominio).
+- String fijo: `"See the full edition →"`.
 
 ### `footer.pcn_note.en` · `footer.license_note.en`
 - Strings fijos heredados del template (`newsletter-template.md`). **No reescribir.**

@@ -22,6 +22,7 @@
     "analyze:no-llm": "node bin/generate-analysis.js --no-llm",
     "generate:newsletter": "node bin/generate-newsletter.js",
     "replay:daily": "node bin/replay-daily.js",
+    "replay:backfill": "node bin/replay-daily.js --backfill --skip-fetch",
     "pipeline": "node bin/pipeline.js",
     "pipeline:force": "node bin/pipeline.js --force",
     "pipeline:news-gdelt": "node bin/fetch-news.js --no-preview --mode=gdelt --no-themes",

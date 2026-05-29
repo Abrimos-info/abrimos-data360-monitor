@@ -101,17 +101,17 @@
   },
   "cta": {
     "label": {
-      "es": "Ver la edición completa en abrimos.info →",
-      "en": "See the full edition on abrimos.info →"
+      "es": "Ver la edición completa →",
+      "en": "See the full edition →"
     },
-    "url": "https://abrimos.info/edicion/YYYY-MM-DD"
+    "url": "/newsletter/lac/YYYY-MM-DD"
   },
   "footer": {
     "pcn_note": {
       "es": "Cada cifra de este correo lleva un enlace directo al dataset original del Banco Mundial. Es lo que llamamos PCN (Public Citation Network). Si una cita no aguanta el click, no la publicamos.",
       "en": "Every figure in this email links directly to the original World Bank dataset. We call this PCN (Public Citation Network). If a citation doesn't survive the click, we don't publish it."
     },
-    "methodology_link": "https://abrimos.info/metodologia",
+    "methodology_link": "/metodologia",
     "license_note": {
       "es": "Abrimos.info — agencia de noticias para datos de desarrollo. Open source, GPLv3. Gratis para newsrooms y NPOs en países en desarrollo, siempre.",
       "en": "Abrimos.info — news agency for development data. Open source, GPLv3. Free for newsrooms and NPOs in developing countries, always."

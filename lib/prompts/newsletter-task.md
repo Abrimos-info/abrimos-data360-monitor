@@ -80,8 +80,8 @@ Producís el JSON estructurado de la edición del día siguiendo el shape de `ne
 - La proporción citada en cierre temático debe ser **literalmente verdadera**. Verbalizaciones admitidas: `"tres de los cinco"`, `"la mitad de"`, `"cuatro de los seis"`, etc.
 
 ### Bloque 8 — `cta`
-- Una sola línea en negrita: `[**Ver la edición completa en abrimos.info →**](URL_de_la_edición)`.
-- URL viene del campo §9 del contexto.
+- Una sola línea en negrita: `[**Ver la edición completa →**](URL_de_la_edición)`.
+- URL y label vienen del campo §9 del contexto (el renderer fuerza valores canónicos).
 
 ### Bloque 9 — `footer`
 - Tres bloques en cursiva, separados por línea en blanco:

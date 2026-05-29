@@ -9,10 +9,12 @@ const { spawnSync } = require('child_process');
 const { computeNewsWindow } = require('../lib/news-window');
 const { summarizeCountryNewsCoverage } = require('../lib/news-coverage');
 const { DEFAULT_COUNTRIES } = require('../lib/news-fetch');
+const { eligibleNoticiasForDay } = require('../lib/analysis/replay-mode');
 const { createTimer, startRunTimer } = require('../lib/timing');
 const { stepLog } = require('../lib/pipe-log');
 
 const ROOT = path.join(__dirname, '..');
+const ALERTS_FILE = path.join(ROOT, 'data', 'alerts.json');
 
 function parseArgs(argv) {
   const args = {
@@ -23,6 +25,8 @@ function parseArgs(argv) {
     skipNews: false,
     forceNews: false,
     noLlm: false,
+    backfill: false,
+    regenNewsletter: false,
   };
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i];
@@ -37,6 +41,8 @@ function parseArgs(argv) {
     if (a === '--force-news') { args.forceNews = true; args.skipNews = false; continue; }
     if (a === '--with-news') { args.forceNews = true; args.skipNews = false; continue; }
     if (a === '--no-llm') { args.noLlm = true; continue; }
+    if (a === '--backfill') { args.backfill = true; continue; }
+    if (a === '--regen-newsletter') { args.regenNewsletter = true; continue; }
   }
   return args;
 }
@@ -51,9 +57,18 @@ function dateRange(from, to) {
   return out;
 }
 
+function readAlertsAggregate() {
+  if (!fs.existsSync(ALERTS_FILE)) return [];
+  try {
+    const data = JSON.parse(fs.readFileSync(ALERTS_FILE, 'utf8'));
+    return Array.isArray(data) ? data : [];
+  } catch (_) {
+    return [];
+  }
+}
+
 function backupAlerts() {
   const stamp = new Date().toISOString().slice(0, 10);
-  const ALERTS_FILE = path.join(ROOT, 'data', 'alerts.json');
   const ALERTS_DIR = path.join(ROOT, 'data', 'alerts');
   if (fs.existsSync(ALERTS_FILE)) {
     const dest = path.join(ROOT, 'data', `alerts.backup-${stamp}.json`);
@@ -110,45 +125,95 @@ function maybeFetchNews(opts) {
   ]);
 }
 
+function shouldSkipAnalyzeForDay(opts, date, alerts) {
+  if (!opts.backfill) return false;
+  const count = eligibleNoticiasForDay(alerts, date).length;
+  return count > 0;
+}
+
+function shouldRunNewsletter(opts, date, alerts, analyzedThisDay) {
+  if (analyzedThisDay) return true;
+  if (opts.regenNewsletter) return true;
+  if (opts.backfill) return false;
+  return true;
+}
+
 async function main() {
   startRunTimer('replay-daily');
   const timer = createTimer('replay-daily');
   const opts = parseArgs(process.argv.slice(2));
   const dates = dateRange(opts.from, opts.to);
-  stepLog('replay-daily', `${dates.length} day(s): ${dates[0]} … ${dates[dates.length - 1]}`);
+  const modeLabel = opts.backfill ? 'backfill' : 'replay';
+  stepLog('replay-daily', `${modeLabel}: ${dates.length} day(s): ${dates[0]} … ${dates[dates.length - 1]}`);
 
   backupAlerts();
-  fs.writeFileSync(path.join(ROOT, 'data', 'alerts.json'), '[]', 'utf8');
+  if (!opts.backfill) {
+    fs.writeFileSync(ALERTS_FILE, '[]', 'utf8');
+  } else {
+    const existing = readAlertsAggregate().length;
+    stepLog('replay-daily', `keeping ${existing} alert(s) in aggregate (--backfill)`);
+  }
 
-  if (!opts.skipFetch) {
+  if (!opts.skipFetch && !opts.backfill) {
     runNode('discover-indicators.js');
     timer.lap('discover');
     runNode('fetch-data.js', ['--watchlist-file', 'data/dynamic-watchlist.json']);
     timer.lap('fetch');
     maybeFetchNews(opts);
     timer.lap('fetch-news');
+  } else if (opts.backfill && !opts.skipFetch) {
+    stepLog('replay-daily', 'skip fetch in backfill (use --skip-fetch explicitly or run discover/fetch separately)');
   }
+
+  let alerts = readAlertsAggregate();
 
   for (let i = 0; i < dates.length; i++) {
     const date = dates[i];
-    const append = i > 0;
-    const analysisArgs = [
-      `--as-of=${date}`,
-      ...(append ? ['--append'] : []),
-      ...(opts.effort ? [`--effort=${opts.effort}`] : []),
-      ...(opts.noLlm ? ['--no-llm'] : []),
-    ];
-    stepLog('replay-daily', `analyze ${date} (${i + 1}/${dates.length}) ...`);
-    runNode('generate-analysis.js', analysisArgs);
-    timer.lap(`analyze:${date}`);
-    stepLog('replay-daily', `newsletter ${date} (${i + 1}/${dates.length}) ...`);
-    runNode('generate-newsletter.js', [
-      `--date=${date}`,
-      ...(opts.effort ? [`--effort=${opts.effort}`] : []),
-      ...(opts.noLlm ? ['--no-llm'] : []),
-    ]);
-    timer.lap(`newsletter:${date}`);
+    const skipAnalyze = shouldSkipAnalyzeForDay(opts, date, alerts);
+    let analyzedThisDay = false;
+
+    if (skipAnalyze) {
+      const count = eligibleNoticiasForDay(alerts, date).length;
+      stepLog('replay-daily', `skip analyze ${date} (${count} noticia(s) already, ${i + 1}/${dates.length})`);
+    } else {
+      const analysisArgs = [
+        `--as-of=${date}`,
+        ...(opts.backfill || i > 0 ? ['--append'] : []),
+        ...(opts.backfill ? ['--noticias-only'] : []),
+        ...(opts.effort ? [`--effort=${opts.effort}`] : []),
+        ...(opts.noLlm ? ['--no-llm'] : []),
+      ];
+      stepLog('replay-daily', `analyze ${date} (${i + 1}/${dates.length}) ...`);
+      runNode('generate-analysis.js', analysisArgs);
+      analyzedThisDay = true;
+      alerts = readAlertsAggregate();
+      timer.lap(`analyze:${date}`);
+    }
+
+    if (shouldRunNewsletter(opts, date, alerts, analyzedThisDay)) {
+      stepLog('replay-daily', `newsletter ${date} (${i + 1}/${dates.length}) ...`);
+      runNode('generate-newsletter.js', [
+        `--date=${date}`,
+        ...(opts.effort ? [`--effort=${opts.effort}`] : []),
+        ...(opts.noLlm ? ['--no-llm'] : []),
+      ]);
+      timer.lap(`newsletter:${date}`);
+    } else {
+      stepLog('replay-daily', `skip newsletter ${date} (day already had noticias, ${i + 1}/${dates.length})`);
+    }
   }
+
+  if (opts.backfill && !opts.noLlm) {
+    stepLog('replay-daily', 'reportajes (changed-only, append) ...');
+    runNode('generate-analysis.js', [
+      '--reportajes-only',
+      '--append',
+      '--changed-only',
+      ...(opts.effort ? [`--effort=${opts.effort}`] : []),
+    ]);
+    timer.lap('reportajes');
+  }
+
   timer.end('total');
   stepLog('replay-daily', 'finished');
 }

@@ -6,9 +6,11 @@ require('dotenv').config();
 const fs = require('fs');
 const path = require('path');
 const ai = require('../lib/ai-client');
-const { generateNewsletterEdition, saveEdition } = require('../lib/newsletter/generator');
+const { editionFile } = require('../lib/newsletter/editions');
+const { alertsForDate, generateNewsletterEdition, saveEdition } = require('../lib/newsletter/generator');
 
 const ALERTS_FILE = path.join(__dirname, '..', 'data', 'alerts.json');
+const EDITION_SCOPE = 'lac';
 
 function parseArgs(argv) {
   const args = { date: null, noLlm: false, effort: null };
@@ -29,19 +31,30 @@ async function main() {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(dateIso)) {
     throw new Error(`Invalid --date ${dateIso} (expected YYYY-MM-DD)`);
   }
-  ai.resetTokenStats();
-  ai.logAnalysisLlm('AI-NEWSLETTER');
   const alerts = fs.existsSync(ALERTS_FILE)
     ? JSON.parse(fs.readFileSync(ALERTS_FILE, 'utf8'))
     : [];
-  console.log(`[newsletter] generating LAC edition for ${dateIso} ...`);
+  const pool = alertsForDate(Array.isArray(alerts) ? alerts : [], dateIso);
+  if (pool.length === 0) {
+    const stalePath = editionFile(EDITION_SCOPE, dateIso);
+    if (fs.existsSync(stalePath)) {
+      fs.unlinkSync(stalePath);
+      console.log(`[newsletter] removed stale edition ${stalePath}`);
+    }
+    console.log(`[newsletter] skip ${dateIso}: no noticias for this date`);
+    return;
+  }
+
+  ai.resetTokenStats();
+  ai.logAnalysisLlm('AI-NEWSLETTER');
+  console.log(`[newsletter] generating LAC edition for ${dateIso} (${pool.length} noticia(s)) ...`);
   const edition = await generateNewsletterEdition({
     dateIso,
     alerts: Array.isArray(alerts) ? alerts : [],
     noLlm: opts.noLlm,
     effort: opts.effort,
   });
-  const filepath = saveEdition('lac', dateIso, edition);
+  const filepath = saveEdition(EDITION_SCOPE, dateIso, edition);
   console.log(`[newsletter] saved ${filepath}`);
   const stats = ai.getTokenStats();
   console.log(`[AI-COST-NEWSLETTER] calls: ${stats.calls} | est: $${stats.cost.toFixed(4)}`);

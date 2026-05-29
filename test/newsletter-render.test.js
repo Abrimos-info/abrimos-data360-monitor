@@ -21,6 +21,22 @@ const sampleAlert = {
   }],
 };
 
+test('applyCanonicalEditionUrls overrides LLM cta and methodology link', () => {
+  const { applyCanonicalEditionUrls } = require('../lib/newsletter/generator');
+  const edition = {
+    cta: {
+      label: { es: 'Ver la edición completa en abrimos.info →', en: 'See the full edition on abrimos.info →' },
+      url: 'https://abrimos.info/edicion/2026-05-29',
+    },
+    footer: { methodology_link: 'https://abrimos.info/metodologia' },
+  };
+  applyCanonicalEditionUrls(edition, '2026-05-29');
+  assert.equal(edition.cta.url, '/newsletter/lac/2026-05-29');
+  assert.equal(edition.cta.label.es, 'Ver la edición completa →');
+  assert.equal(edition.cta.label.en, 'See the full edition →');
+  assert.equal(edition.footer.methodology_link, '/metodologia');
+});
+
 test('resolveCtaLink prefers pathForCountry', () => {
   assert.equal(resolveCtaLink(sampleAlert), '/guatemala/noticia/2023/05/pobreza-umic');
 });

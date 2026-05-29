@@ -31,6 +31,15 @@ test('noticiasForReplayDay filters by detected_at date', () => {
   assert.equal(day.length, 1);
 });
 
+test('eligibleNoticiasForDay excludes rejected noticias', () => {
+  const { eligibleNoticiasForDay } = require('../lib/analysis/replay-mode');
+  const day = eligibleNoticiasForDay([
+    { content_type: 'noticia', detected_at: '2026-05-27T12:00:00.000Z' },
+    { content_type: 'noticia', detected_at: '2026-05-27T12:00:00.000Z', quality_status: 'rejected' },
+  ], '2026-05-27');
+  assert.equal(day.length, 1);
+});
+
 test('selectIdnosForReplayDay drips unpublished indicators', () => {
   const idnos = selectIdnosForReplayDay(
     ['A', 'B', 'C'],
