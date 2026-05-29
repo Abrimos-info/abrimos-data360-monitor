@@ -344,3 +344,58 @@
   .wb-nav { top: 0; position: relative; }
   .wb-header__locale .d360-country__name { max-width: 5.5rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 }
+
+@media (max-width: 640px) {
+  .wb-header__inner {
+    flex-wrap: wrap;
+    gap: 10px 12px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .d360-lockup {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+  .wb-header__actions {
+    flex: 1 1 100%;
+    width: 100%;
+    margin-left: 0;
+  }
+  .wb-header__locale {
+    width: 100%;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr) auto;
+  }
+  .wb-header__locale .d360-subscribe {
+    min-height: 44px;
+    padding: 10px 12px;
+    font-size: 10px;
+  }
+  .wb-header__locale .d360-country-select {
+    min-height: 44px;
+    justify-content: center;
+  }
+  .wb-header__locale .d360-country__name {
+    max-width: none;
+  }
+  .d360-lang__btn {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 10px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .wb-nav__inner {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 0;
+  }
+  .wb-nav__inner::-webkit-scrollbar { display: none; }
+  .wb-nav__link {
+    flex-shrink: 0;
+    padding: 0 12px;
+    font-size: 11px;
+  }
+}
