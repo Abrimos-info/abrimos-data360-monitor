@@ -10,7 +10,7 @@
     },
     {
       "type": "p",
-      "text": "<strong>If you subscribe to the newsletter or indicator alerts</strong>: we store your email address and subscription type (and country, if you chose alerts). Nothing else. We do not ask for name, phone, or demographic data."
+      "text": "<strong>If you subscribe to the newsletter or indicator alerts</strong>: we store your email address and subscription type (and, if you chose alerts, the countries and topics you selected). Nothing else. We do not ask for name, phone, or demographic data."
     },
     {
       "type": "p",

@@ -47,12 +47,12 @@ test('HTTP routes', async (t) => {
 
   await t.test('GET / tagline matches D-006 exact phrase', async () => {
     const i18n = require('../lib/i18n');
-    const tagline = i18n.getString('tagline', 'en');
+    const description = i18n.getString('page.home.description', 'en');
     const res = await get(base + '/?lang=en');
     assert.match(
       res.body,
-      new RegExp(`<meta name="description" content="${tagline.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"`),
-      'tagline meta description not found in page'
+      new RegExp(`<meta name="description" content="${description.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"`),
+      'home meta description not found in page'
     );
   });
 
@@ -347,9 +347,13 @@ test('HTTP routes', async (t) => {
     assert.ok(res.body.includes('name="subscription_type"'));
     assert.ok(res.body.includes('value="newsletter_lac"'));
     assert.ok(res.body.includes('value="indicator_alerts"'));
-    assert.ok(res.body.includes('id="d360-subscribe-country"'));
+    assert.ok(res.body.includes('id="d360-subscribe-filters"'));
+    assert.ok(res.body.includes('name="countries[]"'));
+    assert.ok(res.body.includes('name="topics[]"'));
     assert.ok(res.body.includes('id="d360-subscribe-email"'));
     assert.ok(res.body.includes('data-open-subscribe'));
+    assert.ok(res.body.includes('Suscripciones'));
+    assert.ok(res.body.includes('Ver la edición de hoy'));
   });
 
   await t.test('newsletter UI elements present on dashboard', async () => {
@@ -400,7 +404,7 @@ test('HTTP routes', async (t) => {
     assert.equal(res.status, 200);
     const data = JSON.parse(res.body);
     assert.equal(data.ok, true);
-    assert.ok(data.preview_url.includes('/newsletter/lac/'));
+    assert.equal(data.preview_url, '/newsletter');
   });
 
   await t.test('GET /?langMode=both ignores both and uses lang', async () => {

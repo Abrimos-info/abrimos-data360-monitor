@@ -262,6 +262,7 @@
 .wb-footer__links a {
   color: rgba(255, 255, 255, 0.85);
   text-decoration: none;
+  border-bottom: none;
   font-weight: 600;
   font-size: 11px;
   letter-spacing: 0.04em;
@@ -270,6 +271,7 @@
 .wb-footer__links a:hover {
   color: #fff;
   text-decoration: underline;
+  border-bottom: none;
 }
 .wb-footer__legal {
   width: 100%;

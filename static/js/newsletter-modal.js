@@ -2,6 +2,9 @@
 
 (function () {
 
+  var TOPIC_SLUGS = ['macro', 'fiscal', 'social', 'food_security', 'governance'];
+  var COUNTRY_ISOS = ['ARG', 'ECU', 'GTM', 'HND', 'MEX'];
+
   function readCountryCookie() {
     var match = document.cookie.match(/(?:^|; )d360_country=([^;]*)/);
     return match ? decodeURIComponent(match[1]) : '';
@@ -33,6 +36,11 @@
     return strings[key] || (window.D360_STRINGS.en && window.D360_STRINGS.en[key]) || key;
   }
 
+  function selectedSubscriptionType(form) {
+    var type = form.querySelector('input[name="subscription_type"]:checked');
+    return type ? type.value : 'newsletter_lac';
+  }
+
   function resetForm() {
     var form = document.getElementById('d360-subscribe-form');
     var success = document.getElementById('d360-subscribe-success');
@@ -46,31 +54,44 @@
     }
     if (success) success.style.display = 'none';
     if (err) { err.hidden = true; err.textContent = ''; }
-    if (link) { link.hidden = false; link.removeAttribute('href'); }
-    syncCountrySelect();
+    var footer = document.querySelector('#d360-newsletter .d360-subscribe-form__footer');
+    if (footer) footer.style.display = '';
+    if (link) {
+      link.hidden = false;
+      link.textContent = ui('subscribe.success_preview_newsletter');
+      link.removeAttribute('href');
+    }
+    syncAlertsFields();
   }
 
-  function syncCountrySelect() {
+  function updateSubmitCta() {
     var form = document.getElementById('d360-subscribe-form');
-    var country = document.getElementById('d360-subscribe-country');
-    var allOpt = document.getElementById('d360-subscribe-country-all');
-    if (!form || !country) return;
-    var type = form.querySelector('input[name="subscription_type"]:checked');
-    var alerts = type && type.value === 'indicator_alerts';
-    country.disabled = !alerts;
-    country.required = alerts;
-    if (allOpt) allOpt.hidden = alerts;
+    var submitBtn = document.getElementById('d360-subscribe-submit');
+    if (!form || !submitBtn) return;
+    var type = selectedSubscriptionType(form);
+    submitBtn.textContent = type === 'indicator_alerts'
+      ? ui('subscribe.cta_alerts')
+      : ui('subscribe.cta_newsletter');
+  }
+
+  function syncAlertsFields() {
+    var el = document.getElementById('d360-newsletter');
+    var form = document.getElementById('d360-subscribe-form');
+    var filters = document.getElementById('d360-subscribe-filters');
+    var archiveWrap = document.getElementById('d360-subscribe-archive-wrap');
+    if (!form) return;
+    var alerts = selectedSubscriptionType(form) === 'indicator_alerts';
+    if (el) el.classList.toggle('is-alerts-mode', alerts);
+    if (filters) filters.hidden = !alerts;
+    if (archiveWrap) archiveWrap.hidden = alerts;
     if (alerts) {
       var iso = readCountryCookie();
-      if (iso && country.querySelector('option[value="' + iso + '"]')) {
-        country.value = iso;
-      } else {
-        var firstCountry = country.querySelector('option[value]:not([value=""])');
-        if (firstCountry) country.value = firstCountry.value;
+      if (iso && COUNTRY_ISOS.indexOf(iso) !== -1) {
+        var box = form.querySelector('input[name="countries[]"][value="' + iso + '"]');
+        if (box) box.checked = true;
       }
-    } else {
-      country.value = '';
     }
+    updateSubmitCta();
   }
 
   function successMessage(type) {
@@ -79,17 +100,31 @@
       : ui('subscribe.success_newsletter');
   }
 
+  function previewLinkLabel(type) {
+    return type === 'indicator_alerts'
+      ? ui('subscribe.success_preview_alerts')
+      : ui('subscribe.success_preview_newsletter');
+  }
+
+  function fallbackPreviewUrl(type) {
+    return type === 'indicator_alerts' ? '/indicadores' : '/newsletter';
+  }
+
   async function submitForm(e) {
     e.preventDefault();
     var form = document.getElementById('d360-subscribe-form');
     var err = document.getElementById('d360-subscribe-error');
-    var submitBtn = form && form.querySelector('button[type="submit"]');
+    var submitBtn = document.getElementById('d360-subscribe-submit');
     if (!form) return;
 
-    var fd = new FormData(form);
-    var subscriptionType = fd.get('subscription_type');
-    var email = String(fd.get('email') || '').trim();
-    var countryIso = fd.get('country_iso');
+    var subscriptionType = selectedSubscriptionType(form);
+    var email = String((new FormData(form).get('email') || '')).trim();
+    var countries = Array.from(form.querySelectorAll('input[name="countries[]"]:checked')).map(function (n) {
+      return n.value;
+    });
+    var topics = Array.from(form.querySelectorAll('input[name="topics[]"]:checked')).map(function (n) {
+      return n.value;
+    });
 
     err.hidden = true;
     if (submitBtn) submitBtn.disabled = true;
@@ -100,7 +135,8 @@
         body: JSON.stringify({
           email: email,
           subscription_type: subscriptionType,
-          country_iso: subscriptionType === 'indicator_alerts' ? countryIso : '',
+          countries: countries,
+          topics: topics,
           lang: window.D360_LANG || 'es',
         }),
       });
@@ -109,12 +145,15 @@
         throw new Error(data.error || 'error');
       }
       form.style.display = 'none';
+      var footer = document.querySelector('#d360-newsletter .d360-subscribe-form__footer');
+      if (footer) footer.style.display = 'none';
       var success = document.getElementById('d360-subscribe-success');
       var text = document.getElementById('d360-subscribe-success-text');
       var link = document.getElementById('d360-subscribe-preview-link');
       if (text) text.textContent = successMessage(subscriptionType);
-      if (link && data.preview_url) {
-        link.href = data.preview_url;
+      if (link) {
+        link.href = data.preview_url || fallbackPreviewUrl(subscriptionType);
+        link.textContent = previewLinkLabel(subscriptionType);
         link.hidden = false;
       }
       if (success) success.style.display = '';
@@ -148,7 +187,7 @@
 
     form.addEventListener('submit', submitForm);
     form.querySelectorAll('input[name="subscription_type"]').forEach(function (radio) {
-      radio.addEventListener('change', syncCountrySelect);
+      radio.addEventListener('change', syncAlertsFields);
     });
 
     el.querySelectorAll('[data-newsletter-dismiss]').forEach(function (node) {
@@ -159,7 +198,7 @@
       if (e.key === 'Escape' && el.style.display !== 'none') close();
     });
 
-    syncCountrySelect();
+    syncAlertsFields();
   }
 
   window.D360Subscribe = { open: open, close: close };

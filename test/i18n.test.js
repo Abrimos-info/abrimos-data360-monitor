@@ -76,11 +76,16 @@ test('newsletter keys exist in ES and EN', () => {
 
 test('subscribe keys exist in ES and EN', () => {
   const keys = [
-    'subscribe.modal_title',
+    'subscribe.title',
     'subscribe.type_newsletter',
     'subscribe.type_alerts',
+    'subscribe.today_edition_link',
+    'subscribe.cta_newsletter',
+    'subscribe.cta_alerts',
     'subscribe.success_newsletter',
-    'subscribe.preview_link',
+    'subscribe.success_hint',
+    'subscribe.success_preview_newsletter',
+    'subscribe.topic.macro',
   ];
   for (const key of keys) {
     assert.ok(!i18n.getString(key, 'es').startsWith('['), `${key} missing in es`);
@@ -106,7 +111,7 @@ test('alerts sample and about pcn demo keys exist', () => {
 test('copy keys A-1 lockup and nav exist', () => {
   assert.equal(i18n.getString('lockup.product_sub', 'es'), 'Agencia de noticias · LAC');
   assert.equal(i18n.getString('nav.indicators', 'es'), 'Indicadores');
-  assert.equal(i18n.getString('ui.subscribe', 'es'), 'Newsletter');
+  assert.equal(i18n.getString('ui.subscribe', 'es'), 'Suscribirse');
 });
 
 test('getString interpolates params', () => {

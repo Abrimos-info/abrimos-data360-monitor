@@ -176,6 +176,7 @@ body {
   color: var(--wb-blue);
   text-decoration: underline;
   text-underline-offset: 2px;
+  border-bottom: none;
 }
 .d360-article-chrome__ai-list {
   margin: 0 0 var(--space-3, 12px);
@@ -217,6 +218,7 @@ body {
   color: var(--wb-blue);
   text-decoration: underline;
   text-underline-offset: 2px;
+  border-bottom: none;
   cursor: pointer;
 }
 .d360-article-chrome__link-btn:hover {
@@ -226,9 +228,11 @@ body {
   color: var(--wb-blue);
   text-decoration: underline;
   text-underline-offset: 2px;
+  border-bottom: none;
 }
 .d360-article__reuse-actions a:hover {
   color: var(--wb-blue-dark, #005a8c);
+  border-bottom: none;
 }
 .d360-article-chrome__sep {
   color: var(--fg-light);
@@ -262,6 +266,7 @@ body {
   color: var(--wb-blue);
   text-decoration: underline;
   text-underline-offset: 2px;
+  border-bottom: none;
 }
 .d360-page--chat .d360-chat {
   max-width: 920px;
@@ -374,12 +379,14 @@ body {
 .d360-indicator-detail__data360 {
   color: var(--wb-blue);
   text-decoration: none;
+  border-bottom: none;
   font-weight: 600;
   font-size: 0.9rem;
 }
 .d360-indicator-detail__data360:hover {
   color: var(--wb-blue-dark);
   text-decoration: underline;
+  border-bottom: none;
 }
 .d360-indicator-detail__country {
   margin-top: var(--space-5, 24px);

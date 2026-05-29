@@ -29,6 +29,26 @@ a {
 }
 a:hover { color: var(--brand-red-deep); border-bottom-color: var(--brand-red-deep); }
 
+/* UI links that use text-decoration must not stack the global dotted border */
+.d360-article-chrome a,
+.d360-subscribe-form__footer a,
+.d360-subscribe-form__archive-link a,
+.d360-subscribe-success a,
+.wb-footer__links a,
+.d360-indicator-detail__data360,
+.d360-card__dataset--link {
+  border-bottom: none;
+}
+.d360-article-chrome a:hover,
+.d360-subscribe-form__footer a:hover,
+.d360-subscribe-form__archive-link a:hover,
+.d360-subscribe-success a:hover,
+.wb-footer__links a:hover,
+.d360-indicator-detail__data360:hover,
+.d360-card__dataset--link:hover {
+  border-bottom: none;
+}
+
 /* -----------------------------------------------------------------
    App shell
 ----------------------------------------------------------------- */
@@ -1300,7 +1320,16 @@ body.d360-onboard-open {
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
-  margin-top: var(--space-4);
+  margin-top: var(--space-3);
+}
+.d360-onboard--subscribe .d360-onboard__card {
+  padding-bottom: var(--space-4);
+}
+.d360-onboard--subscribe .d360-onboard__body {
+  padding-right: 2px;
+}
+.d360-onboard--subscribe .d360-onboard__intro {
+  margin-bottom: 0;
 }
 .d360-subscribe-form__type {
   border: 0;
@@ -1326,6 +1355,125 @@ body.d360-onboard-open {
 .d360-subscribe-form__type input[type="radio"] {
   margin-top: 0.25rem;
   flex-shrink: 0;
+}
+.d360-subscribe-form__radio {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  font-size: 14px;
+  line-height: 1.45;
+  cursor: pointer;
+}
+.d360-subscribe-form__archive-link {
+  margin: calc(-1 * var(--space-2)) 0 var(--space-2) 1.35rem;
+  font-size: 13px;
+}
+.d360-subscribe-form__archive-link[hidden] {
+  display: none;
+}
+.d360-subscribe-form__filters {
+  border: 0;
+  margin: 0;
+  padding: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-alt, #f7f8f9);
+  max-height: min(320px, 42dvh);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.d360-subscribe-form__filters[hidden] {
+  display: none;
+}
+.d360-subscribe-form__filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.d360-subscribe-form__filter-group + .d360-subscribe-form__filter-group {
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--border);
+}
+.d360-subscribe-form__filter-legend {
+  font-weight: 700;
+  font-size: 13px;
+}
+.d360-subscribe-form__filter-hint {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text-muted, #5a6570);
+}
+.d360-subscribe-form__checkboxes {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.d360-subscribe-form__checkboxes--countries {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-2);
+}
+.d360-subscribe-form__checkboxes--topics {
+  gap: var(--space-1);
+}
+.d360-subscribe-form__checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  font-size: 13px;
+  line-height: 1.4;
+  font-weight: 400;
+  cursor: pointer;
+}
+.d360-subscribe-form__checkboxes--countries .d360-subscribe-form__checkbox {
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg);
+}
+.d360-subscribe-form__checkboxes--countries .d360-subscribe-form__checkbox:has(input:checked) {
+  border-color: var(--wb-blue, #0083c8);
+  background: rgba(0, 131, 200, 0.06);
+}
+.d360-subscribe-form__checkbox input[type="checkbox"] {
+  margin-top: 0.15rem;
+  flex-shrink: 0;
+}
+.d360-subscribe-form__compliance {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--text-muted, #5a6570);
+}
+.d360-subscribe-form__footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  flex-shrink: 0;
+}
+.d360-subscribe-form__footer-link {
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  color: var(--link, #0083c8);
+  cursor: pointer;
+  text-decoration: underline;
+}
+.d360-subscribe-form__footer-sep {
+  color: var(--text-muted, #5a6570);
+}
+.d360-subscribe-success #d360-subscribe-success-hint {
+  font-size: 13px;
+  color: var(--text-muted, #5a6570);
 }
 .d360-subscribe-form__field {
   display: flex;
@@ -2060,9 +2208,11 @@ body.d360-onboard-open {
   color: inherit;
   text-decoration: underline;
   text-decoration-color: var(--fg-light);
+  border-bottom: none;
 }
 .d360-card__dataset--link:hover {
   color: var(--brand-red);
+  border-bottom: none;
 }
 .d360-chat__trace-indicators {
   margin-top: var(--space-2);
@@ -2749,8 +2899,12 @@ body.d360-onboard-open {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   font-size: 0.9rem;
   text-decoration: none;
+  border-bottom: none;
 }
-.d360-article__indicators-list a:hover { text-decoration: underline; }
+.d360-article__indicators-list a:hover {
+  text-decoration: underline;
+  border-bottom: none;
+}
 .d360-article__chat { margin-top: var(--space-8, 32px); border-top: 1px solid var(--border); padding-top: var(--space-5, 20px); }
 .d360-article__chat h2 {
   font-family: var(--font-display);

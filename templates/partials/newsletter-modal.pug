@@ -1,30 +1,54 @@
-div#d360-newsletter.d360-onboard(style="display:none" role="dialog" aria-modal="true" aria-labelledby="d360-newsletter-title")
+- var subscribeCountries = ['ARG', 'ECU', 'GTM', 'HND', 'MEX']
+- var subscribeTopics = ['macro', 'fiscal', 'social', 'food_security', 'governance']
+div#d360-newsletter.d360-onboard.d360-onboard--subscribe(style="display:none" role="dialog" aria-modal="true" aria-labelledby="d360-newsletter-title")
   div.d360-onboard__scrim(data-newsletter-dismiss="true")
   div.d360-onboard__card
     button.d360-onboard__close(type="button" aria-label="Close" data-newsletter-dismiss="true") ×
-    h2#d360-newsletter-title.d360-onboard__title= _("subscribe.modal_title", lang)
-    p.d360-onboard__intro= _("subscribe.modal_intro", lang)
-    form#d360-subscribe-form.d360-subscribe-form
-      fieldset.d360-subscribe-form__type
-        legend= _("subscribe.type_label", lang)
-        label
-          input(type="radio" name="subscription_type" value="newsletter_lac" checked)
-          span= _("subscribe.type_newsletter", lang)
-        label
-          input(type="radio" name="subscription_type" value="indicator_alerts")
-          span= _("subscribe.type_alerts", lang)
-      label.d360-subscribe-form__field(for="d360-subscribe-country")
-        span= _("subscribe.country_label", lang)
-        select#d360-subscribe-country(name="country_iso" disabled)
-          option#d360-subscribe-country-all(value="" selected)= _("subscribe.country_all", lang)
-          each iso in ['GTM', 'HND', 'ARG', 'ECU', 'MEX']
-            option(value=iso)= _("chat.country." + iso, lang)
-      label.d360-subscribe-form__field(for="d360-subscribe-email")
-        span= _("subscribe.email_label", lang)
-        input#d360-subscribe-email(type="email" name="email" required autocomplete="email" placeholder=_("subscribe.email_placeholder", lang))
-      p.d360-subscribe-form__error#d360-subscribe-error(role="alert" hidden)
-      button.d360-onboard__cta(type="submit")= _("subscribe.submit", lang)
-    div#d360-subscribe-success.d360-subscribe-success(style="display:none")
-      p#d360-subscribe-success-text
-      p: a#d360-subscribe-preview-link(href="#")= _("subscribe.preview_link", lang)
-      button.d360-onboard__skip(type="button" data-newsletter-dismiss="true")= _("subscribe.close", lang)
+    div.d360-onboard__body
+      h2#d360-newsletter-title.d360-onboard__title= _("subscribe.title", lang)
+      p.d360-onboard__intro= _("subscribe.intro", lang)
+      form#d360-subscribe-form.d360-subscribe-form
+        fieldset.d360-subscribe-form__type
+          legend= _("subscribe.type_legend", lang)
+          label.d360-subscribe-form__radio
+            input(type="radio" name="subscription_type" value="newsletter_lac" checked)
+            span= _("subscribe.type_newsletter", lang)
+          p.d360-subscribe-form__archive-link#d360-subscribe-archive-wrap
+            a#d360-subscribe-archive-link(href="/newsletter")= _("subscribe.today_edition_link", lang)
+          label.d360-subscribe-form__radio
+            input(type="radio" name="subscription_type" value="indicator_alerts")
+            span= _("subscribe.type_alerts", lang)
+        fieldset#d360-subscribe-filters.d360-subscribe-form__filters(hidden)
+          div.d360-subscribe-form__filter-group
+            span.d360-subscribe-form__filter-legend= _("subscribe.countries_legend", lang)
+            span.d360-subscribe-form__filter-hint= _("subscribe.countries_hint", lang)
+            div.d360-subscribe-form__checkboxes.d360-subscribe-form__checkboxes--countries(role="group" aria-label=_("subscribe.countries_legend", lang))
+              each iso in subscribeCountries
+                label.d360-subscribe-form__checkbox
+                  input(type="checkbox" name="countries[]" value=iso)
+                  span= countryFlag(iso) + ' ' + _("chat.country." + iso, lang)
+          div.d360-subscribe-form__filter-group
+            span.d360-subscribe-form__filter-legend= _("subscribe.topics_legend", lang)
+            span.d360-subscribe-form__filter-hint= _("subscribe.topics_hint", lang)
+            div.d360-subscribe-form__checkboxes.d360-subscribe-form__checkboxes--topics(role="group" aria-label=_("subscribe.topics_legend", lang))
+              each topic in subscribeTopics
+                label.d360-subscribe-form__checkbox
+                  input(type="checkbox" name="topics[]" value=topic)
+                  span= _("subscribe.topic." + topic, lang)
+        label.d360-subscribe-form__field(for="d360-subscribe-email")
+          span= _("subscribe.email_label", lang)
+          input#d360-subscribe-email(type="email" name="email" required autocomplete="email" placeholder=_("subscribe.email_placeholder", lang))
+        p.d360-subscribe-form__compliance= _("subscribe.compliance_hint", lang)
+        p.d360-subscribe-form__error#d360-subscribe-error(role="alert" hidden)
+        button#d360-subscribe-submit.d360-onboard__cta(type="submit")= _("subscribe.cta_newsletter", lang)
+      div#d360-subscribe-success.d360-subscribe-success(style="display:none")
+        p#d360-subscribe-success-text
+        p#d360-subscribe-success-hint= _("subscribe.success_hint", lang)
+        p: a#d360-subscribe-preview-link(href="#")= _("subscribe.success_preview_newsletter", lang)
+        button.d360-onboard__skip(type="button" data-newsletter-dismiss="true")= _("subscribe.close", lang)
+    footer.d360-subscribe-form__footer
+      button.d360-subscribe-form__footer-link(type="button" data-newsletter-dismiss="true")= _("subscribe.footer_close", lang)
+      span.d360-subscribe-form__footer-sep(aria-hidden="true") ·
+      a(href="/privacidad")= _("subscribe.footer_privacy", lang)
+      span.d360-subscribe-form__footer-sep(aria-hidden="true") ·
+      a(href="/terminos")= _("subscribe.footer_terms", lang)
