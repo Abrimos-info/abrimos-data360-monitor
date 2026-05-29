@@ -1,6 +1,6 @@
 # Referencia de funcionalidades — Data360 News Agent
 
-> Catálogo técnico de capacidades implementadas en el demo (2026-05-22).  
+> Catálogo técnico de capacidades implementadas en el demo (2026-05-29).  
 > Producto: **Data360 News Agent** — agencia de noticias con IA sobre indicadores Data360.  
 > Guía orientada a redacciones: [user-guide.md](./user-guide.md).
 
@@ -9,348 +9,333 @@
 ## 1. Servidor web
 
 **Entrada**: `data360-monitor.js`  
-**Puerto**: 8090 (por defecto)  
+**Puerto**: 8090 (por defecto, `D360_PORT`)  
 **Stack**: Node.js, Pug, vanilla JS, sin bundler.
 
-| Ruta | Vista | Módulo |
-|------|-------|--------|
-| `/` | Country picker / home | `lib/views.js` → `dashboardPage` |
-| `/chat` | Chat | `lib/views.js` → `chatPage` |
-| `/about` | About | `lib/views.js` → `aboutPage` |
+| Ruta | Vista | Template / módulo |
+|------|-------|-------------------|
+| `/` | Selector de país | `countryPickerPage` → `country-picker.pug` |
+| `/{countrySlug}` | Portada LAC | `frontpagePage` → `frontpage.pug` |
+| `/{countrySlug}/{noticia\|reportaje}/{y}/{m}/{slug}` | Artículo | `alertPage` → `alert-page.pug` |
+| `/indicadores`, `/indicators` | Hub indicadores | `indicatorsHubPage` → `indicators-hub.pug` |
+| `/indicador/{idno}` | Detalle indicador | `indicatorDetailPage` → `indicator-page.pug` |
+| `/chat` | Chat global | `chatPage` → `chat.pug` |
+| `/about` | About | `aboutPage` → `about.pug` |
+| `/metodologia`, `/privacidad`, `/terminos`, `/uso` | Páginas estáticas | `metodologiaPage`, `privacidadPage`, `terminosPage`, `usoPage` → `static-prose.pug` + `config/copy/` |
+| (fallback) | 404 | `notFoundPage` → `not-found.pug` |
+| `/newsletter` | Redirect edición LAC | `newsletterIndexPage` |
+| `/newsletter/lac/{date}` | Edición newsletter | `newsletterEditionPage` → `newsletter-edition.pug` |
+| `/alertas/{countrySlug}/ejemplo` | Preview alertas | `alertsSamplePage` → `alerts-sample.pug` |
+| `/dev/feed` | Feed legacy | `legacyDashboardPage` → `dashboard.pug` |
+| `?legacy=1` en portada | Mismo feed legacy | `legacyDashboardPage` |
 | `/api/chat` | SSE agente | `lib/chat/api.js` |
 | `/api/alerts` | JSON alertas | `lib/alerts-api.js` |
+| `POST /api/subscribe` | Suscripción demo | `lib/subscribe.js` |
 | `/static/*` | Assets | `lib/router.js` |
 
-Configuración de rutas: `config/routes.json`.  
-i18n: `config/strings.es.json`, `config/strings.en.json`, `lib/i18n.js`.
+Configuración de rutas: `config/routes.json` vía `lib/route-registry.js`.  
+Handlers: `lib/views.js`.  
+i18n UI: `config/strings.{es,en}.json`, `lib/i18n.js`.  
+Copy legal/estático: `config/copy/{page}.{es,en}.json`, `lib/static-copy.js`.
 
-Hot reload en desarrollo: invalidación de templates, strings y `alerts.json` vía `chokidar` (ver `data360-monitor.js`).
+Hot reload en desarrollo: invalidación de templates, strings, copy y `alerts.json` vía `chokidar`.
+
+Deep links: `/?alert={id}` en home redirige al `_path` canónico del artículo (`lib/url-slug.js`).
 
 ---
 
-## 2. Portada — funcionalidades UI
+## 2. Portada por país
 
-### 2.1 Feed SSR
+Implementación: `lib/views.js` → `frontpagePage`, `frontpageData()`, `templates/frontpage.pug`.
 
-- Renderiza **todas** las alertas en HTML al cargar (`templates/dashboard.pug`).
-- Orden server-side por fecha del dato (`lib/alert-display.js` → `sortAlertsByDataDate`).
+- **Hero reportaje** — reportaje más reciente para el ISO3 de la portada.
+- **Titulares** — noticias intercaladas con reportajes (`interleaveHeadlines()`).
+- **Ticker** — indicadores actualizados con sparkline SVG (`lib/sparkline.js`, `renderSparklineSvg`).
+- **Masthead** — `editionLabel()`, antigüedad de datos (`getDataAgeSeconds`).
+- **Selector de país** — popup (`static/js/country-menu.js`).
+
+Orden server-side por fecha del dato (`lib/alert-display.js`).
+
+### 2.1 Vista legacy (feed con filtros)
+
+`legacyDashboardPage` → `dashboard.pug`. Acceso: `/dev/feed` o `?legacy=1`.
+
+- Renderiza **todas** las alertas en HTML al cargar.
+- Orden: `sortAlertsByDataDate`.
 - Datos inyectados: `window.D360_ALERTS`, `window.D360_FILTERS`.
-
-### 2.2 Filtros cliente
-
-Implementación: `static/js/behavior.js`
-
-- País (`#d360-filter-country`)
-- Categoría (`#d360-filter-category`)
-- Tipo de contenido (`#d360-filter-content-type`) → Noticia / Reportaje / Todos
-- Variante (`#d360-filter-variant`) → recarga con query `?variant=narr|num|news`
-- Contador visible (`#d360-event-count`)
-- Estado vacío filtrado (`#d360-empty-filtered`)
-- Sync URL con `history.replaceState`
-
-### 2.3 Variantes de tarjeta
-
-Dos **tipos de contenido** (filtrables vía `content_type`):
-
-| Tipo | Origen | Mixin | Layout |
-|------|--------|-------|--------|
-| **Noticia** | Fase 1 — una por indicador/país a partir de un candidato de detección | `+cardNewspaper` | tarjeta estándar |
-| **Reportaje** | Fase 2 — uno por `dataset_id` cuando ≥2 Noticias lo comparten | `+cardReportaje` | `grid-column: span 2` |
-
-Badge de tipo: mixin `+contentTypeBadge` (`templates/mixins.pug`).
-
-Variantes visuales históricas (compatibilidad):
-
-| Variante | Clase CSS | Contenido principal |
-|----------|-----------|---------------------|
-| narr | `d360-card--narr` | `lead` (o fallback `_lead` en fixtures) |
-| num | `d360-card--num` | Valor grande + metadatos |
-| news | `d360-card--news` | `title` + `lead` (o fallbacks `_title` / `_lead`) |
-
-Mixins: `templates/mixins.pug`, `templates/cards.pug`.
-
-### 2.4 Panel de detalle
-
-Implementación: `static/js/detail-panel.js`, template en `templates/partials/detail-panel.pug`.
-
-Bindings: país, categoría, type chip, título, IDNO, valor, periodo, magnitud, sparkline, `lead`, `story`, indicators (en Reportaje), verification trace, meta (score, detected_at), copiar cita.
-
-Deep link: `?alert={id}` abre panel al cargar.
-
-PCN: `renderNarrativeText()` resuelve `{{claim:id|fallback}}` contra `claim_tokens`.
-
-### 2.5 Sparklines
-
-- Server: mixin `+chart` en Pug (SVG inline).
-- Cliente: `static/js/charts.js` → `renderChartSvg(series)`.
-- Usado en panel detalle y chat (markdown sparkline blocks).
-
-### 2.6 Sincronización post-chat
-
-`static/js/alerts-feed.js`:
-
-- `upsertAlertsInFeed(alerts, lang)` — merge en `D360_ALERTS` + insertar tarjetas nuevas en `.d360-feed`.
-- `refreshAlertsFromServer()` — `GET /api/alerts`.
-- `bindRefreshOnFocus()` — refresh al foco + `BroadcastChannel('d360-alerts')`.
-- Cargado en dashboard vía `templates/dashboard.pug`.
+- Filtros cliente: `static/js/behavior.js` (país, categoría, content_type, variant).
+- Panel de detalle: `static/js/detail-panel.js`, `templates/partials/detail-panel.pug`.
+- Deep link: `?alert={id}`.
 
 ---
 
-## 3. Chat — funcionalidades UI
+## 3. Artículo y chat scoped
 
-### 3.1 Agente SSE
+**Template**: `alert-page.pug`  
+**JS**: `static/js/alert-page.js`, `static/js/alert-chat.js`, `static/js/floating-chat.js`, `static/js/chat-turn-ui.js`
+
+- Story con PCN: `static/js/pcn-claims.js`, `renderNarrativeText()`.
+- Sparkline en artículo: `charts.js` / mixin `+chart`.
+- Chat FAB scoped: `templates/partials/floating-chat.pug` (`d360-floating-chat--scoped`).
+- Presets por artículo: `templates/partials/alert-chat.pug`.
+- Historial: `sessionStorage` keyed por `alert_id`.
+- Contexto generación: `data/analyses/{IDNO}.md` inyectado vía `CHAT_GENERATION_CONTEXT_MAX_CHARS`.
+- Pie: `templates/partials/article-footer.pug` (disclaimer, reuse, newsletter CTA).
+
+URLs: `buildAlertPath()` / `parseArticlePath()` en `lib/url-slug.js`.
+
+---
+
+## 4. Newsletter y suscripción
+
+### 4.1 Modal UI
+
+- Template: `templates/partials/newsletter-modal.pug` (incluido desde `layout.pug`).
+- Cliente: `static/js/newsletter-modal.js`.
+- Trigger: `[data-open-subscribe]`, `#d360-subscribe-btn`.
+
+### 4.2 API suscripción
+
+`lib/subscribe.js` → `POST /api/subscribe`
+
+| Campo | Tipo | Notas |
+|-------|------|-------|
+| `email` | string | Validación regex básica |
+| `subscription_type` | `newsletter_lac` \| `indicator_alerts` | Obligatorio |
+| `countries` | string[] ISO3 | Opcional; filtrado a 5 LAC |
+| `topics` | string[] | macro, fiscal, social, food_security, governance |
+| `lang` | `es` \| `en` | Default `es` |
+
+Persistencia: append TSV en `data/newsletter/subscribers.tsv` (gitignored). Columnas: timestamp, email, type, countries, topics, lang, user-agent, referer.
+
+Respuesta: `{ ok: true, preview_url }` — `/newsletter` o `/indicadores?countries=…&topics=…`.
+
+**Demo**: sin SMTP ni confirmación por correo (D-009).
+
+### 4.3 Ediciones newsletter
+
+- Fixtures: `data/newsletter/editions/lac-{YYYY-MM-DD}.json`.
+- Loader: `lib/newsletter/editions.js` (`loadEdition`, `loadLatestEditionDate`, `renderEditionHtml`).
+- Rutas: `/newsletter` → redirect última fecha; `/newsletter/lac/{date}` HTML.
+
+Schema edición (campos principales): `edition`, `subject`, `preheader`, `greeting`, `hero`, `featured`, `close`, `cta`.
+
+---
+
+## 5. Páginas estáticas
+
+Handlers: `lib/pages/static-pages.js` → `static-prose.pug`.
+
+| pageId | Ruta | Copy |
+|--------|------|------|
+| metodologia | `/metodologia` | `config/copy/metodologia.{es,en}.json` |
+| privacidad | `/privacidad` | `config/copy/privacidad.{es,en}.json` |
+| terminos | `/terminos` | `config/copy/terminos.{es,en}.json` |
+| uso | `/uso` | `config/copy/uso.{es,en}.json` |
+
+Loader: `lib/static-copy.js` — fallback ES si falta EN.
+
+Tests: `test/static-copy.test.js`.
+
+---
+
+## 6. Hub de indicadores
+
+`indicatorsHubPage` → `indicators-hub.pug`
+
+- Tiers desde `lib/watchlist.js` (`watchlistByTier`, `HUB_TIER_ORDER`).
+- Conteos de alertas: `buildIndicatorAlertCounts()`.
+- Recientes: `recentUpdatedIndicators()`.
+- Filtros URL: `countries`, `topics` (consumidos por hub y preview de alertas).
+
+Detalle: `indicatorDetailPage` → `indicator-page.pug` (`indicatorPageData()`).
+
+---
+
+## 7. Chat global
+
+### 7.1 Agente SSE
 
 - Cliente: `static/js/chat.js`
 - Servidor: `lib/chat/agent.js`, `lib/chat/api.js`
-- Eventos SSE: `llm_start`, `llm_end`, `tool_start`, `tool_result`, `token`, `done`, `error`
-- Historial enviado completo al servidor; `compactHistoryForLlm` recorta a **16** mensajes (+ system) antes de cada llamada LLM
+- Eventos: `llm_start`, `llm_end`, `tool_start`, `tool_result`, `token`, `done`, `error`
+- Historial: `compactHistoryForLlm` → 16 mensajes (+ system)
 - Max turns: `CHAT_MAX_TURNS` (default 8)
 
-### 3.2 Presets
+### 7.2 Presets y freshness
 
-Config: `config/chat-presets.json` + preset dinámico freshness (`lib/chat/freshness-preset.js`).
+- Presets: `config/chat-presets.json`, `lib/chat/freshness-preset.js`
+- País foco: `lib/chat/focus-countries.js`
+- Panel freshness: `templates/partials/chat-freshness.pug`
 
-### 3.3 País foco
+### 7.3 Markdown, sparklines, tarjetas
 
-- UI: `#d360-focus-country` (ALL + 5 ISO3 con nombre humano).
-- Cliente: `getFocusCountries()`, `appendFocusToQuery()`, `lastSentFocusKey`.
-- Servidor: `lib/chat/focus-countries.js` → inyecta sección en system prompt; flag `focus_changed`.
+- `static/js/markdown.js`, `static/js/chat-cards.js`, `static/js/indicator-pills.js`
+- Export: `static/js/chat-export.js`
+- Cache sparklines: `window.D360_SPARKLINE_CACHE`
 
-### 3.4 Freshness panel
-
-- Template: `templates/partials/chat-freshness.pug`
-- Datos: `data/changed-since.json`, `data/index.json`
-- Acciones: gráfica / análisis por fila → prompt al chat
-
-### 3.5 Markdown y sparklines
-
-- `static/js/markdown.js` — `marked` vía `static/vendor/marked.min.js`, post-proceso sparklines, strip imágenes fake, auto-inject desde cache MCP.
-- Cache series: `window.D360_SPARKLINE_CACHE`
-
-### 3.6 Píldoras de indicador
-
-- `static/js/indicator-pills.js`
-- Registro desde catálogo freshness + tool results
-- Layout: nombre humano + pill `IDNO · Data360`
-
-### 3.7 Tarjetas en respuestas
-
-- `static/js/chat-cards.js` → `renderAlertCards`
-- Enriquecimiento desde `D360_ALERTS` por `alert.id`
-- Integración panel detalle: `D360DetailPanel.bindCard`, `mergeAlerts`
-
-### 3.8 Debug / actividad
-
-- Pasos `<details>` colapsados por defecto
-- Grid: modelo, provider, tokens, duración, TPS
-- Bloques request/response JSON
-
-### 3.9 Exportación
-
-- `static/js/chat-export.js`
-- `buildConversationMarkdown()`, copy, download `.md`, print PDF
-- Toolbar: `#d360-export-copy`, `#d360-export-md`, `#d360-export-pdf`
-
-### 3.10 Anti-patrones mitigados
-
-| Problema | Mitigación |
-|----------|------------|
-| Context overflow LLM | `trimToolResultForLlm`, `compactHistoryForLlm` |
-| JSON tools fake en markdown | `stripFakeToolBlocks`, retry agente, `tool_choice: required` (news) |
-| Sparkline omitido | auto-inject desde `mcp_get_data` |
-| Re-run análisis innecesario | cache en `run_analysis` si alertas existen |
-
----
-
-## 4. Tools del agente (servidor)
-
-Implementación: `lib/chat/tools.js`, formato SSE: `lib/chat/tool-format.js`.
-
-### 4.1 list_alerts
-
-- Fuente: `lib/alerts-store.js`
-- Filtros: `country`, `idno`, `category`, `limit`
-- Devuelve: `alerts` (resumen LLM), `alerts_cards` (objetos completos para UI)
-
-### 4.2 run_analysis
-
-- Delega: `lib/analysis/runner.js` → `analyzeIndicator(idno)`
-- **Cache**: si hay alertas para `idno` (y opcional `country`), devuelve existentes (`cached: true`) sin LLM
-- `force: true` fuerza re-ejecutar
-- Post-run: `alertsStore.reload()`, escribe `data/alerts/{idno}.json`, merge en `data/alerts.json`
-
-### 4.3 read_news / fetch_news
-
-- Fetch: `lib/news-fetch.js` (solo GDELT; Google News RSS previsto en D-030, no implementado)
-- Read: `lib/news.js` → `data/news/{COUNTRY}/{YYYY-MM}.jsonl`
-- Países default: `DEFAULT_COUNTRIES` (5 LAC)
-
-### 4.4 read_freshness
-
-- `lib/chat/freshness-preset.js` → `loadFreshnessReport`, `summarizeForTool`
-- Formato línea: `@IDNO|database|tier|label|blob-date`
-
-### 4.5 MCP Data360 (+ REST fallback)
+### 7.4 MCP + REST fallback
 
 | Tool MCP | Fallback REST |
 |----------|---------------|
 | `mcp_search_indicators` | `data360-client.search` |
-| `mcp_get_data` | `getData` + `buildChartSeriesFromGetData` |
-| `mcp_compare_countries` | compare vía REST |
+| `mcp_get_data` | `getData` + chart series |
+| `mcp_compare_countries` | REST compare |
 | `mcp_rank_countries` | idem |
-| `mcp_summarize_data` | summarize REST |
+| `mcp_summarize_data` | REST summarize |
 
-Cliente MCP: `lib/mcp-client.js`. Normalización args: `normalizeMcpArgs` (country_codes comma-separated).
+Cliente MCP: `lib/mcp-client.js`. Eval smoke: `bin/evaluate-mcp.js`.
 
 ---
 
-## 5. Pipeline de análisis
+## 8. Tools del agente (servidor)
 
-### 5.1 Etapas npm
+Implementación: `lib/chat/tools.js`
 
-```
-(discover) → fetch → fetch:news (opcional) → analyze
-```
+| Tool | Fuente |
+|------|--------|
+| `list_alerts` | `lib/alerts-store.js` |
+| `run_analysis` | `lib/analysis/runner.js` (cache si alertas existen) |
+| `read_news` / `fetch_news` | `lib/news.js`, `lib/news-fetch.js` |
+| `read_freshness` | `lib/chat/freshness-preset.js` |
+| MCP tools | `lib/mcp-client.js` + fallback REST |
 
-Scripts CLI:
+---
 
-| Script npm | Binario | Rol |
-|------------|---------|-----|
-| `discover` | `bin/discover-indicators.js` | Modo dinámico: `/searchv2` → `data/dynamic-watchlist.json` |
-| `fetch` / `fetch:probe` | `bin/fetch-data.js` | Freshness probe + descarga CSV + DATADICT + meta.json |
-| `fetch:news` | `bin/fetch-news.js` | Titulares GDELT → JSONL |
-| `analyze` | `bin/generate-analysis.js` | Orquesta `lib/analysis/runner.js` (detect + Noticias + Reportajes) |
-| `pipeline:dynamic` | (script) | `discover` → `fetch` → `analyze` con watchlist dinámico |
-| `pipeline:dynamic:force` | (script) | Igual, pero pasa `--force` al `fetch` (bypass ETag) |
+## 9. Pipeline de análisis
 
-Detección y narrativa viven en `lib/analysis/runner.js` (Fase 1, Noticias) y `lib/analysis/reportaje-runner.js` (Fase 2, Reportajes). No hay bins separados `detect-changes`, `narrate-indicators` ni `emit-alerts`.
+### 9.1 Scripts npm
 
-### 5.2 Detección
+| Script | Binario | Rol |
+|--------|---------|-----|
+| `discover` | `bin/discover-indicators.js` | `/searchv2` → `dynamic-watchlist.json` |
+| `fetch` / `fetch:probe` | `bin/fetch-data.js` | Probe + CSV + DATADICT |
+| `fetch:news` | `bin/fetch-news.js` | Titulares (Gemini default) |
+| `fetch:news:dynamic` | idem + dynamic watchlist | |
+| `analyze` | `bin/generate-analysis.js` | Detect + Noticias + Reportajes |
+| `analyze:dynamic` | idem `--changed-only` | |
+| `analyze:noticias` / `analyze:reportajes` | fases separadas | |
+| `pipeline:dynamic` | `bin/pipeline-dynamic.js` | discover → fetch → analyze |
+| `pipeline:dynamic:news-gdelt` | GDELT + dynamic watchlist | |
+
+Orquestación: `lib/analysis/runner.js` (Fase 1) + `lib/analysis/reportaje-runner.js` (Fase 2).
+
+### 9.2 Detección
 
 | Estrategia | Módulo |
 |------------|--------|
 | 1 — Cambio abrupto | `lib/detect/z-score.js` |
 | 4 — Cross-indicator | `lib/detect/cross-indicator.js` |
 
-Filtros: `OBS_STATUS = A`, disagg `_Z`/`_T` excluidas, valores `Decimal`.
+### 9.3 Narrativa LLM
 
-### 5.3 Narrativa LLM (dos fases)
+- Prompts Noticia: `lib/prompts/noticia-{system,task,template}.md`
+- Prompts Reportaje: `lib/prompts/reportaje-{system,task}.md`
+- Extractor: `lib/analysis/alert-extractor.js`
+- Validación Q1/Q2/Q4: `lib/analysis/quality-validator.js`
+- PCN: `lib/pcn-claims.js`, verificación `lib/pcn-verify.js`
+- Contexto: `lib/analysis/context-builder.js` (+ DATADICT, GDELT §6, `allowed_claim_ids`)
 
-**Fase 1 — Noticia** (`lib/analysis/runner.js`)
-- Un call por indicador/país a partir de candidatos de detección.
-- Prompts: `lib/prompts/noticia-{system,task,template}.md`.
-- Salida: historia bilingüe completa (250–600 palabras `story.es` + `story.en`).
-- Bloque fenced ` ```noticia ` con JSON.
+### 9.4 Salida
 
-**Fase 2 — Reportaje** (`lib/analysis/reportaje-runner.js`)
-- Disparada al final del análisis, solo cuando ≥2 Noticias comparten `dataset_id`.
-- Un call por dataset; sintetiza una visión regional + secciones por país.
-- Reutiliza los `claim_id` de las Noticias que sintetiza.
-- Salida: historia bilingüe larga (500–1200 palabras), bloque ` ```reportaje `.
-- Prompts: `lib/prompts/reportaje-{system,task}.md`.
-
-**Común a ambas fases**
-- Parser: `lib/analysis/alert-extractor.js` → `extractJsonObject`, escáner brace-balanceado con conciencia de strings. Tolera triple-backticks dentro de valores string y respuestas truncadas sin fence de cierre.
-- Validación: `lib/analysis/quality-validator.js`. Códigos:
-  - **Q1** — traceability: `claim_id` presente en contexto numerado del indicador.
-  - **Q2** — JSON schema (Ajv).
-  - **Q4** — campos bilingües presentes + longitud `story` 250–4000 chars.
-  - (no hay Q3 en esta versión.)
-- En fallo Q1 los logs incluyen el `notes` (ej. `Q1 (claim_id xyz not in context)`).
-- Si el LLM emite el fence-opener pero `extractJsonObject` devuelve 0 ítems, la respuesta cruda se persiste en `data/alerts/{idno}.raw.txt` (o `reportaje_{dataset}.raw.txt`).
-- PCN: `lib/pcn-claims.js`.
-
-### 5.4 Contexto omnibus
-
-- `lib/analysis/context-builder.js` — CSVs, metadata `.md`, **data dictionary** `{IDNO}_DATADICT.csv` (capado a 80 líneas, 20 para modelos pequeños), titulares §6 GDELT (max ~8 headlines).
-- Última sección de candidatos cierra con `### allowed_claim_ids`, lista literal de los únicos `claim_id` aceptables (defensa contra alucinación en modelos pequeños). Para Reportaje: misma lógica en §7 (`lib/analysis/reportaje-runner.js`).
-- Prompts del sistema (`noticia-system.md`, `reportaje-system.md`) prohíben triple-backticks dentro de valores string (defense in depth con el extractor).
-- Salida análisis: `data/analyses/{IDNO}.md`, `data/analyses/{IDNO}.llm-call.md`.
-
-### 5.5 Emisión
-
-- Noticia por indicador: `data/alerts/{IDNO}.json`.
-- Reportaje por dataset: `data/alerts/reportaje_{dataset}.json`.
-- Agregado: `data/alerts.json` (Noticias + Reportajes, consumido por UI).
-- Enriquecimiento: `lib/alert-display.js` → `enrichAlert`, period narratives, stale flag.
-- `lib/alerts-store.js` `normalizeItem` usa `ev.lead?.[langKey]` directamente (no hardcodea `_lead`/`_title` a español).
+- `data/alerts/{IDNO}.json`, `data/alerts/reportaje_{dataset}.json`
+- Agregado: `data/alerts.json`
+- Enriquecimiento UI: `lib/alert-display.js`
 
 ---
 
-## 6. Datos y archivos
+## 10. Datos y archivos
 
 | Path | Contenido |
 |------|-----------|
-| `data/alerts.json` | Feed unificado (Noticias + Reportajes) |
+| `data/alerts.json` | Feed unificado |
 | `data/alerts/{IDNO}.json` | Noticia por indicador |
-| `data/alerts/reportaje_{dataset}.json` | Reportaje por dataset (≥2 Noticias) |
-| `data/alerts/{IDNO}.raw.txt` | Respuesta cruda del LLM cuando el extractor devolvió 0 ítems (diagnóstico) |
+| `data/alerts/reportaje_{dataset}.json` | Reportaje por dataset |
 | `data/analyses/{IDNO}.md` | Contexto + narrativa |
-| `data/context/{COUNTRY}/{tier}.csv` | Series por tier. **Análisis/PCN**: `annual`, `forecast`, `dynamic` (`CONTEXT_TIERS`). `pulse` = legacy fetch, excluido del pipeline |
-| `data/indicators/{IDNO}.md` | Metadata indicador |
-| `data/snapshots/{IDNO}.csv` | CSV crudo del blob host |
-| `data/snapshots/{IDNO}_DATADICT.csv` | Data dictionary del indicador |
-| `data/snapshots/{IDNO}.meta.json` | Metadata JSON (fallback si no hay entrada en `lib/watchlist.js`) |
-| `data/news/{COUNTRY}/{YYYY-MM}.jsonl` | Titulares GDELT |
-| `data/changed-since.json` | Resultado freshness probe |
-| `data/index.json` | Índice indicadores watchlist |
-| `data/dynamic-watchlist.json` | Lista descubierta dinámicamente (modo dinámico) |
-| `lib/watchlist.js` | Watchlist canónico estático (~35 indicadores × tiers) |
-| `lib/dynamic-watchlist.js` | Discovery + expansión dataset→indicadores |
-| `connector/watchlist.json` | Probe preliminar (20 candidatos; referencia histórica) |
+| `data/context/{COUNTRY}/{tier}.csv` | Series (`annual`, `forecast`, `dynamic`; `pulse` legacy) |
+| `data/news/{COUNTRY}/{YYYY-MM}.jsonl` | Titulares |
+| `data/newsletter/editions/` | Ediciones fixture LAC |
+| `data/newsletter/subscribers.tsv` | Suscriptores demo (gitignored) |
+| `data/changed-since.json` | Freshness probe |
+| `data/dynamic-watchlist.json` | Discovery dinámico |
+| `lib/watchlist.js` | Watchlist estático ~35 indicadores |
 
 ---
 
-## 7. AI / LLM
+## 11. AI / LLM
 
 **Cliente**: `lib/ai-client.js`
 
-Proveedores vía env:
+| Uso | Env | Proveedores |
+|-----|-----|-------------|
+| Pipeline análisis | `AI_PROVIDER`, `AI_MODEL` | `claude-code`, `vllm`, `nvidia`, OpenRouter |
+| Chat | `CHAT_AI_PROVIDER` | idem (default `vllm`) |
 
-- **Chat** (`CHAT_AI_PROVIDER`, default `vllm`): `claude-code`, `vllm` (LAIA), OpenRouter vía `AI_API_URL`
-- **Pipeline análisis** (`AI_PROVIDER` / `AI_MODEL` en `.env.example`, default `claude-code` + Opus 4.7, D-017)
-- Tracking coste: prefijos `[AI-COST]`, `[AI-COST-NARRATE]`
+NVIDIA NIM: `AI_PROVIDER=nvidia`, `NVIDIA_API_KEY`, `AI_MODEL_NVIDIA`.
 
-Chat: streaming + tool calls (requiere LLM con soporte de tools).
+Tracking: `[AI-COST]`, `[AI-COST-NARRATE]`.
 
 ---
 
-## 8. Tests
+## 12. Frontend assets
+
+| Archivo | Rol |
+|---------|-----|
+| `static/css/wb-theme.css` | Paleta World Bank v2, tipografía |
+| `static/css/wb-chrome.css` | Header, nav, footer WB |
+| `static/css/main.css` | Layout app, cards, artículo |
+| `static/js/data360-urls.js` | `indicatorUrl()` → `/en/indicator/{IDNO}` |
+| `static/js/alerts-feed.js` | Merge post-chat en feed legacy |
+| `static/js/onboarding.js` | Modal bienvenida |
+| `static/js/lang-toggle.js` | ES/EN |
+
+Tema de referencia: `design/v2/` (React, no runtime).
+
+---
+
+## 13. Tests
 
 `npm test` → `node --test test/*.test.js`
 
-Cobertura relevante:
+**Estado 2026-05-29**: 61 archivos, 291 tests (289 pass, 2 skipped).
 
-- `test/chat.test.js` — tools, markdown, sparklines, export, focus countries, run_analysis cache
-- `test/server.test.js` — rutas, strings
-- Otros módulos detect/fetch según existan
+Suites relevantes recientes:
+
+- `test/routes.test.js` — match de rutas y viewNames
+- `test/server.test.js` — HTTP, newsletter, subscribe, traversal
+- `test/static-copy.test.js` — páginas legales
+- `test/url-slug.test.js` — paths de artículo
+- `test/indicators-hub.test.js` — hub tiers
+- `test/i18n.test.js` — strings + newsletter keys
+- `test/chat.test.js` — tools, markdown, export
+- `test/e2e-deferred.test.js` — Playwright TBD (skipped)
+
+CI: `.github/workflows/test.yml`.
 
 ---
 
-## 9. Decisiones de producto (resumen)
+## 14. Decisiones de producto (resumen)
 
 | ID | Decisión |
 |----|----------|
 | D-003 | 5 países LAC demo |
-| D-007 | Replay histórico, no real-time |
+| D-007 | Replay histórico |
 | D-008 | Dashboard estático lee `alerts.json` |
+| D-009 | Suscripción demo → TSV local; sin email send |
 | D-010 | Estrategias 1 y 4 |
-| D-021 | Tiers fetch: pulse / annual / forecast (+ `dynamic` con discovery). Análisis y PCN: `CONTEXT_TIERS` = annual + forecast + dynamic (sin pulse) |
-| D-035 | Enlaces indicador → `/en/indicator/{IDNO}` (`lib/data360-urls.js`, `static/js/data360-urls.js`) |
-| D-028 | Análisis: prompts + validación claim traceability (Q1/Q2/Q4) |
-| D-029–D-030 | News = titulares reales GDELT; pulse ≠ news |
-| D-017 | LLM narrativa vía Claude Opus / Agent SDK |
-| D-031–D-034 | Modo dinámico (discovery por searchv2), Noticia/Reportaje, DATADICT en contexto, extractor robusto. Ver `CLAUDE.md`. |
+| D-021 | Tiers: pulse legacy; análisis usa annual + forecast + dynamic |
+| D-028–D-034 | Noticia/Reportaje, extractor, Q1/Q2/Q4, dynamic discovery |
+| D-035 | Enlaces indicador `/en/indicator/{IDNO}` |
 
 Lista completa: `CLAUDE.md`.
 
 ---
 
-## 10. Funcionalidades explícitamente fuera del demo
+## 15. Funcionalidades explícitamente fuera del demo
 
 - Apache NiFi / OpenSearch runtime
 - Strategy 2 (divergencia titular-dato) en detección
-- Newsletter backend
+- **Envío real de email** y desuscripción automatizada por SMTP
 - Tiempo real continuo
 - Cobertura fuera de los 5 países / watchlist
-- Modo bilingüe simultáneo en UI (removido)
+- Modo bilingüe simultáneo en UI

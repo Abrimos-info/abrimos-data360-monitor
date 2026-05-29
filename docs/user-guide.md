@@ -1,7 +1,7 @@
 # Guía de usuario — Data360 News Agent
 
 > **Audiencia**: redacciones de América Latina y el Caribe.  
-> **Estado**: borrador funcional al 2026-05-22 (demo fase 2, entrega 2026-05-31).
+> **Estado**: borrador funcional al 2026-05-29 (demo fase 2, entrega 2026-05-31).
 
 ## Qué hace esta herramienta
 
@@ -12,14 +12,17 @@
 
 Cada pieza queda enlazada a su fuente en [data360.worldbank.org](https://data360.worldbank.org).
 
-El producto tiene dos caras:
+El producto tiene tres caras principales:
 
 | Vista | URL | Para qué sirve |
 |-------|-----|----------------|
-| **Portada** | `/` (por país) | Portada de periódico: reportajes destacados, titulares e indicadores actualizados |
-| **Chat por pieza** | en cada noticia/reportaje | Profundizar en datos y fuentes de esa pieza |
+| **Selector de país** | `/` | Elegir país y ver indicadores recientemente actualizados |
+| **Portada por país** | `/{país}` (ej. `/mexico`) | Layout de periódico: reportaje destacado, titulares, ticker de indicadores |
+| **Artículo** | `/{país}/{noticia\|reportaje}/{año}/{mes}/{slug}` | Lectura completa + chat acotado a la pieza |
+| **Indicadores globales** | `/indicadores` | Hub por tier con conteos de alertas y filtros |
+| **Chat global** | `/chat` | Exploración libre con presets, freshness y tools Data360 |
 
-Ambas leen el mismo archivo de alertas (`data/alerts.json`) y comparten la vista de artículo y las tarjetas de pieza.
+Todas leen el mismo archivo de alertas (`data/alerts.json`).
 
 ---
 
@@ -31,7 +34,7 @@ Ambas leen el mismo archivo de alertas (`data/alerts.json`) y comparten la vista
   - **Modo dinámico** (recomendado): indicadores descubiertos en vivo desde `/data360/searchv2`, expandidos vía `/data360/indicators?datasetId=…`, persistidos en `data/dynamic-watchlist.json` y escritos en `data/context/{PAÍS}/dynamic.csv`. Es la fuente que usa el pipeline por defecto (`NOTICIA_TIERS = ['dynamic']`).
 - **Detección**: estrategias **1** (cambios abruptos, z-score) y **4** (anomalías cross-indicador).
 - **Modo**: replay histórico sobre snapshots CSV, no tiempo real continuo (D-007).
-- **Titulares**: GDELT en español, almacenados en `data/news/{PAÍS}/{YYYY-MM}.jsonl` (contexto pasivo para narrativas; divergencia narrativa-dato queda en roadmap).
+- **Titulares**: GDELT y/o Gemini (según script), almacenados en `data/news/{PAÍS}/{YYYY-MM}.jsonl` (contexto pasivo para narrativas; divergencia narrativa-dato queda en roadmap).
 
 ---
 
@@ -39,12 +42,15 @@ Ambas leen el mismo archivo de alertas (`data/alerts.json`) y comparten la vista
 
 ### Navegación
 
-Barra superior con tres secciones:
+Barra superior (tema World Bank):
 
-- **Portada** — agencia por país: reportajes, titulares e indicadores
+- **Portada** — selector de país y portadas LAC
+- **Indicadores globales** — hub `/indicadores`
 - **About** — metodología, límites, equipo, licencia
+- **Suscribirse** — modal de suscripción (newsletter LAC o alertas por indicador)
+- **ES / EN** — selector de idioma de interfaz y narrativas
 
-Botón **Suscribirse** (placeholder visual, sin backend en el demo).
+Páginas legales e informativas: `/metodologia`, `/privacidad`, `/terminos`, `/uso` (contenido en `config/copy/`, no en esta guía).
 
 ### Idiomas
 
@@ -54,71 +60,101 @@ Parámetros URL: `?lang=es` o `?lang=en`.
 
 ### Onboarding
 
-Modal de bienvenida en la primera visita (dismissible). Presenta **Data360 News Agent** como agencia de noticias con IA: detecta hechos noticiosos en los 12.000 indicadores de Data360 y los entrega verificados con perspectiva local a newsrooms LAC.
+Modal de bienvenida en la primera visita (dismissible). Presenta **Data360 News Agent** como agencia de noticias con IA: detecta hechos noticiosos en los 12.000 indicadores de Data360 y los entrega verificados con perspectiva local a newsrooms LAC. Forzar con `?onboarding=1`.
+
+### Suscripciones
+
+Botón **Suscribirse** abre un modal con dos tipos:
+
+| Tipo | Qué recibirías en producción | Preview en demo |
+|------|------------------------------|-----------------|
+| **Newsletter diario LAC** | Un hallazgo verificado por correo cada mañana | `/newsletter` → última edición fixture |
+| **Alertas por indicador** | Aviso cuando se actualiza un indicador o dataset que te interesa | `/indicadores` con filtros de país/tema |
+
+En el demo, el formulario guarda email + tipo (+ países/temas opcionales para alertas) en `data/newsletter/subscribers.tsv` vía `POST /api/subscribe`. **No se envía correo real** ni confirmación SMTP (roadmap).
+
+Temas válidos para alertas: macro, fiscal, social, food_security, governance.
 
 ---
 
-## Portada (`/{país}`)
+## Selector de país (`/`)
 
-### Layout de periódico
+- Enlaces a las cinco portadas LAC (`/guatemala`, `/honduras`, …).
+- Lista de indicadores recientemente actualizados con enlace al hub o al artículo.
+- Deep link legacy: `/?alert={id}` redirige al artículo canónico si existe `_path`.
 
-La portada por país muestra:
+---
 
-- **Reportaje destacado** — pieza de profundidad en hero
-- **Titulares** — listado de noticias (enlace al artículo)
-- **Indicadores actualizados** — barra horizontal con chips (valor + magnitud; enlace a la misma noticia)
+## Portada por país (`/{país}`)
+
+Layout de periódico (template `frontpage.pug`):
+
+- **Reportaje destacado** — pieza de profundidad en hero (si hay reportaje para ese país).
+- **Titulares** — noticias intercaladas con reportajes (`interleaveHeadlines()`); enlace al artículo.
+- **Indicadores actualizados** — barra horizontal con chips (valor + magnitud + sparkline); enlace a la noticia.
+- **Masthead** — etiqueta de edición (mes · año) y antigüedad de datos.
 
 Orden por **fecha del dato** (`time_period`), no por fecha de detección.
 
-Cada titular o chip muestra:
+Cada titular o chip muestra código de indicador (IDNO), fecha del dato (badge stale si aplica), tipo de detección y narrativa según idioma activo.
 
-- País (ISO3)
-- Código de indicador (IDNO)
-- **Fecha del dato** (badge; marcada si el periodo es stale)
-- Tipo: **cambio abrupto** o **anomalía**
-- Narrativa ciudadana (según variante)
-- Valor observado, nombre del indicador y magnitud
+Selector de país en popup (`country-menu.js`) para saltar entre portadas LAC.
 
-### Filtros (sin recarga de página)
+### Vista legacy (grid de tarjetas con filtros)
+
+Disponible en `/dev/feed` o añadiendo `?legacy=1` a una portada de país. Renderiza el feed SSR clásico (`dashboard.pug`) con filtros cliente:
 
 | Filtro | Opciones |
 |--------|----------|
 | **País** | ALL o un ISO3 del feed |
-| **Categoría** | ALL o categoría temática (economy, social, etc.) |
+| **Categoría** | ALL o categoría temática |
 | **Tipo de contenido** | ALL · Noticia · Reportaje |
 | **Variante de tarjeta** | Narrative · Number · Newspaper |
 
-Los filtros ocultan tarjetas con CSS (`.d360-card--hidden`); el contador de eventos se actualiza al instante. El estado se refleja en la URL (`?country=ARG&category=economy&variant=narr`).
-
-### Tipos de tarjeta
-
-- **Noticia** (per indicador). Tarjeta estándar tipo newspaper con titular, bajada, valor observado y trazabilidad.
-- **Reportaje** (per dataset). Tarjeta más ancha (`grid-column: span 2`) que destaca visualmente la síntesis regional sobre el mismo dataset.
-
-Ambos comparten el panel de detalle, los enlaces de fuente y la verificación PCN. Las variantes históricas Narrative · Number · Newspaper siguen disponibles vía el filtro `?variant=…`.
-
-### Panel de detalle
-
-Clic en una tarjeta (o `/?alert=ID`) abre un panel lateral con:
-
-- Narrativa **ciudadana** y **periodista**
-- Sparkline histórico (SVG)
-- Valor, periodo, magnitud, score de detección
-- **Trazabilidad**: enlace al dataset Data360, CSV descargable, metodología, licencia
-- Botón **Copiar cita** (texto + URL fuente)
-- Resolución de tokens PCN `{{claim:…}}` en las narrativas
-
-### Última actualización
-
-Encabezado con timestamp de la detección más reciente en el feed.
-
-### Sincronización con el chat
-
-Si el chat genera alertas nuevas (`run_analysis`), el monitor las incorpora al volver el foco a la pestaña o al refrescar, vía `GET /api/alerts` y `alerts-feed.js` (sin duplicar tarjetas existentes).
+Los filtros ocultan tarjetas con CSS; el contador de eventos se actualiza al instante. Estado en URL (`?country=ARG&category=economy&variant=narr`).
 
 ---
 
-## Chat analítico (`/chat`)
+## Artículo (`/{país}/{tipo}/{año}/{mes}/{slug}`)
+
+Página de lectura con:
+
+- Titular, lead, story completa con tokens PCN resueltos
+- Sparkline histórico, valor, periodo, magnitud
+- Trazabilidad: enlace Data360, CSV, metodología
+- Disclaimer de uso editorial y metadatos de producción
+- CTA de suscripción al newsletter en el pie
+
+### Chat por pieza (primario)
+
+Cada artículo incluye un **FAB de chat acotado** (`floating-chat.pug` + `alert-chat.js`). La conversación se guarda en `sessionStorage` por `alert_id` y, al recargar, se restauran markdown, trace de tools, sparklines en caché y pasos de actividad.
+
+El agente usa `lib/prompts/chat-scoped-system.md` y recibe:
+
+1. **Pieza publicada** — titular, lead, story y `claim_id`s del JSON.
+2. **Contexto de generación** — markdown omnibus de `data/analyses/{IDNO}.md` (fallback `*.llm-call.md`). En reportajes se concatenan los `.md` de cada indicador del dataset.
+
+Límite: `CHAT_GENERATION_CONTEXT_MAX_CHARS` (default 48000).
+
+---
+
+## Indicadores globales (`/indicadores`)
+
+Hub con indicadores agrupados por tier (annual, forecast, dynamic), conteo de alertas por IDNO, indicadores recientes y filtros URL (`?countries=ARG,MEX&topics=macro`).
+
+Detalle por indicador: `/indicador/{IDNO}` — metadata, alertas por país, enlaces a artículos.
+
+---
+
+## Newsletter (`/newsletter`, `/newsletter/lac/{fecha}`)
+
+- `/newsletter` redirige a la edición LAC más reciente en `data/newsletter/editions/`.
+- Cada edición fixture incluye hero, titulares secundarios, subject/preheader bilingüe y CTA a portada o artículo.
+- Enlace desde el modal de suscripción y desde el pie de artículos.
+
+---
+
+## Chat analítico global (`/chat`)
 
 ### Flujo general
 
@@ -133,71 +169,31 @@ Si el chat genera alertas nuevas (`run_analysis`), el monitor las incorpora al v
 |--------|----------------|
 | **Actualizados Data360** | Catálogo freshness + cómo pedir gráfica/análisis |
 | **Analizar indicador** | Pipeline sobre un IDNO (ej. FAO_CP_23012) |
-| **Titulares recientes** | Leer GDELT en disco |
+| **Titulares recientes** | Leer titulares en disco |
 | **Alertas del monitor** | Listar alertas por fecha del dato |
 | **Comparar países (MCP)** | Deuda pública % PIB en los 5 países |
 | **Buscar indicador** | Búsqueda semántica Data360 |
-| **Actualizar noticias** | Fetch GDELT + resumen |
+| **Actualizar noticias** | Fetch titulares + resumen |
 
 ### País foco
 
-Dropdown **Todos** o un país (GTM · Guatemala, etc.). En cada consulta:
-
-- Se envía `focus_countries` al servidor.
-- Si cambiaste el foco desde la última pregunta, el agente recibe una nota explícita.
-- El sufijo `[Países foco: …]` se agrega al mensaje solo cuando el foco cambió.
+Dropdown **Todos** o un país (GTM · Guatemala, etc.). En cada consulta se envía `focus_countries` al servidor; si cambiaste el foco, el agente recibe una nota explícita.
 
 ### Catálogo freshness
 
-Botón **Datos recién publicados (N)** abre un panel con indicadores cuyo CSV cambió en la última sonda (`data/changed-since.json`). Por fila:
-
-- Tier (pulse / annual / forecast), IDNO, fecha blob
-- Botones **Gráfica** y **Análisis** (inyectan prompt al chat)
-
-### Respuesta del agente
-
-- **Markdown** con prosa, listas y bloques de código.
-- **Sparklines** SVG cuando pedís gráfica (`mcp_get_data` + bloque ` ```sparkline``` `).
-- **Tarjetas de alerta** inline (mismo componente que el monitor).
-- **Actividad** (pasos colapsados): llamadas LLM y tools con duración, tokens, request/response de debug.
-- **Fuentes usadas**: cadena de tools y si consultó Data360.
-
-### Píldoras de indicador
-
-Los códigos IDNO en el texto se renderizan como:
-
-**Nombre legible** `WB_… · Data360` (enlace a `https://data360.worldbank.org/en/indicator/{IDNO}` vía `lib/data360-urls.js`).
-
-### Chat por pieza (página de artículo)
-
-Cada noticia y reportaje incluye un chat acotado a esa pieza (`static/js/alert-chat.js`). La conversación se guarda en `sessionStorage` por `alert_id` y, al recargar, se restauran markdown, trace de tools, sparklines en caché y pasos de actividad colapsados (no solo el texto plano).
-
-El agente usa el prompt dedicado `lib/prompts/chat-scoped-system.md` y recibe en el system prompt:
-
-1. **Pieza publicada** — titular, lead, story y `claim_id`s del JSON en `data/alerts.json`.
-2. **Contexto de generación** — el mismo markdown omnibus que alimentó el pipeline (`data/analyses/{IDNO}.md`, o fallback `*.llm-call.md`). En reportajes se concatenan los `.md` de cada indicador del dataset; si falta alguno, se añade solo el texto publicado de la noticia hija.
-
-Límite configurable: `CHAT_GENERATION_CONTEXT_MAX_CHARS` (default 48000). La UI del artículo sigue el tema World Bank (paleta v2 en `static/css/wb-theme.css`).
+Botón **Datos recién publicados (N)** abre panel con indicadores cuyo CSV cambió (`data/changed-since.json`). Por fila: tier, IDNO, fecha blob, botones **Gráfica** y **Análisis**.
 
 ### Exportar conversación
 
-Botones en el encabezado del chat:
-
-| Acción | Formato |
-|--------|---------|
-| Copiar markdown | Portapapeles |
-| Descargar .md | `data360-chat-YYYY-MM-DD.md` |
-| Descargar PDF | Vista de impresión del navegador |
-
-Cada turno exportado incluye pregunta, respuesta, trace de tools e indicadores consultados.
+Copiar markdown, descargar `.md`, imprimir PDF (`chat-export.js`).
 
 ### Reglas del agente (resumen)
 
-- **No inventa cifras** del Banco Mundial; debe llamar tools Data360 antes de afirmar números.
-- **Titulares**: debe llamar `fetch_news` / `read_news`; no escribe JSON de tools ni titulares ficticios.
-- **Análisis de indicador**: primero `list_alerts`; solo `run_analysis` si no hay alertas en disco.
-- **Gráficas**: `mcp_get_data` + bloque sparkline; no placeholders de imagen.
-- Enlaces al monitor: `[ver alerta](/?alert=ID)`.
+- **No inventa cifras**; debe llamar tools Data360 antes de afirmar números.
+- **Titulares**: debe llamar `fetch_news` / `read_news`.
+- **Análisis**: primero `list_alerts`; solo `run_analysis` si no hay alertas en disco.
+- **Gráficas**: `mcp_get_data` + bloque sparkline.
+- Enlaces al monitor: deep link al artículo canónico o `/?alert=ID`.
 
 ---
 
@@ -211,36 +207,37 @@ Página estática con: qué es el producto, alcance LAC, metodología de detecci
 
 | Campo | Descripción |
 |-------|-------------|
-| `id` | Identificador único (deep link `/?alert=`) |
+| `id` | Identificador único |
 | `content_type` | `noticia` o `reportaje` |
-| `title` / `lead` / `story` | Texto bilingüe `{ es, en }` (la UI muestra un idioma a la vez) |
-| `countries` | ISO3 (lista). En **Noticia** suele tener 1 país; en **Reportaje** puede incluir varios |
-| `dataset_id` | Identificador del dataset Data360 (agrupa Noticias y Reportajes) |
+| `title` / `lead` / `story` | Texto bilingüe `{ es, en }` |
+| `countries` | ISO3 (lista) |
+| `dataset_id` | Identificador del dataset Data360 |
 | `indicator` | (Solo **Noticia**) IDNO, `database_id`, `name` bilingüe |
 | `indicators` | (Solo **Reportaje**) lista de IDNO cubiertos (≥2) |
 | `noticia_ids` | (Solo **Reportaje**) ids de las Noticias sintetizadas |
-| `observation` | (Opcional) valor, `time_period`, unit (y displays localizados derivados) |
-| `magnitude` | (Opcional) magnitud formateada (ej. delta o σ) |
-| `claim_tokens` | Valores verificables con `claim_id` y displays localizados |
-| `verification_trace` | URLs Data360: dataset + CSV(s) + referencia metodológica (según tipo) |
-| `chart_series` | (Opcional) puntos `{period, value}` para sparkline |
+| `observation` | valor, `time_period`, unit |
+| `claim_tokens` | Valores verificables con `claim_id` |
+| `verification_trace` | URLs Data360: dataset + CSV(s) + metodología |
+| `chart_series` | Puntos `{period, value}` para sparkline |
 | `score` | Severidad normalizada (0–1) |
 | `detected_at` | Timestamp ISO de generación |
-| `data_period_stale` | Si el dato es anterior al umbral de frescura (derivado del `time_period`) |
+| `data_period_stale` | Si el dato es anterior al umbral de frescura |
 
 Esquema formal: `docs/alert-schema.json`.
+
+URLs canónicas: `/{countrySlug}/{noticia|reportaje}/{year}/{month}/{slug}` (`lib/url-slug.js`).
 
 ---
 
 ## Verificación antes de publicar
 
-1. Abrí la alerta en el **panel de detalle**.
-2. Revisá la narrativa periodista y los **claim tokens** resueltos.
+1. Abrí el artículo o el panel de detalle (vista legacy).
+2. Revisá la narrativa y los **claim tokens** resueltos.
 3. Seguí **Sources**: dataset Data360 → CSV → metodología.
 4. Contrastá `time_period` con lo que publicás (fecha del **dato**, no del pipeline).
 5. Usá **Copiar cita** para pegar texto + URL en el CMS.
 
-Más contexto: metodología PCN del Banco Mundial y `docs/data360-integration-methodology.md`.
+Más contexto: `docs/data360-integration-methodology.md`.
 
 ---
 
@@ -250,37 +247,38 @@ Más contexto: metodología PCN del Banco Mundial y `docs/data360-integration-me
 |--------|----------------|
 | **Data360 API v3** (REST + MCP opcional) | Indicadores, series, comparaciones |
 | **CSVs locales** `data/context/` | Detección y narrativa offline |
-| **GDELT DOC API v2** | Titulares prensa en español (única fuente implementada; RSS en roadmap) |
+| **GDELT DOC API v2** / **Gemini** | Titulares prensa (script dependiente) |
 | **Freshness probe** | `data/changed-since.json`, `data/index.json` |
 
 ---
 
 ## Pipeline (operadores / desarrollo)
 
-Replay histórico en Node.js (CommonJS):
-
 ```bash
-npm run fetch                    # descarga CSV + data dictionary + meta.json (con probe previo)
+npm run fetch                    # descarga CSV + data dictionary + meta.json
 npm run fetch:probe              # solo sonda de cambios (~2 s)
-npm run fetch:news               # titulares GDELT → data/news/{PAÍS}/{YYYY-MM}.jsonl
-npm run analyze                  # detección + Fase 1 Noticias + Fase 2 Reportajes → data/alerts.json
-npm run analyze:no-llm           # mismo pipeline sin llamadas LLM (solo detección)
-npm run discover                 # modo dinámico: /searchv2 → data/dynamic-watchlist.json
-npm run pipeline:dynamic         # discover → fetch → analyze (modo dinámico)
-npm run pipeline:dynamic:force   # igual, pero pasa --force al fetch (bypass ETag)
+npm run fetch:news               # titulares (Gemini por defecto)
+npm run fetch:news:dynamic       # titulares contra watchlist dinámico
+npm run analyze                  # detección + Noticias + Reportajes → data/alerts.json
+npm run analyze:dynamic          # analyze solo indicadores changed-since
+npm run analyze:noticias         # solo Fase 1
+npm run analyze:reportajes       # solo Fase 2
+npm run analyze:no-llm           # pipeline sin LLM
+npm run discover                 # modo dinámico: /searchv2 → dynamic-watchlist.json
+npm run pipeline:dynamic         # discover → fetch → analyze
+npm run pipeline:dynamic:force   # igual, bypass ETag en fetch
+npm run pipeline:dynamic:news-gdelt  # fetch GDELT contra watchlist dinámico
 npm run dev                      # servidor web :8090 (desarrollo)
 npm run start                    # producción
 npm test                         # tests Node
 ```
 
-Flujo típico estático: `fetch` → `fetch:news` (opcional) → `analyze`.
-Flujo típico dinámico: `pipeline:dynamic` (o `pipeline:dynamic:force` cuando hace falta un refresh limpio).
+Flujo estático: `fetch` → `fetch:news` (opcional) → `analyze`.  
+Flujo dinámico: `pipeline:dynamic`.
 
-El paso `analyze` delega en `lib/analysis/runner.js` para Noticias (una por indicador) y luego en `lib/analysis/reportaje-runner.js` para Reportajes (uno por dataset cuando ≥2 Noticias comparten `dataset_id`). Consolida `data/alerts/{IDNO}.json`, `data/alerts/reportaje_{dataset}.json` y `data/alerts.json`.
+Salida principal: **`data/alerts.json`**.
 
-Salida principal: **`data/alerts.json`** consumido por la portada y el chat por pieza.
-
-Variables de entorno: pipeline en `.env.example` (`AI_PROVIDER`, `AI_MODEL`); chat en `lib/ai-client.js` (`CHAT_AI_PROVIDER`, default `vllm`; `CHAT_MAX_TURNS`, default `8`).
+Variables: pipeline en `.env.example` (`AI_PROVIDER`, `AI_MODEL`, `AI_PROVIDER=nvidia`); chat en `CHAT_AI_PROVIDER`, `CHAT_MAX_TURNS`.
 
 ---
 
@@ -289,11 +287,20 @@ Variables de entorno: pipeline en `.env.example` (`AI_PROVIDER`, `AI_MODEL`); ch
 | Método | Ruta | Descripción |
 |--------|------|-------------|
 | GET | `/` | Selector de país (HTML) |
-| GET | `/{país}` | Portada (HTML) |
-| GET | `/chat` | Chat (HTML) |
+| GET | `/{país}` | Portada por país (HTML) |
+| GET | `/{país}/{tipo}/{y}/{m}/{slug}` | Artículo (HTML) |
+| GET | `/indicadores`, `/indicators` | Hub indicadores (HTML) |
+| GET | `/indicador/{IDNO}` | Detalle indicador (HTML) |
+| GET | `/chat` | Chat global (HTML) |
 | GET | `/about` | About (HTML) |
-| GET | `/api/alerts` | JSON `{ alerts: [...] }` (recarga store) |
-| POST | `/api/chat` | SSE agente (`messages`, `focus_countries`, `focus_changed`) |
+| GET | `/metodologia`, `/privacidad`, `/terminos`, `/uso` | Páginas estáticas (HTML) |
+| GET | `/newsletter` | Redirect a última edición LAC |
+| GET | `/newsletter/lac/{date}` | Edición newsletter (HTML) |
+| GET | `/alertas/{país}/ejemplo` | Preview suscripción alertas |
+| GET | `/dev/feed` | Feed legacy con filtros (HTML) |
+| GET | `/api/alerts` | JSON `{ alerts: [...] }` |
+| POST | `/api/subscribe` | JSON `{ email, subscription_type, countries?, topics?, lang? }` |
+| POST | `/api/chat` | SSE agente |
 | GET | `/static/*` | Assets estáticos |
 
 ---
@@ -302,44 +309,43 @@ Variables de entorno: pipeline en `.env.example` (`AI_PROVIDER`, `AI_MODEL`); ch
 
 | Tool | Función |
 |------|---------|
-| `list_alerts` | Alertas locales filtradas por país, idno, categoría |
-| `run_analysis` | Pipeline detección+narrativa por IDNO; **reutiliza alertas existentes** salvo `force: true` |
-| `read_news` | Titulares GDELT en disco |
-| `fetch_news` | Actualizar titulares GDELT |
-| `read_freshness` | Catálogo de indicadores con CSV actualizado |
+| `list_alerts` | Alertas locales filtradas |
+| `run_analysis` | Pipeline por IDNO; cache salvo `force: true` |
+| `read_news` / `fetch_news` | Titulares en disco / actualizar |
+| `read_freshness` | Catálogo indicadores actualizados |
 | `mcp_search_indicators` | Búsqueda Data360 |
 | `mcp_get_data` | Serie por indicador y país |
-| `mcp_compare_countries` | Comparación LAC (fallback REST) |
+| `mcp_compare_countries` | Comparación LAC |
 | `mcp_rank_countries` | Ranking países |
-| `mcp_summarize_data` | Resumen estadístico Data360 |
+| `mcp_summarize_data` | Resumen estadístico |
 
-Definiciones: `lib/chat/tools.js`. Prompt del sistema: `lib/prompts/chat-system.md`.
+Definiciones: `lib/chat/tools.js`.
 
 ---
 
-## Portada vs chat por pieza — cuándo usar cada uno
+## Cuándo usar cada vista
 
-| Necesidad | Portada | Chat por pieza |
-|-----------|---------|------|
-| Browse rápido de alertas | ✓ | |
-| Verificación PCN completa | ✓ | parcial (tarjetas + enlace) |
-| Filtros categoría / 3 variantes visuales | ✓ | |
-| Pregunta libre / explorar 12k indicadores | | ✓ |
-| Gráfica indicador sin alerta previa | | ✓ |
-| Titulares GDELT | | ✓ |
-| Re-análisis bajo demanda | | ✓ (`run_analysis`) |
-| Exportar sesión de investigación | | ✓ |
+| Necesidad | Portada | Artículo + chat | Chat global |
+|-----------|---------|-----------------|-------------|
+| Browse rápido por país | ✓ | | |
+| Lectura editorial completa | | ✓ | |
+| Verificación PCN | ✓ (legacy panel) | ✓ | parcial |
+| Pregunta sobre una pieza publicada | | ✓ | |
+| Explorar 12k indicadores | | | ✓ |
+| Gráfica sin alerta previa | | | ✓ |
+| Re-análisis bajo demanda | | ✓ | ✓ |
+| Exportar sesión | | ✓ | ✓ |
 
 ---
 
 ## Limitaciones conocidas (demo)
 
 - Sin orquestación NiFi ni OpenSearch en runtime.
-- Chat depende de LLM configurado (`vllm`, Claude, etc.); puede alucinar si no usa tools.
-- GDELT: cobertura desigual (HND/GTM más débil).
-- Newsletter y suscripción: solo UI.
+- Chat depende de LLM configurado; puede alucinar si no usa tools.
+- Cobertura GDELT desigual (HND/GTM más débil).
+- Suscripción guarda email en TSV local; **sin envío ni desuscripción automatizada por correo**.
 - Strategy 2 (divergencia titular-dato): diseñada, no activa en detección.
-- `run_analysis` por indicador puede tardar minutos y tiene costo LLM.
+- `run_analysis` puede tardar minutos y tiene costo LLM.
 
 Roadmap: `docs/architecture-overview.md`, `docs/sustainability-plan.md`.
 
@@ -349,12 +355,12 @@ Roadmap: `docs/architecture-overview.md`, `docs/sustainability-plan.md`.
 
 | Documento | Contenido |
 |-----------|-----------|
-| [features-reference.md](./features-reference.md) | Referencia técnica exhaustiva de funcionalidades |
+| [features-reference.md](./features-reference.md) | Referencia técnica exhaustiva |
 | [architecture-overview.md](./architecture-overview.md) | Arquitectura demo vs producción |
-| [frontend-architecture.md](./frontend-architecture.md) | Pug, JS, filtros, panel detalle |
+| [frontend-architecture.md](./frontend-architecture.md) | Pug, JS, rutas |
 | [data-fetcher-architecture.md](./data-fetcher-architecture.md) | Freshness probe y fetch |
 | [data360-integration-methodology.md](./data360-integration-methodology.md) | Integración API Data360 |
-| [news-architecture.md](./news-architecture.md) | Subsistema GDELT |
+| [news-architecture.md](./news-architecture.md) | Subsistema de titulares |
 | [security-data-handling.md](./security-data-handling.md) | Manejo de datos |
 | [CLAUDE.md](../CLAUDE.md) | Decisiones internas del repo |
 

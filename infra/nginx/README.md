@@ -1,6 +1,6 @@
 # nginx config for data360-monitor
 
-Basic auth gate for the staging deployment of the dashboard.
+Basic auth gate for the **staging deployment of the Node monitor** (dashboard, articles, chat UI). Does **not** proxy or protect the Data360 MCP server — MCP stays on localhost and is called only by the monitor process.
 
 ## Files
 

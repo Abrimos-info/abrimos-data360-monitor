@@ -1,7 +1,7 @@
 # News Ingest Subsystem — Architecture
 
-> **Status**: Design approved. Implementation pending (second round).
-> **Decision**: D-029 (defined) → D-030 (stack + schema, proposed below).
+> **Status**: Implemented (demo). Passive LLM context only; Strategy 2 detection in roadmap.  
+> **Decision**: D-029 (defined) → D-030 (stack + schema).
 
 ---
 
@@ -41,7 +41,7 @@ Limitation: coverage is weakest for HND and GTM (fewer indexed outlets); English
 
 ### Fallback: Google News RSS (roadmap — not implemented)
 
-> **Demo code** uses GDELT only (`lib/news-fetch.js`). The RSS path below is design intent (D-030); `rss-parser` is listed in `package.json` but unused.
+> **Demo code** (`bin/fetch-news.js`, `lib/news-fetch.js`): default npm script uses **Gemini** grounding (`--provider=gemini`). GDELT path available via `--provider=gdelt` and `npm run pipeline:dynamic:news-gdelt`. Google News RSS remains roadmap (D-030); `rss-parser` is in `package.json` but unused in demo fetch.
 
 URL pattern: `https://news.google.com/rss/search?q={country_name}&hl=es-{cc}&gl={CC}&ceid={CC}:es`
 
@@ -181,7 +181,14 @@ A lightweight pass using LAIA (Qwen 2.5 14B, zero cost) can label each headline 
 | JSONL write | `fs.appendFileSync` | One line per headline; atomic per record |
 | Rate limiting | Manual: one request per country | GDELT has no stated limit; 12 requests max per demo run |
 
-New file: `bin/fetch-news.js`. Entry point: `node bin/fetch-news.js --countries GTM,HND,ARG,ECU,MEX --from 2026-04-01 --to 2026-05-21`.
+Implemented: `bin/fetch-news.js`. Examples:
+
+```bash
+npm run fetch:news                    # Gemini (default in package.json)
+npm run fetch:news:dynamic            # Gemini + dynamic watchlist
+npm run pipeline:dynamic:news-gdelt   # GDELT + dynamic watchlist
+node bin/fetch-news.js --provider=gdelt --countries GTM,HND,ARG,ECU,MEX
+```
 
 ---
 
@@ -216,6 +223,6 @@ New file: `bin/fetch-news.js`. Entry point: `node bin/fetch-news.js --countries 
 
 ---
 
-## Proposed D-030
+## D-030 (standing)
 
-> **D-030** | News subsystem: GDELT DOC API v2 as primary source (free, historical, Spanish-filtered by country); Google News RSS as **planned** fallback (not implemented in demo); headlines stored as `data/news/{COUNTRY}/{YYYY-MM}.jsonl`; injected in omnibus context as §6 (max 8 per country); no enrichment in demo; Strategy 2 activation deferred to production.
+> **D-030** | News subsystem: headlines stored as `data/news/{COUNTRY}/{YYYY-MM}.jsonl`; fetch via GDELT and/or Gemini (`bin/fetch-news.js`); injected in omnibus context as §6 (max 8 per country); passive narrative context only; Strategy 2 activation deferred to production. Google News RSS fallback remains roadmap.

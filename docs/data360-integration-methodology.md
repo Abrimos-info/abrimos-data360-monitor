@@ -1,6 +1,6 @@
 # Data360 API Integration Methodology
 
-> **Status**. Draft. Final polish due 2026-05-22.
+> **Status**. Final draft (2026-05-29).  
 > Released under CC BY 4.0.
 
 ## Endpoints used (Data360 API v3)
@@ -36,4 +36,26 @@ See [`docs/data-fetcher-architecture.md`](data-fetcher-architecture.md) for sche
 1. **Abrupt changes**. Z-score against historical trajectory per `(indicator, country, disaggregation)`.
 2. **Cross-indicator anomalies**. Outliers from the regional pattern within the LAC scope.
 
-(To be expanded with example queries, OData syntax, and schema mapping.)
+## MCP vs REST (chat runtime)
+
+| Use case | Default path | Optional MCP |
+|----------|--------------|--------------|
+| Bulk CSV fetch, freshness probe | REST (`lib/data360-client.js`) | — |
+| Detection, PCN verification | Local CSV context | — |
+| Chat tools (search, get_data, compare) | REST fallback always available | `lib/mcp-client.js` when `MCP_URL` set |
+
+MCP runs on localhost only in production layout. Evaluate with `node bin/evaluate-mcp.js`.
+
+## Indicator links (D-035)
+
+Public UI links use `https://data360.worldbank.org/en/indicator/{IDNO}` via `lib/data360-urls.js` and `static/js/data360-urls.js`. Dataset pages use `/en/search?query={DATABASE_ID}`.
+
+## Example: metadata query (OData-style)
+
+POST `/data360/metadata` with filter on indicator idno — used when enriching indicator pages and context builder. See `lib/data360-client.js` → `getMetadata()`.
+
+## Example: dynamic discovery
+
+POST `/data360/searchv2` with `orderby: 'series_description/date_last_update desc'`, then GET `/data360/indicators?datasetId=X` for canonical `idno` values. Implemented in `lib/dynamic-watchlist.js`.
+
+(Further expansion: full OData field mapping, disaggregation rules, and CSV column contract — see `docs/data-fetcher-architecture.md`.)

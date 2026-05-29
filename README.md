@@ -10,13 +10,34 @@ Ten-day sprint (21 to 31 May 2026). Submission deadline is 31 May 2026, via Medi
 
 ## Stack
 
-- **Frontend**. Node.js, Pug templates, vanilla JavaScript (Data360 News Agent — home, chat, about)
+- **Frontend**. Node.js, Pug templates, vanilla JavaScript — country front pages, articles, indicators hub, chat, newsletter preview
 - **Backend**. Node.js HTTP server (`data360-monitor.js`)
-- **Data layer**. Data360 API v3 (REST + MCP opcional en chat)
-- **LLM**. Claude Opus 4.7 via Agent SDK (pipeline); chat multi-proveedor (`lib/ai-client.js`)
+- **Data layer**. Data360 API v3 (REST + MCP optional in chat)
+- **LLM**. Claude Opus 4.7 via Agent SDK (pipeline); multi-provider chat (`claude-code`, `vllm`, `nvidia`, OpenRouter via `lib/ai-client.js`)
 - **Verification**. [Proof-Carrying Numbers (PCN)](https://github.com/worldbank/pcn) from the World Bank
 - **Hosting**. Abrimos-owned infrastructure
 - **Production roadmap**. Apache NiFi orchestrates continuous updates
+
+## Web application
+
+The monitor serves a newspaper-style product for five LAC countries:
+
+| Route | Purpose |
+|-------|---------|
+| `/` | Country picker + recently updated indicators |
+| `/{country}` | Country front page (hero reportaje, headlines, indicator ticker) |
+| `/{country}/{noticia\|reportaje}/{year}/{month}/{slug}` | Full article + scoped chat |
+| `/indicadores` | Global indicators hub by tier |
+| `/indicador/{IDNO}` | Indicator detail and alerts by country |
+| `/chat` | Global analytical chat (presets, freshness, MCP tools) |
+| `/newsletter/lac/{date}` | LAC newsletter edition preview |
+| `/metodologia`, `/privacidad`, `/terminos`, `/uso` | Static pages (`config/copy/`) |
+
+**Subscribe** modal → `POST /api/subscribe` → local TSV (`data/newsletter/subscribers.tsv`, gitignored). No real email in demo.
+
+Legacy card feed with client filters: `/dev/feed` or `?legacy=1` on a country page.
+
+Full operator guide: [`docs/user-guide.md`](docs/user-guide.md).
 
 ## Deployment
 
@@ -111,10 +132,12 @@ Adjust paths, then `systemctl enable --now data360-mcp`. Restart the monitor aft
 
 | Document | Description |
 |----------|-------------|
-| [**User guide (ES)**](./docs/user-guide.md) | All product features for newsrooms — home page, chat, verification, pipeline |
+| [**User guide (ES)**](./docs/user-guide.md) | All product features for newsrooms — front pages, articles, chat, verification, pipeline |
 | [Features reference](./docs/features-reference.md) | Technical feature catalog (API, tools, files) |
 | [Architecture overview](./docs/architecture-overview.md) | Demo vs production |
-| [Frontend architecture](./docs/frontend-architecture.md) | Pug, filters, detail panel |
+| [Frontend architecture](./docs/frontend-architecture.md) | Pug, routes, article chat |
+| [Security and data handling](./docs/security-data-handling.md) | Subscriptions, LLM, PCN, hosting |
+| [Sustainability plan](./docs/sustainability-plan.md) | Post-Challenge partners and operation |
 
 ## Countries covered in the demo (LAC)
 
@@ -141,7 +164,7 @@ npm run fetch          # probe + download changed + refresh LAC context
 Outputs.
 
 - `data/changed-since.json` — indicators updated since the last probe (`changed_indicators` array)
-- `data/index.json` — freshness summary for all 35 watchlist indicators
+- `data/index.json` — freshness summary for all watchlist indicators
 
 Full design. [`docs/data-fetcher-architecture.md`](docs/data-fetcher-architecture.md)
 
@@ -150,7 +173,7 @@ Full design. [`docs/data-fetcher-architecture.md`](docs/data-fetcher-architectur
 Detection and narrative generation run in two phases inside one step:
 
 ```bash
-npm run fetch:news   # optional: GDELT headlines for narrative context
+npm run fetch:news   # optional: headlines for narrative context (Gemini default)
 npm run analyze      # strategies 1 + 4 → Phase 1 Noticias → Phase 2 Reportajes → data/alerts.json
 ```
 
@@ -166,7 +189,16 @@ Indicators can be picked from the static 35-item watchlist (`lib/watchlist.js`) 
 ```bash
 npm run pipeline:dynamic         # discover → fetch → analyze
 npm run pipeline:dynamic:force   # same, but bypass the ETag cache
+npm run analyze:dynamic          # analyze changed indicators only (dynamic watchlist)
+npm run analyze:noticias         # Phase 1 only
+npm run analyze:reportajes       # Phase 2 only
+npm run fetch:news:dynamic       # headlines against dynamic watchlist
+npm run pipeline:dynamic:news-gdelt  # GDELT fetch for dynamic watchlist
 ```
+
+### LLM providers
+
+Pipeline (`AI_PROVIDER`) and chat (`CHAT_AI_PROVIDER`): `claude-code`, `vllm` (LAIA), `nvidia` (NIM), OpenRouter. See `.env.example`.
 
 See [`docs/user-guide.md`](docs/user-guide.md) for the full operator reference.
 
@@ -177,7 +209,7 @@ See [`docs/user-guide.md`](docs/user-guide.md) for the full operator reference.
 3. Architecture overview. [`docs/architecture-overview.md`](docs/architecture-overview.md)
 4. Data360 API integration methodology. [`docs/data360-integration-methodology.md`](docs/data360-integration-methodology.md)
 5. Security and data handling. [`docs/security-data-handling.md`](docs/security-data-handling.md)
-6. User guide. [`docs/user-guide.md`](docs/user-guide.md) — **funcionalidades completas (Monitor + Chat)**
+6. User guide. [`docs/user-guide.md`](docs/user-guide.md)
 7. Features reference. [`docs/features-reference.md`](docs/features-reference.md)
 8. Sustainability plan. [`docs/sustainability-plan.md`](docs/sustainability-plan.md)
 

@@ -1,14 +1,14 @@
 # Test Plan
 
 > Test coverage for `abrimos-data360-monitor`.
-> Status as of 2026-05-22. Run: `npm test` → `node --test test/*.test.js`.
+> Status as of 2026-05-29. Run: `npm test` → `node --test test/*.test.js`.
 
 ## Current state
 
 | Item | Status |
 |------|--------|
-| `test/` directory | **24 suites**, 119 tests |
-| Last run | **117 pass, 0 fail, 2 skipped** (~1.5 s) |
+| `test/` directory | **61 suites**, 291 tests |
+| Last run | **289 pass, 0 fail, 2 skipped** (~7 s) |
 | HTTP mocking | Injected `headCsv` / `getCsv` hooks + local `http.Server` in `data360-client.test.js` |
 | `test/fixtures/` | Present (`watchlist-mini.json`, HEAD mocks, GDELT sample) |
 | `test/helpers/` | `tmpdir`, `load-alerts`, `parse-context-claims`, `http-mock` |
@@ -21,7 +21,11 @@
 |------|-------|--------|
 | `test/alerts-store.test.js` | — | Implemented (extended D-010 types, journalist field) |
 | `test/i18n.test.js` | 4 | Implemented (+ `newsletter.*` keys) |
-| `test/server.test.js` | 0, 4 | Implemented (D-006 meta, `/chat`, newsletter, traversal) |
+| `test/server.test.js` | 0, 4 | Implemented (D-006 meta, frontpage, newsletter, subscribe, traversal) |
+| `test/routes.test.js` | — | Implemented (all viewNames from routes.json) |
+| `test/static-copy.test.js` | — | Implemented (privacidad, metodologia, terminos, uso) |
+| `test/url-slug.test.js` | — | Implemented (article paths) |
+| `test/indicators-hub.test.js` | — | Implemented |
 | `test/chat.test.js` | 4 | Implemented (tools, sparkline, API 405) |
 | `test/freshness-preset.test.js` | — | Implemented |
 | `test/alert-schema.test.js` | 1 | Implemented |
@@ -43,7 +47,7 @@
 | `test/alerts-store-perf.test.js` | 5 | Implemented |
 | `test/license.test.js` | 5 | Implemented |
 | `test/e2e-deferred.test.js` | 5 | Skipped (Playwright TBD) |
-| `test/build-pipeline-deferred.test.js` | 5 | Skipped until `bin/detect-changes.js` exists |
+| `test/build-pipeline-deferred.test.js` | 5 | Skipped (full live pipeline integration TBD) |
 
 ### Testability refactors (production code)
 
@@ -370,7 +374,7 @@ Extend `test/server.test.js`.
 | Full mock flow | probe → `changed-since.json` → selective fetch → context updated (no live network) |
 | Normal day | Two consecutive probes → second run `changed: 0` |
 | Simulated WDI release | One indicator changes → only that idno in context and snapshot |
-| `npm run build` smoke | `fetch` → `detect` → `narrate` → `emit` with fixtures (**blocked**: `bin/detect-changes.js`, `bin/narrate-indicators.js`, `bin/emit-alerts.js` referenced in `package.json` but not in repo) |
+| `npm run build` smoke | `fetch` → `fetch:news` → `analyze` via `package.json` scripts (no separate detect/narrate bins) |
 | `bin/evaluate-mcp.js` | Exit 0 when MCP disabled or mocked |
 
 ---
@@ -414,7 +418,7 @@ Runner options: Playwright (preferred for demo) or jsdom + manual DOM fixtures.
 
 ## Suggested implementation order
 
-Completed in repo (2026-05-22): steps 1–13 below. Next: optional analysis helpers, E2E, `npm run build` when pipeline bins land.
+Completed in repo (2026-05-29): core suites through step 13; routes, static-copy, url-slug, indicators-hub, subscribe API coverage added. Next: Playwright E2E, optional full pipeline integration smoke.
 
 1. ~~Fix regressions~~ — done
 2. ~~`alert-schema.test.js`~~ — done

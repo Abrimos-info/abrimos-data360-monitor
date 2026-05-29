@@ -15,7 +15,7 @@ Pull historical observations and metadata from Data360 for a curated watchlist o
   - **Dynamic discovery**. Indicators are not fixed: they are discovered from the Data360 `searchv2` endpoint ranked by `series_description/date_last_update desc`, expanded to indicator codes via `/data360/indicators?datasetId=…`, and treated as a fourth tier (`dynamic`). Implemented in [`lib/dynamic-watchlist.js`](../lib/dynamic-watchlist.js) and driven by [`bin/discover-indicators.js`](../bin/discover-indicators.js).
 - **Historical replay only** for the demo. No real-time polling. The continuous monitoring promise lives in the production roadmap.
 
-## Implementation status (Phase 1, 2026-05-22)
+## Implementation status (2026-05-29)
 
 | Component | Status |
 |---|---|

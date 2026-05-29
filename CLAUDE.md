@@ -65,7 +65,12 @@ lib/
   freshness-probe.js    # Conditional HEAD probe
   freshness-cache.js    # ETag cache on disk
   context-fetch.js      # CSV snapshot + LAC context refresh (handles dynamic tier)
-  ai-client.js          # Claude / LAIA / OpenRouter abstraction
+  ai-client.js          # Claude / LAIA / NVIDIA NIM / OpenRouter abstraction
+  subscribe.js          # POST /api/subscribe → subscribers.tsv
+  static-copy.js        # config/copy/*.json for legal pages
+  newsletter/editions.js
+  url-slug.js           # Article paths, country slugs
+  pages/static-pages.js
   data360-client.js     # Data360 API v3 client (headCsv, getCsv, getData, listIndicators, …)
   opensearch-client.js  # OpenSearch (when in scope)
   detect/
@@ -89,12 +94,51 @@ data/
   alerts/{idno}.json       # Per-indicator Noticia output
   alerts/reportaje_{dataset}.json  # Per-dataset Reportaje output
   alerts/{idno}.raw.txt    # Raw LLM output when parsing yielded 0 items (diagnostic)
+  newsletter/editions/   # Fixture LAC editions (lac-YYYY-MM-DD.json)
+  newsletter/subscribers.tsv  # Demo subscriptions (gitignored)
+config/
+  routes.json            # viewName routing (lib/route-registry.js)
+  strings.{es,en}.json   # UI i18n (chrome, labels)
+  copy/{page}.{es,en}.json  # Static legal/prose pages (privacidad, terminos, …)
+templates/
+  frontpage.pug          # Country newspaper layout (primary UX)
+  alert-page.pug         # Article + scoped chat
+  dashboard.pug          # Legacy card feed (/dev/feed, ?legacy=1)
 docs/
   data-fetcher-architecture.md
   architecture-overview.md
   data360-integration-methodology.md
   news-architecture.md
+  user-guide.md
+  features-reference.md
+  security-data-handling.md
+  sustainability-plan.md
 ```
+
+## Web routes (config/routes.json → lib/views.js)
+
+| viewName | Template | Notes |
+|----------|----------|-------|
+| `countryPickerPage` | `country-picker.pug` | `/` |
+| `frontpagePage` | `frontpage.pug` | `/{countrySlug}` |
+| `alertPage` | `alert-page.pug` | `/{country}/{noticia\|reportaje}/{y}/{m}/{slug}` |
+| `indicatorsHubPage` | `indicators-hub.pug` | `/indicadores`, `/indicators` |
+| `indicatorDetailPage` | `indicator-page.pug` | `/indicador/{idno}` |
+| `chatPage` | `chat.pug` | `/chat` |
+| `aboutPage` | `about.pug` | `/about` |
+| `metodologiaPage` etc. | `static-prose.pug` | copy from `config/copy/` |
+| `newsletterIndexPage` | redirect | `/newsletter` → latest LAC edition |
+| `newsletterEditionPage` | `newsletter-edition.pug` | `/newsletter/lac/{date}` |
+| `alertsSamplePage` | `alerts-sample.pug` | `/alertas/{country}/ejemplo` |
+| `legacyDashboardPage` | `dashboard.pug` | `/dev/feed` or `?legacy=1` |
+| `notFoundPage` | `not-found.pug` | fallback 404 |
+
+Article URLs built by `lib/url-slug.js` (`buildAlertPath`, `_path`, `_paths` per country).  
+Subscribe API: `POST /api/subscribe` → `lib/subscribe.js`.
+
+Static copy loader: `lib/static-copy.js` (distinct from `lib/i18n.js` / `strings.*`).
+
+Newsletter editions: `lib/newsletter/editions.js`, fixtures under `data/newsletter/editions/`.
 
 ## Standing decisions
 
@@ -105,7 +149,7 @@ docs/
 | D-006 | Product tagline. "AI-powered news agency that detects newsworthy facts from Data360's 12,000 indicators and delivers them verified with local perspective to LAC newsrooms." (ES: agencia de noticias basada en IA, 12.000 indicadores, perspectiva local LAC.) |
 | D-007 | Demo works backwards (replay over historical snapshots), not real-time. |
 | D-008 | Deliverable is a static dashboard reading `data/alerts.json`. |
-| D-009 | Demo subscription saves email + type to local TSV (`data/newsletter/subscribers.tsv`); no real email send (roadmap). |
+| D-009 | Demo subscription saves email + type to local TSV (`data/newsletter/subscribers.tsv`, gitignored). Types: `newsletter_lac`, `indicator_alerts`. Optional `countries` (5 LAC ISO3) and `topics` (macro, fiscal, social, food_security, governance) for alerts. Handler: `lib/subscribe.js`; UI: `newsletter-modal.pug` + `newsletter-modal.js`. Response includes `preview_url` (`/newsletter` or `/indicadores?…`). No real email send (roadmap). |
 | D-010 | Covers strategies 1 (abrupt changes) and 4 (cross-indicator anomalies). |
 | D-011 | Node.js stack. NiFi roadmap. LLM does one call per indicator. |
 | D-012 | Hosting on Abrimos-owned infrastructure. |
@@ -118,7 +162,7 @@ docs/
 | D-026 | `archive/` and `design/` are gitignored. Curate to `docs/` if a piece needs to go public. |
 | D-027 | REST direct is the default path (bulk fetch, detection). MCP server (`worldbank/data360-mcp`) is optional for runtime narrative when its native SHA-256 `claim_id` and precomputed comparisons add value. Trial decision for this demo iteration, to be validated against a full pipeline run. |
 | D-028 | Analysis stage produces two content types (D-031, D-032). Phase 1 emits Noticias per indicator (3 prompt files `noticia-{system,task,template}.md`); Phase 2 groups Phase 1 Noticias by `dataset_id` and emits a Reportaje per dataset that has ≥2 Noticias (2 prompt files `reportaje-{system,task}.md`). Both invoke the LLM once per item with an omnibus numbered context. Outputs are extracted from fenced blocks (```noticia / ```reportaje) using a brace-balanced JSON scanner tolerant to inner backticks. Automatic claim-traceability validation (Q1) and JSON-schema validation (Q2) against the numbered context. Item schema aligned with PCN. |
-| D-029 | "News" refers to real press headlines per country, not to sub-annual indicator data. A separate `news` subsystem (architecture pending) ingests recent headlines from the 5 LAC countries and feeds them into the analysis context so narratives can reference current public discourse. The sub-annual indicator tier is `pulse` (D-021). |
+| D-029 | "News" refers to real press headlines per country, not to sub-annual indicator data. The `news` subsystem ingests headlines from the 5 LAC countries into analysis context (see D-030). The sub-annual indicator tier is `pulse` (D-021). |
 | D-030 | News subsystem uses GDELT DOC API v2 as primary source (free, no auth, history since 2015, filter `SOURCELANG:Spanish` + country); Google News RSS as planned fallback (not implemented in demo). Headlines stored at `data/news/{COUNTRY}/{YYYY-MM}.jsonl` (gitignored), dedup by SHA-1 of URL. Schema includes `gdelt_tone` (for future Strategy 2) and `indicators_hint` (empty in demo). Injected into the omnibus context as §6 "Discurso público reciente", max 8 headlines per country, ~1.2k tokens. Demo use is passive narrative context only — Strategy 2 (narrative-data divergence) stays in roadmap. Full design at `docs/news-architecture.md`. |
 | D-031 | Dynamic indicator discovery: `bin/discover-indicators.js` queries `searchv2` with `orderby: 'series_description/date_last_update desc'` and filters to datasets updated in the last N days (default 7). Each surviving dataset is expanded via `/data360/indicators?datasetId=X` and HEAD-probed for CSV availability. The output is `data/dynamic-watchlist.json`, consumed by `fetch-data.js --watchlist-file ...`. Convention: `csvUrl` is `{db}/{code}.csv` where `code` is verbatim from `listIndicators` — never re-prefixed. Country filter is applied downstream at context-fetch time (5 LAC countries). **Analysis and PCN** read `CONTEXT_TIERS` (`annual`, `forecast`, `dynamic`) via `lib/data-loader.js`; the legacy `pulse.csv` tier is still fetchable but excluded from detection and claim verification. Default Noticia runs use `NOTICIA_TIERS = ['dynamic']` only. |
 | D-035 | Public Data360 indicator links use `/en/indicator/{IDNO}` (see `lib/data360-urls.js` → `indicatorUrl()`). Dataset discovery links still use `/en/search?query={DATABASE_ID}`. |

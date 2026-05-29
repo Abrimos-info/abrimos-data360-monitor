@@ -65,6 +65,21 @@ Provider `AI_PROVIDER=nvidia` y `CHAT_AI_PROVIDER=nvidia` en `lib/ai-client.js`.
 
 ---
 
+## Fase 5b — Newsletter, suscripción y páginas legales ✅
+
+| Cambio | Implementación |
+|--------|----------------|
+| Modal suscripción | `newsletter-modal.pug`, `newsletter-modal.js` |
+| API demo | `POST /api/subscribe` → `lib/subscribe.js` → `subscribers.tsv` (gitignored) |
+| Tipos | `newsletter_lac`, `indicator_alerts` + filtros país/tema |
+| Ediciones fixture | `data/newsletter/editions/lac-*.json`, `/newsletter/lac/{date}` |
+| Páginas legales | `config/copy/*.json` + `static-prose.pug` (`/privacidad`, `/terminos`, `/uso`, `/metodologia`) |
+| CTA en artículo | `article-footer.pug` |
+
+Sin envío SMTP en demo (D-009).
+
+---
+
 ## Fase 6 — Pipeline de contenido (ops, continuo)
 
 | Tarea | Nota |
