@@ -241,6 +241,13 @@ describe('chat scoped system prompt', () => {
     assert.match(system, /chat acotado|Pieza publicada/i);
     assert.match(system, /Contexto de generación|contexto omnibus|CONTEXTO SLIM|no hay archivo/i);
   });
+
+  it('loadSystemPrompt adds English UI block when lang is en', () => {
+    const { loadSystemPrompt } = require('../lib/chat/agent');
+    const system = loadSystemPrompt(['ARG'], false, null, 'en');
+    assert.match(system, /UI language/i);
+    assert.match(system, /Respond in English/i);
+  });
 });
 
 describe('chat agent helpers', () => {

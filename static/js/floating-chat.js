@@ -152,6 +152,7 @@
           messages: history,
           focus_countries: demoCountries.slice(),
           focus_changed: false,
+          lang: window.D360_LANG || 'es',
         }),
       });
       if (!res.ok || !res.body) throw new Error(ui('chat.error'));

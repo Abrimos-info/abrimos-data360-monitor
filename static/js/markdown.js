@@ -171,21 +171,45 @@
       .replace(/"/g, '&quot;');
   }
 
-  var HYPOTHESIS_RE = /\[HIP[ÓO]TESIS\]([\s\S]*?)(?:\[\/HIP[ÓO]TESIS\]|(?=\[HIP[ÓO]TESIS\]|$))/gi;
+  var HYPOTHESIS_OPEN = '(?:HIP[ÓO]TESIS|HYPOTHESIS)';
+  var HYPOTHESIS_BLOCK_RE = new RegExp(
+    '\\[' + HYPOTHESIS_OPEN + '\\]([\\s\\S]*?)(?:\\[\\/' + HYPOTHESIS_OPEN + '\\]|(?=\\[' + HYPOTHESIS_OPEN + '\\]))',
+    'gi',
+  );
+  var HYPOTHESIS_TAG_RE = new RegExp('\\[' + HYPOTHESIS_OPEN + '\\]', 'gi');
+
+  function hypothesisLabel(lang) {
+    return lang === 'en' ? 'Hypothesis' : 'Hipótesis';
+  }
+
+  function hypothesisBadge(lang, body) {
+    var label = hypothesisLabel(lang);
+    var html = '<span class="d360-hypothesis"><span class="d360-hypothesis__label">'
+      + escHtml(label) + '</span>';
+    if (body && String(body).trim()) html += ' ' + escHtml(String(body).trim());
+    html += '</span>';
+    return html;
+  }
 
   function renderHypothesisText(text) {
     if (!text) return '';
-    return String(text).replace(HYPOTHESIS_RE, function (_, body) {
-      return '<span class="d360-hypothesis"><span class="d360-hypothesis__label">Hipótesis</span> '
-        + escHtml(body.trim()) + '</span>';
+    var lang = global.D360_LANG === 'en' ? 'en' : 'es';
+    var out = String(text).replace(HYPOTHESIS_BLOCK_RE, function (_, body) {
+      return hypothesisBadge(lang, body);
+    });
+    return out.replace(HYPOTHESIS_TAG_RE, function () {
+      return hypothesisBadge(lang, '');
     });
   }
 
   function renderHypothesisMarkdown(text) {
     if (!text) return text;
-    return String(text).replace(HYPOTHESIS_RE, function (_, body) {
-      return '<span class="d360-hypothesis"><span class="d360-hypothesis__label">Hipótesis</span> '
-        + escHtml(body.trim()) + '</span>';
+    var lang = global.D360_LANG === 'en' ? 'en' : 'es';
+    var out = String(text).replace(HYPOTHESIS_BLOCK_RE, function (_, body) {
+      return hypothesisBadge(lang, body);
+    });
+    return out.replace(HYPOTHESIS_TAG_RE, function () {
+      return hypothesisBadge(lang, '');
     });
   }
 

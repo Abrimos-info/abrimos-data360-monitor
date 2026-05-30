@@ -105,15 +105,28 @@
       '<span class="d360-chat__step-chevron" aria-hidden="true"></span>';
   }
 
-  function renderChatMarkdown(targetEl, text, pendingCharts) {
+  function renderChatMarkdown(targetEl, text, pendingCharts, opts) {
     if (!targetEl) return;
+    opts = opts || {};
+    var lang = global.D360_LANG === 'en' ? 'en' : 'es';
+    var alert = opts.alert || global.D360_ALERT || null;
+    var html = '';
     if (global.D360Markdown) {
-      targetEl.innerHTML = '<div class="d360-prose">' +
-        global.D360Markdown.renderMarkdown(text, { pendingCharts: pendingCharts || [] }) +
-        '</div>';
+      var mdText = text || '';
+      if (global.D360PcnClaims && global.D360PcnClaims.shieldClaimMarkersForMarkdown) {
+        mdText = global.D360PcnClaims.shieldClaimMarkersForMarkdown(mdText);
+      }
+      html = global.D360Markdown.renderMarkdown(mdText, { pendingCharts: pendingCharts || [] });
+      if (global.D360PcnClaims && global.D360PcnClaims.unshieldClaimMarkers) {
+        html = global.D360PcnClaims.unshieldClaimMarkers(html);
+      }
+      if (alert && global.D360PcnClaims && global.D360PcnClaims.injectClaimMarkersIntoHtml) {
+        html = global.D360PcnClaims.injectClaimMarkersIntoHtml(html, alert, lang);
+      }
     } else {
-      targetEl.textContent = text;
+      html = escapeHtml(text || '');
     }
+    targetEl.innerHTML = '<div class="d360-prose">' + html + '</div>';
   }
 
   function renderRestoredActivity(activityEl, steps, lang, strings) {

@@ -11,6 +11,7 @@
         var url = new URL(window.location.href);
         url.searchParams.set('lang', mode);
         url.searchParams.delete('langMode');
+        document.cookie = 'd360_lang=' + mode + '; Path=/; Max-Age=31536000; SameSite=Lax';
         window.location.href = url.toString();
       });
     });

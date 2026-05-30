@@ -156,15 +156,11 @@
 
     function renderAssistantContent(markdown, pendingCharts) {
       var shell = TurnUi.assistantShell();
-      var streamHtml = window.D360Markdown
-        ? '<div class="d360-prose">' +
-          window.D360Markdown.renderMarkdown(markdown, { pendingCharts: pendingCharts || [] }) +
-          '</div>'
-        : TurnUi.escapeHtml(markdown);
-      return shell.replace(
-        '<div class="d360-chat__stream"></div>',
-        '<div class="d360-chat__stream">' + streamHtml + '</div>',
-      );
+      var shellEl = document.createElement('div');
+      shellEl.innerHTML = shell;
+      var streamEl = shellEl.querySelector('.d360-chat__stream');
+      TurnUi.renderChatMarkdown(streamEl, markdown, pendingCharts, { alert: window.D360_ALERT });
+      return shellEl.innerHTML;
     }
 
     opts.formEl.addEventListener('submit', function (e) {
@@ -220,7 +216,7 @@
         var res = await fetch('/api/chat', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ messages: history, alert_id: alertId }),
+          body: JSON.stringify({ messages: history, alert_id: alertId, lang: lang }),
         });
         if (!res.ok || !res.body) throw new Error(TurnUi.ui(strings, lang, 'chat.error'));
 

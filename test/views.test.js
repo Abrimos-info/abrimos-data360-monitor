@@ -14,6 +14,20 @@ test('pickLang prefers query param', () => {
   assert.equal(pickLang(mockReq('lang=es')), 'es');
 });
 
+test('pickLang falls back to d360_lang cookie', () => {
+  const req = mockReq('');
+  req.headers.cookie = 'd360_lang=en';
+  assert.equal(pickLang(req), 'en');
+  req.headers.cookie = 'd360_lang=es';
+  assert.equal(pickLang(req), 'es');
+});
+
+test('pickLang prefers query param over cookie', () => {
+  const req = mockReq('lang=es');
+  req.headers.cookie = 'd360_lang=en';
+  assert.equal(pickLang(req), 'es');
+});
+
 test('langModeForRoute always matches active lang (no both mode)', () => {
   const req = mockReq('langMode=both&lang=en');
   assert.equal(langModeForRoute(req, 'monitor', 'en', pickLangMode(req)), 'en');

@@ -534,6 +534,7 @@
           messages: history,
           focus_countries: countries,
           focus_changed: focusChanged,
+          lang: window.D360_LANG || 'es',
         }),
       });
 
@@ -668,6 +669,10 @@
   });
 
   function renderChatMarkdown(targetEl, text, pendingCharts) {
+    if (window.D360ChatTurnUi && window.D360ChatTurnUi.renderChatMarkdown) {
+      window.D360ChatTurnUi.renderChatMarkdown(targetEl, text, pendingCharts, { alert: window.D360_ALERT });
+      return;
+    }
     if (!targetEl) return;
     if (window.D360Markdown) {
       targetEl.innerHTML = '<div class="d360-prose">' +
