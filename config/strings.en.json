@@ -47,6 +47,7 @@
   "detail.detected_pipeline": "Detected by the agent",
   "detail.license": "License",
   "detail.data360_dataset": "Data360 dataset",
+  "detail.data360_indicator": "Data360 indicator",
   "detail.csv_download": "CSV download",
   "detail.methodology": "Methodology",
   "article.meta.group": "Detection data",

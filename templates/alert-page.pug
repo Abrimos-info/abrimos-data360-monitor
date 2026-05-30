@@ -62,9 +62,11 @@ block content
             ul.d360-article__indicators-list
               each idno in alert.indicators
                 li
-                  - var indSearchUrl = (typeof indicatorSearchUrl === "function") ? indicatorSearchUrl(idno) : ("https://data360.worldbank.org/en/indicator/" + encodeURIComponent(idno))
+                  - var indSearchUrl = (typeof indicatorUrl === "function") ? indicatorUrl(idno, { country: countryIso }) : ("https://data360.worldbank.org/en/indicator/" + encodeURIComponent(idno) + "?view=trend&country=" + encodeURIComponent(countryIso))
                   a.d360-article__indicators-link(href=indSearchUrl target="_blank" rel="noopener")
                     +indicatorRef(enrichIndicator({ idno: idno }, lang), lang, { dates: false })
+
+        +articleVerificationTrace(alert, lang, _, countryIso)
 
       aside.d360-article-chrome(aria-label=_("article.chrome_label", lang))
         include partials/article-footer

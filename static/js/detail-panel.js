@@ -279,10 +279,13 @@
     var indicatorsWrap = node.querySelector('[data-bind="indicatorsWrap"]');
     var indicatorsEl = node.querySelector('[data-bind="indicators"]');
     if (isReportaje && Array.isArray(alert.indicators) && alert.indicators.length && indicatorsEl) {
+      var countryIso = countriesArr[0] || alert.country || null;
       indicatorsEl.innerHTML = alert.indicators.map(function (idno) {
+        var urlOpts = countryIso ? { country: countryIso } : null;
         var url = (window.D360Urls && window.D360Urls.indicatorSearchUrl)
-          ? window.D360Urls.indicatorSearchUrl(idno)
-          : ('https://data360.worldbank.org/en/indicator/' + encodeURIComponent(idno));
+          ? window.D360Urls.indicatorSearchUrl(idno, urlOpts)
+          : ('https://data360.worldbank.org/en/indicator/' + encodeURIComponent(idno)
+            + (countryIso ? ('?view=trend&country=' + encodeURIComponent(countryIso)) : ''));
         return '<li><a href="' + escAttr(url) + '" target="_blank" rel="noopener">' + escHtml(idno) + '</a></li>';
       }).join('');
     } else if (indicatorsWrap) {
@@ -293,22 +296,52 @@
     if (traceEl && alert.verification_trace) {
       var t = alert.verification_trace;
       var items = [];
-      if (t.data360_dataset_url) {
+      var idno = alert.indicator && alert.indicator.idno;
+      var countryIso = countriesArr[0] || alert.country || null;
+      var datasetId = alert.dataset_id || (alert.indicator && alert.indicator.database_id) || null;
+      var urls = window.D360Urls || {};
+
+      if (idno) {
+        var indUrl = urls.indicatorSearchUrl
+          ? urls.indicatorSearchUrl(idno, countryIso ? { country: countryIso } : null)
+          : ('https://data360.worldbank.org/en/indicator/' + encodeURIComponent(idno)
+            + (countryIso ? ('?view=trend&country=' + encodeURIComponent(countryIso)) : ''));
         items.push(
-          '<li><span class="d360-trace__num">1</span>' +
-          '<a class="d360-trace__link" href="' + escAttr(t.data360_dataset_url) + '" target="_blank" rel="noopener">' +
+          '<li><span class="d360-trace__num">' + escHtml(String(items.length + 1)) + '</span>' +
+          '<a class="d360-trace__link" href="' + escAttr(indUrl) + '" target="_blank" rel="noopener">' +
+          escHtml(uiString('detail.data360_indicator', lng)) + '</a>' +
+          '<span class="d360-trace__hint">' + escHtml(idno) + '</span></li>'
+        );
+      }
+
+      var datasetUrl = null;
+      if (isReportaje && datasetId && urls.datasetSearchUrl) {
+        datasetUrl = urls.datasetSearchUrl(datasetId);
+      } else if (!idno) {
+        datasetUrl = urls.resolvePublicDatasetUrl
+          ? urls.resolvePublicDatasetUrl(datasetId, t.data360_dataset_url)
+          : t.data360_dataset_url;
+      }
+      if (datasetUrl) {
+        items.push(
+          '<li><span class="d360-trace__num">' + escHtml(String(items.length + 1)) + '</span>' +
+          '<a class="d360-trace__link" href="' + escAttr(datasetUrl) + '" target="_blank" rel="noopener">' +
           escHtml(uiString('detail.data360_dataset', lng)) + '</a>' +
           '<span class="d360-trace__hint">data360.worldbank.org</span></li>'
         );
       }
-      if (t.csv_link) {
+      var csvLinks = [];
+      if (t.csv_link) csvLinks.push(t.csv_link);
+      else if (Array.isArray(t.csv_links)) csvLinks = t.csv_links.slice();
+      csvLinks.forEach(function (csvHref) {
+        var csvHint = String(csvHref).split('/').pop() || '.csv';
         items.push(
-          '<li><span class="d360-trace__num">2</span>' +
-          '<a class="d360-trace__link" href="' + escAttr(t.csv_link) + '" target="_blank" rel="noopener">' +
+          '<li><span class="d360-trace__num">' + escHtml(String(items.length + 1)) + '</span>' +
+          '<a class="d360-trace__link" href="' + escAttr(csvHref) + '" target="_blank" rel="noopener">' +
           escHtml(uiString('detail.csv_download', lng)) + '</a>' +
-          '<span class="d360-trace__hint">.csv</span></li>'
+          '<span class="d360-trace__hint">' + escHtml(csvHint) + '</span></li>'
         );
-      }
+      });
       if (t.methodology_ref) {
         var methodUrl = sanitizeUrl(t.methodology_ref);
         items.push(

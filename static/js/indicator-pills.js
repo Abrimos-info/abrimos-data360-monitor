@@ -3,11 +3,14 @@
 (function (root) {
   var IDNO_RE = /\b(?:WB|FAO|IMF)_[A-Z0-9_]+\b/g;
 
-  function indicatorUrl(idno) {
+  function indicatorUrl(idno, opts) {
     if (root.D360Urls && root.D360Urls.indicatorSearchUrl) {
-      return root.D360Urls.indicatorSearchUrl(idno);
+      return root.D360Urls.indicatorSearchUrl(idno, opts);
     }
-    return 'https://data360.worldbank.org/en/indicator/' + encodeURIComponent(idno);
+    var base = 'https://data360.worldbank.org/en/indicator/' + encodeURIComponent(idno);
+    var country = opts && (opts.country || opts.refArea);
+    if (!country) return base;
+    return base + '?view=trend&country=' + encodeURIComponent(country);
   }
 
   function escapeHtml(str) {
@@ -52,7 +55,7 @@
       idno: entry.idno,
       name: resolvedName || entry.idno,
       database_id: entry.database_id || prev.database_id || null,
-      url: entry.url || prev.url || indicatorUrl(entry.idno),
+      url: entry.url || prev.url || indicatorUrl(entry.idno, entry.country ? { country: entry.country } : null),
     };
   }
 
@@ -69,6 +72,7 @@
         idno: ind.idno,
         name: (ind.name && (ind.name.es || ind.name.en)) || ind.idno,
         database_id: ind.database_id,
+        country: alert.country || (Array.isArray(alert._countries) && alert._countries[0]) || null,
       });
     });
   }

@@ -47,6 +47,7 @@
   "detail.detected_pipeline": "Detectado por el monitor",
   "detail.license": "Licencia",
   "detail.data360_dataset": "Dataset Data360",
+  "detail.data360_indicator": "Indicador en Data360",
   "detail.csv_download": "Descarga CSV",
   "detail.methodology": "Metodología",
   "article.meta.group": "Datos de la detección",

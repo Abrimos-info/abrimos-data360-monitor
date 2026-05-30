@@ -250,3 +250,51 @@ mixin claim(token, lang, state)
   span(class=claimCls data-claim-id=token.claim_id data-pcn-status=(token.pcn_status || pcnState))
     span.d360-claim__num= display
     +verificationMark(pcnState, tipTitle, tipDesc, 12)
+
+//- Dataset / CSV / methodology links at the foot of article pages.
+mixin articleVerificationTrace(alert, lang, _, countryIso)
+  - var trace = alert && alert.verification_trace ? alert.verification_trace : {}
+  - var idno = alert && alert.indicator && alert.indicator.idno ? alert.indicator.idno : null
+  - var country = countryIso || alert.country || null
+  - var datasetId = (alert && alert.dataset_id) || (alert && alert.indicator && alert.indicator.database_id) || null
+  - var indicatorPageUrl = idno && typeof indicatorUrl === "function" ? indicatorUrl(idno, { country: country }) : null
+  - var datasetUrl = alert && alert.content_type === "reportaje" && datasetId && typeof datasetSearchUrl === "function" ? datasetSearchUrl(datasetId) : (!indicatorPageUrl && typeof resolvePublicDatasetUrl === "function" ? resolvePublicDatasetUrl(datasetId, trace.data360_dataset_url) : (!indicatorPageUrl ? (trace.data360_dataset_url || null) : null))
+  - var csvLinks = trace.csv_link ? [trace.csv_link] : (Array.isArray(trace.csv_links) ? trace.csv_links : [])
+  - var methodUrl = trace.methodology_ref || null
+  - var hasSources = indicatorPageUrl || datasetUrl || csvLinks.length || methodUrl || (alert.license && alert.license !== "unspecified")
+  if hasSources
+    section.d360-article__sources
+      h2= _("detail.sources", lang)
+      ul.d360-trace
+        - var step = 0
+        if indicatorPageUrl
+          - step++
+          li
+            span.d360-trace__num= step
+            a.d360-trace__link(href=indicatorPageUrl target="_blank" rel="noopener")= _("detail.data360_indicator", lang)
+            span.d360-trace__hint= idno
+        if datasetUrl
+          - step++
+          li
+            span.d360-trace__num= step
+            a.d360-trace__link(href=datasetUrl target="_blank" rel="noopener")= _("detail.data360_dataset", lang)
+            span.d360-trace__hint data360.worldbank.org
+        each csvHref in csvLinks
+          - step++
+          li
+            span.d360-trace__num= step
+            - var csvHint = String(csvHref).split("/").pop() || ".csv"
+            a.d360-trace__link(href=csvHref target="_blank" rel="noopener")= _("detail.csv_download", lang)
+            span.d360-trace__hint= csvHint
+        if methodUrl
+          - step++
+          li
+            span.d360-trace__num= step
+            a.d360-trace__link(href=methodUrl target="_blank" rel="noopener")= _("detail.methodology", lang)
+            span.d360-trace__hint= String(methodUrl).replace(/^https?:\/\//, "")
+        if alert.license && alert.license !== "unspecified"
+          - step++
+          li
+            span.d360-trace__num= step
+            span.d360-trace__label= _("detail.license", lang)
+            span.d360-trace__hint= alert.license

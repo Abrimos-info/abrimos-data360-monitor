@@ -2859,8 +2859,10 @@ body.d360-onboard-open {
 .d360-article__story { margin-top: var(--space-5, 20px); line-height: 1.65; }
 .d360-article__story p { margin: 0 0 1em; }
 .d360-article__story p:last-child { margin-bottom: 0; }
-.d360-article__indicators { margin-top: var(--space-6, 24px); }
-.d360-article__indicators h2 {
+.d360-article__indicators,
+.d360-article__sources { margin-top: var(--space-6, 24px); }
+.d360-article__indicators h2,
+.d360-article__sources h2 {
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.06em;

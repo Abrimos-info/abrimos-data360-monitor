@@ -102,10 +102,13 @@
   function indicatorUrl(ev) {
     var idno = ev.indicator && ev.indicator.idno;
     if (!idno) return null;
+    var country = ev.country || (Array.isArray(ev._countries) && ev._countries[0]) || null;
+    var urlOpts = country ? { country: country } : null;
     if (window.D360Urls && window.D360Urls.indicatorSearchUrl) {
-      return window.D360Urls.indicatorSearchUrl(idno);
+      return window.D360Urls.indicatorSearchUrl(idno, urlOpts);
     }
-    return 'https://data360.worldbank.org/en/indicator/' + encodeURIComponent(idno);
+    return 'https://data360.worldbank.org/en/indicator/' + encodeURIComponent(idno)
+      + (country ? ('?view=trend&country=' + encodeURIComponent(country)) : '');
   }
 
   function renderNarrativeCard(ev, lang) {
