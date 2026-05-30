@@ -1,0 +1,597 @@
+<!DOCTYPE html> <html lang="ca"><head>
+<title>04b-User-Guide-ES</title>
+<base href=".">
+<meta name="pathname" content="04b-user-guide-es.html">
+<meta name="description" content="Docs - Data360 News Agent - 04b-User-Guide-ES">
+<meta property="og:title" content="04b-User-Guide-ES">
+<meta property="og:description" content="Docs - Data360 News Agent - 04b-User-Guide-ES">
+<meta property="og:type" content="website">
+<meta property="og:url" content="04b-user-guide-es.html">
+<meta property="og:image" content="undefined">
+<meta charset="UTF-8"><meta property="og:site_name" content="Docs - Data360 News Agent"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, minimum-scale=1.0, maximum-scale=5.0"><script async="" id="webpage-script" src="site-lib/scripts/webpage.js" onload="this.onload=null;this.setAttribute(&quot;loaded&quot;, &quot;true&quot;)"></script><script async="" id="graph-wasm-script" src="site-lib/scripts/graph-wasm.js" onload="this.onload=null;this.setAttribute(&quot;loaded&quot;, &quot;true&quot;)"></script><script async="" id="graph-render-worker-script" src="site-lib/scripts/graph-render-worker.js" onload="this.onload=null;this.setAttribute(&quot;loaded&quot;, &quot;true&quot;)"></script><link rel="icon" href="site-lib/media/favicon.png"><link rel="stylesheet" href="site-lib/styles/obsidian.css"><link rel="preload" href="site-lib/styles/global-variable-styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="site-lib/styles/global-variable-styles.css"></noscript><link rel="preload" href="site-lib/styles/main-styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="site-lib/styles/main-styles.css"></noscript><style>body{--line-width:40em;--line-width-adaptive:40em;--file-line-width:40em;--sidebar-width:min(20em, 80vw);--collapse-arrow-size:11px;--tree-vertical-spacing:1.3em;--sidebar-margin:12px}:root{background-color:#202124}.sidebar{height:100%;font-size:14px;z-index:10;min-width:calc(var(--sidebar-width) + var(--divider-width-hover));max-width:calc(var(--sidebar-width) + var(--divider-width-hover));position:relative;overflow:hidden;overflow:clip;transition:min-width ease-in-out,max-width ease-in-out;transition-duration:.2s;contain:size}#left-sidebar{left:0}#right-sidebar{right:0}.sidebar.is-collapsed{min-width:0;max-width:0}.sidebar.floating{position:absolute}.sidebar .leaf-content{height:100%;min-width:calc(var(--sidebar-width) - var(--divider-width-hover));top:0;padding:var(--sidebar-margin);padding-top:4em;line-height:var(--line-height-tight);background-color:var(--background-secondary);transition:background-color,border-right,border-left,box-shadow;transition-duration:var(--color-fade-speed);transition-timing-function:ease-in-out;position:absolute;display:flex;flex-direction:column}.sidebar:not(.is-collapsed) .leaf-content{min-width:calc(max(100%,var(--sidebar-width)) - 3px);max-width:calc(max(100%,var(--sidebar-width)) - 3px)}#left-sidebar-content{left:0;border-top-right-radius:var(--radius-l);border-bottom-right-radius:var(--radius-l)}#right-sidebar-content{right:0;border-top-left-radius:var(--radius-l);border-bottom-left-radius:var(--radius-l)}.sidebar #left-sidebar-content,.sidebar #right-sidebar-content{contain:none!important;container-type:normal!important;animation:none!important}.sidebar:has(.leaf-content:empty):has(.topbar-content:empty){display:none}.sidebar-topbar{height:calc(2.3em + 2 * var(--sidebar-margin));width:var(--sidebar-width);padding:var(--sidebar-margin);z-index:1;position:fixed;display:flex;align-items:center;transition:width ease-in-out;transition-duration:inherit}.sidebar.is-collapsed .sidebar-topbar{width:calc(2.3em + var(--sidebar-margin) * 2)}.sidebar .sidebar-topbar.is-collapsed{width:0}#left-sidebar .sidebar-topbar{left:0;flex-direction:row;border-top-right-radius:var(--radius-l)}#right-sidebar .sidebar-topbar{right:0;flex-direction:row-reverse;border-top-left-radius:var(--radius-l)}#left-sidebar .topbar-content{margin-right:calc(2.3em + var(--sidebar-margin));flex-direction:row}#right-sidebar .topbar-content{margin-left:calc(2.3em + var(--sidebar-margin));flex-direction:row-reverse}.topbar-content{overflow:hidden visible;overflow:clip visible;width:100%;height:100%;display:flex;align-items:center;transition:inherit}.sidebar.is-collapsed .topbar-content{width:0;transition:inherit}.clickable-icon.sidebar-collapse-icon{background-color:transparent;color:var(--icon-color-focused);padding:2px!important;margin:0!important;height:100%!important;width:2.3em!important;margin-inline:0.14em!important;position:absolute}#left-sidebar .clickable-icon.sidebar-collapse-icon{transform:rotateY(180deg);right:var(--sidebar-margin)}#right-sidebar .clickable-icon.sidebar-collapse-icon{transform:rotateY(180deg);left:var(--sidebar-margin)}.clickable-icon.sidebar-collapse-icon svg.svg-icon{width:100%;height:100%}.feature-title{margin-left:1px;text-transform:uppercase;letter-spacing:.06em;margin-top:.75em;margin-bottom:.75em}.feature-header{display:flex;align-items:center;padding-top:0;font-size:1em;padding-left:0}body.floating-sidebars .sidebar{position:absolute}body{transition:background-color var(--color-fade-speed) ease-in-out}#navbar:not(:empty){display:flex;align-items:center;justify-content:space-between;padding:.5em 1em;width:100%}#main{display:flex;flex-direction:column;height:100%;width:100%;align-items:stretch;justify-content:center}#main-horizontal{display:flex;flex-direction:row;flex-grow:1;width:100%;align-items:stretch;justify-content:center}#center-content{flex-basis:100%;max-width:100%;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;transition:opacity .2s ease-in-out;contain:inline-size}.hide{opacity:0!important;transition:opacity .2s ease-in-out;pointer-events:none}#center-content>.obsidian-document{padding-left:2em;padding-right:1em;margin-bottom:0;width:100%;width:-webkit-fill-available;width:-moz-available;width:fill-available;transition:background-color var(--color-fade-speed) ease-in-out;border-top-right-radius:var(--window-radius,var(--radius-m));border-top-left-radius:var(--window-radius,var(--radius-m));overflow-x:hidden!important;overflow-y:auto!important;display:flex!important;flex-direction:column!important;align-items:center!important;contain:inline-size}body #center-content>.obsidian-document>.markdown-preview-sizer{padding-bottom:80vh;width:100%;max-width:var(--line-width);flex-basis:var(--line-width);transition:background-color var(--color-fade-speed) ease-in-out;contain:inline-size}#center-content>.obsidian-document>div{width:100%!important;transition:background-color var(--color-fade-speed) ease-in-out;contain:inline-size}#center-content>.obsidian-document:not([data-type=markdown]).embed{display:flex;padding:1em;height:100%;width:100%;align-items:center;justify-content:center}#center-content>.obsidian-document:not([data-type=markdown]).embed>*{max-width:100%;max-height:100%;object-fit:contain}:not(h1,h2,h3,h4,h5,h6,li):has(> :is(.math,table)){overflow-x:auto!important}#center-content>.obsidian-document:not([data-type=markdown]){overflow-x:auto;contain:content;padding:0;margin:0;height:100%}.obsidian-document[data-type=attachment]{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;width:100%}.obsidian-document[data-type=attachment]>*{outline:0;border:none;box-shadow:none}.obsidian-document[data-type=attachment] :is(img){max-width:90%;max-height:90%;object-fit:contain}.obsidian-document[data-type=attachment]>:is(audio){width:100%;max-width:min(90%,var(--line-width))}.obsidian-document[data-type=attachment]>:is(embed,iframe,video){width:100%;height:100%;max-width:100%;max-height:100%;object-fit:contain}.canvas-wrapper>:is(.header,.footer){z-index:100;position:absolute;display:flex;justify-content:center;flex-direction:column;width:100%;align-items:center}.scroll-highlight{position:absolute;width:100%;height:100%;pointer-events:none;z-index:1000;background-color:hsla(var(--color-accent-hsl),.25);opacity:0;padding:1em;inset:50%;translate:-50% -50%;border-radius:var(--radius-s)}</style><script defer="">async function loadIncludes(){let e=document.querySelectorAll("link[itemprop='include']");for(const t of e){let e=t.getAttribute("href");try{let o="";if(e.startsWith("https:")||e.startsWith("http:")||"file:"!=window.location.protocol){const n=await fetch(e);if(!n.ok){console.log("Could not include file: "+e),t?.remove();continue}o=await n.text()}else{const t=document.getElementById(btoa(encodeURI(e)));if(t){const e=JSON.parse(decodeURI(atob(t.getAttribute("value")??"")));o=e?.data??""}}let n=document.createRange().createContextualFragment(o);t.before(n),t.remove(),console.log("Included text: "+o),console.log("Included file: "+e)}catch(o){t?.remove(),console.log("Could not include file: "+e,o);continue}}}document.addEventListener("DOMContentLoaded",(()=>{loadIncludes()}));let isFileProtocol="file:"==location.protocol;function waitLoadScripts(e,t){let o=e.map((e=>document.getElementById(e+"-script")));!function e(n){let l=o[n],c=n+1;l?(l&&"true"!=l.getAttribute("loaded")||n<o.length&&e(c),n<o.length&&l.addEventListener("load",(()=>e(c)))):n<o.length?e(c):t()}(0)}</script></head><body class="publish css-settings-manager styled-scrollbars show-inline-title show-ribbon is-focused"><script defer="">let theme=localStorage.getItem("theme")||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");"dark"==theme?(document.body.classList.add("theme-dark"),document.body.classList.remove("theme-light")):(document.body.classList.add("theme-light"),document.body.classList.remove("theme-dark")),window.innerWidth<480?document.body.classList.add("is-phone"):window.innerWidth<768?document.body.classList.add("is-tablet"):window.innerWidth<1024?document.body.classList.add("is-small-screen"):document.body.classList.add("is-large-screen")</script><div class="parsed-feature-container" style="display: contents;"><link itemprop="include" href="site-lib/html/custom-head-content-content.html"></div><div id="main"><div id="navbar"></div><div id="main-horizontal"><div id="left-content" class="leaf" style="--sidebar-width: var(--sidebar-width-left);"><div id="left-sidebar" class="sidebar"><div class="sidebar-handle"></div><div class="sidebar-topbar"><div class="topbar-content"><div id="search-container"><div id="search-wrapper"><input enterkeyhint="search" type="search" spellcheck="false" placeholder="Search..."><div aria-label="Clear search" id="search-clear-button"></div></div></div></div><div class="clickable-icon sidebar-collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="svg-icon"><path d="M21 3H3C1.89543 3 1 3.89543 1 5V19C1 20.1046 1.89543 21 3 21H21C22.1046 21 23 20.1046 23 19V5C23 3.89543 22.1046 3 21 3Z"></path><path d="M10 4V20"></path><path d="M4 7H7"></path><path d="M4 10H7"></path><path d="M4 13H7"></path></svg></div></div><div class="sidebar-content-wrapper"><div id="left-sidebar-content" class="leaf-content"><link itemprop="include" href="site-lib/html/file-tree-content.html"></div></div><script defer="">let ls = document.querySelector("#left-sidebar"); ls.classList.toggle("is-collapsed", window.innerWidth < 768); ls.style.setProperty("--sidebar-width", localStorage.getItem("sidebar-left-width"));</script></div></div><div id="center-content" class="leaf"><div class="obsidian-document markdown-preview-view markdown-rendered node-insert-event allow-fold-headings allow-fold-lists show-indentation-guide show-properties is-readable-line-width" data-type="markdown"><style id="MJX-CHTML-styles"></style><div class="markdown-preview-sizer markdown-preview-section"><div class="header"><h1 class="page-title heading inline-title" id="04b-User-Guide-ES_0">04b-User-Guide-ES</h1><div class="data-bar"></div></div><div class="markdown-preview-pusher" style="width: 1px; height: 0.1px; margin-bottom: 0px;"></div><div class="el-h1"><h1 data-heading="Guía de usuario — Data360 News Agent" dir="auto" class="heading" id="Guía_de_usuario_—_Data360_News_Agent_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Guía de usuario — Data360 News Agent</h1></div><div class="el-blockquote"><blockquote dir="auto">
+<p><strong>Idioma</strong> · Español · <a class="internal-link" data-href="04a-User-Guide-EN.md" href="04a-user-guide-en.html" target="_self" rel="noopener nofollow">English version</a></p>
+</blockquote></div><div class="el-blockquote"><blockquote dir="auto">
+<p><strong>Audiencia</strong>: redacciones de América Latina y el Caribe.<br>
+<strong>Estado</strong>: borrador funcional al 2026-05-29 (demo fase 2, entrega 2026-05-31).</p>
+</blockquote></div><div class="el-h2"><h2 data-heading="Qué hace esta herramienta" dir="auto" class="heading" id="Qué_hace_esta_herramienta_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Qué hace esta herramienta</h2></div><div class="el-p"><p dir="auto"><strong>Data360 News Agent</strong> es una agencia de noticias basada en inteligencia artificial que detecta hechos noticiosos en los 12.000 indicadores de Data360 y los entrega verificados con perspectiva local a newsrooms LAC.</p></div><div class="el-p"><p dir="auto">El sistema vigila indicadores económicos, sociales y de gobernanza en <strong>Guatemala, Honduras, Argentina, Ecuador y México</strong>. Cuando detecta un hecho estadísticamente notable, publica dos tipos de contenido verificado:</p></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span><strong>Noticia</strong>. Pieza bilingüe (250–600 palabras) por indicador y país, disparada por un candidato de detección.</li>
+<li data-line="1" dir="auto"><span class="list-bullet"></span><strong>Reportaje</strong>. Pieza bilingüe larga (500–1200 palabras) por <em>dataset</em>, generada solo cuando dos o más Noticias comparten el mismo <code>dataset_id</code>. Sintetiza una mirada regional con secciones por país y reutiliza los <code>claim_id</code> de las Noticias que sintetiza.</li>
+</ul></div><div class="el-p"><p dir="auto">Cada pieza queda enlazada a su fuente en <a data-tooltip-position="top" aria-label="https://data360.worldbank.org" rel="noopener nofollow" class="external-link is-unresolved" href="https://data360.worldbank.org" target="_self">data360.worldbank.org</a>.</p></div><div class="el-p"><p dir="auto">El producto tiene tres caras principales:</p></div><div class="el-table" dir="ltr" style="overflow-x: auto;"><table>
+<thead>
+<tr>
+<th dir="ltr">Vista</th>
+<th dir="ltr">URL</th>
+<th dir="ltr">Para qué sirve</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td dir="ltr"><strong>Selector de país</strong></td>
+<td dir="auto"><code>/</code></td>
+<td dir="ltr">Elegir país y ver indicadores recientemente actualizados</td>
+</tr>
+<tr>
+<td dir="ltr"><strong>Portada por país</strong></td>
+<td dir="ltr"><code>/{país}</code> (ej. <code>/mexico</code>)</td>
+<td dir="ltr">Layout de periódico: reportaje destacado, titulares, ticker de indicadores</td>
+</tr>
+<tr>
+<td dir="ltr"><strong>Artículo</strong></td>
+<td dir="ltr"><code>/{país}/{noticia\|reportaje}/{año}/{mes}/{slug}</code></td>
+<td dir="ltr">Lectura completa + chat acotado a la pieza</td>
+</tr>
+<tr>
+<td dir="ltr"><strong>Indicadores globales</strong></td>
+<td dir="ltr"><code>/indicadores</code></td>
+<td dir="ltr">Hub por tier con conteos de alertas y filtros</td>
+</tr>
+<tr>
+<td dir="ltr"><strong>Chat global</strong></td>
+<td dir="ltr"><code>/chat</code></td>
+<td dir="ltr">Exploración libre con presets, freshness y tools Data360</td>
+</tr>
+</tbody>
+</table></div><div class="el-p"><p dir="auto">Todas leen el mismo archivo de alertas (<code>data/alerts.json</code>).</p></div><div class="el-blockquote"><blockquote dir="auto">
+<p><strong>Principio de integridad informativa.</strong> Cada afirmación publicada es verificable en dos clics: tarjeta del indicador → fuente en Data360. El sistema no genera ningún <em>claim</em> sin un indicador, valor, fecha y endpoint de API verificables. La confiabilidad, rastreabilidad y descubribilidad de los datos son el núcleo del producto, no una característica accesoria. Medios de América Latina integran este feed como punto de partida editorial, con criterio propio de publicación.</p>
+</blockquote></div><div class="el-hr"><hr></div><div class="el-h2"><h2 data-heading="Alcance del demo" dir="auto" class="heading" id="Alcance_del_demo_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Alcance del demo</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span><strong>Países</strong>: GTM, HND, ARG, ECU, MEX (no sustituir por BRA, CHL, COL, etc.).</li>
+<li data-line="1" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span><strong>Indicadores</strong>: dos modos de selección.
+<ul class="has-list-bullet">
+<li data-line="2" dir="auto"><span class="list-bullet"></span><strong>Watchlist estático</strong>: ~35 indicadores en tres categorías de actualización (pulso, anual, proyecciones).</li>
+<li data-line="3" dir="auto"><span class="list-bullet"></span><strong>Modo dinámico</strong> (recomendado): indicadores descubiertos en vivo desde el API Data360 y actualizados de forma continua. Es la fuente activa por defecto.</li>
+</ul>
+</li>
+<li data-line="4" dir="auto"><span class="list-bullet"></span><strong>Detección</strong>: estrategias <strong>1</strong> (cambios abruptos, z-score) y <strong>4</strong> (anomalías cross-indicador).</li>
+<li data-line="5" dir="auto"><span class="list-bullet"></span><strong>Modo</strong>: replay histórico sobre snapshots CSV, no tiempo real continuo (D-007).</li>
+<li data-line="6" dir="auto"><span class="list-bullet"></span><strong>Titulares</strong>: integración con GDELT y Gemini para contexto de cobertura mediática preexistente. La estrategia de divergencia narrativa-dato está diseñada; activa en roadmap.</li>
+</ul></div><div class="el-hr"><hr></div><div class="el-h2"><h2 data-heading="Interfaz web" dir="auto" class="heading" id="Interfaz_web_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Interfaz web</h2></div><div class="el-h3"><h3 data-heading="Navegación" dir="auto" class="heading" id="Navegación_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Navegación</h3></div><div class="el-p"><p dir="auto">Barra superior (tema World Bank):</p></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span><strong>Portada</strong> — selector de país y portadas LAC</li>
+<li data-line="1" dir="auto"><span class="list-bullet"></span><strong>Indicadores globales</strong> — hub <code>/indicadores</code></li>
+<li data-line="2" dir="auto"><span class="list-bullet"></span><strong>About</strong> — metodología, límites, equipo, licencia</li>
+<li data-line="3" dir="auto"><span class="list-bullet"></span><strong>Suscribirse</strong> — modal de suscripción (newsletter LAC o alertas por indicador)</li>
+<li data-line="4" dir="auto"><span class="list-bullet"></span><strong>ES / EN</strong> — selector de idioma de interfaz y narrativas</li>
+</ul></div><div class="el-p"><p dir="auto">Páginas legales e informativas: <code>/metodologia</code>, <code>/privacidad</code>, <code>/terminos</code>, <code>/uso</code> (contenido en <code>config/copy/</code>, no en esta guía).</p></div><div class="el-h3"><h3 data-heading="Idiomas" dir="auto" class="heading" id="Idiomas_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Idiomas</h3></div><div class="el-p"><p dir="auto">Selector <strong>ES / EN</strong> en la barra. Cambia la interfaz y el idioma de las narrativas mostradas. Las piezas guardan texto en ambos idiomas en el JSON; la UI muestra <strong>un idioma a la vez</strong> (no hay modo bilingüe simultáneo en pantalla).</p></div><div class="el-p"><p dir="auto">Parámetros URL: <code>?lang=es</code> o <code>?lang=en</code>.</p></div><div class="el-h3"><h3 data-heading="Onboarding" dir="auto" class="heading" id="Onboarding_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Onboarding</h3></div><div class="el-p"><p dir="auto">Modal de bienvenida en la primera visita (dismissible). Presenta <strong>Data360 News Agent</strong> como agencia de noticias con IA: detecta hechos noticiosos en los 12.000 indicadores de Data360 y los entrega verificados con perspectiva local a newsrooms LAC. Forzar con <code>?onboarding=1</code>.</p></div><div class="el-h3"><h3 data-heading="Suscripciones" dir="auto" class="heading" id="Suscripciones_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Suscripciones</h3></div><div class="el-p"><p dir="auto">Botón <strong>Suscribirse</strong> abre un modal con dos tipos:</p></div><div class="el-table" dir="ltr" style="overflow-x: auto;"><table>
+<thead>
+<tr>
+<th dir="ltr">Tipo</th>
+<th dir="ltr">Qué recibirías en producción</th>
+<th dir="ltr">Preview en demo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td dir="ltr"><strong>Newsletter diario LAC</strong></td>
+<td dir="ltr">Un hallazgo verificado por correo cada mañana</td>
+<td dir="ltr"><code>/newsletter</code> → última edición fixture</td>
+</tr>
+<tr>
+<td dir="ltr"><strong>Alertas por indicador</strong></td>
+<td dir="ltr">Aviso cuando se actualiza un indicador o dataset que te interesa</td>
+<td dir="ltr"><code>/indicadores</code> con filtros de país/tema</td>
+</tr>
+</tbody>
+</table></div><div class="el-p"><p dir="auto">En el demo, el formulario guarda email + tipo (+ países/temas opcionales para alertas) en <code>data/newsletter/subscribers.tsv</code> vía <code>POST /api/subscribe</code>. <strong>No se envía correo real</strong> ni confirmación SMTP (roadmap).</p></div><div class="el-p"><p dir="auto">Temas válidos para alertas: macro, fiscal, social, food_security, governance.</p></div><div class="el-hr"><hr></div><div class="el-h2"><h2 data-heading="Selector de país (`/`)" dir="auto" class="heading" id="Selector_de_país_(`/`)_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Selector de país (<code>/</code>)</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span>Enlaces a las cinco portadas LAC (<code>/guatemala</code>, <code>/honduras</code>, …).</li>
+<li data-line="1" dir="auto"><span class="list-bullet"></span>Lista de indicadores recientemente actualizados con enlace al hub o al artículo.</li>
+<li data-line="2" dir="auto"><span class="list-bullet"></span>Deep link legacy: <code>/?alert={id}</code> redirige al artículo canónico si existe <code>_path</code>.</li>
+</ul></div><div class="el-hr"><hr></div><div class="el-h2"><h2 data-heading="Portada por país (`/{país}`)" dir="auto" class="heading" id="Portada_por_país_(`/{país}`)_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Portada por país (<code>/{país}</code>)</h2></div><div class="el-p"><p dir="auto">Layout de periódico (template <code>frontpage.pug</code>):</p></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span><strong>Reportaje destacado</strong> — pieza de profundidad en hero (si hay reportaje para ese país).</li>
+<li data-line="1" dir="auto"><span class="list-bullet"></span><strong>Titulares</strong> — noticias intercaladas con reportajes (<code>interleaveHeadlines()</code>); enlace al artículo.</li>
+<li data-line="2" dir="auto"><span class="list-bullet"></span><strong>Indicadores actualizados</strong> — barra horizontal con chips (valor + magnitud + sparkline); enlace a la noticia.</li>
+<li data-line="3" dir="auto"><span class="list-bullet"></span><strong>Masthead</strong> — etiqueta de edición (mes · año) y antigüedad de datos.</li>
+</ul></div><div class="el-p"><p dir="auto">Orden por <strong>fecha del dato</strong> (<code>time_period</code>), no por fecha de detección.</p></div><div class="el-p"><p dir="auto">Cada titular o chip muestra código de indicador (IDNO), fecha del dato (badge stale si aplica), tipo de detección y narrativa según idioma activo.</p></div><div class="el-p"><p dir="auto">Selector de país en popup (<code>country-menu.js</code>) para saltar entre portadas LAC.</p></div><div class="el-h3"><h3 data-heading="Vista legacy (grid de tarjetas con filtros)" dir="auto" class="heading" id="Vista_legacy_(grid_de_tarjetas_con_filtros)_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Vista legacy (grid de tarjetas con filtros)</h3></div><div class="el-p"><p dir="auto">Disponible en <code>/dev/feed</code> o añadiendo <code>?legacy=1</code> a una portada de país. Renderiza el feed SSR clásico (<code>dashboard.pug</code>) con filtros cliente:</p></div><div class="el-table" dir="ltr" style="overflow-x: auto;"><table>
+<thead>
+<tr>
+<th dir="ltr">Filtro</th>
+<th dir="ltr">Opciones</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td dir="ltr"><strong>País</strong></td>
+<td dir="ltr">ALL o un ISO3 del feed</td>
+</tr>
+<tr>
+<td dir="ltr"><strong>Categoría</strong></td>
+<td dir="ltr">ALL o categoría temática</td>
+</tr>
+<tr>
+<td dir="ltr"><strong>Tipo de contenido</strong></td>
+<td dir="ltr">ALL · Noticia · Reportaje</td>
+</tr>
+<tr>
+<td dir="ltr"><strong>Variante de tarjeta</strong></td>
+<td dir="ltr">Narrative · Number · Newspaper</td>
+</tr>
+</tbody>
+</table></div><div class="el-p"><p dir="auto">Los filtros ocultan tarjetas con CSS; el contador de eventos se actualiza al instante. Estado en URL (<code>?country=ARG&amp;category=economy&amp;variant=narr</code>).</p></div><div class="el-hr"><hr></div><div class="el-h2"><h2 data-heading="Artículo (`/{país}/{tipo}/{año}/{mes}/{slug}`)" dir="auto" class="heading" id="Artículo_(`/{país}/{tipo}/{año}/{mes}/{slug}`)_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Artículo (<code>/{país}/{tipo}/{año}/{mes}/{slug}</code>)</h2></div><div class="el-p"><p dir="auto">Página de lectura con:</p></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span>Titular, lead, story completa con tokens PCN resueltos</li>
+<li data-line="1" dir="auto"><span class="list-bullet"></span>Sparkline histórico, valor, periodo, magnitud</li>
+<li data-line="2" dir="auto"><span class="list-bullet"></span>Trazabilidad: enlace Data360, CSV, metodología</li>
+<li data-line="3" dir="auto"><span class="list-bullet"></span>Disclaimer de uso editorial y metadatos de producción</li>
+<li data-line="4" dir="auto"><span class="list-bullet"></span>CTA de suscripción al newsletter en el pie</li>
+</ul></div><div class="el-h3"><h3 data-heading="Chat por pieza (primario)" dir="auto" class="heading" id="Chat_por_pieza_(primario)_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Chat por pieza (primario)</h3></div><div class="el-p"><p dir="auto">Cada artículo incluye un <strong>FAB de chat acotado</strong> (<code>floating-chat.pug</code> + <code>alert-chat.js</code>). La conversación se guarda en <code>sessionStorage</code> por <code>alert_id</code> y, al recargar, se restauran markdown, trace de tools, sparklines en caché y pasos de actividad.</p></div><div class="el-p"><p dir="auto">El agente usa <code>lib/prompts/chat-scoped-system.md</code> y recibe:</p></div><div class="el-ol"><ol>
+<li data-line="0" dir="auto"><strong>Pieza publicada</strong> — titular, lead, story y <code>claim_id</code>s del JSON.</li>
+<li data-line="1" dir="auto"><strong>Contexto de generación</strong> — markdown omnibus de <code>data/analyses/{IDNO}.md</code> (fallback <code>*.llm-call.md</code>). En reportajes se concatenan los <code>.md</code> de cada indicador del dataset.</li>
+</ol></div><div class="el-p"><p dir="auto">Límite: <code>CHAT_GENERATION_CONTEXT_MAX_CHARS</code> (default 48000).</p></div><div class="el-hr"><hr></div><div class="el-h2"><h2 data-heading="Indicadores globales (`/indicadores`)" dir="auto" class="heading" id="Indicadores_globales_(`/indicadores`)_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Indicadores globales (<code>/indicadores</code>)</h2></div><div class="el-p"><p dir="auto">Hub con indicadores agrupados por tier (annual, forecast, dynamic), conteo de alertas por IDNO, indicadores recientes y filtros URL (<code>?countries=ARG,MEX&amp;topics=macro</code>).</p></div><div class="el-p"><p dir="auto">Detalle por indicador: <code>/indicador/{IDNO}</code> — metadata, alertas por país, enlaces a artículos.</p></div><div class="el-hr"><hr></div><div class="el-h2"><h2 data-heading="Newsletter (`/newsletter`, `/newsletter/lac/{fecha}`)" dir="auto" class="heading" id="Newsletter_(`/newsletter`,_`/newsletter/lac/{fecha}`)_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Newsletter (<code>/newsletter</code>, <code>/newsletter/lac/{fecha}</code>)</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span><code>/newsletter</code> redirige a la edición LAC más reciente en <code>data/newsletter/editions/</code>.</li>
+<li data-line="1" dir="auto"><span class="list-bullet"></span>Cada edición fixture incluye hero, titulares secundarios, subject/preheader bilingüe y CTA a portada o artículo.</li>
+<li data-line="2" dir="auto"><span class="list-bullet"></span>Enlace desde el modal de suscripción y desde el pie de artículos.</li>
+</ul></div><div class="el-hr"><hr></div><div class="el-h2"><h2 data-heading="Chat analítico global (`/chat`)" dir="auto" class="heading" id="Chat_analítico_global_(`/chat`)_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Chat analítico global (<code>/chat</code>)</h2></div><div class="el-h3"><h3 data-heading="Flujo general" dir="auto" class="heading" id="Flujo_general_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Flujo general</h3></div><div class="el-ol"><ol>
+<li data-line="0" dir="auto">Elegí un <strong>preset</strong> o escribí una pregunta.</li>
+<li data-line="1" dir="auto">Opcional: ajustá <strong>País foco</strong> (dropdown).</li>
+<li data-line="2" dir="auto">El agente llama <strong>tools</strong> del pipeline (SSE en vivo).</li>
+<li data-line="3" dir="auto">La respuesta incluye markdown, sparklines, tarjetas de alerta y trazabilidad de fuentes.</li>
+</ol></div><div class="el-h3"><h3 data-heading="Presets integrados" dir="auto" class="heading" id="Presets_integrados_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Presets integrados</h3></div><div class="el-table" dir="ltr" style="overflow-x: auto;"><table>
+<thead>
+<tr>
+<th dir="ltr">Preset</th>
+<th dir="ltr">Acción típica</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td dir="ltr"><strong>Actualizados Data360</strong></td>
+<td dir="ltr">Catálogo freshness + cómo pedir gráfica/análisis</td>
+</tr>
+<tr>
+<td dir="ltr"><strong>Analizar indicador</strong></td>
+<td dir="ltr">Pipeline sobre un IDNO (ej. FAO_CP_23012)</td>
+</tr>
+<tr>
+<td dir="ltr"><strong>Titulares recientes</strong></td>
+<td dir="ltr">Leer titulares en disco</td>
+</tr>
+<tr>
+<td dir="ltr"><strong>Alertas del monitor</strong></td>
+<td dir="ltr">Listar alertas por fecha del dato</td>
+</tr>
+<tr>
+<td dir="ltr"><strong>Comparar países (MCP)</strong></td>
+<td dir="ltr">Deuda pública % PIB en los 5 países</td>
+</tr>
+<tr>
+<td dir="ltr"><strong>Buscar indicador</strong></td>
+<td dir="ltr">Búsqueda semántica Data360</td>
+</tr>
+<tr>
+<td dir="ltr"><strong>Actualizar noticias</strong></td>
+<td dir="ltr">Fetch titulares + resumen</td>
+</tr>
+</tbody>
+</table></div><div class="el-h3"><h3 data-heading="País foco" dir="auto" class="heading" id="País_foco_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>País foco</h3></div><div class="el-p"><p dir="auto">Dropdown <strong>Todos</strong> o un país (GTM · Guatemala, etc.). En cada consulta se envía <code>focus_countries</code> al servidor; si cambiaste el foco, el agente recibe una nota explícita.</p></div><div class="el-h3"><h3 data-heading="Catálogo freshness" dir="auto" class="heading" id="Catálogo_freshness_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Catálogo freshness</h3></div><div class="el-p"><p dir="auto">Botón <strong>Datos recién publicados (N)</strong> abre panel con indicadores cuyo CSV cambió (<code>data/changed-since.json</code>). Por fila: tier, IDNO, fecha blob, botones <strong>Gráfica</strong> y <strong>Análisis</strong>.</p></div><div class="el-h3"><h3 data-heading="Exportar conversación" dir="auto" class="heading" id="Exportar_conversación_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Exportar conversación</h3></div><div class="el-p"><p dir="auto">Copiar markdown, descargar <code>.md</code>, imprimir PDF (<code>chat-export.js</code>).</p></div><div class="el-h3"><h3 data-heading="Reglas del agente (resumen)" dir="auto" class="heading" id="Reglas_del_agente_(resumen)_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Reglas del agente (resumen)</h3></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span><strong>No inventa cifras</strong>; debe llamar tools Data360 antes de afirmar números.</li>
+<li data-line="1" dir="auto"><span class="list-bullet"></span><strong>Titulares</strong>: debe llamar <code>fetch_news</code> / <code>read_news</code>.</li>
+<li data-line="2" dir="auto"><span class="list-bullet"></span><strong>Análisis</strong>: primero <code>list_alerts</code>; solo <code>run_analysis</code> si no hay alertas en disco.</li>
+<li data-line="3" dir="auto"><span class="list-bullet"></span><strong>Gráficas</strong>: <code>mcp_get_data</code> + bloque sparkline.</li>
+<li data-line="4" dir="auto"><span class="list-bullet"></span>Enlaces al monitor: deep link al artículo canónico o <code>/?alert=ID</code>.</li>
+</ul></div><div class="el-hr"><hr></div><div class="el-h2"><h2 data-heading="About (`/about`)" dir="auto" class="heading" id="About_(`/about`)_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>About (<code>/about</code>)</h2></div><div class="el-p"><p dir="auto">Página estática con: qué es el producto, alcance LAC, metodología de detección, verificación PCN, limitaciones del demo, roadmap (NiFi, OpenSearch, Strategy 2), equipo Abrimos.info y licencia GPLv3.</p></div><div class="el-hr"><hr></div><div class="el-h2"><h2 data-heading="Anatomía de una alerta" dir="auto" class="heading" id="Anatomía_de_una_alerta_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Anatomía de una alerta</h2></div><div class="el-table" dir="ltr" style="overflow-x: auto;"><table>
+<thead>
+<tr>
+<th dir="ltr">Campo</th>
+<th dir="ltr">Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td dir="ltr"><code>id</code></td>
+<td dir="ltr">Identificador único</td>
+</tr>
+<tr>
+<td dir="ltr"><code>content_type</code></td>
+<td dir="ltr"><code>noticia</code> o <code>reportaje</code></td>
+</tr>
+<tr>
+<td dir="ltr"><code>title</code> / <code>lead</code> / <code>story</code></td>
+<td dir="ltr">Texto bilingüe <code>{ es, en }</code></td>
+</tr>
+<tr>
+<td dir="ltr"><code>country</code></td>
+<td dir="ltr">ISO3 del país de la pieza (<code>GTM</code>, <code>HND</code>, <code>ARG</code>, <code>ECU</code>, <code>MEX</code>)</td>
+</tr>
+<tr>
+<td dir="ltr"><code>dataset_id</code></td>
+<td dir="ltr">Identificador del dataset Data360</td>
+</tr>
+<tr>
+<td dir="ltr"><code>indicator</code></td>
+<td dir="ltr">(Solo <strong>Noticia</strong>) IDNO, <code>database_id</code>, <code>name</code> bilingüe</td>
+</tr>
+<tr>
+<td dir="ltr"><code>indicators</code></td>
+<td dir="ltr">(Solo <strong>Reportaje</strong>) lista de IDNO cubiertos (≥2)</td>
+</tr>
+<tr>
+<td dir="ltr"><code>noticia_ids</code></td>
+<td dir="ltr">(Solo <strong>Reportaje</strong>) ids de las Noticias sintetizadas</td>
+</tr>
+<tr>
+<td dir="ltr"><code>observation</code></td>
+<td dir="ltr">valor, <code>time_period</code>, unit</td>
+</tr>
+<tr>
+<td dir="ltr"><code>claim_tokens</code></td>
+<td dir="ltr">Valores verificables con <code>claim_id</code></td>
+</tr>
+<tr>
+<td dir="ltr"><code>verification_trace</code></td>
+<td dir="ltr">URLs Data360: dataset + CSV(s) + metodología</td>
+</tr>
+<tr>
+<td dir="ltr"><code>chart_series</code></td>
+<td dir="ltr">Puntos <code>{period, value}</code> para sparkline</td>
+</tr>
+<tr>
+<td dir="ltr"><code>score</code></td>
+<td dir="ltr">Severidad normalizada (0–1)</td>
+</tr>
+<tr>
+<td dir="ltr"><code>detected_at</code></td>
+<td dir="ltr">Timestamp ISO de generación</td>
+</tr>
+<tr>
+<td dir="ltr"><code>data_period_stale</code></td>
+<td dir="ltr">Si el dato es anterior al umbral de frescura</td>
+</tr>
+</tbody>
+</table></div><div class="el-p"><p dir="auto">Esquema formal: <code>docs/alert-schema.json</code>.</p></div><div class="el-p"><p dir="auto">URLs canónicas: <code>/{countrySlug}/{noticia|reportaje}/{year}/{month}/{slug}</code> (<code>lib/url-slug.js</code>).</p></div><div class="el-hr"><hr></div><div class="el-h2"><h2 data-heading="Flujo editorial — de alerta a publicación" dir="auto" class="heading" id="Flujo_editorial_—_de_alerta_a_publicación_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Flujo editorial — de alerta a publicación</h2></div><div class="el-p"><p dir="auto"><strong>El sistema sugiere; la redacción decide.</strong> El agente produce un borrador verificado; el editor evalúa noticiabilidad, ajusta contexto local y toma la decisión de publicar.</p></div><div class="el-ol"><ol>
+<li data-line="0" dir="auto"><strong>Recibir la alerta</strong> — el feed muestra indicador, valor, magnitud del cambio y fecha del dato.</li>
+<li data-line="1" dir="auto"><strong>Leer la narrativa</strong> — revisar el borrador; contrastar el ángulo con cobertura existente (el chat global puede mostrar titulares GDELT por país).</li>
+<li data-line="2" dir="auto"><strong>Verificar los claim tokens</strong> — cada afirmación numerada enlaza a su fuente en Data360. Seguir Sources: dataset → CSV → metodología.</li>
+<li data-line="3" dir="auto"><strong>Confirmar el periodo</strong> — el <code>time_period</code> es la fecha del dato, no la de detección. Publicar según la fecha real del dato.</li>
+<li data-line="4" dir="auto"><strong>Editar y publicar</strong> — ajustar tono, agregar contexto local, incorporar fuentes propias. Usar <strong>Copiar cita</strong> para pegar texto + URL en el CMS.</li>
+</ol></div><div class="el-blockquote"><blockquote dir="auto">
+<p>La <strong>verification trace</strong> — el rastro de fuentes que enlaza cada <em>claim</em> con su dato original en Data360 — es pública y reproducible. Cualquier lector puede verificar la cadena completa: afirmación → indicador → API → metodología.</p>
+</blockquote></div><div class="el-p"><p dir="auto">Más contexto metodológico: <code>docs/data360-integration-methodology.md</code>.</p></div><div class="el-hr"><hr></div><div class="el-h2"><h2 data-heading="Fuentes de datos" dir="auto" class="heading" id="Fuentes_de_datos_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Fuentes de datos</h2></div><div class="el-table" dir="ltr" style="overflow-x: auto;"><table>
+<thead>
+<tr>
+<th dir="ltr">Fuente</th>
+<th dir="ltr">Uso en el demo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td dir="ltr"><strong>Data360 API v3</strong> (REST + MCP opcional)</td>
+<td dir="ltr">Indicadores, series, comparaciones</td>
+</tr>
+<tr>
+<td dir="ltr"><strong>CSVs locales</strong> <code>data/context/</code></td>
+<td dir="ltr">Detección y narrativa offline</td>
+</tr>
+<tr>
+<td dir="ltr"><strong>GDELT DOC API v2</strong> / <strong>Gemini</strong></td>
+<td dir="ltr">Titulares prensa (script dependiente)</td>
+</tr>
+<tr>
+<td dir="ltr"><strong>Freshness probe</strong></td>
+<td dir="ltr"><code>data/changed-since.json</code>, <code>data/index.json</code></td>
+</tr>
+</tbody>
+</table></div><div class="el-hr"><hr></div><div class="el-h2"><h2 data-heading="Pipeline (para equipos técnicos)" dir="auto" class="heading" id="Pipeline_(para_equipos_técnicos)_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Pipeline (para equipos técnicos)</h2></div><div class="el-pre"><pre class="language-bash"><code data-line="0" class="language-bash is-loaded"><span class="token function">npm</span> run fetch                    <span class="token comment"># descarga CSV + data dictionary + meta.json</span>
+<span class="token function">npm</span> run fetch:probe              <span class="token comment"># solo sonda de cambios (~2 s)</span>
+<span class="token function">npm</span> run fetch:news               <span class="token comment"># titulares (Gemini, watchlist dinámico)</span>
+<span class="token function">npm</span> run analyze                  <span class="token comment"># detección + Noticias + Reportajes → data/alerts.json</span>
+<span class="token function">npm</span> run analyze:changed          <span class="token comment"># analyze solo indicadores changed-since</span>
+<span class="token function">npm</span> run analyze:noticias         <span class="token comment"># solo Fase 1</span>
+<span class="token function">npm</span> run analyze:reportajes       <span class="token comment"># solo Fase 2</span>
+<span class="token function">npm</span> run analyze:no-llm           <span class="token comment"># pipeline sin LLM</span>
+<span class="token function">npm</span> run discover                 <span class="token comment"># /searchv2 → dynamic-watchlist.json</span>
+<span class="token function">npm</span> run pipeline                 <span class="token comment"># discover → fetch → news → analyze → newsletter</span>
+<span class="token function">npm</span> run pipeline:force           <span class="token comment"># igual, bypass ETag en fetch</span>
+<span class="token function">npm</span> run build                    <span class="token comment"># alias de pipeline</span>
+<span class="token function">npm</span> run pipeline:news-gdelt      <span class="token comment"># fetch GDELT contra watchlist</span>
+<span class="token function">npm</span> run generate:newsletter      <span class="token comment"># edición LAC del día (también al final de pipeline)</span>
+<span class="token function">npm</span> run replay:daily             <span class="token comment"># replay histórico día a día (fetch + analyze + newsletter)</span>
+<span class="token function">npm</span> run dev                      <span class="token comment"># servidor web :8090 (desarrollo)</span>
+<span class="token function">npm</span> run start                    <span class="token comment"># producción</span>
+<span class="token function">npm</span> <span class="token builtin class-name">test</span>                         <span class="token comment"># tests Node</span>
+</code><button class="copy-code-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-copy"><rect x="8" y="8" width="14" height="14" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></pre></div><div class="el-p"><p dir="auto">Flujo completo: <code>npm run pipeline</code> (o <code>npm run build</code>).<br>
+Pasos sueltos: <code>fetch</code> → <code>fetch:news</code> (opcional) → <code>analyze</code>.<br>
+Replay multi-día: <code>replay:daily --from=2026-05-22 --to=2026-05-29</code> (respeta <code>CLAUDE_EFFORT</code>).</p></div><div class="el-p"><p dir="auto">Salida principal: <strong><code>data/alerts.json</code></strong>.</p></div><div class="el-h3"><h3 data-heading="Variables de entorno" dir="auto" class="heading" id="Variables_de_entorno_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Variables de entorno</h3></div><div class="el-p"><p dir="auto">Referencia completa: <code>docs/environment-variables.md</code> (repo). Plantilla: <code>.env.example</code> (repo).</p></div><div class="el-table" dir="ltr" style="overflow-x: auto;"><table>
+<thead>
+<tr>
+<th dir="ltr">Grupo</th>
+<th dir="ltr">Variables clave</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td dir="ltr">Pipeline LLM</td>
+<td dir="ltr"><code>AI_PROVIDER</code>, <code>AI_MODEL_NOTICIA</code>, <code>AI_MODEL_REPORTAJE</code>, <code>NOTICIA_TRANSLATE</code></td>
+</tr>
+<tr>
+<td dir="ltr">Claude</td>
+<td dir="ltr"><code>CLAUDE_MODEL</code>, <code>CLAUDE_EFFORT</code> (<code>low</code> | <code>medium</code> | <code>high</code>)</td>
+</tr>
+<tr>
+<td dir="ltr">Chat</td>
+<td dir="ltr"><code>CHAT_AI_PROVIDER</code>, <code>CHAT_MAX_TURNS</code>, <code>CHAT_GENERATION_CONTEXT_MAX_CHARS</code></td>
+</tr>
+<tr>
+<td dir="ltr">Análisis</td>
+<td dir="ltr"><code>ANALYSIS_CHANGED_ONLY</code>, <code>ANALYSIS_MAX_INDICATORS</code>, <code>AI_SLIM_CONTEXT</code></td>
+</tr>
+<tr>
+<td dir="ltr">Servidor</td>
+<td dir="ltr"><code>D360_PORT</code>, <code>NODE_ENV</code>, <code>MCP_URL</code></td>
+</tr>
+</tbody>
+</table></div><div class="el-p"><p dir="auto"><code>CLAUDE_EFFORT</code> controla el flag <code>--effort=</code> del CLI Claude en análisis, newsletter y <code>replay:daily</code>. Default vacío (sin flag); <code>replay:daily</code> usa <code>medium</code> si no se define.</p></div><div class="el-h3"><h3 data-heading="Esquema de alertas" dir="auto" class="heading" id="Esquema_de_alertas_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Esquema de alertas</h3></div><div class="el-p"><p dir="auto">Cada Noticia y Reportaje lleva un único campo <strong><code>country</code></strong> (ISO3), no una lista. El esquema formal está en <code>docs/alert-schema.json</code>.</p></div><div class="el-h3"><h3 data-heading="Frontend — CSS crítico" dir="auto" class="heading" id="Frontend_—_CSS_crítico_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Frontend — CSS crítico</h3></div><div class="el-p"><p dir="auto"><code>templates/layout.pug</code> carga <code>static/css/layout.css</code> en el <code>&lt;head&gt;</code> (bloqueante) con tokens, tema WB y chrome. El resto de estilos de página viven en <code>static/css/main.css</code> y se incluyen por template. Esto reduce FOUC en la shell de la app.</p></div><div class="el-hr"><hr></div><div class="el-h2"><h2 data-heading="API HTTP (demo)" dir="auto" class="heading" id="API_HTTP_(demo)_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>API HTTP (demo)</h2></div><div class="el-table" dir="ltr" style="overflow-x: auto;"><table>
+<thead>
+<tr>
+<th dir="ltr">Método</th>
+<th dir="ltr">Ruta</th>
+<th dir="ltr">Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td dir="ltr">GET</td>
+<td dir="auto"><code>/</code></td>
+<td dir="ltr">Selector de país (HTML)</td>
+</tr>
+<tr>
+<td dir="ltr">GET</td>
+<td dir="ltr"><code>/{país}</code></td>
+<td dir="ltr">Portada por país (HTML)</td>
+</tr>
+<tr>
+<td dir="ltr">GET</td>
+<td dir="ltr"><code>/{país}/{tipo}/{y}/{m}/{slug}</code></td>
+<td dir="ltr">Artículo (HTML)</td>
+</tr>
+<tr>
+<td dir="ltr">GET</td>
+<td dir="ltr"><code>/indicadores</code>, <code>/indicators</code></td>
+<td dir="ltr">Hub indicadores (HTML)</td>
+</tr>
+<tr>
+<td dir="ltr">GET</td>
+<td dir="ltr"><code>/indicador/{IDNO}</code></td>
+<td dir="ltr">Detalle indicador (HTML)</td>
+</tr>
+<tr>
+<td dir="ltr">GET</td>
+<td dir="ltr"><code>/chat</code></td>
+<td dir="ltr">Chat global (HTML)</td>
+</tr>
+<tr>
+<td dir="ltr">GET</td>
+<td dir="ltr"><code>/about</code></td>
+<td dir="ltr">About (HTML)</td>
+</tr>
+<tr>
+<td dir="ltr">GET</td>
+<td dir="ltr"><code>/metodologia</code>, <code>/privacidad</code>, <code>/terminos</code>, <code>/uso</code></td>
+<td dir="ltr">Páginas estáticas (HTML)</td>
+</tr>
+<tr>
+<td dir="ltr">GET</td>
+<td dir="ltr"><code>/newsletter</code></td>
+<td dir="ltr">Redirect a última edición LAC</td>
+</tr>
+<tr>
+<td dir="ltr">GET</td>
+<td dir="ltr"><code>/newsletter/lac/{date}</code></td>
+<td dir="ltr">Edición newsletter (HTML)</td>
+</tr>
+<tr>
+<td dir="ltr">GET</td>
+<td dir="ltr"><code>/alertas/{país}/ejemplo</code></td>
+<td dir="ltr">Preview suscripción alertas</td>
+</tr>
+<tr>
+<td dir="ltr">GET</td>
+<td dir="ltr"><code>/dev/feed</code></td>
+<td dir="ltr">Feed legacy con filtros (HTML)</td>
+</tr>
+<tr>
+<td dir="ltr">GET</td>
+<td dir="ltr"><code>/api/alerts</code></td>
+<td dir="ltr">JSON <code>{ alerts: [...] }</code></td>
+</tr>
+<tr>
+<td dir="ltr">POST</td>
+<td dir="ltr"><code>/api/subscribe</code></td>
+<td dir="ltr">JSON <code>{ email, subscription_type, countries?, topics?, lang? }</code></td>
+</tr>
+<tr>
+<td dir="ltr">POST</td>
+<td dir="ltr"><code>/api/chat</code></td>
+<td dir="ltr">SSE agente</td>
+</tr>
+<tr>
+<td dir="ltr">GET</td>
+<td dir="ltr"><code>/static/*</code></td>
+<td dir="ltr">Assets estáticos</td>
+</tr>
+</tbody>
+</table></div><div class="el-hr"><hr></div><div class="el-h2"><h2 data-heading="Tools del agente (chat)" dir="auto" class="heading" id="Tools_del_agente_(chat)_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Tools del agente (chat)</h2></div><div class="el-table" dir="ltr" style="overflow-x: auto;"><table>
+<thead>
+<tr>
+<th dir="ltr">Tool</th>
+<th dir="ltr">Función</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td dir="ltr"><code>list_alerts</code></td>
+<td dir="ltr">Alertas locales filtradas</td>
+</tr>
+<tr>
+<td dir="ltr"><code>run_analysis</code></td>
+<td dir="ltr">Pipeline por IDNO; cache salvo <code>force: true</code></td>
+</tr>
+<tr>
+<td dir="ltr"><code>read_news</code> / <code>fetch_news</code></td>
+<td dir="ltr">Titulares en disco / actualizar</td>
+</tr>
+<tr>
+<td dir="ltr"><code>read_freshness</code></td>
+<td dir="ltr">Catálogo indicadores actualizados</td>
+</tr>
+<tr>
+<td dir="ltr"><code>mcp_search_indicators</code></td>
+<td dir="ltr">Búsqueda Data360</td>
+</tr>
+<tr>
+<td dir="ltr"><code>mcp_get_data</code></td>
+<td dir="ltr">Serie por indicador y país</td>
+</tr>
+<tr>
+<td dir="ltr"><code>mcp_compare_countries</code></td>
+<td dir="ltr">Comparación LAC</td>
+</tr>
+<tr>
+<td dir="ltr"><code>mcp_rank_countries</code></td>
+<td dir="ltr">Ranking países</td>
+</tr>
+<tr>
+<td dir="ltr"><code>mcp_summarize_data</code></td>
+<td dir="ltr">Resumen estadístico</td>
+</tr>
+</tbody>
+</table></div><div class="el-p"><p dir="auto">Definiciones: <code>lib/chat/tools.js</code>.</p></div><div class="el-hr"><hr></div><div class="el-h2"><h2 data-heading="Cuándo usar cada vista" dir="auto" class="heading" id="Cuándo_usar_cada_vista_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Cuándo usar cada vista</h2></div><div class="el-table" dir="ltr" style="overflow-x: auto;"><table>
+<thead>
+<tr>
+<th dir="ltr">Necesidad</th>
+<th dir="ltr">Portada</th>
+<th dir="ltr">Artículo + chat</th>
+<th dir="ltr">Chat global</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td dir="ltr">Browse rápido por país</td>
+<td dir="auto">✓</td>
+<td dir="auto"></td>
+<td dir="auto"></td>
+</tr>
+<tr>
+<td dir="ltr">Lectura editorial completa</td>
+<td dir="auto"></td>
+<td dir="auto">✓</td>
+<td dir="auto"></td>
+</tr>
+<tr>
+<td dir="ltr">Verificación PCN</td>
+<td dir="ltr">✓ (legacy panel)</td>
+<td dir="auto">✓</td>
+<td dir="ltr">parcial</td>
+</tr>
+<tr>
+<td dir="ltr">Pregunta sobre una pieza publicada</td>
+<td dir="auto"></td>
+<td dir="auto">✓</td>
+<td dir="auto"></td>
+</tr>
+<tr>
+<td dir="ltr">Explorar 12k indicadores</td>
+<td dir="auto"></td>
+<td dir="auto"></td>
+<td dir="auto">✓</td>
+</tr>
+<tr>
+<td dir="ltr">Gráfica sin alerta previa</td>
+<td dir="auto"></td>
+<td dir="auto"></td>
+<td dir="auto">✓</td>
+</tr>
+<tr>
+<td dir="ltr">Re-análisis bajo demanda</td>
+<td dir="auto"></td>
+<td dir="auto">✓</td>
+<td dir="auto">✓</td>
+</tr>
+<tr>
+<td dir="ltr">Exportar sesión</td>
+<td dir="auto"></td>
+<td dir="auto">✓</td>
+<td dir="auto">✓</td>
+</tr>
+</tbody>
+</table></div><div class="el-hr"><hr></div><div class="el-h2"><h2 data-heading="Limitaciones conocidas (demo)" dir="auto" class="heading" id="Limitaciones_conocidas_(demo)_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Limitaciones conocidas (demo)</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span>Sin orquestación NiFi ni OpenSearch en runtime.</li>
+<li data-line="1" dir="auto"><span class="list-bullet"></span>Chat depende de LLM configurado; puede alucinar si no usa tools.</li>
+<li data-line="2" dir="auto"><span class="list-bullet"></span>Cobertura GDELT desigual (HND/GTM más débil).</li>
+<li data-line="3" dir="auto"><span class="list-bullet"></span>Suscripción guarda email en TSV local; <strong>sin envío ni desuscripción automatizada por correo</strong>.</li>
+<li data-line="4" dir="auto"><span class="list-bullet"></span>Strategy 2 (divergencia titular-dato): diseñada, no activa en detección.</li>
+<li data-line="5" dir="auto"><span class="list-bullet"></span><code>run_analysis</code> puede tardar minutos y tiene costo LLM.</li>
+</ul></div><div class="el-p"><p dir="auto">Roadmap: <code>docs/architecture-overview.md</code>, <code>docs/sustainability-plan.md</code>.</p></div><div class="el-hr"><hr></div><div class="el-h2"><h2 data-heading="Documentación relacionada" dir="auto" class="heading" id="Documentación_relacionada_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Documentación relacionada</h2></div><div class="el-table" dir="ltr" style="overflow-x: auto;"><table>
+<thead>
+<tr>
+<th dir="ltr">Documento</th>
+<th dir="ltr">Contenido</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td dir="ltr"><code>docs/features-reference.md</code> (repo)</td>
+<td dir="ltr">Referencia técnica exhaustiva</td>
+</tr>
+<tr>
+<td dir="ltr"><a class="internal-link" data-href="03a-Architecture-Overview.md" href="03a-architecture-overview.html" target="_self" rel="noopener nofollow">Arquitectura del sistema</a></td>
+<td dir="ltr">Arquitectura demo vs producción</td>
+</tr>
+<tr>
+<td dir="ltr"><code>docs/frontend-architecture.md</code> (repo)</td>
+<td dir="ltr">Pug, JS, rutas</td>
+</tr>
+<tr>
+<td dir="ltr"><code>docs/data-fetcher-architecture.md</code> (repo)</td>
+<td dir="ltr">Freshness probe y fetch</td>
+</tr>
+<tr>
+<td dir="ltr"><a class="internal-link" data-href="03b-Data360-API-Integration-Methodology.md" href="03b-data360-api-integration-methodology.html" target="_self" rel="noopener nofollow">Metodología de integración Data360</a></td>
+<td dir="ltr">Integración API Data360</td>
+</tr>
+<tr>
+<td dir="ltr"><code>docs/news-architecture.md</code> (repo)</td>
+<td dir="ltr">Subsistema de titulares</td>
+</tr>
+<tr>
+<td dir="ltr"><a class="internal-link" data-href="03c-Security-Data-Handling-Protocols.md" href="03c-security-data-handling-protocols.html" target="_self" rel="noopener nofollow">Seguridad y manejo de datos</a></td>
+<td dir="ltr">Manejo de datos</td>
+</tr>
+<tr>
+<td dir="ltr"><code>docs/environment-variables.md</code> (repo)</td>
+<td dir="ltr">Tabla de variables de entorno</td>
+</tr>
+<tr>
+<td dir="ltr"><a class="internal-link" data-href="04a-User-Guide-EN.md" href="04a-user-guide-en.html" target="_self" rel="noopener nofollow">User guide (EN)</a></td>
+<td dir="ltr">Esta guía en inglés</td>
+</tr>
+<tr>
+<td dir="ltr"><code>CLAUDE.md</code> (repo)</td>
+<td dir="ltr">Decisiones internas del repo</td>
+</tr>
+</tbody>
+</table></div><div class="el-hr"><hr></div><div class="el-h2"><h2 data-heading="Más allá del prototipo" dir="auto" class="heading" id="Más_allá_del_prototipo_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Más allá del prototipo</h2></div><div class="el-p"><p dir="auto">El demo cubre cinco países de América Latina y el Caribe como prueba de concepto. El conector Data360 es agnóstico de país: los 200+ países que cubre Data360 son el horizonte técnico real, no una promesa futura — el prototipo limita la cobertura por foco, no por restricción arquitectónica.</p></div><div class="el-p"><p dir="auto">El código es libre bajo <strong>GPLv3</strong>: cualquier derivado debe seguir siendo un bien público. El core de verificación es y permanecerá accesible para medios de interés público en el Sur Global. El diseño auto-hospedable garantiza soberanía de datos y costo predecible para redacciones en países en desarrollo.</p></div><div class="el-p"><p dir="auto">Roadmap completo: <code>docs/architecture-overview.md</code>, <code>docs/sustainability-plan.md</code>.</p></div><div class="el-hr"><hr></div><div class="el-h2"><h2 data-heading="Contacto y licencia" dir="auto" class="heading" id="Contacto_y_licencia_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Contacto y licencia</h2></div><div class="el-p"><p dir="auto"><strong>Abrimos.info</strong> — <a data-tooltip-position="top" aria-label="https://abrimos.info" rel="noopener nofollow" class="external-link is-unresolved" href="https://abrimos.info" target="_self">abrimos.info</a><br>
+Repositorio: <a data-tooltip-position="top" aria-label="https://github.com/abrimos-info/abrimos-data360-monitor" rel="noopener nofollow" class="external-link is-unresolved" href="https://github.com/abrimos-info/abrimos-data360-monitor" target="_self">abrimos-info/abrimos-data360-monitor</a><br>
+Licencia: <strong>GPLv3</strong></p></div><div class="footer"><div class="data-bar"></div></div></div></div></div><div id="right-content" class="leaf" style="--sidebar-width: var(--sidebar-width-right);"><div id="right-sidebar" class="sidebar"><div class="sidebar-handle"></div><div class="sidebar-topbar"><div class="topbar-content"><label class="theme-toggle-container" for="theme-toggle-input" id=""><input class="theme-toggle-input" type="checkbox" id="theme-toggle-input"><div class="toggle-background"></div></label></div><div class="clickable-icon sidebar-collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="svg-icon"><path d="M21 3H3C1.89543 3 1 3.89543 1 5V19C1 20.1046 1.89543 21 3 21H21C22.1046 21 23 20.1046 23 19V5C23 3.89543 22.1046 3 21 3Z"></path><path d="M10 4V20"></path><path d="M4 7H7"></path><path d="M4 10H7"></path><path d="M4 13H7"></path></svg></div></div><div class="sidebar-content-wrapper"><div id="right-sidebar-content" class="leaf-content"><div class="graph-view-wrapper"><div class="feature-header"><div class="feature-title">Interactive Graph</div></div><div class="graph-view-placeholder">
+		<div class="graph-view-container">
+			<div class="graph-icon graph-expand" role="button" aria-label="Expand" data-tooltip-position="top"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></div>
+			<div class="graph-icon graph-global" role="button" aria-label="Global Graph" data-tooltip-position="top"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-git-fork"><circle cx="12" cy="18" r="3"></circle><circle cx="6" cy="6" r="3"></circle><circle cx="18" cy="6" r="3"></circle><path d="M18 9v2c0 .6-.4 1-1 1H7c-.6 0-1-.4-1-1V9"></path><path d="M12 12v3"></path></svg></div>
+			<canvas id="graph-canvas" class="hide" width="512px" height="512px"></canvas>
+		</div>
+		</div></div><div id="outline" class=" tree-container"><div class="feature-header"><div class="feature-title">Table Of Contents</div><button class="clickable-icon nav-action-button tree-collapse-all" aria-label="Collapse All"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></svg></button></div><div class="tree-item" data-depth="1"><a class="tree-item-self is-clickable" href="04b-user-guide-es.html#04b-User-Guide-ES_0" data-path="#04b-User-Guide-ES_0"><div class="tree-item-inner heading-link" heading-name="04b-User-Guide-ES">04b-User-Guide-ES</div></a><div class="tree-item-children"></div></div><div class="tree-item mod-collapsible" data-depth="1"><a class="tree-item-self is-clickable mod-collapsible" href="04b-user-guide-es.html#Guía_de_usuario_—_Data360_News_Agent_0" data-path="#Guía_de_usuario_—_Data360_News_Agent_0"><div class="tree-item-icon collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div><div class="tree-item-inner heading-link" heading-name="Guía de usuario — Data360 News Agent">Guía de usuario — Data360 News Agent</div></a><div class="tree-item-children"><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="04b-user-guide-es.html#Qué_hace_esta_herramienta_0" data-path="#Qué_hace_esta_herramienta_0"><div class="tree-item-inner heading-link" heading-name="Qué hace esta herramienta">Qué hace esta herramienta</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="04b-user-guide-es.html#Alcance_del_demo_0" data-path="#Alcance_del_demo_0"><div class="tree-item-inner heading-link" heading-name="Alcance del demo">Alcance del demo</div></a><div class="tree-item-children"></div></div><div class="tree-item mod-collapsible" data-depth="2"><a class="tree-item-self is-clickable mod-collapsible" href="04b-user-guide-es.html#Interfaz_web_0" data-path="#Interfaz_web_0"><div class="tree-item-icon collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div><div class="tree-item-inner heading-link" heading-name="Interfaz web">Interfaz web</div></a><div class="tree-item-children"><div class="tree-item" data-depth="3"><a class="tree-item-self is-clickable" href="04b-user-guide-es.html#Navegación_0" data-path="#Navegación_0"><div class="tree-item-inner heading-link" heading-name="Navegación">Navegación</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="3"><a class="tree-item-self is-clickable" href="04b-user-guide-es.html#Idiomas_0" data-path="#Idiomas_0"><div class="tree-item-inner heading-link" heading-name="Idiomas">Idiomas</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="3"><a class="tree-item-self is-clickable" href="04b-user-guide-es.html#Onboarding_0" data-path="#Onboarding_0"><div class="tree-item-inner heading-link" heading-name="Onboarding">Onboarding</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="3"><a class="tree-item-self is-clickable" href="04b-user-guide-es.html#Suscripciones_0" data-path="#Suscripciones_0"><div class="tree-item-inner heading-link" heading-name="Suscripciones">Suscripciones</div></a><div class="tree-item-children"></div></div></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="04b-user-guide-es.html#Selector_de_país_(`/`)_0" data-path="#Selector_de_país_(`/`)_0"><div class="tree-item-inner heading-link" heading-name="Selector de país (`/`)">Selector de país (<code>/</code>)</div></a><div class="tree-item-children"></div></div><div class="tree-item mod-collapsible" data-depth="2"><a class="tree-item-self is-clickable mod-collapsible" href="04b-user-guide-es.html#Portada_por_país_(`/{país}`)_0" data-path="#Portada_por_país_(`/{país}`)_0"><div class="tree-item-icon collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div><div class="tree-item-inner heading-link" heading-name="Portada por país (`/{país}`)">Portada por país (<code>/{país}</code>)</div></a><div class="tree-item-children"><div class="tree-item" data-depth="3"><a class="tree-item-self is-clickable" href="04b-user-guide-es.html#Vista_legacy_(grid_de_tarjetas_con_filtros)_0" data-path="#Vista_legacy_(grid_de_tarjetas_con_filtros)_0"><div class="tree-item-inner heading-link" heading-name="Vista legacy (grid de tarjetas con filtros)">Vista legacy (grid de tarjetas con filtros)</div></a><div class="tree-item-children"></div></div></div></div><div class="tree-item mod-collapsible" data-depth="2"><a class="tree-item-self is-clickable mod-collapsible" href="04b-user-guide-es.html#Artículo_(`/{país}/{tipo}/{año}/{mes}/{slug}`)_0" data-path="#Artículo_(`/{país}/{tipo}/{año}/{mes}/{slug}`)_0"><div class="tree-item-icon collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div><div class="tree-item-inner heading-link" heading-name="Artículo (`/{país}/{tipo}/{año}/{mes}/{slug}`)">Artículo (<code>/{país}/{tipo}/{año}/{mes}/{slug}</code>)</div></a><div class="tree-item-children"><div class="tree-item" data-depth="3"><a class="tree-item-self is-clickable" href="04b-user-guide-es.html#Chat_por_pieza_(primario)_0" data-path="#Chat_por_pieza_(primario)_0"><div class="tree-item-inner heading-link" heading-name="Chat por pieza (primario)">Chat por pieza (primario)</div></a><div class="tree-item-children"></div></div></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="04b-user-guide-es.html#Indicadores_globales_(`/indicadores`)_0" data-path="#Indicadores_globales_(`/indicadores`)_0"><div class="tree-item-inner heading-link" heading-name="Indicadores globales (`/indicadores`)">Indicadores globales (<code>/indicadores</code>)</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="04b-user-guide-es.html#Newsletter_(`/newsletter`,_`/newsletter/lac/{fecha}`)_0" data-path="#Newsletter_(`/newsletter`,_`/newsletter/lac/{fecha}`)_0"><div class="tree-item-inner heading-link" heading-name="Newsletter (`/newsletter`, `/newsletter/lac/{fecha}`)">Newsletter (<code>/newsletter</code>, <code>/newsletter/lac/{fecha}</code>)</div></a><div class="tree-item-children"></div></div><div class="tree-item mod-collapsible" data-depth="2"><a class="tree-item-self is-clickable mod-collapsible" href="04b-user-guide-es.html#Chat_analítico_global_(`/chat`)_0" data-path="#Chat_analítico_global_(`/chat`)_0"><div class="tree-item-icon collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div><div class="tree-item-inner heading-link" heading-name="Chat analítico global (`/chat`)">Chat analítico global (<code>/chat</code>)</div></a><div class="tree-item-children"><div class="tree-item" data-depth="3"><a class="tree-item-self is-clickable" href="04b-user-guide-es.html#Flujo_general_0" data-path="#Flujo_general_0"><div class="tree-item-inner heading-link" heading-name="Flujo general">Flujo general</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="3"><a class="tree-item-self is-clickable" href="04b-user-guide-es.html#Presets_integrados_0" data-path="#Presets_integrados_0"><div class="tree-item-inner heading-link" heading-name="Presets integrados">Presets integrados</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="3"><a class="tree-item-self is-clickable" href="04b-user-guide-es.html#País_foco_0" data-path="#País_foco_0"><div class="tree-item-inner heading-link" heading-name="País foco">País foco</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="3"><a class="tree-item-self is-clickable" href="04b-user-guide-es.html#Catálogo_freshness_0" data-path="#Catálogo_freshness_0"><div class="tree-item-inner heading-link" heading-name="Catálogo freshness">Catálogo freshness</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="3"><a class="tree-item-self is-clickable" href="04b-user-guide-es.html#Exportar_conversación_0" data-path="#Exportar_conversación_0"><div class="tree-item-inner heading-link" heading-name="Exportar conversación">Exportar conversación</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="3"><a class="tree-item-self is-clickable" href="04b-user-guide-es.html#Reglas_del_agente_(resumen)_0" data-path="#Reglas_del_agente_(resumen)_0"><div class="tree-item-inner heading-link" heading-name="Reglas del agente (resumen)">Reglas del agente (resumen)</div></a><div class="tree-item-children"></div></div></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="04b-user-guide-es.html#About_(`/about`)_0" data-path="#About_(`/about`)_0"><div class="tree-item-inner heading-link" heading-name="About (`/about`)">About (<code>/about</code>)</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="04b-user-guide-es.html#Anatomía_de_una_alerta_0" data-path="#Anatomía_de_una_alerta_0"><div class="tree-item-inner heading-link" heading-name="Anatomía de una alerta">Anatomía de una alerta</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="04b-user-guide-es.html#Flujo_editorial_—_de_alerta_a_publicación_0" data-path="#Flujo_editorial_—_de_alerta_a_publicación_0"><div class="tree-item-inner heading-link" heading-name="Flujo editorial — de alerta a publicación">Flujo editorial — de alerta a publicación</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="04b-user-guide-es.html#Fuentes_de_datos_0" data-path="#Fuentes_de_datos_0"><div class="tree-item-inner heading-link" heading-name="Fuentes de datos">Fuentes de datos</div></a><div class="tree-item-children"></div></div><div class="tree-item mod-collapsible" data-depth="2"><a class="tree-item-self is-clickable mod-collapsible" href="04b-user-guide-es.html#Pipeline_(para_equipos_técnicos)_0" data-path="#Pipeline_(para_equipos_técnicos)_0"><div class="tree-item-icon collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div><div class="tree-item-inner heading-link" heading-name="Pipeline (para equipos técnicos)">Pipeline (para equipos técnicos)</div></a><div class="tree-item-children"><div class="tree-item" data-depth="3"><a class="tree-item-self is-clickable" href="04b-user-guide-es.html#Variables_de_entorno_0" data-path="#Variables_de_entorno_0"><div class="tree-item-inner heading-link" heading-name="Variables de entorno">Variables de entorno</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="3"><a class="tree-item-self is-clickable" href="04b-user-guide-es.html#Esquema_de_alertas_0" data-path="#Esquema_de_alertas_0"><div class="tree-item-inner heading-link" heading-name="Esquema de alertas">Esquema de alertas</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="3"><a class="tree-item-self is-clickable" href="04b-user-guide-es.html#Frontend_—_CSS_crítico_0" data-path="#Frontend_—_CSS_crítico_0"><div class="tree-item-inner heading-link" heading-name="Frontend — CSS crítico">Frontend — CSS crítico</div></a><div class="tree-item-children"></div></div></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="04b-user-guide-es.html#API_HTTP_(demo)_0" data-path="#API_HTTP_(demo)_0"><div class="tree-item-inner heading-link" heading-name="API HTTP (demo)">API HTTP (demo)</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="04b-user-guide-es.html#Tools_del_agente_(chat)_0" data-path="#Tools_del_agente_(chat)_0"><div class="tree-item-inner heading-link" heading-name="Tools del agente (chat)">Tools del agente (chat)</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="04b-user-guide-es.html#Cuándo_usar_cada_vista_0" data-path="#Cuándo_usar_cada_vista_0"><div class="tree-item-inner heading-link" heading-name="Cuándo usar cada vista">Cuándo usar cada vista</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="04b-user-guide-es.html#Limitaciones_conocidas_(demo)_0" data-path="#Limitaciones_conocidas_(demo)_0"><div class="tree-item-inner heading-link" heading-name="Limitaciones conocidas (demo)">Limitaciones conocidas (demo)</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="04b-user-guide-es.html#Documentación_relacionada_0" data-path="#Documentación_relacionada_0"><div class="tree-item-inner heading-link" heading-name="Documentación relacionada">Documentación relacionada</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="04b-user-guide-es.html#Más_allá_del_prototipo_0" data-path="#Más_allá_del_prototipo_0"><div class="tree-item-inner heading-link" heading-name="Más allá del prototipo">Más allá del prototipo</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="04b-user-guide-es.html#Contacto_y_licencia_0" data-path="#Contacto_y_licencia_0"><div class="tree-item-inner heading-link" heading-name="Contacto y licencia">Contacto y licencia</div></a><div class="tree-item-children"></div></div></div></div></div></div></div><script defer="">let rs = document.querySelector("#right-sidebar"); rs.classList.toggle("is-collapsed", window.innerWidth < 768); rs.style.setProperty("--sidebar-width", localStorage.getItem("sidebar-right-width"));</script></div></div></div></div></body></html>
